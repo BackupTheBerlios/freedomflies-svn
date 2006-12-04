@@ -14,8 +14,9 @@ class radiolink(object):
 		self.parent = parent
 		self.upthread = None
 		self.upalive = threading.Event()
-		self.downthreat = None
+		self.downthread = None
 		self.downalive = threading.Event()
+		self.downproc = downlinkProcess.MyDownlinkProcessor(self.parent)
 		self.radio_port = radio_port
 		self.gps_port = gps_port
 		#radio object really created in prefs.OnSave
@@ -138,7 +139,7 @@ class radiolink(object):
 			#input
 			try:
 				buffer = self.radio.readline()
-			except SerialException,e:
+			except serial.SerialException,e:
 				print "no radio"
 				continue
 				
@@ -146,12 +147,12 @@ class radiolink(object):
 				#print "no input"
 				continue
 			try:
-				downlinkProcess.ProcessBuffer(buffer)
+				self.downproc.ProcessBuffer(buffer)
 			except KeyError,e:
 				log.Log('e',"got unrecognized packet: %s"%buffer)
 			except Exception,e:
 				#catch exceptions here, so we don't freeze pyserial
-				print "datalink exception",e
+				print "datalink exception:",e
 				print "unrecognized data: %s" % buffer
 			
 			log.Log('d',buffer)

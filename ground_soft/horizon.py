@@ -20,6 +20,9 @@ class MyHorizonIndicator(GLCanvas):
 		self.Bind(wx.EVT_PAINT, self.OnPaint)
 		self.Roll = 0
 		self.Pitch = 0
+		self.refresh = wx.Timer(self,id=1)
+		self.refresh.Start(33) #in ms, so 30hz
+		self.Bind(wx.EVT_TIMER,self.OnDraw,self.refresh)
 		
 	def OnEraseBackground(self, event):
 		pass # Do nothing, to avoid flashing on MSW.
@@ -37,7 +40,8 @@ class MyHorizonIndicator(GLCanvas):
 		if not self.init:
 			self.InitGL()
 			self.init = True
-		self.OnDraw()
+		e = wx.PaintEvent()
+		self.OnDraw(e)
 	
 	def InitGL(self):
 		m_UnitsPerPixel = 1
@@ -73,7 +77,7 @@ class MyHorizonIndicator(GLCanvas):
 		glScalef(m_Scale_x, m_Scale_y, 1.0)
 		
 		
-	def OnDraw(self):
+	def OnDraw(self,event):
 		aCircle = circleEvaluator.CircleEvaluator()
 				
 		Roll = self.Roll
@@ -505,9 +509,7 @@ class MyHorizonIndicator(GLCanvas):
     	
 	def SetPitch(self,pitch):
 		self.Pitch = pitch
-		self.OnDraw()
 		
 	def SetRoll(self,roll):
 		self.Roll = roll
-		self.OnDraw()
 # end of class MyHorizonIndicator
