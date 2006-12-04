@@ -33,6 +33,7 @@ class radiolink(object):
 		if port != "":
 			try:
 				radio = serial.Serial(port,baud,timeout = 0)
+				radio.open()
 				log.Log('e',"starting radio on: "+radio.portstr)
 			except serial.SerialException,error:
 				log.Log('e',str(error))
@@ -40,13 +41,13 @@ class radiolink(object):
 			#timeout in seconds, accepts floats
 		else:
 			log.Log('e',"cannot start radio on port:"+port)
+			
 		return radio
 		
 	def StartUplinkThread(self):
 		print "start uplink thread"
 		if self.radio is None:
 			self.radio = self.GetRadio(self.radio_port,9600)
-		self.radio.open()
 		self.upthread = threading.Thread(target=self.UplinkThread)
 		self.upthread.setDaemon(1)
 		self.upalive.set()
@@ -56,7 +57,6 @@ class radiolink(object):
 		print "start downlink thread"
 		if self.radio is None:
 			self.radio = self.GetRadio(self.radio_port,9600)
-		self.radio.open()
 		self.downthread = threading.Thread(target=self.DownlinkThread)
 		self.downthread.setDaemon(1)
 		self.downalive.set()	
@@ -64,23 +64,22 @@ class radiolink(object):
 				
 	def StopUplinkThread(self):
 		if self.upthread is not None:
-			self.radio.close()
+			if self.radio is not None:
+				self.radio.close()
 			self.upalive.clear()
 			self.upthread.join()
 			self.upthread = None
 			
 	def StopDownlinkThread(self):
 		if self.downthread is not None:
-			self.radio.close()
+			if self.radio is not None:
+				self.radio.close()
 			self.downalive.clear()
 			self.downthread.join()
 			self.downthread = None
 	
 	def UplinkThread(self):
 		run = 0
-		
-		if not self.radio.isOpen():
-			self.radio.open()
 		
 		while(self.upalive.isSet()):
 			#get current stick axis values
@@ -131,9 +130,6 @@ class radiolink(object):
 	
 	#note, cannot use log in this thread, due to non-threadsafe wx widgets		
 	def DownlinkThread(self):
-		if not self.radio.isOpen():
-			self.radio.open()
-	
 		while(self.downalive.isSet()):
 			buffer = ""
 			#input

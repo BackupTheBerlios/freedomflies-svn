@@ -21,13 +21,13 @@ class PrefFrame(wx.MiniFrame):
 			self.radio_port_ctrl.SetValue(ports[0])
 		if len(ports) > 1:
 			self.gpsout_port_ctrl.SetValue(ports[1])
-		save = wx.Button(self,-1,"Apply")
-		save.SetDefault()
+		save_button = wx.Button(self,-1,"Apply")
+		save_button.SetDefault()
 		mainsizer.Add(portsizer,0,wx.LEFT|wx.TOP|wx.RIGHT,3)
-		mainsizer.Add(save,0,wx.ALIGN_CENTER_HORIZONTAL|wx.BOTTOM|wx.TOP,5)
+		mainsizer.Add(save_button,0,wx.ALIGN_CENTER_HORIZONTAL|wx.BOTTOM|wx.TOP,5)
 		self.SetSizer(mainsizer)
-		wx.EVT_BUTTON(self,save.GetId(),self.OnSave)
-		wx.EVT_CLOSE(self,self.OnSave)
+		self.Bind(wx.EVT_BUTTON,self.OnSave,save_button)
+		self.Bind(wx.EVT_CLOSE,self.OnSave,save_button)
 
 	def OnSave(self,evt):
 		radio_port = self.radio_port_ctrl.GetValue()
@@ -36,6 +36,10 @@ class PrefFrame(wx.MiniFrame):
 	 	gpsout_port = self.gpsout_port_ctrl.GetValue()
 	 	if gpsout_port != "":
 			self.parent.radio.gpsout = self.parent.radio.GetRadio(gpsout_port,4800)
+
+		if (self.parent.radio.radio is not None) or  (self.parent.radio.gpsout is not None):
+			#both ports were successfully set
+			self.Close()
 	 	
 	def GetSerialPorts(self):
 		if "__WXMAC__" in wx.PlatformInfo:

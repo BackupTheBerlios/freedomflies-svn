@@ -14,7 +14,6 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 --------------------------------------------------------------
-Brought to you by: Willcox Playa AZ, Home Depot, Busch Beer and Sex Musk
 """
 
 #main imports
@@ -98,7 +97,8 @@ class AppFrame(wx.Frame):
 		self.gps_error_ctrl = wx.TextCtrl(self, -1,size=(100,20),style=wx.TE_READONLY|wx.TE_RICH2)
 		self.throttle_gauge = wx.Gauge(self, -1, 10,size=(100,20),style=wx.GA_HORIZONTAL|wx.GA_SMOOTH)
 
-		self.compass = compass.MyCompass(self,-1,(250,250))
+		#compass replaced by PFD in horizon indicator
+		#self.compass = compass.MyCompass(self,-1,(250,250))
 
 		main_box_sizer = wx.BoxSizer(wx.HORIZONTAL)
 		main_grid_sizer = wx.GridSizer(2, 1)
@@ -154,16 +154,16 @@ class AppFrame(wx.Frame):
 		info_sizer.Add(self.throttle_gauge)
 		bottom_sizer.Add(info_sizer, 0, wx.ALIGN_CENTER_VERTICAL|wx.RIGHT)
 		
-		compass_sizer = wx.BoxSizer(wx.HORIZONTAL)
-		compass_sizer.Add(self.compass,0)
+		#compass_sizer = wx.BoxSizer(wx.HORIZONTAL)
+		#compass_sizer.Add(self.compass,0)
 		
 		main_grid_sizer.Add(bottom_sizer,1,wx.LEFT,0)
 		main_box_sizer.Add(main_grid_sizer,1,wx.LEFT,0)
-		main_box_sizer.Add(compass_sizer,0,wx.TOP|wx.RIGHT|wx.LEFT,5)
-		#self.SetMinSize((920,300))
+		#main_box_sizer.Add(compass_sizer,0,wx.TOP|wx.RIGHT|wx.LEFT,5)
 		self.SetAutoLayout(True)
 		self.SetSizer(main_box_sizer)
 		self.Layout()
+		self.SetMinSize((625,525))
 		#end of main window items
 		
 		#Menubar
@@ -217,9 +217,47 @@ class AppFrame(wx.Frame):
 		p = prefs.PrefFrame(self,-1,"Preferences",(975,265),(300,150))
 		p.Show()
 	def OnGraphicsTest(self,event):
-		for i in range(0,361,2):
-			self.compass.SetHeading(i)
+		max_pitch = 20
+		max_roll = 45
+		incr = 1
+		sleep_time = 0.01 #sec
+	
+		for i in range(0,max_pitch,incr):
+			self.horizon.SetPitch(i)
+			time.sleep(sleep_time)
 			wx.Yield()
+		for i in range(max_pitch,-max_pitch,-incr):
+			self.horizon.SetPitch(i)
+			time.sleep(sleep_time)
+			wx.Yield()
+		for i in range(-max_pitch,0,incr):
+			self.horizon.SetPitch(i)
+			time.sleep(sleep_time)
+			wx.Yield()
+			
+		self.horizon.SetPitch(0)
+		self.horizon.SetRoll(0)
+			
+		for i in range(0,max_roll,incr):
+			self.horizon.SetRoll(i)
+			time.sleep(sleep_time)
+			wx.Yield()
+		for i in range(max_roll,-max_roll,-incr):
+			self.horizon.SetRoll(i)
+			time.sleep(sleep_time)
+			wx.Yield()
+		for i in range(-max_roll,0,incr):
+			self.horizon.SetRoll(i)	
+			time.sleep(sleep_time)
+			wx.Yield()
+			
+		self.horizon.SetPitch(0)
+		self.horizon.SetRoll(0)
+			
+		#for i in range(0,361,2):
+		#	self.compass.SetHeading(i)
+		#	wx.Yield()
+		
 	def OnJoystickCalibrate(self,event):
 		self.calib = joystickClass.JoyFrame(self,-1,"Joystick Calibration",(975,30),(200,225))
 		self.calib.Layout()
@@ -278,7 +316,7 @@ class MyApp(wx.App):
 	def OnInit(self):
 		#pygame.init()
 		wx.InitAllImageHandlers()
-		self.win = AppFrame(None, -1, "Freedom Flies",(50,25),(920,400))
+		self.win = AppFrame(None, -1, "Freedom Flies",(50,25),(625,525))
 		self.win.Layout()
 		self.win.Show()
 		self.SetTopWindow(self.win)

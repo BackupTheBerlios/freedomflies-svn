@@ -25,7 +25,7 @@ class JoyFrame(wx.MiniFrame):
 		sizer.Add(self.throttle_pos,0,wx.ALIGN_CENTER_HORIZONTAL)
 		sizer.Add(self.text,1,wx.ALIGN_CENTER)
 		sizer.Add(self.CalibratedButton,1,wx.ALIGN_CENTER)
-		wx.EVT_BUTTON(self,self.CalibratedButton.GetId(),self.OnCalibrated)
+		self.Bind(wx.EVT_BUTTON,self.OnCalibrated,self.CalibratedButton)
 		self.CalibratedButton.SetDefault()
 
 		self.SetSizer(sizer)
@@ -51,6 +51,7 @@ class JoyFrame(wx.MiniFrame):
 		
 	def OnClose(self, event):
 		self.timer.Stop()
+		self.Close()
 		
 	def OnCalibrated(self, event):
 		self.parent.joystickCalibrated = True
