@@ -5,6 +5,11 @@ from wx.glcanvas import *
 from OpenGL.GL import *
 import circleEvaluator
 
+# OpenGL display code stolen from OpenGC
+# http://opengc.sourceforge.net/
+# Copyright (c) 2001-2004 Damion Shelton
+# modified to Python by Josh Levinger
+
 class MyHorizonIndicator(GLCanvas):
 	def __init__(self,parent,id,sizeT):
 		GLCanvas.__init__(self,parent,id,size=sizeT)
@@ -76,11 +81,6 @@ class MyHorizonIndicator(GLCanvas):
 		
 		glMatrixMode(GL_MODELVIEW)
 		glPushMatrix()
-		
-		
-		# this coded stolen from OpenGC
-		# http://opengc.sourceforge.net/
-		# Copyright (c) 2001-2004 Damion Shelton
 		
 		#Move to the center of the window
 		glTranslated(47,49,0)
@@ -462,39 +462,39 @@ class MyHorizonIndicator(GLCanvas):
 		# by fanning out triangles from a point just off each corner
 		# to an arc descrbing the curved portion of the art. horiz.
 		
-		glColor3ub(0,0,0)
-		# Lower left
-		glBegin(GL_TRIANGLE_FAN)
-		glVertex2f(-1.0,-1.0)
-		aCircle.SetOrigin(3.77,3.77)
-		aCircle.SetArcStartEnd(180,270)
-		aCircle.SetDegreesPerPoint(15)
-		aCircle.Evaluate()
-		glEnd()
-		# Upper left
-		glBegin(GL_TRIANGLE_FAN)
-		glVertex2f(-1.0,99.0)
-		aCircle.SetOrigin(3.77,94.23)
-		aCircle.SetArcStartEnd(270,360)
-		aCircle.SetDegreesPerPoint(15)
-		aCircle.Evaluate()
-		glEnd()
-		# Upper right
-		glBegin(GL_TRIANGLE_FAN)
-		glVertex2f(95.0,99.0)
-		aCircle.SetOrigin(90.23,94.23)
-		aCircle.SetArcStartEnd(0,90)
-		aCircle.SetDegreesPerPoint(15)
-		aCircle.Evaluate()
-		glEnd()
-		#Lower right
-		glBegin(GL_TRIANGLE_FAN)
-		glVertex2f(95.0,-1)
-		aCircle.SetOrigin(90.23,3.77)
-		aCircle.SetArcStartEnd(90,180)
-		aCircle.SetDegreesPerPoint(15)
-		aCircle.Evaluate()
-		glEnd()
+#		glColor3ub(0,0,0)
+#		# Lower left
+#		glBegin(GL_TRIANGLE_FAN)
+#		glVertex2f(-1.0,-1.0)
+#		aCircle.SetOrigin(3.77,3.77)
+#		aCircle.SetArcStartEnd(180,270)
+#		aCircle.SetDegreesPerPoint(15)
+#		aCircle.Evaluate()
+#		glEnd()
+#		# Upper left
+#		glBegin(GL_TRIANGLE_FAN)
+#		glVertex2f(-1.0,99.0)
+#		aCircle.SetOrigin(3.77,94.23)
+#		aCircle.SetArcStartEnd(270,360)
+#		aCircle.SetDegreesPerPoint(15)
+#		aCircle.Evaluate()
+#		glEnd()
+#		# Upper right
+#		glBegin(GL_TRIANGLE_FAN)
+#		glVertex2f(95.0,99.0)
+#		aCircle.SetOrigin(90.23,94.23)
+#		aCircle.SetArcStartEnd(0,90)
+#		aCircle.SetDegreesPerPoint(15)
+#		aCircle.Evaluate()
+#		glEnd()
+#		#Lower right
+#		glBegin(GL_TRIANGLE_FAN)
+#		glVertex2f(95.0,-1)
+#		aCircle.SetOrigin(90.23,3.77)
+#		aCircle.SetArcStartEnd(90,180)
+#		aCircle.SetDegreesPerPoint(15)
+#		aCircle.Evaluate()
+#		glEnd()
 		
 		# Finally, restore the modelview matrix to what we received
 		glPopMatrix()

@@ -6,13 +6,19 @@ class PrefFrame(wx.MiniFrame):
 		wx.MiniFrame.__init__(self, *args, **kwds)
 		self.parent = self.GetParent()
 		mainsizer = wx.BoxSizer(wx.VERTICAL)
-		portsizer = wx.FlexGridSizer(2,2)
+		portsizer = wx.FlexGridSizer(4,2)
 		self.gpsout_port_ctrl = wx.ComboBox(self,-1,'',size=(175,30))
 		self.radio_port_ctrl = wx.ComboBox(self,-1,'',size=(175,30))
 		portsizer.Add(wx.StaticText(self,-1,"Radio Port"),0)
 		portsizer.Add(self.radio_port_ctrl,1)
+		portsizer.Add(wx.StaticText(self,-1,"Radio Baud"),0)
+		self.radio_baud_ctrl = wx.TextCtrl(self,-1,size=(50,20))
+		portsizer.Add(self.radio_baud_ctrl,1)
 		portsizer.Add(wx.StaticText(self,-1,"GPS Loopback"),0)
 		portsizer.Add(self.gpsout_port_ctrl,1)
+		portsizer.Add(wx.StaticText(self,-1,"GPS Baud"),0)
+		self.gpsout_baud_ctrl = wx.TextCtrl(self,-1,size=(50,20))
+		portsizer.Add(self.gpsout_baud_ctrl,1)
 		ports = self.GetSerialPorts()
 		for port in ports:
 			self.gpsout_port_ctrl.Append(port)
@@ -28,14 +34,21 @@ class PrefFrame(wx.MiniFrame):
 		self.SetSizer(mainsizer)
 		self.Bind(wx.EVT_BUTTON,self.OnSave,save_button)
 		self.Bind(wx.EVT_CLOSE,self.OnSave,save_button)
+		
+		#set default baud
+		self.radio_baud_ctrl.SetValue("57600")
+		self.gpsout_baud_ctrl.SetValue("9600")
 
 	def OnSave(self,evt):
 		radio_port = self.radio_port_ctrl.GetValue()
+		gpsout_port = self.gpsout_port_ctrl.GetValue()
+		radio_baud = self.radio_baud_ctrl.GetValue()
+		gpsout_baud = self.gpsout_baud_ctrl.GetValue()
 		if radio_port != "":
-			self.parent.radio.radio = self.parent.radio.GetRadio(radio_port,9600)
-	 	gpsout_port = self.gpsout_port_ctrl.GetValue()
+			self.parent.radio.radio = self.parent.radio.GetRadio(radio_port,radio_baud)
+	 	
 	 	if gpsout_port != "":
-			self.parent.radio.gpsout = self.parent.radio.GetRadio(gpsout_port,4800)
+			self.parent.radio.gpsout = self.parent.radio.GetRadio(gpsout_port,gpsout_baud)
 
 		if (self.parent.radio.radio is not None) or  (self.parent.radio.gpsout is not None):
 			#both ports were successfully set

@@ -7,6 +7,8 @@ import log
 import string
 import pygame
 
+import downlinkProcess
+
 class radiolink(object):
 	def __init__(self,parent,radio_port,gps_port):		
 		self.parent = parent
@@ -19,9 +21,6 @@ class radiolink(object):
 		#radio object really created in prefs.OnSave
 		self.radio = None
 		self.gpsout = None
-		#self.radio = self.GetRadio(self.radio_port,9600)
-		#self.gpsout = self.GetRadio(self.gps_port,4800)
-		
 			
 		try:
 			self.stik = self.parent.stik
@@ -125,106 +124,37 @@ class radiolink(object):
 			for out_string in command_list:
 				if self.radio is not None:
 					self.radio.write(out_string)
-					print "UPLINK:",out_string
-				else:
-					print "X "+out_string
-					
-				log.Log('u',out_string)
+					print "UPLINK:",out_string[:-2] #strip \r\n	
+				log.Log('u',out_string[:-2]) #strip \r\n
 			time.sleep(1/30.) #run at 30 Hz
 	#end UplinkThread		
 	
 			
-	def DownlinkThread(self):
+	def DownlinkThread(self):	
 		while(self.downalive.isSet()):
+			#sleep first, so continues still have to wait
+			time.sleep(1/30.) #run at 30 Hz
 			buffer = ""
 			#input
-			if self.radio is not None:
+			try:
 				buffer = self.radio.readline()
-			else:
+			except SerialException,e:
 				print "no radio"
 				continue
-
-			try: #catch type conversion errors
-				data_type = buffer[0]
 				
-				if len(buffer) == 0:
-					print "no input"
-					continue
-				
-				buffer = buffer[:-2] #drop \r\n
-				raw_data_val = buffer[2:]
-				
-				if len(raw_data_val) == 0:
-					print "bad data_val: %s" % raw_data_val
-					continue
-				
-				if buffer[2] in string.ascii_letters:
-					data_val = ord(raw_data_val)
-					#use ord to get integer ordinal of one character string
-				if len(buffer) > 5:
-					#probably GPS string
-					data_val = str(raw_data_val)
-				else:
-					data_val = int(raw_data_val)
-	
-				if data_type == '1':
-					#OK signal
-					print "got OK"
-					#some gui handle
-				elif data_type == 'q':
-					#horizon pitch [0,127]
-					pitch_deg = data_val
-					#pitch_deg = (data_val - 64) * 90/127.0
-					#pitch_deg [-90,90]
-					print "got pitch:",pitch_deg
-					#self.parent.horizon.SetPitch(pitch_deg)
-				elif data_type == 'w':
-					#horizon roll [0.127]
-					roll_deg = data_val
-					#roll_deg = (data_val - 64) * 180/127.0
-					#roll_deg [-180,180]
-					print "got roll:",roll_deg
-					#self.parent.horizon.SetRoll(roll_deg)
-				elif data_type == 'h':
-					#compass heading [0,127]
-					heading_deg = (data_val) * 360/127.0
-					#heading_deg [0,360]
-					print "got heading:",heading_deg
-					#self.parent.compass.SetHeading(heading_deg)
-				elif data_type == 'a':
-					print "got latitude:",data_val
-					#self.parent.UpdateLatitude()
-				elif data_type == 'o':
-					print "got longitude:",data_val
-					#self.parent.UpdateLongitude()
-				elif data_type == 'z':
-					print "got altitude:",data_val
-					#self.parent.UpdateAltitude()
-				elif data_type == 'b':
-					#batt level [0,127]
-					batt_per = (data_val) * 12/127.0
-					print "got battery:",batt_per
-					#batt_volt [0,12]
-					#TODO: save to battery control
-				elif data_type == 'f':
-					#fuel level [0,127]
-					fuel_per = (data_val) * 100/127.0
-					print "got fuel:",fuel_per
-					#fuel_per [0,100]
-					#TODO: save to fuel control
-				elif data_type == 's':
-					#airspeed [0,127]
-					airspeed_knots = (data_val)
-					print "got airspeed:",airspeed_knots
-					# TODO: convert from total pressure to airspeed
+			if len(buffer) == 0:
+				#print "no input"
+				continue
+			try:
+				downlinkProcess.ProcessBuffer(buffer)
+			except KeyError,e:
+				log.Log('e',"got unrecognized packet: %s"%buffer)
 			except Exception,e:
+				#catch exceptions here, so we don't freeze pyserial
 				print "datalink exception",e
 				print "unrecognized data: %s" % buffer
-				print "data_type :%s:"% data_type
-				print "data_val :%s:"% raw_data_val
-				
+			
 			log.Log('d',buffer)
 			#TODO: construct NMEA sentences, mirror GPS data to gpsout
-					
-			time.sleep(1/30.) #run at 30 Hz
+			
 	#end DownlinkThread

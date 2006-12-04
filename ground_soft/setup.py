@@ -24,7 +24,7 @@ data_files = ['images/icon.icns']
 
 if sys.platform == 'darwin':
 	plist = dict(
-		CFBundleIconFile=NAME,
+		CFBundleIconFile='icon.icns',
 		CFBundleName=NAME,
 		CFBundleShortVersionString=VERSION,
 		CFBundleGetInfoString=' '.join([NAME, VERSION]),

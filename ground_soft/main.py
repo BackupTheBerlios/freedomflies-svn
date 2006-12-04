@@ -31,6 +31,7 @@ import prefs
 import joystick as joystickClass #avoid name collision
 import compass
 import horizon
+import heading
 import log
 from bufferedcanvas import *
 import datalink
@@ -64,15 +65,17 @@ class AppFrame(wx.Frame):
 		pygame.init()
 
 		#top sizer elements
-		self.airspeed_gauge = wx.Gauge(self, -1, 100, size=(20,250), style=wx.GA_VERTICAL|wx.GA_SMOOTH)
-		self.altitude_gauge = wx.Gauge(self, -1, 100, size=(20,250), style=wx.GA_VERTICAL|wx.GA_SMOOTH)
-		self.horizon = horizon.MyHorizonIndicator(self,-1,(500,250))
+		self.airspeed_gauge = wx.Gauge(self, -1, 100, size=(20,300), style=wx.GA_VERTICAL|wx.GA_SMOOTH)
+		self.altitude_gauge = wx.Gauge(self, -1, 100, size=(20,300), style=wx.GA_VERTICAL|wx.GA_SMOOTH)
+		self.horizon = horizon.MyHorizonIndicator(self,-1,(500,500))
+		#self.compass = heading.MyHeadingIndicator(self,-1,(500,500))
 		
-		#force initial paint
+		#force initial paint of OGL
 		e = wx.PaintEvent()
 		self.horizon.OnPaint(e)
 		self.horizon.SetClientSize((400,400))
-		
+		#self.compass.OnPaint(e)
+		#self.compass.SetClientSize((400,150))
 		
 		self.airspeed_value = wx.TextCtrl(self,-1,size=(50,20),style=wx.TE_READONLY)
 		self.altitude_value = wx.TextCtrl(self,-1,size=(50,20),style=wx.TE_READONLY)
@@ -104,14 +107,13 @@ class AppFrame(wx.Frame):
 		self.lon_dir_text = wx.StaticText(self, -1, " ")
 		self.gps_error_ctrl = wx.TextCtrl(self, -1,size=(100,20),style=wx.TE_READONLY|wx.TE_RICH2)
 		self.throttle_gauge = wx.Gauge(self, -1, 10,size=(100,20),style=wx.GA_HORIZONTAL|wx.GA_SMOOTH)
-
-		#compass replaced by PFD in horizon indicator
-		#self.compass = compass.MyCompass(self,-1,(250,250))
-
+		
+		#start sizer layout
 		main_box_sizer = wx.BoxSizer(wx.HORIZONTAL)
-		main_grid_sizer = wx.GridSizer(2, 1)
+		main_grid_sizer = wx.GridSizer(3, 1)
 	
 		top_sizer = wx.BoxSizer(wx.HORIZONTAL)
+		#compass_sizer = wx.BoxSizer(wx.HORIZONTAL)
 		bottom_sizer = wx.FlexGridSizer(1, 3,hgap=5)
 		
 		airspeed_sizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -125,6 +127,10 @@ class AppFrame(wx.Frame):
 		top_sizer.Add(self.horizon, 0,wx.LEFT)
 		top_sizer.Add(altitude_sizer, 0)
 		main_grid_sizer.Add(top_sizer,1,wx.LEFT,0)
+		
+		#heading indicator doesn't quite work yet
+		#compass_sizer.Add(self.compass,0,wx.CENTER)
+		#main_grid_sizer.Add(compass_sizer,1,wx.CENTER,0)
 		
 		button_sizer = wx.GridSizer(4, 2, vgap=5,hgap=5)
 		button_sizer.Add(self.radio_up_button, 0)
@@ -159,12 +165,9 @@ class AppFrame(wx.Frame):
 		info_sizer.Add(self.throttle_gauge)
 		bottom_sizer.Add(self.notebook,1)
 		bottom_sizer.Add(info_sizer, 0, wx.ALIGN_CENTER_VERTICAL|wx.RIGHT)
-		#compass_sizer = wx.BoxSizer(wx.HORIZONTAL)
-		#compass_sizer.Add(self.compass,0)
 		
 		main_grid_sizer.Add(bottom_sizer,1,wx.LEFT,0)
 		main_box_sizer.Add(main_grid_sizer,1,wx.LEFT,0)
-		#main_box_sizer.Add(compass_sizer,0,wx.TOP|wx.RIGHT|wx.LEFT,5)
 		self.SetAutoLayout(True)
 		self.SetSizer(main_box_sizer)
 		self.Layout()
@@ -365,5 +368,6 @@ if __name__ == "__main__":
 	try:
 		app.MainLoop()
 	finally:
-		app.radio.radio.close()
+		if app.radio.radio is not None:
+			app.radio.radio.close()
 		pygame.quit()
