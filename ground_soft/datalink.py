@@ -16,9 +16,12 @@ class radiolink(object):
 		self.downalive = threading.Event()
 		self.radio_port = radio_port
 		self.gps_port = gps_port
-		self.radio = self.GetRadio(self.radio_port,9600)
-		self.gpsout = self.GetRadio(self.gps_port,4800)
 		#radio object really created in prefs.OnSave
+		self.radio = None
+		self.gpsout = None
+		#self.radio = self.GetRadio(self.radio_port,9600)
+		#self.gpsout = self.GetRadio(self.gps_port,4800)
+		
 			
 		try:
 			self.stik = self.parent.stik
@@ -125,10 +128,12 @@ class radiolink(object):
 					print "UPLINK:",out_string
 				else:
 					print "X "+out_string
+					
+				log.Log('u',out_string)
 			time.sleep(1/30.) #run at 30 Hz
 	#end UplinkThread		
 	
-	#note, cannot use log in this thread, due to non-threadsafe wx widgets		
+			
 	def DownlinkThread(self):
 		while(self.downalive.isSet()):
 			buffer = ""
@@ -218,6 +223,7 @@ class radiolink(object):
 				print "data_type :%s:"% data_type
 				print "data_val :%s:"% raw_data_val
 				
+			log.Log('d',buffer)
 			#TODO: construct NMEA sentences, mirror GPS data to gpsout
 					
 			time.sleep(1/30.) #run at 30 Hz

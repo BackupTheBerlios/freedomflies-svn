@@ -11,15 +11,16 @@
      python setup.py py2exe
 """
 
+#import ez_setup
+#ez_setup.use_setuptools()
+
 import sys
-from distutils.core import setup
+from setuptools import setup
 
 NAME='Freedom Flies'
 VERSION='0.1'
 mainscript = 'main.py'
-data_files = 'images/'
-py2app_options=dict(argv_emulation=True)
-
+data_files = ['images/icon.icns']
 
 if sys.platform == 'darwin':
 	plist = dict(
@@ -34,15 +35,21 @@ if sys.platform == 'darwin':
 	extra_options = dict(
 		setup_requires=['py2app'],
 		 app=[mainscript],
-		 options=dict(py2app=py2app_options,plist=plist),
-		 data_files=[data_files]
+		 options=dict(py2app=dict(argv_emulation=True,
+		 	iconfile='images/icon.icns',
+		 	plist=plist)),
+		 data_files=data_files
 	)
+	
+	
 elif sys.platform == 'win32':
 	extra_options = dict(
 		setup_requires=['py2exe'],
 		app=[mainscript],
 		data_files=[data_files]
 	)
+	
+	
 else:
 	extra_options = dict(
 		# Normally unix-like platforms will use "setup.py install"

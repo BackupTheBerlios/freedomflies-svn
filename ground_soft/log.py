@@ -2,45 +2,66 @@ import wx
 from bufferedcanvas import *
 import os,time
 
+import mutex
+
+def SetGlobals(err,dl,ul):
+	global error,downlink,uplink
+	error = err
+	downlink = dl
+	uplink = ul
+
+#global log accessor function
+def Log(id,message):
+	global error,downlink,uplink
+	if id == 'e':
+		error.mutex.lock(error.DoLogString,message)
+	if id == 'd':
+		downlink.mutex.lock(downlink.DoLogString,message)
+	if id == 'u':
+		uplink.mutex.lock(uplink.DoLogString,message)
+	
 class MyLog(wx.PyLog):
 	"Class to allow real time logging of uplink/download/interface events"
-	def __init__(self, textCtrl, name, logTime = True):
+	def __init__(self, name, notebook):
 		wx.PyLog.__init__(self)
-		self.tc = textCtrl
-		self.logTime = logTime
+		self.tc = wx.TextCtrl(notebook, -1, style = wx.TE_MULTILINE|wx.TE_READONLY)
+		self.logTime = True
+		self.mutex = mutex.mutex() #control access to text controls
 		try:
 			os.mkdir('logs')
 		except OSError:
 			#directory already exists
 			pass
-		filename = 'logs/'+time.strftime("%Y%m%d-%H%M")+name+'.txt'
-		self.outfile = open(filename,'w')
+			
+		self.filename = 'logs/'+time.strftime("%Y%m%d-%H%M")+name+'.txt'
+		self.logfile_opened = False
+		#logfile opened in button in main
+		
+		
+	def OpenLogFile(self):
+		if not self.logfile_opened:
+			self.outfile = open(self.filename,'w')
+			self.logfile_opened = True
+		else:
+			#logfile already exists
+			pass
+			
+	def CloseLogFile(self):
+		self.outfile.close()
+		self.logfile_opened = False
 	
 	def DoLogString(self, message):
+		#write to text control
+		#WX GUI ISN'T THREAD SAFE!
+		#self.tc.AppendText(message + '\n')
+		#self.tc.ShowPosition(self.tc.GetNumberOfLines()) #scroll to bottom		
+		#only add time to stdout and logfile, not enough space in text control
 		if self.logTime:
-			message = time.strftime("%X", time.localtime()) + ": " + message
-		self.tc.AppendText(message + '\n')
-		self.tc.ShowPosition(self.tc.GetNumberOfLines()) #scroll to bottom on write
-		self.outfile.write(message + '\n')
-		self.outfile.flush()
-		print message
+				message = time.strftime("%X", time.localtime()) + ": " + message
+		if self.logfile_opened:
+			self.outfile.write(message + '\n')
+			self.outfile.flush()
+		else:
+			print message
+		self.mutex.unlock()
 #end of class MyLog
-
-def Log(target,message):
-	global error_log,downlink_log,uplink_log
-	
-	if target == 'e':
-		error_log.DoLogString(message)
-	if target == 'd':
-		downlink_log.DoLogString(message)
-		print message
-	if target == 'u':
-		uplink_log.DoLogString(message)
-
-def SetLogs(err,down,up):
-	global error_log,downlink_log,uplink_log
-	
-	error_log = MyLog(err,"errors")
-	downlink_log = MyLog(down,"downlink")
-	uplink_log = MyLog(up,"uplink")
-	

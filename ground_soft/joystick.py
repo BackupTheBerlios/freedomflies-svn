@@ -29,7 +29,7 @@ class JoyFrame(wx.MiniFrame):
 		self.CalibratedButton.SetDefault()
 
 		self.SetSizer(sizer)
-		self.SetMinSize((200,275))
+		self.SetMinSize((200,300))
 		self.SetAutoLayout(True)
 		self.Layout()
 		

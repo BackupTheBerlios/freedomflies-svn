@@ -1,18 +1,22 @@
 #!/usr/bin/env pythonw
-"""Ground station software for FreedomFlies, an opensource UAV.
-Surveil the surveillers!
-
-Written by Josh Levinger, Fall 2005
-
-Licensed under the MIT License
+"""Licensed under the MIT License
 --------------------------------------------------------------
-Copyright (c) 2005 MIT Media Lab
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 --------------------------------------------------------------
 """
 
@@ -35,13 +39,16 @@ import datalink
 try:
 	import wx
 	import wx.glcanvas
-	from wx.lib.dialogs import * #for about box
+	
 except ImportError:
 	print "cannot import wx"
+	
 try:
 	import pygame
+	
 except ImportError:
 	print "cannot import pygame"
+
 try:
 	import serial
 except ImportError:
@@ -51,6 +58,7 @@ except ImportError:
 class AppFrame(wx.Frame):
 	def __init__(self,*args,**kwds):
 		wx.Frame.__init__(self,*args,**kwds)
+		
 		
 		#init pygame first, may take awhile
 		pygame.init()
@@ -78,15 +86,15 @@ class AppFrame(wx.Frame):
 		self.radio_down_button = wx.ToggleButton(self, -1, "Radio Down",size=button_width)
 		self.gps_loopback_button = wx.ToggleButton(self, -1, "GPS Loopback",size=button_width)
 		
-		self.notebook = wx.Notebook(self, -1, size = (200,40), style=0)
-		self.error_log_ctrl = wx.TextCtrl(self.notebook, -1, style = wx.TE_MULTILINE|wx.TE_READONLY)
-		self.downlink_log_ctrl = wx.TextCtrl(self.notebook, -1, style = wx.TE_MULTILINE|wx.TE_READONLY)
-		self.uplink_log_ctrl = wx.TextCtrl(self.notebook, -1, style = wx.TE_MULTILINE|wx.TE_READONLY)
-		
-		log.SetLogs(self.error_log_ctrl,
-		self.downlink_log_ctrl,
-		self.uplink_log_ctrl) #send textctrls to log.py
-		
+		self.notebook = wx.Notebook(self, -1, size = (200,150), style=0)
+		self.error_log = log.MyLog('error',self.notebook)
+		self.downlink_log = log.MyLog('downlink',self.notebook)
+		self.uplink_log = log.MyLog('uplink',self.notebook)
+		self.notebook.AddPage(self.error_log.tc, "Error")
+		self.notebook.AddPage(self.downlink_log.tc, "Downlink")
+		self.notebook.AddPage(self.uplink_log.tc, "Uplink")
+		log.SetGlobals(self.error_log,self.downlink_log,self.uplink_log)
+		#pass these objects to log class
 		
 		self.lat_deg_ctrl = wx.TextCtrl(self, -1,size=(30,20),style=wx.TE_READONLY|wx.TE_RICH2)
 		self.lat_min_ctrl = wx.TextCtrl(self, -1,size=(60,20),style=wx.TE_READONLY|wx.TE_RICH2)
@@ -118,7 +126,7 @@ class AppFrame(wx.Frame):
 		top_sizer.Add(altitude_sizer, 0)
 		main_grid_sizer.Add(top_sizer,1,wx.LEFT,0)
 		
-		button_sizer = wx.GridSizer(4, 2, vgap=10,hgap=10)
+		button_sizer = wx.GridSizer(4, 2, vgap=5,hgap=5)
 		button_sizer.Add(self.radio_up_button, 0)
 		button_sizer.Add(self.autopilot_button, 0)
 		button_sizer.Add(self.radio_down_button, 0)
@@ -126,13 +134,10 @@ class AppFrame(wx.Frame):
 		button_sizer.Add(self.gps_loopback_button, 0)
 		button_sizer.Add(self.engine_button, 0)
 		bottom_sizer.Add(button_sizer,1,wx.LEFT|wx.ALIGN_CENTER_VERTICAL,5)
-		wx.EVT_TOGGLEBUTTON(self,self.radio_up_button.GetId(),self.OnRadioUpButton)
-		wx.EVT_TOGGLEBUTTON(self,self.radio_down_button.GetId(),self.OnRadioDownButton)
-		
-		self.notebook.AddPage(self.error_log_ctrl, "Error")
-		self.notebook.AddPage(self.downlink_log_ctrl, "Downlink")
-		self.notebook.AddPage(self.uplink_log_ctrl, "Uplink")
-		bottom_sizer.Add(self.notebook,1)
+		self.Bind(wx.EVT_TOGGLEBUTTON,self.OnRadioUpButton,self.radio_up_button)
+		self.Bind(wx.EVT_TOGGLEBUTTON, # \
+				self.OnRadioDownButton,self.radio_down_button)
+		self.Bind(wx.EVT_TOGGLEBUTTON, self.OnLogToFile,self.logfile_button)
 		
 		info_sizer = wx.FlexGridSizer(4,2,vgap=5)
 		lat_sizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -152,8 +157,8 @@ class AppFrame(wx.Frame):
 		info_sizer.Add(self.gps_error_ctrl)
 		info_sizer.Add(wx.StaticText(self, -1, "Throttle"),1)
 		info_sizer.Add(self.throttle_gauge)
+		bottom_sizer.Add(self.notebook,1)
 		bottom_sizer.Add(info_sizer, 0, wx.ALIGN_CENTER_VERTICAL|wx.RIGHT)
-		
 		#compass_sizer = wx.BoxSizer(wx.HORIZONTAL)
 		#compass_sizer.Add(self.compass,0)
 		
@@ -163,39 +168,44 @@ class AppFrame(wx.Frame):
 		self.SetAutoLayout(True)
 		self.SetSizer(main_box_sizer)
 		self.Layout()
-		self.SetMinSize((625,525))
+		self.SetMinSize((575,575))
 		#end of main window items
 		
 		#Menubar
 		self.MenuBar = wx.MenuBar()
 		FileMenu = wx.Menu()
-		FileMenu.Append(-1, 'Save log')
+		#
+		#hack
+		about = FileMenu.Append(-1, 'About FreedomFlies')
+		self.Bind(wx.EVT_MENU,self.OnAbout,about)
+		#
 		FileMenu.AppendSeparator()
-		prefs = FileMenu.Append(-1,'Preferences')		
-		quit = FileMenu.Append(-1, "E&xit\tAlt-X", "Exit demo")
-		wx.EVT_MENU(self,quit.GetId(), self.OnQuit)
+		prefs = FileMenu.Append(-1,'Preferences')
+		quit = FileMenu.Append(-1, "E&xit\tAlt-X", "Exit")
+		self.Bind(wx.EVT_MENU,self.OnQuit,quit)
 		self.MenuBar.Append(FileMenu, '&File')
 
-		HelpMenu = wx.Menu()
-		help = HelpMenu.Append(-1, 'About FreedomFlies')
-		wx.EVT_MENU(self, help.GetId(), self.OnAbout)
-		wx.EVT_MENU(self, prefs.GetId(),self.OnPrefs)
-		if "__WXMAC__" in wx.PlatformInfo: 
-			wx.App.SetMacAboutMenuItemId(help.GetId())
-			wx.App_SetMacHelpMenuTitleName("&Help")
-		self.MenuBar.Append(HelpMenu, "&Help")
-		
+		#TODO: figure out how to do help menu right on Macs
+		#HelpMenu = wx.Menu()
+		#about = HelpMenu.Append(-1, 'About FreedomFlies')
+		#self.Bind(wx.EVT_MENU,self.OnAbout,about)
+		#self.Bind(wx.EVT_MENU,self.OnPrefs,prefs)
+		#if "__WXMAC__" in wx.PlatformInfo: 
+		#	wx.App.SetMacAboutMenuItemId(about.GetId())
+		#	wx.App_SetMacHelpMenuTitleName("&Help")
+		#else:
+		#	self.MenuBar.Append(HelpMenu, "&Help")
+			
 		SetupMenu = wx.Menu()
 		cal = SetupMenu.Append(-1,'Calibrate Joystick')
-		wx.EVT_MENU(self,cal.GetId(),self.OnJoystickCalibrate)
+		self.Bind(wx.EVT_MENU,self.OnJoystickCalibrate,cal)
 		gtest = SetupMenu.Append(-1,"Graphics Test")
-		wx.EVT_MENU(self,gtest.GetId(),self.OnGraphicsTest)
+		self.Bind(wx.EVT_MENU,self.OnGraphicsTest,gtest)
 		self.MenuBar.Append(SetupMenu,"Setup")
 		self.SetMenuBar(self.MenuBar)
 		#end of menubar
 		
-		#global objects
-		#self.joystickCalibrated = True
+		# flags for main
 		self.joystickCalibrated = False
 		self.joystick = joystickClass.Joystick()	
 		self.gpsout_port = ""
@@ -210,9 +220,20 @@ class AppFrame(wx.Frame):
 	def OnQuit(self, event):
 		self.Close()
 		sys.exit()
+		
 	def OnAbout(self, event):
-		about = ScrolledMessageDialog(self, __doc__, "About...")
-		about.ShowModal()
+		info = wx.AboutDialogInfo()
+		info.SetName('Freedom Flies')
+		info.SetVersion('0.1')
+		info.SetDescription('An Open-Source UAV')
+		info.AddDeveloper('Chris Csikszentmihalyi')
+		info.AddDeveloper('Jorge de la Garza')
+		info.AddDeveloper('Josh Levinger')
+		info.SetLicence(__doc__)
+		info.SetCopyright("Copyright (C) 2005-2006 MIT Media Lab")
+		info.SetWebSite('http://freedomflies.berlios.de')
+		wx.AboutBox(info)
+		
 	def OnPrefs(self,event):
 		p = prefs.PrefFrame(self,-1,"Preferences",(975,265),(300,150))
 		p.Show()
@@ -295,7 +316,17 @@ class AppFrame(wx.Frame):
 			#self.accuracy_ctrl.SetDefaultStyle(red)
 			#set old data to red
 	
-				
+	def OnLogToFile(self,event):
+		btn = event.GetEventObject()
+		if btn.GetValue() == True:		
+			self.error_log.OpenLogFile()
+			self.downlink_log.OpenLogFile()
+			self.uplink_log.OpenLogFile()
+		if btn.GetValue() == False:	
+			self.error_log.CloseLogFile()
+			self.downlink_log.CloseLogFile()
+			self.uplink_log.CloseLogFile()
+					
 	def UpdateLatitude(self,lat_deg,lat_min,lat_dir):
 		self.lat_deg_ctrl.SetValue(lat_deg)
 		self.lat_min_ctrl.SetValue(lat_min)
@@ -316,7 +347,7 @@ class MyApp(wx.App):
 	def OnInit(self):
 		#pygame.init()
 		wx.InitAllImageHandlers()
-		self.win = AppFrame(None, -1, "Freedom Flies",(50,25),(625,525))
+		self.win = AppFrame(None, -1, "Freedom Flies",(50,25),(575,575))
 		self.win.Layout()
 		self.win.Show()
 		self.SetTopWindow(self.win)
