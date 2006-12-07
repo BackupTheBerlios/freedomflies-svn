@@ -5,9 +5,9 @@ timer.o: /opt/local/avr/avrlib/timer.c /opt/local/avr/avrlib/avr/io.h \
   /opt/local/avr/avrlib/avr/interrupt.h \
   /opt/local/avr/avrlib/avr/pgmspace.h \
   /opt/local/lib/gcc/avr/3.4.4/include/stddef.h \
-  /opt/local/avr/avrlib/avr/sleep.h ./global.h ./../../avrlibdefs.h \
-  ./../../avrlibtypes.h /opt/local/avr/avrlib/timer.h \
-  /opt/local/avr/avrlib/rprintf.h
+  /opt/local/avr/avrlib/avr/sleep.h ./global.h \
+  /opt/local/avr/avrlib/avrlibdefs.h /opt/local/avr/avrlib/avrlibtypes.h \
+  /opt/local/avr/avrlib/timer.h /opt/local/avr/avrlib/rprintf.h
 
 /opt/local/avr/avrlib/avr/io.h:
 
@@ -33,9 +33,9 @@ timer.o: /opt/local/avr/avrlib/timer.c /opt/local/avr/avrlib/avr/io.h \
 
 ./global.h:
 
-./../../avrlibdefs.h:
+/opt/local/avr/avrlib/avrlibdefs.h:
 
-./../../avrlibtypes.h:
+/opt/local/avr/avrlib/avrlibtypes.h:
 
 /opt/local/avr/avrlib/timer.h:
 

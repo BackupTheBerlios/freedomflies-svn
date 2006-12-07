@@ -364,16 +364,16 @@ DEFINED SYMBOLS
                             *ABS*:0000003d __SP_L__
                             *ABS*:00000000 __tmp_reg__
                             *ABS*:00000001 __zero_reg__
-/var/tmp//ccVs6nmR.s:88     .text:00000000 InitSerial0
-/var/tmp//ccVs6nmR.s:124    .text:00000016 put_c0
+/var/tmp//ccECLrUA.s:88     .text:00000000 InitSerial0
+/var/tmp//ccECLrUA.s:124    .text:00000016 put_c0
                             *COM*:00000002 Tx0Ready
-/var/tmp//ccVs6nmR.s:167    .text:00000038 put_char0
-/var/tmp//ccVs6nmR.s:200    .text:00000050 get_c0
+/var/tmp//ccECLrUA.s:167    .text:00000038 put_char0
+/var/tmp//ccECLrUA.s:200    .text:00000050 get_c0
                             *COM*:00000002 Rx0Ready
-/var/tmp//ccVs6nmR.s:245    .text:0000006a get_char0
-/var/tmp//ccVs6nmR.s:277    .text:0000007a __vector_13
-/var/tmp//ccVs6nmR.s:312    .text:0000008e __vector_14
-/var/tmp//ccVs6nmR.s:350    .text:000000a2 Letext
+/var/tmp//ccECLrUA.s:245    .text:0000006a get_char0
+/var/tmp//ccECLrUA.s:277    .text:0000007a __vector_13
+/var/tmp//ccECLrUA.s:312    .text:0000008e __vector_14
+/var/tmp//ccECLrUA.s:350    .text:000000a2 Letext
 
 UNDEFINED SYMBOLS
 __do_copy_data

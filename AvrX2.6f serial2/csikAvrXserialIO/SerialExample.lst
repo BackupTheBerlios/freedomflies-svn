@@ -1388,53 +1388,53 @@ DEFINED SYMBOLS
                             *ABS*:0000003d __SP_L__
                             *ABS*:00000000 __tmp_reg__
                             *ABS*:00000001 __zero_reg__
-/var/tmp//ccPnh3QY.s:144    .progmem.data:00000000 getCommandsTcb
+/var/tmp//ccScxyLZ.s:144    .progmem.data:00000000 getCommandsTcb
                             *COM*:00000087 getCommandsStk
-/var/tmp//ccPnh3QY.s:803    .text:000002ae getCommands
+/var/tmp//ccScxyLZ.s:803    .text:000002ae getCommands
                             *COM*:00000006 getCommandsPid
-/var/tmp//ccPnh3QY.s:152    .progmem.data:00000007 getUAVStatusTcb
+/var/tmp//ccScxyLZ.s:152    .progmem.data:00000007 getUAVStatusTcb
                             *COM*:0000006f getUAVStatusStk
-/var/tmp//ccPnh3QY.s:613    .text:0000016c getUAVStatus
+/var/tmp//ccScxyLZ.s:613    .text:0000016c getUAVStatus
                             *COM*:00000006 getUAVStatusPid
-/var/tmp//ccPnh3QY.s:161    .data:00000000 leftServoPos
-/var/tmp//ccPnh3QY.s:167    .text:00000000 parserInit
+/var/tmp//ccScxyLZ.s:161    .data:00000000 leftServoPos
+/var/tmp//ccScxyLZ.s:167    .text:00000000 parserInit
                             *COM*:00000001 parserBufferLength
                             *COM*:00000002 ParserExecFunction
                             *COM*:00000001 parserNumCommands
-/var/tmp//ccPnh3QY.s:196    .text:00000012 parserAddCommand
+/var/tmp//ccScxyLZ.s:196    .text:00000012 parserAddCommand
                             *COM*:00000096 CommandList
                             *COM*:00000014 ParserFunctionList
-/var/tmp//ccPnh3QY.s:244    .text:00000050 parserSetOutputFunc
+/var/tmp//ccScxyLZ.s:244    .text:00000050 parserSetOutputFunc
                             *COM*:00000002 parserOutputFunc
-/var/tmp//ccPnh3QY.s:263    .text:0000005a parserProcessInputString
+/var/tmp//ccScxyLZ.s:263    .text:0000005a parserProcessInputString
                             *COM*:0000000f parserBuffer
-/var/tmp//ccPnh3QY.s:342    .text:000000c4 parserInputFunc
-/var/tmp//ccPnh3QY.s:389    .text:000000f2 parserGetArgStr
-/var/tmp//ccPnh3QY.s:408    .text:000000f8 parserGetArgInt
-/var/tmp//ccPnh3QY.s:427    .text:00000102 __vector_11
-/var/tmp//ccPnh3QY.s:461    .text:00000114 myputs
-/var/tmp//ccPnh3QY.s:503    .text:0000013c myputs_P
-/var/tmp//ccPnh3QY.s:571    .progmem.data:0000000e __c.0
-/var/tmp//ccPnh3QY.s:575    .progmem.data:00000010 __c.1
-/var/tmp//ccPnh3QY.s:579    .progmem.data:00000016 __c.2
-/var/tmp//ccPnh3QY.s:583    .progmem.data:00000023 __c.3
-/var/tmp//ccPnh3QY.s:587    .progmem.data:00000030 __c.4
-/var/tmp//ccPnh3QY.s:591    .progmem.data:00000036 __c.5
-/var/tmp//ccPnh3QY.s:595    .progmem.data:0000003c __c.6
-/var/tmp//ccPnh3QY.s:599    .progmem.data:00000042 __c.7
-/var/tmp//ccPnh3QY.s:603    .progmem.data:00000048 __c.8
-/var/tmp//ccPnh3QY.s:607    .progmem.data:0000004e __c.9
-/var/tmp//ccPnh3QY.s:888    .text:00000312 main
-/var/tmp//ccPnh3QY.s:1053   .text:000003fc setLeftServo
-/var/tmp//ccPnh3QY.s:1106   .text:0000044e setRightServo
-/var/tmp//ccPnh3QY.s:1159   .text:000004a0 setThrottleServo
-/var/tmp//ccPnh3QY.s:1212   .text:000004f2 setCamPanServo
-/var/tmp//ccPnh3QY.s:1269   .text:00000544 setCamTiltServo
+/var/tmp//ccScxyLZ.s:342    .text:000000c4 parserInputFunc
+/var/tmp//ccScxyLZ.s:389    .text:000000f2 parserGetArgStr
+/var/tmp//ccScxyLZ.s:408    .text:000000f8 parserGetArgInt
+/var/tmp//ccScxyLZ.s:427    .text:00000102 __vector_11
+/var/tmp//ccScxyLZ.s:461    .text:00000114 myputs
+/var/tmp//ccScxyLZ.s:503    .text:0000013c myputs_P
+/var/tmp//ccScxyLZ.s:571    .progmem.data:0000000e __c.0
+/var/tmp//ccScxyLZ.s:575    .progmem.data:00000010 __c.1
+/var/tmp//ccScxyLZ.s:579    .progmem.data:00000016 __c.2
+/var/tmp//ccScxyLZ.s:583    .progmem.data:00000023 __c.3
+/var/tmp//ccScxyLZ.s:587    .progmem.data:00000030 __c.4
+/var/tmp//ccScxyLZ.s:591    .progmem.data:00000036 __c.5
+/var/tmp//ccScxyLZ.s:595    .progmem.data:0000003c __c.6
+/var/tmp//ccScxyLZ.s:599    .progmem.data:00000042 __c.7
+/var/tmp//ccScxyLZ.s:603    .progmem.data:00000048 __c.8
+/var/tmp//ccScxyLZ.s:607    .progmem.data:0000004e __c.9
+/var/tmp//ccScxyLZ.s:888    .text:00000312 main
+/var/tmp//ccScxyLZ.s:1053   .text:000003fc setLeftServo
+/var/tmp//ccScxyLZ.s:1106   .text:0000044e setRightServo
+/var/tmp//ccScxyLZ.s:1159   .text:000004a0 setThrottleServo
+/var/tmp//ccScxyLZ.s:1212   .text:000004f2 setCamPanServo
+/var/tmp//ccScxyLZ.s:1269   .text:00000544 setCamTiltServo
                             *COM*:00000002 rightServoPos
                             *COM*:00000002 throttleServoPos
                             *COM*:00000002 camPanServoPos
                             *COM*:00000002 camTiltServoPos
-/var/tmp//ccPnh3QY.s:1360   .text:000005a6 Letext
+/var/tmp//ccScxyLZ.s:1360   .text:000005a6 Letext
 
 UNDEFINED SYMBOLS
 __do_copy_data

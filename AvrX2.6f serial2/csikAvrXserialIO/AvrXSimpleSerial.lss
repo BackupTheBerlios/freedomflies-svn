@@ -13,9 +13,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS
   4 .eeprom       00000000  00810000  00810000  00001f8c  2**0
                   CONTENTS
-  5 .stab         00006624  00000000  00000000  00001f8c  2**2
+  5 .stab         00006534  00000000  00000000  00001f8c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  6 .stabstr      00002df6  00000000  00000000  000085b0  2**0
+  6 .stabstr      00002c9c  00000000  00000000  000084c0  2**0
                   CONTENTS, READONLY, DEBUGGING
 Disassembly of section .text:
 
@@ -336,20 +336,39 @@ int parserGetArgInt(void)
      1fe:	08 95       	ret
 
 00000200 <__vector_11>:
+ */
+
+AVRX_SIGINT(SIG_OVERFLOW0)
+{
+    IntProlog();                // Switch to kernel stack/context
      200:	0e 94 eb 0c 	call	0x19d6
+    TCNT0 += TCNT0_INIT;		// Add to pre-load to account for any missed clocks
      204:	82 b7       	in	r24, 0x32	; 50
      206:	8f 53       	subi	r24, 0x3F	; 63
      208:	82 bf       	out	0x32, r24	; 50
+    AvrXTimerHandler();         // Call Time queue manager
      20a:	0e 94 87 0e 	call	0x1d0e
+    Epilog();                   // Return to tasks
      20e:	0e 94 37 0d 	call	0x1a6e
 
 00000212 <myputs>:
+}
+
+
+
+// Super simple string printers...
+
+// PutString from RAM
+void myputs(int (*putch)(char), const uint8_t * psz)
+{
      212:	0f 93       	push	r16
      214:	1f 93       	push	r17
      216:	cf 93       	push	r28
      218:	df 93       	push	r29
      21a:	8c 01       	movw	r16, r24
      21c:	eb 01       	movw	r28, r22
+	while (*psz != 0)
+		(*putch)(*psz++);
      21e:	88 81       	ld	r24, Y
      220:	88 23       	and	r24, r24
      222:	31 f0       	breq	.+12     	; 0x230
@@ -367,12 +386,18 @@ int parserGetArgInt(void)
 
 0000023a <myputs_P>:
 }
+
+// PutString from FLASH
+void myputs_P(int (*putch)(char), const uint8_t * psz)
+{
      23a:	0f 93       	push	r16
      23c:	1f 93       	push	r17
      23e:	cf 93       	push	r28
      240:	df 93       	push	r29
      242:	8c 01       	movw	r16, r24
      244:	eb 01       	movw	r28, r22
+	while (__LPM(psz) != 0)
+		(*putch)(__LPM(psz++));
      246:	fb 01       	movw	r30, r22
      248:	84 91       	lpm	r24, Z
      24a:	88 23       	and	r24, r24
@@ -393,6 +418,13 @@ int parserGetArgInt(void)
      268:	08 95       	ret
 
 0000026a <getUAVStatus>:
+}
+
+//#if (USART_CHANNELS & CHANNEL_0)
+
+//tell the ground station I am OK by sending a "1" 10 times a second
+AVRX_GCC_TASKDEF(getUAVStatus, 76, 4)
+{	
      26a:	cf 93       	push	r28
      26c:	df 93       	push	r29
      26e:	cd b7       	in	r28, 0x3d	; 61
@@ -403,16 +435,23 @@ int parserGetArgInt(void)
      278:	de bf       	out	0x3e, r29	; 62
      27a:	0f be       	out	0x3f, r0	; 63
      27c:	cd bf       	out	0x3d, r28	; 61
+	TimerControlBlock timer;
+	
+	while(1)
+	{
+		printf_P(PSTR("1"));
      27e:	82 e6       	ldi	r24, 0x62	; 98
      280:	90 e0       	ldi	r25, 0x00	; 0
      282:	9f 93       	push	r25
      284:	8f 93       	push	r24
      286:	0e 94 af 08 	call	0x115e
+		putchar('\r');
      28a:	60 91 a1 02 	lds	r22, 0x02A1
      28e:	70 91 a2 02 	lds	r23, 0x02A2
      292:	8d e0       	ldi	r24, 0x0D	; 13
      294:	90 e0       	ldi	r25, 0x00	; 0
      296:	0e 94 5f 08 	call	0x10be
+		if (DEBUG) putchar('\n');
      29a:	60 91 a1 02 	lds	r22, 0x02A1
      29e:	70 91 a2 02 	lds	r23, 0x02A2
      2a2:	8a e0       	ldi	r24, 0x0A	; 10
@@ -420,11 +459,13 @@ int parserGetArgInt(void)
      2a6:	0e 94 5f 08 	call	0x10be
      2aa:	0f 90       	pop	r0
      2ac:	0f 90       	pop	r0
+		AvrXDelay(&timer, 250);
      2ae:	6a ef       	ldi	r22, 0xFA	; 250
      2b0:	70 e0       	ldi	r23, 0x00	; 0
      2b2:	ce 01       	movw	r24, r28
      2b4:	01 96       	adiw	r24, 0x01	; 1
      2b6:	0e 94 59 0e 	call	0x1cb2
+		printf_P(PSTR("c %d,"), 120);   	// c/3 evaluates to an int, even it c is not a multiple of
      2ba:	88 e7       	ldi	r24, 0x78	; 120
      2bc:	90 e0       	ldi	r25, 0x00	; 0
      2be:	9f 93       	push	r25
@@ -434,6 +475,7 @@ int parserGetArgInt(void)
      2c6:	9f 93       	push	r25
      2c8:	8f 93       	push	r24
      2ca:	0e 94 af 08 	call	0x115e
+		printf_P(PSTR("a 072.5759E,")); 
      2ce:	0f 90       	pop	r0
      2d0:	0f 90       	pop	r0
      2d2:	0f 90       	pop	r0
@@ -443,6 +485,7 @@ int parserGetArgInt(void)
      2da:	9f 93       	push	r25
      2dc:	8f 93       	push	r24
      2de:	0e 94 af 08 	call	0x115e
+		printf_P(PSTR("a 043.3223n,")); 
      2e2:	0f 90       	pop	r0
      2e4:	0f 90       	pop	r0
      2e6:	87 e7       	ldi	r24, 0x77	; 119
@@ -450,11 +493,13 @@ int parserGetArgInt(void)
      2ea:	9f 93       	push	r25
      2ec:	8f 93       	push	r24
      2ee:	0e 94 af 08 	call	0x115e
+		AvrXDelay(&timer, 250);
      2f2:	6a ef       	ldi	r22, 0xFA	; 250
      2f4:	70 e0       	ldi	r23, 0x00	; 0
      2f6:	ce 01       	movw	r24, r28
      2f8:	01 96       	adiw	r24, 0x01	; 1
      2fa:	0e 94 59 0e 	call	0x1cb2
+		printf_P(PSTR("s %d,"), 3);  
      2fe:	0f 90       	pop	r0
      300:	0f 90       	pop	r0
      302:	83 e0       	ldi	r24, 0x03	; 3
@@ -466,6 +511,7 @@ int parserGetArgInt(void)
      30e:	9f 93       	push	r25
      310:	8f 93       	push	r24
      312:	0e 94 af 08 	call	0x115e
+		printf_P(PSTR("g %d,"), 5);
      316:	0f 90       	pop	r0
      318:	0f 90       	pop	r0
      31a:	0f 90       	pop	r0
@@ -479,6 +525,7 @@ int parserGetArgInt(void)
      32a:	9f 93       	push	r25
      32c:	8f 93       	push	r24
      32e:	0e 94 af 08 	call	0x115e
+		printf_P(PSTR("f %d,"), 80); 
      332:	0f 90       	pop	r0
      334:	0f 90       	pop	r0
      336:	0f 90       	pop	r0
@@ -492,6 +539,7 @@ int parserGetArgInt(void)
      346:	9f 93       	push	r25
      348:	8f 93       	push	r24
      34a:	0e 94 af 08 	call	0x115e
+		printf_P(PSTR("b %d,"), 35); 
      34e:	0f 90       	pop	r0
      350:	0f 90       	pop	r0
      352:	0f 90       	pop	r0
@@ -505,6 +553,7 @@ int parserGetArgInt(void)
      362:	9f 93       	push	r25
      364:	8f 93       	push	r24
      366:	0e 94 af 08 	call	0x115e
+		printf_P(PSTR("q %d,"), 23);  
      36a:	0f 90       	pop	r0
      36c:	0f 90       	pop	r0
      36e:	0f 90       	pop	r0
@@ -518,6 +567,7 @@ int parserGetArgInt(void)
      37e:	9f 93       	push	r25
      380:	8f 93       	push	r24
      382:	0e 94 af 08 	call	0x115e
+		printf_P(PSTR("w %d,"), 70);
      386:	0f 90       	pop	r0
      388:	0f 90       	pop	r0
      38a:	0f 90       	pop	r0
@@ -538,6 +588,17 @@ int parserGetArgInt(void)
      3aa:	69 cf       	rjmp	.-302    	; 0x27e
 
 000003ac <getCommands>:
+	}
+}
+
+
+
+
+
+
+
+AVRX_GCC_TASKDEF(getCommands, 100, 1)
+{	
      3ac:	cf 93       	push	r28
      3ae:	df 93       	push	r29
      3b0:	cd b7       	in	r28, 0x3d	; 61
@@ -548,19 +609,31 @@ int parserGetArgInt(void)
      3ba:	de bf       	out	0x3e, r29	; 62
      3bc:	0f be       	out	0x3f, r0	; 63
      3be:	cd bf       	out	0x3d, r28	; 61
+	int c;		
+	TimerControlBlock timer;
+	
+	while (1)
+	{
+		while ((c = getchar()) != EOF)
      3c0:	15 c0       	rjmp	.+42     	; 0x3ec
+		{	
+			if (c == '\r')
      3c2:	0d 30       	cpi	r16, 0x0D	; 13
      3c4:	11 05       	cpc	r17, r1
      3c6:	79 f4       	brne	.+30     	; 0x3e6
+			{	putchar('\r');
      3c8:	60 91 a1 02 	lds	r22, 0x02A1
      3cc:	70 91 a2 02 	lds	r23, 0x02A2
      3d0:	c8 01       	movw	r24, r16
      3d2:	0e 94 5f 08 	call	0x10be
+				putchar('\n');
      3d6:	60 91 a1 02 	lds	r22, 0x02A1
      3da:	70 91 a2 02 	lds	r23, 0x02A2
      3de:	8a e0       	ldi	r24, 0x0A	; 10
      3e0:	90 e0       	ldi	r25, 0x00	; 0
      3e2:	0e 94 5f 08 	call	0x10be
+			}
+			parserInputFunc(c);
      3e6:	80 2f       	mov	r24, r16
      3e8:	0e 94 e1 00 	call	0x1c2
      3ec:	80 91 9f 02 	lds	r24, 0x029F
@@ -571,6 +644,8 @@ int parserGetArgInt(void)
      3fc:	0f 3f       	cpi	r16, 0xFF	; 255
      3fe:	18 07       	cpc	r17, r24
      400:	01 f7       	brne	.-64     	; 0x3c2
+		}
+		AvrXDelay(&timer, 5);
      402:	65 e0       	ldi	r22, 0x05	; 5
      404:	70 e0       	ldi	r23, 0x00	; 0
      406:	ce 01       	movw	r24, r28
@@ -579,24 +654,48 @@ int parserGetArgInt(void)
      40e:	ee cf       	rjmp	.-36     	; 0x3ec
 
 00000410 <main>:
+	}
+}
+
+
+	
+
+
+int main(void)
+{
      410:	cf e5       	ldi	r28, 0x5F	; 95
      412:	d8 e0       	ldi	r29, 0x08	; 8
      414:	de bf       	out	0x3e, r29	; 62
      416:	cd bf       	out	0x3d, r28	; 61
+    AvrXSetKernelStack(0);
      418:	80 e0       	ldi	r24, 0x00	; 0
      41a:	90 e0       	ldi	r25, 0x00	; 0
      41c:	0e 94 70 0d 	call	0x1ae0
+
+	MCUCR = _BV(SE);
      420:	80 e8       	ldi	r24, 0x80	; 128
      422:	85 bf       	out	0x35, r24	; 53
+	TCNT0 = TCNT0_INIT;
      424:	81 ec       	ldi	r24, 0xC1	; 193
      426:	82 bf       	out	0x32, r24	; 50
+#if defined (__AVR_ATmega103__) || defined (__ATmega103__)
+	TCCR0 =  ((1<<CS02) | (1<<CS01));
+#elif defined (__AVR_ATmega128__) || defined (__ATmega128__) || defined (__AVR_ATmega64__) || defined (__ATmega64__)
+	TCCR0 =  ((1<<CS2) | (1<<CS1));
+#else	// Most other chips...  Note: some are TCCR0 and some are TCCR0B...
+	TCCR0 =  (1<<CS02);
      428:	84 e0       	ldi	r24, 0x04	; 4
      42a:	83 bf       	out	0x33, r24	; 51
+#endif
+	TIMSK = _BV(TOIE0);
      42c:	81 e0       	ldi	r24, 0x01	; 1
      42e:	89 bf       	out	0x39, r24	; 57
+
+    InitSerial0(BAUD(57600));
      430:	81 e2       	ldi	r24, 0x21	; 33
      432:	90 e0       	ldi	r25, 0x00	; 0
      434:	0e 94 5b 07 	call	0xeb6
+    fdevopen(put_char0, get_c0,0);		// Set up standard I/O
      438:	40 e0       	ldi	r20, 0x00	; 0
      43a:	50 e0       	ldi	r21, 0x00	; 0
      43c:	63 e8       	ldi	r22, 0x83	; 131
@@ -604,83 +703,127 @@ int parserGetArgInt(void)
      440:	87 e7       	ldi	r24, 0x77	; 119
      442:	97 e0       	ldi	r25, 0x07	; 7
      444:	0e 94 d9 07 	call	0xfb2
+
+	// initialize parser system
+	parserInit();
      448:	0e 94 7f 00 	call	0xfe
+	// direct output to uart (serial port)
+	parserSetOutputFunc(put_char0);
      44c:	87 e7       	ldi	r24, 0x77	; 119
      44e:	97 e0       	ldi	r25, 0x07	; 7
      450:	0e 94 a7 00 	call	0x14e
+	// add commands to the command database
+	parserAddCommand("l",		setLeftServo);
      454:	6d e7       	ldi	r22, 0x7D	; 125
      456:	72 e0       	ldi	r23, 0x02	; 2
      458:	82 e6       	ldi	r24, 0x62	; 98
      45a:	90 e0       	ldi	r25, 0x00	; 0
      45c:	0e 94 88 00 	call	0x110
+	parserAddCommand("r",		setRightServo);
      460:	66 ea       	ldi	r22, 0xA6	; 166
      462:	72 e0       	ldi	r23, 0x02	; 2
      464:	84 e6       	ldi	r24, 0x64	; 100
      466:	90 e0       	ldi	r25, 0x00	; 0
      468:	0e 94 88 00 	call	0x110
+    parserAddCommand("t", 		setThrottleServo);
      46c:	6f ec       	ldi	r22, 0xCF	; 207
      46e:	72 e0       	ldi	r23, 0x02	; 2
      470:	86 e6       	ldi	r24, 0x66	; 102
      472:	90 e0       	ldi	r25, 0x00	; 0
      474:	0e 94 88 00 	call	0x110
+	parserAddCommand("p", 		setCamPanServo);
      478:	68 ef       	ldi	r22, 0xF8	; 248
      47a:	72 e0       	ldi	r23, 0x02	; 2
      47c:	88 e6       	ldi	r24, 0x68	; 104
      47e:	90 e0       	ldi	r25, 0x00	; 0
      480:	0e 94 88 00 	call	0x110
+	parserAddCommand("i", 		setCamTiltServo);
      484:	61 e2       	ldi	r22, 0x21	; 33
      486:	73 e0       	ldi	r23, 0x03	; 3
      488:	8a e6       	ldi	r24, 0x6A	; 106
      48a:	90 e0       	ldi	r25, 0x00	; 0
      48c:	0e 94 88 00 	call	0x110
+	
+	// initialize the timer system -- FROM AVRLIB
+	//timerInit();
+	
+	//////////////////////////////////////////////////Servos//////////////////////////
+	servoInit();
      490:	0e 94 49 06 	call	0xc92
+	// setup servo output channel-to-I/Opin mapping
+	// format is servoSetChannelIO( CHANNEL#, PORT, PIN );
+	servoSetChannelIO(0, _SFR_IO_ADDR(PORTC), PC0);
      494:	40 e0       	ldi	r20, 0x00	; 0
      496:	50 e0       	ldi	r21, 0x00	; 0
      498:	65 e1       	ldi	r22, 0x15	; 21
      49a:	70 e0       	ldi	r23, 0x00	; 0
      49c:	ca 01       	movw	r24, r20
      49e:	0e 94 91 06 	call	0xd22
+	servoSetChannelIO(1, _SFR_IO_ADDR(PORTC), PC1);
      4a2:	41 e0       	ldi	r20, 0x01	; 1
      4a4:	50 e0       	ldi	r21, 0x00	; 0
      4a6:	65 e1       	ldi	r22, 0x15	; 21
      4a8:	70 e0       	ldi	r23, 0x00	; 0
      4aa:	ca 01       	movw	r24, r20
      4ac:	0e 94 91 06 	call	0xd22
+	servoSetChannelIO(2, _SFR_IO_ADDR(PORTC), PC2);
      4b0:	42 e0       	ldi	r20, 0x02	; 2
      4b2:	50 e0       	ldi	r21, 0x00	; 0
      4b4:	65 e1       	ldi	r22, 0x15	; 21
      4b6:	70 e0       	ldi	r23, 0x00	; 0
      4b8:	ca 01       	movw	r24, r20
      4ba:	0e 94 91 06 	call	0xd22
+	servoSetChannelIO(3, _SFR_IO_ADDR(PORTC), PC3);
      4be:	43 e0       	ldi	r20, 0x03	; 3
      4c0:	50 e0       	ldi	r21, 0x00	; 0
      4c2:	65 e1       	ldi	r22, 0x15	; 21
      4c4:	70 e0       	ldi	r23, 0x00	; 0
      4c6:	ca 01       	movw	r24, r20
      4c8:	0e 94 91 06 	call	0xd22
+	servoSetChannelIO(4, _SFR_IO_ADDR(PORTC), PC4);
      4cc:	44 e0       	ldi	r20, 0x04	; 4
      4ce:	50 e0       	ldi	r21, 0x00	; 0
      4d0:	65 e1       	ldi	r22, 0x15	; 21
      4d2:	70 e0       	ldi	r23, 0x00	; 0
      4d4:	ca 01       	movw	r24, r20
      4d6:	0e 94 91 06 	call	0xd22
+
+	// set port pins to output
+	outb(DDRC, 0x1F);
      4da:	8f e1       	ldi	r24, 0x1F	; 31
      4dc:	84 bb       	out	0x14, r24	; 20
+
+	
+	#define SPEED_SERVO	1
+	//////////////////////////////////////////////////////////////////////////////////
+	
+	AvrXRunTask(TCB(getCommands));
      4de:	84 e5       	ldi	r24, 0x54	; 84
      4e0:	90 e0       	ldi	r25, 0x00	; 0
      4e2:	0e 94 7c 0d 	call	0x1af8
+	AvrXRunTask(TCB(getUAVStatus));
      4e6:	8b e5       	ldi	r24, 0x5B	; 91
      4e8:	90 e0       	ldi	r25, 0x00	; 0
      4ea:	0e 94 7c 0d 	call	0x1af8
+
+    
+	Epilog();
      4ee:	0e 94 37 0d 	call	0x1a6e
+	return(0);
+}
      4f2:	80 e0       	ldi	r24, 0x00	; 0
      4f4:	90 e0       	ldi	r25, 0x00	; 0
      4f6:	0c 94 63 0f 	jmp	0x1ec6
 
 000004fa <setLeftServo>:
+
+void setLeftServo(void)
+{	
+	leftServoPos = parserGetArgInt();
      4fa:	0e 94 fb 00 	call	0x1f6
      4fe:	90 93 61 00 	sts	0x0061, r25
      502:	80 93 60 00 	sts	0x0060, r24
+	servoSetPosition(LEFT_SERVO_CHAN, (char)leftServoPos);
      506:	80 91 60 00 	lds	r24, 0x0060
      50a:	99 27       	eor	r25, r25
      50c:	87 fd       	sbrc	r24, 7
@@ -689,16 +832,20 @@ int parserGetArgInt(void)
      512:	80 e0       	ldi	r24, 0x00	; 0
      514:	90 e0       	ldi	r25, 0x00	; 0
      516:	0e 94 bc 06 	call	0xd78
+	if (DEBUG)
+	{	printf("e0");
      51a:	8c e6       	ldi	r24, 0x6C	; 108
      51c:	90 e0       	ldi	r25, 0x00	; 0
      51e:	9f 93       	push	r25
      520:	8f 93       	push	r24
      522:	0e 94 9a 08 	call	0x1134
+		putchar('\r');
      526:	60 91 a1 02 	lds	r22, 0x02A1
      52a:	70 91 a2 02 	lds	r23, 0x02A2
      52e:	8d e0       	ldi	r24, 0x0D	; 13
      530:	90 e0       	ldi	r25, 0x00	; 0
      532:	0e 94 5f 08 	call	0x10be
+		putchar('\n');
      536:	60 91 a1 02 	lds	r22, 0x02A1
      53a:	70 91 a2 02 	lds	r23, 0x02A2
      53e:	8a e0       	ldi	r24, 0x0A	; 10
@@ -709,9 +856,16 @@ int parserGetArgInt(void)
      54a:	08 95       	ret
 
 0000054c <setRightServo>:
+	}
+}
+
+void setRightServo(void)
+{	
+	rightServoPos = parserGetArgInt();
      54c:	0e 94 fb 00 	call	0x1f6
      550:	90 93 be 00 	sts	0x00BE, r25
      554:	80 93 bd 00 	sts	0x00BD, r24
+	servoSetPosition(RIGHT_SERVO_CHAN, (char)rightServoPos);
      558:	80 91 bd 00 	lds	r24, 0x00BD
      55c:	99 27       	eor	r25, r25
      55e:	87 fd       	sbrc	r24, 7
@@ -720,16 +874,20 @@ int parserGetArgInt(void)
      564:	81 e0       	ldi	r24, 0x01	; 1
      566:	90 e0       	ldi	r25, 0x00	; 0
      568:	0e 94 bc 06 	call	0xd78
+	if (DEBUG)
+	{	printf("e0");
      56c:	8c e6       	ldi	r24, 0x6C	; 108
      56e:	90 e0       	ldi	r25, 0x00	; 0
      570:	9f 93       	push	r25
      572:	8f 93       	push	r24
      574:	0e 94 9a 08 	call	0x1134
+		putchar('\r');
      578:	60 91 a1 02 	lds	r22, 0x02A1
      57c:	70 91 a2 02 	lds	r23, 0x02A2
      580:	8d e0       	ldi	r24, 0x0D	; 13
      582:	90 e0       	ldi	r25, 0x00	; 0
      584:	0e 94 5f 08 	call	0x10be
+		putchar('\n');
      588:	60 91 a1 02 	lds	r22, 0x02A1
      58c:	70 91 a2 02 	lds	r23, 0x02A2
      590:	8a e0       	ldi	r24, 0x0A	; 10
@@ -740,9 +898,16 @@ int parserGetArgInt(void)
      59c:	08 95       	ret
 
 0000059e <setThrottleServo>:
+	}
+}
+
+void setThrottleServo(void)
+{
+	throttleServoPos = parserGetArgInt();
      59e:	0e 94 fb 00 	call	0x1f6
      5a2:	90 93 6b 01 	sts	0x016B, r25
      5a6:	80 93 6a 01 	sts	0x016A, r24
+	servoSetPosition(THROTTLE_SERVO_CHAN, (char)throttleServoPos);
      5aa:	80 91 6a 01 	lds	r24, 0x016A
      5ae:	99 27       	eor	r25, r25
      5b0:	87 fd       	sbrc	r24, 7
@@ -751,16 +916,20 @@ int parserGetArgInt(void)
      5b6:	82 e0       	ldi	r24, 0x02	; 2
      5b8:	90 e0       	ldi	r25, 0x00	; 0
      5ba:	0e 94 bc 06 	call	0xd78
+	if (DEBUG)
+	{	printf("e0");
      5be:	8c e6       	ldi	r24, 0x6C	; 108
      5c0:	90 e0       	ldi	r25, 0x00	; 0
      5c2:	9f 93       	push	r25
      5c4:	8f 93       	push	r24
      5c6:	0e 94 9a 08 	call	0x1134
+		putchar('\r');
      5ca:	60 91 a1 02 	lds	r22, 0x02A1
      5ce:	70 91 a2 02 	lds	r23, 0x02A2
      5d2:	8d e0       	ldi	r24, 0x0D	; 13
      5d4:	90 e0       	ldi	r25, 0x00	; 0
      5d6:	0e 94 5f 08 	call	0x10be
+		putchar('\n');
      5da:	60 91 a1 02 	lds	r22, 0x02A1
      5de:	70 91 a2 02 	lds	r23, 0x02A2
      5e2:	8a e0       	ldi	r24, 0x0A	; 10
@@ -771,9 +940,16 @@ int parserGetArgInt(void)
      5ee:	08 95       	ret
 
 000005f0 <setCamPanServo>:
+	}
+}
+
+void setCamPanServo(void)
+{
+	camPanServoPos = parserGetArgInt();
      5f0:	0e 94 fb 00 	call	0x1f6
      5f4:	90 93 a1 00 	sts	0x00A1, r25
      5f8:	80 93 a0 00 	sts	0x00A0, r24
+	servoSetPosition(CAM_PAN_SERVO_CHAN, (char)camPanServoPos);
      5fc:	80 91 a0 00 	lds	r24, 0x00A0
      600:	99 27       	eor	r25, r25
      602:	87 fd       	sbrc	r24, 7
@@ -782,16 +958,20 @@ int parserGetArgInt(void)
      608:	83 e0       	ldi	r24, 0x03	; 3
      60a:	90 e0       	ldi	r25, 0x00	; 0
      60c:	0e 94 bc 06 	call	0xd78
+	if (DEBUG)
+	{	printf("e0");
      610:	8c e6       	ldi	r24, 0x6C	; 108
      612:	90 e0       	ldi	r25, 0x00	; 0
      614:	9f 93       	push	r25
      616:	8f 93       	push	r24
      618:	0e 94 9a 08 	call	0x1134
+		putchar('\r');
      61c:	60 91 a1 02 	lds	r22, 0x02A1
      620:	70 91 a2 02 	lds	r23, 0x02A2
      624:	8d e0       	ldi	r24, 0x0D	; 13
      626:	90 e0       	ldi	r25, 0x00	; 0
      628:	0e 94 5f 08 	call	0x10be
+		putchar('\n');
      62c:	60 91 a1 02 	lds	r22, 0x02A1
      630:	70 91 a2 02 	lds	r23, 0x02A2
      634:	8a e0       	ldi	r24, 0x0A	; 10
@@ -802,9 +982,16 @@ int parserGetArgInt(void)
      640:	08 95       	ret
 
 00000642 <setCamTiltServo>:
+	}
+}
+
+void setCamTiltServo(void)
+{
+	camTiltServoPos = parserGetArgInt();
      642:	0e 94 fb 00 	call	0x1f6
      646:	90 93 bc 00 	sts	0x00BC, r25
      64a:	80 93 bb 00 	sts	0x00BB, r24
+	servoSetPosition(CAM_TILT_SERVO_CHAN, (char)camTiltServoPos);
      64e:	80 91 bb 00 	lds	r24, 0x00BB
      652:	99 27       	eor	r25, r25
      654:	87 fd       	sbrc	r24, 7
@@ -813,6 +1000,8 @@ int parserGetArgInt(void)
      65a:	84 e0       	ldi	r24, 0x04	; 4
      65c:	90 e0       	ldi	r25, 0x00	; 0
      65e:	0e 94 bc 06 	call	0xd78
+	if (DEBUG)
+	{	printf("Camera Tilt Servo Set: %d", camTiltServoPos);
      662:	80 91 bb 00 	lds	r24, 0x00BB
      666:	90 91 bc 00 	lds	r25, 0x00BC
      66a:	9f 93       	push	r25
@@ -822,11 +1011,13 @@ int parserGetArgInt(void)
      672:	9f 93       	push	r25
      674:	8f 93       	push	r24
      676:	0e 94 9a 08 	call	0x1134
+		putchar('\r');
      67a:	60 91 a1 02 	lds	r22, 0x02A1
      67e:	70 91 a2 02 	lds	r23, 0x02A2
      682:	8d e0       	ldi	r24, 0x0D	; 13
      684:	90 e0       	ldi	r25, 0x00	; 0
      686:	0e 94 5f 08 	call	0x10be
+		putchar('\n');
      68a:	60 91 a1 02 	lds	r22, 0x02A1
      68e:	70 91 a2 02 	lds	r23, 0x02A2
      692:	8a e0       	ldi	r24, 0x0A	; 10
@@ -2441,91 +2632,44 @@ void servoService(void)
      f04:	08 95       	ret
 
 00000f06 <get_c0>:
-{
-	if (AvrXTestSemaphore(&Rx0Ready) == SEM_DONE)
      f06:	80 e9       	ldi	r24, 0x90	; 144
      f08:	92 e0       	ldi	r25, 0x02	; 2
      f0a:	0e 94 48 0e 	call	0x1c90
      f0e:	01 97       	sbiw	r24, 0x01	; 1
      f10:	21 f4       	brne	.+8      	; 0xf1a
-	{
-		uint8_t c = UDR;
      f12:	8c b1       	in	r24, 0x0c	; 12
-		UCSRB |= (1<<RXCIE);	// Enable getting the next charactor
      f14:	57 9a       	sbi	0x0a, 7	; 10
-		return c;
      f16:	99 27       	eor	r25, r25
      f18:	08 95       	ret
-	}
-	else
-		return FIFO_ERR;
      f1a:	8f ef       	ldi	r24, 0xFF	; 255
      f1c:	9f ef       	ldi	r25, 0xFF	; 255
-}
      f1e:	08 95       	ret
 
 00000f20 <get_char0>:
-
-int get_char0(void)	// Blocks waiting for something
-{
-	AvrXWaitSemaphore(&Rx0Ready);
      f20:	80 e9       	ldi	r24, 0x90	; 144
      f22:	92 e0       	ldi	r25, 0x02	; 2
      f24:	0e 94 d7 0d 	call	0x1bae
-	uint8_t c = UDR;
      f28:	8c b1       	in	r24, 0x0c	; 12
-	UCSRB |= (1<<RXCIE);	// Enable getting the next charactor
      f2a:	57 9a       	sbi	0x0a, 7	; 10
-	return c;
-}
      f2c:	99 27       	eor	r25, r25
      f2e:	08 95       	ret
 
 00000f30 <__vector_13>:
-/*
-This handler will buffer up to three characters in hardware. (double buffer +
-input shift register).  The semaphore is used to signal the task that one or more
-characters are ready.  The task routines re-enables the interrupt to fetch the next
-character.  By using SetSemaphore & TestSemaphore the processing overhead is very
-light.  The only time it gets heavy is when the receiving task blocks.
-*/
-
-#if defined(SIG_UART_RECV) && !defined(SIG_UART0_RECV)
-#  define SIG_UART0_RECV SIG_UART_RECV
-#  define SIG_UART0_DATA SIG_UART_DATA
-#endif
-
-AVRX_SIGINT(SIG_UART0_RECV)
-{
-    IntProlog();
      f30:	0e 94 eb 0c 	call	0x19d6
-    UCSRB &= ~(1<<RXCIE);	// Disable Rx interrupt
      f34:	57 98       	cbi	0x0a, 7	; 10
-    sei();					// Allow other interrupt activity to occur
      f36:	78 94       	sei
-	AvrXSetSemaphore(&Rx0Ready);
      f38:	80 e9       	ldi	r24, 0x90	; 144
      f3a:	92 e0       	ldi	r25, 0x02	; 2
      f3c:	0e 94 ee 0d 	call	0x1bdc
-	Epilog();
      f40:	0e 94 37 0d 	call	0x1a6e
 
 00000f44 <__vector_14>:
-}
-
-AVRX_SIGINT(SIG_UART0_DATA)
-{
-    IntProlog();
      f44:	0e 94 eb 0c 	call	0x19d6
-    UCSRB &= ~(1<<UDRIE);			// Disable UDRE interrupt
      f48:	55 98       	cbi	0x0a, 5	; 10
-    sei();							// Allow other stuff to happen
      f4a:	78 94       	sei
-	AvrXSetSemaphore(&Tx0Ready);
      f4c:	8e e8       	ldi	r24, 0x8E	; 142
      f4e:	92 e0       	ldi	r25, 0x02	; 2
      f50:	0e 94 ee 0d 	call	0x1bdc
-	Epilog();
      f54:	0e 94 37 0d 	call	0x1a6e
 
 00000f58 <atoi>:

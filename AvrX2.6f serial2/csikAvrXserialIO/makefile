@@ -422,7 +422,7 @@ clean_list :
 	$(REMOVE) *.o *.hex *.elf *.lss *.lst *.sym *.map *.eep
 	$(REMOVE) $(SRC:.c=.s)
 	$(REMOVE) $(SRC:.c=.d)
-	$(REMOVE) -r .dep
+#	$(REMOVE) -r .dep
 
 
 

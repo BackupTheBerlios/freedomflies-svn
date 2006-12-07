@@ -22,9 +22,9 @@
 #define GLOBAL_H
 
 // global AVRLIB defines
-#include "../../avrlibdefs.h"
+#include <avrlibdefs.h>
 // global AVRLIB types definitions
-#include "../../avrlibtypes.h"
+#include <avrlibtypes.h>
 
 // project/system dependent defines
 

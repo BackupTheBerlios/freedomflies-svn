@@ -512,63 +512,63 @@ LOAD /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a
  *(.eeprom*)
                 0x00810000                __eeprom_end = .
 
-.stab           0x00000000     0x6bd0
+.stab           0x00000000     0x6ae0
  *(.stab)
  .stab          0x00000000      0x2a0 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
  .stab          0x000002a0      0xf6c SerialExample.o
                                 0xf78 (size before relaxing)
- .stab          0x0000120c      0xdc8 /opt/local/avr/avrlib/timer.o
+ .stab          0x0000120c      0xcd8 /opt/local/avr/avrlib/timer.o
                                 0xf24 (size before relaxing)
- .stab          0x00001fd4      0x5d0 /opt/local/avr/avrlib/servo.o
+ .stab          0x00001ee4      0x5d0 /opt/local/avr/avrlib/servo.o
                                 0x780 (size before relaxing)
- .stab          0x000025a4      0x444 AvrXBufferedSerial.o
+ .stab          0x000024b4      0x444 AvrXBufferedSerial.o
                                 0x63c (size before relaxing)
- .stab          0x000029e8      0x738 ../avrx/avrx.a(AvrXFifo.o)
+ .stab          0x000028f8      0x738 ../avrx/avrx.a(AvrXFifo.o)
                                 0x744 (size before relaxing)
- .stab          0x00003120      0xbc4 ../avrx/avrx.a(avrx_tasking.o)
+ .stab          0x00003030      0xbc4 ../avrx/avrx.a(avrx_tasking.o)
                                 0xbd0 (size before relaxing)
- .stab          0x00003ce4      0x654 ../avrx/avrx.a(avrx_semaphores.o)
+ .stab          0x00003bf4      0x654 ../avrx/avrx.a(avrx_semaphores.o)
                                 0x660 (size before relaxing)
- .stab          0x00004338      0x120 ../avrx/avrx.a(avrx_resetsemaphore.o)
+ .stab          0x00004248      0x120 ../avrx/avrx.a(avrx_resetsemaphore.o)
                                 0x12c (size before relaxing)
- .stab          0x00004458      0x534 ../avrx/avrx.a(avrx_timequeue.o)
+ .stab          0x00004368      0x534 ../avrx/avrx.a(avrx_timequeue.o)
                                 0x540 (size before relaxing)
- .stab          0x0000498c      0x168 ../avrx/avrx.a(avrx_message.o)
+ .stab          0x0000489c      0x168 ../avrx/avrx.a(avrx_message.o)
                                 0x174 (size before relaxing)
- .stab          0x00004af4      0x228 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(atoi.o)
+ .stab          0x00004a04      0x228 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(atoi.o)
                                 0x234 (size before relaxing)
- .stab          0x00004d1c      0x3a8 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fdevopen.o)
+ .stab          0x00004c2c      0x3a8 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fdevopen.o)
                                 0x408 (size before relaxing)
- .stab          0x000050c4      0x288 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fgetc.o)
+ .stab          0x00004fd4      0x288 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fgetc.o)
                                 0x384 (size before relaxing)
- .stab          0x0000534c      0x21c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fputc.o)
+ .stab          0x0000525c      0x21c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fputc.o)
                                 0x318 (size before relaxing)
- .stab          0x00005568       0x78 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(mul10.o)
+ .stab          0x00005478       0x78 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(mul10.o)
                                  0x84 (size before relaxing)
- .stab          0x000055e0      0x1b0 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf.o)
+ .stab          0x000054f0      0x1b0 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf.o)
                                 0x294 (size before relaxing)
- .stab          0x00005790      0x1d4 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf_p.o)
+ .stab          0x000056a0      0x1d4 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf_p.o)
                                 0x2d0 (size before relaxing)
- .stab          0x00005964       0x6c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strcpy.o)
+ .stab          0x00005874       0x6c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strcpy.o)
                                  0x78 (size before relaxing)
- .stab          0x000059d0      0x84c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+ .stab          0x000058e0      0x84c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
                                 0x984 (size before relaxing)
- .stab          0x0000621c      0x1ec /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(calloc.o)
+ .stab          0x0000612c      0x1ec /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(calloc.o)
                                 0x228 (size before relaxing)
- .stab          0x00006408      0x5a0 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
+ .stab          0x00006318      0x5a0 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
                                 0x690 (size before relaxing)
- .stab          0x000069a8       0x6c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(memset.o)
+ .stab          0x000068b8       0x6c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(memset.o)
                                  0x78 (size before relaxing)
- .stab          0x00006a14       0x84 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strlen_P.o)
+ .stab          0x00006924       0x84 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strlen_P.o)
                                  0x90 (size before relaxing)
- .stab          0x00006a98       0x9c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strnlen.o)
+ .stab          0x000069a8       0x9c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strnlen.o)
                                  0xa8 (size before relaxing)
- .stab          0x00006b34       0x9c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
+ .stab          0x00006a44       0x9c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
                                  0xa8 (size before relaxing)
 
-.stabstr        0x00000000     0x3599
+.stabstr        0x00000000     0x343f
  *(.stabstr)
- .stabstr       0x00000000     0x3599 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+ .stabstr       0x00000000     0x343f /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
                                   0x0 (size before relaxing)
 
 .stab.excl

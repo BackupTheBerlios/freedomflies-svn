@@ -8,8 +8,8 @@ SerialExample.o: SerialExample.c /opt/local/avr/avrlib/avr/io.h \
   /opt/local/lib/gcc/avr/3.4.4/include/stdarg.h ../avrx/avrx.h \
   /opt/local/avr/avrlib/avr/interrupt.h /opt/local/avr/avrlib/stdlib.h \
   AvrXSerialIo.h ../avrx/AvrXFifo.h ../avrx/avrx.h parserconf.h parser.h \
-  parser.c /opt/local/avr/avrlib/string.h global.h ../../avrlibdefs.h \
-  ../../avrlibtypes.h
+  parser.c /opt/local/avr/avrlib/string.h global.h \
+  /opt/local/avr/avrlib/avrlibdefs.h /opt/local/avr/avrlib/avrlibtypes.h
 
 /opt/local/avr/avrlib/avr/io.h:
 
@@ -57,6 +57,6 @@ parser.c:
 
 global.h:
 
-../../avrlibdefs.h:
+/opt/local/avr/avrlib/avrlibdefs.h:
 
-../../avrlibtypes.h:
+/opt/local/avr/avrlib/avrlibtypes.h:
