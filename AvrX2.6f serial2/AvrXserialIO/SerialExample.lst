@@ -1,0 +1,556 @@
+   1               		.file	"SerialExample.c"
+   2               		.arch atmega32
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  12               		.text
+  13               	.Ltext0:
+ 108               	.global	task0Tcb
+ 109               		.section	.progmem.data,"a",@progbits
+ 112               	task0Tcb:
+ 113 0000 0000      		.word	task0Stk+110
+ 114 0002 0000      		.word	pm(task0)
+ 115 0004 0000      		.word	task0Pid
+ 116 0006 01        		.byte	1
+ 117               		.text
+ 119               	.global	__vector_11
+ 121               	__vector_11:
+   1:SerialExample.c **** /*
+   2:SerialExample.c ****     Serial interface Demo for AvrXFifo's
+   3:SerialExample.c **** 
+   4:SerialExample.c ****     Also illustrates the use of Frame based variables
+   5:SerialExample.c ****     at the top level tasking (switched from NAKED to
+   6:SerialExample.c ****     NORETURN function attribute)
+   7:SerialExample.c **** 
+   8:SerialExample.c **** 	When linked with simple serialio there is no buffering
+   9:SerialExample.c **** 	of charactors so only two charactors can be received
+  10:SerialExample.c **** 	during the delay (Hardware buffering within the USART).
+  11:SerialExample.c **** 
+  12:SerialExample.c **** 	When linked with the buffered IO up to 31 (or whatever
+  13:SerialExample.c **** 	the buffer size - 1 is) charactors can be received while
+  14:SerialExample.c **** 	delaying.
+  15:SerialExample.c **** */
+  16:SerialExample.c **** #include <avr/io.h>
+  17:SerialExample.c **** #include <avr/pgmspace.h>
+  18:SerialExample.c **** #include <stdio.h>
+  19:SerialExample.c **** #include "avrx.h"
+  20:SerialExample.c **** 
+  21:SerialExample.c **** // Uncomment this to override "AvrXSerialIo.h and just use one channel
+  22:SerialExample.c **** //#define USART_CHANNELS (1<1)	// 0 - USART0, 1 = USART1
+  23:SerialExample.c **** 
+  24:SerialExample.c **** #include "AvrXSerialIo.h"
+  25:SerialExample.c **** 
+  26:SerialExample.c **** enum
+  27:SerialExample.c **** {
+  28:SerialExample.c **** 	FALSE,
+  29:SerialExample.c **** 	TRUE
+  30:SerialExample.c **** };
+  31:SerialExample.c **** 
+  32:SerialExample.c **** typedef unsigned char BOOL;
+  33:SerialExample.c **** 
+  34:SerialExample.c **** // Peripheral initialization
+  35:SerialExample.c **** 
+  36:SerialExample.c **** #define TCNT0_INIT (0xFF-CPUCLK/256/TICKRATE)
+  37:SerialExample.c **** 
+  38:SerialExample.c **** /*
+  39:SerialExample.c ****  Timer 0 Overflow Interrupt Handler
+  40:SerialExample.c **** 
+  41:SerialExample.c ****  Prototypical Interrupt handler:
+  42:SerialExample.c ****  . Switch to kernel context
+  43:SerialExample.c ****  . handle interrupt
+  44:SerialExample.c ****  . switch back to interrupted context.
+  45:SerialExample.c ****  */
+  46:SerialExample.c **** AVRX_SIGINT(SIG_OVERFLOW0)
+  47:SerialExample.c **** {
+ 123               	.LM1:
+ 124               	/* prologue: frame size=0 */
+ 125               	/* prologue: naked */
+ 126               	/* prologue end (size=0) */
+  48:SerialExample.c ****     IntProlog();                // Switch to kernel stack/context
+ 128               	.LM2:
+ 129 0000 0E94 0000 		call IntProlog
+  49:SerialExample.c ****     TCNT0 += TCNT0_INIT;		// Add to pre-load to account for any missed clocks
+ 131               	.LM3:
+ 132 0004 82B7      		in r24,82-0x20
+ 133 0006 8F53      		subi r24,lo8(-(-63))
+ 134 0008 82BF      		out 82-0x20,r24
+  50:SerialExample.c ****     AvrXTimerHandler();         // Call Time queue manager
+ 136               	.LM4:
+ 137 000a 0E94 0000 		call AvrXTimerHandler
+  51:SerialExample.c ****     Epilog();                   // Return to tasks
+ 139               	.LM5:
+ 140 000e 0E94 0000 		call Epilog
+ 141               	/* epilogue: frame size=0 */
+ 142               	/* epilogue: naked */
+ 143               	/* epilogue end (size=0) */
+ 144               	/* function __vector_11 size 9 (9) */
+ 146               	.Lscope0:
+ 151               	.global	myputs
+ 153               	myputs:
+  52:SerialExample.c **** }
+  53:SerialExample.c **** 
+  54:SerialExample.c **** // Super simple string printers...
+  55:SerialExample.c **** 
+  56:SerialExample.c **** // PutString from RAM
+  57:SerialExample.c **** void myputs(int (*putch)(char), const uint8_t * psz)
+  58:SerialExample.c **** {
+ 155               	.LM6:
+ 156               	/* prologue: frame size=0 */
+ 157 0012 0F93      		push r16
+ 158 0014 1F93      		push r17
+ 159 0016 CF93      		push r28
+ 160 0018 DF93      		push r29
+ 161               	/* prologue end (size=4) */
+ 162 001a 8C01      		movw r16,r24
+ 163 001c EB01      		movw r28,r22
+  59:SerialExample.c **** 	while (*psz != 0)
+  60:SerialExample.c **** 		(*putch)(*psz++);
+ 165               	.LM7:
+ 166 001e 8881      		ld r24,Y
+ 167 0020 8823      		tst r24
+ 168 0022 31F0      		breq .L7
+ 169               	.L5:
+ 171               	.LM8:
+ 172 0024 8991      		ld r24,Y+
+ 173 0026 F801      		movw r30,r16
+ 174 0028 0995      		icall
+ 175 002a 8881      		ld r24,Y
+ 176 002c 8823      		tst r24
+ 177 002e D1F7      		brne .L5
+ 178               	.L7:
+ 179               	/* epilogue: frame size=0 */
+ 180 0030 DF91      		pop r29
+ 181 0032 CF91      		pop r28
+ 182 0034 1F91      		pop r17
+ 183 0036 0F91      		pop r16
+ 184 0038 0895      		ret
+ 185               	/* epilogue end (size=5) */
+ 186               	/* function myputs size 20 (11) */
+ 188               	.Lscope1:
+ 193               	.global	myputs_P
+ 195               	myputs_P:
+  61:SerialExample.c **** }
+  62:SerialExample.c **** 
+  63:SerialExample.c **** // PutString from FLASH
+  64:SerialExample.c **** void myputs_P(int (*putch)(char), const uint8_t * psz)
+  65:SerialExample.c **** {
+ 197               	.LM9:
+ 198               	/* prologue: frame size=0 */
+ 199 003a 0F93      		push r16
+ 200 003c 1F93      		push r17
+ 201 003e CF93      		push r28
+ 202 0040 DF93      		push r29
+ 203               	/* prologue end (size=4) */
+ 204 0042 8C01      		movw r16,r24
+ 205 0044 EB01      		movw r28,r22
+ 206               	.LBB2:
+  66:SerialExample.c **** 	while (__LPM(psz) != 0)
+  67:SerialExample.c **** 		(*putch)(__LPM(psz++));
+ 208               	.LM10:
+ 209 0046 FB01      		movw r30,r22
+ 210               	/* #APP */
+ 211 0048 8491      		lpm r24, Z
+ 212               		
+ 213               	/* #NOAPP */
+ 214               	.LBE2:
+ 215 004a 8823      		tst r24
+ 216 004c 49F0      		breq .L13
+ 217               	.L11:
+ 218               	.LBB3:
+ 220               	.LM11:
+ 221 004e FE01      		movw r30,r28
+ 222 0050 2196      		adiw r28,1
+ 223               	/* #APP */
+ 224 0052 8491      		lpm r24, Z
+ 225               		
+ 226               	/* #NOAPP */
+ 227               	.LBE3:
+ 228 0054 F801      		movw r30,r16
+ 229 0056 0995      		icall
+ 230               	.LBB4:
+ 231 0058 FE01      		movw r30,r28
+ 232               	/* #APP */
+ 233 005a 8491      		lpm r24, Z
+ 234               		
+ 235               	/* #NOAPP */
+ 236               	.LBE4:
+ 237 005c 8823      		tst r24
+ 238 005e B9F7      		brne .L11
+ 239               	.L13:
+ 240               	/* epilogue: frame size=0 */
+ 241 0060 DF91      		pop r29
+ 242 0062 CF91      		pop r28
+ 243 0064 1F91      		pop r17
+ 244 0066 0F91      		pop r16
+ 245 0068 0895      		ret
+ 246               	/* epilogue end (size=5) */
+ 247               	/* function myputs_P size 33 (24) */
+ 258               	.Lscope2:
+ 260               		.section	.progmem.data
+ 263               	__c.0:
+ 264 0007 5479 7065 		.string	"Type something within 5 seconds\r"
+ 264      2073 6F6D 
+ 264      6574 6869 
+ 264      6E67 2077 
+ 264      6974 6869 
+ 267               	__c.1:
+ 268 0028 596F 7520 		.string	"You typed in \""
+ 268      7479 7065 
+ 268      6420 696E 
+ 268      2022 00
+ 271               	__c.2:
+ 272 0037 5472 7920 		.string	"Try again... "
+ 272      6167 6169 
+ 272      6E2E 2E2E 
+ 272      2000 
+ 273               		.text
+ 275               	.global	task0
+ 277               	task0:
+  68:SerialExample.c **** }
+  69:SerialExample.c **** 
+  70:SerialExample.c **** #if (USART_CHANNELS & CHANNEL_0)
+  71:SerialExample.c **** 
+  72:SerialExample.c **** // This task uses GCC Libc stdio facility and needs an additional 60-80 bytes of stack
+  73:SerialExample.c **** // for processing the strings.  Longer strings probably need more stack.
+  74:SerialExample.c **** 
+  75:SerialExample.c **** AVRX_GCC_TASKDEF(task0, 76, 1)
+  76:SerialExample.c **** {
+ 279               	.LM12:
+ 280               	/* prologue: frame size=6 */
+ 281 006a CF93      		push r28
+ 282 006c DF93      		push r29
+ 283 006e CDB7      		in r28,__SP_L__
+ 284 0070 DEB7      		in r29,__SP_H__
+ 285 0072 2697      		sbiw r28,6
+ 286 0074 0FB6      		in __tmp_reg__,__SREG__
+ 287 0076 F894      		cli
+ 288 0078 DEBF      		out __SP_H__,r29
+ 289 007a 0FBE      		out __SREG__,__tmp_reg__
+ 290 007c CDBF      		out __SP_L__,r28
+ 291               	/* prologue end (size=10) */
+  77:SerialExample.c **** 	TimerControlBlock timer;
+  78:SerialExample.c **** 
+  79:SerialExample.c **** //	InitSerial0(BAUD(115200));	// Note: this only works with 12mhz or baud rate crystal
+  80:SerialExample.c **** 	InitSerial0(BAUD(57600));
+ 293               	.LM13:
+ 294 007e 81E2      		ldi r24,lo8(33)
+ 295 0080 90E0      		ldi r25,hi8(33)
+ 296 0082 0E94 0000 		call InitSerial0
+  81:SerialExample.c ****     fdevopen(put_char0, get_c0, 0);		// Set up standard I/O
+ 298               	.LM14:
+ 299 0086 40E0      		ldi r20,lo8(0)
+ 300 0088 50E0      		ldi r21,hi8(0)
+ 301 008a 60E0      		ldi r22,lo8(pm(get_c0))
+ 302 008c 70E0      		ldi r23,hi8(pm(get_c0))
+ 303 008e 80E0      		ldi r24,lo8(pm(put_char0))
+ 304 0090 90E0      		ldi r25,hi8(pm(put_char0))
+ 305 0092 0E94 0000 		call fdevopen
+ 306               	.L26:
+ 307               	.LBB5:
+  82:SerialExample.c **** 	while(1)
+  83:SerialExample.c **** 	{
+  84:SerialExample.c **** 		int c;
+  85:SerialExample.c **** 		BOOL bGotACharacter = FALSE;
+ 309               	.LM15:
+ 310 0096 FF24      		clr r15
+  86:SerialExample.c **** 
+  87:SerialExample.c **** 		printf_P(PSTR("Type something within 5 seconds\r"));
+ 312               	.LM16:
+ 313 0098 80E0      		ldi r24,lo8(__c.0)
+ 314 009a 90E0      		ldi r25,hi8(__c.0)
+ 315 009c 9F93      		push r25
+ 316 009e 8F93      		push r24
+ 317 00a0 0E94 0000 		call printf_P
+  88:SerialExample.c **** 		AvrXDelay(&timer, 5*1000);
+ 319               	.LM17:
+ 320 00a4 68E8      		ldi r22,lo8(5000)
+ 321 00a6 73E1      		ldi r23,hi8(5000)
+ 322 00a8 CE01      		movw r24,r28
+ 323 00aa 0196      		adiw r24,1
+ 324 00ac 0E94 0000 		call AvrXDelay
+  89:SerialExample.c **** #if 0		// Alternate code to determine when something was typed in.
+  90:SerialExample.c **** 		if ((c = AvrXStatFifo(Rx0Buf)))
+  91:SerialExample.c **** 		{
+  92:SerialExample.c **** 			bGotACharacter = TRUE;
+  93:SerialExample.c **** 			printf_P(PSTR("You typed in %d char: \""), c);
+  94:SerialExample.c **** 			while ((c = getchar()) >= 0)
+  95:SerialExample.c **** 				putchar(c);
+  96:SerialExample.c **** 		}
+  97:SerialExample.c **** #else
+  98:SerialExample.c **** 		while ((c = getchar()) != EOF)
+ 326               	.LM18:
+ 327 00b0 0F90      		pop __tmp_reg__
+ 328 00b2 0F90      		pop __tmp_reg__
+ 329 00b4 2BC0      		rjmp .L17
+ 330               	.L20:
+  99:SerialExample.c **** 		{
+ 100:SerialExample.c **** 			if (!bGotACharacter)
+ 332               	.LM19:
+ 333 00b6 FF20      		tst r15
+ 334 00b8 11F5      		brne .L19
+ 101:SerialExample.c **** 			{
+ 102:SerialExample.c **** 				printf_P(PSTR("You typed in \""));
+ 336               	.LM20:
+ 337 00ba 80E0      		ldi r24,lo8(__c.1)
+ 338 00bc 90E0      		ldi r25,hi8(__c.1)
+ 339 00be 9F93      		push r25
+ 340 00c0 8F93      		push r24
+ 341 00c2 0E94 0000 		call printf_P
+ 103:SerialExample.c **** 				putchar('"'),putchar('\r'),putchar('\n');  
+ 343               	.LM21:
+ 344 00c6 6091 0000 		lds r22,__iob+2
+ 345 00ca 7091 0000 		lds r23,(__iob+2)+1
+ 346 00ce 82E2      		ldi r24,lo8(34)
+ 347 00d0 90E0      		ldi r25,hi8(34)
+ 348 00d2 0E94 0000 		call fputc
+ 349 00d6 6091 0000 		lds r22,__iob+2
+ 350 00da 7091 0000 		lds r23,(__iob+2)+1
+ 351 00de 8DE0      		ldi r24,lo8(13)
+ 352 00e0 90E0      		ldi r25,hi8(13)
+ 353 00e2 0E94 0000 		call fputc
+ 354 00e6 6091 0000 		lds r22,__iob+2
+ 355 00ea 7091 0000 		lds r23,(__iob+2)+1
+ 356 00ee 8AE0      		ldi r24,lo8(10)
+ 357 00f0 90E0      		ldi r25,hi8(10)
+ 358 00f2 0E94 0000 		call fputc
+ 104:SerialExample.c **** 				bGotACharacter = TRUE;
+ 360               	.LM22:
+ 361 00f6 81E0      		ldi r24,lo8(1)
+ 362 00f8 F82E      		mov r15,r24
+ 363 00fa 0F90      		pop __tmp_reg__
+ 364 00fc 0F90      		pop __tmp_reg__
+ 365               	.L19:
+ 105:SerialExample.c **** 			}
+ 106:SerialExample.c **** 			putchar(c);
+ 367               	.LM23:
+ 368 00fe 6091 0000 		lds r22,__iob+2
+ 369 0102 7091 0000 		lds r23,(__iob+2)+1
+ 370 0106 C801      		movw r24,r16
+ 371 0108 0E94 0000 		call fputc
+ 372               	.L17:
+ 373 010c 8091 0000 		lds r24,__iob
+ 374 0110 9091 0000 		lds r25,(__iob)+1
+ 375 0114 0E94 0000 		call fgetc
+ 376 0118 8C01      		movw r16,r24
+ 377 011a 8FEF      		ldi r24,hi8(-1)
+ 378 011c 0F3F      		cpi r16,lo8(-1)
+ 379 011e 1807      		cpc r17,r24
+ 380 0120 51F6      		brne .L20
+ 107:SerialExample.c **** 		}
+ 108:SerialExample.c **** #endif
+ 109:SerialExample.c **** 		if (!bGotACharacter)
+ 382               	.LM24:
+ 383 0122 FF20      		tst r15
+ 384 0124 09F5      		brne .L21
+ 110:SerialExample.c **** 		{
+ 111:SerialExample.c **** 			printf_P(PSTR("Try again... "));
+ 386               	.LM25:
+ 387 0126 80E0      		ldi r24,lo8(__c.2)
+ 388 0128 90E0      		ldi r25,hi8(__c.2)
+ 389 012a 9F93      		push r25
+ 390 012c 8F93      		push r24
+ 391 012e 0E94 0000 		call printf_P
+ 112:SerialExample.c **** 			putchar('"'),putchar('\r'),putchar('\n');
+ 393               	.LM26:
+ 394 0132 6091 0000 		lds r22,__iob+2
+ 395 0136 7091 0000 		lds r23,(__iob+2)+1
+ 396 013a 82E2      		ldi r24,lo8(34)
+ 397 013c 90E0      		ldi r25,hi8(34)
+ 398 013e 0E94 0000 		call fputc
+ 399 0142 6091 0000 		lds r22,__iob+2
+ 400 0146 7091 0000 		lds r23,(__iob+2)+1
+ 401 014a 8DE0      		ldi r24,lo8(13)
+ 402 014c 90E0      		ldi r25,hi8(13)
+ 403 014e 0E94 0000 		call fputc
+ 404 0152 6091 0000 		lds r22,__iob+2
+ 405 0156 7091 0000 		lds r23,(__iob+2)+1
+ 406 015a 8AE0      		ldi r24,lo8(10)
+ 407 015c 90E0      		ldi r25,hi8(10)
+ 408 015e 0E94 0000 		call fputc
+ 409 0162 0F90      		pop __tmp_reg__
+ 410 0164 0F90      		pop __tmp_reg__
+ 411 0166 97CF      		rjmp .L26
+ 412               	.L21:
+ 113:SerialExample.c **** 		}  
+ 114:SerialExample.c **** 		else
+ 115:SerialExample.c **** 			putchar('"'),putchar('\r'),putchar('\n');
+ 414               	.LM27:
+ 415 0168 6091 0000 		lds r22,__iob+2
+ 416 016c 7091 0000 		lds r23,(__iob+2)+1
+ 417 0170 82E2      		ldi r24,lo8(34)
+ 418 0172 90E0      		ldi r25,hi8(34)
+ 419 0174 0E94 0000 		call fputc
+ 420 0178 6091 0000 		lds r22,__iob+2
+ 421 017c 7091 0000 		lds r23,(__iob+2)+1
+ 422 0180 8DE0      		ldi r24,lo8(13)
+ 423 0182 90E0      		ldi r25,hi8(13)
+ 424 0184 0E94 0000 		call fputc
+ 425 0188 6091 0000 		lds r22,__iob+2
+ 426 018c 7091 0000 		lds r23,(__iob+2)+1
+ 427 0190 8AE0      		ldi r24,lo8(10)
+ 428 0192 90E0      		ldi r25,hi8(10)
+ 429 0194 0E94 0000 		call fputc
+ 430               	.LBE5:
+ 431 0198 7ECF      		rjmp .L26
+ 432               	/* epilogue: frame size=6 */
+ 433               	/* epilogue: noreturn */
+ 434               	/* epilogue end (size=0) */
+ 435               	/* function task0 size 152 (142) */
+ 444               	.Lscope3:
+ 447               	.global	main
+ 449               	main:
+ 116:SerialExample.c **** 	}
+ 117:SerialExample.c **** }
+ 118:SerialExample.c **** #endif // USART_CHANNELS & CHANNEL_0
+ 119:SerialExample.c **** 
+ 120:SerialExample.c **** #if USART_CHANNELS & CHANNEL_1
+ 121:SerialExample.c **** 
+ 122:SerialExample.c **** // This task uses simplified string handlers and only needs a little extra
+ 123:SerialExample.c **** // stack for the timer & normal call-return stuff.  Note: Buffered I/O routines
+ 124:SerialExample.c **** // need more stack (this is sufficient for buffered, but not stdio!).
+ 125:SerialExample.c **** 
+ 126:SerialExample.c **** AVRX_GCC_TASKDEF(task1, 40, 1)
+ 127:SerialExample.c **** {
+ 128:SerialExample.c **** 	TimerControlBlock timer;
+ 129:SerialExample.c **** 
+ 130:SerialExample.c **** //	InitSerial1(BAUD(115200));	// Note: this only works with 12mhz or baud rate crystal
+ 131:SerialExample.c **** 	InitSerial1(BAUD(57600));
+ 132:SerialExample.c **** 	while(1)
+ 133:SerialExample.c **** 	{
+ 134:SerialExample.c **** 		int c;
+ 135:SerialExample.c **** 		BOOL bGotACharacter = FALSE;
+ 136:SerialExample.c **** 
+ 137:SerialExample.c **** 		myputs_P(put_char1, PSTR("Type something within 5 seconds\r"));
+ 138:SerialExample.c **** 		AvrXDelay(&timer, 4*1000);
+ 139:SerialExample.c **** 		while ((c = get_c1()) != EOF)
+ 140:SerialExample.c **** 		{
+ 141:SerialExample.c **** 			if (!bGotACharacter)
+ 142:SerialExample.c **** 			{
+ 143:SerialExample.c **** 				myputs_P(put_char1, PSTR("You typed in \""));
+ 144:SerialExample.c **** 				bGotACharacter = TRUE;
+ 145:SerialExample.c **** 			}
+ 146:SerialExample.c **** 			put_char1(c);
+ 147:SerialExample.c **** 		}
+ 148:SerialExample.c **** 
+ 149:SerialExample.c **** 		if (!bGotACharacter)
+ 150:SerialExample.c **** 		{
+ 151:SerialExample.c **** 			myputs_P(put_char1, PSTR("Try again... "));
+ 152:SerialExample.c **** 			myputs(put_char1, "\"\r");
+ 153:SerialExample.c ****  			 myputs(put_char1, "\"\n"); 
+ 154:SerialExample.c **** 		}
+ 155:SerialExample.c **** 		else
+ 156:SerialExample.c **** 		{
+ 157:SerialExample.c **** 			myputs(put_char1, "\"\r");		// Example of non-FLASH string..
+ 158:SerialExample.c **** 			 myputs(put_char1, "\"\n");
+ 159:SerialExample.c **** 		} 
+ 160:SerialExample.c **** 	}
+ 161:SerialExample.c **** }
+ 162:SerialExample.c **** #endif // USART_CHANNELS & CHANNEL_1
+ 163:SerialExample.c **** 
+ 164:SerialExample.c **** int main(void)
+ 165:SerialExample.c **** {
+ 451               	.LM28:
+ 452               	/* prologue: frame size=0 */
+ 453 019a C0E0      		ldi r28,lo8(__stack - 0)
+ 454 019c D0E0      		ldi r29,hi8(__stack - 0)
+ 455 019e DEBF      		out __SP_H__,r29
+ 456 01a0 CDBF      		out __SP_L__,r28
+ 457               	/* prologue end (size=4) */
+ 166:SerialExample.c ****     AvrXSetKernelStack(0);
+ 459               	.LM29:
+ 460 01a2 80E0      		ldi r24,lo8(0)
+ 461 01a4 90E0      		ldi r25,hi8(0)
+ 462 01a6 0E94 0000 		call AvrXSetKernelStack
+ 167:SerialExample.c **** 
+ 168:SerialExample.c **** 	MCUCR = _BV(SE);
+ 464               	.LM30:
+ 465 01aa 80E8      		ldi r24,lo8(-128)
+ 466 01ac 85BF      		out 85-0x20,r24
+ 169:SerialExample.c **** 	TCNT0 = TCNT0_INIT;
+ 468               	.LM31:
+ 469 01ae 81EC      		ldi r24,lo8(-63)
+ 470 01b0 82BF      		out 82-0x20,r24
+ 170:SerialExample.c **** #if defined (__AVR_ATmega103__) || defined (__ATmega103__)
+ 171:SerialExample.c **** 	TCCR0 =  ((1<<CS02) | (1<<CS01));
+ 172:SerialExample.c **** #elif defined (__AVR_ATmega128__) || defined (__ATmega128__) || defined (__AVR_ATmega64__) || defin
+ 173:SerialExample.c **** 	TCCR0 =  ((1<<CS2) | (1<<CS1));
+ 174:SerialExample.c **** #else	// Most other chips...  Note: some are TCCR0 and some are TCCR0B...
+ 175:SerialExample.c **** 	TCCR0 =  (1<<CS02);
+ 472               	.LM32:
+ 473 01b2 84E0      		ldi r24,lo8(4)
+ 474 01b4 83BF      		out 83-0x20,r24
+ 176:SerialExample.c **** #endif
+ 177:SerialExample.c **** 	TIMSK = _BV(TOIE0);
+ 476               	.LM33:
+ 477 01b6 81E0      		ldi r24,lo8(1)
+ 478 01b8 89BF      		out 89-0x20,r24
+ 178:SerialExample.c **** 
+ 179:SerialExample.c **** #if USART_CHANNELS & CHANNEL_1
+ 180:SerialExample.c **** 	AvrXRunTask(TCB(task1));
+ 181:SerialExample.c **** #endif
+ 182:SerialExample.c **** #if USART_CHANNELS & CHANNEL_0
+ 183:SerialExample.c **** 	AvrXRunTask(TCB(task0));
+ 480               	.LM34:
+ 481 01ba 80E0      		ldi r24,lo8(task0Tcb)
+ 482 01bc 90E0      		ldi r25,hi8(task0Tcb)
+ 483 01be 0E94 0000 		call AvrXRunTask
+ 184:SerialExample.c **** #endif
+ 185:SerialExample.c **** 	Epilog();
+ 485               	.LM35:
+ 486 01c2 0E94 0000 		call Epilog
+ 487               	.L28:
+ 186:SerialExample.c **** 	while(1);
+ 489               	.LM36:
+ 490 01c6 FFCF      		rjmp .L28
+ 491               	/* epilogue: frame size=0 */
+ 492               	/* epilogue: noreturn */
+ 493               	/* epilogue end (size=0) */
+ 494               	/* function main size 23 (19) */
+ 496               	.Lscope4:
+ 498               		.comm task0Stk,111,1
+ 499               		.comm task0Pid,6,1
+ 503               		.text
+ 505               	Letext:
+ 506               	/* File "SerialExample.c": code  237 = 0x00ed ( 205), prologues  22, epilogues  10 */
+DEFINED SYMBOLS
+                            *ABS*:00000000 SerialExample.c
+                            *ABS*:0000003f __SREG__
+                            *ABS*:0000003e __SP_H__
+                            *ABS*:0000003d __SP_L__
+                            *ABS*:00000000 __tmp_reg__
+                            *ABS*:00000001 __zero_reg__
+/var/tmp//ccKSxtlC.s:112    .progmem.data:00000000 task0Tcb
+                            *COM*:0000006f task0Stk
+/var/tmp//ccKSxtlC.s:277    .text:0000006a task0
+                            *COM*:00000006 task0Pid
+/var/tmp//ccKSxtlC.s:121    .text:00000000 __vector_11
+/var/tmp//ccKSxtlC.s:153    .text:00000012 myputs
+/var/tmp//ccKSxtlC.s:195    .text:0000003a myputs_P
+/var/tmp//ccKSxtlC.s:263    .progmem.data:00000007 __c.0
+/var/tmp//ccKSxtlC.s:267    .progmem.data:00000028 __c.1
+/var/tmp//ccKSxtlC.s:271    .progmem.data:00000037 __c.2
+/var/tmp//ccKSxtlC.s:449    .text:0000019a main
+/var/tmp//ccKSxtlC.s:505    .text:000001c8 Letext
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+IntProlog
+AvrXTimerHandler
+Epilog
+InitSerial0
+get_c0
+put_char0
+fdevopen
+printf_P
+AvrXDelay
+__iob
+fputc
+fgetc
+__stack
+AvrXSetKernelStack
+AvrXRunTask

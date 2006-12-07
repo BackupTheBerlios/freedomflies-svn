@@ -1,0 +1,819 @@
+Archive member included because of file (symbol)
+
+../avrx/avrx.a(AvrXFifo.o)    AvrXBufferedSerial.o (AvrXPutFifo)
+../avrx/avrx.a(avrx_tasking.o)
+                              SerialExample.o (IntProlog)
+../avrx/avrx.a(avrx_semaphores.o)
+                              ../avrx/avrx.a(AvrXFifo.o) (AvrXWaitSemaphore)
+../avrx/avrx.a(avrx_resetsemaphore.o)
+                              ../avrx/avrx.a(AvrXFifo.o) (AvrXResetSemaphore)
+../avrx/avrx.a(avrx_timequeue.o)
+                              SerialExample.o (AvrXDelay)
+../avrx/avrx.a(avrx_message.o)
+                              ../avrx/avrx.a(avrx_timequeue.o) (AvrXIntSendMessage)
+C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_copy_data.o)
+                              parser.o (__do_copy_data)
+C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_clear_bss.o)
+                              parser.o (__do_clear_bss)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strtol.o)
+                              parser.o (strtol)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(isspace.o)
+                              C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strtol.o) (isspace)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strcpy.o)
+                              parser.o (strcpy)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fdevopen.o)
+                              SerialExample.o (fdevopen)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fgetc.o)
+                              SerialExample.o (fgetc)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fputc.o)
+                              SerialExample.o (fputc)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(iob.o)
+                              SerialExample.o (__iob)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(printf.o)
+                              SerialExample.o (printf)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(printf_p.o)
+                              SerialExample.o (printf_P)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(putchar.o)
+                              SerialExample.o (putchar)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                              C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(printf.o) (vfprintf)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(calloc.o)
+                              C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fdevopen.o) (calloc)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(errno.o)
+                              C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strtol.o) (errno)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+                              C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(calloc.o) (malloc)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(cty_isfalse.o)
+                              C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(isspace.o) (__ctype_isfalse)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strlen_P.o)
+                              C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(vfprintf_std.o) (strlen_P)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+                              C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(vfprintf_std.o) (strnlen_P)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(memset.o)
+                              C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(calloc.o) (memset)
+C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strnlen.o)
+                              C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(vfprintf_std.o) (strnlen)
+C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_mulsi3.o)
+                              C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strtol.o) (__mulsi3)
+C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_udivmodsi4.o)
+                              C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strtol.o) (__udivmodsi4)
+
+Allocating common symbols
+Common symbol       size              file
+
+_TimerQueue         0x2               ../avrx/avrx.a(avrx_timequeue.o)
+_TimQLevel          0x1               ../avrx/avrx.a(avrx_timequeue.o)
+parserOutputFunc    0x2               parser.o
+ParserExecFunction  0x2               parser.o
+ParserFunctionList  0x14              parser.o
+errno               0x2               C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(errno.o)
+parserNumCommands   0x1               parser.o
+CommandList         0x96              parser.o
+task2Pid            0x6               SerialExample.o
+AvrXKernelData      0x7               ../avrx/avrx.a(avrx_tasking.o)
+Tx0BufFifo          0x27              AvrXBufferedSerial.o
+__brkval            0x2               C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+funcBParam          0x4               SerialExample.o
+parserBuffer        0xf               parser.o
+parserBufferLength  0x1               parser.o
+task0Pid            0x6               SerialExample.o
+Rx0BufFifo          0x27              AvrXBufferedSerial.o
+task2Stk            0x6f              SerialExample.o
+__flp               0x2               C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+funcAParam          0x4               SerialExample.o
+task0Stk            0x6f              SerialExample.o
+__iob               0x6               C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(iob.o)
+task1Pid            0x6               SerialExample.o
+task1Stk            0x6f              SerialExample.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+LOAD parser.o
+LOAD SerialExample.o
+LOAD AvrXBufferedSerial.o
+LOAD ../avrx/avrx.a
+LOAD C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libm.a
+LOAD C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a
+LOAD C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a
+LOAD C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000     0x1752
+ *(.vectors)
+ .vectors       0x00000000       0x54 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+                0x00000054                __ctors_start = .
+ *(.ctors)
+                0x00000054                __ctors_end = .
+                0x00000054                __dtors_start = .
+ *(.dtors)
+                0x00000054                __dtors_end = .
+ *(.progmem.gcc*)
+ *(.progmem*)
+ .progmem.data  0x00000054       0x2e SerialExample.o
+                0x0000005b                task1Tcb
+                0x00000054                task2Tcb
+                0x00000062                task0Tcb
+                0x00000082                . = ALIGN (0x2)
+ *(.init0)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000082        0xc C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+ *(.init3)
+ *(.init4)
+ .init4         0x0000008e       0x16 C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_copy_data.o)
+                0x0000008e                __do_copy_data
+ .init4         0x000000a4       0x10 C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_clear_bss.o)
+                0x000000a4                __do_clear_bss
+ *(.init5)
+ *(.init6)
+ *(.init7)
+ *(.init8)
+ *(.init9)
+ .init9         0x000000b4        0x4 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+ *(.text)
+ .text          0x000000b8        0x4 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+                0x000000b8                __vector_1
+                0x000000b8                __vector_12
+                0x000000b8                __bad_interrupt
+                0x000000b8                __vector_6
+                0x000000b8                __vector_3
+                0x000000b8                __vector_17
+                0x000000b8                __vector_19
+                0x000000b8                __vector_7
+                0x000000b8                __vector_5
+                0x000000b8                __vector_4
+                0x000000b8                __vector_9
+                0x000000b8                __vector_2
+                0x000000b8                __vector_15
+                0x000000b8                __vector_8
+                0x000000b8                __vector_10
+                0x000000b8                __vector_16
+                0x000000b8                __vector_18
+                0x000000b8                __vector_20
+ .text          0x000000bc      0x138 parser.o
+                0x000000bc                parserInit
+                0x000001ae                parserGetArgStr
+                0x00000180                parserInputFunc
+                0x0000010c                parserSetOutputFunc
+                0x00000116                parserProcessInputString
+                0x000001b4                parserGetArgInt
+                0x000000ce                parserAddCommand
+ .text          0x000001f4      0x2ee SerialExample.o
+                0x0000025e                task0
+                0x0000022e                myputs_P
+                0x00000206                myputs
+                0x000001f4                __vector_11
+                0x00000426                testFunctionA
+                0x0000031a                task1
+                0x0000036c                task2
+                0x00000484                testFunctionB
+                0x000003b0                main
+ .text          0x000004e2       0x9c AvrXBufferedSerial.o
+                0x00000536                get_c0
+                0x00000516                put_c0
+                0x00000540                get_char0
+                0x000004e2                InitSerial0
+                0x0000054a                __vector_13
+                0x00000524                put_char0
+                0x00000562                __vector_14
+ .text          0x0000057e      0x120 ../avrx/avrx.a(AvrXFifo.o)
+                0x00000644                AvrXFlushFifo
+                0x0000057e                AvrXPutFifo
+                0x000005f8                AvrXWaitPutFifo
+                0x000005b6                AvrXPullFifo
+                0x00000662                AvrXPeekFifo
+                0x00000622                AvrXWaitPullFifo
+                0x0000067c                AvrXStatFifo
+ .text          0x0000069e      0x236 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strtol.o)
+                0x0000069e                strtol
+ .text          0x000008d4        0xe C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strcpy.o)
+                0x000008d4                strcpy
+ .text          0x000008e2       0x8e C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fdevopen.o)
+                0x000008e2                fdevopen
+ .text          0x00000970       0x86 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fgetc.o)
+                0x00000970                fgetc
+ .text          0x000009f6       0x5a C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fputc.o)
+                0x000009f6                fputc
+ .text          0x00000a50       0x2a C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(printf.o)
+                0x00000a50                printf
+ .text          0x00000a7a       0x4a C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(printf_p.o)
+                0x00000a7a                printf_P
+ .text          0x00000ac4        0xe C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(putchar.o)
+                0x00000ac4                putchar
+ .text          0x00000ad2      0x57a C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                0x00000ad2                vfprintf
+ .text          0x0000104c       0x38 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(calloc.o)
+                0x0000104c                calloc
+ .text          0x00001084      0x1ec C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+                0x00001084                malloc
+                0x000011b8                free
+ .text          0x00001270       0x12 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strlen_P.o)
+                0x00001270                strlen_P
+ .text          0x00001282       0x16 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+                0x00001282                strnlen_P
+ .text          0x00001298       0x14 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(memset.o)
+                0x00001298                memset
+ .text          0x000012ac       0x16 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strnlen.o)
+                0x000012ac                strnlen
+                0x000012c2                . = ALIGN (0x2)
+ *(.text.*)
+ .text.avrx.avrx_tasking
+                0x000012c2      0x1d4 ../avrx/avrx.a(avrx_tasking.o)
+                0x000013e4                AvrXRunTask
+                0x0000142e                AvrXResume
+                0x0000135e                _Epilog
+                0x000013e8                AvrXInitTask
+                0x000012c2                IntProlog
+                0x000013cc                AvrXSetKernelStack
+                0x0000144a                _QueuePid
+                0x0000135a                Epilog
+ .text.avrx.avrx_semaphores
+                0x00001496       0xe2 ../avrx/avrx.a(avrx_semaphores.o)
+                0x00001496                AvrXWaitTimer
+                0x000014c4                AvrXSetObjectSemaphore
+                0x000014c4                AvrXAckMessage
+                0x00001496                AvrXWaitObjectSemaphore
+                0x0000149a                AvrXWaitSemaphore
+                0x000014e2                AvrXIntSetSemaphore
+                0x00001552                _RemoveObjectAt
+                0x00001496                AvrXWaitMessageAck
+                0x000014de                AvrXIntSetObjectSemaphore
+                0x00001546                _RemoveFirstObject
+                0x00001496                AvrXWaitTask
+                0x00001518                _AppendObject
+                0x00001534                _RemoveObject
+                0x000014c8                AvrXSetSemaphore
+ .text.avrx.avrx_resetsemaphore
+                0x00001578       0x22 ../avrx/avrx.a(avrx_resetsemaphore.o)
+                0x00001578                AvrXResetObjectSemaphore
+                0x00001580                AvrXIntResetSemaphore
+                0x00001580                AvrXResetSemaphore
+                0x00001578                AvrXIntResetObjectSemaphore
+ .text.avrx.avrx_timequeue
+                0x0000159a       0xe4 ../avrx/avrx.a(avrx_timequeue.o)
+                0x0000159a                AvrXDelay
+                0x0000159e                AvrXStartTimer
+                0x000015a6                CountNotZero
+                0x000015f6                AvrXTimerHandler
+ .text.avrx.avrx_message
+                0x0000167e       0x2e ../avrx/avrx.a(avrx_message.o)
+                0x00001688                AvrXIntSendMessage
+                0x00001690                AvrXWaitMessage
+                0x0000167e                AvrXSendMessage
+ .text.ctype    0x000016ac       0x1e C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(isspace.o)
+                0x000016ac                isspace
+ .text.ctype    0x000016ca        0x6 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(cty_isfalse.o)
+                0x000016ce                __ctype_istrue
+                0x000016ca                __ctype_isfalse
+ .text.libgcc   0x000016d0       0x3e C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_mulsi3.o)
+                0x000016d0                __mulsi3
+ .text.libgcc   0x0000170e       0x44 C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_udivmodsi4.o)
+                0x0000170e                __udivmodsi4
+                0x00001752                . = ALIGN (0x2)
+ *(.fini9)
+ *(.fini8)
+ *(.fini7)
+ *(.fini6)
+ *(.fini5)
+ *(.fini4)
+ *(.fini3)
+ *(.fini2)
+ *(.fini1)
+ *(.fini0)
+                0x00001752                _etext = .
+
+.data           0x00800060       0x7a load address 0x00001752
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800060       0x70 SerialExample.o
+ .data          0x008000d0        0x4 AvrXBufferedSerial.o
+                0x008000d0                Tx0Buf
+                0x008000d2                Rx0Buf
+ .data          0x008000d4        0x6 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+                0x008000d6                __malloc_heap_start
+                0x008000d4                __malloc_heap_end
+                0x008000d8                __malloc_margin
+ *(.gnu.linkonce.d*)
+                0x008000da                . = ALIGN (0x2)
+                0x008000da                _edata = .
+                0x008000da                PROVIDE (__data_end, .)
+
+.bss            0x008000da      0x28d
+                0x008000da                PROVIDE (__bss_start, .)
+ *(.bss)
+ *(COMMON)
+ COMMON         0x008000da       0xbf parser.o
+                0x008000da                parserOutputFunc
+                0x008000dc                ParserExecFunction
+                0x008000de                ParserFunctionList
+                0x008000f2                parserNumCommands
+                0x008000f3                CommandList
+                0x00800189                parserBuffer
+                0x00800198                parserBufferLength
+ COMMON         0x00800199      0x167 SerialExample.o
+                0x00800199                task2Pid
+                0x0080019f                funcBParam
+                0x008001a3                task0Pid
+                0x008001a9                task2Stk
+                0x00800218                funcAParam
+                0x0080021c                task0Stk
+                0x0080028b                task1Pid
+                0x00800291                task1Stk
+ COMMON         0x00800300       0x4e AvrXBufferedSerial.o
+                0x00800300                Tx0BufFifo
+                0x00800327                Rx0BufFifo
+ *fill*         0x0080034e        0x2 00
+ COMMON         0x00800350        0x7 ../avrx/avrx.a(avrx_tasking.o)
+                0x00800350                AvrXKernelData
+ *fill*         0x00800357        0x1 00
+ COMMON         0x00800358        0x3 ../avrx/avrx.a(avrx_timequeue.o)
+                0x00800358                _TimerQueue
+                0x0080035a                _TimQLevel
+ COMMON         0x0080035b        0x6 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(iob.o)
+                0x0080035b                __iob
+ COMMON         0x00800361        0x2 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(errno.o)
+                0x00800361                errno
+ COMMON         0x00800363        0x4 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+                0x00800363                __brkval
+                0x00800365                __flp
+                0x00800367                PROVIDE (__bss_end, .)
+                0x00001752                __data_load_start = LOADADDR (.data)
+                0x000017cc                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800367        0x0
+                0x00800367                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x00800367                PROVIDE (__noinit_end, .)
+                0x00800367                _end = .
+                0x00800367                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.stab           0x00000000     0x2478
+ *(.stab)
+ .stab          0x00000000      0x36c C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+ .stab          0x0000036c      0x738 ../avrx/avrx.a(AvrXFifo.o)
+                                0x744 (size before relaxing)
+ .stab          0x00000aa4      0xbc4 ../avrx/avrx.a(avrx_tasking.o)
+                                0xbd0 (size before relaxing)
+ .stab          0x00001668      0x654 ../avrx/avrx.a(avrx_semaphores.o)
+                                0x660 (size before relaxing)
+ .stab          0x00001cbc      0x120 ../avrx/avrx.a(avrx_resetsemaphore.o)
+                                0x12c (size before relaxing)
+ .stab          0x00001ddc      0x534 ../avrx/avrx.a(avrx_timequeue.o)
+                                0x540 (size before relaxing)
+ .stab          0x00002310      0x168 ../avrx/avrx.a(avrx_message.o)
+                                0x174 (size before relaxing)
+
+.stabstr        0x00000000      0xf4a
+ *(.stabstr)
+ .stabstr       0x00000000      0xf4a C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0x3c
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x14 parser.o
+ .debug_aranges
+                0x00000014       0x14 SerialExample.o
+ .debug_aranges
+                0x00000028       0x14 AvrXBufferedSerial.o
+
+.debug_pubnames
+                0x00000000      0x2f8
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000      0x138 parser.o
+ .debug_pubnames
+                0x00000138      0x118 SerialExample.o
+ .debug_pubnames
+                0x00000250       0xa8 AvrXBufferedSerial.o
+
+.debug_info     0x00000000      0xbdc
+ *(.debug_info)
+ .debug_info    0x00000000      0x29a parser.o
+ .debug_info    0x0000029a      0x656 SerialExample.o
+ .debug_info    0x000008f0      0x2ec AvrXBufferedSerial.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000      0x3ed
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x103 parser.o
+ .debug_abbrev  0x00000103      0x1a7 SerialExample.o
+ .debug_abbrev  0x000002aa      0x143 AvrXBufferedSerial.o
+
+.debug_line     0x00000000      0x58a
+ *(.debug_line)
+ .debug_line    0x00000000      0x18b parser.o
+ .debug_line    0x0000018b      0x287 SerialExample.o
+ .debug_line    0x00000412      0x178 AvrXBufferedSerial.o
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str      0x00000000      0x420
+ *(.debug_str)
+ .debug_str     0x00000000      0x1bc parser.o
+                                0x214 (size before relaxing)
+ .debug_str     0x000001bc      0x1e5 SerialExample.o
+                                0x2d3 (size before relaxing)
+ .debug_str     0x000003a1       0x7f AvrXBufferedSerial.o
+                                0x1c9 (size before relaxing)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(AvrXBufferedSerial.elf elf32-avr)
+
+.debug_ranges   0x00001752        0xc
+ .debug_ranges  0x00001752        0xc SerialExample.o
+
+Cross Reference Table
+
+Symbol                                            File
+AvrXAckMessage                                    ../avrx/avrx.a(avrx_semaphores.o)
+AvrXDelay                                         ../avrx/avrx.a(avrx_timequeue.o)
+                                                  SerialExample.o
+AvrXFlushFifo                                     ../avrx/avrx.a(AvrXFifo.o)
+                                                  AvrXBufferedSerial.o
+AvrXInitTask                                      ../avrx/avrx.a(avrx_tasking.o)
+AvrXIntResetObjectSemaphore                       ../avrx/avrx.a(avrx_resetsemaphore.o)
+                                                  ../avrx/avrx.a(avrx_timequeue.o)
+AvrXIntResetSemaphore                             ../avrx/avrx.a(avrx_resetsemaphore.o)
+AvrXIntSendMessage                                ../avrx/avrx.a(avrx_message.o)
+                                                  ../avrx/avrx.a(avrx_timequeue.o)
+AvrXIntSetObjectSemaphore                         ../avrx/avrx.a(avrx_semaphores.o)
+                                                  ../avrx/avrx.a(avrx_message.o)
+                                                  ../avrx/avrx.a(avrx_timequeue.o)
+AvrXIntSetSemaphore                               ../avrx/avrx.a(avrx_semaphores.o)
+AvrXKernelData                                    ../avrx/avrx.a(avrx_semaphores.o)
+                                                  ../avrx/avrx.a(avrx_tasking.o)
+AvrXPeekFifo                                      ../avrx/avrx.a(AvrXFifo.o)
+AvrXPullFifo                                      ../avrx/avrx.a(AvrXFifo.o)
+                                                  AvrXBufferedSerial.o
+AvrXPutFifo                                       ../avrx/avrx.a(AvrXFifo.o)
+                                                  AvrXBufferedSerial.o
+AvrXResetObjectSemaphore                          ../avrx/avrx.a(avrx_resetsemaphore.o)
+                                                  ../avrx/avrx.a(avrx_message.o)
+AvrXResetSemaphore                                ../avrx/avrx.a(avrx_resetsemaphore.o)
+                                                  ../avrx/avrx.a(AvrXFifo.o)
+AvrXResume                                        ../avrx/avrx.a(avrx_tasking.o)
+AvrXRunTask                                       ../avrx/avrx.a(avrx_tasking.o)
+                                                  SerialExample.o
+AvrXSendMessage                                   ../avrx/avrx.a(avrx_message.o)
+AvrXSetKernelStack                                ../avrx/avrx.a(avrx_tasking.o)
+                                                  SerialExample.o
+AvrXSetObjectSemaphore                            ../avrx/avrx.a(avrx_semaphores.o)
+                                                  ../avrx/avrx.a(avrx_timequeue.o)
+AvrXSetSemaphore                                  ../avrx/avrx.a(avrx_semaphores.o)
+                                                  ../avrx/avrx.a(AvrXFifo.o)
+AvrXStartTimer                                    ../avrx/avrx.a(avrx_timequeue.o)
+AvrXStatFifo                                      ../avrx/avrx.a(AvrXFifo.o)
+AvrXTimerHandler                                  ../avrx/avrx.a(avrx_timequeue.o)
+                                                  SerialExample.o
+AvrXWaitMessage                                   ../avrx/avrx.a(avrx_message.o)
+AvrXWaitMessageAck                                ../avrx/avrx.a(avrx_semaphores.o)
+AvrXWaitObjectSemaphore                           ../avrx/avrx.a(avrx_semaphores.o)
+                                                  ../avrx/avrx.a(avrx_message.o)
+AvrXWaitPullFifo                                  ../avrx/avrx.a(AvrXFifo.o)
+                                                  AvrXBufferedSerial.o
+AvrXWaitPutFifo                                   ../avrx/avrx.a(AvrXFifo.o)
+                                                  AvrXBufferedSerial.o
+AvrXWaitSemaphore                                 ../avrx/avrx.a(avrx_semaphores.o)
+                                                  ../avrx/avrx.a(AvrXFifo.o)
+AvrXWaitTask                                      ../avrx/avrx.a(avrx_semaphores.o)
+AvrXWaitTimer                                     ../avrx/avrx.a(avrx_semaphores.o)
+                                                  ../avrx/avrx.a(avrx_timequeue.o)
+CommandList                                       parser.o
+CountNotZero                                      ../avrx/avrx.a(avrx_timequeue.o)
+Epilog                                            ../avrx/avrx.a(avrx_tasking.o)
+                                                  AvrXBufferedSerial.o
+                                                  SerialExample.o
+InitSerial0                                       AvrXBufferedSerial.o
+                                                  SerialExample.o
+IntProlog                                         ../avrx/avrx.a(avrx_tasking.o)
+                                                  ../avrx/avrx.a(avrx_message.o)
+                                                  ../avrx/avrx.a(avrx_timequeue.o)
+                                                  ../avrx/avrx.a(avrx_semaphores.o)
+                                                  AvrXBufferedSerial.o
+                                                  SerialExample.o
+ParserExecFunction                                parser.o
+ParserFunctionList                                parser.o
+Rx0Buf                                            AvrXBufferedSerial.o
+Rx0BufFifo                                        AvrXBufferedSerial.o
+Tx0Buf                                            AvrXBufferedSerial.o
+Tx0BufFifo                                        AvrXBufferedSerial.o
+_AppendObject                                     ../avrx/avrx.a(avrx_semaphores.o)
+                                                  ../avrx/avrx.a(avrx_message.o)
+_Epilog                                           ../avrx/avrx.a(avrx_tasking.o)
+                                                  ../avrx/avrx.a(avrx_message.o)
+                                                  ../avrx/avrx.a(avrx_timequeue.o)
+                                                  ../avrx/avrx.a(avrx_semaphores.o)
+_QueuePid                                         ../avrx/avrx.a(avrx_tasking.o)
+                                                  ../avrx/avrx.a(avrx_semaphores.o)
+_RemoveFirstObject                                ../avrx/avrx.a(avrx_semaphores.o)
+                                                  ../avrx/avrx.a(avrx_message.o)
+_RemoveObject                                     ../avrx/avrx.a(avrx_semaphores.o)
+_RemoveObjectAt                                   ../avrx/avrx.a(avrx_semaphores.o)
+_TimQLevel                                        ../avrx/avrx.a(avrx_timequeue.o)
+_TimerQueue                                       ../avrx/avrx.a(avrx_timequeue.o)
+__bad_interrupt                                   C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__brkval                                          C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+__bss_end                                         C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_clear_bss.o)
+__bss_start                                       C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_clear_bss.o)
+__ctype_isfalse                                   C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(cty_isfalse.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(isspace.o)
+__ctype_istrue                                    C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(cty_isfalse.o)
+__data_end                                        C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_copy_data.o)
+__data_load_start                                 C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_copy_data.o)
+__data_start                                      C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_copy_data.o)
+__do_clear_bss                                    C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_clear_bss.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(errno.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(calloc.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(putchar.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(printf_p.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(printf.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(iob.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fputc.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fgetc.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fdevopen.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strtol.o)
+                                                  ../avrx/avrx.a(AvrXFifo.o)
+                                                  AvrXBufferedSerial.o
+                                                  SerialExample.o
+                                                  parser.o
+__do_copy_data                                    C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_copy_data.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(errno.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(calloc.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(putchar.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(printf_p.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(printf.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(iob.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fputc.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fgetc.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fdevopen.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strtol.o)
+                                                  ../avrx/avrx.a(AvrXFifo.o)
+                                                  AvrXBufferedSerial.o
+                                                  SerialExample.o
+                                                  parser.o
+__flp                                             C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+__heap_end                                        C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+__heap_start                                      C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+__init                                            C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__iob                                             C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(putchar.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(printf_p.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(printf.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(iob.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fdevopen.o)
+                                                  SerialExample.o
+__malloc_heap_end                                 C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+__malloc_heap_start                               C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+__malloc_margin                                   C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+__mulsi3                                          C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_mulsi3.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strtol.o)
+__stack                                           C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+                                                  SerialExample.o
+__udivmodsi4                                      C:/WinAVR/lib/gcc/avr/3.4.6/avr5\libgcc.a(_udivmodsi4.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strtol.o)
+__vector_1                                        C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_10                                       C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_11                                       SerialExample.o
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_12                                       C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_13                                       AvrXBufferedSerial.o
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_14                                       AvrXBufferedSerial.o
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_15                                       C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_16                                       C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_17                                       C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_18                                       C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_19                                       C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_2                                        C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_20                                       C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_3                                        C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_4                                        C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_5                                        C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_6                                        C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_7                                        C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_8                                        C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_9                                        C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vector_default                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+__vectors                                         C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+calloc                                            C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(calloc.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fdevopen.o)
+errno                                             C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(errno.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strtol.o)
+fdevopen                                          C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fdevopen.o)
+                                                  SerialExample.o
+fgetc                                             C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fgetc.o)
+                                                  SerialExample.o
+fputc                                             C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(fputc.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(putchar.o)
+                                                  SerialExample.o
+free                                              C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+funcAParam                                        SerialExample.o
+funcBParam                                        SerialExample.o
+get_c0                                            AvrXBufferedSerial.o
+                                                  SerialExample.o
+get_char0                                         AvrXBufferedSerial.o
+isspace                                           C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(isspace.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strtol.o)
+main                                              SerialExample.o
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5/crtm32.o
+malloc                                            C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(malloc.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(calloc.o)
+memset                                            C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(memset.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(calloc.o)
+myputs                                            SerialExample.o
+myputs_P                                          SerialExample.o
+parserAddCommand                                  parser.o
+                                                  SerialExample.o
+parserBuffer                                      parser.o
+parserBufferLength                                parser.o
+parserGetArgInt                                   parser.o
+                                                  SerialExample.o
+parserGetArgStr                                   parser.o
+parserInit                                        parser.o
+                                                  SerialExample.o
+parserInputFunc                                   parser.o
+                                                  SerialExample.o
+parserNumCommands                                 parser.o
+parserOutputFunc                                  parser.o
+parserProcessInputString                          parser.o
+parserSetOutputFunc                               parser.o
+                                                  SerialExample.o
+printf                                            C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(printf.o)
+                                                  SerialExample.o
+printf_P                                          C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(printf_p.o)
+                                                  SerialExample.o
+put_c0                                            AvrXBufferedSerial.o
+put_char0                                         AvrXBufferedSerial.o
+                                                  SerialExample.o
+putchar                                           C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(putchar.o)
+                                                  SerialExample.o
+strcpy                                            C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strcpy.o)
+                                                  parser.o
+strlen_P                                          C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strlen_P.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+strnlen                                           C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strnlen.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+strnlen_P                                         C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+strtol                                            C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(strtol.o)
+                                                  parser.o
+task0                                             SerialExample.o
+task0Pid                                          SerialExample.o
+task0Stk                                          SerialExample.o
+task0Tcb                                          SerialExample.o
+task1                                             SerialExample.o
+task1Pid                                          SerialExample.o
+task1Stk                                          SerialExample.o
+task1Tcb                                          SerialExample.o
+task2                                             SerialExample.o
+task2Pid                                          SerialExample.o
+task2Stk                                          SerialExample.o
+task2Tcb                                          SerialExample.o
+testFunctionA                                     SerialExample.o
+testFunctionB                                     SerialExample.o
+vfprintf                                          C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(printf_p.o)
+                                                  C:/WinAVR/bin/../lib/gcc/avr/3.4.6/../../../../avr/lib/avr5\libc.a(printf.o)

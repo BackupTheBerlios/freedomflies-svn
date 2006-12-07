@@ -1,0 +1,362 @@
+   1               		.file	"AvrXBufferedSerial.c"
+   2               		.arch atmega32
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  12               		.text
+  13               	.Ltext0:
+  84               	.global	Tx0Buf
+  85               		.data
+  88               	Tx0Buf:
+  89 0000 0000      		.word	Tx0BufFifo
+  90               	.global	Rx0Buf
+  93               	Rx0Buf:
+  94 0002 0000      		.word	Rx0BufFifo
+  95               		.text
+  98               	.global	InitSerial0
+ 100               	InitSerial0:
+   1:AvrXBufferedSerial.c **** /*
+   2:AvrXBufferedSerial.c **** 	AvrXBufferedSerial.c
+   3:AvrXBufferedSerial.c **** 
+   4:AvrXBufferedSerial.c **** 	Sample code for fully buffered interrupt driven serial I/O for the
+   5:AvrXBufferedSerial.c **** 	AVR processor.  Uses the AvrXFifo facility.
+   6:AvrXBufferedSerial.c **** 
+   7:AvrXBufferedSerial.c **** 	Author: Larry Barello (larry@barello.net)
+   8:AvrXBufferedSerial.c **** 
+   9:AvrXBufferedSerial.c **** 	Revision History:
+  10:AvrXBufferedSerial.c **** 	09-13-2005	- Initial version
+  11:AvrXBufferedSerial.c **** 
+  12:AvrXBufferedSerial.c **** */
+  13:AvrXBufferedSerial.c **** 
+  14:AvrXBufferedSerial.c **** //------------------------------------------------------------------------------
+  15:AvrXBufferedSerial.c **** #include <avr/io.h>
+  16:AvrXBufferedSerial.c **** #include <avr/interrupt.h>
+  17:AvrXBufferedSerial.c **** #define _AVRXSERIALIO_C_
+  18:AvrXBufferedSerial.c **** #include "AvrXSerialIo.h"
+  19:AvrXBufferedSerial.c **** 
+  20:AvrXBufferedSerial.c **** #if USART_CHANNELS & CHANNEL_0
+  21:AvrXBufferedSerial.c **** 
+  22:AvrXBufferedSerial.c **** AVRX_DECL_FIFO(Rx0Buf, RX0_BUFSZ);
+  23:AvrXBufferedSerial.c **** AVRX_DECL_FIFO(Tx0Buf, TX0_BUFSZ);
+  24:AvrXBufferedSerial.c **** 
+  25:AvrXBufferedSerial.c **** void InitSerial0(uint16_t ubrr)
+  26:AvrXBufferedSerial.c **** {
+ 102               	.LM1:
+ 103               	/* prologue: frame size=0 */
+ 104 0000 1F93      		push r17
+ 105               	/* prologue end (size=1) */
+  27:AvrXBufferedSerial.c **** // Two USARTs, not shared
+  28:AvrXBufferedSerial.c **** #if defined(__AVR_ATmega128__) || defined(__AVR_ATmega64__) | defined(__AVR_ATcan128__)
+  29:AvrXBufferedSerial.c **** 	UBRR0L = ubrr;
+  30:AvrXBufferedSerial.c **** 	UBRR0H = (uint8_t)(ubrr>>8);
+  31:AvrXBufferedSerial.c **** 	UCSR0A = (BAUDX == 8)?(1<<U2X):0;
+  32:AvrXBufferedSerial.c **** 	UCSR0B = ((1<<TXEN) | (1<<RXEN) | (1<<RXCIE));
+  33:AvrXBufferedSerial.c **** 	UCSR0C = ((1<<UCSZ1) | (1<<UCSZ0));
+  34:AvrXBufferedSerial.c **** 
+  35:AvrXBufferedSerial.c **** // Dual USART, old shared UCSRC & UBRRH
+  36:AvrXBufferedSerial.c **** #elif defined(__AVR_ATmega162__) | defined(__AVR_ATmega161__)
+  37:AvrXBufferedSerial.c **** 	UBRR0L = ubrr;
+  38:AvrXBufferedSerial.c **** 	UBRR0H = (uint8_t)(ubrr>>8);
+  39:AvrXBufferedSerial.c **** 	UCSR0A = (BAUDX == 8)?(1<<U2X):0;
+  40:AvrXBufferedSerial.c **** 	UCSR0B = ((1<<TXEN) | (1<<RXEN) | (1<<RXCIE));
+  41:AvrXBufferedSerial.c **** #	ifdef (__AVR_ATmega162__)
+  42:AvrXBufferedSerial.c **** 	UCSR0C = (1<<URSEL0) | (1<<UCSZ1) | (1<<UCSZ0));
+  43:AvrXBufferedSerial.c **** #	endif
+  44:AvrXBufferedSerial.c **** 
+  45:AvrXBufferedSerial.c **** // One UART (note the missing C register)
+  46:AvrXBufferedSerial.c **** #elif defined(__AVR_ATmega163__)
+  47:AvrXBufferedSerial.c **** 	UBRR   = ubrr;
+  48:AvrXBufferedSerial.c **** 	UBRRHI = (uint8_t)(ubrr>>8);
+  49:AvrXBufferedSerial.c **** 	UCSRA  = (BAUDX == 8)?(1<<U2X):0;
+  50:AvrXBufferedSerial.c **** 	UCSRB  = ((1<<TXEN) | (1<<RXEN) | (1<<RXCIE));
+  51:AvrXBufferedSerial.c **** 
+  52:AvrXBufferedSerial.c **** // One UART, (Classic)
+  53:AvrXBufferedSerial.c **** #elif defined(__AVR_AT90S4414__) | defined(__AVR_AT90S8515__)| defined(__AVR_AT90S8535__)
+  54:AvrXBufferedSerial.c **** 	UBRR	= ubrr;
+  55:AvrXBufferedSerial.c **** 	UCR		= ((1<<TXEN) | (1<<RXEN) | (1<<RXCIE) | (1<<UDRIE));
+  56:AvrXBufferedSerial.c **** #	define UCSRB UCR
+  57:AvrXBufferedSerial.c **** 
+  58:AvrXBufferedSerial.c **** // One USART, (C register shared)
+  59:AvrXBufferedSerial.c **** #elif defined(__AVR_ATmega8__)   | defined(__AVR_ATmega16__)  | defined(__AVR_ATmega32__)  | \
+  60:AvrXBufferedSerial.c **** 	  defined(__AVR_ATmega323__) | defined(__AVR_ATmega8515__)| defined(__AVR_ATmega8535__)
+  61:AvrXBufferedSerial.c **** 	UBRRL = ubrr;
+ 107               	.LM2:
+ 108 0002 89B9      		out 41-0x20,r24
+  62:AvrXBufferedSerial.c **** 	UBRRH = (uint8_t)(ubrr>>8);
+ 110               	.LM3:
+ 111 0004 892F      		mov r24,r25
+ 112 0006 9927      		clr r25
+ 113 0008 80BD      		out 64-0x20,r24
+  63:AvrXBufferedSerial.c **** 	UCSRA = (BAUDX == 8)?(1<<U2X):0;
+ 115               	.LM4:
+ 116 000a 82E0      		ldi r24,lo8(2)
+ 117 000c 8BB9      		out 43-0x20,r24
+  64:AvrXBufferedSerial.c **** 	UCSRB = ((1<<TXEN) | (1<<RXEN) | (1<<RXCIE));
+ 119               	.LM5:
+ 120 000e 88E9      		ldi r24,lo8(-104)
+ 121 0010 8AB9      		out 42-0x20,r24
+  65:AvrXBufferedSerial.c **** 	UCSRC = ((1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0));
+ 123               	.LM6:
+ 124 0012 86E8      		ldi r24,lo8(-122)
+ 125 0014 80BD      		out 64-0x20,r24
+  66:AvrXBufferedSerial.c **** 
+  67:AvrXBufferedSerial.c **** // One USART, (C register not shared)
+  68:AvrXBufferedSerial.c **** #elif defined(__AVR_ATmega169__) | defined(__AVR_ATmega165__) | defined(__AVR_IOtn2313__)
+  69:AvrXBufferedSerial.c **** 	UBRRL = ubrr;
+  70:AvrXBufferedSerial.c **** 	UBRRH = (uint8_t)(ubrr>>8);
+  71:AvrXBufferedSerial.c **** 	UCSRA = (BAUDX == 8)?(1<<U2X):0;
+  72:AvrXBufferedSerial.c **** 	UCSRB = ((1<<TXEN) | (1<<RXEN) | (1<<RXCIE));
+  73:AvrXBufferedSerial.c **** 	UCSRC = ((1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0));
+  74:AvrXBufferedSerial.c **** #else
+  75:AvrXBufferedSerial.c **** #   ERROR Dont know about that CPU!
+  76:AvrXBufferedSerial.c **** #endif
+  77:AvrXBufferedSerial.c **** #ifndef UCSRB
+  78:AvrXBufferedSerial.c **** #   define UCSRB UCSR0B
+  79:AvrXBufferedSerial.c **** #endif
+  80:AvrXBufferedSerial.c **** #ifndef UDR
+  81:AvrXBufferedSerial.c **** #	define UDR UDR0
+  82:AvrXBufferedSerial.c **** #endif
+  83:AvrXBufferedSerial.c **** 	AVRX_INIT_FIFO(Rx0Buf);
+ 127               	.LM7:
+ 128 0016 80E0      		ldi r24,lo8(Rx0BufFifo)
+ 129 0018 90E0      		ldi r25,hi8(Rx0BufFifo)
+ 130 001a 0E94 0000 		call AvrXFlushFifo
+ 131 001e 10E2      		ldi r17,lo8(32)
+ 132 0020 1093 0000 		sts Rx0BufFifo+6,r17
+  84:AvrXBufferedSerial.c **** 	AVRX_INIT_FIFO(Tx0Buf);
+ 134               	.LM8:
+ 135 0024 80E0      		ldi r24,lo8(Tx0BufFifo)
+ 136 0026 90E0      		ldi r25,hi8(Tx0BufFifo)
+ 137 0028 0E94 0000 		call AvrXFlushFifo
+ 138 002c 1093 0000 		sts Tx0BufFifo+6,r17
+ 139               	/* epilogue: frame size=0 */
+ 140 0030 1F91      		pop r17
+ 141 0032 0895      		ret
+ 142               	/* epilogue end (size=2) */
+ 143               	/* function InitSerial0 size 26 (23) */
+ 145               	.Lscope0:
+ 149               	.global	put_c0
+ 151               	put_c0:
+  85:AvrXBufferedSerial.c **** }
+  86:AvrXBufferedSerial.c **** 
+  87:AvrXBufferedSerial.c **** int put_c0(char c)	// Non blocking output
+  88:AvrXBufferedSerial.c **** {
+ 153               	.LM9:
+ 154               	/* prologue: frame size=0 */
+ 155               	/* prologue end (size=0) */
+  89:AvrXBufferedSerial.c **** 	int retc;
+  90:AvrXBufferedSerial.c **** 	retc = AvrXPutFifo(Tx0Buf, c);
+ 157               	.LM10:
+ 158 0034 682F      		mov r22,r24
+ 159 0036 80E0      		ldi r24,lo8(Tx0BufFifo)
+ 160 0038 90E0      		ldi r25,hi8(Tx0BufFifo)
+ 161 003a 0E94 0000 		call AvrXPutFifo
+  91:AvrXBufferedSerial.c **** 	UCSRB |= (1<<UDRIE);
+ 163               	.LM11:
+ 164 003e 559A      		sbi 42-0x20,5
+ 165               	/* epilogue: frame size=0 */
+ 166 0040 0895      		ret
+ 167               	/* epilogue end (size=1) */
+ 168               	/* function put_c0 size 7 (6) */
+ 170               	.Lscope1:
+ 174               	.global	put_char0
+ 176               	put_char0:
+  92:AvrXBufferedSerial.c **** 	return retc;
+  93:AvrXBufferedSerial.c **** }
+  94:AvrXBufferedSerial.c **** 
+  95:AvrXBufferedSerial.c **** int put_char0( char c)	// Blocking output
+  96:AvrXBufferedSerial.c **** {
+ 178               	.LM12:
+ 179               	/* prologue: frame size=0 */
+ 180               	/* prologue end (size=0) */
+  97:AvrXBufferedSerial.c **** 	AvrXWaitPutFifo(Tx0Buf, c);
+ 182               	.LM13:
+ 183 0042 682F      		mov r22,r24
+ 184 0044 80E0      		ldi r24,lo8(Tx0BufFifo)
+ 185 0046 90E0      		ldi r25,hi8(Tx0BufFifo)
+ 186 0048 0E94 0000 		call AvrXWaitPutFifo
+  98:AvrXBufferedSerial.c **** 	UCSRB |= (1<<UDRIE);
+ 188               	.LM14:
+ 189 004c 559A      		sbi 42-0x20,5
+  99:AvrXBufferedSerial.c **** 	return 0;
+ 100:AvrXBufferedSerial.c **** }
+ 191               	.LM15:
+ 192 004e 80E0      		ldi r24,lo8(0)
+ 193 0050 90E0      		ldi r25,hi8(0)
+ 194               	/* epilogue: frame size=0 */
+ 195 0052 0895      		ret
+ 196               	/* epilogue end (size=1) */
+ 197               	/* function put_char0 size 9 (8) */
+ 199               	.Lscope2:
+ 202               	.global	get_c0
+ 204               	get_c0:
+ 101:AvrXBufferedSerial.c **** 
+ 102:AvrXBufferedSerial.c **** 
+ 103:AvrXBufferedSerial.c **** int get_c0(void)	// Non blocking, return status outside of char range
+ 104:AvrXBufferedSerial.c **** {
+ 206               	.LM16:
+ 207               	/* prologue: frame size=0 */
+ 208               	/* prologue end (size=0) */
+ 105:AvrXBufferedSerial.c **** 	int retc = AvrXPullFifo(Rx0Buf);
+ 210               	.LM17:
+ 211 0054 80E0      		ldi r24,lo8(Rx0BufFifo)
+ 212 0056 90E0      		ldi r25,hi8(Rx0BufFifo)
+ 213 0058 0E94 0000 		call AvrXPullFifo
+ 214               	/* epilogue: frame size=0 */
+ 215 005c 0895      		ret
+ 216               	/* epilogue end (size=1) */
+ 217               	/* function get_c0 size 5 (4) */
+ 219               	.Lscope3:
+ 222               	.global	get_char0
+ 224               	get_char0:
+ 106:AvrXBufferedSerial.c **** 	return retc;
+ 107:AvrXBufferedSerial.c **** }
+ 108:AvrXBufferedSerial.c **** 
+ 109:AvrXBufferedSerial.c **** int get_char0(void)	// Blocks waiting for something
+ 110:AvrXBufferedSerial.c **** {
+ 226               	.LM18:
+ 227               	/* prologue: frame size=0 */
+ 228               	/* prologue end (size=0) */
+ 111:AvrXBufferedSerial.c **** 	return AvrXWaitPullFifo(Rx0Buf);
+ 230               	.LM19:
+ 231 005e 80E0      		ldi r24,lo8(Rx0BufFifo)
+ 232 0060 90E0      		ldi r25,hi8(Rx0BufFifo)
+ 233 0062 0E94 0000 		call AvrXWaitPullFifo
+ 234               	/* epilogue: frame size=0 */
+ 235 0066 0895      		ret
+ 236               	/* epilogue end (size=1) */
+ 237               	/* function get_char0 size 5 (4) */
+ 239               	.Lscope4:
+ 242               	.global	__vector_13
+ 244               	__vector_13:
+ 112:AvrXBufferedSerial.c **** }
+ 113:AvrXBufferedSerial.c **** // We don't care if the buffer is full.  Just signal we got one.
+ 114:AvrXBufferedSerial.c **** // The task may attempt one extra time to get data out of an empyt
+ 115:AvrXBufferedSerial.c **** // buffer (getc(), but so what.  Eventually it will block waiting
+ 116:AvrXBufferedSerial.c **** // for another character to be received.
+ 117:AvrXBufferedSerial.c **** 
+ 118:AvrXBufferedSerial.c **** #if defined(SIG_UART_RECV) && !defined(SIG_UART0_RECV)
+ 119:AvrXBufferedSerial.c **** #  define SIG_UART0_RECV SIG_UART_RECV		// This covers old single UART chips
+ 120:AvrXBufferedSerial.c **** #  define SIG_UART0_DATA SIG_UART_DATA
+ 121:AvrXBufferedSerial.c **** #endif
+ 122:AvrXBufferedSerial.c **** 
+ 123:AvrXBufferedSerial.c **** AVRX_SIGINT(SIG_UART0_RECV)
+ 124:AvrXBufferedSerial.c **** {
+ 246               	.LM20:
+ 247               	/* prologue: frame size=0 */
+ 248               	/* prologue: naked */
+ 249               	/* prologue end (size=0) */
+ 125:AvrXBufferedSerial.c ****     IntProlog();
+ 251               	.LM21:
+ 252 0068 0E94 0000 		call IntProlog
+ 126:AvrXBufferedSerial.c ****     UCSRB &= ~(1<<RXCIE);	// Disable Rx interrupt
+ 254               	.LM22:
+ 255 006c 5798      		cbi 42-0x20,7
+ 127:AvrXBufferedSerial.c ****     sei();					// Allow other interrupt activity to occur
+ 257               	.LM23:
+ 258               	/* #APP */
+ 259 006e 7894      		sei
+ 128:AvrXBufferedSerial.c **** 	AvrXPutFifo(Rx0Buf, UDR);// This resets the Rx Interrupt
+ 261               	.LM24:
+ 262               	/* #NOAPP */
+ 263 0070 6CB1      		in r22,44-0x20
+ 264 0072 80E0      		ldi r24,lo8(Rx0BufFifo)
+ 265 0074 90E0      		ldi r25,hi8(Rx0BufFifo)
+ 266 0076 0E94 0000 		call AvrXPutFifo
+ 129:AvrXBufferedSerial.c **** 	UCSRB |= (1<<RXCIE);	// Re-enable.
+ 268               	.LM25:
+ 269 007a 579A      		sbi 42-0x20,7
+ 130:AvrXBufferedSerial.c **** 	Epilog();
+ 271               	.LM26:
+ 272 007c 0E94 0000 		call Epilog
+ 273               	/* epilogue: frame size=0 */
+ 274               	/* epilogue: naked */
+ 275               	/* epilogue end (size=0) */
+ 276               	/* function __vector_13 size 13 (13) */
+ 278               	.Lscope5:
+ 281               	.global	__vector_14
+ 283               	__vector_14:
+ 131:AvrXBufferedSerial.c **** }
+ 132:AvrXBufferedSerial.c **** 
+ 133:AvrXBufferedSerial.c **** AVRX_SIGINT(SIG_UART0_DATA)
+ 134:AvrXBufferedSerial.c **** {
+ 285               	.LM27:
+ 286               	/* prologue: frame size=0 */
+ 287               	/* prologue: naked */
+ 288               	/* prologue end (size=0) */
+ 135:AvrXBufferedSerial.c ****     IntProlog();
+ 290               	.LM28:
+ 291 0080 0E94 0000 		call IntProlog
+ 136:AvrXBufferedSerial.c ****     UCSRB &= ~(1<<UDRIE);			// Disable UDRE interrupt
+ 293               	.LM29:
+ 294 0084 5598      		cbi 42-0x20,5
+ 137:AvrXBufferedSerial.c ****     sei();							// Allow other stuff to happen
+ 296               	.LM30:
+ 297               	/* #APP */
+ 298 0086 7894      		sei
+ 138:AvrXBufferedSerial.c **** 	int c = AvrXPullFifo(Tx0Buf);	// Return -1 if empty (enables interrupts)
+ 300               	.LM31:
+ 301               	/* #NOAPP */
+ 302 0088 80E0      		ldi r24,lo8(Tx0BufFifo)
+ 303 008a 90E0      		ldi r25,hi8(Tx0BufFifo)
+ 304 008c 0E94 0000 		call AvrXPullFifo
+ 139:AvrXBufferedSerial.c **** 	if (c >= 0)						// Tricky tight code: only checking sign
+ 306               	.LM32:
+ 307 0090 97FD      		sbrc r25,7
+ 308 0092 02C0      		rjmp .L8
+ 140:AvrXBufferedSerial.c **** 	{
+ 141:AvrXBufferedSerial.c **** 		UDR = c;
+ 310               	.LM33:
+ 311 0094 8CB9      		out 44-0x20,r24
+ 142:AvrXBufferedSerial.c **** 		UCSRB |= (1<<UDRIE);
+ 313               	.LM34:
+ 314 0096 559A      		sbi 42-0x20,5
+ 315               	.L8:
+ 143:AvrXBufferedSerial.c **** 	}
+ 144:AvrXBufferedSerial.c **** 	Epilog();
+ 317               	.LM35:
+ 318 0098 0E94 0000 		call Epilog
+ 319               	/* epilogue: frame size=0 */
+ 320               	/* epilogue: naked */
+ 321               	/* epilogue end (size=0) */
+ 322               	/* function __vector_14 size 15 (15) */
+ 327               	.Lscope6:
+ 329               		.comm Rx0BufFifo,39,1
+ 330               		.comm Tx0BufFifo,39,1
+ 335               		.text
+ 337               	Letext:
+ 338               	/* File "AvrXBufferedSerial.c": code   80 = 0x0050 (  73), prologues   1, epilogues   6 */
+DEFINED SYMBOLS
+                            *ABS*:00000000 AvrXBufferedSerial.c
+                            *ABS*:0000003f __SREG__
+                            *ABS*:0000003e __SP_H__
+                            *ABS*:0000003d __SP_L__
+                            *ABS*:00000000 __tmp_reg__
+                            *ABS*:00000001 __zero_reg__
+/var/tmp//ccjKYujr.s:88     .data:00000000 Tx0Buf
+                            *COM*:00000027 Tx0BufFifo
+/var/tmp//ccjKYujr.s:93     .data:00000002 Rx0Buf
+                            *COM*:00000027 Rx0BufFifo
+/var/tmp//ccjKYujr.s:100    .text:00000000 InitSerial0
+/var/tmp//ccjKYujr.s:151    .text:00000034 put_c0
+/var/tmp//ccjKYujr.s:176    .text:00000042 put_char0
+/var/tmp//ccjKYujr.s:204    .text:00000054 get_c0
+/var/tmp//ccjKYujr.s:224    .text:0000005e get_char0
+/var/tmp//ccjKYujr.s:244    .text:00000068 __vector_13
+/var/tmp//ccjKYujr.s:283    .text:00000080 __vector_14
+/var/tmp//ccjKYujr.s:337    .text:0000009c Letext
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+AvrXFlushFifo
+AvrXPutFifo
+AvrXWaitPutFifo
+AvrXPullFifo
+AvrXWaitPullFifo
+IntProlog
+Epilog

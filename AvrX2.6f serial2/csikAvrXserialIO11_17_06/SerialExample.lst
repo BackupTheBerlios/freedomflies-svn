@@ -1,0 +1,3444 @@
+   1               		.file	"SerialExample.c"
+   2               		.arch atmega32
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  12               		.text
+  13               	.Ltext0:
+ 145               	.global	marktribeTcb
+ 146               		.section	.progmem.data,"a",@progbits
+ 149               	marktribeTcb:
+ 150 0000 0000      		.word	marktribeStk+104
+ 151 0002 0000      		.word	pm(marktribe)
+ 152 0004 0000      		.word	marktribePid
+ 153 0006 03        		.byte	3
+ 154               	.global	getCommandsTcb
+ 157               	getCommandsTcb:
+ 158 0007 0000      		.word	getCommandsStk+134
+ 159 0009 0000      		.word	pm(getCommands)
+ 160 000b 0000      		.word	getCommandsPid
+ 161 000d 05        		.byte	5
+ 162               	.global	task0Tcb
+ 165               	task0Tcb:
+ 166 000e 0000      		.word	task0Stk+110
+ 167 0010 0000      		.word	pm(task0)
+ 168 0012 0000      		.word	task0Pid
+ 169 0014 04        		.byte	4
+ 170               	.global	TimerRTCPrescaleFactor
+ 173               	TimerRTCPrescaleFactor:
+ 174 0015 0000      		.word	0
+ 175 0017 0100      		.word	1
+ 176 0019 0800      		.word	8
+ 177 001b 2000      		.word	32
+ 178 001d 4000      		.word	64
+ 179 001f 8000      		.word	128
+ 180 0021 0001      		.word	256
+ 181 0023 0004      		.word	1024
+ 182               	.global	TimerPrescaleFactor
+ 185               	TimerPrescaleFactor:
+ 186 0025 0000      		.word	0
+ 187 0027 0100      		.word	1
+ 188 0029 0800      		.word	8
+ 189 002b 4000      		.word	64
+ 190 002d 0001      		.word	256
+ 191 002f 0004      		.word	1024
+ 192               		.text
+ 194               	.global	parserInit
+ 196               	parserInit:
+ 198               	.Ltext1:
+   1:parser.c      **** #include <avr/io.h>			// include I/O definitions (port names, pin names, etc)
+   2:parser.c      **** #include <avr/interrupt.h>	// include interrupt support
+   3:parser.c      **** #include <avr/pgmspace.h>	// include AVR program memory support
+   4:parser.c      **** #include <string.h>			// include standard C string functions
+   5:parser.c      **** #include <stdlib.h>			// include stdlib for string conversion functions
+   6:parser.c      **** 
+   7:parser.c      **** 
+   8:parser.c      **** #include "parser.h"
+   9:parser.c      **** #include "parserconf.h"
+  10:parser.c      **** 
+  11:parser.c      **** 
+  12:parser.c      **** 
+  13:parser.c      **** // command list
+  14:parser.c      **** char CommandList[MAX_COMMANDS][MAX_CMD_LENGTH];
+  15:parser.c      **** // command function pointer list
+  16:parser.c      **** ParserFuncPtrType ParserFunctionList[MAX_COMMANDS];
+  17:parser.c      **** // number of commands currently registered
+  18:parser.c      **** unsigned char parserNumCommands;
+  19:parser.c      **** //current length of input buffer
+  20:parser.c      **** unsigned char parserBufferLength;
+  21:parser.c      **** //buffer into which commands are written as they come through
+  22:parser.c      **** unsigned char parserBuffer[BUFFERSIZE];
+  23:parser.c      **** 
+  24:parser.c      **** ParserFuncPtrType ParserExecFunction;
+  25:parser.c      **** 
+  26:parser.c      **** // function pointer to single character output routine
+  27:parser.c      **** void (*parserOutputFunc)(unsigned char c);
+  28:parser.c      **** 
+  29:parser.c      **** 
+  30:parser.c      **** void parserInit(void)
+  31:parser.c      **** {
+ 200               	.LM1:
+ 201               	/* prologue: frame size=0 */
+ 202               	/* prologue end (size=0) */
+  32:parser.c      **** 	// initialize input buffer
+  33:parser.c      **** 	parserBufferLength = 0;
+ 204               	.LM2:
+ 205 0000 1092 0000 		sts parserBufferLength,__zero_reg__
+  34:parser.c      **** 	// initialize executing function
+  35:parser.c      **** 	ParserExecFunction = 0;
+ 207               	.LM3:
+ 208 0004 1092 0000 		sts (ParserExecFunction)+1,__zero_reg__
+ 209 0008 1092 0000 		sts ParserExecFunction,__zero_reg__
+  36:parser.c      **** 	// initialize command list
+  37:parser.c      **** 	parserNumCommands = 0;
+ 211               	.LM4:
+ 212 000c 1092 0000 		sts parserNumCommands,__zero_reg__
+ 213               	/* epilogue: frame size=0 */
+ 214 0010 0895      		ret
+ 215               	/* epilogue end (size=1) */
+ 216               	/* function parserInit size 9 (8) */
+ 218               	.Lscope0:
+ 223               	.global	parserAddCommand
+ 225               	parserAddCommand:
+  38:parser.c      **** }
+  39:parser.c      **** 
+  40:parser.c      **** 
+  41:parser.c      **** void parserAddCommand(unsigned char* newCmdString, ParserFuncPtrType newCmdFuncPtr)
+  42:parser.c      **** {
+ 227               	.LM5:
+ 228               	/* prologue: frame size=0 */
+ 229 0012 0F93      		push r16
+ 230 0014 1F93      		push r17
+ 231               	/* prologue end (size=2) */
+ 232 0016 9C01      		movw r18,r24
+ 233 0018 8B01      		movw r16,r22
+  43:parser.c      **** 	// add command string to end of command list
+  44:parser.c      **** 	strcpy(CommandList[parserNumCommands], newCmdString);
+ 235               	.LM6:
+ 236 001a 9091 0000 		lds r25,parserNumCommands
+ 237 001e 8FE0      		ldi r24,lo8(15)
+ 238 0020 989F      		mul r25,r24
+ 239 0022 C001      		movw r24,r0
+ 240 0024 1124      		clr r1
+ 241 0026 B901      		movw r22,r18
+ 242 0028 8050      		subi r24,lo8(-(CommandList))
+ 243 002a 9040      		sbci r25,hi8(-(CommandList))
+ 244 002c 0E94 0000 		call strcpy
+  45:parser.c      **** 	// add command function ptr to end of function list
+  46:parser.c      **** 	ParserFunctionList[parserNumCommands] = newCmdFuncPtr;
+ 246               	.LM7:
+ 247 0030 8091 0000 		lds r24,parserNumCommands
+ 248 0034 E82F      		mov r30,r24
+ 249 0036 FF27      		clr r31
+ 250 0038 EE0F      		add r30,r30
+ 251 003a FF1F      		adc r31,r31
+ 252 003c E050      		subi r30,lo8(-(ParserFunctionList))
+ 253 003e F040      		sbci r31,hi8(-(ParserFunctionList))
+ 254 0040 1183      		std Z+1,r17
+ 255 0042 0083      		st Z,r16
+  47:parser.c      **** 	// increment number of registered commands
+  48:parser.c      **** 	parserNumCommands++;
+ 257               	.LM8:
+ 258 0044 8F5F      		subi r24,lo8(-(1))
+ 259 0046 8093 0000 		sts parserNumCommands,r24
+ 260               	/* epilogue: frame size=0 */
+ 261 004a 1F91      		pop r17
+ 262 004c 0F91      		pop r16
+ 263 004e 0895      		ret
+ 264               	/* epilogue end (size=3) */
+ 265               	/* function parserAddCommand size 31 (26) */
+ 267               	.Lscope1:
+ 271               	.global	parserSetOutputFunc
+ 273               	parserSetOutputFunc:
+  49:parser.c      **** }
+  50:parser.c      **** 
+  51:parser.c      **** 
+  52:parser.c      **** void parserSetOutputFunc(void (*output_func)(unsigned char c))
+  53:parser.c      **** {
+ 275               	.LM9:
+ 276               	/* prologue: frame size=0 */
+ 277               	/* prologue end (size=0) */
+  54:parser.c      **** 	// set new output function
+  55:parser.c      **** 	parserOutputFunc = output_func;
+ 279               	.LM10:
+ 280 0050 9093 0000 		sts (parserOutputFunc)+1,r25
+ 281 0054 8093 0000 		sts parserOutputFunc,r24
+ 282               	/* epilogue: frame size=0 */
+ 283 0058 0895      		ret
+ 284               	/* epilogue end (size=1) */
+ 285               	/* function parserSetOutputFunc size 5 (4) */
+ 287               	.Lscope2:
+ 290               	.global	parserProcessInputString
+ 292               	parserProcessInputString:
+  56:parser.c      **** }
+  57:parser.c      **** 
+  58:parser.c      **** 
+  59:parser.c      **** void parserInputFunc(unsigned char c)
+  60:parser.c      **** {
+  61:parser.c      **** 	// process the received character
+  62:parser.c      **** 	
+  63:parser.c      **** 	if (c != '\r')		//anything other than return character must be a part of the command
+  64:parser.c      **** 	{	
+  65:parser.c      **** 		// echo character to the output
+  66:parser.c      **** //		parserOutputFunc(c);
+  67:parser.c      **** 		// add it to the command line buffer
+  68:parser.c      **** 		parserBuffer[parserBufferLength] = c;
+  69:parser.c      **** 		// update buffer length
+  70:parser.c      **** 		parserBufferLength++;
+  71:parser.c      **** 	}
+  72:parser.c      **** 	else				//return character -> process command
+  73:parser.c      **** 	{
+  74:parser.c      **** 		// add null termination to command
+  75:parser.c      **** 		parserBuffer[parserBufferLength] = 0;
+  76:parser.c      **** 		// command is complete, process it
+  77:parser.c      **** 		parserProcessInputString();
+  78:parser.c      **** 		// reset buffer
+  79:parser.c      **** 		parserBufferLength = 0;
+  80:parser.c      **** 	}
+  81:parser.c      **** }
+  82:parser.c      **** 
+  83:parser.c      **** 
+  84:parser.c      **** void parserProcessInputString(void)
+  85:parser.c      **** {
+ 294               	.LM11:
+ 295               	/* prologue: frame size=0 */
+ 296 005a 1F93      		push r17
+ 297 005c CF93      		push r28
+ 298 005e DF93      		push r29
+ 299               	/* prologue end (size=3) */
+  86:parser.c      **** 	unsigned char cmdIndex;
+  87:parser.c      **** 
+  88:parser.c      **** 	// search command list for match with entered command
+  89:parser.c      **** 	for(cmdIndex=0; cmdIndex<parserNumCommands; cmdIndex++)
+ 301               	.LM12:
+ 302 0060 10E0      		ldi r17,lo8(0)
+ 303 0062 8091 0000 		lds r24,parserNumCommands
+ 304 0066 1817      		cp r17,r24
+ 305 0068 48F5      		brsh .L11
+ 306               	.L9:
+  90:parser.c      **** 	{
+  91:parser.c      **** 		if( !strncmp(CommandList[cmdIndex], parserBuffer, 1) )		//command is first char of buffer
+ 308               	.LM13:
+ 309 006a A12F      		mov r26,r17
+ 310 006c BB27      		clr r27
+ 311 006e FD01      		movw r30,r26
+ 312 0070 84E0      		ldi r24,4
+ 313 0072 EE0F      	1:	lsl r30
+ 314 0074 FF1F      		rol r31
+ 315 0076 8A95      		dec r24
+ 316 0078 E1F7      		brne 1b
+ 317 007a EA1B      		sub r30,r26
+ 318 007c FB0B      		sbc r31,r27
+ 319 007e E050      		subi r30,lo8(-(CommandList))
+ 320 0080 F040      		sbci r31,hi8(-(CommandList))
+ 321 0082 8081      		ld r24,Z
+ 322 0084 C82F      		mov r28,r24
+ 323 0086 DD27      		clr r29
+ 324 0088 8091 0000 		lds r24,parserBuffer
+ 325 008c C81B      		sub r28,r24
+ 326 008e D109      		sbc r29,__zero_reg__
+ 327 0090 2097      		sbiw r28,0
+ 328 0092 79F4      		brne .L7
+  92:parser.c      **** 		{
+  93:parser.c      **** 			// user-entered command matched a command in the list (database)
+  94:parser.c      **** 			ParserExecFunction = ParserFunctionList[cmdIndex];
+ 330               	.LM14:
+ 331 0094 AA0F      		add r26,r26
+ 332 0096 BB1F      		adc r27,r27
+ 333 0098 A050      		subi r26,lo8(-(ParserFunctionList))
+ 334 009a B040      		sbci r27,hi8(-(ParserFunctionList))
+ 335 009c ED91      		ld r30,X+
+ 336 009e FC91      		ld r31,X
+ 337 00a0 F093 0000 		sts (ParserExecFunction)+1,r31
+ 338 00a4 E093 0000 		sts ParserExecFunction,r30
+  95:parser.c      **** 			// run the corresponding function
+  96:parser.c      **** 			ParserExecFunction();
+ 340               	.LM15:
+ 341 00a8 0995      		icall
+  97:parser.c      **** 			// reset
+  98:parser.c      **** 			ParserExecFunction = 0;
+ 343               	.LM16:
+ 344 00aa D093 0000 		sts (ParserExecFunction)+1,r29
+ 345 00ae C093 0000 		sts ParserExecFunction,r28
+ 346               	.L7:
+ 348               	.LM17:
+ 349 00b2 1F5F      		subi r17,lo8(-(1))
+ 350 00b4 8091 0000 		lds r24,parserNumCommands
+ 351 00b8 1817      		cp r17,r24
+ 352 00ba B8F2      		brlo .L9
+ 353               	.L11:
+ 354               	/* epilogue: frame size=0 */
+ 355 00bc DF91      		pop r29
+ 356 00be CF91      		pop r28
+ 357 00c0 1F91      		pop r17
+ 358 00c2 0895      		ret
+ 359               	/* epilogue end (size=4) */
+ 360               	/* function parserProcessInputString size 53 (46) */
+ 365               	.Lscope3:
+ 369               	.global	parserInputFunc
+ 371               	parserInputFunc:
+ 373               	.LM18:
+ 374               	/* prologue: frame size=0 */
+ 375               	/* prologue end (size=0) */
+ 376 00c4 9091 0000 		lds r25,parserBufferLength
+ 378               	.LM19:
+ 379 00c8 8D30      		cpi r24,lo8(13)
+ 380 00ca 49F0      		breq .L13
+ 382               	.LM20:
+ 383 00cc E92F      		mov r30,r25
+ 384 00ce FF27      		clr r31
+ 385 00d0 E050      		subi r30,lo8(-(parserBuffer))
+ 386 00d2 F040      		sbci r31,hi8(-(parserBuffer))
+ 387 00d4 8083      		st Z,r24
+ 389               	.LM21:
+ 390 00d6 9F5F      		subi r25,lo8(-(1))
+ 391 00d8 9093 0000 		sts parserBufferLength,r25
+ 392 00dc 0895      		ret
+ 393               	.L13:
+ 395               	.LM22:
+ 396 00de E92F      		mov r30,r25
+ 397 00e0 FF27      		clr r31
+ 398 00e2 E050      		subi r30,lo8(-(parserBuffer))
+ 399 00e4 F040      		sbci r31,hi8(-(parserBuffer))
+ 400 00e6 1082      		st Z,__zero_reg__
+ 402               	.LM23:
+ 403 00e8 0E94 0000 		call parserProcessInputString
+ 405               	.LM24:
+ 406 00ec 1092 0000 		sts parserBufferLength,__zero_reg__
+ 407 00f0 0895      		ret
+ 408               	/* epilogue: frame size=0 */
+ 409               	/* epilogue: noreturn */
+ 410               	/* epilogue end (size=0) */
+ 411               	/* function parserInputFunc size 23 (23) */
+ 413               	.Lscope4:
+ 416               	.global	parserGetArgStr
+ 418               	parserGetArgStr:
+  99:parser.c      **** 		}
+ 100:parser.c      **** 	}
+ 101:parser.c      **** }
+ 102:parser.c      **** 
+ 103:parser.c      **** // return string pointer to argument [argnum]
+ 104:parser.c      **** unsigned char* parserGetArgStr(void)
+ 105:parser.c      **** {
+ 420               	.LM25:
+ 421               	/* prologue: frame size=0 */
+ 422               	/* prologue end (size=0) */
+ 106:parser.c      **** 	return &parserBuffer[2];		//spec states that commands are 1 char followed by a space followed by t
+ 107:parser.c      **** }									//arg must start at idx 2
+ 424               	.LM26:
+ 425 00f2 80E0      		ldi r24,lo8(parserBuffer+2)
+ 426 00f4 90E0      		ldi r25,hi8(parserBuffer+2)
+ 427               	/* epilogue: frame size=0 */
+ 428 00f6 0895      		ret
+ 429               	/* epilogue end (size=1) */
+ 430               	/* function parserGetArgStr size 3 (2) */
+ 432               	.Lscope5:
+ 435               	.global	parserGetArgInt
+ 437               	parserGetArgInt:
+ 108:parser.c      **** 
+ 109:parser.c      **** //return argument as a long
+ 110:parser.c      **** int parserGetArgInt(void)
+ 111:parser.c      **** {
+ 439               	.LM27:
+ 440               	/* prologue: frame size=0 */
+ 441               	/* prologue end (size=0) */
+ 112:parser.c      **** 	char* endptr;
+ 113:parser.c      **** 	return atoi(parserGetArgStr());
+ 443               	.LM28:
+ 444 00f8 0E94 0000 		call parserGetArgStr
+ 445 00fc 0E94 0000 		call atoi
+ 446               	/* epilogue: frame size=0 */
+ 447 0100 0895      		ret
+ 448               	/* epilogue end (size=1) */
+ 449               	/* function parserGetArgInt size 5 (4) */
+ 451               	.Lscope6:
+ 455               	.global	delay_us
+ 457               	delay_us:
+ 459               	.Ltext2:
+   1:timer.c       **** /*! \file timer.c \brief System Timer function library. */
+   2:timer.c       **** //*****************************************************************************
+   3:timer.c       **** //
+   4:timer.c       **** // File Name	: 'timer.c'
+   5:timer.c       **** // Title		: System Timer function library
+   6:timer.c       **** // Author		: Pascal Stang - Copyright (C) 2000-2002
+   7:timer.c       **** // Created		: 11/22/2000
+   8:timer.c       **** // Revised		: 07/09/2003
+   9:timer.c       **** // Version		: 1.1
+  10:timer.c       **** // Target MCU	: Atmel AVR Series
+  11:timer.c       **** // Editor Tabs	: 4
+  12:timer.c       **** //
+  13:timer.c       **** // This code is distributed under the GNU Public License
+  14:timer.c       **** //		which can be found at http://www.gnu.org/licenses/gpl.txt
+  15:timer.c       **** //
+  16:timer.c       **** //*****************************************************************************
+  17:timer.c       **** 
+  18:timer.c       **** #ifndef WIN32
+  19:timer.c       **** 	#include <avr/io.h>
+  20:timer.c       **** 	#include <avr/signal.h>
+  21:timer.c       **** 	#include <avr/interrupt.h>
+  22:timer.c       **** 	#include <avr/pgmspace.h>
+  23:timer.c       **** 	#include <avr/sleep.h>
+  24:timer.c       **** #endif
+  25:timer.c       **** 
+  26:timer.c       **** #include "global.h"
+  27:timer.c       **** #include "timer.h"
+  28:timer.c       **** 
+  29:timer.c       **** //#include "rprintf.h"
+  30:timer.c       **** 
+  31:timer.c       **** // Program ROM constants
+  32:timer.c       **** // the prescale division values stored in order of timer control register index
+  33:timer.c       **** // STOP, CLK, CLK/8, CLK/64, CLK/256, CLK/1024
+  34:timer.c       **** unsigned short __attribute__ ((progmem)) TimerPrescaleFactor[] = {0,1,8,64,256,1024};
+  35:timer.c       **** // the prescale division values stored in order of timer control register index
+  36:timer.c       **** // STOP, CLK, CLK/8, CLK/32, CLK/64, CLK/128, CLK/256, CLK/1024
+  37:timer.c       **** unsigned short __attribute__ ((progmem)) TimerRTCPrescaleFactor[] = {0,1,8,32,64,128,256,1024};
+  38:timer.c       **** 
+  39:timer.c       **** // Global variables
+  40:timer.c       **** // time registers
+  41:timer.c       **** volatile unsigned long TimerPauseReg;
+  42:timer.c       **** volatile unsigned long Timer0Reg0;
+  43:timer.c       **** volatile unsigned long Timer2Reg0;
+  44:timer.c       **** 
+  45:timer.c       **** typedef void (*voidFuncPtr)(void);
+  46:timer.c       **** volatile static voidFuncPtr TimerIntFunc[TIMER_NUM_INTERRUPTS];
+  47:timer.c       **** 
+  48:timer.c       **** // delay for a minimum of <us> microseconds 
+  49:timer.c       **** // the time resolution is dependent on the time the loop takes 
+  50:timer.c       **** // e.g. with 4Mhz and 5 cycles per loop, the resolution is 1.25 us 
+  51:timer.c       **** void delay_us(unsigned short time_us) 
+  52:timer.c       **** {
+ 461               	.LM29:
+ 462               	/* prologue: frame size=0 */
+ 463               	/* prologue end (size=0) */
+  53:timer.c       **** 	unsigned short delay_loops;
+  54:timer.c       **** 	register unsigned short i;
+  55:timer.c       **** 
+  56:timer.c       **** 	delay_loops = (time_us+3)/5*CYCLES_PER_US; // +3 for rounding up (dirty) 
+ 465               	.LM30:
+ 466 0102 0396      		adiw r24,3
+ 467 0104 65E0      		ldi r22,lo8(5)
+ 468 0106 70E0      		ldi r23,hi8(5)
+ 469 0108 0E94 0000 		call __udivmodhi4
+ 470 010c CB01      		movw r24,r22
+ 471 010e AA27      		clr r26
+ 472 0110 BB27      		clr r27
+ 473 0112 24E0      		ldi r18,4
+ 474 0114 880F      	1:	lsl r24
+ 475 0116 991F      		rol r25
+ 476 0118 AA1F      		rol r26
+ 477 011a BB1F      		rol r27
+ 478 011c 2A95      		dec r18
+ 479 011e D1F7      		brne 1b
+ 480               	.L24:
+  57:timer.c       **** 
+  58:timer.c       **** 	// one loop takes 5 cpu cycles 
+  59:timer.c       **** 	for (i=0; i < delay_loops; i++) {};
+ 482               	.LM31:
+ 483 0120 0097      		sbiw r24,0
+ 484 0122 11F0      		breq .L23
+ 485 0124 0197      		sbiw r24,1
+ 486 0126 FCCF      		rjmp .L24
+ 487               	.L23:
+ 488 0128 0895      		ret
+ 489               	/* epilogue: frame size=0 */
+ 490               	/* epilogue: noreturn */
+ 491               	/* epilogue end (size=0) */
+ 492               	/* function delay_us size 20 (20) */
+ 498               	.Lscope7:
+ 502               	.global	timerDetach
+ 504               	timerDetach:
+  60:timer.c       **** }
+  61:timer.c       **** /*
+  62:timer.c       **** void delay_ms(unsigned char time_ms)
+  63:timer.c       **** {
+  64:timer.c       **** 	unsigned short delay_count = F_CPU / 4000;
+  65:timer.c       **** 
+  66:timer.c       **** 	unsigned short cnt;
+  67:timer.c       **** 	asm volatile ("\n"
+  68:timer.c       ****                   "L_dl1%=:\n\t"
+  69:timer.c       ****                   "mov %A0, %A2\n\t"
+  70:timer.c       ****                   "mov %B0, %B2\n"
+  71:timer.c       ****                   "L_dl2%=:\n\t"
+  72:timer.c       ****                   "sbiw %A0, 1\n\t"
+  73:timer.c       ****                   "brne L_dl2%=\n\t"
+  74:timer.c       ****                   "dec %1\n\t" "brne L_dl1%=\n\t":"=&w" (cnt)
+  75:timer.c       ****                   :"r"(time_ms), "r"((unsigned short) (delay_count))
+  76:timer.c       **** 	);
+  77:timer.c       **** }
+  78:timer.c       **** */
+  79:timer.c       **** void timerInit(void)
+  80:timer.c       **** {
+  81:timer.c       **** 	u08 intNum;
+  82:timer.c       **** 	// detach all user functions from interrupts
+  83:timer.c       **** 	for(intNum=0; intNum<TIMER_NUM_INTERRUPTS; intNum++)
+  84:timer.c       **** 		timerDetach(intNum);
+  85:timer.c       **** 
+  86:timer.c       **** 	// initialize all timers
+  87:timer.c       **** 	timer0Init();
+  88:timer.c       **** 	timer1Init();
+  89:timer.c       **** 	#ifdef TCNT2	// support timer2 only if it exists
+  90:timer.c       **** 	timer2Init();
+  91:timer.c       **** 	#endif
+  92:timer.c       **** 	// enable interrupts
+  93:timer.c       **** 	sei();
+  94:timer.c       **** }
+  95:timer.c       **** 
+  96:timer.c       **** void timer0Init()
+  97:timer.c       **** {
+  98:timer.c       **** 	// initialize timer 0
+  99:timer.c       **** 	timer0SetPrescaler( TIMER0PRESCALE );	// set prescaler
+ 100:timer.c       **** 	outb(TCNT0, 0);							// reset TCNT0
+ 101:timer.c       **** 	sbi(TIMSK, TOIE0);						// enable TCNT0 overflow interrupt
+ 102:timer.c       **** 
+ 103:timer.c       **** 	timer0ClearOverflowCount();				// initialize time registers
+ 104:timer.c       **** }
+ 105:timer.c       **** 
+ 106:timer.c       **** void timer1Init(void)
+ 107:timer.c       **** {
+ 108:timer.c       **** 	// initialize timer 1
+ 109:timer.c       **** 	timer1SetPrescaler( TIMER1PRESCALE );	// set prescaler
+ 110:timer.c       **** 	outb(TCNT1H, 0);						// reset TCNT1
+ 111:timer.c       **** 	outb(TCNT1L, 0);
+ 112:timer.c       **** 	sbi(TIMSK, TOIE1);						// enable TCNT1 overflow
+ 113:timer.c       **** }
+ 114:timer.c       **** 
+ 115:timer.c       **** #ifdef TCNT2	// support timer2 only if it exists
+ 116:timer.c       **** void timer2Init(void)
+ 117:timer.c       **** {
+ 118:timer.c       **** 	// initialize timer 2
+ 119:timer.c       **** 	timer2SetPrescaler( TIMER2PRESCALE );	// set prescaler
+ 120:timer.c       **** 	outb(TCNT2, 0);							// reset TCNT2
+ 121:timer.c       **** 	sbi(TIMSK, TOIE2);						// enable TCNT2 overflow
+ 122:timer.c       **** 
+ 123:timer.c       **** 	timer2ClearOverflowCount();				// initialize time registers
+ 124:timer.c       **** }
+ 125:timer.c       **** #endif
+ 126:timer.c       **** 
+ 127:timer.c       **** void timer0SetPrescaler(u08 prescale)
+ 128:timer.c       **** {
+ 129:timer.c       **** 	// set prescaler on timer 0
+ 130:timer.c       **** 	outb(TCCR0, (inb(TCCR0) & ~TIMER_PRESCALE_MASK) | prescale);
+ 131:timer.c       **** }
+ 132:timer.c       **** 
+ 133:timer.c       **** void timer1SetPrescaler(u08 prescale)
+ 134:timer.c       **** {
+ 135:timer.c       **** 	// set prescaler on timer 1
+ 136:timer.c       **** 	outb(TCCR1B, (inb(TCCR1B) & ~TIMER_PRESCALE_MASK) | prescale);
+ 137:timer.c       **** }
+ 138:timer.c       **** 
+ 139:timer.c       **** #ifdef TCNT2	// support timer2 only if it exists
+ 140:timer.c       **** void timer2SetPrescaler(u08 prescale)
+ 141:timer.c       **** {
+ 142:timer.c       **** 	// set prescaler on timer 2
+ 143:timer.c       **** 	outb(TCCR2, (inb(TCCR2) & ~TIMER_PRESCALE_MASK) | prescale);
+ 144:timer.c       **** }
+ 145:timer.c       **** #endif
+ 146:timer.c       **** 
+ 147:timer.c       **** u16 timer0GetPrescaler(void)
+ 148:timer.c       **** {
+ 149:timer.c       **** 	// get the current prescaler setting
+ 150:timer.c       **** 	return (pgm_read_word(TimerPrescaleFactor+(inb(TCCR0) & TIMER_PRESCALE_MASK)));
+ 151:timer.c       **** }
+ 152:timer.c       **** 
+ 153:timer.c       **** u16 timer1GetPrescaler(void)
+ 154:timer.c       **** {
+ 155:timer.c       **** 	// get the current prescaler setting
+ 156:timer.c       **** 	return (pgm_read_word(TimerPrescaleFactor+(inb(TCCR1B) & TIMER_PRESCALE_MASK)));
+ 157:timer.c       **** }
+ 158:timer.c       **** 
+ 159:timer.c       **** #ifdef TCNT2	// support timer2 only if it exists
+ 160:timer.c       **** u16 timer2GetPrescaler(void)
+ 161:timer.c       **** {
+ 162:timer.c       **** 	//TODO: can we assume for all 3-timer AVR processors,
+ 163:timer.c       **** 	// that timer2 is the RTC timer?
+ 164:timer.c       **** 
+ 165:timer.c       **** 	// get the current prescaler setting
+ 166:timer.c       **** 	return (pgm_read_word(TimerRTCPrescaleFactor+(inb(TCCR2) & TIMER_PRESCALE_MASK)));
+ 167:timer.c       **** }
+ 168:timer.c       **** #endif
+ 169:timer.c       **** 
+ 170:timer.c       **** void timerAttach(u08 interruptNum, void (*userFunc)(void) )
+ 171:timer.c       **** {
+ 172:timer.c       **** 	// make sure the interrupt number is within bounds
+ 173:timer.c       **** 	if(interruptNum < TIMER_NUM_INTERRUPTS)
+ 174:timer.c       **** 	{
+ 175:timer.c       **** 		// set the interrupt function to run
+ 176:timer.c       **** 		// the supplied user's function
+ 177:timer.c       **** 		TimerIntFunc[interruptNum] = userFunc;
+ 178:timer.c       **** 	}
+ 179:timer.c       **** }
+ 180:timer.c       **** 
+ 181:timer.c       **** void timerDetach(u08 interruptNum)
+ 182:timer.c       **** {
+ 506               	.LM32:
+ 507               	/* prologue: frame size=0 */
+ 508               	/* prologue end (size=0) */
+ 183:timer.c       **** 	// make sure the interrupt number is within bounds
+ 184:timer.c       **** 	if(interruptNum < TIMER_NUM_INTERRUPTS)
+ 510               	.LM33:
+ 511 012a 8830      		cpi r24,lo8(8)
+ 512 012c 40F4      		brsh .L25
+ 185:timer.c       **** 	{
+ 186:timer.c       **** 		// set the interrupt function to run nothing
+ 187:timer.c       **** 		TimerIntFunc[interruptNum] = 0;
+ 514               	.LM34:
+ 515 012e E82F      		mov r30,r24
+ 516 0130 FF27      		clr r31
+ 517 0132 EE0F      		add r30,r30
+ 518 0134 FF1F      		adc r31,r31
+ 519 0136 E050      		subi r30,lo8(-(TimerIntFunc))
+ 520 0138 F040      		sbci r31,hi8(-(TimerIntFunc))
+ 521 013a 1182      		std Z+1,__zero_reg__
+ 522 013c 1082      		st Z,__zero_reg__
+ 523               	.L25:
+ 524 013e 0895      		ret
+ 525               	/* epilogue: frame size=0 */
+ 526               	/* epilogue: noreturn */
+ 527               	/* epilogue end (size=0) */
+ 528               	/* function timerDetach size 11 (11) */
+ 530               	.Lscope8:
+ 534               	.global	timer0SetPrescaler
+ 536               	timer0SetPrescaler:
+ 538               	.LM35:
+ 539               	/* prologue: frame size=0 */
+ 540               	/* prologue end (size=0) */
+ 542               	.LM36:
+ 543 0140 93B7      		in r25,83-0x20
+ 544 0142 987F      		andi r25,lo8(-8)
+ 545 0144 982B      		or r25,r24
+ 546 0146 93BF      		out 83-0x20,r25
+ 547               	/* epilogue: frame size=0 */
+ 548 0148 0895      		ret
+ 549               	/* epilogue end (size=1) */
+ 550               	/* function timer0SetPrescaler size 5 (4) */
+ 552               	.Lscope9:
+ 555               	.global	timer0ClearOverflowCount
+ 557               	timer0ClearOverflowCount:
+ 188:timer.c       **** 	}
+ 189:timer.c       **** }
+ 190:timer.c       **** /*
+ 191:timer.c       **** u32 timerMsToTics(u16 ms)
+ 192:timer.c       **** {
+ 193:timer.c       **** 	// calculate the prescaler division rate
+ 194:timer.c       **** 	u16 prescaleDiv = 1<<(pgm_read_byte(TimerPrescaleFactor+inb(TCCR0)));
+ 195:timer.c       **** 	// calculate the number of timer tics in x milliseconds
+ 196:timer.c       **** 	return (ms*(F_CPU/(prescaleDiv*256)))/1000;
+ 197:timer.c       **** }
+ 198:timer.c       **** 
+ 199:timer.c       **** u16 timerTicsToMs(u32 tics)
+ 200:timer.c       **** {
+ 201:timer.c       **** 	// calculate the prescaler division rate
+ 202:timer.c       **** 	u16 prescaleDiv = 1<<(pgm_read_byte(TimerPrescaleFactor+inb(TCCR0)));
+ 203:timer.c       **** 	// calculate the number of milliseconds in x timer tics
+ 204:timer.c       **** 	return (tics*1000*(prescaleDiv*256))/F_CPU;
+ 205:timer.c       **** }
+ 206:timer.c       **** */
+ 207:timer.c       **** void timerPause(unsigned short pause_ms)
+ 208:timer.c       **** {
+ 209:timer.c       **** 	// pauses for exactly <pause_ms> number of milliseconds
+ 210:timer.c       **** 	u08 timerThres;
+ 211:timer.c       **** 	u32 ticRateHz;
+ 212:timer.c       **** 	u32 pause;
+ 213:timer.c       **** 
+ 214:timer.c       **** 	// capture current pause timer value
+ 215:timer.c       **** 	timerThres = inb(TCNT0);
+ 216:timer.c       **** 	// reset pause timer overflow count
+ 217:timer.c       **** 	TimerPauseReg = 0;
+ 218:timer.c       **** 	// calculate delay for [pause_ms] milliseconds
+ 219:timer.c       **** 	// prescaler division = 1<<(pgm_read_byte(TimerPrescaleFactor+inb(TCCR0)))
+ 220:timer.c       **** 	ticRateHz = F_CPU/timer0GetPrescaler();
+ 221:timer.c       **** 	// precision management
+ 222:timer.c       **** 	// prevent overflow and precision underflow
+ 223:timer.c       **** 	//	-could add more conditions to improve accuracy
+ 224:timer.c       **** 	if( ((ticRateHz < 429497) && (pause_ms <= 10000)) )
+ 225:timer.c       **** 		pause = (pause_ms*ticRateHz)/1000;
+ 226:timer.c       **** 	else
+ 227:timer.c       **** 		pause = pause_ms*(ticRateHz/1000);
+ 228:timer.c       **** 
+ 229:timer.c       **** 	// loop until time expires
+ 230:timer.c       **** 	while( ((TimerPauseReg<<8) | inb(TCNT0)) < (pause+timerThres) )
+ 231:timer.c       **** 	{
+ 232:timer.c       **** 		if( TimerPauseReg < (pause>>8));
+ 233:timer.c       **** 		{
+ 234:timer.c       **** 			// save power by idling the processor
+ 235:timer.c       **** 			set_sleep_mode(SLEEP_MODE_IDLE);
+ 236:timer.c       **** 			sleep_mode();
+ 237:timer.c       **** 		}
+ 238:timer.c       **** 	}
+ 239:timer.c       **** 
+ 240:timer.c       **** 	/* old inaccurate code, for reference
+ 241:timer.c       **** 	
+ 242:timer.c       **** 	// calculate delay for [pause_ms] milliseconds
+ 243:timer.c       **** 	u16 prescaleDiv = 1<<(pgm_read_byte(TimerPrescaleFactor+inb(TCCR0)));
+ 244:timer.c       **** 	u32 pause = (pause_ms*(F_CPU/(prescaleDiv*256)))/1000;
+ 245:timer.c       **** 	
+ 246:timer.c       **** 	TimerPauseReg = 0;
+ 247:timer.c       **** 	while(TimerPauseReg < pause);
+ 248:timer.c       **** 
+ 249:timer.c       **** 	*/
+ 250:timer.c       **** }
+ 251:timer.c       **** 
+ 252:timer.c       **** void timer0ClearOverflowCount(void)
+ 253:timer.c       **** {
+ 559               	.LM37:
+ 560               	/* prologue: frame size=0 */
+ 561               	/* prologue end (size=0) */
+ 254:timer.c       **** 	// clear the timer overflow counter registers
+ 255:timer.c       **** 	Timer0Reg0 = 0;	// initialize time registers
+ 563               	.LM38:
+ 564 014a 1092 0000 		sts Timer0Reg0,__zero_reg__
+ 565 014e 1092 0000 		sts (Timer0Reg0)+1,__zero_reg__
+ 566 0152 1092 0000 		sts (Timer0Reg0)+2,__zero_reg__
+ 567 0156 1092 0000 		sts (Timer0Reg0)+3,__zero_reg__
+ 568               	/* epilogue: frame size=0 */
+ 569 015a 0895      		ret
+ 570               	/* epilogue end (size=1) */
+ 571               	/* function timer0ClearOverflowCount size 9 (8) */
+ 573               	.Lscope10:
+ 576               	.global	timer0Init
+ 578               	timer0Init:
+ 580               	.LM39:
+ 581               	/* prologue: frame size=0 */
+ 582               	/* prologue end (size=0) */
+ 584               	.LM40:
+ 585 015c 82E0      		ldi r24,lo8(2)
+ 586 015e 0E94 0000 		call timer0SetPrescaler
+ 588               	.LM41:
+ 589 0162 12BE      		out 82-0x20,__zero_reg__
+ 591               	.LM42:
+ 592 0164 89B7      		in r24,89-0x20
+ 593 0166 8160      		ori r24,lo8(1)
+ 594 0168 89BF      		out 89-0x20,r24
+ 596               	.LM43:
+ 597 016a 0E94 0000 		call timer0ClearOverflowCount
+ 598               	/* epilogue: frame size=0 */
+ 599 016e 0895      		ret
+ 600               	/* epilogue end (size=1) */
+ 601               	/* function timer0Init size 10 (9) */
+ 603               	.Lscope11:
+ 607               	.global	timer1SetPrescaler
+ 609               	timer1SetPrescaler:
+ 611               	.LM44:
+ 612               	/* prologue: frame size=0 */
+ 613               	/* prologue end (size=0) */
+ 615               	.LM45:
+ 616 0170 9EB5      		in r25,78-0x20
+ 617 0172 987F      		andi r25,lo8(-8)
+ 618 0174 982B      		or r25,r24
+ 619 0176 9EBD      		out 78-0x20,r25
+ 620               	/* epilogue: frame size=0 */
+ 621 0178 0895      		ret
+ 622               	/* epilogue end (size=1) */
+ 623               	/* function timer1SetPrescaler size 5 (4) */
+ 625               	.Lscope12:
+ 628               	.global	timer1Init
+ 630               	timer1Init:
+ 632               	.LM46:
+ 633               	/* prologue: frame size=0 */
+ 634               	/* prologue end (size=0) */
+ 636               	.LM47:
+ 637 017a 83E0      		ldi r24,lo8(3)
+ 638 017c 0E94 0000 		call timer1SetPrescaler
+ 640               	.LM48:
+ 641 0180 1DBC      		out 77-0x20,__zero_reg__
+ 643               	.LM49:
+ 644 0182 1CBC      		out 76-0x20,__zero_reg__
+ 646               	.LM50:
+ 647 0184 89B7      		in r24,89-0x20
+ 648 0186 8460      		ori r24,lo8(4)
+ 649 0188 89BF      		out 89-0x20,r24
+ 650               	/* epilogue: frame size=0 */
+ 651 018a 0895      		ret
+ 652               	/* epilogue end (size=1) */
+ 653               	/* function timer1Init size 9 (8) */
+ 655               	.Lscope13:
+ 659               	.global	timer2SetPrescaler
+ 661               	timer2SetPrescaler:
+ 663               	.LM51:
+ 664               	/* prologue: frame size=0 */
+ 665               	/* prologue end (size=0) */
+ 667               	.LM52:
+ 668 018c 95B5      		in r25,69-0x20
+ 669 018e 987F      		andi r25,lo8(-8)
+ 670 0190 982B      		or r25,r24
+ 671 0192 95BD      		out 69-0x20,r25
+ 672               	/* epilogue: frame size=0 */
+ 673 0194 0895      		ret
+ 674               	/* epilogue end (size=1) */
+ 675               	/* function timer2SetPrescaler size 5 (4) */
+ 677               	.Lscope14:
+ 680               	.global	timer2ClearOverflowCount
+ 682               	timer2ClearOverflowCount:
+ 256:timer.c       **** }
+ 257:timer.c       **** 
+ 258:timer.c       **** long timer0GetOverflowCount(void)
+ 259:timer.c       **** {
+ 260:timer.c       **** 	// return the current timer overflow count
+ 261:timer.c       **** 	// (this is since the last timer0ClearOverflowCount() command was called)
+ 262:timer.c       **** 	return Timer0Reg0;
+ 263:timer.c       **** }
+ 264:timer.c       **** 
+ 265:timer.c       **** #ifdef TCNT2	// support timer2 only if it exists
+ 266:timer.c       **** void timer2ClearOverflowCount(void)
+ 267:timer.c       **** {
+ 684               	.LM53:
+ 685               	/* prologue: frame size=0 */
+ 686               	/* prologue end (size=0) */
+ 268:timer.c       **** 	// clear the timer overflow counter registers
+ 269:timer.c       **** 	Timer2Reg0 = 0;	// initialize time registers
+ 688               	.LM54:
+ 689 0196 1092 0000 		sts Timer2Reg0,__zero_reg__
+ 690 019a 1092 0000 		sts (Timer2Reg0)+1,__zero_reg__
+ 691 019e 1092 0000 		sts (Timer2Reg0)+2,__zero_reg__
+ 692 01a2 1092 0000 		sts (Timer2Reg0)+3,__zero_reg__
+ 693               	/* epilogue: frame size=0 */
+ 694 01a6 0895      		ret
+ 695               	/* epilogue end (size=1) */
+ 696               	/* function timer2ClearOverflowCount size 9 (8) */
+ 698               	.Lscope15:
+ 701               	.global	timer2Init
+ 703               	timer2Init:
+ 705               	.LM55:
+ 706               	/* prologue: frame size=0 */
+ 707               	/* prologue end (size=0) */
+ 709               	.LM56:
+ 710 01a8 84E0      		ldi r24,lo8(4)
+ 711 01aa 0E94 0000 		call timer2SetPrescaler
+ 713               	.LM57:
+ 714 01ae 14BC      		out 68-0x20,__zero_reg__
+ 716               	.LM58:
+ 717 01b0 89B7      		in r24,89-0x20
+ 718 01b2 8064      		ori r24,lo8(64)
+ 719 01b4 89BF      		out 89-0x20,r24
+ 721               	.LM59:
+ 722 01b6 0E94 0000 		call timer2ClearOverflowCount
+ 723               	/* epilogue: frame size=0 */
+ 724 01ba 0895      		ret
+ 725               	/* epilogue end (size=1) */
+ 726               	/* function timer2Init size 10 (9) */
+ 728               	.Lscope16:
+ 731               	.global	timerInit
+ 733               	timerInit:
+ 735               	.LM60:
+ 736               	/* prologue: frame size=0 */
+ 737 01bc CF93      		push r28
+ 738               	/* prologue end (size=1) */
+ 740               	.LM61:
+ 741 01be C0E0      		ldi r28,lo8(0)
+ 742               	.L39:
+ 744               	.LM62:
+ 745 01c0 8C2F      		mov r24,r28
+ 746 01c2 0E94 0000 		call timerDetach
+ 748               	.LM63:
+ 749 01c6 CF5F      		subi r28,lo8(-(1))
+ 750 01c8 C830      		cpi r28,lo8(8)
+ 751 01ca D0F3      		brlo .L39
+ 753               	.LM64:
+ 754 01cc 0E94 0000 		call timer0Init
+ 756               	.LM65:
+ 757 01d0 0E94 0000 		call timer1Init
+ 759               	.LM66:
+ 760 01d4 0E94 0000 		call timer2Init
+ 762               	.LM67:
+ 763               	/* #APP */
+ 764 01d8 7894      		sei
+ 765               	/* #NOAPP */
+ 766               	/* epilogue: frame size=0 */
+ 767 01da CF91      		pop r28
+ 768 01dc 0895      		ret
+ 769               	/* epilogue end (size=2) */
+ 770               	/* function timerInit size 18 (15) */
+ 775               	.Lscope17:
+ 778               	.global	timer0GetPrescaler
+ 780               	timer0GetPrescaler:
+ 782               	.LM68:
+ 783               	/* prologue: frame size=0 */
+ 784               	/* prologue end (size=0) */
+ 785               	.LBB2:
+ 787               	.LM69:
+ 788 01de 83B7      		in r24,83-0x20
+ 789 01e0 E82F      		mov r30,r24
+ 790 01e2 FF27      		clr r31
+ 791 01e4 E770      		andi r30,lo8(7)
+ 792 01e6 F070      		andi r31,hi8(7)
+ 793 01e8 EE0F      		add r30,r30
+ 794 01ea FF1F      		adc r31,r31
+ 795 01ec E050      		subi r30,lo8(-(TimerPrescaleFactor))
+ 796 01ee F040      		sbci r31,hi8(-(TimerPrescaleFactor))
+ 797               	.LBE2:
+ 799               	.LM70:
+ 800               	/* #APP */
+ 801 01f0 8591      		lpm r24, Z+
+ 802 01f2 9491      		lpm r25, Z
+ 803               		
+ 804               	/* #NOAPP */
+ 805               	/* epilogue: frame size=0 */
+ 806 01f4 0895      		ret
+ 807               	/* epilogue end (size=1) */
+ 808               	/* function timer0GetPrescaler size 16 (15) */
+ 813               	.Lscope18:
+ 816               	.global	timer1GetPrescaler
+ 818               	timer1GetPrescaler:
+ 820               	.LM71:
+ 821               	/* prologue: frame size=0 */
+ 822               	/* prologue end (size=0) */
+ 823               	.LBB3:
+ 825               	.LM72:
+ 826 01f6 8EB5      		in r24,78-0x20
+ 827 01f8 E82F      		mov r30,r24
+ 828 01fa FF27      		clr r31
+ 829 01fc E770      		andi r30,lo8(7)
+ 830 01fe F070      		andi r31,hi8(7)
+ 831 0200 EE0F      		add r30,r30
+ 832 0202 FF1F      		adc r31,r31
+ 833 0204 E050      		subi r30,lo8(-(TimerPrescaleFactor))
+ 834 0206 F040      		sbci r31,hi8(-(TimerPrescaleFactor))
+ 835               	.LBE3:
+ 837               	.LM73:
+ 838               	/* #APP */
+ 839 0208 8591      		lpm r24, Z+
+ 840 020a 9491      		lpm r25, Z
+ 841               		
+ 842               	/* #NOAPP */
+ 843               	/* epilogue: frame size=0 */
+ 844 020c 0895      		ret
+ 845               	/* epilogue end (size=1) */
+ 846               	/* function timer1GetPrescaler size 16 (15) */
+ 851               	.Lscope19:
+ 854               	.global	timer2GetPrescaler
+ 856               	timer2GetPrescaler:
+ 858               	.LM74:
+ 859               	/* prologue: frame size=0 */
+ 860               	/* prologue end (size=0) */
+ 861               	.LBB4:
+ 863               	.LM75:
+ 864 020e 85B5      		in r24,69-0x20
+ 865 0210 E82F      		mov r30,r24
+ 866 0212 FF27      		clr r31
+ 867 0214 E770      		andi r30,lo8(7)
+ 868 0216 F070      		andi r31,hi8(7)
+ 869 0218 EE0F      		add r30,r30
+ 870 021a FF1F      		adc r31,r31
+ 871 021c E050      		subi r30,lo8(-(TimerRTCPrescaleFactor))
+ 872 021e F040      		sbci r31,hi8(-(TimerRTCPrescaleFactor))
+ 873               	.LBE4:
+ 875               	.LM76:
+ 876               	/* #APP */
+ 877 0220 8591      		lpm r24, Z+
+ 878 0222 9491      		lpm r25, Z
+ 879               		
+ 880               	/* #NOAPP */
+ 881               	/* epilogue: frame size=0 */
+ 882 0224 0895      		ret
+ 883               	/* epilogue end (size=1) */
+ 884               	/* function timer2GetPrescaler size 16 (15) */
+ 889               	.Lscope20:
+ 894               	.global	timerAttach
+ 896               	timerAttach:
+ 898               	.LM77:
+ 899               	/* prologue: frame size=0 */
+ 900               	/* prologue end (size=0) */
+ 902               	.LM78:
+ 903 0226 8830      		cpi r24,lo8(8)
+ 904 0228 40F4      		brsh .L45
+ 906               	.LM79:
+ 907 022a E82F      		mov r30,r24
+ 908 022c FF27      		clr r31
+ 909 022e EE0F      		add r30,r30
+ 910 0230 FF1F      		adc r31,r31
+ 911 0232 E050      		subi r30,lo8(-(TimerIntFunc))
+ 912 0234 F040      		sbci r31,hi8(-(TimerIntFunc))
+ 913 0236 7183      		std Z+1,r23
+ 914 0238 6083      		st Z,r22
+ 915               	.L45:
+ 916 023a 0895      		ret
+ 917               	/* epilogue: frame size=0 */
+ 918               	/* epilogue: noreturn */
+ 919               	/* epilogue end (size=0) */
+ 920               	/* function timerAttach size 11 (11) */
+ 922               	.Lscope21:
+ 926               	.global	timerPause
+ 928               	timerPause:
+ 930               	.LM80:
+ 931               	/* prologue: frame size=0 */
+ 932 023c DF92      		push r13
+ 933 023e EF92      		push r14
+ 934 0240 FF92      		push r15
+ 935 0242 0F93      		push r16
+ 936 0244 1F93      		push r17
+ 937 0246 CF93      		push r28
+ 938 0248 DF93      		push r29
+ 939               	/* prologue end (size=7) */
+ 940 024a EC01      		movw r28,r24
+ 942               	.LM81:
+ 943 024c D2B6      		in r13,82-0x20
+ 945               	.LM82:
+ 946 024e 1092 0000 		sts TimerPauseReg,__zero_reg__
+ 947 0252 1092 0000 		sts (TimerPauseReg)+1,__zero_reg__
+ 948 0256 1092 0000 		sts (TimerPauseReg)+2,__zero_reg__
+ 949 025a 1092 0000 		sts (TimerPauseReg)+3,__zero_reg__
+ 951               	.LM83:
+ 952 025e 0E94 0000 		call timer0GetPrescaler
+ 953 0262 9C01      		movw r18,r24
+ 954 0264 4427      		clr r20
+ 955 0266 5527      		clr r21
+ 956 0268 60E0      		ldi r22,lo8(16000000)
+ 957 026a 74E2      		ldi r23,hi8(16000000)
+ 958 026c 84EF      		ldi r24,hlo8(16000000)
+ 959 026e 90E0      		ldi r25,hhi8(16000000)
+ 960 0270 0E94 0000 		call __divmodsi4
+ 962               	.LM84:
+ 963 0274 293B      		cpi r18,lo8(429497)
+ 964 0276 8DE8      		ldi r24,hi8(429497)
+ 965 0278 3807      		cpc r19,r24
+ 966 027a 86E0      		ldi r24,hlo8(429497)
+ 967 027c 4807      		cpc r20,r24
+ 968 027e 80E0      		ldi r24,hhi8(429497)
+ 969 0280 5807      		cpc r21,r24
+ 970 0282 C0F4      		brsh .L48
+ 972               	.LM85:
+ 973 0284 87E2      		ldi r24,hi8(10001)
+ 974 0286 C131      		cpi r28,lo8(10001)
+ 975 0288 D807      		cpc r29,r24
+ 976 028a A0F4      		brsh .L48
+ 978               	.LM86:
+ 979 028c CE01      		movw r24,r28
+ 980 028e AA27      		clr r26
+ 981 0290 BB27      		clr r27
+ 982 0292 BC01      		movw r22,r24
+ 983 0294 CD01      		movw r24,r26
+ 984 0296 0E94 0000 		call __mulsi3
+ 985 029a DC01      		movw r26,r24
+ 986 029c CB01      		movw r24,r22
+ 987 029e BC01      		movw r22,r24
+ 988 02a0 CD01      		movw r24,r26
+ 989 02a2 28EE      		ldi r18,lo8(1000)
+ 990 02a4 33E0      		ldi r19,hi8(1000)
+ 991 02a6 40E0      		ldi r20,hlo8(1000)
+ 992 02a8 50E0      		ldi r21,hhi8(1000)
+ 993 02aa 0E94 0000 		call __udivmodsi4
+ 994 02ae FA01      		movw r30,r20
+ 995 02b0 E901      		movw r28,r18
+ 996 02b2 11C0      		rjmp .L49
+ 997               	.L48:
+ 999               	.LM87:
+ 1000 02b4 7E01      		movw r14,r28
+ 1001 02b6 0027      		clr r16
+ 1002 02b8 1127      		clr r17
+ 1003 02ba CA01      		movw r24,r20
+ 1004 02bc B901      		movw r22,r18
+ 1005 02be 28EE      		ldi r18,lo8(1000)
+ 1006 02c0 33E0      		ldi r19,hi8(1000)
+ 1007 02c2 40E0      		ldi r20,hlo8(1000)
+ 1008 02c4 50E0      		ldi r21,hhi8(1000)
+ 1009 02c6 0E94 0000 		call __udivmodsi4
+ 1010 02ca C801      		movw r24,r16
+ 1011 02cc B701      		movw r22,r14
+ 1012 02ce 0E94 0000 		call __mulsi3
+ 1013 02d2 FC01      		movw r30,r24
+ 1014 02d4 EB01      		movw r28,r22
+ 1015               	.L49:
+ 1017               	.LM88:
+ 1018 02d6 8091 0000 		lds r24,TimerPauseReg
+ 1019 02da 9091 0000 		lds r25,(TimerPauseReg)+1
+ 1020 02de A091 0000 		lds r26,(TimerPauseReg)+2
+ 1021 02e2 B091 0000 		lds r27,(TimerPauseReg)+3
+ 1022 02e6 2227      		clr r18
+ 1023 02e8 382F      		mov r19,r24
+ 1024 02ea 492F      		mov r20,r25
+ 1025 02ec 5A2F      		mov r21,r26
+ 1026 02ee 82B7      		in r24,82-0x20
+ 1027 02f0 9927      		clr r25
+ 1028 02f2 AA27      		clr r26
+ 1029 02f4 BB27      		clr r27
+ 1030 02f6 282B      		or r18,r24
+ 1031 02f8 392B      		or r19,r25
+ 1032 02fa 4A2B      		or r20,r26
+ 1033 02fc 5B2B      		or r21,r27
+ 1034 02fe CD0D      		add r28,r13
+ 1035 0300 D11D      		adc r29,__zero_reg__
+ 1036 0302 E11D      		adc r30,__zero_reg__
+ 1037 0304 F11D      		adc r31,__zero_reg__
+ 1038 0306 2C17      		cp r18,r28
+ 1039 0308 3D07      		cpc r19,r29
+ 1040 030a 4E07      		cpc r20,r30
+ 1041 030c 5F07      		cpc r21,r31
+ 1042 030e 58F5      		brsh .L57
+ 1043               	.L55:
+ 1045               	.LM89:
+ 1046 0310 8091 0000 		lds r24,TimerPauseReg
+ 1047 0314 9091 0000 		lds r25,(TimerPauseReg)+1
+ 1048 0318 A091 0000 		lds r26,(TimerPauseReg)+2
+ 1049 031c B091 0000 		lds r27,(TimerPauseReg)+3
+ 1051               	.LM90:
+ 1052 0320 85B7      		in r24,85-0x20
+ 1053 0322 8F78      		andi r24,lo8(-113)
+ 1054 0324 85BF      		out 85-0x20,r24
+ 1056               	.LM91:
+ 1057 0326 85B7      		in r24,85-0x20
+ 1058 0328 8068      		ori r24,lo8(-128)
+ 1059 032a 85BF      		out 85-0x20,r24
+ 1060               	/* #APP */
+ 1061 032c 8895      		sleep
+ 1062               		
+ 1063               	/* #NOAPP */
+ 1064 032e 85B7      		in r24,85-0x20
+ 1065 0330 8F77      		andi r24,lo8(127)
+ 1066 0332 85BF      		out 85-0x20,r24
+ 1067 0334 8091 0000 		lds r24,TimerPauseReg
+ 1068 0338 9091 0000 		lds r25,(TimerPauseReg)+1
+ 1069 033c A091 0000 		lds r26,(TimerPauseReg)+2
+ 1070 0340 B091 0000 		lds r27,(TimerPauseReg)+3
+ 1071 0344 BA2F      		mov r27,r26
+ 1072 0346 A92F      		mov r26,r25
+ 1073 0348 982F      		mov r25,r24
+ 1074 034a 8827      		clr r24
+ 1075 034c 22B7      		in r18,82-0x20
+ 1076 034e 3327      		clr r19
+ 1077 0350 4427      		clr r20
+ 1078 0352 5527      		clr r21
+ 1079 0354 822B      		or r24,r18
+ 1080 0356 932B      		or r25,r19
+ 1081 0358 A42B      		or r26,r20
+ 1082 035a B52B      		or r27,r21
+ 1083 035c 8C17      		cp r24,r28
+ 1084 035e 9D07      		cpc r25,r29
+ 1085 0360 AE07      		cpc r26,r30
+ 1086 0362 BF07      		cpc r27,r31
+ 1087 0364 A8F2      		brlo .L55
+ 1088               	.L57:
+ 1089               	/* epilogue: frame size=0 */
+ 1090 0366 DF91      		pop r29
+ 1091 0368 CF91      		pop r28
+ 1092 036a 1F91      		pop r17
+ 1093 036c 0F91      		pop r16
+ 1094 036e FF90      		pop r15
+ 1095 0370 EF90      		pop r14
+ 1096 0372 DF90      		pop r13
+ 1097 0374 0895      		ret
+ 1098               	/* epilogue end (size=8) */
+ 1099               	/* function timerPause size 160 (145) */
+ 1106               	.Lscope22:
+ 1109               	.global	timer0GetOverflowCount
+ 1111               	timer0GetOverflowCount:
+ 1113               	.LM92:
+ 1114               	/* prologue: frame size=0 */
+ 1115               	/* prologue end (size=0) */
+ 1117               	.LM93:
+ 1118 0376 8091 0000 		lds r24,Timer0Reg0
+ 1119 037a 9091 0000 		lds r25,(Timer0Reg0)+1
+ 1120 037e A091 0000 		lds r26,(Timer0Reg0)+2
+ 1121 0382 B091 0000 		lds r27,(Timer0Reg0)+3
+ 1123               	.LM94:
+ 1124 0386 BC01      		movw r22,r24
+ 1125 0388 CD01      		movw r24,r26
+ 1126               	/* epilogue: frame size=0 */
+ 1127 038a 0895      		ret
+ 1128               	/* epilogue end (size=1) */
+ 1129               	/* function timer0GetOverflowCount size 11 (10) */
+ 1131               	.Lscope23:
+ 1134               	.global	timer2GetOverflowCount
+ 1136               	timer2GetOverflowCount:
+ 270:timer.c       **** }
+ 271:timer.c       **** 
+ 272:timer.c       **** long timer2GetOverflowCount(void)
+ 273:timer.c       **** {
+ 1138               	.LM95:
+ 1139               	/* prologue: frame size=0 */
+ 1140               	/* prologue end (size=0) */
+ 274:timer.c       **** 	// return the current timer overflow count
+ 275:timer.c       **** 	// (this is since the last timer2ClearOverflowCount() command was called)
+ 276:timer.c       **** 	return Timer2Reg0;
+ 1142               	.LM96:
+ 1143 038c 8091 0000 		lds r24,Timer2Reg0
+ 1144 0390 9091 0000 		lds r25,(Timer2Reg0)+1
+ 1145 0394 A091 0000 		lds r26,(Timer2Reg0)+2
+ 1146 0398 B091 0000 		lds r27,(Timer2Reg0)+3
+ 277:timer.c       **** }
+ 1148               	.LM97:
+ 1149 039c BC01      		movw r22,r24
+ 1150 039e CD01      		movw r24,r26
+ 1151               	/* epilogue: frame size=0 */
+ 1152 03a0 0895      		ret
+ 1153               	/* epilogue end (size=1) */
+ 1154               	/* function timer2GetOverflowCount size 11 (10) */
+ 1156               	.Lscope24:
+ 1160               	.global	timer1PWMInit
+ 1162               	timer1PWMInit:
+ 278:timer.c       **** #endif
+ 279:timer.c       **** 
+ 280:timer.c       **** void timer1PWMInit(u08 bitRes)
+ 281:timer.c       **** {
+ 1164               	.LM98:
+ 1165               	/* prologue: frame size=0 */
+ 1166               	/* prologue end (size=0) */
+ 282:timer.c       **** 	// configures timer1 for use with PWM output
+ 283:timer.c       **** 	// on OC1A and OC1B pins
+ 284:timer.c       **** 
+ 285:timer.c       **** 	// enable timer1 as 8,9,10bit PWM
+ 286:timer.c       **** 	if(bitRes == 9)
+ 1168               	.LM99:
+ 1169 03a2 8930      		cpi r24,lo8(9)
+ 1170 03a4 31F4      		brne .L61
+ 287:timer.c       **** 	{	// 9bit mode
+ 288:timer.c       **** 		sbi(TCCR1A,PWM11);
+ 1172               	.LM100:
+ 1173 03a6 8FB5      		in r24,79-0x20
+ 1174 03a8 8260      		ori r24,lo8(2)
+ 1175 03aa 8FBD      		out 79-0x20,r24
+ 289:timer.c       **** 		cbi(TCCR1A,PWM10);
+ 1177               	.LM101:
+ 1178 03ac 8FB5      		in r24,79-0x20
+ 1179 03ae 8E7F      		andi r24,lo8(-2)
+ 1180 03b0 0AC0      		rjmp .L66
+ 1181               	.L61:
+ 290:timer.c       **** 	}
+ 291:timer.c       **** 	else if( bitRes == 10 )
+ 1183               	.LM102:
+ 1184 03b2 8A30      		cpi r24,lo8(10)
+ 1185 03b4 19F4      		brne .L63
+ 292:timer.c       **** 	{	// 10bit mode
+ 293:timer.c       **** 		sbi(TCCR1A,PWM11);
+ 1187               	.LM103:
+ 1188 03b6 8FB5      		in r24,79-0x20
+ 1189 03b8 8260      		ori r24,lo8(2)
+ 1190 03ba 02C0      		rjmp .L65
+ 1191               	.L63:
+ 294:timer.c       **** 		sbi(TCCR1A,PWM10);
+ 295:timer.c       **** 	}
+ 296:timer.c       **** 	else
+ 297:timer.c       **** 	{	// default 8bit mode
+ 298:timer.c       **** 		cbi(TCCR1A,PWM11);
+ 1193               	.LM104:
+ 1194 03bc 8FB5      		in r24,79-0x20
+ 1195 03be 8D7F      		andi r24,lo8(-3)
+ 1196               	.L65:
+ 1197 03c0 8FBD      		out 79-0x20,r24
+ 299:timer.c       **** 		sbi(TCCR1A,PWM10);
+ 1199               	.LM105:
+ 1200 03c2 8FB5      		in r24,79-0x20
+ 1201 03c4 8160      		ori r24,lo8(1)
+ 1202               	.L66:
+ 1203 03c6 8FBD      		out 79-0x20,r24
+ 300:timer.c       **** 	}
+ 301:timer.c       **** 
+ 302:timer.c       **** 	// clear output compare value A
+ 303:timer.c       **** 	outb(OCR1AH, 0);
+ 1205               	.LM106:
+ 1206 03c8 1BBC      		out 75-0x20,__zero_reg__
+ 304:timer.c       **** 	outb(OCR1AL, 0);
+ 1208               	.LM107:
+ 1209 03ca 1ABC      		out 74-0x20,__zero_reg__
+ 305:timer.c       **** 	// clear output compare value B
+ 306:timer.c       **** 	outb(OCR1BH, 0);
+ 1211               	.LM108:
+ 1212 03cc 19BC      		out 73-0x20,__zero_reg__
+ 307:timer.c       **** 	outb(OCR1BL, 0);
+ 1214               	.LM109:
+ 1215 03ce 18BC      		out 72-0x20,__zero_reg__
+ 1216               	/* epilogue: frame size=0 */
+ 1217 03d0 0895      		ret
+ 1218               	/* epilogue end (size=1) */
+ 1219               	/* function timer1PWMInit size 24 (23) */
+ 1221               	.Lscope25:
+ 1225               	.global	timer1PWMInitICR
+ 1227               	timer1PWMInitICR:
+ 308:timer.c       **** }
+ 309:timer.c       **** 
+ 310:timer.c       **** #ifdef WGM10
+ 311:timer.c       **** // include support for arbitrary top-count PWM
+ 312:timer.c       **** // on new AVR processors that support it
+ 313:timer.c       **** void timer1PWMInitICR(u16 topcount)
+ 314:timer.c       **** {
+ 1229               	.LM110:
+ 1230               	/* prologue: frame size=0 */
+ 1231               	/* prologue end (size=0) */
+ 1232 03d2 9C01      		movw r18,r24
+ 315:timer.c       **** 	// set PWM mode with ICR top-count
+ 316:timer.c       **** 	cbi(TCCR1A,WGM10);
+ 1234               	.LM111:
+ 1235 03d4 8FB5      		in r24,79-0x20
+ 1236 03d6 8E7F      		andi r24,lo8(-2)
+ 1237 03d8 8FBD      		out 79-0x20,r24
+ 317:timer.c       **** 	sbi(TCCR1A,WGM11);
+ 1239               	.LM112:
+ 1240 03da 8FB5      		in r24,79-0x20
+ 1241 03dc 8260      		ori r24,lo8(2)
+ 1242 03de 8FBD      		out 79-0x20,r24
+ 318:timer.c       **** 	sbi(TCCR1B,WGM12);
+ 1244               	.LM113:
+ 1245 03e0 8EB5      		in r24,78-0x20
+ 1246 03e2 8860      		ori r24,lo8(8)
+ 1247 03e4 8EBD      		out 78-0x20,r24
+ 319:timer.c       **** 	sbi(TCCR1B,WGM13);
+ 1249               	.LM114:
+ 1250 03e6 8EB5      		in r24,78-0x20
+ 1251 03e8 8061      		ori r24,lo8(16)
+ 1252 03ea 8EBD      		out 78-0x20,r24
+ 320:timer.c       **** 	
+ 321:timer.c       **** 	// set top count value
+ 322:timer.c       **** 	ICR1 = topcount;
+ 1254               	.LM115:
+ 1255 03ec 37BD      		out (70)+1-0x20,r19
+ 1256 03ee 26BD      		out 70-0x20,r18
+ 323:timer.c       **** 	
+ 324:timer.c       **** 	// clear output compare value A
+ 325:timer.c       **** 	OCR1A = 0;
+ 1258               	.LM116:
+ 1259 03f0 1BBC      		out (74)+1-0x20,__zero_reg__
+ 1260 03f2 1ABC      		out 74-0x20,__zero_reg__
+ 326:timer.c       **** 	// clear output compare value B
+ 327:timer.c       **** 	OCR1B = 0;
+ 1262               	.LM117:
+ 1263 03f4 19BC      		out (72)+1-0x20,__zero_reg__
+ 1264 03f6 18BC      		out 72-0x20,__zero_reg__
+ 1265               	/* epilogue: frame size=0 */
+ 1266 03f8 0895      		ret
+ 1267               	/* epilogue end (size=1) */
+ 1268               	/* function timer1PWMInitICR size 20 (19) */
+ 1270               	.Lscope26:
+ 1273               	.global	timer1PWMAOff
+ 1275               	timer1PWMAOff:
+ 328:timer.c       **** 
+ 329:timer.c       **** }
+ 330:timer.c       **** #endif
+ 331:timer.c       **** 
+ 332:timer.c       **** void timer1PWMOff(void)
+ 333:timer.c       **** {
+ 334:timer.c       **** 	// turn off timer1 PWM mode
+ 335:timer.c       **** 	cbi(TCCR1A,PWM11);
+ 336:timer.c       **** 	cbi(TCCR1A,PWM10);
+ 337:timer.c       **** 	// set PWM1A/B (OutputCompare action) to none
+ 338:timer.c       **** 	timer1PWMAOff();
+ 339:timer.c       **** 	timer1PWMBOff();
+ 340:timer.c       **** }
+ 341:timer.c       **** 
+ 342:timer.c       **** void timer1PWMAOn(void)
+ 343:timer.c       **** {
+ 344:timer.c       **** 	// turn on channel A (OC1A) PWM output
+ 345:timer.c       **** 	// set OC1A as non-inverted PWM
+ 346:timer.c       **** 	sbi(TCCR1A,COM1A1);
+ 347:timer.c       **** 	cbi(TCCR1A,COM1A0);
+ 348:timer.c       **** }
+ 349:timer.c       **** 
+ 350:timer.c       **** void timer1PWMBOn(void)
+ 351:timer.c       **** {
+ 352:timer.c       **** 	// turn on channel B (OC1B) PWM output
+ 353:timer.c       **** 	// set OC1B as non-inverted PWM
+ 354:timer.c       **** 	sbi(TCCR1A,COM1B1);
+ 355:timer.c       **** 	cbi(TCCR1A,COM1B0);
+ 356:timer.c       **** }
+ 357:timer.c       **** 
+ 358:timer.c       **** void timer1PWMAOff(void)
+ 359:timer.c       **** {
+ 1277               	.LM118:
+ 1278               	/* prologue: frame size=0 */
+ 1279               	/* prologue end (size=0) */
+ 360:timer.c       **** 	// turn off channel A (OC1A) PWM output
+ 361:timer.c       **** 	// set OC1A (OutputCompare action) to none
+ 362:timer.c       **** 	cbi(TCCR1A,COM1A1);
+ 1281               	.LM119:
+ 1282 03fa 8FB5      		in r24,79-0x20
+ 1283 03fc 8F77      		andi r24,lo8(127)
+ 1284 03fe 8FBD      		out 79-0x20,r24
+ 363:timer.c       **** 	cbi(TCCR1A,COM1A0);
+ 1286               	.LM120:
+ 1287 0400 8FB5      		in r24,79-0x20
+ 1288 0402 8F7B      		andi r24,lo8(-65)
+ 1289 0404 8FBD      		out 79-0x20,r24
+ 1290               	/* epilogue: frame size=0 */
+ 1291 0406 0895      		ret
+ 1292               	/* epilogue end (size=1) */
+ 1293               	/* function timer1PWMAOff size 7 (6) */
+ 1295               	.Lscope27:
+ 1298               	.global	timer1PWMBOff
+ 1300               	timer1PWMBOff:
+ 364:timer.c       **** }
+ 365:timer.c       **** 
+ 366:timer.c       **** void timer1PWMBOff(void)
+ 367:timer.c       **** {
+ 1302               	.LM121:
+ 1303               	/* prologue: frame size=0 */
+ 1304               	/* prologue end (size=0) */
+ 368:timer.c       **** 	// turn off channel B (OC1B) PWM output
+ 369:timer.c       **** 	// set OC1B (OutputCompare action) to none
+ 370:timer.c       **** 	cbi(TCCR1A,COM1B1);
+ 1306               	.LM122:
+ 1307 0408 8FB5      		in r24,79-0x20
+ 1308 040a 8F7D      		andi r24,lo8(-33)
+ 1309 040c 8FBD      		out 79-0x20,r24
+ 371:timer.c       **** 	cbi(TCCR1A,COM1B0);
+ 1311               	.LM123:
+ 1312 040e 8FB5      		in r24,79-0x20
+ 1313 0410 8F7E      		andi r24,lo8(-17)
+ 1314 0412 8FBD      		out 79-0x20,r24
+ 1315               	/* epilogue: frame size=0 */
+ 1316 0414 0895      		ret
+ 1317               	/* epilogue end (size=1) */
+ 1318               	/* function timer1PWMBOff size 7 (6) */
+ 1320               	.Lscope28:
+ 1323               	.global	timer1PWMOff
+ 1325               	timer1PWMOff:
+ 1327               	.LM124:
+ 1328               	/* prologue: frame size=0 */
+ 1329               	/* prologue end (size=0) */
+ 1331               	.LM125:
+ 1332 0416 8FB5      		in r24,79-0x20
+ 1333 0418 8D7F      		andi r24,lo8(-3)
+ 1334 041a 8FBD      		out 79-0x20,r24
+ 1336               	.LM126:
+ 1337 041c 8FB5      		in r24,79-0x20
+ 1338 041e 8E7F      		andi r24,lo8(-2)
+ 1339 0420 8FBD      		out 79-0x20,r24
+ 1341               	.LM127:
+ 1342 0422 0E94 0000 		call timer1PWMAOff
+ 1344               	.LM128:
+ 1345 0426 0E94 0000 		call timer1PWMBOff
+ 1346               	/* epilogue: frame size=0 */
+ 1347 042a 0895      		ret
+ 1348               	/* epilogue end (size=1) */
+ 1349               	/* function timer1PWMOff size 11 (10) */
+ 1351               	.Lscope29:
+ 1354               	.global	timer1PWMAOn
+ 1356               	timer1PWMAOn:
+ 1358               	.LM129:
+ 1359               	/* prologue: frame size=0 */
+ 1360               	/* prologue end (size=0) */
+ 1362               	.LM130:
+ 1363 042c 8FB5      		in r24,79-0x20
+ 1364 042e 8068      		ori r24,lo8(-128)
+ 1365 0430 8FBD      		out 79-0x20,r24
+ 1367               	.LM131:
+ 1368 0432 8FB5      		in r24,79-0x20
+ 1369 0434 8F7B      		andi r24,lo8(-65)
+ 1370 0436 8FBD      		out 79-0x20,r24
+ 1371               	/* epilogue: frame size=0 */
+ 1372 0438 0895      		ret
+ 1373               	/* epilogue end (size=1) */
+ 1374               	/* function timer1PWMAOn size 7 (6) */
+ 1376               	.Lscope30:
+ 1379               	.global	timer1PWMBOn
+ 1381               	timer1PWMBOn:
+ 1383               	.LM132:
+ 1384               	/* prologue: frame size=0 */
+ 1385               	/* prologue end (size=0) */
+ 1387               	.LM133:
+ 1388 043a 8FB5      		in r24,79-0x20
+ 1389 043c 8062      		ori r24,lo8(32)
+ 1390 043e 8FBD      		out 79-0x20,r24
+ 1392               	.LM134:
+ 1393 0440 8FB5      		in r24,79-0x20
+ 1394 0442 8F7E      		andi r24,lo8(-17)
+ 1395 0444 8FBD      		out 79-0x20,r24
+ 1396               	/* epilogue: frame size=0 */
+ 1397 0446 0895      		ret
+ 1398               	/* epilogue end (size=1) */
+ 1399               	/* function timer1PWMBOn size 7 (6) */
+ 1401               	.Lscope31:
+ 1405               	.global	timer1PWMASet
+ 1407               	timer1PWMASet:
+ 372:timer.c       **** }
+ 373:timer.c       **** 
+ 374:timer.c       **** void timer1PWMASet(u16 pwmDuty)
+ 375:timer.c       **** {
+ 1409               	.LM135:
+ 1410               	/* prologue: frame size=0 */
+ 1411               	/* prologue end (size=0) */
+ 376:timer.c       **** 	// set PWM (output compare) duty for channel A
+ 377:timer.c       **** 	// this PWM output is generated on OC1A pin
+ 378:timer.c       **** 	// NOTE:	pwmDuty should be in the range 0-255 for 8bit PWM
+ 379:timer.c       **** 	//			pwmDuty should be in the range 0-511 for 9bit PWM
+ 380:timer.c       **** 	//			pwmDuty should be in the range 0-1023 for 10bit PWM
+ 381:timer.c       **** 	//outp( (pwmDuty>>8), OCR1AH);		// set the high 8bits of OCR1A
+ 382:timer.c       **** 	//outp( (pwmDuty&0x00FF), OCR1AL);	// set the low 8bits of OCR1A
+ 383:timer.c       **** 	OCR1A = pwmDuty;
+ 1413               	.LM136:
+ 1414 0448 9BBD      		out (74)+1-0x20,r25
+ 1415 044a 8ABD      		out 74-0x20,r24
+ 1416               	/* epilogue: frame size=0 */
+ 1417 044c 0895      		ret
+ 1418               	/* epilogue end (size=1) */
+ 1419               	/* function timer1PWMASet size 3 (2) */
+ 1421               	.Lscope32:
+ 1425               	.global	timer1PWMBSet
+ 1427               	timer1PWMBSet:
+ 384:timer.c       **** }
+ 385:timer.c       **** 
+ 386:timer.c       **** void timer1PWMBSet(u16 pwmDuty)
+ 387:timer.c       **** {
+ 1429               	.LM137:
+ 1430               	/* prologue: frame size=0 */
+ 1431               	/* prologue end (size=0) */
+ 388:timer.c       **** 	// set PWM (output compare) duty for channel B
+ 389:timer.c       **** 	// this PWM output is generated on OC1B pin
+ 390:timer.c       **** 	// NOTE:	pwmDuty should be in the range 0-255 for 8bit PWM
+ 391:timer.c       **** 	//			pwmDuty should be in the range 0-511 for 9bit PWM
+ 392:timer.c       **** 	//			pwmDuty should be in the range 0-1023 for 10bit PWM
+ 393:timer.c       **** 	//outp( (pwmDuty>>8), OCR1BH);		// set the high 8bits of OCR1B
+ 394:timer.c       **** 	//outp( (pwmDuty&0x00FF), OCR1BL);	// set the low 8bits of OCR1B
+ 395:timer.c       **** 	OCR1B = pwmDuty;
+ 1433               	.LM138:
+ 1434 044e 99BD      		out (72)+1-0x20,r25
+ 1435 0450 88BD      		out 72-0x20,r24
+ 1436               	/* epilogue: frame size=0 */
+ 1437 0452 0895      		ret
+ 1438               	/* epilogue end (size=1) */
+ 1439               	/* function timer1PWMBSet size 3 (2) */
+ 1441               	.Lscope33:
+ 1444               	.global	__vector_9
+ 1446               	__vector_9:
+ 396:timer.c       **** }
+ 397:timer.c       **** /*
+ 398:timer.c       **** //! Interrupt handler for tcnt0 overflow interrupt
+ 399:timer.c       **** TIMER_INTERRUPT_HANDLER(SIG_OVERFLOW0)
+ 400:timer.c       **** {
+ 401:timer.c       **** 	Timer0Reg0++;			// increment low-order counter
+ 402:timer.c       **** 
+ 403:timer.c       **** 	// increment pause counter
+ 404:timer.c       **** 	TimerPauseReg++;
+ 405:timer.c       **** 
+ 406:timer.c       **** 	// if a user function is defined, execute it too
+ 407:timer.c       **** 	if(TimerIntFunc[TIMER0OVERFLOW_INT])
+ 408:timer.c       **** 		TimerIntFunc[TIMER0OVERFLOW_INT]();
+ 409:timer.c       **** }
+ 410:timer.c       **** */
+ 411:timer.c       **** 
+ 412:timer.c       **** //! Interrupt handler for tcnt1 overflow interrupt
+ 413:timer.c       **** TIMER_INTERRUPT_HANDLER(SIG_OVERFLOW1)
+ 414:timer.c       **** {
+ 1448               	.LM139:
+ 1449               	/* prologue: frame size=0 */
+ 1450 0454 1F92      		push __zero_reg__
+ 1451 0456 0F92      		push __tmp_reg__
+ 1452 0458 0FB6      		in __tmp_reg__,__SREG__
+ 1453 045a 0F92      		push __tmp_reg__
+ 1454 045c 1124      		clr __zero_reg__
+ 1455 045e 2F93      		push r18
+ 1456 0460 3F93      		push r19
+ 1457 0462 4F93      		push r20
+ 1458 0464 5F93      		push r21
+ 1459 0466 6F93      		push r22
+ 1460 0468 7F93      		push r23
+ 1461 046a 8F93      		push r24
+ 1462 046c 9F93      		push r25
+ 1463 046e AF93      		push r26
+ 1464 0470 BF93      		push r27
+ 1465 0472 EF93      		push r30
+ 1466 0474 FF93      		push r31
+ 1467               	/* prologue end (size=17) */
+ 415:timer.c       **** 	// if a user function is defined, execute it
+ 416:timer.c       **** 	if(TimerIntFunc[TIMER1OVERFLOW_INT])
+ 1469               	.LM140:
+ 1470 0476 8091 0000 		lds r24,TimerIntFunc+2
+ 1471 047a 9091 0000 		lds r25,(TimerIntFunc+2)+1
+ 1472 047e 892B      		or r24,r25
+ 1473 0480 29F0      		breq .L75
+ 417:timer.c       **** 		TimerIntFunc[TIMER1OVERFLOW_INT]();
+ 1475               	.LM141:
+ 1476 0482 E091 0000 		lds r30,TimerIntFunc+2
+ 1477 0486 F091 0000 		lds r31,(TimerIntFunc+2)+1
+ 1478 048a 0995      		icall
+ 1479               	.L75:
+ 1480               	/* epilogue: frame size=0 */
+ 1481 048c FF91      		pop r31
+ 1482 048e EF91      		pop r30
+ 1483 0490 BF91      		pop r27
+ 1484 0492 AF91      		pop r26
+ 1485 0494 9F91      		pop r25
+ 1486 0496 8F91      		pop r24
+ 1487 0498 7F91      		pop r23
+ 1488 049a 6F91      		pop r22
+ 1489 049c 5F91      		pop r21
+ 1490 049e 4F91      		pop r20
+ 1491 04a0 3F91      		pop r19
+ 1492 04a2 2F91      		pop r18
+ 1493 04a4 0F90      		pop __tmp_reg__
+ 1494 04a6 0FBE      		out __SREG__,__tmp_reg__
+ 1495 04a8 0F90      		pop __tmp_reg__
+ 1496 04aa 1F90      		pop __zero_reg__
+ 1497 04ac 1895      		reti
+ 1498               	/* epilogue end (size=17) */
+ 1499               	/* function __vector_9 size 45 (11) */
+ 1501               	.Lscope34:
+ 1504               	.global	__vector_5
+ 1506               	__vector_5:
+ 418:timer.c       **** }
+ 419:timer.c       **** 
+ 420:timer.c       **** #ifdef TCNT2	// support timer2 only if it exists
+ 421:timer.c       **** //! Interrupt handler for tcnt2 overflow interrupt
+ 422:timer.c       **** TIMER_INTERRUPT_HANDLER(SIG_OVERFLOW2)
+ 423:timer.c       **** {
+ 1508               	.LM142:
+ 1509               	/* prologue: frame size=0 */
+ 1510 04ae 1F92      		push __zero_reg__
+ 1511 04b0 0F92      		push __tmp_reg__
+ 1512 04b2 0FB6      		in __tmp_reg__,__SREG__
+ 1513 04b4 0F92      		push __tmp_reg__
+ 1514 04b6 1124      		clr __zero_reg__
+ 1515 04b8 2F93      		push r18
+ 1516 04ba 3F93      		push r19
+ 1517 04bc 4F93      		push r20
+ 1518 04be 5F93      		push r21
+ 1519 04c0 6F93      		push r22
+ 1520 04c2 7F93      		push r23
+ 1521 04c4 8F93      		push r24
+ 1522 04c6 9F93      		push r25
+ 1523 04c8 AF93      		push r26
+ 1524 04ca BF93      		push r27
+ 1525 04cc EF93      		push r30
+ 1526 04ce FF93      		push r31
+ 1527               	/* prologue end (size=17) */
+ 424:timer.c       **** 	Timer2Reg0++;			// increment low-order counter
+ 1529               	.LM143:
+ 1530 04d0 8091 0000 		lds r24,Timer2Reg0
+ 1531 04d4 9091 0000 		lds r25,(Timer2Reg0)+1
+ 1532 04d8 A091 0000 		lds r26,(Timer2Reg0)+2
+ 1533 04dc B091 0000 		lds r27,(Timer2Reg0)+3
+ 1534 04e0 0196      		adiw r24,1
+ 1535 04e2 A11D      		adc r26,__zero_reg__
+ 1536 04e4 B11D      		adc r27,__zero_reg__
+ 1537 04e6 8093 0000 		sts Timer2Reg0,r24
+ 1538 04ea 9093 0000 		sts (Timer2Reg0)+1,r25
+ 1539 04ee A093 0000 		sts (Timer2Reg0)+2,r26
+ 1540 04f2 B093 0000 		sts (Timer2Reg0)+3,r27
+ 425:timer.c       **** 
+ 426:timer.c       **** 	// if a user function is defined, execute it
+ 427:timer.c       **** 	if(TimerIntFunc[TIMER2OVERFLOW_INT])
+ 1542               	.LM144:
+ 1543 04f6 8091 0000 		lds r24,TimerIntFunc+10
+ 1544 04fa 9091 0000 		lds r25,(TimerIntFunc+10)+1
+ 1545 04fe 892B      		or r24,r25
+ 1546 0500 29F0      		breq .L77
+ 428:timer.c       **** 		TimerIntFunc[TIMER2OVERFLOW_INT]();
+ 1548               	.LM145:
+ 1549 0502 E091 0000 		lds r30,TimerIntFunc+10
+ 1550 0506 F091 0000 		lds r31,(TimerIntFunc+10)+1
+ 1551 050a 0995      		icall
+ 1552               	.L77:
+ 1553               	/* epilogue: frame size=0 */
+ 1554 050c FF91      		pop r31
+ 1555 050e EF91      		pop r30
+ 1556 0510 BF91      		pop r27
+ 1557 0512 AF91      		pop r26
+ 1558 0514 9F91      		pop r25
+ 1559 0516 8F91      		pop r24
+ 1560 0518 7F91      		pop r23
+ 1561 051a 6F91      		pop r22
+ 1562 051c 5F91      		pop r21
+ 1563 051e 4F91      		pop r20
+ 1564 0520 3F91      		pop r19
+ 1565 0522 2F91      		pop r18
+ 1566 0524 0F90      		pop __tmp_reg__
+ 1567 0526 0FBE      		out __SREG__,__tmp_reg__
+ 1568 0528 0F90      		pop __tmp_reg__
+ 1569 052a 1F90      		pop __zero_reg__
+ 1570 052c 1895      		reti
+ 1571               	/* epilogue end (size=17) */
+ 1572               	/* function __vector_5 size 64 (30) */
+ 1574               	.Lscope35:
+ 1577               	.global	__vector_10
+ 1579               	__vector_10:
+ 429:timer.c       **** }
+ 430:timer.c       **** #endif
+ 431:timer.c       **** 
+ 432:timer.c       **** #ifdef OCR0
+ 433:timer.c       **** // include support for Output Compare 0 for new AVR processors that support it
+ 434:timer.c       **** //! Interrupt handler for OutputCompare0 match (OC0) interrupt
+ 435:timer.c       **** TIMER_INTERRUPT_HANDLER(SIG_OUTPUT_COMPARE0)
+ 436:timer.c       **** {
+ 1581               	.LM146:
+ 1582               	/* prologue: frame size=0 */
+ 1583 052e 1F92      		push __zero_reg__
+ 1584 0530 0F92      		push __tmp_reg__
+ 1585 0532 0FB6      		in __tmp_reg__,__SREG__
+ 1586 0534 0F92      		push __tmp_reg__
+ 1587 0536 1124      		clr __zero_reg__
+ 1588 0538 2F93      		push r18
+ 1589 053a 3F93      		push r19
+ 1590 053c 4F93      		push r20
+ 1591 053e 5F93      		push r21
+ 1592 0540 6F93      		push r22
+ 1593 0542 7F93      		push r23
+ 1594 0544 8F93      		push r24
+ 1595 0546 9F93      		push r25
+ 1596 0548 AF93      		push r26
+ 1597 054a BF93      		push r27
+ 1598 054c EF93      		push r30
+ 1599 054e FF93      		push r31
+ 1600               	/* prologue end (size=17) */
+ 437:timer.c       **** 	// if a user function is defined, execute it
+ 438:timer.c       **** 	if(TimerIntFunc[TIMER0OUTCOMPARE_INT])
+ 1602               	.LM147:
+ 1603 0550 8091 0000 		lds r24,TimerIntFunc+14
+ 1604 0554 9091 0000 		lds r25,(TimerIntFunc+14)+1
+ 1605 0558 892B      		or r24,r25
+ 1606 055a 29F0      		breq .L79
+ 439:timer.c       **** 		TimerIntFunc[TIMER0OUTCOMPARE_INT]();
+ 1608               	.LM148:
+ 1609 055c E091 0000 		lds r30,TimerIntFunc+14
+ 1610 0560 F091 0000 		lds r31,(TimerIntFunc+14)+1
+ 1611 0564 0995      		icall
+ 1612               	.L79:
+ 1613               	/* epilogue: frame size=0 */
+ 1614 0566 FF91      		pop r31
+ 1615 0568 EF91      		pop r30
+ 1616 056a BF91      		pop r27
+ 1617 056c AF91      		pop r26
+ 1618 056e 9F91      		pop r25
+ 1619 0570 8F91      		pop r24
+ 1620 0572 7F91      		pop r23
+ 1621 0574 6F91      		pop r22
+ 1622 0576 5F91      		pop r21
+ 1623 0578 4F91      		pop r20
+ 1624 057a 3F91      		pop r19
+ 1625 057c 2F91      		pop r18
+ 1626 057e 0F90      		pop __tmp_reg__
+ 1627 0580 0FBE      		out __SREG__,__tmp_reg__
+ 1628 0582 0F90      		pop __tmp_reg__
+ 1629 0584 1F90      		pop __zero_reg__
+ 1630 0586 1895      		reti
+ 1631               	/* epilogue end (size=17) */
+ 1632               	/* function __vector_10 size 45 (11) */
+ 1634               	.Lscope36:
+ 1637               	.global	__vector_7
+ 1639               	__vector_7:
+ 440:timer.c       **** }
+ 441:timer.c       **** #endif
+ 442:timer.c       **** 
+ 443:timer.c       **** //! Interrupt handler for CutputCompare1A match (OC1A) interrupt
+ 444:timer.c       **** TIMER_INTERRUPT_HANDLER(SIG_OUTPUT_COMPARE1A)
+ 445:timer.c       **** {
+ 1641               	.LM149:
+ 1642               	/* prologue: frame size=0 */
+ 1643 0588 1F92      		push __zero_reg__
+ 1644 058a 0F92      		push __tmp_reg__
+ 1645 058c 0FB6      		in __tmp_reg__,__SREG__
+ 1646 058e 0F92      		push __tmp_reg__
+ 1647 0590 1124      		clr __zero_reg__
+ 1648 0592 2F93      		push r18
+ 1649 0594 3F93      		push r19
+ 1650 0596 4F93      		push r20
+ 1651 0598 5F93      		push r21
+ 1652 059a 6F93      		push r22
+ 1653 059c 7F93      		push r23
+ 1654 059e 8F93      		push r24
+ 1655 05a0 9F93      		push r25
+ 1656 05a2 AF93      		push r26
+ 1657 05a4 BF93      		push r27
+ 1658 05a6 EF93      		push r30
+ 1659 05a8 FF93      		push r31
+ 1660               	/* prologue end (size=17) */
+ 446:timer.c       **** 	// if a user function is defined, execute it
+ 447:timer.c       **** 	if(TimerIntFunc[TIMER1OUTCOMPAREA_INT])
+ 1662               	.LM150:
+ 1663 05aa 8091 0000 		lds r24,TimerIntFunc+4
+ 1664 05ae 9091 0000 		lds r25,(TimerIntFunc+4)+1
+ 1665 05b2 892B      		or r24,r25
+ 1666 05b4 29F0      		breq .L81
+ 448:timer.c       **** 		TimerIntFunc[TIMER1OUTCOMPAREA_INT]();
+ 1668               	.LM151:
+ 1669 05b6 E091 0000 		lds r30,TimerIntFunc+4
+ 1670 05ba F091 0000 		lds r31,(TimerIntFunc+4)+1
+ 1671 05be 0995      		icall
+ 1672               	.L81:
+ 1673               	/* epilogue: frame size=0 */
+ 1674 05c0 FF91      		pop r31
+ 1675 05c2 EF91      		pop r30
+ 1676 05c4 BF91      		pop r27
+ 1677 05c6 AF91      		pop r26
+ 1678 05c8 9F91      		pop r25
+ 1679 05ca 8F91      		pop r24
+ 1680 05cc 7F91      		pop r23
+ 1681 05ce 6F91      		pop r22
+ 1682 05d0 5F91      		pop r21
+ 1683 05d2 4F91      		pop r20
+ 1684 05d4 3F91      		pop r19
+ 1685 05d6 2F91      		pop r18
+ 1686 05d8 0F90      		pop __tmp_reg__
+ 1687 05da 0FBE      		out __SREG__,__tmp_reg__
+ 1688 05dc 0F90      		pop __tmp_reg__
+ 1689 05de 1F90      		pop __zero_reg__
+ 1690 05e0 1895      		reti
+ 1691               	/* epilogue end (size=17) */
+ 1692               	/* function __vector_7 size 45 (11) */
+ 1694               	.Lscope37:
+ 1697               	.global	__vector_8
+ 1699               	__vector_8:
+ 449:timer.c       **** }
+ 450:timer.c       **** 
+ 451:timer.c       **** //! Interrupt handler for OutputCompare1B match (OC1B) interrupt
+ 452:timer.c       **** TIMER_INTERRUPT_HANDLER(SIG_OUTPUT_COMPARE1B)
+ 453:timer.c       **** {
+ 1701               	.LM152:
+ 1702               	/* prologue: frame size=0 */
+ 1703 05e2 1F92      		push __zero_reg__
+ 1704 05e4 0F92      		push __tmp_reg__
+ 1705 05e6 0FB6      		in __tmp_reg__,__SREG__
+ 1706 05e8 0F92      		push __tmp_reg__
+ 1707 05ea 1124      		clr __zero_reg__
+ 1708 05ec 2F93      		push r18
+ 1709 05ee 3F93      		push r19
+ 1710 05f0 4F93      		push r20
+ 1711 05f2 5F93      		push r21
+ 1712 05f4 6F93      		push r22
+ 1713 05f6 7F93      		push r23
+ 1714 05f8 8F93      		push r24
+ 1715 05fa 9F93      		push r25
+ 1716 05fc AF93      		push r26
+ 1717 05fe BF93      		push r27
+ 1718 0600 EF93      		push r30
+ 1719 0602 FF93      		push r31
+ 1720               	/* prologue end (size=17) */
+ 454:timer.c       **** 	// if a user function is defined, execute it
+ 455:timer.c       **** 	if(TimerIntFunc[TIMER1OUTCOMPAREB_INT])
+ 1722               	.LM153:
+ 1723 0604 8091 0000 		lds r24,TimerIntFunc+6
+ 1724 0608 9091 0000 		lds r25,(TimerIntFunc+6)+1
+ 1725 060c 892B      		or r24,r25
+ 1726 060e 29F0      		breq .L83
+ 456:timer.c       **** 		TimerIntFunc[TIMER1OUTCOMPAREB_INT]();
+ 1728               	.LM154:
+ 1729 0610 E091 0000 		lds r30,TimerIntFunc+6
+ 1730 0614 F091 0000 		lds r31,(TimerIntFunc+6)+1
+ 1731 0618 0995      		icall
+ 1732               	.L83:
+ 1733               	/* epilogue: frame size=0 */
+ 1734 061a FF91      		pop r31
+ 1735 061c EF91      		pop r30
+ 1736 061e BF91      		pop r27
+ 1737 0620 AF91      		pop r26
+ 1738 0622 9F91      		pop r25
+ 1739 0624 8F91      		pop r24
+ 1740 0626 7F91      		pop r23
+ 1741 0628 6F91      		pop r22
+ 1742 062a 5F91      		pop r21
+ 1743 062c 4F91      		pop r20
+ 1744 062e 3F91      		pop r19
+ 1745 0630 2F91      		pop r18
+ 1746 0632 0F90      		pop __tmp_reg__
+ 1747 0634 0FBE      		out __SREG__,__tmp_reg__
+ 1748 0636 0F90      		pop __tmp_reg__
+ 1749 0638 1F90      		pop __zero_reg__
+ 1750 063a 1895      		reti
+ 1751               	/* epilogue end (size=17) */
+ 1752               	/* function __vector_8 size 45 (11) */
+ 1754               	.Lscope38:
+ 1757               	.global	__vector_6
+ 1759               	__vector_6:
+ 457:timer.c       **** }
+ 458:timer.c       **** 
+ 459:timer.c       **** //! Interrupt handler for InputCapture1 (IC1) interrupt
+ 460:timer.c       **** TIMER_INTERRUPT_HANDLER(SIG_INPUT_CAPTURE1)
+ 461:timer.c       **** {
+ 1761               	.LM155:
+ 1762               	/* prologue: frame size=0 */
+ 1763 063c 1F92      		push __zero_reg__
+ 1764 063e 0F92      		push __tmp_reg__
+ 1765 0640 0FB6      		in __tmp_reg__,__SREG__
+ 1766 0642 0F92      		push __tmp_reg__
+ 1767 0644 1124      		clr __zero_reg__
+ 1768 0646 2F93      		push r18
+ 1769 0648 3F93      		push r19
+ 1770 064a 4F93      		push r20
+ 1771 064c 5F93      		push r21
+ 1772 064e 6F93      		push r22
+ 1773 0650 7F93      		push r23
+ 1774 0652 8F93      		push r24
+ 1775 0654 9F93      		push r25
+ 1776 0656 AF93      		push r26
+ 1777 0658 BF93      		push r27
+ 1778 065a EF93      		push r30
+ 1779 065c FF93      		push r31
+ 1780               	/* prologue end (size=17) */
+ 462:timer.c       **** 	// if a user function is defined, execute it
+ 463:timer.c       **** 	if(TimerIntFunc[TIMER1INPUTCAPTURE_INT])
+ 1782               	.LM156:
+ 1783 065e 8091 0000 		lds r24,TimerIntFunc+8
+ 1784 0662 9091 0000 		lds r25,(TimerIntFunc+8)+1
+ 1785 0666 892B      		or r24,r25
+ 1786 0668 29F0      		breq .L85
+ 464:timer.c       **** 		TimerIntFunc[TIMER1INPUTCAPTURE_INT]();
+ 1788               	.LM157:
+ 1789 066a E091 0000 		lds r30,TimerIntFunc+8
+ 1790 066e F091 0000 		lds r31,(TimerIntFunc+8)+1
+ 1791 0672 0995      		icall
+ 1792               	.L85:
+ 1793               	/* epilogue: frame size=0 */
+ 1794 0674 FF91      		pop r31
+ 1795 0676 EF91      		pop r30
+ 1796 0678 BF91      		pop r27
+ 1797 067a AF91      		pop r26
+ 1798 067c 9F91      		pop r25
+ 1799 067e 8F91      		pop r24
+ 1800 0680 7F91      		pop r23
+ 1801 0682 6F91      		pop r22
+ 1802 0684 5F91      		pop r21
+ 1803 0686 4F91      		pop r20
+ 1804 0688 3F91      		pop r19
+ 1805 068a 2F91      		pop r18
+ 1806 068c 0F90      		pop __tmp_reg__
+ 1807 068e 0FBE      		out __SREG__,__tmp_reg__
+ 1808 0690 0F90      		pop __tmp_reg__
+ 1809 0692 1F90      		pop __zero_reg__
+ 1810 0694 1895      		reti
+ 1811               	/* epilogue end (size=17) */
+ 1812               	/* function __vector_6 size 45 (11) */
+ 1814               	.Lscope39:
+ 1817               	.global	__vector_4
+ 1819               	__vector_4:
+ 465:timer.c       **** }
+ 466:timer.c       **** 
+ 467:timer.c       **** //! Interrupt handler for OutputCompare2 match (OC2) interrupt
+ 468:timer.c       **** TIMER_INTERRUPT_HANDLER(SIG_OUTPUT_COMPARE2)
+ 469:timer.c       **** {
+ 1821               	.LM158:
+ 1822               	/* prologue: frame size=0 */
+ 1823 0696 1F92      		push __zero_reg__
+ 1824 0698 0F92      		push __tmp_reg__
+ 1825 069a 0FB6      		in __tmp_reg__,__SREG__
+ 1826 069c 0F92      		push __tmp_reg__
+ 1827 069e 1124      		clr __zero_reg__
+ 1828 06a0 2F93      		push r18
+ 1829 06a2 3F93      		push r19
+ 1830 06a4 4F93      		push r20
+ 1831 06a6 5F93      		push r21
+ 1832 06a8 6F93      		push r22
+ 1833 06aa 7F93      		push r23
+ 1834 06ac 8F93      		push r24
+ 1835 06ae 9F93      		push r25
+ 1836 06b0 AF93      		push r26
+ 1837 06b2 BF93      		push r27
+ 1838 06b4 EF93      		push r30
+ 1839 06b6 FF93      		push r31
+ 1840               	/* prologue end (size=17) */
+ 470:timer.c       **** 	// if a user function is defined, execute it
+ 471:timer.c       **** 	if(TimerIntFunc[TIMER2OUTCOMPARE_INT])
+ 1842               	.LM159:
+ 1843 06b8 8091 0000 		lds r24,TimerIntFunc+12
+ 1844 06bc 9091 0000 		lds r25,(TimerIntFunc+12)+1
+ 1845 06c0 892B      		or r24,r25
+ 1846 06c2 29F0      		breq .L87
+ 472:timer.c       **** 		TimerIntFunc[TIMER2OUTCOMPARE_INT]();
+ 1848               	.LM160:
+ 1849 06c4 E091 0000 		lds r30,TimerIntFunc+12
+ 1850 06c8 F091 0000 		lds r31,(TimerIntFunc+12)+1
+ 1851 06cc 0995      		icall
+ 1852               	.L87:
+ 1853               	/* epilogue: frame size=0 */
+ 1854 06ce FF91      		pop r31
+ 1855 06d0 EF91      		pop r30
+ 1856 06d2 BF91      		pop r27
+ 1857 06d4 AF91      		pop r26
+ 1858 06d6 9F91      		pop r25
+ 1859 06d8 8F91      		pop r24
+ 1860 06da 7F91      		pop r23
+ 1861 06dc 6F91      		pop r22
+ 1862 06de 5F91      		pop r21
+ 1863 06e0 4F91      		pop r20
+ 1864 06e2 3F91      		pop r19
+ 1865 06e4 2F91      		pop r18
+ 1866 06e6 0F90      		pop __tmp_reg__
+ 1867 06e8 0FBE      		out __SREG__,__tmp_reg__
+ 1868 06ea 0F90      		pop __tmp_reg__
+ 1869 06ec 1F90      		pop __zero_reg__
+ 1870 06ee 1895      		reti
+ 1871               	/* epilogue end (size=17) */
+ 1872               	/* function __vector_4 size 45 (11) */
+ 1874               	.Lscope40:
+ 1877               	.global	servoInit
+ 1879               	servoInit:
+ 1881               	.Ltext3:
+   1:servo.c       **** /*! \file servo.c \brief Interrupt-driven RC Servo function library. */
+   2:servo.c       **** //*****************************************************************************
+   3:servo.c       **** //
+   4:servo.c       **** // File Name	: 'servo.c'
+   5:servo.c       **** // Title		: Interrupt-driven RC Servo function library
+   6:servo.c       **** // Author		: Pascal Stang - Copyright (C) 2002
+   7:servo.c       **** // Created		: 7/31/2002
+   8:servo.c       **** // Revised		: 8/02/2002
+   9:servo.c       **** // Version		: 1.0
+  10:servo.c       **** // Target MCU	: Atmel AVR Series
+  11:servo.c       **** // Editor Tabs	: 4
+  12:servo.c       **** //
+  13:servo.c       **** // This code is distributed under the GNU Public License
+  14:servo.c       **** //		which can be found at http://www.gnu.org/licenses/gpl.txt
+  15:servo.c       **** //
+  16:servo.c       **** //*****************************************************************************
+  17:servo.c       **** 
+  18:servo.c       **** #ifndef WIN32
+  19:servo.c       **** 	#include <avr/io.h>
+  20:servo.c       **** #endif
+  21:servo.c       **** 
+  22:servo.c       **** #include "servo.h"
+  23:servo.c       **** 
+  24:servo.c       **** // Program ROM constants
+  25:servo.c       **** 
+  26:servo.c       **** // Global variables
+  27:servo.c       **** // servo channel registers
+  28:servo.c       **** u16 ServoPosTics;
+  29:servo.c       **** u16 ServoPeriodTics;
+  30:servo.c       **** u08 ServoChannel;
+  31:servo.c       **** ServoChannelType ServoChannels[SERVO_NUM_CHANNELS];
+  32:servo.c       **** 
+  33:servo.c       **** // functions
+  34:servo.c       **** 
+  35:servo.c       **** //! initializes software PWM system
+  36:servo.c       **** void servoInit(void)
+  37:servo.c       **** {
+ 1883               	.LM161:
+ 1884               	/* prologue: frame size=0 */
+ 1885               	/* prologue end (size=0) */
+  38:servo.c       **** 	u08 channel;
+  39:servo.c       **** 	// disble the timer1 output compare A interrupt
+  40:servo.c       **** 	cbi(TIMSK, OCIE1A);
+ 1887               	.LM162:
+ 1888 06f0 89B7      		in r24,89-0x20
+ 1889 06f2 8F7E      		andi r24,lo8(-17)
+ 1890 06f4 89BF      		out 89-0x20,r24
+  41:servo.c       **** 	// set the prescaler for timer1
+  42:servo.c       **** 	timer1SetPrescaler(TIMER_CLK_DIV256);
+ 1892               	.LM163:
+ 1893 06f6 84E0      		ldi r24,lo8(4)
+ 1894 06f8 0E94 0000 		call timer1SetPrescaler
+  43:servo.c       **** 	// attach the software PWM service routine to timer1 output compare A
+  44:servo.c       **** 	timerAttach(TIMER1OUTCOMPAREA_INT, servoService);
+ 1896               	.LM164:
+ 1897 06fc 60E0      		ldi r22,lo8(pm(servoService))
+ 1898 06fe 70E0      		ldi r23,hi8(pm(servoService))
+ 1899 0700 82E0      		ldi r24,lo8(2)
+ 1900 0702 0E94 0000 		call timerAttach
+ 1901 0706 A2E2      		ldi r26,lo8(34)
+ 1902 0708 B0E0      		ldi r27,hi8(34)
+ 1903 070a 55E1      		ldi r21,lo8(21)
+ 1904 070c 61E0      		ldi r22,lo8(1)
+ 1905 070e 70E0      		ldi r23,hi8(1)
+ 1906 0710 E0E0      		ldi r30,lo8(ServoChannels)
+ 1907 0712 F0E0      		ldi r31,hi8(ServoChannels)
+ 1908 0714 20E0      		ldi r18,lo8(0)
+ 1909 0716 30E0      		ldi r19,hi8(0)
+ 1910 0718 41E0      		ldi r20,lo8(1)
+ 1911               	.L93:
+  45:servo.c       **** 	// enable and clear channels
+  46:servo.c       **** 	for(channel=0; channel<SERVO_NUM_CHANNELS; channel++)
+  47:servo.c       **** 	{
+  48:servo.c       **** 		// set minimum position as default
+  49:servo.c       **** 		ServoChannels[channel].duty = SERVO_MIN;
+ 1913               	.LM165:
+ 1914 071a B383      		std Z+3,r27
+ 1915 071c A283      		std Z+2,r26
+  50:servo.c       **** 		// set default port and pins assignments
+  51:servo.c       **** 		ServoChannels[channel].port = _SFR_IO_ADDR(SERVO_DEFAULT_PORT);
+ 1917               	.LM166:
+ 1918 071e 5083      		st Z,r21
+  52:servo.c       **** 		//ServoChannels[channel].port = (unsigned char)&SERVO_DEFAULT_PORT;
+  53:servo.c       **** 		ServoChannels[channel].pin = (1<<channel);
+ 1920               	.LM167:
+ 1921 0720 CB01      		movw r24,r22
+ 1922 0722 022E      		mov r0,r18
+ 1923 0724 02C0      		rjmp 2f
+ 1924 0726 880F      	1:	lsl r24
+ 1925 0728 991F      		rol r25
+ 1926 072a 0A94      	2:	dec r0
+ 1927 072c E2F7      		brpl 1b
+ 1928 072e 8183      		std Z+1,r24
+ 1930               	.LM168:
+ 1931 0730 4150      		subi r20,lo8(-(-1))
+ 1932 0732 2F5F      		subi r18,lo8(-(1))
+ 1933 0734 3F4F      		sbci r19,hi8(-(1))
+ 1934 0736 3496      		adiw r30,4
+ 1935 0738 47FF      		sbrs r20,7
+ 1936 073a EFCF      		rjmp .L93
+  54:servo.c       **** 		// set channel pin to output
+  55:servo.c       **** 		// THIS IS OBSOLETED BY THE DYNAMIC CHANNEL TO PORT,PIN ASSIGNMENTS
+  56:servo.c       **** 		//outb(SERVODDR, inb(SERVODDR) | (1<<channel));
+  57:servo.c       **** 	}
+  58:servo.c       **** 	// set PosTics
+  59:servo.c       **** 	ServoPosTics = 0;
+ 1938               	.LM169:
+ 1939 073c 1092 0000 		sts (ServoPosTics)+1,__zero_reg__
+ 1940 0740 1092 0000 		sts ServoPosTics,__zero_reg__
+  60:servo.c       **** 	// set PeriodTics
+  61:servo.c       **** 	ServoPeriodTics = SERVO_MAX*9;
+ 1942               	.LM170:
+ 1943 0744 8AED      		ldi r24,lo8(1242)
+ 1944 0746 94E0      		ldi r25,hi8(1242)
+ 1945 0748 9093 0000 		sts (ServoPeriodTics)+1,r25
+ 1946 074c 8093 0000 		sts ServoPeriodTics,r24
+  62:servo.c       **** 	// set initial interrupt time
+  63:servo.c       **** 	u16 OCValue;
+  64:servo.c       **** 	// read in current value of output compare register OCR1A
+  65:servo.c       **** 	OCValue =  inb(OCR1AL);		// read low byte of OCR1A
+ 1948               	.LM171:
+ 1949 0750 2AB5      		in r18,74-0x20
+  66:servo.c       **** 	OCValue += inb(OCR1AH)<<8;	// read high byte of OCR1A
+ 1951               	.LM172:
+ 1952 0752 8BB5      		in r24,75-0x20
+ 1953 0754 9927      		clr r25
+ 1954 0756 982F      		mov r25,r24
+ 1955 0758 8827      		clr r24
+ 1956 075a 820F      		add r24,r18
+ 1957 075c 911D      		adc r25,__zero_reg__
+  67:servo.c       **** 	// increment OCR1A value by nextTics
+  68:servo.c       **** 	OCValue += ServoPeriodTics; 
+ 1959               	.LM173:
+ 1960 075e 8652      		subi r24,lo8(-(1242))
+ 1961 0760 9B4F      		sbci r25,hi8(-(1242))
+  69:servo.c       **** 	// set future output compare time to this new value
+  70:servo.c       **** 	outb(OCR1AH, (OCValue>>8));			// write high byte
+ 1963               	.LM174:
+ 1964 0762 292F      		mov r18,r25
+ 1965 0764 3327      		clr r19
+ 1966 0766 2BBD      		out 75-0x20,r18
+  71:servo.c       **** 	outb(OCR1AL, (OCValue & 0x00FF));	// write low byte
+ 1968               	.LM175:
+ 1969 0768 8ABD      		out 74-0x20,r24
+  72:servo.c       **** 	// enable the timer1 output compare A interrupt
+  73:servo.c       **** 	sbi(TIMSK, OCIE1A);
+ 1971               	.LM176:
+ 1972 076a 89B7      		in r24,89-0x20
+ 1973 076c 8061      		ori r24,lo8(16)
+ 1974 076e 89BF      		out 89-0x20,r24
+ 1975               	/* epilogue: frame size=0 */
+ 1976 0770 0895      		ret
+ 1977               	/* epilogue end (size=1) */
+ 1978               	/* function servoInit size 65 (64) */
+ 1984               	.Lscope41:
+ 1987               	.global	servoOff
+ 1989               	servoOff:
+  74:servo.c       **** }
+  75:servo.c       **** 
+  76:servo.c       **** //! turns off software PWM system
+  77:servo.c       **** void servoOff(void)
+  78:servo.c       **** {
+ 1991               	.LM177:
+ 1992               	/* prologue: frame size=0 */
+ 1993               	/* prologue end (size=0) */
+  79:servo.c       **** 	// disable the timer1 output compare A interrupt
+  80:servo.c       **** 	cbi(TIMSK, OCIE1A);
+ 1995               	.LM178:
+ 1996 0772 89B7      		in r24,89-0x20
+ 1997 0774 8F7E      		andi r24,lo8(-17)
+ 1998 0776 89BF      		out 89-0x20,r24
+  81:servo.c       **** 	// detach the service routine
+  82:servo.c       **** 	timerDetach(TIMER1OUTCOMPAREA_INT);
+ 2000               	.LM179:
+ 2001 0778 82E0      		ldi r24,lo8(2)
+ 2002 077a 0E94 0000 		call timerDetach
+ 2003               	/* epilogue: frame size=0 */
+ 2004 077e 0895      		ret
+ 2005               	/* epilogue end (size=1) */
+ 2006               	/* function servoOff size 7 (6) */
+ 2008               	.Lscope42:
+ 2014               	.global	servoSetChannelIO
+ 2016               	servoSetChannelIO:
+  83:servo.c       **** }
+  84:servo.c       **** 
+  85:servo.c       **** //! set port and I/O pin for channel
+  86:servo.c       **** void servoSetChannelIO(u08 channel, u08 port, u08 pin)
+  87:servo.c       **** {
+ 2018               	.LM180:
+ 2019               	/* prologue: frame size=0 */
+ 2020               	/* prologue end (size=0) */
+ 2021 0780 242F      		mov r18,r20
+  88:servo.c       **** 	ServoChannels[channel].port = port;
+ 2023               	.LM181:
+ 2024 0782 E82F      		mov r30,r24
+ 2025 0784 FF27      		clr r31
+ 2026 0786 EE0F      		lsl r30
+ 2027 0788 FF1F      		rol r31
+ 2028 078a EE0F      		lsl r30
+ 2029 078c FF1F      		rol r31
+ 2030 078e E050      		subi r30,lo8(-(ServoChannels))
+ 2031 0790 F040      		sbci r31,hi8(-(ServoChannels))
+ 2032 0792 6083      		st Z,r22
+  89:servo.c       **** 	ServoChannels[channel].pin = (1<<(pin&0x07));
+ 2034               	.LM182:
+ 2035 0794 3327      		clr r19
+ 2036 0796 2770      		andi r18,lo8(7)
+ 2037 0798 3070      		andi r19,hi8(7)
+ 2038 079a 81E0      		ldi r24,lo8(1)
+ 2039 079c 90E0      		ldi r25,hi8(1)
+ 2040 079e 02C0      		rjmp 2f
+ 2041 07a0 880F      	1:	lsl r24
+ 2042 07a2 991F      		rol r25
+ 2043 07a4 2A95      	2:	dec r18
+ 2044 07a6 E2F7      		brpl 1b
+ 2045 07a8 8183      		std Z+1,r24
+ 2046               	/* epilogue: frame size=0 */
+ 2047 07aa 0895      		ret
+ 2048               	/* epilogue end (size=1) */
+ 2049               	/* function servoSetChannelIO size 23 (22) */
+ 2051               	.Lscope43:
+ 2056               	.global	servoSetPositionRaw
+ 2058               	servoSetPositionRaw:
+  90:servo.c       **** }
+  91:servo.c       **** 
+  92:servo.c       **** //! set servo position on channel
+  93:servo.c       **** void servoSetPosition(u08 channel, u08 position)
+  94:servo.c       **** {
+  95:servo.c       **** 	// input should be between 0 and SERVO_POSITION_MAX
+  96:servo.c       **** 	u16 pos_scaled;
+  97:servo.c       **** 	// calculate scaled position
+  98:servo.c       **** 	pos_scaled = ((u16)position*(SERVO_MAX-SERVO_MIN)/SERVO_POSITION_MAX)+SERVO_MIN;
+  99:servo.c       **** 	// set position
+ 100:servo.c       **** 	servoSetPositionRaw(channel, pos_scaled);
+ 101:servo.c       **** }
+ 102:servo.c       **** 
+ 103:servo.c       **** //! get servo position on channel
+ 104:servo.c       **** u08 servoGetPosition(u08 channel)
+ 105:servo.c       **** {
+ 106:servo.c       **** 	return (u08)( ((servoGetPositionRaw(channel)-SERVO_MIN)*SERVO_POSITION_MAX)/(SERVO_MAX-SERVO_MIN) 
+ 107:servo.c       **** }
+ 108:servo.c       **** 
+ 109:servo.c       **** //! set servo position on channel (raw unscaled format)
+ 110:servo.c       **** void servoSetPositionRaw(u08 channel, u16 position)
+ 111:servo.c       **** {
+ 2060               	.LM183:
+ 2061               	/* prologue: frame size=0 */
+ 2062               	/* prologue end (size=0) */
+ 112:servo.c       **** 	// bind to limits
+ 113:servo.c       **** 	position = MAX(position, SERVO_MIN);
+ 2064               	.LM184:
+ 2065 07ac 6232      		cpi r22,34
+ 2066 07ae 7105      		cpc r23,__zero_reg__
+ 2067 07b0 10F4      		brsh .L99
+ 2069               	.LM185:
+ 2070 07b2 62E2      		ldi r22,lo8(34)
+ 2071 07b4 70E0      		ldi r23,hi8(34)
+ 2072               	.L99:
+ 114:servo.c       **** 	position = MIN(position, SERVO_MAX);
+ 2074               	.LM186:
+ 2075 07b6 6B38      		cpi r22,139
+ 2076 07b8 7105      		cpc r23,__zero_reg__
+ 2077 07ba 10F0      		brlo .L100
+ 2078 07bc 6AE8      		ldi r22,lo8(138)
+ 2079 07be 70E0      		ldi r23,hi8(138)
+ 2080               	.L100:
+ 115:servo.c       **** 	// set position
+ 116:servo.c       **** 	ServoChannels[channel].duty = position;
+ 2082               	.LM187:
+ 2083 07c0 E82F      		mov r30,r24
+ 2084 07c2 FF27      		clr r31
+ 2085 07c4 EE0F      		lsl r30
+ 2086 07c6 FF1F      		rol r31
+ 2087 07c8 EE0F      		lsl r30
+ 2088 07ca FF1F      		rol r31
+ 2089 07cc E050      		subi r30,lo8(-(ServoChannels))
+ 2090 07ce F040      		sbci r31,hi8(-(ServoChannels))
+ 2091 07d0 7383      		std Z+3,r23
+ 2092 07d2 6283      		std Z+2,r22
+ 2093               	/* epilogue: frame size=0 */
+ 2094 07d4 0895      		ret
+ 2095               	/* epilogue end (size=1) */
+ 2096               	/* function servoSetPositionRaw size 21 (20) */
+ 2098               	.Lscope44:
+ 2103               	.global	servoSetPosition
+ 2105               	servoSetPosition:
+ 2107               	.LM188:
+ 2108               	/* prologue: frame size=0 */
+ 2109               	/* prologue end (size=0) */
+ 2110 07d6 282F      		mov r18,r24
+ 2112               	.LM189:
+ 2113 07d8 88E6      		ldi r24,lo8(104)
+ 2114 07da 689F      		mul r22,r24
+ 2115 07dc C001      		movw r24,r0
+ 2116 07de 1124      		clr r1
+ 2117 07e0 6FEF      		ldi r22,lo8(255)
+ 2118 07e2 70E0      		ldi r23,hi8(255)
+ 2119 07e4 0E94 0000 		call __udivmodhi4
+ 2120 07e8 CB01      		movw r24,r22
+ 2121 07ea 8296      		adiw r24,34
+ 2123               	.LM190:
+ 2124 07ec BC01      		movw r22,r24
+ 2125 07ee 822F      		mov r24,r18
+ 2126 07f0 0E94 0000 		call servoSetPositionRaw
+ 2127               	/* epilogue: frame size=0 */
+ 2128 07f4 0895      		ret
+ 2129               	/* epilogue end (size=1) */
+ 2130               	/* function servoSetPosition size 16 (15) */
+ 2132               	.Lscope45:
+ 2136               	.global	servoGetPositionRaw
+ 2138               	servoGetPositionRaw:
+ 117:servo.c       **** }
+ 118:servo.c       **** 
+ 119:servo.c       **** //! get servo position on channel (raw unscaled format)
+ 120:servo.c       **** u16 servoGetPositionRaw(u08 channel)
+ 121:servo.c       **** {
+ 2140               	.LM191:
+ 2141               	/* prologue: frame size=0 */
+ 2142               	/* prologue end (size=0) */
+ 122:servo.c       **** 	return ServoChannels[channel].duty;
+ 2144               	.LM192:
+ 2145 07f6 E82F      		mov r30,r24
+ 2146 07f8 FF27      		clr r31
+ 2147 07fa EE0F      		lsl r30
+ 2148 07fc FF1F      		rol r31
+ 2149 07fe EE0F      		lsl r30
+ 2150 0800 FF1F      		rol r31
+ 2151 0802 E050      		subi r30,lo8(-(ServoChannels))
+ 2152 0804 F040      		sbci r31,hi8(-(ServoChannels))
+ 123:servo.c       **** }
+ 2154               	.LM193:
+ 2155 0806 8281      		ldd r24,Z+2
+ 2156 0808 9381      		ldd r25,Z+3
+ 2157               	/* epilogue: frame size=0 */
+ 2158 080a 0895      		ret
+ 2159               	/* epilogue end (size=1) */
+ 2160               	/* function servoGetPositionRaw size 11 (10) */
+ 2162               	.Lscope46:
+ 2166               	.global	servoGetPosition
+ 2168               	servoGetPosition:
+ 2170               	.LM194:
+ 2171               	/* prologue: frame size=0 */
+ 2172               	/* prologue end (size=0) */
+ 2174               	.LM195:
+ 2175 080c 0E94 0000 		call servoGetPositionRaw
+ 2176 0810 2FEF      		ldi r18,lo8(255)
+ 2177 0812 30E0      		ldi r19,hi8(255)
+ 2178 0814 829F      		mul r24,r18
+ 2179 0816 A001      		movw r20,r0
+ 2180 0818 839F      		mul r24,r19
+ 2181 081a 500D      		add r21,r0
+ 2182 081c 929F      		mul r25,r18
+ 2183 081e 500D      		add r21,r0
+ 2184 0820 1124      		clr r1
+ 2185 0822 CA01      		movw r24,r20
+ 2186 0824 8E5D      		subi r24,lo8(-(-8670))
+ 2187 0826 9142      		sbci r25,hi8(-(-8670))
+ 2188 0828 68E6      		ldi r22,lo8(104)
+ 2189 082a 70E0      		ldi r23,hi8(104)
+ 2190 082c 0E94 0000 		call __udivmodhi4
+ 2191 0830 CB01      		movw r24,r22
+ 2193               	.LM196:
+ 2194 0832 9927      		clr r25
+ 2195               	/* epilogue: frame size=0 */
+ 2196 0834 0895      		ret
+ 2197               	/* epilogue end (size=1) */
+ 2198               	/* function servoGetPosition size 21 (20) */
+ 2200               	.Lscope47:
+ 2203               	.global	servoService
+ 2205               	servoService:
+ 124:servo.c       **** 
+ 125:servo.c       **** void servoService(void)
+ 126:servo.c       **** {
+ 2207               	.LM197:
+ 2208               	/* prologue: frame size=0 */
+ 2209 0836 CF93      		push r28
+ 2210 0838 DF93      		push r29
+ 2211               	/* prologue end (size=2) */
+ 127:servo.c       **** 	u16 nextTics;
+ 128:servo.c       **** 
+ 129:servo.c       **** 	if(ServoChannel < SERVO_NUM_CHANNELS)
+ 2213               	.LM198:
+ 2214 083a E091 0000 		lds r30,ServoChannel
+ 2215 083e E230      		cpi r30,lo8(2)
+ 2216 0840 80F4      		brsh .L105
+ 130:servo.c       **** 	{
+ 131:servo.c       **** 		// turn off current channel
+ 132:servo.c       **** 		outb(_SFR_IO8(ServoChannels[ServoChannel].port), inb(_SFR_IO8(ServoChannels[ServoChannel].port)) 
+ 2218               	.LM199:
+ 2219 0842 FF27      		clr r31
+ 2220 0844 EE0F      		lsl r30
+ 2221 0846 FF1F      		rol r31
+ 2222 0848 EE0F      		lsl r30
+ 2223 084a FF1F      		rol r31
+ 2224 084c E050      		subi r30,lo8(-(ServoChannels))
+ 2225 084e F040      		sbci r31,hi8(-(ServoChannels))
+ 2226 0850 8081      		ld r24,Z
+ 2227 0852 A82F      		mov r26,r24
+ 2228 0854 BB27      		clr r27
+ 2229 0856 9181      		ldd r25,Z+1
+ 2230 0858 9095      		com r25
+ 2231 085a ED01      		movw r28,r26
+ 2232 085c 88A1      		ldd r24,Y+32
+ 2233 085e 8923      		and r24,r25
+ 2234 0860 88A3      		std Y+32,r24
+ 2235               	.L105:
+ 133:servo.c       **** 	}
+ 134:servo.c       **** 	
+ 135:servo.c       **** 	// next channel
+ 136:servo.c       **** 	ServoChannel++;
+ 2237               	.LM200:
+ 2238 0862 8091 0000 		lds r24,ServoChannel
+ 2239 0866 8F5F      		subi r24,lo8(-(1))
+ 2240 0868 8093 0000 		sts ServoChannel,r24
+ 137:servo.c       **** 
+ 138:servo.c       **** 	if(ServoChannel != SERVO_NUM_CHANNELS)
+ 2242               	.LM201:
+ 2243 086c 8230      		cpi r24,lo8(2)
+ 2244 086e 19F1      		breq .L106
+ 139:servo.c       **** 	{
+ 140:servo.c       **** 		// loop to channel 0 if needed
+ 141:servo.c       **** 		if(ServoChannel > SERVO_NUM_CHANNELS)	ServoChannel = 0;
+ 2246               	.LM202:
+ 2247 0870 8330      		cpi r24,lo8(3)
+ 2248 0872 10F0      		brlo .L107
+ 2249 0874 1092 0000 		sts ServoChannel,__zero_reg__
+ 2250               	.L107:
+ 142:servo.c       **** 		// turn on new channel
+ 143:servo.c       **** 		outb(_SFR_IO8(ServoChannels[ServoChannel].port), inb(_SFR_IO8(ServoChannels[ServoChannel].port)) 
+ 2252               	.LM203:
+ 2253 0878 8091 0000 		lds r24,ServoChannel
+ 2254 087c E82F      		mov r30,r24
+ 2255 087e FF27      		clr r31
+ 2256 0880 EE0F      		lsl r30
+ 2257 0882 FF1F      		rol r31
+ 2258 0884 EE0F      		lsl r30
+ 2259 0886 FF1F      		rol r31
+ 2260 0888 E050      		subi r30,lo8(-(ServoChannels))
+ 2261 088a F040      		sbci r31,hi8(-(ServoChannels))
+ 2262 088c 8081      		ld r24,Z
+ 2263 088e A82F      		mov r26,r24
+ 2264 0890 BB27      		clr r27
+ 2265 0892 ED01      		movw r28,r26
+ 2266 0894 88A1      		ldd r24,Y+32
+ 2267 0896 9181      		ldd r25,Z+1
+ 2268 0898 892B      		or r24,r25
+ 2269 089a 88A3      		std Y+32,r24
+ 144:servo.c       **** 		// schedule turn off time
+ 145:servo.c       **** 		nextTics = ServoChannels[ServoChannel].duty;
+ 2271               	.LM204:
+ 2272 089c 8091 0000 		lds r24,ServoChannel
+ 2273 08a0 E82F      		mov r30,r24
+ 2274 08a2 FF27      		clr r31
+ 2275 08a4 EE0F      		lsl r30
+ 2276 08a6 FF1F      		rol r31
+ 2277 08a8 EE0F      		lsl r30
+ 2278 08aa FF1F      		rol r31
+ 2279 08ac E050      		subi r30,lo8(-(ServoChannels))
+ 2280 08ae F040      		sbci r31,hi8(-(ServoChannels))
+ 2281 08b0 4281      		ldd r20,Z+2
+ 2282 08b2 5381      		ldd r21,Z+3
+ 2283 08b4 0AC0      		rjmp .L108
+ 2284               	.L106:
+ 146:servo.c       **** 	}
+ 147:servo.c       **** 	else //(Channel == SERVO_NUM_CHANNELS)
+ 148:servo.c       **** 	{
+ 149:servo.c       **** 		// ***we could save time by precalculating this
+ 150:servo.c       **** 		// schedule end-of-period
+ 151:servo.c       **** 		nextTics = ServoPeriodTics-ServoPosTics;
+ 2286               	.LM205:
+ 2287 08b6 4091 0000 		lds r20,ServoPeriodTics
+ 2288 08ba 5091 0000 		lds r21,(ServoPeriodTics)+1
+ 2289 08be 8091 0000 		lds r24,ServoPosTics
+ 2290 08c2 9091 0000 		lds r25,(ServoPosTics)+1
+ 2291 08c6 481B      		sub r20,r24
+ 2292 08c8 590B      		sbc r21,r25
+ 2293               	.L108:
+ 152:servo.c       **** 	}
+ 153:servo.c       **** 
+ 154:servo.c       **** 	// schedule next interrupt
+ 155:servo.c       **** 	u16 OCValue;
+ 156:servo.c       **** 	// read in current value of output compare register OCR1A
+ 157:servo.c       **** 	OCValue =  inb(OCR1AL);		// read low byte of OCR1A
+ 2295               	.LM206:
+ 2296 08ca 2AB5      		in r18,74-0x20
+ 158:servo.c       **** 	OCValue += inb(OCR1AH)<<8;	// read high byte of OCR1A
+ 2298               	.LM207:
+ 2299 08cc 8BB5      		in r24,75-0x20
+ 2300 08ce 9927      		clr r25
+ 2301 08d0 982F      		mov r25,r24
+ 2302 08d2 8827      		clr r24
+ 2303 08d4 820F      		add r24,r18
+ 2304 08d6 911D      		adc r25,__zero_reg__
+ 159:servo.c       **** 	// increment OCR1A value by nextTics
+ 160:servo.c       **** 	OCValue += nextTics;
+ 2306               	.LM208:
+ 2307 08d8 840F      		add r24,r20
+ 2308 08da 951F      		adc r25,r21
+ 161:servo.c       **** //	OCR1A+=nextTics;
+ 162:servo.c       **** 	// set future output compare time to this new value
+ 163:servo.c       **** 	outb(OCR1AH, (OCValue>>8));			// write high byte
+ 2310               	.LM209:
+ 2311 08dc 292F      		mov r18,r25
+ 2312 08de 3327      		clr r19
+ 2313 08e0 2BBD      		out 75-0x20,r18
+ 164:servo.c       **** 	outb(OCR1AL, (OCValue & 0x00FF));	// write low byte
+ 2315               	.LM210:
+ 2316 08e2 8ABD      		out 74-0x20,r24
+ 165:servo.c       **** 	// set our new tic position
+ 166:servo.c       **** 	ServoPosTics += nextTics;
+ 2318               	.LM211:
+ 2319 08e4 8091 0000 		lds r24,ServoPosTics
+ 2320 08e8 9091 0000 		lds r25,(ServoPosTics)+1
+ 2321 08ec 840F      		add r24,r20
+ 2322 08ee 951F      		adc r25,r21
+ 2323 08f0 9093 0000 		sts (ServoPosTics)+1,r25
+ 2324 08f4 8093 0000 		sts ServoPosTics,r24
+ 167:servo.c       **** 	if(ServoPosTics >= ServoPeriodTics) ServoPosTics = 0;
+ 2326               	.LM212:
+ 2327 08f8 2091 0000 		lds r18,ServoPeriodTics
+ 2328 08fc 3091 0000 		lds r19,(ServoPeriodTics)+1
+ 2329 0900 8217      		cp r24,r18
+ 2330 0902 9307      		cpc r25,r19
+ 2331 0904 20F0      		brlo .L104
+ 2332 0906 1092 0000 		sts (ServoPosTics)+1,__zero_reg__
+ 2333 090a 1092 0000 		sts ServoPosTics,__zero_reg__
+ 2334               	.L104:
+ 2335               	/* epilogue: frame size=0 */
+ 2336 090e DF91      		pop r29
+ 2337 0910 CF91      		pop r28
+ 2338 0912 0895      		ret
+ 2339               	/* epilogue end (size=3) */
+ 2340               	/* function servoService size 111 (106) */
+ 2346               	.Lscope48:
+ 2349               	.global	__vector_11
+ 2351               	__vector_11:
+ 2353               	.Ltext4:
+   1:SerialExample.c **** /*
+   2:SerialExample.c ****     Serial interface Demo for AvrXFifo's
+   3:SerialExample.c **** 
+   4:SerialExample.c ****     Also illustrates the use of Frame based variables
+   5:SerialExample.c ****     at the top level tasking (switched from NAKED to
+   6:SerialExample.c ****     NORETURN function attribute)
+   7:SerialExample.c **** 
+   8:SerialExample.c **** 	When linked with simple serialio there is no buffering
+   9:SerialExample.c **** 	of charactors so only two charactors can be received
+  10:SerialExample.c **** 	during the delay (Hardware buffering within the USART).
+  11:SerialExample.c **** 
+  12:SerialExample.c **** 	When linked with the buffered IO up to 31 (or whatever
+  13:SerialExample.c **** 	the buffer size - 1 is) charactors can be received while
+  14:SerialExample.c **** 	delaying.
+  15:SerialExample.c **** */
+  16:SerialExample.c **** #include <avr/io.h>
+  17:SerialExample.c **** #include <avr/pgmspace.h>
+  18:SerialExample.c **** #include <avrx-signal.h>
+  19:SerialExample.c **** #include <stdio.h>
+  20:SerialExample.c **** #include "avrx.h"
+  21:SerialExample.c **** #include <avr/signal.h>	// include "signal" names (interrupt names)
+  22:SerialExample.c **** #include <avr/interrupt.h>	// include interrupt support
+  23:SerialExample.c **** #include <stdlib.h>
+  24:SerialExample.c **** 
+  25:SerialExample.c **** // Uncomment this to override "AvrXSerialIo.h and just use one channel
+  26:SerialExample.c **** //#define USART_CHANNELS (1<1)	// 0 - USART0, 1 = USART1
+  27:SerialExample.c **** 
+  28:SerialExample.c **** #include "AvrXSerialIo.h"
+  29:SerialExample.c **** 
+  30:SerialExample.c **** #include "parserconf.h"
+  31:SerialExample.c **** #include "parser.h"
+  32:SerialExample.c **** #include "parser.c"
+  33:SerialExample.c **** 
+  34:SerialExample.c **** 
+  35:SerialExample.c **** // global AVRLIB defines
+  36:SerialExample.c **** #include <../../avrlibdefs.h>
+  37:SerialExample.c **** // global AVRLIB types definitions
+  38:SerialExample.c **** #include <../../avrlibtypes.h>
+  39:SerialExample.c **** #include "global.h"
+  40:SerialExample.c **** 
+  41:SerialExample.c **** #include "timer.h"
+  42:SerialExample.c **** #include "timer.c"
+  43:SerialExample.c **** #include "servo.h"
+  44:SerialExample.c **** #include "servo.c"
+  45:SerialExample.c **** /*
+  46:SerialExample.c **** enum
+  47:SerialExample.c **** {
+  48:SerialExample.c **** 	FALSE,
+  49:SerialExample.c **** 	TRUE
+  50:SerialExample.c **** };
+  51:SerialExample.c **** 
+  52:SerialExample.c **** typedef unsigned char BOOL;
+  53:SerialExample.c **** */
+  54:SerialExample.c **** 
+  55:SerialExample.c **** // Peripheral initialization
+  56:SerialExample.c **** 
+  57:SerialExample.c **** #define TCNT0_INIT (0xFF-CPUCLK/256/TICKRATE)
+  58:SerialExample.c **** #define LEFT_SERVO_CHAN 	0
+  59:SerialExample.c **** #define RIGHT_SERVO_CHAN 	1
+  60:SerialExample.c **** #define THROTTLE_SERVO_CHAN 2
+  61:SerialExample.c **** 
+  62:SerialExample.c **** 
+  63:SerialExample.c **** void testFunctionA(void);
+  64:SerialExample.c **** void testFunctionB(void);
+  65:SerialExample.c **** 
+  66:SerialExample.c **** int funcBParam;
+  67:SerialExample.c **** int funcAParam;
+  68:SerialExample.c **** 
+  69:SerialExample.c **** //long funcAParam;
+  70:SerialExample.c **** //long funcBParam;
+  71:SerialExample.c **** 
+  72:SerialExample.c **** 
+  73:SerialExample.c **** /*
+  74:SerialExample.c ****  Timer 0 Overflow Interrupt Handler
+  75:SerialExample.c **** 
+  76:SerialExample.c ****  Prototypical Interrupt handler:
+  77:SerialExample.c ****  . Switch to kernel context
+  78:SerialExample.c ****  . handle interrupt
+  79:SerialExample.c ****  . switch back to interrupted context.
+  80:SerialExample.c ****  */
+  81:SerialExample.c **** 
+  82:SerialExample.c **** AVRX_SIGINT(SIG_OVERFLOW0)
+  83:SerialExample.c **** {
+ 2355               	.LM213:
+ 2356               	/* prologue: frame size=0 */
+ 2357               	/* prologue: naked */
+ 2358               	/* prologue end (size=0) */
+  84:SerialExample.c ****     IntProlog();                // Switch to kernel stack/context
+ 2360               	.LM214:
+ 2361 0914 0E94 0000 		call IntProlog
+  85:SerialExample.c ****     TCNT0 += TCNT0_INIT;		// Add to pre-load to account for any missed clocks
+ 2363               	.LM215:
+ 2364 0918 82B7      		in r24,82-0x20
+ 2365 091a 8F53      		subi r24,lo8(-(-63))
+ 2366 091c 82BF      		out 82-0x20,r24
+  86:SerialExample.c ****     AvrXTimerHandler();         // Call Time queue manager
+ 2368               	.LM216:
+ 2369 091e 0E94 0000 		call AvrXTimerHandler
+  87:SerialExample.c ****     Epilog();                   // Return to tasks
+ 2371               	.LM217:
+ 2372 0922 0E94 0000 		call Epilog
+ 2373               	/* epilogue: frame size=0 */
+ 2374               	/* epilogue: naked */
+ 2375               	/* epilogue end (size=0) */
+ 2376               	/* function __vector_11 size 9 (9) */
+ 2378               	.Lscope49:
+ 2383               	.global	myputs
+ 2385               	myputs:
+  88:SerialExample.c **** }
+  89:SerialExample.c **** 
+  90:SerialExample.c **** 
+  91:SerialExample.c **** 
+  92:SerialExample.c **** // Super simple string printers...
+  93:SerialExample.c **** 
+  94:SerialExample.c **** // PutString from RAM
+  95:SerialExample.c **** void myputs(int (*putch)(char), const uint8_t * psz)
+  96:SerialExample.c **** {
+ 2387               	.LM218:
+ 2388               	/* prologue: frame size=0 */
+ 2389 0926 0F93      		push r16
+ 2390 0928 1F93      		push r17
+ 2391 092a CF93      		push r28
+ 2392 092c DF93      		push r29
+ 2393               	/* prologue end (size=4) */
+ 2394 092e 8C01      		movw r16,r24
+ 2395 0930 EB01      		movw r28,r22
+  97:SerialExample.c **** 	while (*psz != 0)
+  98:SerialExample.c **** 		(*putch)(*psz++);
+ 2397               	.LM219:
+ 2398 0932 8881      		ld r24,Y
+ 2399 0934 8823      		tst r24
+ 2400 0936 31F0      		breq .L116
+ 2401               	.L114:
+ 2403               	.LM220:
+ 2404 0938 8991      		ld r24,Y+
+ 2405 093a F801      		movw r30,r16
+ 2406 093c 0995      		icall
+ 2407 093e 8881      		ld r24,Y
+ 2408 0940 8823      		tst r24
+ 2409 0942 D1F7      		brne .L114
+ 2410               	.L116:
+ 2411               	/* epilogue: frame size=0 */
+ 2412 0944 DF91      		pop r29
+ 2413 0946 CF91      		pop r28
+ 2414 0948 1F91      		pop r17
+ 2415 094a 0F91      		pop r16
+ 2416 094c 0895      		ret
+ 2417               	/* epilogue end (size=5) */
+ 2418               	/* function myputs size 20 (11) */
+ 2420               	.Lscope50:
+ 2425               	.global	myputs_P
+ 2427               	myputs_P:
+  99:SerialExample.c **** }
+ 100:SerialExample.c **** 
+ 101:SerialExample.c **** // PutString from FLASH
+ 102:SerialExample.c **** void myputs_P(int (*putch)(char), const uint8_t * psz)
+ 103:SerialExample.c **** {
+ 2429               	.LM221:
+ 2430               	/* prologue: frame size=0 */
+ 2431 094e 0F93      		push r16
+ 2432 0950 1F93      		push r17
+ 2433 0952 CF93      		push r28
+ 2434 0954 DF93      		push r29
+ 2435               	/* prologue end (size=4) */
+ 2436 0956 8C01      		movw r16,r24
+ 2437 0958 EB01      		movw r28,r22
+ 2438               	.LBB5:
+ 104:SerialExample.c **** 	while (__LPM(psz) != 0)
+ 105:SerialExample.c **** 		(*putch)(__LPM(psz++));
+ 2440               	.LM222:
+ 2441 095a FB01      		movw r30,r22
+ 2442               	/* #APP */
+ 2443 095c 8491      		lpm r24, Z
+ 2444               		
+ 2445               	/* #NOAPP */
+ 2446               	.LBE5:
+ 2447 095e 8823      		tst r24
+ 2448 0960 49F0      		breq .L122
+ 2449               	.L120:
+ 2450               	.LBB6:
+ 2452               	.LM223:
+ 2453 0962 FE01      		movw r30,r28
+ 2454 0964 2196      		adiw r28,1
+ 2455               	/* #APP */
+ 2456 0966 8491      		lpm r24, Z
+ 2457               		
+ 2458               	/* #NOAPP */
+ 2459               	.LBE6:
+ 2460 0968 F801      		movw r30,r16
+ 2461 096a 0995      		icall
+ 2462               	.LBB7:
+ 2463 096c FE01      		movw r30,r28
+ 2464               	/* #APP */
+ 2465 096e 8491      		lpm r24, Z
+ 2466               		
+ 2467               	/* #NOAPP */
+ 2468               	.LBE7:
+ 2469 0970 8823      		tst r24
+ 2470 0972 B9F7      		brne .L120
+ 2471               	.L122:
+ 2472               	/* epilogue: frame size=0 */
+ 2473 0974 DF91      		pop r29
+ 2474 0976 CF91      		pop r28
+ 2475 0978 1F91      		pop r17
+ 2476 097a 0F91      		pop r16
+ 2477 097c 0895      		ret
+ 2478               	/* epilogue end (size=5) */
+ 2479               	/* function myputs_P size 33 (24) */
+ 2490               	.Lscope51:
+ 2492               		.section	.progmem.data
+ 2495               	__c.2:
+ 2496 0031 6320 2564 		.string	"c %d"
+ 2496      00
+ 2499               	__c.3:
+ 2500 0036 6320 2564 		.string	"c %d"
+ 2500      00
+ 2501               		.text
+ 2503               	.global	task0
+ 2505               	task0:
+ 106:SerialExample.c **** }
+ 107:SerialExample.c **** 
+ 108:SerialExample.c **** //#if (USART_CHANNELS & CHANNEL_0)
+ 109:SerialExample.c **** 
+ 110:SerialExample.c **** // This task uses GCC Libc stdio facility and needs an additional 60-80 bytes of stack
+ 111:SerialExample.c **** // for processing the strings.  Longer strings probably need more stack.
+ 112:SerialExample.c **** AVRX_GCC_TASKDEF(task0, 76, 4)
+ 113:SerialExample.c **** {
+ 2507               	.LM224:
+ 2508               	/* prologue: frame size=6 */
+ 2509 097e CF93      		push r28
+ 2510 0980 DF93      		push r29
+ 2511 0982 CDB7      		in r28,__SP_L__
+ 2512 0984 DEB7      		in r29,__SP_H__
+ 2513 0986 2697      		sbiw r28,6
+ 2514 0988 0FB6      		in __tmp_reg__,__SREG__
+ 2515 098a F894      		cli
+ 2516 098c DEBF      		out __SP_H__,r29
+ 2517 098e 0FBE      		out __SREG__,__tmp_reg__
+ 2518 0990 CDBF      		out __SP_L__,r28
+ 2519               	/* prologue end (size=10) */
+ 2520               	.L124:
+ 2521               	.LBB8:
+ 114:SerialExample.c **** 	TimerControlBlock timer;
+ 115:SerialExample.c **** 	
+ 116:SerialExample.c **** 	while(1)
+ 117:SerialExample.c **** 	{
+ 118:SerialExample.c **** 		int c = 0;
+ 2523               	.LM225:
+ 2524 0992 00E0      		ldi r16,lo8(0)
+ 2525 0994 10E0      		ldi r17,hi8(0)
+ 2526               	.L128:
+ 119:SerialExample.c **** 		
+ 120:SerialExample.c **** 		while (c<360)
+ 121:SerialExample.c **** 		{	printf_P(PSTR("c %d"), c);
+ 2528               	.LM226:
+ 2529 0996 1F93      		push r17
+ 2530 0998 0F93      		push r16
+ 2531 099a 80E0      		ldi r24,lo8(__c.2)
+ 2532 099c 90E0      		ldi r25,hi8(__c.2)
+ 2533 099e 9F93      		push r25
+ 2534 09a0 8F93      		push r24
+ 2535 09a2 0E94 0000 		call printf_P
+ 122:SerialExample.c **** 			putchar('\r'),putchar('\n');
+ 2537               	.LM227:
+ 2538 09a6 6091 0000 		lds r22,__iob+2
+ 2539 09aa 7091 0000 		lds r23,(__iob+2)+1
+ 2540 09ae 8DE0      		ldi r24,lo8(13)
+ 2541 09b0 90E0      		ldi r25,hi8(13)
+ 2542 09b2 0E94 0000 		call fputc
+ 2543 09b6 6091 0000 		lds r22,__iob+2
+ 2544 09ba 7091 0000 		lds r23,(__iob+2)+1
+ 2545 09be 8AE0      		ldi r24,lo8(10)
+ 2546 09c0 90E0      		ldi r25,hi8(10)
+ 2547 09c2 0E94 0000 		call fputc
+ 123:SerialExample.c **** 			c++;
+ 2549               	.LM228:
+ 2550 09c6 0F5F      		subi r16,lo8(-(1))
+ 2551 09c8 1F4F      		sbci r17,hi8(-(1))
+ 124:SerialExample.c **** 			AvrXDelay(&timer, 100);
+ 2553               	.LM229:
+ 2554 09ca 64E6      		ldi r22,lo8(100)
+ 2555 09cc 70E0      		ldi r23,hi8(100)
+ 2556 09ce CE01      		movw r24,r28
+ 2557 09d0 0196      		adiw r24,1
+ 2558 09d2 0E94 0000 		call AvrXDelay
+ 2559 09d6 0F90      		pop __tmp_reg__
+ 2560 09d8 0F90      		pop __tmp_reg__
+ 2561 09da 0F90      		pop __tmp_reg__
+ 2562 09dc 0F90      		pop __tmp_reg__
+ 2563 09de 81E0      		ldi r24,hi8(360)
+ 2564 09e0 0836      		cpi r16,lo8(360)
+ 2565 09e2 1807      		cpc r17,r24
+ 2566 09e4 C4F2      		brlt .L128
+ 2567 09e6 08E6      		ldi r16,lo8(360)
+ 2568 09e8 11E0      		ldi r17,hi8(360)
+ 2569               	.L131:
+ 125:SerialExample.c **** 		}
+ 126:SerialExample.c **** 		while (c > 0)
+ 127:SerialExample.c **** 		{	printf_P(PSTR("c %d"), c);
+ 2571               	.LM230:
+ 2572 09ea 1F93      		push r17
+ 2573 09ec 0F93      		push r16
+ 2574 09ee 80E0      		ldi r24,lo8(__c.3)
+ 2575 09f0 90E0      		ldi r25,hi8(__c.3)
+ 2576 09f2 9F93      		push r25
+ 2577 09f4 8F93      		push r24
+ 2578 09f6 0E94 0000 		call printf_P
+ 128:SerialExample.c **** 			putchar('\r'),putchar('\n');
+ 2580               	.LM231:
+ 2581 09fa 6091 0000 		lds r22,__iob+2
+ 2582 09fe 7091 0000 		lds r23,(__iob+2)+1
+ 2583 0a02 8DE0      		ldi r24,lo8(13)
+ 2584 0a04 90E0      		ldi r25,hi8(13)
+ 2585 0a06 0E94 0000 		call fputc
+ 2586 0a0a 6091 0000 		lds r22,__iob+2
+ 2587 0a0e 7091 0000 		lds r23,(__iob+2)+1
+ 2588 0a12 8AE0      		ldi r24,lo8(10)
+ 2589 0a14 90E0      		ldi r25,hi8(10)
+ 2590 0a16 0E94 0000 		call fputc
+ 129:SerialExample.c **** 			c--;
+ 2592               	.LM232:
+ 2593 0a1a 0150      		subi r16,lo8(-(-1))
+ 2594 0a1c 1040      		sbci r17,hi8(-(-1))
+ 130:SerialExample.c **** 			AvrXDelay(&timer, 100);
+ 2596               	.LM233:
+ 2597 0a1e 64E6      		ldi r22,lo8(100)
+ 2598 0a20 70E0      		ldi r23,hi8(100)
+ 2599 0a22 CE01      		movw r24,r28
+ 2600 0a24 0196      		adiw r24,1
+ 2601 0a26 0E94 0000 		call AvrXDelay
+ 2602 0a2a 0F90      		pop __tmp_reg__
+ 2603 0a2c 0F90      		pop __tmp_reg__
+ 2604 0a2e 0F90      		pop __tmp_reg__
+ 2605 0a30 0F90      		pop __tmp_reg__
+ 2606 0a32 1016      		cp __zero_reg__,r16
+ 2607 0a34 1106      		cpc __zero_reg__,r17
+ 2608 0a36 CCF2      		brlt .L131
+ 2609               	.LBE8:
+ 2610 0a38 ACCF      		rjmp .L124
+ 2611               	/* epilogue: frame size=6 */
+ 2612               	/* epilogue: noreturn */
+ 2613               	/* epilogue end (size=0) */
+ 2614               	/* function task0 size 94 (84) */
+ 2622               	.Lscope52:
+ 2625               	.global	getCommands
+ 2627               	getCommands:
+ 131:SerialExample.c **** 		}
+ 132:SerialExample.c **** 	}
+ 133:SerialExample.c **** }
+ 134:SerialExample.c **** AVRX_GCC_TASKDEF(getCommands, 100, 5)
+ 135:SerialExample.c **** {	
+ 2629               	.LM234:
+ 2630               	/* prologue: frame size=0 */
+ 2631               	/* prologue end (size=0) */
+ 136:SerialExample.c **** 	int c;		
+ 137:SerialExample.c **** 	
+ 138:SerialExample.c **** 	while (1)
+ 139:SerialExample.c **** 	{
+ 140:SerialExample.c **** 		while ((c = getchar()) != EOF)
+ 2633               	.LM235:
+ 2634 0a3a 15C0      		rjmp .L146
+ 2635               	.L142:
+ 141:SerialExample.c **** 		{	
+ 142:SerialExample.c **** 			if (c == '\r')
+ 2637               	.LM236:
+ 2638 0a3c CD30      		cpi r28,13
+ 2639 0a3e D105      		cpc r29,__zero_reg__
+ 2640 0a40 79F4      		brne .L141
+ 143:SerialExample.c **** 			{	putchar('\r');
+ 2642               	.LM237:
+ 2643 0a42 6091 0000 		lds r22,__iob+2
+ 2644 0a46 7091 0000 		lds r23,(__iob+2)+1
+ 2645 0a4a CE01      		movw r24,r28
+ 2646 0a4c 0E94 0000 		call fputc
+ 144:SerialExample.c **** 				putchar('\n');
+ 2648               	.LM238:
+ 2649 0a50 6091 0000 		lds r22,__iob+2
+ 2650 0a54 7091 0000 		lds r23,(__iob+2)+1
+ 2651 0a58 8AE0      		ldi r24,lo8(10)
+ 2652 0a5a 90E0      		ldi r25,hi8(10)
+ 2653 0a5c 0E94 0000 		call fputc
+ 2654               	.L141:
+ 145:SerialExample.c **** 			}
+ 146:SerialExample.c **** 			parserInputFunc(c);
+ 2656               	.LM239:
+ 2657 0a60 8C2F      		mov r24,r28
+ 2658 0a62 0E94 0000 		call parserInputFunc
+ 2659               	.L146:
+ 2660 0a66 8091 0000 		lds r24,__iob
+ 2661 0a6a 9091 0000 		lds r25,(__iob)+1
+ 2662 0a6e 0E94 0000 		call fgetc
+ 2663 0a72 EC01      		movw r28,r24
+ 2664 0a74 8FEF      		ldi r24,hi8(-1)
+ 2665 0a76 CF3F      		cpi r28,lo8(-1)
+ 2666 0a78 D807      		cpc r29,r24
+ 2667 0a7a 01F7      		brne .L142
+ 2668 0a7c F4CF      		rjmp .L146
+ 2669               	/* epilogue: frame size=0 */
+ 2670               	/* epilogue: noreturn */
+ 2671               	/* epilogue end (size=0) */
+ 2672               	/* function getCommands size 34 (34) */
+ 2677               	.Lscope53:
+ 2679               		.section	.progmem.data
+ 2682               	__c.0:
+ 2683 003b 4920 666F 		.string	"I founded Rhizome!\r\n"
+ 2683      756E 6465 
+ 2683      6420 5268 
+ 2683      697A 6F6D 
+ 2683      6521 0D0A 
+ 2686               	__c.1:
+ 2687 0050 2564 2000 		.string	"%d "
+ 2688               		.text
+ 2690               	.global	marktribe
+ 2692               	marktribe:
+ 147:SerialExample.c **** 		}
+ 148:SerialExample.c **** 	}
+ 149:SerialExample.c **** }
+ 150:SerialExample.c **** 
+ 151:SerialExample.c **** AVRX_GCC_TASKDEF(marktribe, 70, 3)
+ 152:SerialExample.c **** {
+ 2694               	.LM240:
+ 2695               	/* prologue: frame size=6 */
+ 2696 0a7e CF93      		push r28
+ 2697 0a80 DF93      		push r29
+ 2698 0a82 CDB7      		in r28,__SP_L__
+ 2699 0a84 DEB7      		in r29,__SP_H__
+ 2700 0a86 2697      		sbiw r28,6
+ 2701 0a88 0FB6      		in __tmp_reg__,__SREG__
+ 2702 0a8a F894      		cli
+ 2703 0a8c DEBF      		out __SP_H__,r29
+ 2704 0a8e 0FBE      		out __SREG__,__tmp_reg__
+ 2705 0a90 CDBF      		out __SP_L__,r28
+ 2706               	/* prologue end (size=10) */
+ 153:SerialExample.c **** 	TimerControlBlock timer2;
+ 154:SerialExample.c ****     int c = 'a';
+ 2708               	.LM241:
+ 2709 0a92 01E6      		ldi r16,lo8(97)
+ 2710 0a94 10E0      		ldi r17,hi8(97)
+ 155:SerialExample.c ****     printf_P(PSTR("I founded Rhizome!\r\n"));
+ 2712               	.LM242:
+ 2713 0a96 80E0      		ldi r24,lo8(__c.0)
+ 2714 0a98 90E0      		ldi r25,hi8(__c.0)
+ 2715 0a9a 9F93      		push r25
+ 2716 0a9c 8F93      		push r24
+ 2717 0a9e 0E94 0000 		call printf_P
+ 156:SerialExample.c ****     while(1)
+ 2719               	.LM243:
+ 2720 0aa2 0F90      		pop __tmp_reg__
+ 2721 0aa4 0F90      		pop __tmp_reg__
+ 2722               	.L148:
+ 157:SerialExample.c ****     {    
+ 158:SerialExample.c ****         printf_P(PSTR("%d "),c);
+ 2724               	.LM244:
+ 2725 0aa6 1F93      		push r17
+ 2726 0aa8 0F93      		push r16
+ 2727 0aaa 80E0      		ldi r24,lo8(__c.1)
+ 2728 0aac 90E0      		ldi r25,hi8(__c.1)
+ 2729 0aae 9F93      		push r25
+ 2730 0ab0 8F93      		push r24
+ 2731 0ab2 0E94 0000 		call printf_P
+ 159:SerialExample.c ****         c++;
+ 2733               	.LM245:
+ 2734 0ab6 0F5F      		subi r16,lo8(-(1))
+ 2735 0ab8 1F4F      		sbci r17,hi8(-(1))
+ 160:SerialExample.c ****         AvrXDelay(&timer2, 10000); //supposed to be a 1000 ms delay
+ 2737               	.LM246:
+ 2738 0aba 60E1      		ldi r22,lo8(10000)
+ 2739 0abc 77E2      		ldi r23,hi8(10000)
+ 2740 0abe CE01      		movw r24,r28
+ 2741 0ac0 0196      		adiw r24,1
+ 2742 0ac2 0E94 0000 		call AvrXDelay
+ 2743 0ac6 0F90      		pop __tmp_reg__
+ 2744 0ac8 0F90      		pop __tmp_reg__
+ 2745 0aca 0F90      		pop __tmp_reg__
+ 2746 0acc 0F90      		pop __tmp_reg__
+ 2747 0ace EBCF      		rjmp .L148
+ 2748               	/* epilogue: frame size=6 */
+ 2749               	/* epilogue: noreturn */
+ 2750               	/* epilogue end (size=0) */
+ 2751               	/* function marktribe size 41 (31) */
+ 2757               	.Lscope54:
+ 2759               		.data
+ 2760               	.LC0:
+ 2761 0000 6100      		.string	"a"
+ 2762               	.LC1:
+ 2763 0002 6200      		.string	"b"
+ 2764               		.text
+ 2766               	.global	main
+ 2768               	main:
+ 161:SerialExample.c ****     }
+ 162:SerialExample.c ****     
+ 163:SerialExample.c **** }
+ 164:SerialExample.c **** 	
+ 165:SerialExample.c **** /*
+ 166:SerialExample.c **** AVRX_GCC_TASKDEF(servos, 120, 1)
+ 167:SerialExample.c **** {
+ 168:SerialExample.c **** 	TimerControlBlock timer3;
+ 169:SerialExample.c **** 	
+ 170:SerialExample.c **** 	u08 pos;
+ 171:SerialExample.c **** 	u08 channel;
+ 172:SerialExample.c **** 
+ 173:SerialExample.c **** 	// do some examples
+ 174:SerialExample.c **** 	// initialize RC servo system
+ 175:SerialExample.c **** 	servoInit();
+ 176:SerialExample.c **** 	// setup servo output channel-to-I/Opin mapping
+ 177:SerialExample.c **** 	// format is servoSetChannelIO( CHANNEL#, PORT, PIN );
+ 178:SerialExample.c **** 	servoSetChannelIO(0, _SFR_IO_ADDR(PORTC), PC0);
+ 179:SerialExample.c **** 
+ 180:SerialExample.c **** 
+ 181:SerialExample.c **** 	// set port pins to output
+ 182:SerialExample.c **** 	outb(DDRC, 0x01);
+ 183:SerialExample.c **** 
+ 184:SerialExample.c **** 	pos = 0;
+ 185:SerialExample.c **** 	
+ 186:SerialExample.c **** 	#define SPEED_SERVO	1
+ 187:SerialExample.c **** 
+ 188:SerialExample.c **** 	// spin servos sequentially back and forth between their limits
+ 189:SerialExample.c **** 	while(1)
+ 190:SerialExample.c **** 	{
+ 191:SerialExample.c **** 		for(channel=0; channel<SERVO_NUM_CHANNELS; channel++)
+ 192:SerialExample.c **** 		{
+ 193:SerialExample.c **** 			for(pos=0; pos<SERVO_POSITION_MAX; pos++)
+ 194:SerialExample.c **** 			{
+ 195:SerialExample.c **** 				servoSetPosition(channel,pos);
+ 196:SerialExample.c **** 				AvrXDelay(&timer3, 1000);;
+ 197:SerialExample.c **** 			}
+ 198:SerialExample.c **** 		}
+ 199:SerialExample.c **** 
+ 200:SerialExample.c **** 		for(channel=0; channel<SERVO_NUM_CHANNELS; channel++)
+ 201:SerialExample.c **** 		{
+ 202:SerialExample.c **** 			for(pos=SERVO_POSITION_MAX; pos>=1; pos--)
+ 203:SerialExample.c **** 			{
+ 204:SerialExample.c **** 				servoSetPosition(channel,pos);
+ 205:SerialExample.c **** 				AvrXDelay(&timer3, 1000);;
+ 206:SerialExample.c **** 			}
+ 207:SerialExample.c **** 		}
+ 208:SerialExample.c **** 	}
+ 209:SerialExample.c **** }
+ 210:SerialExample.c **** */
+ 211:SerialExample.c **** //#endif // USART_CHANNELS & CHANNEL_0
+ 212:SerialExample.c **** 
+ 213:SerialExample.c **** int main(void)
+ 214:SerialExample.c **** {
+ 2770               	.LM247:
+ 2771               	/* prologue: frame size=0 */
+ 2772 0ad0 C0E0      		ldi r28,lo8(__stack - 0)
+ 2773 0ad2 D0E0      		ldi r29,hi8(__stack - 0)
+ 2774 0ad4 DEBF      		out __SP_H__,r29
+ 2775 0ad6 CDBF      		out __SP_L__,r28
+ 2776               	/* prologue end (size=4) */
+ 215:SerialExample.c ****     AvrXSetKernelStack(0);
+ 2778               	.LM248:
+ 2779 0ad8 80E0      		ldi r24,lo8(0)
+ 2780 0ada 90E0      		ldi r25,hi8(0)
+ 2781 0adc 0E94 0000 		call AvrXSetKernelStack
+ 216:SerialExample.c **** 
+ 217:SerialExample.c **** 	MCUCR = _BV(SE);
+ 2783               	.LM249:
+ 2784 0ae0 80E8      		ldi r24,lo8(-128)
+ 2785 0ae2 85BF      		out 85-0x20,r24
+ 218:SerialExample.c **** 	TCNT0 = TCNT0_INIT;
+ 2787               	.LM250:
+ 2788 0ae4 81EC      		ldi r24,lo8(-63)
+ 2789 0ae6 82BF      		out 82-0x20,r24
+ 219:SerialExample.c **** #if defined (__AVR_ATmega103__) || defined (__ATmega103__)
+ 220:SerialExample.c **** 	TCCR0 =  ((1<<CS02) | (1<<CS01));
+ 221:SerialExample.c **** #elif defined (__AVR_ATmega128__) || defined (__ATmega128__) || defined (__AVR_ATmega64__) || defin
+ 222:SerialExample.c **** 	TCCR0 =  ((1<<CS2) | (1<<CS1));
+ 223:SerialExample.c **** #else	// Most other chips...  Note: some are TCCR0 and some are TCCR0B...
+ 224:SerialExample.c **** 	TCCR0 =  (1<<CS02);
+ 2791               	.LM251:
+ 2792 0ae8 84E0      		ldi r24,lo8(4)
+ 2793 0aea 83BF      		out 83-0x20,r24
+ 225:SerialExample.c **** #endif
+ 226:SerialExample.c **** 	TIMSK = _BV(TOIE0);
+ 2795               	.LM252:
+ 2796 0aec 11E0      		ldi r17,lo8(1)
+ 2797 0aee 19BF      		out 89-0x20,r17
+ 227:SerialExample.c **** 
+ 228:SerialExample.c ****     InitSerial0(BAUD(57600));
+ 2799               	.LM253:
+ 2800 0af0 81E2      		ldi r24,lo8(33)
+ 2801 0af2 90E0      		ldi r25,hi8(33)
+ 2802 0af4 0E94 0000 		call InitSerial0
+ 229:SerialExample.c ****     fdevopen(put_char0, get_c0,0);		// Set up standard I/O
+ 2804               	.LM254:
+ 2805 0af8 40E0      		ldi r20,lo8(0)
+ 2806 0afa 50E0      		ldi r21,hi8(0)
+ 2807 0afc 60E0      		ldi r22,lo8(pm(get_c0))
+ 2808 0afe 70E0      		ldi r23,hi8(pm(get_c0))
+ 2809 0b00 80E0      		ldi r24,lo8(pm(put_char0))
+ 2810 0b02 90E0      		ldi r25,hi8(pm(put_char0))
+ 2811 0b04 0E94 0000 		call fdevopen
+ 230:SerialExample.c **** 
+ 231:SerialExample.c **** 	// initialize parser system
+ 232:SerialExample.c **** 	parserInit();
+ 2813               	.LM255:
+ 2814 0b08 0E94 0000 		call parserInit
+ 233:SerialExample.c **** 	// direct output to uart (serial port)
+ 234:SerialExample.c **** 	parserSetOutputFunc(put_char0);
+ 2816               	.LM256:
+ 2817 0b0c 80E0      		ldi r24,lo8(pm(put_char0))
+ 2818 0b0e 90E0      		ldi r25,hi8(pm(put_char0))
+ 2819 0b10 0E94 0000 		call parserSetOutputFunc
+ 235:SerialExample.c **** 	// add commands to the command database
+ 236:SerialExample.c **** 	parserAddCommand("a",		testFunctionA);
+ 2821               	.LM257:
+ 2822 0b14 60E0      		ldi r22,lo8(pm(testFunctionA))
+ 2823 0b16 70E0      		ldi r23,hi8(pm(testFunctionA))
+ 2824 0b18 80E0      		ldi r24,lo8(.LC0)
+ 2825 0b1a 90E0      		ldi r25,hi8(.LC0)
+ 2826 0b1c 0E94 0000 		call parserAddCommand
+ 237:SerialExample.c **** 	parserAddCommand("b",		testFunctionB);
+ 2828               	.LM258:
+ 2829 0b20 60E0      		ldi r22,lo8(pm(testFunctionB))
+ 2830 0b22 70E0      		ldi r23,hi8(pm(testFunctionB))
+ 2831 0b24 80E0      		ldi r24,lo8(.LC1)
+ 2832 0b26 90E0      		ldi r25,hi8(.LC1)
+ 2833 0b28 0E94 0000 		call parserAddCommand
+ 238:SerialExample.c ****     
+ 239:SerialExample.c **** 	// initialize the timer system -- FROM AVRLIB
+ 240:SerialExample.c **** 	//timerInit();
+ 241:SerialExample.c **** 	
+ 242:SerialExample.c **** 	//////////////////////////////////////////////////Servos//////////////////////////
+ 243:SerialExample.c **** 	servoInit();
+ 2835               	.LM259:
+ 2836 0b2c 0E94 0000 		call servoInit
+ 244:SerialExample.c **** 	// setup servo output channel-to-I/Opin mapping
+ 245:SerialExample.c **** 	// format is servoSetChannelIO( CHANNEL#, PORT, PIN );
+ 246:SerialExample.c **** 	servoSetChannelIO(0, _SFR_IO_ADDR(PORTC), PC0);
+ 2838               	.LM260:
+ 2839 0b30 40E0      		ldi r20,lo8(0)
+ 2840 0b32 65E1      		ldi r22,lo8(21)
+ 2841 0b34 842F      		mov r24,r20
+ 2842 0b36 0E94 0000 		call servoSetChannelIO
+ 247:SerialExample.c **** 	servoSetChannelIO(1, _SFR_IO_ADDR(PORTC), PC1);
+ 2844               	.LM261:
+ 2845 0b3a 412F      		mov r20,r17
+ 2846 0b3c 65E1      		ldi r22,lo8(21)
+ 2847 0b3e 812F      		mov r24,r17
+ 2848 0b40 0E94 0000 		call servoSetChannelIO
+ 248:SerialExample.c **** 
+ 249:SerialExample.c **** 	// set port pins to output
+ 250:SerialExample.c **** 	outb(DDRC, 0x03);
+ 2850               	.LM262:
+ 2851 0b44 83E0      		ldi r24,lo8(3)
+ 2852 0b46 84BB      		out 52-0x20,r24
+ 251:SerialExample.c **** 
+ 252:SerialExample.c **** 	
+ 253:SerialExample.c **** 	#define SPEED_SERVO	1
+ 254:SerialExample.c **** 	//////////////////////////////////////////////////////////////////////////////////
+ 255:SerialExample.c **** 	
+ 256:SerialExample.c **** 	AvrXRunTask(TCB(getCommands));
+ 2854               	.LM263:
+ 2855 0b48 80E0      		ldi r24,lo8(getCommandsTcb)
+ 2856 0b4a 90E0      		ldi r25,hi8(getCommandsTcb)
+ 2857 0b4c 0E94 0000 		call AvrXRunTask
+ 257:SerialExample.c **** 	AvrXRunTask(TCB(marktribe));
+ 2859               	.LM264:
+ 2860 0b50 80E0      		ldi r24,lo8(marktribeTcb)
+ 2861 0b52 90E0      		ldi r25,hi8(marktribeTcb)
+ 2862 0b54 0E94 0000 		call AvrXRunTask
+ 258:SerialExample.c **** 	AvrXRunTask(TCB(task0));
+ 2864               	.LM265:
+ 2865 0b58 80E0      		ldi r24,lo8(task0Tcb)
+ 2866 0b5a 90E0      		ldi r25,hi8(task0Tcb)
+ 2867 0b5c 0E94 0000 		call AvrXRunTask
+ 259:SerialExample.c **** 	//AvrXRunTask(TCB(servos));
+ 260:SerialExample.c ****     
+ 261:SerialExample.c **** 	Epilog();
+ 2869               	.LM266:
+ 2870 0b60 0E94 0000 		call Epilog
+ 262:SerialExample.c **** 	return(0);
+ 263:SerialExample.c **** }
+ 2872               	.LM267:
+ 2873 0b64 80E0      		ldi r24,lo8(0)
+ 2874 0b66 90E0      		ldi r25,hi8(0)
+ 2875               	/* epilogue: frame size=0 */
+ 2876 0b68 0C94 0000 		jmp exit
+ 2877               	/* epilogue end (size=2) */
+ 2878               	/* function main size 78 (72) */
+ 2880               	.Lscope55:
+ 2882               		.data
+ 2883               	.LC2:
+ 2884 0004 7465 7374 		.string	"test successful: 'a' function called with argument %d"
+ 2884      2073 7563 
+ 2884      6365 7373 
+ 2884      6675 6C3A 
+ 2884      2027 6127 
+ 2885               		.text
+ 2887               	.global	testFunctionA
+ 2889               	testFunctionA:
+ 264:SerialExample.c **** 
+ 265:SerialExample.c **** void testFunctionA(void)
+ 266:SerialExample.c **** {	
+ 2891               	.LM268:
+ 2892               	/* prologue: frame size=0 */
+ 2893               	/* prologue end (size=0) */
+ 267:SerialExample.c **** 
+ 268:SerialExample.c **** 	funcAParam = parserGetArgInt();
+ 2895               	.LM269:
+ 2896 0b6c 0E94 0000 		call parserGetArgInt
+ 2897 0b70 9093 0000 		sts (funcAParam)+1,r25
+ 2898 0b74 8093 0000 		sts funcAParam,r24
+ 269:SerialExample.c **** 	printf("test successful: 'a' function called with argument %d", funcAParam);
+ 2900               	.LM270:
+ 2901 0b78 9F93      		push r25
+ 2902 0b7a 8F93      		push r24
+ 2903 0b7c 80E0      		ldi r24,lo8(.LC2)
+ 2904 0b7e 90E0      		ldi r25,hi8(.LC2)
+ 2905 0b80 9F93      		push r25
+ 2906 0b82 8F93      		push r24
+ 2907 0b84 0E94 0000 		call printf
+ 270:SerialExample.c **** 	servoSetPosition(LEFT_SERVO_CHAN,(char) funcAParam);
+ 2909               	.LM271:
+ 2910 0b88 6091 0000 		lds r22,funcAParam
+ 2911 0b8c 80E0      		ldi r24,lo8(0)
+ 2912 0b8e 0E94 0000 		call servoSetPosition
+ 271:SerialExample.c **** 	putchar('\r');
+ 2914               	.LM272:
+ 2915 0b92 6091 0000 		lds r22,__iob+2
+ 2916 0b96 7091 0000 		lds r23,(__iob+2)+1
+ 2917 0b9a 8DE0      		ldi r24,lo8(13)
+ 2918 0b9c 90E0      		ldi r25,hi8(13)
+ 2919 0b9e 0E94 0000 		call fputc
+ 272:SerialExample.c **** 	putchar('\n');
+ 2921               	.LM273:
+ 2922 0ba2 6091 0000 		lds r22,__iob+2
+ 2923 0ba6 7091 0000 		lds r23,(__iob+2)+1
+ 2924 0baa 8AE0      		ldi r24,lo8(10)
+ 2925 0bac 90E0      		ldi r25,hi8(10)
+ 2926 0bae 0E94 0000 		call fputc
+ 2927 0bb2 0F90      		pop __tmp_reg__
+ 2928 0bb4 0F90      		pop __tmp_reg__
+ 2929 0bb6 0F90      		pop __tmp_reg__
+ 2930 0bb8 0F90      		pop __tmp_reg__
+ 2931               	/* epilogue: frame size=0 */
+ 2932 0bba 0895      		ret
+ 2933               	/* epilogue end (size=1) */
+ 2934               	/* function testFunctionA size 40 (39) */
+ 2936               	.Lscope56:
+ 2938               		.data
+ 2939               	.LC3:
+ 2940 003a 7465 7374 		.string	"test successful: 'b' function called with argument %d"
+ 2940      2073 7563 
+ 2940      6365 7373 
+ 2940      6675 6C3A 
+ 2940      2027 6227 
+ 2941               		.text
+ 2943               	.global	testFunctionB
+ 2945               	testFunctionB:
+ 273:SerialExample.c **** }
+ 274:SerialExample.c **** 
+ 275:SerialExample.c **** void testFunctionB(void)
+ 276:SerialExample.c **** {	
+ 2947               	.LM274:
+ 2948               	/* prologue: frame size=0 */
+ 2949               	/* prologue end (size=0) */
+ 277:SerialExample.c **** 	
+ 278:SerialExample.c **** 	
+ 279:SerialExample.c **** 	funcBParam = parserGetArgInt();
+ 2951               	.LM275:
+ 2952 0bbc 0E94 0000 		call parserGetArgInt
+ 2953 0bc0 9093 0000 		sts (funcBParam)+1,r25
+ 2954 0bc4 8093 0000 		sts funcBParam,r24
+ 280:SerialExample.c **** 	printf("test successful: 'b' function called with argument %d", funcBParam);
+ 2956               	.LM276:
+ 2957 0bc8 9F93      		push r25
+ 2958 0bca 8F93      		push r24
+ 2959 0bcc 80E0      		ldi r24,lo8(.LC3)
+ 2960 0bce 90E0      		ldi r25,hi8(.LC3)
+ 2961 0bd0 9F93      		push r25
+ 2962 0bd2 8F93      		push r24
+ 2963 0bd4 0E94 0000 		call printf
+ 281:SerialExample.c **** 	servoSetPosition(RIGHT_SERVO_CHAN,(char) funcBParam);
+ 2965               	.LM277:
+ 2966 0bd8 6091 0000 		lds r22,funcBParam
+ 2967 0bdc 81E0      		ldi r24,lo8(1)
+ 2968 0bde 0E94 0000 		call servoSetPosition
+ 282:SerialExample.c **** 	putchar('\r');
+ 2970               	.LM278:
+ 2971 0be2 6091 0000 		lds r22,__iob+2
+ 2972 0be6 7091 0000 		lds r23,(__iob+2)+1
+ 2973 0bea 8DE0      		ldi r24,lo8(13)
+ 2974 0bec 90E0      		ldi r25,hi8(13)
+ 2975 0bee 0E94 0000 		call fputc
+ 283:SerialExample.c **** 	putchar('\n');
+ 2977               	.LM279:
+ 2978 0bf2 6091 0000 		lds r22,__iob+2
+ 2979 0bf6 7091 0000 		lds r23,(__iob+2)+1
+ 2980 0bfa 8AE0      		ldi r24,lo8(10)
+ 2981 0bfc 90E0      		ldi r25,hi8(10)
+ 2982 0bfe 0E94 0000 		call fputc
+ 2983 0c02 0F90      		pop __tmp_reg__
+ 2984 0c04 0F90      		pop __tmp_reg__
+ 2985 0c06 0F90      		pop __tmp_reg__
+ 2986 0c08 0F90      		pop __tmp_reg__
+ 2987               	/* epilogue: frame size=0 */
+ 2988 0c0a 0895      		ret
+ 2989               	/* epilogue end (size=1) */
+ 2990               	/* function testFunctionB size 40 (39) */
+ 2992               	.Lscope57:
+ 2994               		.comm CommandList,150,1
+ 2995               		.comm ParserFunctionList,20,1
+ 2996               		.comm parserNumCommands,1,1
+ 2997               		.comm parserBufferLength,1,1
+ 2998               		.comm parserBuffer,15,1
+ 2999               		.comm ParserExecFunction,2,1
+ 3000               		.comm parserOutputFunc,2,1
+ 3001               		.comm TimerPauseReg,4,1
+ 3002               		.comm Timer0Reg0,4,1
+ 3003               		.comm Timer2Reg0,4,1
+ 3004               		.lcomm TimerIntFunc,16
+ 3005               		.comm ServoPosTics,2,1
+ 3006               		.comm ServoPeriodTics,2,1
+ 3007               		.comm ServoChannel,1,1
+ 3008               		.comm ServoChannels,8,1
+ 3009               		.comm funcBParam,2,1
+ 3010               		.comm funcAParam,2,1
+ 3011               		.comm task0Stk,111,1
+ 3012               		.comm task0Pid,6,1
+ 3013               		.comm getCommandsStk,135,1
+ 3014               		.comm getCommandsPid,6,1
+ 3015               		.comm marktribeStk,105,1
+ 3016               		.comm marktribePid,6,1
+ 3045               		.text
+ 3047               	Letext:
+ 3048               	/* File "SerialExample.c": code 1568 = 0x0620 (1216), prologues 166, epilogues 186 */
+DEFINED SYMBOLS
+                            *ABS*:00000000 SerialExample.c
+                            *ABS*:0000003f __SREG__
+                            *ABS*:0000003e __SP_H__
+                            *ABS*:0000003d __SP_L__
+                            *ABS*:00000000 __tmp_reg__
+                            *ABS*:00000001 __zero_reg__
+/var/tmp//cchFNATf.s:149    .progmem.data:00000000 marktribeTcb
+                            *COM*:00000069 marktribeStk
+/var/tmp//cchFNATf.s:2692   .text:00000a7e marktribe
+                            *COM*:00000006 marktribePid
+/var/tmp//cchFNATf.s:157    .progmem.data:00000007 getCommandsTcb
+                            *COM*:00000087 getCommandsStk
+/var/tmp//cchFNATf.s:2627   .text:00000a3a getCommands
+                            *COM*:00000006 getCommandsPid
+/var/tmp//cchFNATf.s:165    .progmem.data:0000000e task0Tcb
+                            *COM*:0000006f task0Stk
+/var/tmp//cchFNATf.s:2505   .text:0000097e task0
+                            *COM*:00000006 task0Pid
+/var/tmp//cchFNATf.s:173    .progmem.data:00000015 TimerRTCPrescaleFactor
+/var/tmp//cchFNATf.s:185    .progmem.data:00000025 TimerPrescaleFactor
+/var/tmp//cchFNATf.s:196    .text:00000000 parserInit
+                            *COM*:00000001 parserBufferLength
+                            *COM*:00000002 ParserExecFunction
+                            *COM*:00000001 parserNumCommands
+/var/tmp//cchFNATf.s:225    .text:00000012 parserAddCommand
+                            *COM*:00000096 CommandList
+                            *COM*:00000014 ParserFunctionList
+/var/tmp//cchFNATf.s:273    .text:00000050 parserSetOutputFunc
+                            *COM*:00000002 parserOutputFunc
+/var/tmp//cchFNATf.s:292    .text:0000005a parserProcessInputString
+                            *COM*:0000000f parserBuffer
+/var/tmp//cchFNATf.s:371    .text:000000c4 parserInputFunc
+/var/tmp//cchFNATf.s:418    .text:000000f2 parserGetArgStr
+/var/tmp//cchFNATf.s:437    .text:000000f8 parserGetArgInt
+/var/tmp//cchFNATf.s:457    .text:00000102 delay_us
+/var/tmp//cchFNATf.s:504    .text:0000012a timerDetach
+                             .bss:00000000 TimerIntFunc
+/var/tmp//cchFNATf.s:536    .text:00000140 timer0SetPrescaler
+/var/tmp//cchFNATf.s:557    .text:0000014a timer0ClearOverflowCount
+                            *COM*:00000004 Timer0Reg0
+/var/tmp//cchFNATf.s:578    .text:0000015c timer0Init
+/var/tmp//cchFNATf.s:609    .text:00000170 timer1SetPrescaler
+/var/tmp//cchFNATf.s:630    .text:0000017a timer1Init
+/var/tmp//cchFNATf.s:661    .text:0000018c timer2SetPrescaler
+/var/tmp//cchFNATf.s:682    .text:00000196 timer2ClearOverflowCount
+                            *COM*:00000004 Timer2Reg0
+/var/tmp//cchFNATf.s:703    .text:000001a8 timer2Init
+/var/tmp//cchFNATf.s:733    .text:000001bc timerInit
+/var/tmp//cchFNATf.s:780    .text:000001de timer0GetPrescaler
+/var/tmp//cchFNATf.s:818    .text:000001f6 timer1GetPrescaler
+/var/tmp//cchFNATf.s:856    .text:0000020e timer2GetPrescaler
+/var/tmp//cchFNATf.s:896    .text:00000226 timerAttach
+/var/tmp//cchFNATf.s:928    .text:0000023c timerPause
+                            *COM*:00000004 TimerPauseReg
+/var/tmp//cchFNATf.s:1111   .text:00000376 timer0GetOverflowCount
+/var/tmp//cchFNATf.s:1136   .text:0000038c timer2GetOverflowCount
+/var/tmp//cchFNATf.s:1162   .text:000003a2 timer1PWMInit
+/var/tmp//cchFNATf.s:1227   .text:000003d2 timer1PWMInitICR
+/var/tmp//cchFNATf.s:1275   .text:000003fa timer1PWMAOff
+/var/tmp//cchFNATf.s:1300   .text:00000408 timer1PWMBOff
+/var/tmp//cchFNATf.s:1325   .text:00000416 timer1PWMOff
+/var/tmp//cchFNATf.s:1356   .text:0000042c timer1PWMAOn
+/var/tmp//cchFNATf.s:1381   .text:0000043a timer1PWMBOn
+/var/tmp//cchFNATf.s:1407   .text:00000448 timer1PWMASet
+/var/tmp//cchFNATf.s:1427   .text:0000044e timer1PWMBSet
+/var/tmp//cchFNATf.s:1446   .text:00000454 __vector_9
+/var/tmp//cchFNATf.s:1506   .text:000004ae __vector_5
+/var/tmp//cchFNATf.s:1579   .text:0000052e __vector_10
+/var/tmp//cchFNATf.s:1639   .text:00000588 __vector_7
+/var/tmp//cchFNATf.s:1699   .text:000005e2 __vector_8
+/var/tmp//cchFNATf.s:1759   .text:0000063c __vector_6
+/var/tmp//cchFNATf.s:1819   .text:00000696 __vector_4
+/var/tmp//cchFNATf.s:1879   .text:000006f0 servoInit
+/var/tmp//cchFNATf.s:2205   .text:00000836 servoService
+                            *COM*:00000008 ServoChannels
+                            *COM*:00000002 ServoPosTics
+                            *COM*:00000002 ServoPeriodTics
+/var/tmp//cchFNATf.s:1989   .text:00000772 servoOff
+/var/tmp//cchFNATf.s:2016   .text:00000780 servoSetChannelIO
+/var/tmp//cchFNATf.s:2058   .text:000007ac servoSetPositionRaw
+/var/tmp//cchFNATf.s:2105   .text:000007d6 servoSetPosition
+/var/tmp//cchFNATf.s:2138   .text:000007f6 servoGetPositionRaw
+/var/tmp//cchFNATf.s:2168   .text:0000080c servoGetPosition
+                            *COM*:00000001 ServoChannel
+/var/tmp//cchFNATf.s:2351   .text:00000914 __vector_11
+/var/tmp//cchFNATf.s:2385   .text:00000926 myputs
+/var/tmp//cchFNATf.s:2427   .text:0000094e myputs_P
+/var/tmp//cchFNATf.s:2495   .progmem.data:00000031 __c.2
+/var/tmp//cchFNATf.s:2499   .progmem.data:00000036 __c.3
+/var/tmp//cchFNATf.s:2682   .progmem.data:0000003b __c.0
+/var/tmp//cchFNATf.s:2686   .progmem.data:00000050 __c.1
+/var/tmp//cchFNATf.s:2768   .text:00000ad0 main
+/var/tmp//cchFNATf.s:2889   .text:00000b6c testFunctionA
+/var/tmp//cchFNATf.s:2945   .text:00000bbc testFunctionB
+                            *COM*:00000002 funcAParam
+                            *COM*:00000002 funcBParam
+/var/tmp//cchFNATf.s:3047   .text:00000c0c Letext
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+strcpy
+atoi
+__udivmodhi4
+__divmodsi4
+__mulsi3
+__udivmodsi4
+IntProlog
+AvrXTimerHandler
+Epilog
+printf_P
+__iob
+fputc
+AvrXDelay
+fgetc
+__stack
+AvrXSetKernelStack
+InitSerial0
+get_c0
+put_char0
+fdevopen
+AvrXRunTask
+exit
+printf

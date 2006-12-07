@@ -1,0 +1,608 @@
+   1               		.file	"SerialExample.c"
+   2               		.arch atmega32
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               	.global	task2Tcb
+  19               		.section	.progmem.data,"a",@progbits
+  22               	task2Tcb:
+  23 0000 0000      		.word	task2Stk+110
+  24 0002 0000      		.word	pm(task2)
+  25 0004 0000      		.word	task2Pid
+  26 0006 02        		.byte	2
+  27               	.global	task1Tcb
+  30               	task1Tcb:
+  31 0007 0000      		.word	task1Stk+110
+  32 0009 0000      		.word	pm(task1)
+  33 000b 0000      		.word	task1Pid
+  34 000d 01        		.byte	1
+  35               	.global	task0Tcb
+  38               	task0Tcb:
+  39 000e 0000      		.word	task0Stk+110
+  40 0010 0000      		.word	pm(task0)
+  41 0012 0000      		.word	task0Pid
+  42 0014 01        		.byte	1
+  43               		.text
+  44               	.global	__vector_11
+  46               	__vector_11:
+  47               	.LFB5:
+  48               	.LM1:
+  49               	/* prologue: frame size=0 */
+  50               	/* prologue: naked */
+  51               	/* prologue end (size=0) */
+  52               	.LM2:
+  53 0000 0E94 0000 		call IntProlog
+  54               	.LM3:
+  55 0004 82B7      		in r24,82-0x20
+  56 0006 8F53      		subi r24,lo8(-(-63))
+  57 0008 82BF      		out 82-0x20,r24
+  58               	.LM4:
+  59 000a 0E94 0000 		call AvrXTimerHandler
+  60               	.LM5:
+  61 000e 0E94 0000 		call Epilog
+  62               	/* epilogue: frame size=0 */
+  63               	/* epilogue: naked */
+  64               	/* epilogue end (size=0) */
+  65               	/* function __vector_11 size 9 (9) */
+  66               	.LFE5:
+  68               	.global	myputs
+  70               	myputs:
+  71               	.LFB6:
+  72               	.LM6:
+  73               	/* prologue: frame size=0 */
+  74 0012 0F93      		push r16
+  75 0014 1F93      		push r17
+  76 0016 CF93      		push r28
+  77 0018 DF93      		push r29
+  78               	/* prologue end (size=4) */
+  79 001a 8C01      		movw r16,r24
+  80 001c EB01      		movw r28,r22
+  81               	.LM7:
+  82 001e 8881      		ld r24,Y
+  83 0020 8823      		tst r24
+  84 0022 31F0      		breq .L7
+  85               	.L5:
+  86               	.LM8:
+  87 0024 8991      		ld r24,Y+
+  88 0026 F801      		movw r30,r16
+  89 0028 0995      		icall
+  90 002a 8881      		ld r24,Y
+  91 002c 8823      		tst r24
+  92 002e D1F7      		brne .L5
+  93               	.L7:
+  94               	/* epilogue: frame size=0 */
+  95 0030 DF91      		pop r29
+  96 0032 CF91      		pop r28
+  97 0034 1F91      		pop r17
+  98 0036 0F91      		pop r16
+  99 0038 0895      		ret
+ 100               	/* epilogue end (size=5) */
+ 101               	/* function myputs size 20 (11) */
+ 102               	.LFE6:
+ 104               	.global	myputs_P
+ 106               	myputs_P:
+ 107               	.LFB7:
+ 108               	.LM9:
+ 109               	/* prologue: frame size=0 */
+ 110 003a 0F93      		push r16
+ 111 003c 1F93      		push r17
+ 112 003e CF93      		push r28
+ 113 0040 DF93      		push r29
+ 114               	/* prologue end (size=4) */
+ 115 0042 8C01      		movw r16,r24
+ 116 0044 EB01      		movw r28,r22
+ 117               	.LBB2:
+ 118               	.LM10:
+ 119 0046 FB01      		movw r30,r22
+ 120               	/* #APP */
+ 121 0048 8491      		lpm r24, Z
+ 122               		
+ 123               	/* #NOAPP */
+ 124               	.LBE2:
+ 125 004a 8823      		tst r24
+ 126 004c 49F0      		breq .L13
+ 127               	.L11:
+ 128               	.LBB3:
+ 129               	.LM11:
+ 130 004e FE01      		movw r30,r28
+ 131 0050 2196      		adiw r28,1
+ 132               	/* #APP */
+ 133 0052 8491      		lpm r24, Z
+ 134               		
+ 135               	/* #NOAPP */
+ 136               	.LBE3:
+ 137 0054 F801      		movw r30,r16
+ 138 0056 0995      		icall
+ 139               	.LBB4:
+ 140 0058 FE01      		movw r30,r28
+ 141               	/* #APP */
+ 142 005a 8491      		lpm r24, Z
+ 143               		
+ 144               	/* #NOAPP */
+ 145               	.LBE4:
+ 146 005c 8823      		tst r24
+ 147 005e B9F7      		brne .L11
+ 148               	.L13:
+ 149               	/* epilogue: frame size=0 */
+ 150 0060 DF91      		pop r29
+ 151 0062 CF91      		pop r28
+ 152 0064 1F91      		pop r17
+ 153 0066 0F91      		pop r16
+ 154 0068 0895      		ret
+ 155               	/* epilogue end (size=5) */
+ 156               	/* function myputs_P size 33 (24) */
+ 157               	.LFE7:
+ 159               		.section	.progmem.data
+ 162               	__c.1:
+ 163 0015 636F 6D70 		.string	"comp %d"
+ 163      2025 6400 
+ 166               	__c.2:
+ 167 001d 636F 6D70 		.string	"comp %d"
+ 167      2025 6400 
+ 168               		.text
+ 169               	.global	task0
+ 171               	task0:
+ 172               	.LFB8:
+ 173               	.LM12:
+ 174               	/* prologue: frame size=6 */
+ 175 006a CF93      		push r28
+ 176 006c DF93      		push r29
+ 177 006e CDB7      		in r28,__SP_L__
+ 178 0070 DEB7      		in r29,__SP_H__
+ 179 0072 2697      		sbiw r28,6
+ 180 0074 0FB6      		in __tmp_reg__,__SREG__
+ 181 0076 F894      		cli
+ 182 0078 DEBF      		out __SP_H__,r29
+ 183 007a 0FBE      		out __SREG__,__tmp_reg__
+ 184 007c CDBF      		out __SP_L__,r28
+ 185               	/* prologue end (size=10) */
+ 186               	.L15:
+ 187               	.LBB5:
+ 188               	.LM13:
+ 189 007e 00E0      		ldi r16,lo8(0)
+ 190 0080 10E0      		ldi r17,hi8(0)
+ 191               	.L19:
+ 192               	.LM14:
+ 193 0082 1F93      		push r17
+ 194 0084 0F93      		push r16
+ 195 0086 80E0      		ldi r24,lo8(__c.1)
+ 196 0088 90E0      		ldi r25,hi8(__c.1)
+ 197 008a 9F93      		push r25
+ 198 008c 8F93      		push r24
+ 199 008e 0E94 0000 		call printf_P
+ 200               	.LM15:
+ 201 0092 6091 0000 		lds r22,__iob+2
+ 202 0096 7091 0000 		lds r23,(__iob+2)+1
+ 203 009a 8DE0      		ldi r24,lo8(13)
+ 204 009c 90E0      		ldi r25,hi8(13)
+ 205 009e 0E94 0000 		call fputc
+ 206 00a2 6091 0000 		lds r22,__iob+2
+ 207 00a6 7091 0000 		lds r23,(__iob+2)+1
+ 208 00aa 8AE0      		ldi r24,lo8(10)
+ 209 00ac 90E0      		ldi r25,hi8(10)
+ 210 00ae 0E94 0000 		call fputc
+ 211               	.LM16:
+ 212 00b2 0F5F      		subi r16,lo8(-(1))
+ 213 00b4 1F4F      		sbci r17,hi8(-(1))
+ 214               	.LM17:
+ 215 00b6 64E6      		ldi r22,lo8(100)
+ 216 00b8 70E0      		ldi r23,hi8(100)
+ 217 00ba CE01      		movw r24,r28
+ 218 00bc 0196      		adiw r24,1
+ 219 00be 0E94 0000 		call AvrXDelay
+ 220 00c2 0F90      		pop __tmp_reg__
+ 221 00c4 0F90      		pop __tmp_reg__
+ 222 00c6 0F90      		pop __tmp_reg__
+ 223 00c8 0F90      		pop __tmp_reg__
+ 224 00ca 81E0      		ldi r24,hi8(360)
+ 225 00cc 0836      		cpi r16,lo8(360)
+ 226 00ce 1807      		cpc r17,r24
+ 227 00d0 C4F2      		brlt .L19
+ 228 00d2 08E6      		ldi r16,lo8(360)
+ 229 00d4 11E0      		ldi r17,hi8(360)
+ 230               	.L22:
+ 231               	.LM18:
+ 232 00d6 1F93      		push r17
+ 233 00d8 0F93      		push r16
+ 234 00da 80E0      		ldi r24,lo8(__c.2)
+ 235 00dc 90E0      		ldi r25,hi8(__c.2)
+ 236 00de 9F93      		push r25
+ 237 00e0 8F93      		push r24
+ 238 00e2 0E94 0000 		call printf_P
+ 239               	.LM19:
+ 240 00e6 6091 0000 		lds r22,__iob+2
+ 241 00ea 7091 0000 		lds r23,(__iob+2)+1
+ 242 00ee 8DE0      		ldi r24,lo8(13)
+ 243 00f0 90E0      		ldi r25,hi8(13)
+ 244 00f2 0E94 0000 		call fputc
+ 245 00f6 6091 0000 		lds r22,__iob+2
+ 246 00fa 7091 0000 		lds r23,(__iob+2)+1
+ 247 00fe 8AE0      		ldi r24,lo8(10)
+ 248 0100 90E0      		ldi r25,hi8(10)
+ 249 0102 0E94 0000 		call fputc
+ 250               	.LM20:
+ 251 0106 0150      		subi r16,lo8(-(-1))
+ 252 0108 1040      		sbci r17,hi8(-(-1))
+ 253               	.LM21:
+ 254 010a 64E6      		ldi r22,lo8(100)
+ 255 010c 70E0      		ldi r23,hi8(100)
+ 256 010e CE01      		movw r24,r28
+ 257 0110 0196      		adiw r24,1
+ 258 0112 0E94 0000 		call AvrXDelay
+ 259 0116 0F90      		pop __tmp_reg__
+ 260 0118 0F90      		pop __tmp_reg__
+ 261 011a 0F90      		pop __tmp_reg__
+ 262 011c 0F90      		pop __tmp_reg__
+ 263 011e 1016      		cp __zero_reg__,r16
+ 264 0120 1106      		cpc __zero_reg__,r17
+ 265 0122 CCF2      		brlt .L22
+ 266               	.LBE5:
+ 267 0124 ACCF      		rjmp .L15
+ 268               	/* epilogue: frame size=6 */
+ 269               	/* epilogue: noreturn */
+ 270               	/* epilogue end (size=0) */
+ 271               	/* function task0 size 94 (84) */
+ 272               	.LFE8:
+ 274               		.section	.progmem.data
+ 277               	__c.0:
+ 278 0025 6261 7474 		.string	"batt 100"
+ 278      2031 3030 
+ 278      00
+ 279               		.text
+ 280               	.global	task1
+ 282               	task1:
+ 283               	.LFB9:
+ 284               	.LM22:
+ 285               	/* prologue: frame size=6 */
+ 286 0126 CF93      		push r28
+ 287 0128 DF93      		push r29
+ 288 012a CDB7      		in r28,__SP_L__
+ 289 012c DEB7      		in r29,__SP_H__
+ 290 012e 2697      		sbiw r28,6
+ 291 0130 0FB6      		in __tmp_reg__,__SREG__
+ 292 0132 F894      		cli
+ 293 0134 DEBF      		out __SP_H__,r29
+ 294 0136 0FBE      		out __SREG__,__tmp_reg__
+ 295 0138 CDBF      		out __SP_L__,r28
+ 296               	/* prologue end (size=10) */
+ 297               	.L28:
+ 298               	.LM23:
+ 299 013a 80E0      		ldi r24,lo8(__c.0)
+ 300 013c 90E0      		ldi r25,hi8(__c.0)
+ 301 013e 9F93      		push r25
+ 302 0140 8F93      		push r24
+ 303 0142 0E94 0000 		call printf_P
+ 304               	.LM24:
+ 305 0146 6091 0000 		lds r22,__iob+2
+ 306 014a 7091 0000 		lds r23,(__iob+2)+1
+ 307 014e 8DE0      		ldi r24,lo8(13)
+ 308 0150 90E0      		ldi r25,hi8(13)
+ 309 0152 0E94 0000 		call fputc
+ 310 0156 6091 0000 		lds r22,__iob+2
+ 311 015a 7091 0000 		lds r23,(__iob+2)+1
+ 312 015e 8AE0      		ldi r24,lo8(10)
+ 313 0160 90E0      		ldi r25,hi8(10)
+ 314 0162 0E94 0000 		call fputc
+ 315               	.LM25:
+ 316 0166 60ED      		ldi r22,lo8(2000)
+ 317 0168 77E0      		ldi r23,hi8(2000)
+ 318 016a CE01      		movw r24,r28
+ 319 016c 0196      		adiw r24,1
+ 320 016e 0E94 0000 		call AvrXDelay
+ 321 0172 0F90      		pop __tmp_reg__
+ 322 0174 0F90      		pop __tmp_reg__
+ 323 0176 E1CF      		rjmp .L28
+ 324               	/* epilogue: frame size=6 */
+ 325               	/* epilogue: noreturn */
+ 326               	/* epilogue end (size=0) */
+ 327               	/* function task1 size 41 (31) */
+ 328               	.LFE9:
+ 330               	.global	task2
+ 332               	task2:
+ 333               	.LFB10:
+ 334               	.LM26:
+ 335               	/* prologue: frame size=0 */
+ 336               	/* prologue end (size=0) */
+ 337               	.LM27:
+ 338 0178 15C0      		rjmp .L40
+ 339               	.L36:
+ 340               	.LM28:
+ 341 017a CD30      		cpi r28,13
+ 342 017c D105      		cpc r29,__zero_reg__
+ 343 017e 79F4      		brne .L35
+ 344               	.LM29:
+ 345 0180 6091 0000 		lds r22,__iob+2
+ 346 0184 7091 0000 		lds r23,(__iob+2)+1
+ 347 0188 CE01      		movw r24,r28
+ 348 018a 0E94 0000 		call fputc
+ 349               	.LM30:
+ 350 018e 6091 0000 		lds r22,__iob+2
+ 351 0192 7091 0000 		lds r23,(__iob+2)+1
+ 352 0196 8AE0      		ldi r24,lo8(10)
+ 353 0198 90E0      		ldi r25,hi8(10)
+ 354 019a 0E94 0000 		call fputc
+ 355               	.L35:
+ 356               	.LM31:
+ 357 019e 8C2F      		mov r24,r28
+ 358 01a0 0E94 0000 		call parserInputFunc
+ 359               	.L40:
+ 360 01a4 8091 0000 		lds r24,__iob
+ 361 01a8 9091 0000 		lds r25,(__iob)+1
+ 362 01ac 0E94 0000 		call fgetc
+ 363 01b0 EC01      		movw r28,r24
+ 364 01b2 8FEF      		ldi r24,hi8(-1)
+ 365 01b4 CF3F      		cpi r28,lo8(-1)
+ 366 01b6 D807      		cpc r29,r24
+ 367 01b8 01F7      		brne .L36
+ 368 01ba F4CF      		rjmp .L40
+ 369               	/* epilogue: frame size=0 */
+ 370               	/* epilogue: noreturn */
+ 371               	/* epilogue end (size=0) */
+ 372               	/* function task2 size 34 (34) */
+ 373               	.LFE10:
+ 375               		.data
+ 376               	.LC0:
+ 377 0000 6100      		.string	"a"
+ 378               	.LC1:
+ 379 0002 6200      		.string	"b"
+ 380               		.text
+ 381               	.global	main
+ 383               	main:
+ 384               	.LFB11:
+ 385               	.LM32:
+ 386               	/* prologue: frame size=0 */
+ 387 01bc C0E0      		ldi r28,lo8(__stack - 0)
+ 388 01be D0E0      		ldi r29,hi8(__stack - 0)
+ 389 01c0 DEBF      		out __SP_H__,r29
+ 390 01c2 CDBF      		out __SP_L__,r28
+ 391               	/* prologue end (size=4) */
+ 392               	.LM33:
+ 393 01c4 80E0      		ldi r24,lo8(0)
+ 394 01c6 90E0      		ldi r25,hi8(0)
+ 395 01c8 0E94 0000 		call AvrXSetKernelStack
+ 396               	.LM34:
+ 397 01cc 80E8      		ldi r24,lo8(-128)
+ 398 01ce 85BF      		out 85-0x20,r24
+ 399               	.LM35:
+ 400 01d0 81EC      		ldi r24,lo8(-63)
+ 401 01d2 82BF      		out 82-0x20,r24
+ 402               	.LM36:
+ 403 01d4 84E0      		ldi r24,lo8(4)
+ 404 01d6 83BF      		out 83-0x20,r24
+ 405               	.LM37:
+ 406 01d8 81E0      		ldi r24,lo8(1)
+ 407 01da 89BF      		out 89-0x20,r24
+ 408               	.LM38:
+ 409 01dc 81E2      		ldi r24,lo8(33)
+ 410 01de 90E0      		ldi r25,hi8(33)
+ 411 01e0 0E94 0000 		call InitSerial0
+ 412               	.LM39:
+ 413 01e4 60E0      		ldi r22,lo8(pm(get_c0))
+ 414 01e6 70E0      		ldi r23,hi8(pm(get_c0))
+ 415 01e8 80E0      		ldi r24,lo8(pm(put_char0))
+ 416 01ea 90E0      		ldi r25,hi8(pm(put_char0))
+ 417 01ec 0E94 0000 		call fdevopen
+ 418               	.LM40:
+ 419 01f0 0E94 0000 		call parserInit
+ 420               	.LM41:
+ 421 01f4 80E0      		ldi r24,lo8(pm(putchar))
+ 422 01f6 90E0      		ldi r25,hi8(pm(putchar))
+ 423 01f8 0E94 0000 		call parserSetOutputFunc
+ 424               	.LM42:
+ 425 01fc 60E0      		ldi r22,lo8(pm(testFunctionA))
+ 426 01fe 70E0      		ldi r23,hi8(pm(testFunctionA))
+ 427 0200 80E0      		ldi r24,lo8(.LC0)
+ 428 0202 90E0      		ldi r25,hi8(.LC0)
+ 429 0204 0E94 0000 		call parserAddCommand
+ 430               	.LM43:
+ 431 0208 60E0      		ldi r22,lo8(pm(testFunctionB))
+ 432 020a 70E0      		ldi r23,hi8(pm(testFunctionB))
+ 433 020c 80E0      		ldi r24,lo8(.LC1)
+ 434 020e 90E0      		ldi r25,hi8(.LC1)
+ 435 0210 0E94 0000 		call parserAddCommand
+ 436               	.LM44:
+ 437 0214 80E0      		ldi r24,lo8(task0Tcb)
+ 438 0216 90E0      		ldi r25,hi8(task0Tcb)
+ 439 0218 0E94 0000 		call AvrXRunTask
+ 440               	.LM45:
+ 441 021c 80E0      		ldi r24,lo8(task1Tcb)
+ 442 021e 90E0      		ldi r25,hi8(task1Tcb)
+ 443 0220 0E94 0000 		call AvrXRunTask
+ 444               	.LM46:
+ 445 0224 80E0      		ldi r24,lo8(task2Tcb)
+ 446 0226 90E0      		ldi r25,hi8(task2Tcb)
+ 447 0228 0E94 0000 		call AvrXRunTask
+ 448               	.LM47:
+ 449 022c 0E94 0000 		call Epilog
+ 450               	.L42:
+ 451               	.LM48:
+ 452 0230 FFCF      		rjmp .L42
+ 453               	/* epilogue: frame size=0 */
+ 454               	/* epilogue: noreturn */
+ 455               	/* epilogue end (size=0) */
+ 456               	/* function main size 59 (55) */
+ 457               	.LFE11:
+ 459               		.data
+ 460               	.LC2:
+ 461 0004 7465 7374 		.string	"test successful: 'a' function called with argument %d"
+ 461      2073 7563 
+ 461      6365 7373 
+ 461      6675 6C3A 
+ 461      2027 6127 
+ 462               		.text
+ 463               	.global	testFunctionA
+ 465               	testFunctionA:
+ 466               	.LFB12:
+ 467               	.LM49:
+ 468               	/* prologue: frame size=0 */
+ 469               	/* prologue end (size=0) */
+ 470               	.LM50:
+ 471 0232 0E94 0000 		call parserGetArgInt
+ 472 0236 DC01      		movw r26,r24
+ 473 0238 CB01      		movw r24,r22
+ 474 023a 8093 0000 		sts funcAParam,r24
+ 475 023e 9093 0000 		sts (funcAParam)+1,r25
+ 476 0242 A093 0000 		sts (funcAParam)+2,r26
+ 477 0246 B093 0000 		sts (funcAParam)+3,r27
+ 478               	.LM51:
+ 479 024a BF93      		push r27
+ 480 024c AF93      		push r26
+ 481 024e 9F93      		push r25
+ 482 0250 8F93      		push r24
+ 483 0252 80E0      		ldi r24,lo8(.LC2)
+ 484 0254 90E0      		ldi r25,hi8(.LC2)
+ 485 0256 9F93      		push r25
+ 486 0258 8F93      		push r24
+ 487 025a 0E94 0000 		call printf
+ 488               	.LM52:
+ 489 025e 6091 0000 		lds r22,__iob+2
+ 490 0262 7091 0000 		lds r23,(__iob+2)+1
+ 491 0266 8DE0      		ldi r24,lo8(13)
+ 492 0268 90E0      		ldi r25,hi8(13)
+ 493 026a 0E94 0000 		call fputc
+ 494               	.LM53:
+ 495 026e 6091 0000 		lds r22,__iob+2
+ 496 0272 7091 0000 		lds r23,(__iob+2)+1
+ 497 0276 8AE0      		ldi r24,lo8(10)
+ 498 0278 90E0      		ldi r25,hi8(10)
+ 499 027a 0E94 0000 		call fputc
+ 500 027e 8DB7      		in r24,__SP_L__
+ 501 0280 9EB7      		in r25,__SP_H__
+ 502 0282 0696      		adiw r24,6
+ 503 0284 0FB6      		in __tmp_reg__,__SREG__
+ 504 0286 F894      		cli
+ 505 0288 9EBF      		out __SP_H__,r25
+ 506 028a 0FBE      		out __SREG__,__tmp_reg__
+ 507 028c 8DBF      		out __SP_L__,r24
+ 508               	/* epilogue: frame size=0 */
+ 509 028e 0895      		ret
+ 510               	/* epilogue end (size=1) */
+ 511               	/* function testFunctionA size 47 (46) */
+ 512               	.LFE12:
+ 514               		.data
+ 515               	.LC3:
+ 516 003a 7465 7374 		.string	"test successful: 'b' function called with argument %d"
+ 516      2073 7563 
+ 516      6365 7373 
+ 516      6675 6C3A 
+ 516      2027 6227 
+ 517               		.text
+ 518               	.global	testFunctionB
+ 520               	testFunctionB:
+ 521               	.LFB13:
+ 522               	.LM54:
+ 523               	/* prologue: frame size=0 */
+ 524               	/* prologue end (size=0) */
+ 525               	.LM55:
+ 526 0290 0E94 0000 		call parserGetArgInt
+ 527 0294 DC01      		movw r26,r24
+ 528 0296 CB01      		movw r24,r22
+ 529 0298 8093 0000 		sts funcBParam,r24
+ 530 029c 9093 0000 		sts (funcBParam)+1,r25
+ 531 02a0 A093 0000 		sts (funcBParam)+2,r26
+ 532 02a4 B093 0000 		sts (funcBParam)+3,r27
+ 533               	.LM56:
+ 534 02a8 BF93      		push r27
+ 535 02aa AF93      		push r26
+ 536 02ac 9F93      		push r25
+ 537 02ae 8F93      		push r24
+ 538 02b0 80E0      		ldi r24,lo8(.LC3)
+ 539 02b2 90E0      		ldi r25,hi8(.LC3)
+ 540 02b4 9F93      		push r25
+ 541 02b6 8F93      		push r24
+ 542 02b8 0E94 0000 		call printf
+ 543               	.LM57:
+ 544 02bc 6091 0000 		lds r22,__iob+2
+ 545 02c0 7091 0000 		lds r23,(__iob+2)+1
+ 546 02c4 8DE0      		ldi r24,lo8(13)
+ 547 02c6 90E0      		ldi r25,hi8(13)
+ 548 02c8 0E94 0000 		call fputc
+ 549               	.LM58:
+ 550 02cc 6091 0000 		lds r22,__iob+2
+ 551 02d0 7091 0000 		lds r23,(__iob+2)+1
+ 552 02d4 8AE0      		ldi r24,lo8(10)
+ 553 02d6 90E0      		ldi r25,hi8(10)
+ 554 02d8 0E94 0000 		call fputc
+ 555 02dc 8DB7      		in r24,__SP_L__
+ 556 02de 9EB7      		in r25,__SP_H__
+ 557 02e0 0696      		adiw r24,6
+ 558 02e2 0FB6      		in __tmp_reg__,__SREG__
+ 559 02e4 F894      		cli
+ 560 02e6 9EBF      		out __SP_H__,r25
+ 561 02e8 0FBE      		out __SREG__,__tmp_reg__
+ 562 02ea 8DBF      		out __SP_L__,r24
+ 563               	/* epilogue: frame size=0 */
+ 564 02ec 0895      		ret
+ 565               	/* epilogue end (size=1) */
+ 566               	/* function testFunctionB size 47 (46) */
+ 567               	.LFE13:
+ 569               		.comm funcAParam,4,1
+ 570               		.comm funcBParam,4,1
+ 571               		.comm task0Stk,111,1
+ 572               		.comm task0Pid,6,1
+ 573               		.comm task1Stk,111,1
+ 574               		.comm task1Pid,6,1
+ 575               		.comm task2Stk,111,1
+ 576               		.comm task2Pid,6,1
+ 577               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 SerialExample.c
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:3      *ABS*:0000003f __SREG__
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:4      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:5      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:22     .progmem.data:00000000 task2Tcb
+                            *COM*:0000006f task2Stk
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:332    .text:00000178 task2
+                            *COM*:00000006 task2Pid
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:30     .progmem.data:00000007 task1Tcb
+                            *COM*:0000006f task1Stk
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:282    .text:00000126 task1
+                            *COM*:00000006 task1Pid
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:38     .progmem.data:0000000e task0Tcb
+                            *COM*:0000006f task0Stk
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:171    .text:0000006a task0
+                            *COM*:00000006 task0Pid
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:46     .text:00000000 __vector_11
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:70     .text:00000012 myputs
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:106    .text:0000003a myputs_P
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:162    .progmem.data:00000015 __c.1
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:166    .progmem.data:0000001d __c.2
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:277    .progmem.data:00000025 __c.0
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:383    .text:000001bc main
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:465    .text:00000232 testFunctionA
+C:\DOCUME~1\Jorge\LOCALS~1\Temp/cco5aaaa.s:520    .text:00000290 testFunctionB
+                            *COM*:00000004 funcAParam
+                            *COM*:00000004 funcBParam
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+IntProlog
+AvrXTimerHandler
+Epilog
+printf_P
+__iob
+fputc
+AvrXDelay
+parserInputFunc
+fgetc
+__stack
+AvrXSetKernelStack
+InitSerial0
+get_c0
+put_char0
+fdevopen
+parserInit
+putchar
+parserSetOutputFunc
+parserAddCommand
+AvrXRunTask
+parserGetArgInt
+printf
