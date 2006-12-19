@@ -123,7 +123,7 @@ class radiolink(object):
 					#only write commands with valid data
 				
 			for out_string in command_list:
-				if (self.radio is not None) and (self.radio.isOpen())
+				if (self.radio is not None) and (self.radio.isOpen()):
 					self.radio.write(out_string)
 					print "UPLINK:",out_string[:-2] #strip \r\n	
 				log.Log('u',out_string[:-2]) #strip \r\n
