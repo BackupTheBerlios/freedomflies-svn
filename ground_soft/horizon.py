@@ -55,14 +55,17 @@ class MyHorizonIndicator(GLCanvas):
 		m_Scale_x = 1.0
 		m_Scale_y = 1.0
 		
+		#have to cast to GLint, GLsizei explicitly with update to PyOpenGL 3.0.0a5
+		#stupid, but true
+		
 		#The location in pixels is calculated based on the size of the
 		#gauge component and the offset of the parent guage
-		m_PixelPosition_x = (m_PhysicalPosition_x * m_Scale_x + parentPhysicalPosition_x ) / m_UnitsPerPixel
-		m_PixelPosition_y = (m_PhysicalPosition_y * m_Scale_y + parentPhysicalPosition_y ) / m_UnitsPerPixel
+		m_PixelPosition_x = GLsizei(int((m_PhysicalPosition_x * m_Scale_x + parentPhysicalPosition_x ) / m_UnitsPerPixel))
+		m_PixelPosition_y = GLsizei(int((m_PhysicalPosition_y * m_Scale_y + parentPhysicalPosition_y ) / m_UnitsPerPixel))
 		
 		#The size in pixels of the gauge is the physical size / mm per pixel
-		m_PixelSize_x = (int) ( m_PhysicalSize_x / m_UnitsPerPixel * m_Scale_x)
-		m_PixelSize_y = (int) ( m_PhysicalSize_y / m_UnitsPerPixel * m_Scale_y)
+		m_PixelSize_x = GLint(int(m_PhysicalSize_x / m_UnitsPerPixel * m_Scale_x))
+		m_PixelSize_y = GLint(int(m_PhysicalSize_y / m_UnitsPerPixel * m_Scale_y))
 		
 		self.SetCurrent()
 		glViewport(m_PixelPosition_x, m_PixelPosition_y, m_PixelSize_x, m_PixelSize_y)
