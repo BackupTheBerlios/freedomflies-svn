@@ -139,10 +139,9 @@ class radiolink(object):
 			#input
 			try:
 				buffer = self.radio.readline()
-			except serial.SerialException,e:
+			except (serial.SerialException,AttributeError):
 				print "no radio"
-				continue
-				
+				continue				
 			if len(buffer) == 0:
 				#print "no input"
 				continue
