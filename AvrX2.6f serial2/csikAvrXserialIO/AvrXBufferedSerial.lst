@@ -298,18 +298,18 @@ DEFINED SYMBOLS
                             *ABS*:0000003d __SP_L__
                             *ABS*:00000000 __tmp_reg__
                             *ABS*:00000001 __zero_reg__
-/var/tmp//ccvE2HBP.s:88     .data:00000000 Tx0Buf
+/var/tmp//cclHwGvT.s:88     .data:00000000 Tx0Buf
                             *COM*:00000027 Tx0BufFifo
-/var/tmp//ccvE2HBP.s:93     .data:00000002 Rx0Buf
+/var/tmp//cclHwGvT.s:93     .data:00000002 Rx0Buf
                             *COM*:0000006b Rx0BufFifo
-/var/tmp//ccvE2HBP.s:100    .text:00000000 InitSerial0
-/var/tmp//ccvE2HBP.s:150    .text:00000032 put_c0
-/var/tmp//ccvE2HBP.s:175    .text:00000040 put_char0
-/var/tmp//ccvE2HBP.s:203    .text:00000052 get_c0
-/var/tmp//ccvE2HBP.s:223    .text:0000005c get_char0
-/var/tmp//ccvE2HBP.s:243    .text:00000066 __vector_13
-/var/tmp//ccvE2HBP.s:282    .text:0000007e __vector_14
-/var/tmp//ccvE2HBP.s:336    .text:0000009a Letext
+/var/tmp//cclHwGvT.s:100    .text:00000000 InitSerial0
+/var/tmp//cclHwGvT.s:150    .text:00000032 put_c0
+/var/tmp//cclHwGvT.s:175    .text:00000040 put_char0
+/var/tmp//cclHwGvT.s:203    .text:00000052 get_c0
+/var/tmp//cclHwGvT.s:223    .text:0000005c get_char0
+/var/tmp//cclHwGvT.s:243    .text:00000066 __vector_13
+/var/tmp//cclHwGvT.s:282    .text:0000007e __vector_14
+/var/tmp//cclHwGvT.s:336    .text:0000009a Letext
 
 UNDEFINED SYMBOLS
 __do_copy_data

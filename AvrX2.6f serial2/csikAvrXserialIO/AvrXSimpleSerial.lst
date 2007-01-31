@@ -9,8 +9,9 @@
    9               		.global __do_clear_bss
   12               		.text
   13               	.Ltext0:
-  86               	.global	InitSerial0
-  88               	InitSerial0:
+  80               	.global	InitSerial0
+  82               	InitSerial0:
+  83               		.stabd	46,0,0
    1:AvrXSimpleSerial.c **** /*
    2:AvrXSimpleSerial.c **** 	AvrXSimpleSerial.c
    3:AvrXSimpleSerial.c **** 
@@ -46,9 +47,9 @@
   33:AvrXSimpleSerial.c **** 
   34:AvrXSimpleSerial.c **** void InitSerial0(uint16_t ubrr)
   35:AvrXSimpleSerial.c **** {
-  90               	.LM1:
-  91               	/* prologue: frame size=0 */
-  92               	/* prologue end (size=0) */
+  85               	.LM0:
+  86               	/* prologue: frame size=0 */
+  87               	/* prologue end (size=0) */
   36:AvrXSimpleSerial.c **** // Two USARTs, not shared
   37:AvrXSimpleSerial.c **** #if defined(__AVR_ATmega128__) || defined(__AVR_ATmega64__) | defined(__AVR_ATcan128__)
   38:AvrXSimpleSerial.c **** 	UBRR0L = ubrr;
@@ -84,32 +85,34 @@
   68:AvrXSimpleSerial.c **** #elif defined(__AVR_ATmega8__)   | defined(__AVR_ATmega16__)  | defined(__AVR_ATmega32__)  | \
   69:AvrXSimpleSerial.c **** 	  defined(__AVR_ATmega323__) | defined(__AVR_ATmega8515__)| defined(__AVR_ATmega8535__)
   70:AvrXSimpleSerial.c **** 	UBRRL = ubrr;
-  94               	.LM2:
-  95 0000 89B9      		out 41-0x20,r24
+  89               	.LM1:
+  90 0000 89B9      		out 41-0x20,r24
   71:AvrXSimpleSerial.c **** 	UBRRH = (uint8_t)(ubrr>>8);
-  97               	.LM3:
-  98 0002 892F      		mov r24,r25
-  99 0004 9927      		clr r25
- 100 0006 80BD      		out 64-0x20,r24
+  92               	.LM2:
+  93 0002 892F      		mov r24,r25
+  94 0004 9927      		clr r25
+  95 0006 80BD      		out 64-0x20,r24
   72:AvrXSimpleSerial.c **** 	UCSRA = (BAUDX == 8)?(1<<U2X):0;
- 102               	.LM4:
- 103 0008 82E0      		ldi r24,lo8(2)
- 104 000a 8BB9      		out 43-0x20,r24
+  97               	.LM3:
+  98 0008 82E0      		ldi r24,lo8(2)
+  99 000a 8BB9      		out 43-0x20,r24
   73:AvrXSimpleSerial.c **** 	UCSRB = ((1<<TXEN) | (1<<RXEN) | (1<<RXCIE) | (1<<UDRIE));
- 106               	.LM5:
- 107 000c 88EB      		ldi r24,lo8(-72)
- 108 000e 8AB9      		out 42-0x20,r24
+ 101               	.LM4:
+ 102 000c 88EB      		ldi r24,lo8(-72)
+ 103 000e 8AB9      		out 42-0x20,r24
   74:AvrXSimpleSerial.c **** 	UCSRC = ((1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0));
- 110               	.LM6:
- 111 0010 86E8      		ldi r24,lo8(-122)
- 112 0012 80BD      		out 64-0x20,r24
- 113               	/* epilogue: frame size=0 */
- 114 0014 0895      		ret
- 115               	/* epilogue end (size=1) */
- 116               	/* function InitSerial0 size 11 (10) */
- 118               	.Lscope0:
- 122               	.global	put_c0
- 124               	put_c0:
+ 105               	.LM5:
+ 106 0010 86E8      		ldi r24,lo8(-122)
+ 107 0012 80BD      		out 64-0x20,r24
+ 108               	/* epilogue: frame size=0 */
+ 109 0014 0895      		ret
+ 110               	/* epilogue end (size=1) */
+ 111               	/* function InitSerial0 size 11 (10) */
+ 113               	.Lscope0:
+ 115               		.stabd	78,0,0
+ 118               	.global	put_c0
+ 120               	put_c0:
+ 121               		.stabd	46,0,0
   75:AvrXSimpleSerial.c **** 
   76:AvrXSimpleSerial.c **** // One USART, (C register not shared)
   77:AvrXSimpleSerial.c **** #elif defined(__AVR_ATmega169__) | defined(__AVR_ATmega165__) | defined(__AVR_IOtn2313__)
@@ -131,150 +134,157 @@
   93:AvrXSimpleSerial.c **** 
   94:AvrXSimpleSerial.c **** int put_c0(char c)	// Non blocking output
   95:AvrXSimpleSerial.c **** {
- 126               	.LM7:
- 127               	/* prologue: frame size=0 */
- 128 0016 CF93      		push r28
- 129               	/* prologue end (size=1) */
- 130 0018 C82F      		mov r28,r24
+ 123               	.LM6:
+ 124               	/* prologue: frame size=0 */
+ 125 0016 1F93      		push r17
+ 126               	/* prologue end (size=1) */
+ 127 0018 182F      		mov r17,r24
   96:AvrXSimpleSerial.c **** 	if (AvrXTestSemaphore(&Tx0Ready) == SEM_DONE)
- 132               	.LM8:
- 133 001a 80E0      		ldi r24,lo8(Tx0Ready)
- 134 001c 90E0      		ldi r25,hi8(Tx0Ready)
- 135 001e 0E94 0000 		call AvrXTestSemaphore
- 136 0022 0197      		sbiw r24,1
- 137 0024 29F4      		brne .L3
+ 129               	.LM7:
+ 130 001a 80E0      		ldi r24,lo8(Tx0Ready)
+ 131 001c 90E0      		ldi r25,hi8(Tx0Ready)
+ 132 001e 0E94 0000 		call AvrXTestSemaphore
+ 133 0022 0197      		sbiw r24,1
+ 134 0024 19F0      		breq .L4
+ 136               	.LM8:
+ 137 0026 8FEF      		ldi r24,lo8(-1)
+ 138 0028 9FEF      		ldi r25,hi8(-1)
+ 139 002a 04C0      		rjmp .L6
+ 140               	.L4:
   97:AvrXSimpleSerial.c **** 	{
   98:AvrXSimpleSerial.c **** 		UDR = c;
- 139               	.LM9:
- 140 0026 CCB9      		out 44-0x20,r28
+ 142               	.LM9:
+ 143 002c 1CB9      		out 44-0x20,r17
   99:AvrXSimpleSerial.c **** 		UCSRB |= (1<<UDRIE);
- 142               	.LM10:
- 143 0028 559A      		sbi 42-0x20,5
+ 145               	.LM10:
+ 146 002e 559A      		sbi 42-0x20,5
+ 147 0030 80E0      		ldi r24,lo8(0)
+ 148 0032 90E0      		ldi r25,hi8(0)
+ 149               	.L6:
+ 150               	/* epilogue: frame size=0 */
+ 151 0034 1F91      		pop r17
+ 152 0036 0895      		ret
+ 153               	/* epilogue end (size=2) */
+ 154               	/* function put_c0 size 18 (15) */
+ 156               	.Lscope1:
+ 158               		.stabd	78,0,0
+ 161               	.global	put_char0
+ 163               	put_char0:
+ 164               		.stabd	46,0,0
  100:AvrXSimpleSerial.c **** 		return 0;
- 145               	.LM11:
- 146 002a 80E0      		ldi r24,lo8(0)
- 147 002c 90E0      		ldi r25,hi8(0)
- 148 002e 02C0      		rjmp .L2
- 149               	.L3:
  101:AvrXSimpleSerial.c **** 	}
  102:AvrXSimpleSerial.c **** 	else
  103:AvrXSimpleSerial.c **** 		return FIFO_ERR;
- 151               	.LM12:
- 152 0030 8FEF      		ldi r24,lo8(-1)
- 153 0032 9FEF      		ldi r25,hi8(-1)
- 154               	.L2:
- 155               	/* epilogue: frame size=0 */
- 156 0034 CF91      		pop r28
- 157 0036 0895      		ret
- 158               	/* epilogue end (size=2) */
- 159               	/* function put_c0 size 18 (15) */
- 161               	.Lscope1:
- 165               	.global	put_char0
- 167               	put_char0:
  104:AvrXSimpleSerial.c **** }
  105:AvrXSimpleSerial.c **** 
  106:AvrXSimpleSerial.c **** int put_char0( char c)	// Blocking output
  107:AvrXSimpleSerial.c **** {
- 169               	.LM13:
- 170               	/* prologue: frame size=0 */
- 171 0038 1F93      		push r17
- 172               	/* prologue end (size=1) */
- 173 003a 182F      		mov r17,r24
+ 166               	.LM11:
+ 167               	/* prologue: frame size=0 */
+ 168 0038 1F93      		push r17
+ 169               	/* prologue end (size=1) */
+ 170 003a 182F      		mov r17,r24
  108:AvrXSimpleSerial.c **** 	AvrXWaitSemaphore(&Tx0Ready);
- 175               	.LM14:
- 176 003c 80E0      		ldi r24,lo8(Tx0Ready)
- 177 003e 90E0      		ldi r25,hi8(Tx0Ready)
- 178 0040 0E94 0000 		call AvrXWaitSemaphore
+ 172               	.LM12:
+ 173 003c 80E0      		ldi r24,lo8(Tx0Ready)
+ 174 003e 90E0      		ldi r25,hi8(Tx0Ready)
+ 175 0040 0E94 0000 		call AvrXWaitSemaphore
  109:AvrXSimpleSerial.c **** 	UDR = c;
- 180               	.LM15:
- 181 0044 1CB9      		out 44-0x20,r17
+ 177               	.LM13:
+ 178 0044 1CB9      		out 44-0x20,r17
  110:AvrXSimpleSerial.c **** 	UCSRB |= (1<<UDRIE);
- 183               	.LM16:
- 184 0046 559A      		sbi 42-0x20,5
+ 180               	.LM14:
+ 181 0046 559A      		sbi 42-0x20,5
  111:AvrXSimpleSerial.c **** 	return 0;
  112:AvrXSimpleSerial.c **** }
- 186               	.LM17:
- 187 0048 80E0      		ldi r24,lo8(0)
- 188 004a 90E0      		ldi r25,hi8(0)
- 189               	/* epilogue: frame size=0 */
- 190 004c 1F91      		pop r17
- 191 004e 0895      		ret
- 192               	/* epilogue end (size=2) */
- 193               	/* function put_char0 size 12 (9) */
- 195               	.Lscope2:
- 198               	.global	get_c0
- 200               	get_c0:
+ 183               	.LM15:
+ 184 0048 80E0      		ldi r24,lo8(0)
+ 185 004a 90E0      		ldi r25,hi8(0)
+ 186               	/* epilogue: frame size=0 */
+ 187 004c 1F91      		pop r17
+ 188 004e 0895      		ret
+ 189               	/* epilogue end (size=2) */
+ 190               	/* function put_char0 size 12 (9) */
+ 192               	.Lscope2:
+ 194               		.stabd	78,0,0
+ 196               	.global	get_c0
+ 198               	get_c0:
+ 199               		.stabd	46,0,0
  113:AvrXSimpleSerial.c **** 
  114:AvrXSimpleSerial.c **** int get_c0(void)	// Non blocking, return status outside of char range
  115:AvrXSimpleSerial.c **** {
- 202               	.LM18:
- 203               	/* prologue: frame size=0 */
- 204               	/* prologue end (size=0) */
+ 201               	.LM16:
+ 202               	/* prologue: frame size=0 */
+ 203               	/* prologue end (size=0) */
  116:AvrXSimpleSerial.c **** 	if (AvrXTestSemaphore(&Rx0Ready) == SEM_DONE)
- 206               	.LM19:
- 207 0050 80E0      		ldi r24,lo8(Rx0Ready)
- 208 0052 90E0      		ldi r25,hi8(Rx0Ready)
- 209 0054 0E94 0000 		call AvrXTestSemaphore
- 210 0058 0197      		sbiw r24,1
- 211 005a 21F4      		brne .L7
- 212               	.LBB2:
+ 205               	.LM17:
+ 206 0050 80E0      		ldi r24,lo8(Rx0Ready)
+ 207 0052 90E0      		ldi r25,hi8(Rx0Ready)
+ 208 0054 0E94 0000 		call AvrXTestSemaphore
+ 209 0058 0197      		sbiw r24,1
+ 210 005a 19F0      		breq .L11
+ 212               	.LM18:
+ 213 005c 8FEF      		ldi r24,lo8(-1)
+ 214 005e 9FEF      		ldi r25,hi8(-1)
+ 215 0060 0895      		ret
+ 216               	.L11:
+ 217               	.LBB2:
  117:AvrXSimpleSerial.c **** 	{
  118:AvrXSimpleSerial.c **** 		uint8_t c = UDR;
- 214               	.LM20:
- 215 005c 8CB1      		in r24,44-0x20
+ 219               	.LM19:
+ 220 0062 8CB1      		in r24,44-0x20
  119:AvrXSimpleSerial.c **** 		UCSRB |= (1<<RXCIE);	// Enable getting the next charactor
- 217               	.LM21:
- 218 005e 579A      		sbi 42-0x20,7
+ 222               	.LM20:
+ 223 0064 579A      		sbi 42-0x20,7
  120:AvrXSimpleSerial.c **** 		return c;
- 220               	.LM22:
- 221 0060 9927      		clr r25
- 222 0062 0895      		ret
- 223               	.L7:
- 224               	.LBE2:
+ 225               	.LM21:
+ 226 0066 9927      		clr r25
+ 227               	.LBE2:
  121:AvrXSimpleSerial.c **** 	}
  122:AvrXSimpleSerial.c **** 	else
  123:AvrXSimpleSerial.c **** 		return FIFO_ERR;
- 226               	.LM23:
- 227 0064 8FEF      		ldi r24,lo8(-1)
- 228 0066 9FEF      		ldi r25,hi8(-1)
  124:AvrXSimpleSerial.c **** }
- 230               	.LM24:
- 231 0068 0895      		ret
- 232               	/* epilogue: frame size=0 */
- 233               	/* epilogue: noreturn */
- 234               	/* epilogue end (size=0) */
- 235               	/* function get_c0 size 14 (14) */
- 240               	.Lscope3:
+ 229               	.LM22:
+ 230 0068 0895      		ret
+ 231               	/* epilogue: frame size=0 */
+ 232               	/* epilogue: noreturn */
+ 233               	/* epilogue end (size=0) */
+ 234               	/* function get_c0 size 14 (14) */
+ 239               	.Lscope3:
+ 241               		.stabd	78,0,0
  243               	.global	get_char0
  245               	get_char0:
+ 246               		.stabd	46,0,0
  125:AvrXSimpleSerial.c **** 
  126:AvrXSimpleSerial.c **** int get_char0(void)	// Blocks waiting for something
  127:AvrXSimpleSerial.c **** {
- 247               	.LM25:
- 248               	/* prologue: frame size=0 */
- 249               	/* prologue end (size=0) */
+ 248               	.LM23:
+ 249               	/* prologue: frame size=0 */
+ 250               	/* prologue end (size=0) */
  128:AvrXSimpleSerial.c **** 	AvrXWaitSemaphore(&Rx0Ready);
- 251               	.LM26:
- 252 006a 80E0      		ldi r24,lo8(Rx0Ready)
- 253 006c 90E0      		ldi r25,hi8(Rx0Ready)
- 254 006e 0E94 0000 		call AvrXWaitSemaphore
+ 252               	.LM24:
+ 253 006a 80E0      		ldi r24,lo8(Rx0Ready)
+ 254 006c 90E0      		ldi r25,hi8(Rx0Ready)
+ 255 006e 0E94 0000 		call AvrXWaitSemaphore
  129:AvrXSimpleSerial.c **** 	uint8_t c = UDR;
- 256               	.LM27:
- 257 0072 8CB1      		in r24,44-0x20
+ 257               	.LM25:
+ 258 0072 8CB1      		in r24,44-0x20
  130:AvrXSimpleSerial.c **** 	UCSRB |= (1<<RXCIE);	// Enable getting the next charactor
- 259               	.LM28:
- 260 0074 579A      		sbi 42-0x20,7
+ 260               	.LM26:
+ 261 0074 579A      		sbi 42-0x20,7
  131:AvrXSimpleSerial.c **** 	return c;
  132:AvrXSimpleSerial.c **** }
- 262               	.LM29:
- 263 0076 9927      		clr r25
- 264               	/* epilogue: frame size=0 */
- 265 0078 0895      		ret
- 266               	/* epilogue end (size=1) */
- 267               	/* function get_char0 size 8 (7) */
- 272               	.Lscope4:
- 275               	.global	__vector_13
- 277               	__vector_13:
+ 263               	.LM27:
+ 264 0076 9927      		clr r25
+ 265               	/* epilogue: frame size=0 */
+ 266 0078 0895      		ret
+ 267               	/* epilogue end (size=1) */
+ 268               	/* function get_char0 size 8 (7) */
+ 273               	.Lscope4:
+ 275               		.stabd	78,0,0
+ 277               	.global	__vector_13
+ 279               	__vector_13:
+ 280               		.stabd	46,0,0
  133:AvrXSimpleSerial.c **** /*
  134:AvrXSimpleSerial.c **** This handler will buffer up to three characters in hardware. (double buffer +
  135:AvrXSimpleSerial.c **** input shift register).  The semaphore is used to signal the task that one or more
@@ -290,90 +300,91 @@
  145:AvrXSimpleSerial.c **** 
  146:AvrXSimpleSerial.c **** AVRX_SIGINT(SIG_UART0_RECV)
  147:AvrXSimpleSerial.c **** {
- 279               	.LM30:
- 280               	/* prologue: frame size=0 */
- 281               	/* prologue: naked */
- 282               	/* prologue end (size=0) */
+ 282               	.LM28:
+ 283               	/* prologue: frame size=0 */
+ 284               	/* prologue: naked */
+ 285               	/* prologue end (size=0) */
  148:AvrXSimpleSerial.c ****     IntProlog();
- 284               	.LM31:
- 285 007a 0E94 0000 		call IntProlog
+ 287               	.LM29:
+ 288 007a 0E94 0000 		call IntProlog
  149:AvrXSimpleSerial.c ****     UCSRB &= ~(1<<RXCIE);	// Disable Rx interrupt
- 287               	.LM32:
- 288 007e 5798      		cbi 42-0x20,7
+ 290               	.LM30:
+ 291 007e 5798      		cbi 42-0x20,7
  150:AvrXSimpleSerial.c ****     sei();					// Allow other interrupt activity to occur
- 290               	.LM33:
- 291               	/* #APP */
- 292 0080 7894      		sei
+ 293               	.LM31:
+ 294               	/* #APP */
+ 295 0080 7894      		sei
  151:AvrXSimpleSerial.c **** 	AvrXSetSemaphore(&Rx0Ready);
- 294               	.LM34:
- 295               	/* #NOAPP */
- 296 0082 80E0      		ldi r24,lo8(Rx0Ready)
- 297 0084 90E0      		ldi r25,hi8(Rx0Ready)
- 298 0086 0E94 0000 		call AvrXSetSemaphore
+ 297               	.LM32:
+ 298               	/* #NOAPP */
+ 299 0082 80E0      		ldi r24,lo8(Rx0Ready)
+ 300 0084 90E0      		ldi r25,hi8(Rx0Ready)
+ 301 0086 0E94 0000 		call AvrXSetSemaphore
  152:AvrXSimpleSerial.c **** 	Epilog();
- 300               	.LM35:
- 301 008a 0E94 0000 		call Epilog
- 302               	/* epilogue: frame size=0 */
- 303               	/* epilogue: naked */
- 304               	/* epilogue end (size=0) */
- 305               	/* function __vector_13 size 11 (11) */
- 307               	.Lscope5:
- 310               	.global	__vector_14
- 312               	__vector_14:
+ 303               	.LM33:
+ 304 008a 0E94 0000 		call Epilog
+ 305               	/* epilogue: frame size=0 */
+ 306               	/* epilogue: naked */
+ 307               	/* epilogue end (size=0) */
+ 308               	/* function __vector_13 size 11 (11) */
+ 310               	.Lscope5:
+ 312               		.stabd	78,0,0
+ 314               	.global	__vector_14
+ 316               	__vector_14:
+ 317               		.stabd	46,0,0
  153:AvrXSimpleSerial.c **** }
  154:AvrXSimpleSerial.c **** 
  155:AvrXSimpleSerial.c **** AVRX_SIGINT(SIG_UART0_DATA)
  156:AvrXSimpleSerial.c **** {
- 314               	.LM36:
- 315               	/* prologue: frame size=0 */
- 316               	/* prologue: naked */
- 317               	/* prologue end (size=0) */
+ 319               	.LM34:
+ 320               	/* prologue: frame size=0 */
+ 321               	/* prologue: naked */
+ 322               	/* prologue end (size=0) */
  157:AvrXSimpleSerial.c ****     IntProlog();
- 319               	.LM37:
- 320 008e 0E94 0000 		call IntProlog
+ 324               	.LM35:
+ 325 008e 0E94 0000 		call IntProlog
  158:AvrXSimpleSerial.c ****     UCSRB &= ~(1<<UDRIE);			// Disable UDRE interrupt
- 322               	.LM38:
- 323 0092 5598      		cbi 42-0x20,5
+ 327               	.LM36:
+ 328 0092 5598      		cbi 42-0x20,5
  159:AvrXSimpleSerial.c ****     sei();							// Allow other stuff to happen
- 325               	.LM39:
- 326               	/* #APP */
- 327 0094 7894      		sei
+ 330               	.LM37:
+ 331               	/* #APP */
+ 332 0094 7894      		sei
  160:AvrXSimpleSerial.c **** 	AvrXSetSemaphore(&Tx0Ready);
- 329               	.LM40:
- 330               	/* #NOAPP */
- 331 0096 80E0      		ldi r24,lo8(Tx0Ready)
- 332 0098 90E0      		ldi r25,hi8(Tx0Ready)
- 333 009a 0E94 0000 		call AvrXSetSemaphore
+ 334               	.LM38:
+ 335               	/* #NOAPP */
+ 336 0096 80E0      		ldi r24,lo8(Tx0Ready)
+ 337 0098 90E0      		ldi r25,hi8(Tx0Ready)
+ 338 009a 0E94 0000 		call AvrXSetSemaphore
  161:AvrXSimpleSerial.c **** 	Epilog();
- 335               	.LM41:
- 336 009e 0E94 0000 		call Epilog
- 337               	/* epilogue: frame size=0 */
- 338               	/* epilogue: naked */
- 339               	/* epilogue end (size=0) */
- 340               	/* function __vector_14 size 11 (11) */
- 342               	.Lscope6:
- 344               		.comm Rx0Ready,2,1
- 345               		.comm Tx0Ready,2,1
- 348               		.text
- 350               	Letext:
- 351               	/* File "AvrXSimpleSerial.c": code   85 = 0x0055 (  77), prologues   2, epilogues   6 */
+ 340               	.LM39:
+ 341 009e 0E94 0000 		call Epilog
+ 342               	/* epilogue: frame size=0 */
+ 343               	/* epilogue: naked */
+ 344               	/* epilogue end (size=0) */
+ 345               	/* function __vector_14 size 11 (11) */
+ 347               	.Lscope6:
+ 349               		.stabd	78,0,0
+ 352               		.comm Tx0Ready,2,1
+ 353               		.comm Rx0Ready,2,1
+ 355               	.Letext0:
+ 356               	/* File "AvrXSimpleSerial.c": code   85 = 0x0055 (  77), prologues   2, epilogues   6 */
 DEFINED SYMBOLS
                             *ABS*:00000000 AvrXSimpleSerial.c
-                            *ABS*:0000003f __SREG__
-                            *ABS*:0000003e __SP_H__
-                            *ABS*:0000003d __SP_L__
-                            *ABS*:00000000 __tmp_reg__
-                            *ABS*:00000001 __zero_reg__
-/var/tmp//ccECLrUA.s:88     .text:00000000 InitSerial0
-/var/tmp//ccECLrUA.s:124    .text:00000016 put_c0
+/var/tmp//ccQ9GvqK.s:3      *ABS*:0000003f __SREG__
+/var/tmp//ccQ9GvqK.s:4      *ABS*:0000003e __SP_H__
+/var/tmp//ccQ9GvqK.s:5      *ABS*:0000003d __SP_L__
+/var/tmp//ccQ9GvqK.s:6      *ABS*:00000000 __tmp_reg__
+/var/tmp//ccQ9GvqK.s:7      *ABS*:00000001 __zero_reg__
+/var/tmp//ccQ9GvqK.s:82     .text:00000000 InitSerial0
+/var/tmp//ccQ9GvqK.s:120    .text:00000016 put_c0
                             *COM*:00000002 Tx0Ready
-/var/tmp//ccECLrUA.s:167    .text:00000038 put_char0
-/var/tmp//ccECLrUA.s:200    .text:00000050 get_c0
+/var/tmp//ccQ9GvqK.s:163    .text:00000038 put_char0
+/var/tmp//ccQ9GvqK.s:198    .text:00000050 get_c0
                             *COM*:00000002 Rx0Ready
-/var/tmp//ccECLrUA.s:245    .text:0000006a get_char0
-/var/tmp//ccECLrUA.s:277    .text:0000007a __vector_13
-/var/tmp//ccECLrUA.s:312    .text:0000008e __vector_14
-/var/tmp//ccECLrUA.s:350    .text:000000a2 Letext
+/var/tmp//ccQ9GvqK.s:245    .text:0000006a get_char0
+/var/tmp//ccQ9GvqK.s:279    .text:0000007a __vector_13
+/var/tmp//ccQ9GvqK.s:316    .text:0000008e __vector_14
 
 UNDEFINED SYMBOLS
 __do_copy_data

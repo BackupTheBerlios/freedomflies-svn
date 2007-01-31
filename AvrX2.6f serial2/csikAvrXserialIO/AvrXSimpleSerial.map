@@ -12,50 +12,52 @@ Archive member included because of file (symbol)
                               ../avrx/avrx.a(avrx_timequeue.o) (AvrXIntResetObjectSemaphore)
 ../avrx/avrx.a(avrx_message.o)
                               ../avrx/avrx.a(avrx_timequeue.o) (AvrXIntSendMessage)
-/opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_mulsi3.o)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_mulsi3.o)
                               /opt/local/avr/avrlib/timer.o (__mulsi3)
-/opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_udivmodhi4.o)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodhi4.o)
                               /opt/local/avr/avrlib/timer.o (__udivmodhi4)
-/opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_udivmodsi4.o)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodsi4.o)
                               /opt/local/avr/avrlib/timer.o (__udivmodsi4)
-/opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_divmodsi4.o)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodsi4.o)
                               /opt/local/avr/avrlib/timer.o (__divmodsi4)
-/opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_exit.o)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_exit.o)
                               SerialExample.o (exit)
-/opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_copy_data.o)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_copy_data.o)
                               SerialExample.o (__do_copy_data)
-/opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_clear_bss.o)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_clear_bss.o)
                               SerialExample.o (__do_clear_bss)
-/opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(atoi.o)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(atoi.o)
                               SerialExample.o (atoi)
-/opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fdevopen.o)
-                              SerialExample.o (fdevopen)
-/opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fgetc.o)
-                              SerialExample.o (fgetc)
-/opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fputc.o)
-                              SerialExample.o (fputc)
-/opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(mul10.o)
-                              /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(atoi.o) (__mulhi_const_10)
-/opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf.o)
-                              SerialExample.o (printf)
-/opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf_p.o)
-                              SerialExample.o (printf_P)
-/opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strcpy.o)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strcpy.o)
                               SerialExample.o (strcpy)
-/opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
-                              /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf.o) (vfprintf)
-/opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(calloc.o)
-                              /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fdevopen.o) (calloc)
-/opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
-                              /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(calloc.o) (malloc)
-/opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(memset.o)
-                              /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(calloc.o) (memset)
-/opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strlen_P.o)
-                              /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o) (strlen_P)
-/opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strnlen.o)
-                              /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o) (strnlen)
-/opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
-                              /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o) (strnlen_P)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(mul10.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(atoi.o) (__mulhi_const_10)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fdevopen.o)
+                              SerialExample.o (fdevopen)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fgetc.o)
+                              SerialExample.o (fgetc)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fputc.o)
+                              SerialExample.o (fputc)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(iob.o)
+                              SerialExample.o (__iob)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)
+                              SerialExample.o (printf)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf_p.o)
+                              SerialExample.o (printf_P)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o) (vfprintf)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(calloc.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fdevopen.o) (calloc)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(calloc.o) (malloc)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strlen_P.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o) (strlen_P)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o) (strnlen_P)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(memset.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(calloc.o) (memset)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o) (strnlen)
 
 Allocating common symbols
 Common symbol       size              file
@@ -76,7 +78,7 @@ Timer0Reg0          0x4               /opt/local/avr/avrlib/timer.o
 CommandList         0x96              SerialExample.o
 AvrXKernelData      0x7               ../avrx/avrx.a(avrx_tasking.o)
 TimerPauseReg       0x4               /opt/local/avr/avrlib/timer.o
-__brkval            0x2               /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
+__brkval            0x2               /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
 Timer2Reg0          0x4               /opt/local/avr/avrlib/timer.o
 ServoPeriodTics     0x2               /opt/local/avr/avrlib/servo.o
 getCommandsPid      0x6               SerialExample.o
@@ -87,8 +89,8 @@ parserBufferLength  0x1               SerialExample.o
 getUAVStatusPid     0x6               SerialExample.o
 Rx0Ready            0x2               AvrXSimpleSerial.o
 getUAVStatusStk     0x6f              SerialExample.o
-__flp               0x2               /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
-__iob               0x6               /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fdevopen.o)
+__flp               0x2               /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
+__iob               0x6               /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(iob.o)
 getCommandsStk      0x87              SerialExample.o
 
 Memory Configuration
@@ -101,16 +103,16 @@ eeprom           0x00810000         0x00010000         rw !x
 
 Linker script and memory map
 
-LOAD /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+LOAD /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
 LOAD SerialExample.o
 LOAD /opt/local/avr/avrlib/timer.o
 LOAD /opt/local/avr/avrlib/servo.o
 LOAD AvrXSimpleSerial.o
 LOAD ../avrx/avrx.a
-LOAD /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libm.a
-LOAD /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a
-LOAD /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a
-LOAD /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a
+LOAD /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a
+LOAD /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a
+LOAD /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a
+LOAD /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a
 
 .hash
  *(.hash)
@@ -202,9 +204,9 @@ LOAD /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1ec8
+.text           0x00000000     0x1ec6
  *(.vectors)
- .vectors       0x00000000       0x54 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+ .vectors       0x00000000       0x54 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
                 0x00000000                __vector_default
                 0x00000054                __ctors_start = .
@@ -225,21 +227,21 @@ LOAD /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a
  *(.init0)
  *(.init1)
  *(.init2)
- .init2         0x000000c4        0xc /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+ .init2         0x000000c4        0xc /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
  *(.init3)
  *(.init4)
- .init4         0x000000d0       0x16 /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_copy_data.o)
+ .init4         0x000000d0       0x16 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_copy_data.o)
                 0x000000d0                __do_copy_data
- .init4         0x000000e6       0x10 /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_clear_bss.o)
+ .init4         0x000000e6       0x10 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_clear_bss.o)
                 0x000000e6                __do_clear_bss
  *(.init5)
  *(.init6)
  *(.init7)
  *(.init8)
  *(.init9)
- .init9         0x000000f6        0x4 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+ .init9         0x000000f6        0x4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
  *(.text)
- .text          0x000000fa        0x4 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+ .text          0x000000fa        0x4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
                 0x000000fa                __vector_1
                 0x000000fa                __vector_12
                 0x000000fa                __bad_interrupt
@@ -251,170 +253,170 @@ LOAD /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a
                 0x000000fa                __vector_16
                 0x000000fa                __vector_18
                 0x000000fa                __vector_20
- .text          0x000000fe      0x5a6 SerialExample.o
+ .text          0x000000fe      0x564 SerialExample.o
                 0x000000fe                parserInit
-                0x0000059e                setThrottleServo
-                0x0000023a                myputs_P
-                0x0000054c                setRightServo
-                0x000001f0                parserGetArgStr
-                0x000001c2                parserInputFunc
-                0x00000212                myputs
-                0x00000200                __vector_11
+                0x00000476                setThrottleServo
+                0x00000220                myputs_P
+                0x000004c4                setRightServo
+                0x000001e4                parserGetArgStr
+                0x000001b6                parserInputFunc
+                0x000001fc                myputs
+                0x000001ea                __vector_11
                 0x0000014e                parserSetOutputFunc
-                0x00000642                setCamTiltServo
-                0x000004fa                setLeftServo
-                0x00000410                main
+                0x000003ca                setCamTiltServo
+                0x00000512                setLeftServo
+                0x00000560                main
                 0x00000158                parserProcessInputString
-                0x0000026a                getUAVStatus
-                0x000005f0                setCamPanServo
-                0x000001f6                parserGetArgInt
-                0x000003ac                getCommands
+                0x0000024c                getUAVStatus
+                0x00000428                setCamPanServo
+                0x000003c0                parserGetArgInt
+                0x0000035a                getCommands
                 0x00000110                parserAddCommand
- .text          0x000006a4      0x5ee /opt/local/avr/avrlib/timer.o
-                0x0000092e                timer2GetOverflowCount
-                0x000006cc                timerDetach
-                0x00000712                timer1SetPrescaler
-                0x000009aa                timer1PWMBOff
-                0x000007b0                timer2GetPrescaler
-                0x00000bde                __vector_6
-                0x000006fe                timer0Init
-                0x0000099c                timer1PWMAOff
-                0x000009f0                timer1PWMBSet
-                0x00000974                timer1PWMInitICR
-                0x00000780                timer0GetPrescaler
-                0x00000b2a                __vector_7
-                0x00000918                timer0GetOverflowCount
-                0x00000a50                __vector_5
-                0x0000075e                timerInit
-                0x0000072e                timer2SetPrescaler
-                0x000009ce                timer1PWMAOn
-                0x000006e2                timer0SetPrescaler
-                0x000006a4                delay_us
-                0x00000c38                __vector_4
-                0x000006ec                timer0ClearOverflowCount
-                0x000009f6                __vector_9
-                0x0000071c                timer1Init
-                0x00000944                timer1PWMInit
-                0x000009dc                timer1PWMBOn
-                0x0000074a                timer2Init
-                0x00000b84                __vector_8
-                0x000009ea                timer1PWMASet
-                0x000007c8                timerAttach
-                0x000009b8                timer1PWMOff
-                0x00000ad0                __vector_10
-                0x00000798                timer1GetPrescaler
-                0x00000738                timer2ClearOverflowCount
-                0x000007de                timerPause
- .text          0x00000c92      0x224 /opt/local/avr/avrlib/servo.o
-                0x00000c92                servoInit
-                0x00000d14                servoOff
-                0x00000d78                servoSetPosition
-                0x00000d98                servoGetPositionRaw
-                0x00000d22                servoSetChannelIO
-                0x00000dd8                servoService
-                0x00000dae                servoGetPosition
-                0x00000d4e                servoSetPositionRaw
- .text          0x00000eb6       0xa2 AvrXSimpleSerial.o
-                0x00000f06                get_c0
-                0x00000ecc                put_c0
-                0x00000f20                get_char0
-                0x00000eb6                InitSerial0
-                0x00000f30                __vector_13
-                0x00000eee                put_char0
-                0x00000f44                __vector_14
- .text          0x00000f58       0x5a /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(atoi.o)
-                0x00000f58                atoi
- .text          0x00000fb2       0x92 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fdevopen.o)
-                0x00000fb2                fdevopen
- .text          0x00001044       0x7a /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fgetc.o)
-                0x00001044                fgetc
- .text          0x000010be       0x66 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fputc.o)
-                0x000010be                fputc
- .text          0x00001124       0x10 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(mul10.o)
-                0x00001124                __mulhi_const_10
- .text          0x00001134       0x2a /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf.o)
-                0x00001134                printf
- .text          0x0000115e       0x4a /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf_p.o)
-                0x0000115e                printf_P
- .text          0x000011a8        0xe /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strcpy.o)
-                0x000011a8                strcpy
- .text          0x000011b6      0x57a /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
-                0x000011b6                vfprintf
- .text          0x00001730       0x38 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(calloc.o)
-                0x00001730                calloc
- .text          0x00001768      0x222 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
-                0x00001768                malloc
-                0x000018c6                free
- .text          0x0000198a        0xe /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(memset.o)
-                0x0000198a                memset
- .text          0x00001998       0x12 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strlen_P.o)
-                0x00001998                strlen_P
- .text          0x000019aa       0x16 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strnlen.o)
-                0x000019aa                strnlen
- .text          0x000019c0       0x16 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
-                0x000019c0                strnlen_P
-                0x000019d6                . = ALIGN (0x2)
+ .text          0x00000662      0x5d6 /opt/local/avr/avrlib/timer.o
+                0x0000084c                timer2GetOverflowCount
+                0x00000690                timerDetach
+                0x000006c2                timer1SetPrescaler
+                0x000008c2                timer1PWMBOff
+                0x00000714                timer2GetPrescaler
+                0x00000ae0                __vector_6
+                0x00000b94                timer0Init
+                0x000008b4                timer1PWMAOff
+                0x000008f2                timer1PWMBSet
+                0x0000088e                timer1PWMInitICR
+                0x000006e8                timer0GetPrescaler
+                0x00000a2c                __vector_7
+                0x0000083a                timer0GetOverflowCount
+                0x00000952                __vector_5
+                0x00000bec                timerInit
+                0x000006cc                timer2SetPrescaler
+                0x000008d0                timer1PWMAOn
+                0x000006a6                timer0SetPrescaler
+                0x00000662                delay_us
+                0x00000b3a                __vector_4
+                0x000006b0                timer0ClearOverflowCount
+                0x000008f8                __vector_9
+                0x00000bb6                timer1Init
+                0x0000085e                timer1PWMInit
+                0x000008de                timer1PWMBOn
+                0x00000bca                timer2Init
+                0x00000a86                __vector_8
+                0x000008ec                timer1PWMASet
+                0x0000072a                timerAttach
+                0x00000c12                timer1PWMOff
+                0x000009d2                __vector_10
+                0x000006fe                timer1GetPrescaler
+                0x000006d6                timer2ClearOverflowCount
+                0x00000740                timerPause
+ .text          0x00000c38      0x244 /opt/local/avr/avrlib/servo.o
+                0x00000c38                servoInit
+                0x00000cb8                servoOff
+                0x00000e3c                servoSetPosition
+                0x00000d16                servoGetPositionRaw
+                0x00000cc6                servoSetChannelIO
+                0x00000d2c                servoService
+                0x00000e02                servoGetPosition
+                0x00000cec                servoSetPositionRaw
+ .text          0x00000e7c       0xa2 AvrXSimpleSerial.o
+                0x00000ecc                get_c0
+                0x00000e92                put_c0
+                0x00000ee6                get_char0
+                0x00000e7c                InitSerial0
+                0x00000ef6                __vector_13
+                0x00000eb4                put_char0
+                0x00000f0a                __vector_14
+ .text          0x00000f1e       0x5a /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(atoi.o)
+                0x00000f1e                atoi
+ .text          0x00000f78        0xe /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strcpy.o)
+                0x00000f78                strcpy
+ .text          0x00000f86       0x10 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(mul10.o)
+                0x00000f86                __mulhi_const_10
+ .text          0x00000f96       0x94 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fdevopen.o)
+                0x00000f96                fdevopen
+ .text          0x0000102a       0x86 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fgetc.o)
+                0x0000102a                fgetc
+ .text          0x000010b0       0x5a /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fputc.o)
+                0x000010b0                fputc
+ .text          0x0000110a       0x44 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)
+                0x0000110a                printf
+ .text          0x0000114e       0x62 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf_p.o)
+                0x0000114e                printf_P
+ .text          0x000011b0      0x5a8 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                0x000011b0                vfprintf
+ .text          0x00001758       0x38 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(calloc.o)
+                0x00001758                calloc
+ .text          0x00001790      0x1f2 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
+                0x00001790                malloc
+                0x000018d6                free
+ .text          0x00001982       0x12 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strlen_P.o)
+                0x00001982                strlen_P
+ .text          0x00001994       0x16 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
+                0x00001994                strnlen_P
+ .text          0x000019aa       0x14 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(memset.o)
+                0x000019aa                memset
+ .text          0x000019be       0x16 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen.o)
+                0x000019be                strnlen
+                0x000019d4                . = ALIGN (0x2)
  *(.text.*)
  .text.avrx.avrx_tasking
-                0x000019d6      0x1d4 ../avrx/avrx.a(avrx_tasking.o)
-                0x00001af8                AvrXRunTask
-                0x00001b42                AvrXResume
-                0x00001a72                _Epilog
-                0x00001afc                AvrXInitTask
-                0x000019d6                IntProlog
-                0x00001ae0                AvrXSetKernelStack
-                0x00001b5e                _QueuePid
-                0x00001a6e                Epilog
+                0x000019d4      0x1d4 ../avrx/avrx.a(avrx_tasking.o)
+                0x00001af6                AvrXRunTask
+                0x00001b40                AvrXResume
+                0x00001a70                _Epilog
+                0x00001afa                AvrXInitTask
+                0x000019d4                IntProlog
+                0x00001ade                AvrXSetKernelStack
+                0x00001b5c                _QueuePid
+                0x00001a6c                Epilog
  .text.avrx.avrx_semaphores
-                0x00001baa       0xe2 ../avrx/avrx.a(avrx_semaphores.o)
-                0x00001baa                AvrXWaitTimer
-                0x00001bd8                AvrXSetObjectSemaphore
-                0x00001bd8                AvrXAckMessage
-                0x00001baa                AvrXWaitObjectSemaphore
-                0x00001bae                AvrXWaitSemaphore
-                0x00001bf6                AvrXIntSetSemaphore
-                0x00001c66                _RemoveObjectAt
-                0x00001baa                AvrXWaitMessageAck
-                0x00001bf2                AvrXIntSetObjectSemaphore
-                0x00001c5a                _RemoveFirstObject
-                0x00001baa                AvrXWaitTask
-                0x00001c2c                _AppendObject
-                0x00001c48                _RemoveObject
-                0x00001bdc                AvrXSetSemaphore
+                0x00001ba8       0xe2 ../avrx/avrx.a(avrx_semaphores.o)
+                0x00001ba8                AvrXWaitTimer
+                0x00001bd6                AvrXSetObjectSemaphore
+                0x00001bd6                AvrXAckMessage
+                0x00001ba8                AvrXWaitObjectSemaphore
+                0x00001bac                AvrXWaitSemaphore
+                0x00001bf4                AvrXIntSetSemaphore
+                0x00001c64                _RemoveObjectAt
+                0x00001ba8                AvrXWaitMessageAck
+                0x00001bf0                AvrXIntSetObjectSemaphore
+                0x00001c58                _RemoveFirstObject
+                0x00001ba8                AvrXWaitTask
+                0x00001c2a                _AppendObject
+                0x00001c46                _RemoveObject
+                0x00001bda                AvrXSetSemaphore
  .text.avrx.avrx_testsemaphore
-                0x00001c8c       0x26 ../avrx/avrx.a(avrx_testsemaphore.o)
-                0x00001c8c                AvrXTestMessageAck
-                0x00001c8c                AvrXTestPid
-                0x00001c8c                AvrXTestObjectSemaphore
-                0x00001c8c                AvrXTestTimer
-                0x00001c90                AvrXTestSemaphore
-                0x00001c90                AvrXIntTestSemaphore
+                0x00001c8a       0x26 ../avrx/avrx.a(avrx_testsemaphore.o)
+                0x00001c8a                AvrXTestMessageAck
+                0x00001c8a                AvrXTestPid
+                0x00001c8a                AvrXTestObjectSemaphore
+                0x00001c8a                AvrXTestTimer
+                0x00001c8e                AvrXTestSemaphore
+                0x00001c8e                AvrXIntTestSemaphore
  .text.avrx.avrx_timequeue
-                0x00001cb2       0xe4 ../avrx/avrx.a(avrx_timequeue.o)
-                0x00001cb2                AvrXDelay
-                0x00001cb6                AvrXStartTimer
-                0x00001cbe                CountNotZero
-                0x00001d0e                AvrXTimerHandler
+                0x00001cb0       0xe4 ../avrx/avrx.a(avrx_timequeue.o)
+                0x00001cb0                AvrXDelay
+                0x00001cb4                AvrXStartTimer
+                0x00001cbc                CountNotZero
+                0x00001d0c                AvrXTimerHandler
  .text.avrx.avrx_resetsemaphore
-                0x00001d96       0x22 ../avrx/avrx.a(avrx_resetsemaphore.o)
-                0x00001d96                AvrXResetObjectSemaphore
-                0x00001d9e                AvrXIntResetSemaphore
-                0x00001d9e                AvrXResetSemaphore
-                0x00001d96                AvrXIntResetObjectSemaphore
+                0x00001d94       0x22 ../avrx/avrx.a(avrx_resetsemaphore.o)
+                0x00001d94                AvrXResetObjectSemaphore
+                0x00001d9c                AvrXIntResetSemaphore
+                0x00001d9c                AvrXResetSemaphore
+                0x00001d94                AvrXIntResetObjectSemaphore
  .text.avrx.avrx_message
-                0x00001db8       0x2e ../avrx/avrx.a(avrx_message.o)
-                0x00001dc2                AvrXIntSendMessage
-                0x00001dca                AvrXWaitMessage
-                0x00001db8                AvrXSendMessage
- .text.libgcc   0x00001de6       0x3e /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_mulsi3.o)
-                0x00001de6                __mulsi3
- .text.libgcc   0x00001e24       0x28 /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_udivmodhi4.o)
-                0x00001e24                __udivmodhi4
- .text.libgcc   0x00001e4c       0x44 /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_udivmodsi4.o)
-                0x00001e4c                __udivmodsi4
- .text.libgcc   0x00001e90       0x36 /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_divmodsi4.o)
-                0x00001e90                __divmodsi4
-                0x00001ec6                . = ALIGN (0x2)
+                0x00001db6       0x2e ../avrx/avrx.a(avrx_message.o)
+                0x00001dc0                AvrXIntSendMessage
+                0x00001dc8                AvrXWaitMessage
+                0x00001db6                AvrXSendMessage
+ .text.libgcc   0x00001de4       0x3e /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_mulsi3.o)
+                0x00001de4                __mulsi3
+ .text.libgcc   0x00001e22       0x28 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodhi4.o)
+                0x00001e22                __udivmodhi4
+ .text.libgcc   0x00001e4a       0x44 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodsi4.o)
+                0x00001e4a                __udivmodsi4
+ .text.libgcc   0x00001e8e       0x36 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodsi4.o)
+                0x00001e8e                __divmodsi4
+                0x00001ec4                . = ALIGN (0x2)
  *(.fini9)
  *(.fini8)
  *(.fini7)
@@ -425,15 +427,15 @@ LOAD /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a
  *(.fini2)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001ec6        0x2 /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_exit.o)
-                0x00001ec8                _etext = .
+ .fini0         0x00001ec4        0x2 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_exit.o)
+                0x00001ec6                _etext = .
 
-.data           0x00800060       0x30 load address 0x00001ec8
+.data           0x00800060       0x30 load address 0x00001ec6
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060       0x29 SerialExample.o
                 0x00800060                leftServoPos
- .data          0x00800089        0x6 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
+ .data          0x00800089        0x6 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
                 0x0080008b                __malloc_heap_start
                 0x00800089                __malloc_heap_end
                 0x0080008d                __malloc_margin
@@ -449,7 +451,6 @@ LOAD /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a
  .bss           0x00800090       0x10 /opt/local/avr/avrlib/timer.o
  *(COMMON)
  COMMON         0x008000a0      0x1c9 SerialExample.o
-                                  0x0 (size before relaxing)
                 0x008000a0                camPanServoPos
                 0x008000a2                parserOutputFunc
                 0x008000a4                ParserExecFunction
@@ -466,39 +467,32 @@ LOAD /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a
                 0x00800173                getUAVStatusStk
                 0x008001e2                getCommandsStk
  COMMON         0x00800269        0xc /opt/local/avr/avrlib/timer.o
-                                  0x0 (size before relaxing)
                 0x00800269                Timer0Reg0
                 0x0080026d                TimerPauseReg
                 0x00800271                Timer2Reg0
  COMMON         0x00800275       0x19 /opt/local/avr/avrlib/servo.o
-                                  0x0 (size before relaxing)
                 0x00800275                ServoChannel
                 0x00800276                ServoChannels
                 0x0080028a                ServoPosTics
                 0x0080028c                ServoPeriodTics
  COMMON         0x0080028e        0x4 AvrXSimpleSerial.o
-                                  0x0 (size before relaxing)
                 0x0080028e                Tx0Ready
                 0x00800290                Rx0Ready
  *fill*         0x00800292        0x2 00
  COMMON         0x00800294        0x7 ../avrx/avrx.a(avrx_tasking.o)
-                                  0x0 (size before relaxing)
                 0x00800294                AvrXKernelData
  *fill*         0x0080029b        0x1 00
  COMMON         0x0080029c        0x3 ../avrx/avrx.a(avrx_timequeue.o)
-                                  0x0 (size before relaxing)
                 0x0080029c                _TimerQueue
                 0x0080029e                _TimQLevel
- COMMON         0x0080029f        0x6 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fdevopen.o)
-                                  0x0 (size before relaxing)
+ COMMON         0x0080029f        0x6 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(iob.o)
                 0x0080029f                __iob
- COMMON         0x008002a5        0x4 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
-                                  0x0 (size before relaxing)
+ COMMON         0x008002a5        0x4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
                 0x008002a5                __brkval
                 0x008002a7                __flp
                 0x008002a9                PROVIDE (__bss_end, .)
-                0x00001ec8                __data_load_start = LOADADDR (.data)
-                0x00001ef8                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00001ec6                __data_load_start = LOADADDR (.data)
+                0x00001ef6                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x008002a9        0x0
                 0x008002a9                PROVIDE (__noinit_start, .)
@@ -507,68 +501,69 @@ LOAD /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a
                 0x008002a9                _end = .
                 0x008002a9                PROVIDE (__heap_start, .)
 
-.eeprom         0x00810000        0x0 load address 0x00001ef8
+.eeprom         0x00810000        0x0
  *(.eeprom*)
                 0x00810000                __eeprom_end = .
 
-.stab           0x00000000     0x6534
+.stab           0x00000000     0x6a98
  *(.stab)
- .stab          0x00000000      0x2a0 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
- .stab          0x000002a0      0xf6c SerialExample.o
-                                0xf78 (size before relaxing)
- .stab          0x0000120c      0xcd8 /opt/local/avr/avrlib/timer.o
-                                0xf24 (size before relaxing)
- .stab          0x00001ee4      0x5d0 /opt/local/avr/avrlib/servo.o
-                                0x780 (size before relaxing)
- .stab          0x000024b4      0x498 AvrXSimpleSerial.o
-                                0x690 (size before relaxing)
- .stab          0x0000294c      0xbc4 ../avrx/avrx.a(avrx_tasking.o)
+ .stab          0x00000000      0x36c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+ .stab          0x0000036c     0x1104 SerialExample.o
+                               0x1110 (size before relaxing)
+ .stab          0x00001470      0xf90 /opt/local/avr/avrlib/timer.o
+                               0x11dc (size before relaxing)
+ .stab          0x00002400      0x618 /opt/local/avr/avrlib/servo.o
+                                0x7c8 (size before relaxing)
+ .stab          0x00002a18      0x4ec AvrXSimpleSerial.o
+                                0x6e4 (size before relaxing)
+ .stab          0x00002f04      0xbc4 ../avrx/avrx.a(avrx_tasking.o)
                                 0xbd0 (size before relaxing)
- .stab          0x00003510      0x654 ../avrx/avrx.a(avrx_semaphores.o)
+ .stab          0x00003ac8      0x654 ../avrx/avrx.a(avrx_semaphores.o)
                                 0x660 (size before relaxing)
- .stab          0x00003b64      0x138 ../avrx/avrx.a(avrx_testsemaphore.o)
+ .stab          0x0000411c      0x138 ../avrx/avrx.a(avrx_testsemaphore.o)
                                 0x144 (size before relaxing)
- .stab          0x00003c9c      0x534 ../avrx/avrx.a(avrx_timequeue.o)
+ .stab          0x00004254      0x534 ../avrx/avrx.a(avrx_timequeue.o)
                                 0x540 (size before relaxing)
- .stab          0x000041d0      0x120 ../avrx/avrx.a(avrx_resetsemaphore.o)
+ .stab          0x00004788      0x120 ../avrx/avrx.a(avrx_resetsemaphore.o)
                                 0x12c (size before relaxing)
- .stab          0x000042f0      0x168 ../avrx/avrx.a(avrx_message.o)
+ .stab          0x000048a8      0x168 ../avrx/avrx.a(avrx_message.o)
                                 0x174 (size before relaxing)
- .stab          0x00004458      0x228 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(atoi.o)
+ .stab          0x00004a10      0x228 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(atoi.o)
                                 0x234 (size before relaxing)
- .stab          0x00004680      0x3a8 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fdevopen.o)
-                                0x408 (size before relaxing)
- .stab          0x00004a28      0x288 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fgetc.o)
-                                0x384 (size before relaxing)
- .stab          0x00004cb0      0x21c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fputc.o)
-                                0x318 (size before relaxing)
- .stab          0x00004ecc       0x78 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(mul10.o)
+ .stab          0x00004c38       0x6c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strcpy.o)
+                                 0x78 (size before relaxing)
+ .stab          0x00004ca4       0x78 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(mul10.o)
                                  0x84 (size before relaxing)
- .stab          0x00004f44      0x1b0 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf.o)
-                                0x294 (size before relaxing)
- .stab          0x000050f4      0x1d4 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf_p.o)
-                                0x2d0 (size before relaxing)
- .stab          0x000052c8       0x6c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strcpy.o)
-                                 0x78 (size before relaxing)
- .stab          0x00005334      0x84c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
-                                0x984 (size before relaxing)
- .stab          0x00005b80      0x1ec /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(calloc.o)
-                                0x228 (size before relaxing)
- .stab          0x00005d6c      0x5a0 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
-                                0x690 (size before relaxing)
- .stab          0x0000630c       0x6c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(memset.o)
-                                 0x78 (size before relaxing)
- .stab          0x00006378       0x84 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strlen_P.o)
+ .stab          0x00004d1c      0x444 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fdevopen.o)
+                                0x4a4 (size before relaxing)
+ .stab          0x00005160      0x240 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fgetc.o)
+                                0x420 (size before relaxing)
+ .stab          0x000053a0      0x1d4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fputc.o)
+                                0x3b4 (size before relaxing)
+ .stab          0x00005574      0x120 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(iob.o)
+                                0x300 (size before relaxing)
+ .stab          0x00005694      0x1b0 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)
+                                0x390 (size before relaxing)
+ .stab          0x00005844      0x1c8 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf_p.o)
+                                0x3a8 (size before relaxing)
+ .stab          0x00005a0c      0x768 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                                0x990 (size before relaxing)
+ .stab          0x00006174      0x1bc /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(calloc.o)
+                                0x1f8 (size before relaxing)
+ .stab          0x00006330      0x51c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
+                                0x6fc (size before relaxing)
+ .stab          0x0000684c       0x84 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strlen_P.o)
                                  0x90 (size before relaxing)
- .stab          0x000063fc       0x9c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strnlen.o)
+ .stab          0x000068d0       0x9c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
                                  0xa8 (size before relaxing)
- .stab          0x00006498       0x9c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
+ .stab          0x0000696c       0x90 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(memset.o)
+                                 0x9c (size before relaxing)
+ .stab          0x000069fc       0x9c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen.o)
                                  0xa8 (size before relaxing)
 
-.stabstr        0x00000000     0x2c9c
+.stabstr        0x00000000     0x2be0
  *(.stabstr)
- .stabstr       0x00000000     0x2c9c /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-                                  0x0 (size before relaxing)
+ .stabstr       0x00000000     0x2be0 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
 
 .stab.excl
  *(.stab.excl)
@@ -716,116 +711,119 @@ _RemoveObject                                     ../avrx/avrx.a(avrx_semaphores
 _RemoveObjectAt                                   ../avrx/avrx.a(avrx_semaphores.o)
 _TimQLevel                                        ../avrx/avrx.a(avrx_timequeue.o)
 _TimerQueue                                       ../avrx/avrx.a(avrx_timequeue.o)
-__bad_interrupt                                   /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-__brkval                                          /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
-__bss_end                                         /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_clear_bss.o)
-__bss_start                                       /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_clear_bss.o)
-__data_end                                        /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_copy_data.o)
-__data_load_start                                 /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_copy_data.o)
-__data_start                                      /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_copy_data.o)
-__divmodsi4                                       /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_divmodsi4.o)
+__bad_interrupt                                   /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__brkval                                          /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
+__bss_end                                         /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_clear_bss.o)
+__bss_start                                       /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_clear_bss.o)
+__data_end                                        /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_copy_data.o)
+__data_load_start                                 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_copy_data.o)
+__data_start                                      /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_copy_data.o)
+__divmodsi4                                       /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodsi4.o)
                                                   /opt/local/avr/avrlib/timer.o
-__do_clear_bss                                    /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_clear_bss.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(calloc.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf_p.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fputc.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fgetc.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fdevopen.o)
+__do_clear_bss                                    /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_clear_bss.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(calloc.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf_p.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(iob.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fputc.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fgetc.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fdevopen.o)
                                                   AvrXSimpleSerial.o
                                                   /opt/local/avr/avrlib/servo.o
                                                   /opt/local/avr/avrlib/timer.o
                                                   SerialExample.o
-__do_copy_data                                    /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_copy_data.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(calloc.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf_p.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fputc.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fgetc.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fdevopen.o)
+__do_copy_data                                    /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_copy_data.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(calloc.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf_p.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(iob.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fputc.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fgetc.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fdevopen.o)
                                                   AvrXSimpleSerial.o
                                                   /opt/local/avr/avrlib/servo.o
                                                   /opt/local/avr/avrlib/timer.o
                                                   SerialExample.o
-__flp                                             /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
-__heap_end                                        /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
-__heap_start                                      /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
-__init                                            /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-__iob                                             /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf_p.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fdevopen.o)
+__flp                                             /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
+__heap_end                                        /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
+__heap_start                                      /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
+__init                                            /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__iob                                             /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf_p.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(iob.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fdevopen.o)
                                                   SerialExample.o
-__malloc_heap_end                                 /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
-__malloc_heap_start                               /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
-__malloc_margin                                   /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
-__mulhi_const_10                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(mul10.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(atoi.o)
-__mulsi3                                          /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_mulsi3.o)
+__malloc_heap_end                                 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
+__malloc_heap_start                               /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
+__malloc_margin                                   /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
+__mulhi_const_10                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(mul10.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(atoi.o)
+__mulsi3                                          /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_mulsi3.o)
                                                   /opt/local/avr/avrlib/timer.o
-__stack                                           /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+__stack                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
                                                   SerialExample.o
-__udivmodhi4                                      /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_udivmodhi4.o)
+__udivmodhi4                                      /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodhi4.o)
                                                   /opt/local/avr/avrlib/servo.o
                                                   /opt/local/avr/avrlib/timer.o
-__udivmodsi4                                      /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_udivmodsi4.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_divmodsi4.o)
+__udivmodsi4                                      /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodsi4.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodsi4.o)
                                                   /opt/local/avr/avrlib/timer.o
-__vector_1                                        /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+__vector_1                                        /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
 __vector_10                                       /opt/local/avr/avrlib/timer.o
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
 __vector_11                                       SerialExample.o
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-__vector_12                                       /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_12                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
 __vector_13                                       AvrXSimpleSerial.o
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
 __vector_14                                       AvrXSimpleSerial.o
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-__vector_15                                       /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-__vector_16                                       /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-__vector_17                                       /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-__vector_18                                       /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-__vector_19                                       /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-__vector_2                                        /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-__vector_20                                       /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-__vector_3                                        /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_15                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_16                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_17                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_18                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_19                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_2                                        /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_20                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_3                                        /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
 __vector_4                                        /opt/local/avr/avrlib/timer.o
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
 __vector_5                                        /opt/local/avr/avrlib/timer.o
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
 __vector_6                                        /opt/local/avr/avrlib/timer.o
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
 __vector_7                                        /opt/local/avr/avrlib/timer.o
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
 __vector_8                                        /opt/local/avr/avrlib/timer.o
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
 __vector_9                                        /opt/local/avr/avrlib/timer.o
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-__vector_default                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-__vectors                                         /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-_exit                                             /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_exit.o)
-atoi                                              /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(atoi.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_default                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vectors                                         /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+_exit                                             /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_exit.o)
+atoi                                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(atoi.o)
                                                   SerialExample.o
-calloc                                            /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(calloc.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fdevopen.o)
+calloc                                            /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(calloc.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fdevopen.o)
 camPanServoPos                                    SerialExample.o
 camTiltServoPos                                   SerialExample.o
 delay_us                                          /opt/local/avr/avrlib/timer.o
-exit                                              /opt/local/lib/gcc/avr/3.4.4/avr5/libgcc.a(_exit.o)
+exit                                              /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_exit.o)
                                                   SerialExample.o
-fdevopen                                          /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fdevopen.o)
+fdevopen                                          /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fdevopen.o)
                                                   SerialExample.o
-fgetc                                             /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fgetc.o)
+fgetc                                             /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fgetc.o)
                                                   SerialExample.o
-fputc                                             /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(fputc.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+fputc                                             /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fputc.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
                                                   SerialExample.o
-free                                              /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
+free                                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
 getCommands                                       SerialExample.o
 getCommandsPid                                    SerialExample.o
 getCommandsStk                                    SerialExample.o
@@ -839,11 +837,11 @@ get_c0                                            AvrXSimpleSerial.o
 get_char0                                         AvrXSimpleSerial.o
 leftServoPos                                      SerialExample.o
 main                                              SerialExample.o
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/crtm32.o
-malloc                                            /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(malloc.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(calloc.o)
-memset                                            /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(memset.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(calloc.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+malloc                                            /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(malloc.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(calloc.o)
+memset                                            /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(memset.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(calloc.o)
 myputs                                            SerialExample.o
 myputs_P                                          SerialExample.o
 parserAddCommand                                  SerialExample.o
@@ -857,9 +855,9 @@ parserNumCommands                                 SerialExample.o
 parserOutputFunc                                  SerialExample.o
 parserProcessInputString                          SerialExample.o
 parserSetOutputFunc                               SerialExample.o
-printf                                            /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf.o)
+printf                                            /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)
                                                   SerialExample.o
-printf_P                                          /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf_p.o)
+printf_P                                          /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf_p.o)
                                                   SerialExample.o
 put_c0                                            AvrXSimpleSerial.o
 put_char0                                         AvrXSimpleSerial.o
@@ -881,14 +879,14 @@ setCamTiltServo                                   SerialExample.o
 setLeftServo                                      SerialExample.o
 setRightServo                                     SerialExample.o
 setThrottleServo                                  SerialExample.o
-strcpy                                            /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strcpy.o)
+strcpy                                            /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strcpy.o)
                                                   SerialExample.o
-strlen_P                                          /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strlen_P.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
-strnlen                                           /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strnlen.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
-strnlen_P                                         /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+strlen_P                                          /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strlen_P.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+strnlen                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+strnlen_P                                         /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
 throttleServoPos                                  SerialExample.o
 timer0ClearOverflowCount                          /opt/local/avr/avrlib/timer.o
 timer0GetOverflowCount                            /opt/local/avr/avrlib/timer.o
@@ -919,6 +917,6 @@ timerDetach                                       /opt/local/avr/avrlib/timer.o
                                                   /opt/local/avr/avrlib/servo.o
 timerInit                                         /opt/local/avr/avrlib/timer.o
 timerPause                                        /opt/local/avr/avrlib/timer.o
-vfprintf                                          /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf_p.o)
-                                                  /opt/local/lib/gcc/avr/3.4.4/../../../../avr/lib/avr5/libc.a(printf.o)
+vfprintf                                          /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf_p.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)

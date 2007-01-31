@@ -9,27 +9,28 @@
    9               		.global __do_clear_bss
   12               		.text
   13               	.Ltext0:
- 140               	.global	getCommandsTcb
- 141               		.section	.progmem.data,"a",@progbits
- 144               	getCommandsTcb:
- 145 0000 0000      		.word	getCommandsStk+134
- 146 0002 0000      		.word	pm(getCommands)
- 147 0004 0000      		.word	getCommandsPid
- 148 0006 01        		.byte	1
- 149               	.global	getUAVStatusTcb
- 152               	getUAVStatusTcb:
- 153 0007 0000      		.word	getUAVStatusStk+110
- 154 0009 0000      		.word	pm(getUAVStatus)
- 155 000b 0000      		.word	getUAVStatusPid
- 156 000d 04        		.byte	4
- 157               	.global	leftServoPos
- 158               		.data
- 161               	leftServoPos:
- 162 0000 3200      		.word	50
- 163               		.text
- 165               	.global	parserInit
- 167               	parserInit:
- 169               	.Ltext1:
+ 134               	.global	getCommandsTcb
+ 135               		.section	.progmem.data,"a",@progbits
+ 138               	getCommandsTcb:
+ 139 0000 0000      		.word	getCommandsStk+134
+ 140 0002 0000      		.word	pm(getCommands)
+ 141 0004 0000      		.word	getCommandsPid
+ 142 0006 01        		.byte	1
+ 143               	.global	getUAVStatusTcb
+ 146               	getUAVStatusTcb:
+ 147 0007 0000      		.word	getUAVStatusStk+110
+ 148 0009 0000      		.word	pm(getUAVStatus)
+ 149 000b 0000      		.word	getUAVStatusPid
+ 150 000d 04        		.byte	4
+ 151               	.global	leftServoPos
+ 152               		.data
+ 155               	leftServoPos:
+ 156 0000 3200      		.word	50
+ 157               		.text
+ 159               	.global	parserInit
+ 161               	parserInit:
+ 162               		.stabd	46,0,0
+ 164               	.Ltext1:
    1:parser.c      **** #include <avr/io.h>			// include I/O definitions (port names, pin names, etc)
    2:parser.c      **** #include <avr/interrupt.h>	// include interrupt support
    3:parser.c      **** #include <avr/pgmspace.h>	// include AVR program memory support
@@ -61,99 +62,105 @@
   29:parser.c      **** 
   30:parser.c      **** void parserInit(void)
   31:parser.c      **** {
- 171               	.LM1:
- 172               	/* prologue: frame size=0 */
- 173               	/* prologue end (size=0) */
+ 166               	.LM0:
+ 167               	/* prologue: frame size=0 */
+ 168               	/* prologue end (size=0) */
   32:parser.c      **** 	// initialize input buffer
   33:parser.c      **** 	parserBufferLength = 0;
- 175               	.LM2:
- 176 0000 1092 0000 		sts parserBufferLength,__zero_reg__
+ 170               	.LM1:
+ 171 0000 1092 0000 		sts parserBufferLength,__zero_reg__
   34:parser.c      **** 	// initialize executing function
   35:parser.c      **** 	ParserExecFunction = 0;
- 178               	.LM3:
- 179 0004 1092 0000 		sts (ParserExecFunction)+1,__zero_reg__
- 180 0008 1092 0000 		sts ParserExecFunction,__zero_reg__
+ 173               	.LM2:
+ 174 0004 1092 0000 		sts (ParserExecFunction)+1,__zero_reg__
+ 175 0008 1092 0000 		sts ParserExecFunction,__zero_reg__
   36:parser.c      **** 	// initialize command list
   37:parser.c      **** 	parserNumCommands = 0;
- 182               	.LM4:
- 183 000c 1092 0000 		sts parserNumCommands,__zero_reg__
- 184               	/* epilogue: frame size=0 */
- 185 0010 0895      		ret
- 186               	/* epilogue end (size=1) */
- 187               	/* function parserInit size 9 (8) */
- 189               	.Lscope0:
- 194               	.global	parserAddCommand
- 196               	parserAddCommand:
+ 177               	.LM3:
+ 178 000c 1092 0000 		sts parserNumCommands,__zero_reg__
+ 179               	/* epilogue: frame size=0 */
+ 180 0010 0895      		ret
+ 181               	/* epilogue end (size=1) */
+ 182               	/* function parserInit size 9 (8) */
+ 184               	.Lscope0:
+ 186               		.stabd	78,0,0
+ 190               	.global	parserAddCommand
+ 192               	parserAddCommand:
+ 193               		.stabd	46,0,0
   38:parser.c      **** }
   39:parser.c      **** 
   40:parser.c      **** 
   41:parser.c      **** void parserAddCommand(unsigned char* newCmdString, ParserFuncPtrType newCmdFuncPtr)
   42:parser.c      **** {
- 198               	.LM5:
- 199               	/* prologue: frame size=0 */
- 200 0012 0F93      		push r16
- 201 0014 1F93      		push r17
- 202               	/* prologue end (size=2) */
- 203 0016 9C01      		movw r18,r24
- 204 0018 8B01      		movw r16,r22
+ 195               	.LM4:
+ 196               	/* prologue: frame size=0 */
+ 197 0012 0F93      		push r16
+ 198 0014 1F93      		push r17
+ 199               	/* prologue end (size=2) */
+ 200 0016 AC01      		movw r20,r24
+ 201 0018 8B01      		movw r16,r22
   43:parser.c      **** 	// add command string to end of command list
   44:parser.c      **** 	strcpy(CommandList[parserNumCommands], newCmdString);
- 206               	.LM6:
- 207 001a 9091 0000 		lds r25,parserNumCommands
- 208 001e 8FE0      		ldi r24,lo8(15)
- 209 0020 989F      		mul r25,r24
- 210 0022 C001      		movw r24,r0
- 211 0024 1124      		clr r1
- 212 0026 B901      		movw r22,r18
- 213 0028 8050      		subi r24,lo8(-(CommandList))
- 214 002a 9040      		sbci r25,hi8(-(CommandList))
- 215 002c 0E94 0000 		call strcpy
+ 203               	.LM5:
+ 204 001a 8091 0000 		lds r24,parserNumCommands
+ 205 001e 2FE0      		ldi r18,lo8(15)
+ 206 0020 829F      		mul r24,r18
+ 207 0022 C001      		movw r24,r0
+ 208 0024 1124      		clr r1
+ 209 0026 BA01      		movw r22,r20
+ 210 0028 8050      		subi r24,lo8(-(CommandList))
+ 211 002a 9040      		sbci r25,hi8(-(CommandList))
+ 212 002c 0E94 0000 		call strcpy
   45:parser.c      **** 	// add command function ptr to end of function list
   46:parser.c      **** 	ParserFunctionList[parserNumCommands] = newCmdFuncPtr;
- 217               	.LM7:
- 218 0030 8091 0000 		lds r24,parserNumCommands
- 219 0034 E82F      		mov r30,r24
- 220 0036 FF27      		clr r31
- 221 0038 EE0F      		add r30,r30
- 222 003a FF1F      		adc r31,r31
- 223 003c E050      		subi r30,lo8(-(ParserFunctionList))
- 224 003e F040      		sbci r31,hi8(-(ParserFunctionList))
- 225 0040 1183      		std Z+1,r17
- 226 0042 0083      		st Z,r16
+ 214               	.LM6:
+ 215 0030 8091 0000 		lds r24,parserNumCommands
+ 216 0034 E82F      		mov r30,r24
+ 217 0036 FF27      		clr r31
+ 218 0038 EE0F      		lsl r30
+ 219 003a FF1F      		rol r31
+ 220 003c E050      		subi r30,lo8(-(ParserFunctionList))
+ 221 003e F040      		sbci r31,hi8(-(ParserFunctionList))
+ 222 0040 1183      		std Z+1,r17
+ 223 0042 0083      		st Z,r16
   47:parser.c      **** 	// increment number of registered commands
   48:parser.c      **** 	parserNumCommands++;
- 228               	.LM8:
- 229 0044 8F5F      		subi r24,lo8(-(1))
- 230 0046 8093 0000 		sts parserNumCommands,r24
- 231               	/* epilogue: frame size=0 */
- 232 004a 1F91      		pop r17
- 233 004c 0F91      		pop r16
- 234 004e 0895      		ret
- 235               	/* epilogue end (size=3) */
- 236               	/* function parserAddCommand size 31 (26) */
- 238               	.Lscope1:
- 242               	.global	parserSetOutputFunc
- 244               	parserSetOutputFunc:
+ 225               	.LM7:
+ 226 0044 8F5F      		subi r24,lo8(-(1))
+ 227 0046 8093 0000 		sts parserNumCommands,r24
+ 228               	/* epilogue: frame size=0 */
+ 229 004a 1F91      		pop r17
+ 230 004c 0F91      		pop r16
+ 231 004e 0895      		ret
+ 232               	/* epilogue end (size=3) */
+ 233               	/* function parserAddCommand size 31 (26) */
+ 235               	.Lscope1:
+ 237               		.stabd	78,0,0
+ 240               	.global	parserSetOutputFunc
+ 242               	parserSetOutputFunc:
+ 243               		.stabd	46,0,0
   49:parser.c      **** }
   50:parser.c      **** 
   51:parser.c      **** 
   52:parser.c      **** void parserSetOutputFunc(void (*output_func)(unsigned char c))
   53:parser.c      **** {
- 246               	.LM9:
- 247               	/* prologue: frame size=0 */
- 248               	/* prologue end (size=0) */
+ 245               	.LM8:
+ 246               	/* prologue: frame size=0 */
+ 247               	/* prologue end (size=0) */
   54:parser.c      **** 	// set new output function
   55:parser.c      **** 	parserOutputFunc = output_func;
- 250               	.LM10:
- 251 0050 9093 0000 		sts (parserOutputFunc)+1,r25
- 252 0054 8093 0000 		sts parserOutputFunc,r24
- 253               	/* epilogue: frame size=0 */
- 254 0058 0895      		ret
- 255               	/* epilogue end (size=1) */
- 256               	/* function parserSetOutputFunc size 5 (4) */
- 258               	.Lscope2:
+ 249               	.LM9:
+ 250 0050 9093 0000 		sts (parserOutputFunc)+1,r25
+ 251 0054 8093 0000 		sts parserOutputFunc,r24
+ 252               	/* epilogue: frame size=0 */
+ 253 0058 0895      		ret
+ 254               	/* epilogue end (size=1) */
+ 255               	/* function parserSetOutputFunc size 5 (4) */
+ 257               	.Lscope2:
+ 259               		.stabd	78,0,0
  261               	.global	parserProcessInputString
  263               	parserProcessInputString:
+ 264               		.stabd	46,0,0
   56:parser.c      **** }
   57:parser.c      **** 
   58:parser.c      **** 
@@ -184,119 +191,117 @@
   83:parser.c      **** 
   84:parser.c      **** void parserProcessInputString(void)
   85:parser.c      **** {
- 265               	.LM11:
- 266               	/* prologue: frame size=0 */
- 267 005a 1F93      		push r17
- 268 005c CF93      		push r28
- 269 005e DF93      		push r29
- 270               	/* prologue end (size=3) */
+ 266               	.LM10:
+ 267               	/* prologue: frame size=0 */
+ 268 005a CF93      		push r28
+ 269 005c DF93      		push r29
+ 270               	/* prologue end (size=2) */
+ 271 005e C0E0      		ldi r28,lo8(0)
+ 272 0060 D0E0      		ldi r29,hi8(0)
+ 273 0062 22C0      		rjmp .L8
+ 274               	.L9:
   86:parser.c      **** 	unsigned char cmdIndex;
   87:parser.c      **** 
   88:parser.c      **** 	// search command list for match with entered command
   89:parser.c      **** 	for(cmdIndex=0; cmdIndex<parserNumCommands; cmdIndex++)
- 272               	.LM12:
- 273 0060 10E0      		ldi r17,lo8(0)
- 274 0062 8091 0000 		lds r24,parserNumCommands
- 275 0066 1817      		cp r17,r24
- 276 0068 48F5      		brsh .L11
- 277               	.L9:
   90:parser.c      **** 	{
   91:parser.c      **** 		if( !strncmp(CommandList[cmdIndex], parserBuffer, 1) )		//command is first char of buffer
- 279               	.LM13:
- 280 006a A12F      		mov r26,r17
- 281 006c BB27      		clr r27
- 282 006e FD01      		movw r30,r26
- 283 0070 84E0      		ldi r24,4
- 284 0072 EE0F      	1:	lsl r30
- 285 0074 FF1F      		rol r31
- 286 0076 8A95      		dec r24
- 287 0078 E1F7      		brne 1b
- 288 007a EA1B      		sub r30,r26
- 289 007c FB0B      		sbc r31,r27
- 290 007e E050      		subi r30,lo8(-(CommandList))
- 291 0080 F040      		sbci r31,hi8(-(CommandList))
- 292 0082 8081      		ld r24,Z
- 293 0084 C82F      		mov r28,r24
- 294 0086 DD27      		clr r29
- 295 0088 8091 0000 		lds r24,parserBuffer
- 296 008c C81B      		sub r28,r24
- 297 008e D109      		sbc r29,__zero_reg__
- 298 0090 2097      		sbiw r28,0
- 299 0092 79F4      		brne .L7
+ 276               	.LM11:
+ 277 0064 AE2F      		mov r26,r30
+ 278 0066 BB27      		clr r27
+ 279 0068 8FE0      		ldi r24,lo8(15)
+ 280 006a 90E0      		ldi r25,hi8(15)
+ 281 006c A89F      		mul r26,r24
+ 282 006e F001      		movw r30,r0
+ 283 0070 A99F      		mul r26,r25
+ 284 0072 F00D      		add r31,r0
+ 285 0074 B89F      		mul r27,r24
+ 286 0076 F00D      		add r31,r0
+ 287 0078 1124      		clr r1
+ 288 007a E050      		subi r30,lo8(-(CommandList))
+ 289 007c F040      		sbci r31,hi8(-(CommandList))
+ 290 007e 9081      		ld r25,Z
+ 291 0080 8091 0000 		lds r24,parserBuffer
+ 292 0084 9817      		cp r25,r24
+ 293 0086 79F4      		brne .L10
   92:parser.c      **** 		{
   93:parser.c      **** 			// user-entered command matched a command in the list (database)
   94:parser.c      **** 			ParserExecFunction = ParserFunctionList[cmdIndex];
- 301               	.LM14:
- 302 0094 AA0F      		add r26,r26
- 303 0096 BB1F      		adc r27,r27
- 304 0098 A050      		subi r26,lo8(-(ParserFunctionList))
- 305 009a B040      		sbci r27,hi8(-(ParserFunctionList))
- 306 009c ED91      		ld r30,X+
- 307 009e FC91      		ld r31,X
- 308 00a0 F093 0000 		sts (ParserExecFunction)+1,r31
- 309 00a4 E093 0000 		sts ParserExecFunction,r30
+ 295               	.LM12:
+ 296 0088 AA0F      		lsl r26
+ 297 008a BB1F      		rol r27
+ 298 008c A050      		subi r26,lo8(-(ParserFunctionList))
+ 299 008e B040      		sbci r27,hi8(-(ParserFunctionList))
+ 300 0090 ED91      		ld r30,X+
+ 301 0092 FC91      		ld r31,X
+ 302 0094 F093 0000 		sts (ParserExecFunction)+1,r31
+ 303 0098 E093 0000 		sts ParserExecFunction,r30
   95:parser.c      **** 			// run the corresponding function
   96:parser.c      **** 			ParserExecFunction();
- 311               	.LM15:
- 312 00a8 0995      		icall
+ 305               	.LM13:
+ 306 009c 0995      		icall
   97:parser.c      **** 			// reset
   98:parser.c      **** 			ParserExecFunction = 0;
- 314               	.LM16:
- 315 00aa D093 0000 		sts (ParserExecFunction)+1,r29
- 316 00ae C093 0000 		sts ParserExecFunction,r28
- 317               	.L7:
- 319               	.LM17:
- 320 00b2 1F5F      		subi r17,lo8(-(1))
- 321 00b4 8091 0000 		lds r24,parserNumCommands
- 322 00b8 1817      		cp r17,r24
- 323 00ba B8F2      		brlo .L9
- 324               	.L11:
- 325               	/* epilogue: frame size=0 */
- 326 00bc DF91      		pop r29
- 327 00be CF91      		pop r28
- 328 00c0 1F91      		pop r17
- 329 00c2 0895      		ret
- 330               	/* epilogue end (size=4) */
- 331               	/* function parserProcessInputString size 53 (46) */
- 336               	.Lscope3:
- 340               	.global	parserInputFunc
- 342               	parserInputFunc:
- 344               	.LM18:
- 345               	/* prologue: frame size=0 */
- 346               	/* prologue end (size=0) */
- 347 00c4 9091 0000 		lds r25,parserBufferLength
- 349               	.LM19:
- 350 00c8 8D30      		cpi r24,lo8(13)
- 351 00ca 49F0      		breq .L13
- 353               	.LM20:
- 354 00cc E92F      		mov r30,r25
- 355 00ce FF27      		clr r31
- 356 00d0 E050      		subi r30,lo8(-(parserBuffer))
- 357 00d2 F040      		sbci r31,hi8(-(parserBuffer))
- 358 00d4 8083      		st Z,r24
- 360               	.LM21:
- 361 00d6 9F5F      		subi r25,lo8(-(1))
- 362 00d8 9093 0000 		sts parserBufferLength,r25
- 363 00dc 0895      		ret
- 364               	.L13:
- 366               	.LM22:
- 367 00de E92F      		mov r30,r25
- 368 00e0 FF27      		clr r31
- 369 00e2 E050      		subi r30,lo8(-(parserBuffer))
- 370 00e4 F040      		sbci r31,hi8(-(parserBuffer))
- 371 00e6 1082      		st Z,__zero_reg__
- 373               	.LM23:
- 374 00e8 0E94 0000 		call parserProcessInputString
- 376               	.LM24:
- 377 00ec 1092 0000 		sts parserBufferLength,__zero_reg__
- 378 00f0 0895      		ret
- 379               	/* epilogue: frame size=0 */
- 380               	/* epilogue: noreturn */
- 381               	/* epilogue end (size=0) */
- 382               	/* function parserInputFunc size 23 (23) */
- 384               	.Lscope4:
- 387               	.global	parserGetArgStr
- 389               	parserGetArgStr:
+ 308               	.LM14:
+ 309 009e 1092 0000 		sts (ParserExecFunction)+1,__zero_reg__
+ 310 00a2 1092 0000 		sts ParserExecFunction,__zero_reg__
+ 311               	.L10:
+ 312 00a6 2196      		adiw r28,1
+ 313               	.L8:
+ 314 00a8 EC2F      		mov r30,r28
+ 316               	.LM15:
+ 317 00aa 8091 0000 		lds r24,parserNumCommands
+ 318 00ae C817      		cp r28,r24
+ 319 00b0 C8F2      		brlo .L9
+ 320               	/* epilogue: frame size=0 */
+ 321 00b2 DF91      		pop r29
+ 322 00b4 CF91      		pop r28
+ 323 00b6 0895      		ret
+ 324               	/* epilogue end (size=3) */
+ 325               	/* function parserProcessInputString size 47 (42) */
+ 330               	.Lscope3:
+ 332               		.stabd	78,0,0
+ 335               	.global	parserInputFunc
+ 337               	parserInputFunc:
+ 338               		.stabd	46,0,0
+ 340               	.LM16:
+ 341               	/* prologue: frame size=0 */
+ 342               	/* prologue end (size=0) */
+ 343 00b8 9091 0000 		lds r25,parserBufferLength
+ 345               	.LM17:
+ 346 00bc 8D30      		cpi r24,lo8(13)
+ 347 00be 49F0      		breq .L15
+ 349               	.LM18:
+ 350 00c0 E92F      		mov r30,r25
+ 351 00c2 FF27      		clr r31
+ 352 00c4 E050      		subi r30,lo8(-(parserBuffer))
+ 353 00c6 F040      		sbci r31,hi8(-(parserBuffer))
+ 354 00c8 8083      		st Z,r24
+ 356               	.LM19:
+ 357 00ca 9F5F      		subi r25,lo8(-(1))
+ 358 00cc 9093 0000 		sts parserBufferLength,r25
+ 359 00d0 0895      		ret
+ 360               	.L15:
+ 362               	.LM20:
+ 363 00d2 E92F      		mov r30,r25
+ 364 00d4 FF27      		clr r31
+ 365 00d6 E050      		subi r30,lo8(-(parserBuffer))
+ 366 00d8 F040      		sbci r31,hi8(-(parserBuffer))
+ 367 00da 1082      		st Z,__zero_reg__
+ 369               	.LM21:
+ 370 00dc 0E94 0000 		call parserProcessInputString
+ 372               	.LM22:
+ 373 00e0 1092 0000 		sts parserBufferLength,__zero_reg__
+ 374 00e4 0895      		ret
+ 375               	/* epilogue: frame size=0 */
+ 376               	/* epilogue: noreturn */
+ 377               	/* epilogue end (size=0) */
+ 378               	/* function parserInputFunc size 23 (23) */
+ 380               	.Lscope4:
+ 382               		.stabd	78,0,0
+ 384               	.global	parserGetArgStr
+ 386               	parserGetArgStr:
+ 387               		.stabd	46,0,0
   99:parser.c      **** 		}
  100:parser.c      **** 	}
  101:parser.c      **** }
@@ -304,41 +309,24 @@
  103:parser.c      **** // return string pointer to argument [argnum]
  104:parser.c      **** unsigned char* parserGetArgStr(void)
  105:parser.c      **** {
- 391               	.LM25:
- 392               	/* prologue: frame size=0 */
- 393               	/* prologue end (size=0) */
+ 389               	.LM23:
+ 390               	/* prologue: frame size=0 */
+ 391               	/* prologue end (size=0) */
  106:parser.c      **** 	return &parserBuffer[2];		//spec states that commands are 1 char followed by a space followed by t
  107:parser.c      **** }									//arg must start at idx 2
- 395               	.LM26:
- 396 00f2 80E0      		ldi r24,lo8(parserBuffer+2)
- 397 00f4 90E0      		ldi r25,hi8(parserBuffer+2)
- 398               	/* epilogue: frame size=0 */
- 399 00f6 0895      		ret
- 400               	/* epilogue end (size=1) */
- 401               	/* function parserGetArgStr size 3 (2) */
- 403               	.Lscope5:
- 406               	.global	parserGetArgInt
- 408               	parserGetArgInt:
- 108:parser.c      **** 
- 109:parser.c      **** //return argument as a long
- 110:parser.c      **** int parserGetArgInt(void)
- 111:parser.c      **** {
- 410               	.LM27:
- 411               	/* prologue: frame size=0 */
- 412               	/* prologue end (size=0) */
- 112:parser.c      **** 	char* endptr;
- 113:parser.c      **** 	return atoi(parserGetArgStr());
- 414               	.LM28:
- 415 00f8 0E94 0000 		call parserGetArgStr
- 416 00fc 0E94 0000 		call atoi
- 417               	/* epilogue: frame size=0 */
- 418 0100 0895      		ret
- 419               	/* epilogue end (size=1) */
- 420               	/* function parserGetArgInt size 5 (4) */
- 422               	.Lscope6:
- 425               	.global	__vector_11
- 427               	__vector_11:
- 429               	.Ltext2:
+ 393               	.LM24:
+ 394 00e6 80E0      		ldi r24,lo8(parserBuffer+2)
+ 395 00e8 90E0      		ldi r25,hi8(parserBuffer+2)
+ 396               	/* epilogue: frame size=0 */
+ 397 00ea 0895      		ret
+ 398               	/* epilogue end (size=1) */
+ 399               	/* function parserGetArgStr size 3 (2) */
+ 401               	.Lscope5:
+ 403               		.stabd	78,0,0
+ 405               	.global	__vector_11
+ 407               	__vector_11:
+ 408               		.stabd	46,0,0
+ 410               	.Ltext2:
    1:SerialExample.c **** /*
    2:SerialExample.c ****     Serial interface Demo for AvrXFifo's
    3:SerialExample.c **** 
@@ -434,31 +422,33 @@
   93:SerialExample.c **** 
   94:SerialExample.c **** AVRX_SIGINT(SIG_OVERFLOW0)
   95:SerialExample.c **** {
- 431               	.LM29:
- 432               	/* prologue: frame size=0 */
- 433               	/* prologue: naked */
- 434               	/* prologue end (size=0) */
+ 412               	.LM25:
+ 413               	/* prologue: frame size=0 */
+ 414               	/* prologue: naked */
+ 415               	/* prologue end (size=0) */
   96:SerialExample.c ****     IntProlog();                // Switch to kernel stack/context
- 436               	.LM30:
- 437 0102 0E94 0000 		call IntProlog
+ 417               	.LM26:
+ 418 00ec 0E94 0000 		call IntProlog
   97:SerialExample.c ****     TCNT0 += TCNT0_INIT;		// Add to pre-load to account for any missed clocks
- 439               	.LM31:
- 440 0106 82B7      		in r24,82-0x20
- 441 0108 8F53      		subi r24,lo8(-(-63))
- 442 010a 82BF      		out 82-0x20,r24
+ 420               	.LM27:
+ 421 00f0 82B7      		in r24,82-0x20
+ 422 00f2 8F53      		subi r24,lo8(-(-63))
+ 423 00f4 82BF      		out 82-0x20,r24
   98:SerialExample.c ****     AvrXTimerHandler();         // Call Time queue manager
- 444               	.LM32:
- 445 010c 0E94 0000 		call AvrXTimerHandler
+ 425               	.LM28:
+ 426 00f6 0E94 0000 		call AvrXTimerHandler
   99:SerialExample.c ****     Epilog();                   // Return to tasks
- 447               	.LM33:
- 448 0110 0E94 0000 		call Epilog
- 449               	/* epilogue: frame size=0 */
- 450               	/* epilogue: naked */
- 451               	/* epilogue end (size=0) */
- 452               	/* function __vector_11 size 9 (9) */
- 454               	.Lscope7:
- 459               	.global	myputs
- 461               	myputs:
+ 428               	.LM29:
+ 429 00fa 0E94 0000 		call Epilog
+ 430               	/* epilogue: frame size=0 */
+ 431               	/* epilogue: naked */
+ 432               	/* epilogue end (size=0) */
+ 433               	/* function __vector_11 size 9 (9) */
+ 435               	.Lscope6:
+ 437               		.stabd	78,0,0
+ 441               	.global	myputs
+ 443               	myputs:
+ 444               		.stabd	46,0,0
  100:SerialExample.c **** }
  101:SerialExample.c **** 
  102:SerialExample.c **** 
@@ -468,135 +458,130 @@
  106:SerialExample.c **** // PutString from RAM
  107:SerialExample.c **** void myputs(int (*putch)(char), const uint8_t * psz)
  108:SerialExample.c **** {
- 463               	.LM34:
- 464               	/* prologue: frame size=0 */
- 465 0114 0F93      		push r16
- 466 0116 1F93      		push r17
- 467 0118 CF93      		push r28
- 468 011a DF93      		push r29
- 469               	/* prologue end (size=4) */
- 470 011c 8C01      		movw r16,r24
- 471 011e EB01      		movw r28,r22
+ 446               	.LM30:
+ 447               	/* prologue: frame size=0 */
+ 448 00fe 0F93      		push r16
+ 449 0100 1F93      		push r17
+ 450 0102 CF93      		push r28
+ 451 0104 DF93      		push r29
+ 452               	/* prologue end (size=4) */
+ 453 0106 8C01      		movw r16,r24
+ 454 0108 EB01      		movw r28,r22
+ 455 010a 03C0      		rjmp .L24
+ 456               	.L25:
  109:SerialExample.c **** 	while (*psz != 0)
  110:SerialExample.c **** 		(*putch)(*psz++);
- 473               	.LM35:
- 474 0120 8881      		ld r24,Y
- 475 0122 8823      		tst r24
- 476 0124 31F0      		breq .L23
- 477               	.L21:
- 479               	.LM36:
- 480 0126 8991      		ld r24,Y+
- 481 0128 F801      		movw r30,r16
- 482 012a 0995      		icall
- 483 012c 8881      		ld r24,Y
- 484 012e 8823      		tst r24
- 485 0130 D1F7      		brne .L21
- 486               	.L23:
- 487               	/* epilogue: frame size=0 */
- 488 0132 DF91      		pop r29
- 489 0134 CF91      		pop r28
- 490 0136 1F91      		pop r17
- 491 0138 0F91      		pop r16
- 492 013a 0895      		ret
- 493               	/* epilogue end (size=5) */
- 494               	/* function myputs size 20 (11) */
- 496               	.Lscope8:
- 501               	.global	myputs_P
- 503               	myputs_P:
+ 458               	.LM31:
+ 459 010c 2196      		adiw r28,1
+ 460 010e F801      		movw r30,r16
+ 461 0110 0995      		icall
+ 462               	.L24:
+ 464               	.LM32:
+ 465 0112 8881      		ld r24,Y
+ 466 0114 8823      		tst r24
+ 467 0116 D1F7      		brne .L25
+ 468               	/* epilogue: frame size=0 */
+ 469 0118 DF91      		pop r29
+ 470 011a CF91      		pop r28
+ 471 011c 1F91      		pop r17
+ 472 011e 0F91      		pop r16
+ 473 0120 0895      		ret
+ 474               	/* epilogue end (size=5) */
+ 475               	/* function myputs size 18 (9) */
+ 477               	.Lscope7:
+ 479               		.stabd	78,0,0
+ 483               	.global	myputs_P
+ 485               	myputs_P:
+ 486               		.stabd	46,0,0
  111:SerialExample.c **** }
  112:SerialExample.c **** 
  113:SerialExample.c **** // PutString from FLASH
  114:SerialExample.c **** void myputs_P(int (*putch)(char), const uint8_t * psz)
  115:SerialExample.c **** {
- 505               	.LM37:
- 506               	/* prologue: frame size=0 */
- 507 013c 0F93      		push r16
- 508 013e 1F93      		push r17
- 509 0140 CF93      		push r28
- 510 0142 DF93      		push r29
- 511               	/* prologue end (size=4) */
- 512 0144 8C01      		movw r16,r24
- 513 0146 EB01      		movw r28,r22
- 514               	.LBB2:
+ 488               	.LM33:
+ 489               	/* prologue: frame size=0 */
+ 490 0122 0F93      		push r16
+ 491 0124 1F93      		push r17
+ 492 0126 CF93      		push r28
+ 493 0128 DF93      		push r29
+ 494               	/* prologue end (size=4) */
+ 495 012a 8C01      		movw r16,r24
+ 496 012c EB01      		movw r28,r22
+ 497 012e 05C0      		rjmp .L29
+ 498               	.L30:
+ 499               	.LBB2:
  116:SerialExample.c **** 	while (__LPM(psz) != 0)
  117:SerialExample.c **** 		(*putch)(__LPM(psz++));
- 516               	.LM38:
- 517 0148 FB01      		movw r30,r22
- 518               	/* #APP */
- 519 014a 8491      		lpm r24, Z
- 520               		
- 521               	/* #NOAPP */
- 522               	.LBE2:
- 523 014c 8823      		tst r24
- 524 014e 49F0      		breq .L29
- 525               	.L27:
- 526               	.LBB3:
- 528               	.LM39:
- 529 0150 FE01      		movw r30,r28
- 530 0152 2196      		adiw r28,1
- 531               	/* #APP */
- 532 0154 8491      		lpm r24, Z
- 533               		
- 534               	/* #NOAPP */
- 535               	.LBE3:
- 536 0156 F801      		movw r30,r16
- 537 0158 0995      		icall
- 538               	.LBB4:
- 539 015a FE01      		movw r30,r28
- 540               	/* #APP */
- 541 015c 8491      		lpm r24, Z
- 542               		
- 543               	/* #NOAPP */
- 544               	.LBE4:
- 545 015e 8823      		tst r24
- 546 0160 B9F7      		brne .L27
- 547               	.L29:
- 548               	/* epilogue: frame size=0 */
- 549 0162 DF91      		pop r29
- 550 0164 CF91      		pop r28
- 551 0166 1F91      		pop r17
- 552 0168 0F91      		pop r16
- 553 016a 0895      		ret
- 554               	/* epilogue end (size=5) */
- 555               	/* function myputs_P size 33 (24) */
- 566               	.Lscope9:
- 568               		.section	.progmem.data
- 571               	__c.0:
- 572 000e 3100      		.string	"1"
- 575               	__c.1:
- 576 0010 6320 2564 		.string	"c %d,"
- 576      2C00 
- 579               	__c.2:
- 580 0016 6120 3037 		.string	"a 072.5759E,"
- 580      322E 3537 
- 580      3539 452C 
- 580      00
- 583               	__c.3:
- 584 0023 6120 3034 		.string	"a 043.3223n,"
- 584      332E 3332 
- 584      3233 6E2C 
- 584      00
- 587               	__c.4:
- 588 0030 7320 2564 		.string	"s %d,"
- 588      2C00 
- 591               	__c.5:
- 592 0036 6720 2564 		.string	"g %d,"
- 592      2C00 
- 595               	__c.6:
- 596 003c 6620 2564 		.string	"f %d,"
- 596      2C00 
- 599               	__c.7:
- 600 0042 6220 2564 		.string	"b %d,"
- 600      2C00 
- 603               	__c.8:
- 604 0048 7120 2564 		.string	"q %d,"
- 604      2C00 
- 607               	__c.9:
- 608 004e 7720 2564 		.string	"w %d,"
- 608      2C00 
- 609               		.text
- 611               	.global	getUAVStatus
- 613               	getUAVStatus:
+ 501               	.LM34:
+ 502 0130 2196      		adiw r28,1
+ 503 0132 F901      		movw r30,r18
+ 504               	/* #APP */
+ 505 0134 8491      		lpm r24, Z
+ 506               		
+ 507               	/* #NOAPP */
+ 508               	.LBE2:
+ 509 0136 F801      		movw r30,r16
+ 510 0138 0995      		icall
+ 511               	.L29:
+ 512 013a 9E01      		movw r18,r28
+ 513               	.LBB3:
+ 515               	.LM35:
+ 516 013c FE01      		movw r30,r28
+ 517               	/* #APP */
+ 518 013e 8491      		lpm r24, Z
+ 519               		
+ 520               	/* #NOAPP */
+ 521               	.LBE3:
+ 522 0140 8823      		tst r24
+ 523 0142 B1F7      		brne .L30
+ 524               	/* epilogue: frame size=0 */
+ 525 0144 DF91      		pop r29
+ 526 0146 CF91      		pop r28
+ 527 0148 1F91      		pop r17
+ 528 014a 0F91      		pop r16
+ 529 014c 0895      		ret
+ 530               	/* epilogue end (size=5) */
+ 531               	/* function myputs_P size 28 (19) */
+ 540               	.Lscope8:
+ 542               		.stabd	78,0,0
+ 543               		.section	.progmem.data
+ 546               	__c.1904:
+ 547 000e 7720 2564 		.string	"w %d,"
+ 547      2C00 
+ 550               	__c.1902:
+ 551 0014 7120 2564 		.string	"q %d,"
+ 551      2C00 
+ 554               	__c.1900:
+ 555 001a 6220 2564 		.string	"b %d,"
+ 555      2C00 
+ 558               	__c.1898:
+ 559 0020 6620 2564 		.string	"f %d,"
+ 559      2C00 
+ 562               	__c.1896:
+ 563 0026 6720 2564 		.string	"g %d,"
+ 563      2C00 
+ 566               	__c.1894:
+ 567 002c 7320 2564 		.string	"s %d,"
+ 567      2C00 
+ 570               	__c.1892:
+ 571 0032 6120 3034 		.string	"a 043.3223n,"
+ 571      332E 3332 
+ 571      3233 6E2C 
+ 571      00
+ 574               	__c.1890:
+ 575 003f 6120 3037 		.string	"a 072.5759E,"
+ 575      322E 3537 
+ 575      3539 452C 
+ 575      00
+ 578               	__c.1888:
+ 579 004c 6320 2564 		.string	"c %d,"
+ 579      2C00 
+ 582               	__c.1886:
+ 583 0052 3100      		.string	"1"
+ 584               		.text
+ 586               	.global	getUAVStatus
+ 588               	getUAVStatus:
+ 589               		.stabd	46,0,0
  118:SerialExample.c **** }
  119:SerialExample.c **** 
  120:SerialExample.c **** //#if (USART_CHANNELS & CHANNEL_0)
@@ -604,193 +589,170 @@
  122:SerialExample.c **** //tell the ground station I am OK by sending a "1" 10 times a second
  123:SerialExample.c **** AVRX_GCC_TASKDEF(getUAVStatus, 76, 4)
  124:SerialExample.c **** {	
- 615               	.LM40:
- 616               	/* prologue: frame size=6 */
- 617 016c CF93      		push r28
- 618 016e DF93      		push r29
- 619 0170 CDB7      		in r28,__SP_L__
- 620 0172 DEB7      		in r29,__SP_H__
- 621 0174 2697      		sbiw r28,6
- 622 0176 0FB6      		in __tmp_reg__,__SREG__
- 623 0178 F894      		cli
- 624 017a DEBF      		out __SP_H__,r29
- 625 017c 0FBE      		out __SREG__,__tmp_reg__
- 626 017e CDBF      		out __SP_L__,r28
- 627               	/* prologue end (size=10) */
- 628               	.L31:
+ 591               	.LM36:
+ 592               	/* prologue: frame size=6 */
+ 593 014e CF93      		push r28
+ 594 0150 DF93      		push r29
+ 595 0152 CDB7      		in r28,__SP_L__
+ 596 0154 DEB7      		in r29,__SP_H__
+ 597 0156 2697      		sbiw r28,6
+ 598 0158 0FB6      		in __tmp_reg__,__SREG__
+ 599 015a F894      		cli
+ 600 015c DEBF      		out __SP_H__,r29
+ 601 015e 0FBE      		out __SREG__,__tmp_reg__
+ 602 0160 CDBF      		out __SP_L__,r28
+ 603               	/* prologue end (size=10) */
+ 604               	.L35:
  125:SerialExample.c **** 	TimerControlBlock timer;
  126:SerialExample.c **** 	
  127:SerialExample.c **** 	while(1)
  128:SerialExample.c **** 	{
  129:SerialExample.c **** 		printf_P(PSTR("1"));
- 630               	.LM41:
- 631 0180 80E0      		ldi r24,lo8(__c.0)
- 632 0182 90E0      		ldi r25,hi8(__c.0)
- 633 0184 9F93      		push r25
- 634 0186 8F93      		push r24
- 635 0188 0E94 0000 		call printf_P
+ 606               	.LM37:
+ 607 0162 80E0      		ldi r24,lo8(__c.1886)
+ 608 0164 90E0      		ldi r25,hi8(__c.1886)
+ 609 0166 9F93      		push r25
+ 610 0168 8F93      		push r24
+ 611 016a 0E94 0000 		call printf_P
  130:SerialExample.c **** 		putchar('\r');
- 637               	.LM42:
- 638 018c 6091 0000 		lds r22,__iob+2
- 639 0190 7091 0000 		lds r23,(__iob+2)+1
- 640 0194 8DE0      		ldi r24,lo8(13)
- 641 0196 90E0      		ldi r25,hi8(13)
- 642 0198 0E94 0000 		call fputc
+ 613               	.LM38:
+ 614 016e 6091 0000 		lds r22,__iob+2
+ 615 0172 7091 0000 		lds r23,(__iob+2)+1
+ 616 0176 8DE0      		ldi r24,lo8(13)
+ 617 0178 90E0      		ldi r25,hi8(13)
+ 618 017a 0E94 0000 		call fputc
  131:SerialExample.c **** 		if (DEBUG) putchar('\n');
- 644               	.LM43:
- 645 019c 6091 0000 		lds r22,__iob+2
- 646 01a0 7091 0000 		lds r23,(__iob+2)+1
- 647 01a4 8AE0      		ldi r24,lo8(10)
- 648 01a6 90E0      		ldi r25,hi8(10)
- 649 01a8 0E94 0000 		call fputc
- 650 01ac 0F90      		pop __tmp_reg__
- 651 01ae 0F90      		pop __tmp_reg__
+ 620               	.LM39:
+ 621 017e 6091 0000 		lds r22,__iob+2
+ 622 0182 7091 0000 		lds r23,(__iob+2)+1
+ 623 0186 8AE0      		ldi r24,lo8(10)
+ 624 0188 90E0      		ldi r25,hi8(10)
+ 625 018a 0E94 0000 		call fputc
  132:SerialExample.c **** 		AvrXDelay(&timer, 250);
- 653               	.LM44:
- 654 01b0 6AEF      		ldi r22,lo8(250)
- 655 01b2 70E0      		ldi r23,hi8(250)
- 656 01b4 CE01      		movw r24,r28
- 657 01b6 0196      		adiw r24,1
- 658 01b8 0E94 0000 		call AvrXDelay
+ 627               	.LM40:
+ 628 018e 6AEF      		ldi r22,lo8(250)
+ 629 0190 70E0      		ldi r23,hi8(250)
+ 630 0192 CE01      		movw r24,r28
+ 631 0194 0196      		adiw r24,1
+ 632 0196 0E94 0000 		call AvrXDelay
  133:SerialExample.c **** 		printf_P(PSTR("c %d,"), 120);   	// c/3 evaluates to an int, even it c is not a multiple of
- 660               	.LM45:
- 661 01bc 88E7      		ldi r24,lo8(120)
- 662 01be 90E0      		ldi r25,hi8(120)
- 663 01c0 9F93      		push r25
- 664 01c2 8F93      		push r24
- 665 01c4 80E0      		ldi r24,lo8(__c.1)
- 666 01c6 90E0      		ldi r25,hi8(__c.1)
- 667 01c8 9F93      		push r25
- 668 01ca 8F93      		push r24
- 669 01cc 0E94 0000 		call printf_P
+ 634               	.LM41:
+ 635 019a 88E7      		ldi r24,lo8(120)
+ 636 019c 90E0      		ldi r25,hi8(120)
+ 637 019e 9F93      		push r25
+ 638 01a0 8F93      		push r24
+ 639 01a2 80E0      		ldi r24,lo8(__c.1888)
+ 640 01a4 90E0      		ldi r25,hi8(__c.1888)
+ 641 01a6 9F93      		push r25
+ 642 01a8 8F93      		push r24
+ 643 01aa 0E94 0000 		call printf_P
  134:SerialExample.c **** 		printf_P(PSTR("a 072.5759E,")); 
- 671               	.LM46:
- 672 01d0 0F90      		pop __tmp_reg__
- 673 01d2 0F90      		pop __tmp_reg__
- 674 01d4 0F90      		pop __tmp_reg__
- 675 01d6 0F90      		pop __tmp_reg__
- 676 01d8 80E0      		ldi r24,lo8(__c.2)
- 677 01da 90E0      		ldi r25,hi8(__c.2)
- 678 01dc 9F93      		push r25
- 679 01de 8F93      		push r24
- 680 01e0 0E94 0000 		call printf_P
+ 645               	.LM42:
+ 646 01ae 80E0      		ldi r24,lo8(__c.1890)
+ 647 01b0 90E0      		ldi r25,hi8(__c.1890)
+ 648 01b2 9F93      		push r25
+ 649 01b4 8F93      		push r24
+ 650 01b6 0E94 0000 		call printf_P
  135:SerialExample.c **** 		printf_P(PSTR("a 043.3223n,")); 
- 682               	.LM47:
- 683 01e4 0F90      		pop __tmp_reg__
- 684 01e6 0F90      		pop __tmp_reg__
- 685 01e8 80E0      		ldi r24,lo8(__c.3)
- 686 01ea 90E0      		ldi r25,hi8(__c.3)
- 687 01ec 9F93      		push r25
- 688 01ee 8F93      		push r24
- 689 01f0 0E94 0000 		call printf_P
+ 652               	.LM43:
+ 653 01ba 80E0      		ldi r24,lo8(__c.1892)
+ 654 01bc 90E0      		ldi r25,hi8(__c.1892)
+ 655 01be 9F93      		push r25
+ 656 01c0 8F93      		push r24
+ 657 01c2 0E94 0000 		call printf_P
  136:SerialExample.c **** 		AvrXDelay(&timer, 250);
- 691               	.LM48:
- 692 01f4 6AEF      		ldi r22,lo8(250)
- 693 01f6 70E0      		ldi r23,hi8(250)
- 694 01f8 CE01      		movw r24,r28
- 695 01fa 0196      		adiw r24,1
- 696 01fc 0E94 0000 		call AvrXDelay
+ 659               	.LM44:
+ 660 01c6 6AEF      		ldi r22,lo8(250)
+ 661 01c8 70E0      		ldi r23,hi8(250)
+ 662 01ca CE01      		movw r24,r28
+ 663 01cc 0196      		adiw r24,1
+ 664 01ce 0E94 0000 		call AvrXDelay
  137:SerialExample.c **** 		printf_P(PSTR("s %d,"), 3);  
- 698               	.LM49:
- 699 0200 0F90      		pop __tmp_reg__
- 700 0202 0F90      		pop __tmp_reg__
- 701 0204 83E0      		ldi r24,lo8(3)
- 702 0206 90E0      		ldi r25,hi8(3)
- 703 0208 9F93      		push r25
- 704 020a 8F93      		push r24
- 705 020c 80E0      		ldi r24,lo8(__c.4)
- 706 020e 90E0      		ldi r25,hi8(__c.4)
- 707 0210 9F93      		push r25
- 708 0212 8F93      		push r24
- 709 0214 0E94 0000 		call printf_P
+ 666               	.LM45:
+ 667 01d2 83E0      		ldi r24,lo8(3)
+ 668 01d4 90E0      		ldi r25,hi8(3)
+ 669 01d6 9F93      		push r25
+ 670 01d8 8F93      		push r24
+ 671 01da 80E0      		ldi r24,lo8(__c.1894)
+ 672 01dc 90E0      		ldi r25,hi8(__c.1894)
+ 673 01de 9F93      		push r25
+ 674 01e0 8F93      		push r24
+ 675 01e2 0E94 0000 		call printf_P
  138:SerialExample.c **** 		printf_P(PSTR("g %d,"), 5);
- 711               	.LM50:
- 712 0218 0F90      		pop __tmp_reg__
- 713 021a 0F90      		pop __tmp_reg__
- 714 021c 0F90      		pop __tmp_reg__
- 715 021e 0F90      		pop __tmp_reg__
- 716 0220 85E0      		ldi r24,lo8(5)
- 717 0222 90E0      		ldi r25,hi8(5)
- 718 0224 9F93      		push r25
- 719 0226 8F93      		push r24
- 720 0228 80E0      		ldi r24,lo8(__c.5)
- 721 022a 90E0      		ldi r25,hi8(__c.5)
- 722 022c 9F93      		push r25
- 723 022e 8F93      		push r24
- 724 0230 0E94 0000 		call printf_P
+ 677               	.LM46:
+ 678 01e6 85E0      		ldi r24,lo8(5)
+ 679 01e8 90E0      		ldi r25,hi8(5)
+ 680 01ea 9F93      		push r25
+ 681 01ec 8F93      		push r24
+ 682 01ee 80E0      		ldi r24,lo8(__c.1896)
+ 683 01f0 90E0      		ldi r25,hi8(__c.1896)
+ 684 01f2 9F93      		push r25
+ 685 01f4 8F93      		push r24
+ 686 01f6 0E94 0000 		call printf_P
  139:SerialExample.c **** 		printf_P(PSTR("f %d,"), 80); 
- 726               	.LM51:
- 727 0234 0F90      		pop __tmp_reg__
- 728 0236 0F90      		pop __tmp_reg__
- 729 0238 0F90      		pop __tmp_reg__
- 730 023a 0F90      		pop __tmp_reg__
- 731 023c 80E5      		ldi r24,lo8(80)
- 732 023e 90E0      		ldi r25,hi8(80)
- 733 0240 9F93      		push r25
- 734 0242 8F93      		push r24
- 735 0244 80E0      		ldi r24,lo8(__c.6)
- 736 0246 90E0      		ldi r25,hi8(__c.6)
- 737 0248 9F93      		push r25
- 738 024a 8F93      		push r24
- 739 024c 0E94 0000 		call printf_P
+ 688               	.LM47:
+ 689 01fa 80E5      		ldi r24,lo8(80)
+ 690 01fc 90E0      		ldi r25,hi8(80)
+ 691 01fe 9F93      		push r25
+ 692 0200 8F93      		push r24
+ 693 0202 80E0      		ldi r24,lo8(__c.1898)
+ 694 0204 90E0      		ldi r25,hi8(__c.1898)
+ 695 0206 9F93      		push r25
+ 696 0208 8F93      		push r24
+ 697 020a 0E94 0000 		call printf_P
  140:SerialExample.c **** 		printf_P(PSTR("b %d,"), 35); 
- 741               	.LM52:
- 742 0250 0F90      		pop __tmp_reg__
- 743 0252 0F90      		pop __tmp_reg__
- 744 0254 0F90      		pop __tmp_reg__
- 745 0256 0F90      		pop __tmp_reg__
- 746 0258 83E2      		ldi r24,lo8(35)
- 747 025a 90E0      		ldi r25,hi8(35)
- 748 025c 9F93      		push r25
- 749 025e 8F93      		push r24
- 750 0260 80E0      		ldi r24,lo8(__c.7)
- 751 0262 90E0      		ldi r25,hi8(__c.7)
- 752 0264 9F93      		push r25
- 753 0266 8F93      		push r24
- 754 0268 0E94 0000 		call printf_P
+ 699               	.LM48:
+ 700 020e 83E2      		ldi r24,lo8(35)
+ 701 0210 90E0      		ldi r25,hi8(35)
+ 702 0212 9F93      		push r25
+ 703 0214 8F93      		push r24
+ 704 0216 80E0      		ldi r24,lo8(__c.1900)
+ 705 0218 90E0      		ldi r25,hi8(__c.1900)
+ 706 021a 9F93      		push r25
+ 707 021c 8F93      		push r24
+ 708 021e 0E94 0000 		call printf_P
  141:SerialExample.c **** 		printf_P(PSTR("q %d,"), 23);  
- 756               	.LM53:
- 757 026c 0F90      		pop __tmp_reg__
- 758 026e 0F90      		pop __tmp_reg__
- 759 0270 0F90      		pop __tmp_reg__
- 760 0272 0F90      		pop __tmp_reg__
- 761 0274 87E1      		ldi r24,lo8(23)
- 762 0276 90E0      		ldi r25,hi8(23)
- 763 0278 9F93      		push r25
- 764 027a 8F93      		push r24
- 765 027c 80E0      		ldi r24,lo8(__c.8)
- 766 027e 90E0      		ldi r25,hi8(__c.8)
- 767 0280 9F93      		push r25
- 768 0282 8F93      		push r24
- 769 0284 0E94 0000 		call printf_P
+ 710               	.LM49:
+ 711 0222 87E1      		ldi r24,lo8(23)
+ 712 0224 90E0      		ldi r25,hi8(23)
+ 713 0226 9F93      		push r25
+ 714 0228 8F93      		push r24
+ 715 022a 80E0      		ldi r24,lo8(__c.1902)
+ 716 022c 90E0      		ldi r25,hi8(__c.1902)
+ 717 022e 9F93      		push r25
+ 718 0230 8F93      		push r24
+ 719 0232 0E94 0000 		call printf_P
  142:SerialExample.c **** 		printf_P(PSTR("w %d,"), 70);
- 771               	.LM54:
- 772 0288 0F90      		pop __tmp_reg__
- 773 028a 0F90      		pop __tmp_reg__
- 774 028c 0F90      		pop __tmp_reg__
- 775 028e 0F90      		pop __tmp_reg__
- 776 0290 86E4      		ldi r24,lo8(70)
- 777 0292 90E0      		ldi r25,hi8(70)
- 778 0294 9F93      		push r25
- 779 0296 8F93      		push r24
- 780 0298 80E0      		ldi r24,lo8(__c.9)
- 781 029a 90E0      		ldi r25,hi8(__c.9)
- 782 029c 9F93      		push r25
- 783 029e 8F93      		push r24
- 784 02a0 0E94 0000 		call printf_P
- 785 02a4 0F90      		pop __tmp_reg__
- 786 02a6 0F90      		pop __tmp_reg__
- 787 02a8 0F90      		pop __tmp_reg__
- 788 02aa 0F90      		pop __tmp_reg__
- 789 02ac 69CF      		rjmp .L31
- 790               	/* epilogue: frame size=6 */
- 791               	/* epilogue: noreturn */
- 792               	/* epilogue end (size=0) */
- 793               	/* function getUAVStatus size 161 (151) */
- 798               	.Lscope10:
- 801               	.global	getCommands
- 803               	getCommands:
+ 721               	.LM50:
+ 722 0236 86E4      		ldi r24,lo8(70)
+ 723 0238 90E0      		ldi r25,hi8(70)
+ 724 023a 9F93      		push r25
+ 725 023c 8F93      		push r24
+ 726 023e 80E0      		ldi r24,lo8(__c.1904)
+ 727 0240 90E0      		ldi r25,hi8(__c.1904)
+ 728 0242 9F93      		push r25
+ 729 0244 8F93      		push r24
+ 730 0246 0E94 0000 		call printf_P
  143:SerialExample.c **** 	}
+ 732               	.LM51:
+ 733 024a 8DB7      		in r24,__SP_L__
+ 734 024c 9EB7      		in r25,__SP_H__
+ 735 024e 8296      		adiw r24,34
+ 736 0250 0FB6      		in __tmp_reg__,__SREG__
+ 737 0252 F894      		cli
+ 738 0254 9EBF      		out __SP_H__,r25
+ 739 0256 0FBE      		out __SREG__,__tmp_reg__
+ 740 0258 8DBF      		out __SP_L__,r24
+ 741 025a 83CF      		rjmp .L35
+ 742               	/* epilogue: frame size=6 */
+ 743               	/* epilogue: noreturn */
+ 744               	/* epilogue end (size=0) */
+ 745               	/* function getUAVStatus size 135 (125) */
+ 750               	.Lscope9:
+ 752               		.stabd	78,0,0
+ 754               	.global	getCommands
+ 756               	getCommands:
+ 757               		.stabd	46,0,0
  144:SerialExample.c **** }
  145:SerialExample.c **** 
  146:SerialExample.c **** 
@@ -801,90 +763,113 @@
  151:SerialExample.c **** 
  152:SerialExample.c **** AVRX_GCC_TASKDEF(getCommands, 100, 1)
  153:SerialExample.c **** {	
- 805               	.LM55:
- 806               	/* prologue: frame size=6 */
- 807 02ae CF93      		push r28
- 808 02b0 DF93      		push r29
- 809 02b2 CDB7      		in r28,__SP_L__
- 810 02b4 DEB7      		in r29,__SP_H__
- 811 02b6 2697      		sbiw r28,6
- 812 02b8 0FB6      		in __tmp_reg__,__SREG__
- 813 02ba F894      		cli
- 814 02bc DEBF      		out __SP_H__,r29
- 815 02be 0FBE      		out __SREG__,__tmp_reg__
- 816 02c0 CDBF      		out __SP_L__,r28
- 817               	/* prologue end (size=10) */
+ 759               	.LM52:
+ 760               	/* prologue: frame size=6 */
+ 761 025c CF93      		push r28
+ 762 025e DF93      		push r29
+ 763 0260 CDB7      		in r28,__SP_L__
+ 764 0262 DEB7      		in r29,__SP_H__
+ 765 0264 2697      		sbiw r28,6
+ 766 0266 0FB6      		in __tmp_reg__,__SREG__
+ 767 0268 F894      		cli
+ 768 026a DEBF      		out __SP_H__,r29
+ 769 026c 0FBE      		out __SREG__,__tmp_reg__
+ 770 026e CDBF      		out __SP_L__,r28
+ 771               	/* prologue end (size=10) */
+ 772 0270 16C0      		rjmp .L50
+ 773               	.L40:
  154:SerialExample.c **** 	int c;		
  155:SerialExample.c **** 	TimerControlBlock timer;
  156:SerialExample.c **** 	
  157:SerialExample.c **** 	while (1)
  158:SerialExample.c **** 	{
  159:SerialExample.c **** 		while ((c = getchar()) != EOF)
- 819               	.LM56:
- 820 02c2 15C0      		rjmp .L44
- 821               	.L40:
  160:SerialExample.c **** 		{	
  161:SerialExample.c **** 			if (c == '\r')
- 823               	.LM57:
- 824 02c4 0D30      		cpi r16,13
- 825 02c6 1105      		cpc r17,__zero_reg__
- 826 02c8 79F4      		brne .L39
+ 775               	.LM53:
+ 776 0272 0D30      		cpi r16,13
+ 777 0274 1105      		cpc r17,__zero_reg__
+ 778 0276 81F4      		brne .L41
  162:SerialExample.c **** 			{	putchar('\r');
- 828               	.LM58:
- 829 02ca 6091 0000 		lds r22,__iob+2
- 830 02ce 7091 0000 		lds r23,(__iob+2)+1
- 831 02d2 C801      		movw r24,r16
- 832 02d4 0E94 0000 		call fputc
+ 780               	.LM54:
+ 781 0278 6091 0000 		lds r22,__iob+2
+ 782 027c 7091 0000 		lds r23,(__iob+2)+1
+ 783 0280 8DE0      		ldi r24,lo8(13)
+ 784 0282 90E0      		ldi r25,hi8(13)
+ 785 0284 0E94 0000 		call fputc
  163:SerialExample.c **** 				putchar('\n');
- 834               	.LM59:
- 835 02d8 6091 0000 		lds r22,__iob+2
- 836 02dc 7091 0000 		lds r23,(__iob+2)+1
- 837 02e0 8AE0      		ldi r24,lo8(10)
- 838 02e2 90E0      		ldi r25,hi8(10)
- 839 02e4 0E94 0000 		call fputc
- 840               	.L39:
+ 787               	.LM55:
+ 788 0288 6091 0000 		lds r22,__iob+2
+ 789 028c 7091 0000 		lds r23,(__iob+2)+1
+ 790 0290 8AE0      		ldi r24,lo8(10)
+ 791 0292 90E0      		ldi r25,hi8(10)
+ 792 0294 0E94 0000 		call fputc
+ 793               	.L41:
  164:SerialExample.c **** 			}
  165:SerialExample.c **** 			parserInputFunc(c);
- 842               	.LM60:
- 843 02e8 802F      		mov r24,r16
- 844 02ea 0E94 0000 		call parserInputFunc
- 845               	.L44:
- 846 02ee 8091 0000 		lds r24,__iob
- 847 02f2 9091 0000 		lds r25,(__iob)+1
- 848 02f6 0E94 0000 		call fgetc
- 849 02fa 8C01      		movw r16,r24
- 850 02fc 8FEF      		ldi r24,hi8(-1)
- 851 02fe 0F3F      		cpi r16,lo8(-1)
- 852 0300 1807      		cpc r17,r24
- 853 0302 01F7      		brne .L40
+ 795               	.LM56:
+ 796 0298 802F      		mov r24,r16
+ 797 029a 0E94 0000 		call parserInputFunc
+ 798               	.L50:
+ 800               	.LM57:
+ 801 029e 8091 0000 		lds r24,__iob
+ 802 02a2 9091 0000 		lds r25,(__iob)+1
+ 803 02a6 0E94 0000 		call fgetc
+ 804 02aa 8C01      		movw r16,r24
+ 805 02ac 8FEF      		ldi r24,hi8(-1)
+ 806 02ae 0F3F      		cpi r16,lo8(-1)
+ 807 02b0 1807      		cpc r17,r24
+ 808 02b2 F9F6      		brne .L40
  166:SerialExample.c **** 		}
  167:SerialExample.c **** 		AvrXDelay(&timer, 5);
- 855               	.LM61:
- 856 0304 65E0      		ldi r22,lo8(5)
- 857 0306 70E0      		ldi r23,hi8(5)
- 858 0308 CE01      		movw r24,r28
- 859 030a 0196      		adiw r24,1
- 860 030c 0E94 0000 		call AvrXDelay
- 861 0310 EECF      		rjmp .L44
- 862               	/* epilogue: frame size=6 */
- 863               	/* epilogue: noreturn */
- 864               	/* epilogue end (size=0) */
- 865               	/* function getCommands size 50 (40) */
- 871               	.Lscope11:
- 873               		.data
- 874               	.LC0:
- 875 0002 6C00      		.string	"l"
- 876               	.LC1:
- 877 0004 7200      		.string	"r"
- 878               	.LC2:
- 879 0006 7400      		.string	"t"
- 880               	.LC3:
- 881 0008 7000      		.string	"p"
- 882               	.LC4:
- 883 000a 6900      		.string	"i"
- 884               		.text
- 886               	.global	main
- 888               	main:
+ 810               	.LM58:
+ 811 02b4 65E0      		ldi r22,lo8(5)
+ 812 02b6 70E0      		ldi r23,hi8(5)
+ 813 02b8 CE01      		movw r24,r28
+ 814 02ba 0196      		adiw r24,1
+ 815 02bc 0E94 0000 		call AvrXDelay
+ 816 02c0 EECF      		rjmp .L50
+ 817               	/* epilogue: frame size=6 */
+ 818               	/* epilogue: noreturn */
+ 819               	/* epilogue end (size=0) */
+ 820               	/* function getCommands size 51 (41) */
+ 826               	.Lscope10:
+ 828               		.stabd	78,0,0
+ 830               	.global	parserGetArgInt
+ 832               	parserGetArgInt:
+ 833               		.stabd	46,0,0
+ 835               	.Ltext3:
+ 108:parser.c      **** 
+ 109:parser.c      **** //return argument as a long
+ 110:parser.c      **** int parserGetArgInt(void)
+ 111:parser.c      **** {
+ 837               	.LM59:
+ 838               	/* prologue: frame size=0 */
+ 839               	/* prologue end (size=0) */
+ 112:parser.c      **** 	char* endptr;
+ 113:parser.c      **** 	return atoi(parserGetArgStr());
+ 841               	.LM60:
+ 842 02c2 80E0      		ldi r24,lo8(parserBuffer+2)
+ 843 02c4 90E0      		ldi r25,hi8(parserBuffer+2)
+ 844 02c6 0E94 0000 		call atoi
+ 845               	/* epilogue: frame size=0 */
+ 846 02ca 0895      		ret
+ 847               	/* epilogue end (size=1) */
+ 848               	/* function parserGetArgInt size 5 (4) */
+ 850               	.Lscope11:
+ 852               		.stabd	78,0,0
+ 853               		.data
+ 854               	.LC0:
+ 855 0002 4361 6D65 		.string	"Camera Tilt Servo Set: %d"
+ 855      7261 2054 
+ 855      696C 7420 
+ 855      5365 7276 
+ 855      6F20 5365 
+ 856               		.text
+ 858               	.global	setCamTiltServo
+ 860               	setCamTiltServo:
+ 861               		.stabd	46,0,0
+ 863               	.Ltext4:
  168:SerialExample.c **** 	}
  169:SerialExample.c **** }
  170:SerialExample.c **** 
@@ -894,553 +879,576 @@
  174:SerialExample.c **** 
  175:SerialExample.c **** int main(void)
  176:SerialExample.c **** {
- 890               	.LM62:
- 891               	/* prologue: frame size=0 */
- 892 0312 C0E0      		ldi r28,lo8(__stack - 0)
- 893 0314 D0E0      		ldi r29,hi8(__stack - 0)
- 894 0316 DEBF      		out __SP_H__,r29
- 895 0318 CDBF      		out __SP_L__,r28
- 896               	/* prologue end (size=4) */
  177:SerialExample.c ****     AvrXSetKernelStack(0);
- 898               	.LM63:
- 899 031a 80E0      		ldi r24,lo8(0)
- 900 031c 90E0      		ldi r25,hi8(0)
- 901 031e 0E94 0000 		call AvrXSetKernelStack
  178:SerialExample.c **** 
  179:SerialExample.c **** 	MCUCR = _BV(SE);
- 903               	.LM64:
- 904 0322 80E8      		ldi r24,lo8(-128)
- 905 0324 85BF      		out 85-0x20,r24
  180:SerialExample.c **** 	TCNT0 = TCNT0_INIT;
- 907               	.LM65:
- 908 0326 81EC      		ldi r24,lo8(-63)
- 909 0328 82BF      		out 82-0x20,r24
  181:SerialExample.c **** #if defined (__AVR_ATmega103__) || defined (__ATmega103__)
  182:SerialExample.c **** 	TCCR0 =  ((1<<CS02) | (1<<CS01));
  183:SerialExample.c **** #elif defined (__AVR_ATmega128__) || defined (__ATmega128__) || defined (__AVR_ATmega64__) || defin
  184:SerialExample.c **** 	TCCR0 =  ((1<<CS2) | (1<<CS1));
  185:SerialExample.c **** #else	// Most other chips...  Note: some are TCCR0 and some are TCCR0B...
  186:SerialExample.c **** 	TCCR0 =  (1<<CS02);
- 911               	.LM66:
- 912 032a 84E0      		ldi r24,lo8(4)
- 913 032c 83BF      		out 83-0x20,r24
  187:SerialExample.c **** #endif
  188:SerialExample.c **** 	TIMSK = _BV(TOIE0);
- 915               	.LM67:
- 916 032e 81E0      		ldi r24,lo8(1)
- 917 0330 89BF      		out 89-0x20,r24
  189:SerialExample.c **** 
  190:SerialExample.c ****     InitSerial0(BAUD(57600));
- 919               	.LM68:
- 920 0332 81E2      		ldi r24,lo8(33)
- 921 0334 90E0      		ldi r25,hi8(33)
- 922 0336 0E94 0000 		call InitSerial0
  191:SerialExample.c ****     fdevopen(put_char0, get_c0,0);		// Set up standard I/O
- 924               	.LM69:
- 925 033a 40E0      		ldi r20,lo8(0)
- 926 033c 50E0      		ldi r21,hi8(0)
- 927 033e 60E0      		ldi r22,lo8(pm(get_c0))
- 928 0340 70E0      		ldi r23,hi8(pm(get_c0))
- 929 0342 80E0      		ldi r24,lo8(pm(put_char0))
- 930 0344 90E0      		ldi r25,hi8(pm(put_char0))
- 931 0346 0E94 0000 		call fdevopen
  192:SerialExample.c **** 
  193:SerialExample.c **** 	// initialize parser system
  194:SerialExample.c **** 	parserInit();
- 933               	.LM70:
- 934 034a 0E94 0000 		call parserInit
  195:SerialExample.c **** 	// direct output to uart (serial port)
  196:SerialExample.c **** 	parserSetOutputFunc(put_char0);
- 936               	.LM71:
- 937 034e 80E0      		ldi r24,lo8(pm(put_char0))
- 938 0350 90E0      		ldi r25,hi8(pm(put_char0))
- 939 0352 0E94 0000 		call parserSetOutputFunc
  197:SerialExample.c **** 	// add commands to the command database
  198:SerialExample.c **** 	parserAddCommand("l",		setLeftServo);
- 941               	.LM72:
- 942 0356 60E0      		ldi r22,lo8(pm(setLeftServo))
- 943 0358 70E0      		ldi r23,hi8(pm(setLeftServo))
- 944 035a 80E0      		ldi r24,lo8(.LC0)
- 945 035c 90E0      		ldi r25,hi8(.LC0)
- 946 035e 0E94 0000 		call parserAddCommand
  199:SerialExample.c **** 	parserAddCommand("r",		setRightServo);
- 948               	.LM73:
- 949 0362 60E0      		ldi r22,lo8(pm(setRightServo))
- 950 0364 70E0      		ldi r23,hi8(pm(setRightServo))
- 951 0366 80E0      		ldi r24,lo8(.LC1)
- 952 0368 90E0      		ldi r25,hi8(.LC1)
- 953 036a 0E94 0000 		call parserAddCommand
  200:SerialExample.c ****     parserAddCommand("t", 		setThrottleServo);
- 955               	.LM74:
- 956 036e 60E0      		ldi r22,lo8(pm(setThrottleServo))
- 957 0370 70E0      		ldi r23,hi8(pm(setThrottleServo))
- 958 0372 80E0      		ldi r24,lo8(.LC2)
- 959 0374 90E0      		ldi r25,hi8(.LC2)
- 960 0376 0E94 0000 		call parserAddCommand
  201:SerialExample.c **** 	parserAddCommand("p", 		setCamPanServo);
- 962               	.LM75:
- 963 037a 60E0      		ldi r22,lo8(pm(setCamPanServo))
- 964 037c 70E0      		ldi r23,hi8(pm(setCamPanServo))
- 965 037e 80E0      		ldi r24,lo8(.LC3)
- 966 0380 90E0      		ldi r25,hi8(.LC3)
- 967 0382 0E94 0000 		call parserAddCommand
  202:SerialExample.c **** 	parserAddCommand("i", 		setCamTiltServo);
- 969               	.LM76:
- 970 0386 60E0      		ldi r22,lo8(pm(setCamTiltServo))
- 971 0388 70E0      		ldi r23,hi8(pm(setCamTiltServo))
- 972 038a 80E0      		ldi r24,lo8(.LC4)
- 973 038c 90E0      		ldi r25,hi8(.LC4)
- 974 038e 0E94 0000 		call parserAddCommand
  203:SerialExample.c **** 	
  204:SerialExample.c **** 	// initialize the timer system -- FROM AVRLIB
  205:SerialExample.c **** 	//timerInit();
  206:SerialExample.c **** 	
  207:SerialExample.c **** 	//////////////////////////////////////////////////Servos//////////////////////////
  208:SerialExample.c **** 	servoInit();
- 976               	.LM77:
- 977 0392 0E94 0000 		call servoInit
  209:SerialExample.c **** 	// setup servo output channel-to-I/Opin mapping
  210:SerialExample.c **** 	// format is servoSetChannelIO( CHANNEL#, PORT, PIN );
  211:SerialExample.c **** 	servoSetChannelIO(0, _SFR_IO_ADDR(PORTC), PC0);
- 979               	.LM78:
- 980 0396 40E0      		ldi r20,lo8(0)
- 981 0398 50E0      		ldi r21,hi8(0)
- 982 039a 65E1      		ldi r22,lo8(21)
- 983 039c 70E0      		ldi r23,hi8(21)
- 984 039e CA01      		movw r24,r20
- 985 03a0 0E94 0000 		call servoSetChannelIO
  212:SerialExample.c **** 	servoSetChannelIO(1, _SFR_IO_ADDR(PORTC), PC1);
- 987               	.LM79:
- 988 03a4 41E0      		ldi r20,lo8(1)
- 989 03a6 50E0      		ldi r21,hi8(1)
- 990 03a8 65E1      		ldi r22,lo8(21)
- 991 03aa 70E0      		ldi r23,hi8(21)
- 992 03ac CA01      		movw r24,r20
- 993 03ae 0E94 0000 		call servoSetChannelIO
  213:SerialExample.c **** 	servoSetChannelIO(2, _SFR_IO_ADDR(PORTC), PC2);
- 995               	.LM80:
- 996 03b2 42E0      		ldi r20,lo8(2)
- 997 03b4 50E0      		ldi r21,hi8(2)
- 998 03b6 65E1      		ldi r22,lo8(21)
- 999 03b8 70E0      		ldi r23,hi8(21)
- 1000 03ba CA01      		movw r24,r20
- 1001 03bc 0E94 0000 		call servoSetChannelIO
  214:SerialExample.c **** 	servoSetChannelIO(3, _SFR_IO_ADDR(PORTC), PC3);
- 1003               	.LM81:
- 1004 03c0 43E0      		ldi r20,lo8(3)
- 1005 03c2 50E0      		ldi r21,hi8(3)
- 1006 03c4 65E1      		ldi r22,lo8(21)
- 1007 03c6 70E0      		ldi r23,hi8(21)
- 1008 03c8 CA01      		movw r24,r20
- 1009 03ca 0E94 0000 		call servoSetChannelIO
  215:SerialExample.c **** 	servoSetChannelIO(4, _SFR_IO_ADDR(PORTC), PC4);
- 1011               	.LM82:
- 1012 03ce 44E0      		ldi r20,lo8(4)
- 1013 03d0 50E0      		ldi r21,hi8(4)
- 1014 03d2 65E1      		ldi r22,lo8(21)
- 1015 03d4 70E0      		ldi r23,hi8(21)
- 1016 03d6 CA01      		movw r24,r20
- 1017 03d8 0E94 0000 		call servoSetChannelIO
  216:SerialExample.c **** 
  217:SerialExample.c **** 	// set port pins to output
  218:SerialExample.c **** 	outb(DDRC, 0x1F);
- 1019               	.LM83:
- 1020 03dc 8FE1      		ldi r24,lo8(31)
- 1021 03de 84BB      		out 52-0x20,r24
  219:SerialExample.c **** 
  220:SerialExample.c **** 	
  221:SerialExample.c **** 	#define SPEED_SERVO	1
  222:SerialExample.c **** 	//////////////////////////////////////////////////////////////////////////////////
  223:SerialExample.c **** 	
  224:SerialExample.c **** 	AvrXRunTask(TCB(getCommands));
- 1023               	.LM84:
- 1024 03e0 80E0      		ldi r24,lo8(getCommandsTcb)
- 1025 03e2 90E0      		ldi r25,hi8(getCommandsTcb)
- 1026 03e4 0E94 0000 		call AvrXRunTask
  225:SerialExample.c **** 	AvrXRunTask(TCB(getUAVStatus));
- 1028               	.LM85:
- 1029 03e8 80E0      		ldi r24,lo8(getUAVStatusTcb)
- 1030 03ea 90E0      		ldi r25,hi8(getUAVStatusTcb)
- 1031 03ec 0E94 0000 		call AvrXRunTask
  226:SerialExample.c **** 
  227:SerialExample.c ****     
  228:SerialExample.c **** 	Epilog();
- 1033               	.LM86:
- 1034 03f0 0E94 0000 		call Epilog
  229:SerialExample.c **** 	return(0);
  230:SerialExample.c **** }
- 1036               	.LM87:
- 1037 03f4 80E0      		ldi r24,lo8(0)
- 1038 03f6 90E0      		ldi r25,hi8(0)
- 1039               	/* epilogue: frame size=0 */
- 1040 03f8 0C94 0000 		jmp exit
- 1041               	/* epilogue end (size=2) */
- 1042               	/* function main size 117 (111) */
- 1044               	.Lscope12:
- 1046               		.data
- 1047               	.LC5:
- 1048 000c 6530 00   		.string	"e0"
- 1049               		.text
- 1051               	.global	setLeftServo
- 1053               	setLeftServo:
  231:SerialExample.c **** 
  232:SerialExample.c **** void setLeftServo(void)
  233:SerialExample.c **** {	
- 1055               	.LM88:
- 1056               	/* prologue: frame size=0 */
- 1057               	/* prologue end (size=0) */
  234:SerialExample.c **** 	leftServoPos = parserGetArgInt();
- 1059               	.LM89:
- 1060 03fc 0E94 0000 		call parserGetArgInt
- 1061 0400 9093 0000 		sts (leftServoPos)+1,r25
- 1062 0404 8093 0000 		sts leftServoPos,r24
  235:SerialExample.c **** 	servoSetPosition(LEFT_SERVO_CHAN, (char)leftServoPos);
- 1064               	.LM90:
- 1065 0408 8091 0000 		lds r24,leftServoPos
- 1066 040c 9927      		clr r25
- 1067 040e 87FD      		sbrc r24,7
- 1068 0410 9095      		com r25
- 1069 0412 BC01      		movw r22,r24
- 1070 0414 80E0      		ldi r24,lo8(0)
- 1071 0416 90E0      		ldi r25,hi8(0)
- 1072 0418 0E94 0000 		call servoSetPosition
  236:SerialExample.c **** 	if (DEBUG)
  237:SerialExample.c **** 	{	printf("e0");
- 1074               	.LM91:
- 1075 041c 80E0      		ldi r24,lo8(.LC5)
- 1076 041e 90E0      		ldi r25,hi8(.LC5)
- 1077 0420 9F93      		push r25
- 1078 0422 8F93      		push r24
- 1079 0424 0E94 0000 		call printf
  238:SerialExample.c **** 		putchar('\r');
- 1081               	.LM92:
- 1082 0428 6091 0000 		lds r22,__iob+2
- 1083 042c 7091 0000 		lds r23,(__iob+2)+1
- 1084 0430 8DE0      		ldi r24,lo8(13)
- 1085 0432 90E0      		ldi r25,hi8(13)
- 1086 0434 0E94 0000 		call fputc
  239:SerialExample.c **** 		putchar('\n');
- 1088               	.LM93:
- 1089 0438 6091 0000 		lds r22,__iob+2
- 1090 043c 7091 0000 		lds r23,(__iob+2)+1
- 1091 0440 8AE0      		ldi r24,lo8(10)
- 1092 0442 90E0      		ldi r25,hi8(10)
- 1093 0444 0E94 0000 		call fputc
- 1094 0448 0F90      		pop __tmp_reg__
- 1095 044a 0F90      		pop __tmp_reg__
- 1096               	/* epilogue: frame size=0 */
- 1097 044c 0895      		ret
- 1098               	/* epilogue end (size=1) */
- 1099               	/* function setLeftServo size 41 (40) */
- 1101               	.Lscope13:
- 1104               	.global	setRightServo
- 1106               	setRightServo:
  240:SerialExample.c **** 	}
  241:SerialExample.c **** }
  242:SerialExample.c **** 
  243:SerialExample.c **** void setRightServo(void)
  244:SerialExample.c **** {	
- 1108               	.LM94:
- 1109               	/* prologue: frame size=0 */
- 1110               	/* prologue end (size=0) */
  245:SerialExample.c **** 	rightServoPos = parserGetArgInt();
- 1112               	.LM95:
- 1113 044e 0E94 0000 		call parserGetArgInt
- 1114 0452 9093 0000 		sts (rightServoPos)+1,r25
- 1115 0456 8093 0000 		sts rightServoPos,r24
  246:SerialExample.c **** 	servoSetPosition(RIGHT_SERVO_CHAN, (char)rightServoPos);
- 1117               	.LM96:
- 1118 045a 8091 0000 		lds r24,rightServoPos
- 1119 045e 9927      		clr r25
- 1120 0460 87FD      		sbrc r24,7
- 1121 0462 9095      		com r25
- 1122 0464 BC01      		movw r22,r24
- 1123 0466 81E0      		ldi r24,lo8(1)
- 1124 0468 90E0      		ldi r25,hi8(1)
- 1125 046a 0E94 0000 		call servoSetPosition
  247:SerialExample.c **** 	if (DEBUG)
  248:SerialExample.c **** 	{	printf("e0");
- 1127               	.LM97:
- 1128 046e 80E0      		ldi r24,lo8(.LC5)
- 1129 0470 90E0      		ldi r25,hi8(.LC5)
- 1130 0472 9F93      		push r25
- 1131 0474 8F93      		push r24
- 1132 0476 0E94 0000 		call printf
  249:SerialExample.c **** 		putchar('\r');
- 1134               	.LM98:
- 1135 047a 6091 0000 		lds r22,__iob+2
- 1136 047e 7091 0000 		lds r23,(__iob+2)+1
- 1137 0482 8DE0      		ldi r24,lo8(13)
- 1138 0484 90E0      		ldi r25,hi8(13)
- 1139 0486 0E94 0000 		call fputc
  250:SerialExample.c **** 		putchar('\n');
- 1141               	.LM99:
- 1142 048a 6091 0000 		lds r22,__iob+2
- 1143 048e 7091 0000 		lds r23,(__iob+2)+1
- 1144 0492 8AE0      		ldi r24,lo8(10)
- 1145 0494 90E0      		ldi r25,hi8(10)
- 1146 0496 0E94 0000 		call fputc
- 1147 049a 0F90      		pop __tmp_reg__
- 1148 049c 0F90      		pop __tmp_reg__
- 1149               	/* epilogue: frame size=0 */
- 1150 049e 0895      		ret
- 1151               	/* epilogue end (size=1) */
- 1152               	/* function setRightServo size 41 (40) */
- 1154               	.Lscope14:
- 1157               	.global	setThrottleServo
- 1159               	setThrottleServo:
  251:SerialExample.c **** 	}
  252:SerialExample.c **** }
  253:SerialExample.c **** 
  254:SerialExample.c **** void setThrottleServo(void)
  255:SerialExample.c **** {
- 1161               	.LM100:
- 1162               	/* prologue: frame size=0 */
- 1163               	/* prologue end (size=0) */
  256:SerialExample.c **** 	throttleServoPos = parserGetArgInt();
- 1165               	.LM101:
- 1166 04a0 0E94 0000 		call parserGetArgInt
- 1167 04a4 9093 0000 		sts (throttleServoPos)+1,r25
- 1168 04a8 8093 0000 		sts throttleServoPos,r24
  257:SerialExample.c **** 	servoSetPosition(THROTTLE_SERVO_CHAN, (char)throttleServoPos);
- 1170               	.LM102:
- 1171 04ac 8091 0000 		lds r24,throttleServoPos
- 1172 04b0 9927      		clr r25
- 1173 04b2 87FD      		sbrc r24,7
- 1174 04b4 9095      		com r25
- 1175 04b6 BC01      		movw r22,r24
- 1176 04b8 82E0      		ldi r24,lo8(2)
- 1177 04ba 90E0      		ldi r25,hi8(2)
- 1178 04bc 0E94 0000 		call servoSetPosition
  258:SerialExample.c **** 	if (DEBUG)
  259:SerialExample.c **** 	{	printf("e0");
- 1180               	.LM103:
- 1181 04c0 80E0      		ldi r24,lo8(.LC5)
- 1182 04c2 90E0      		ldi r25,hi8(.LC5)
- 1183 04c4 9F93      		push r25
- 1184 04c6 8F93      		push r24
- 1185 04c8 0E94 0000 		call printf
  260:SerialExample.c **** 		putchar('\r');
- 1187               	.LM104:
- 1188 04cc 6091 0000 		lds r22,__iob+2
- 1189 04d0 7091 0000 		lds r23,(__iob+2)+1
- 1190 04d4 8DE0      		ldi r24,lo8(13)
- 1191 04d6 90E0      		ldi r25,hi8(13)
- 1192 04d8 0E94 0000 		call fputc
  261:SerialExample.c **** 		putchar('\n');
- 1194               	.LM105:
- 1195 04dc 6091 0000 		lds r22,__iob+2
- 1196 04e0 7091 0000 		lds r23,(__iob+2)+1
- 1197 04e4 8AE0      		ldi r24,lo8(10)
- 1198 04e6 90E0      		ldi r25,hi8(10)
- 1199 04e8 0E94 0000 		call fputc
- 1200 04ec 0F90      		pop __tmp_reg__
- 1201 04ee 0F90      		pop __tmp_reg__
- 1202               	/* epilogue: frame size=0 */
- 1203 04f0 0895      		ret
- 1204               	/* epilogue end (size=1) */
- 1205               	/* function setThrottleServo size 41 (40) */
- 1207               	.Lscope15:
- 1210               	.global	setCamPanServo
- 1212               	setCamPanServo:
  262:SerialExample.c **** 	}
  263:SerialExample.c **** }
  264:SerialExample.c **** 
  265:SerialExample.c **** void setCamPanServo(void)
  266:SerialExample.c **** {
- 1214               	.LM106:
- 1215               	/* prologue: frame size=0 */
- 1216               	/* prologue end (size=0) */
  267:SerialExample.c **** 	camPanServoPos = parserGetArgInt();
- 1218               	.LM107:
- 1219 04f2 0E94 0000 		call parserGetArgInt
- 1220 04f6 9093 0000 		sts (camPanServoPos)+1,r25
- 1221 04fa 8093 0000 		sts camPanServoPos,r24
  268:SerialExample.c **** 	servoSetPosition(CAM_PAN_SERVO_CHAN, (char)camPanServoPos);
- 1223               	.LM108:
- 1224 04fe 8091 0000 		lds r24,camPanServoPos
- 1225 0502 9927      		clr r25
- 1226 0504 87FD      		sbrc r24,7
- 1227 0506 9095      		com r25
- 1228 0508 BC01      		movw r22,r24
- 1229 050a 83E0      		ldi r24,lo8(3)
- 1230 050c 90E0      		ldi r25,hi8(3)
- 1231 050e 0E94 0000 		call servoSetPosition
  269:SerialExample.c **** 	if (DEBUG)
  270:SerialExample.c **** 	{	printf("e0");
- 1233               	.LM109:
- 1234 0512 80E0      		ldi r24,lo8(.LC5)
- 1235 0514 90E0      		ldi r25,hi8(.LC5)
- 1236 0516 9F93      		push r25
- 1237 0518 8F93      		push r24
- 1238 051a 0E94 0000 		call printf
  271:SerialExample.c **** 		putchar('\r');
- 1240               	.LM110:
- 1241 051e 6091 0000 		lds r22,__iob+2
- 1242 0522 7091 0000 		lds r23,(__iob+2)+1
- 1243 0526 8DE0      		ldi r24,lo8(13)
- 1244 0528 90E0      		ldi r25,hi8(13)
- 1245 052a 0E94 0000 		call fputc
  272:SerialExample.c **** 		putchar('\n');
- 1247               	.LM111:
- 1248 052e 6091 0000 		lds r22,__iob+2
- 1249 0532 7091 0000 		lds r23,(__iob+2)+1
- 1250 0536 8AE0      		ldi r24,lo8(10)
- 1251 0538 90E0      		ldi r25,hi8(10)
- 1252 053a 0E94 0000 		call fputc
- 1253 053e 0F90      		pop __tmp_reg__
- 1254 0540 0F90      		pop __tmp_reg__
- 1255               	/* epilogue: frame size=0 */
- 1256 0542 0895      		ret
- 1257               	/* epilogue end (size=1) */
- 1258               	/* function setCamPanServo size 41 (40) */
- 1260               	.Lscope16:
- 1262               		.data
- 1263               	.LC6:
- 1264 000f 4361 6D65 		.string	"Camera Tilt Servo Set: %d"
- 1264      7261 2054 
- 1264      696C 7420 
- 1264      5365 7276 
- 1264      6F20 5365 
- 1265               		.text
- 1267               	.global	setCamTiltServo
- 1269               	setCamTiltServo:
  273:SerialExample.c **** 	}
  274:SerialExample.c **** }
  275:SerialExample.c **** 
  276:SerialExample.c **** void setCamTiltServo(void)
  277:SerialExample.c **** {
- 1271               	.LM112:
- 1272               	/* prologue: frame size=0 */
- 1273               	/* prologue end (size=0) */
+ 865               	.LM61:
+ 866               	/* prologue: frame size=0 */
+ 867               	/* prologue end (size=0) */
  278:SerialExample.c **** 	camTiltServoPos = parserGetArgInt();
- 1275               	.LM113:
- 1276 0544 0E94 0000 		call parserGetArgInt
- 1277 0548 9093 0000 		sts (camTiltServoPos)+1,r25
- 1278 054c 8093 0000 		sts camTiltServoPos,r24
+ 869               	.LM62:
+ 870 02cc 0E94 0000 		call parserGetArgInt
+ 871 02d0 9093 0000 		sts (camTiltServoPos)+1,r25
+ 872 02d4 8093 0000 		sts camTiltServoPos,r24
  279:SerialExample.c **** 	servoSetPosition(CAM_TILT_SERVO_CHAN, (char)camTiltServoPos);
- 1280               	.LM114:
- 1281 0550 8091 0000 		lds r24,camTiltServoPos
- 1282 0554 9927      		clr r25
- 1283 0556 87FD      		sbrc r24,7
- 1284 0558 9095      		com r25
- 1285 055a BC01      		movw r22,r24
- 1286 055c 84E0      		ldi r24,lo8(4)
- 1287 055e 90E0      		ldi r25,hi8(4)
- 1288 0560 0E94 0000 		call servoSetPosition
+ 874               	.LM63:
+ 875 02d8 9927      		clr r25
+ 876 02da 87FD      		sbrc r24,7
+ 877 02dc 9095      		com r25
+ 878 02de BC01      		movw r22,r24
+ 879 02e0 84E0      		ldi r24,lo8(4)
+ 880 02e2 90E0      		ldi r25,hi8(4)
+ 881 02e4 0E94 0000 		call servoSetPosition
  280:SerialExample.c **** 	if (DEBUG)
  281:SerialExample.c **** 	{	printf("Camera Tilt Servo Set: %d", camTiltServoPos);
- 1290               	.LM115:
- 1291 0564 8091 0000 		lds r24,camTiltServoPos
- 1292 0568 9091 0000 		lds r25,(camTiltServoPos)+1
- 1293 056c 9F93      		push r25
- 1294 056e 8F93      		push r24
- 1295 0570 80E0      		ldi r24,lo8(.LC6)
- 1296 0572 90E0      		ldi r25,hi8(.LC6)
- 1297 0574 9F93      		push r25
- 1298 0576 8F93      		push r24
- 1299 0578 0E94 0000 		call printf
+ 883               	.LM64:
+ 884 02e8 8091 0000 		lds r24,camTiltServoPos
+ 885 02ec 9091 0000 		lds r25,(camTiltServoPos)+1
+ 886 02f0 9F93      		push r25
+ 887 02f2 8F93      		push r24
+ 888 02f4 80E0      		ldi r24,lo8(.LC0)
+ 889 02f6 90E0      		ldi r25,hi8(.LC0)
+ 890 02f8 9F93      		push r25
+ 891 02fa 8F93      		push r24
+ 892 02fc 0E94 0000 		call printf
  282:SerialExample.c **** 		putchar('\r');
- 1301               	.LM116:
- 1302 057c 6091 0000 		lds r22,__iob+2
- 1303 0580 7091 0000 		lds r23,(__iob+2)+1
- 1304 0584 8DE0      		ldi r24,lo8(13)
- 1305 0586 90E0      		ldi r25,hi8(13)
- 1306 0588 0E94 0000 		call fputc
+ 894               	.LM65:
+ 895 0300 6091 0000 		lds r22,__iob+2
+ 896 0304 7091 0000 		lds r23,(__iob+2)+1
+ 897 0308 8DE0      		ldi r24,lo8(13)
+ 898 030a 90E0      		ldi r25,hi8(13)
+ 899 030c 0E94 0000 		call fputc
  283:SerialExample.c **** 		putchar('\n');
- 1308               	.LM117:
- 1309 058c 6091 0000 		lds r22,__iob+2
- 1310 0590 7091 0000 		lds r23,(__iob+2)+1
- 1311 0594 8AE0      		ldi r24,lo8(10)
- 1312 0596 90E0      		ldi r25,hi8(10)
- 1313 0598 0E94 0000 		call fputc
- 1314 059c 0F90      		pop __tmp_reg__
- 1315 059e 0F90      		pop __tmp_reg__
- 1316 05a0 0F90      		pop __tmp_reg__
- 1317 05a2 0F90      		pop __tmp_reg__
- 1318               	/* epilogue: frame size=0 */
- 1319 05a4 0895      		ret
- 1320               	/* epilogue end (size=1) */
- 1321               	/* function setCamTiltServo size 49 (48) */
- 1323               	.Lscope17:
- 1325               		.comm CommandList,150,1
- 1326               		.comm ParserFunctionList,20,1
- 1327               		.comm parserNumCommands,1,1
- 1328               		.comm parserBufferLength,1,1
- 1329               		.comm parserBuffer,15,1
- 1330               		.comm ParserExecFunction,2,1
- 1331               		.comm parserOutputFunc,2,1
- 1332               		.comm rightServoPos,2,1
- 1333               		.comm throttleServoPos,2,1
- 1334               		.comm camPanServoPos,2,1
- 1335               		.comm camTiltServoPos,2,1
- 1336               		.comm getUAVStatusStk,111,1
- 1337               		.comm getUAVStatusPid,6,1
- 1338               		.comm getCommandsStk,135,1
- 1339               		.comm getCommandsPid,6,1
- 1358               		.text
- 1360               	Letext:
- 1361               	/* File "SerialExample.c": code  732 = 0x02dc ( 667), prologues  37, epilogues  28 */
+ 901               	.LM66:
+ 902 0310 6091 0000 		lds r22,__iob+2
+ 903 0314 7091 0000 		lds r23,(__iob+2)+1
+ 904 0318 8AE0      		ldi r24,lo8(10)
+ 905 031a 90E0      		ldi r25,hi8(10)
+ 906 031c 0E94 0000 		call fputc
+ 907 0320 0F90      		pop __tmp_reg__
+ 908 0322 0F90      		pop __tmp_reg__
+ 909 0324 0F90      		pop __tmp_reg__
+ 910 0326 0F90      		pop __tmp_reg__
+ 911               	/* epilogue: frame size=0 */
+ 912 0328 0895      		ret
+ 913               	/* epilogue end (size=1) */
+ 914               	/* function setCamTiltServo size 47 (46) */
+ 916               	.Lscope12:
+ 918               		.stabd	78,0,0
+ 919               		.data
+ 920               	.LC1:
+ 921 001c 6530 00   		.string	"e0"
+ 922               		.text
+ 924               	.global	setCamPanServo
+ 926               	setCamPanServo:
+ 927               		.stabd	46,0,0
+ 929               	.LM67:
+ 930               	/* prologue: frame size=0 */
+ 931               	/* prologue end (size=0) */
+ 933               	.LM68:
+ 934 032a 0E94 0000 		call parserGetArgInt
+ 935 032e 9093 0000 		sts (camPanServoPos)+1,r25
+ 936 0332 8093 0000 		sts camPanServoPos,r24
+ 938               	.LM69:
+ 939 0336 9927      		clr r25
+ 940 0338 87FD      		sbrc r24,7
+ 941 033a 9095      		com r25
+ 942 033c BC01      		movw r22,r24
+ 943 033e 83E0      		ldi r24,lo8(3)
+ 944 0340 90E0      		ldi r25,hi8(3)
+ 945 0342 0E94 0000 		call servoSetPosition
+ 947               	.LM70:
+ 948 0346 80E0      		ldi r24,lo8(.LC1)
+ 949 0348 90E0      		ldi r25,hi8(.LC1)
+ 950 034a 9F93      		push r25
+ 951 034c 8F93      		push r24
+ 952 034e 0E94 0000 		call printf
+ 954               	.LM71:
+ 955 0352 6091 0000 		lds r22,__iob+2
+ 956 0356 7091 0000 		lds r23,(__iob+2)+1
+ 957 035a 8DE0      		ldi r24,lo8(13)
+ 958 035c 90E0      		ldi r25,hi8(13)
+ 959 035e 0E94 0000 		call fputc
+ 961               	.LM72:
+ 962 0362 6091 0000 		lds r22,__iob+2
+ 963 0366 7091 0000 		lds r23,(__iob+2)+1
+ 964 036a 8AE0      		ldi r24,lo8(10)
+ 965 036c 90E0      		ldi r25,hi8(10)
+ 966 036e 0E94 0000 		call fputc
+ 967 0372 0F90      		pop __tmp_reg__
+ 968 0374 0F90      		pop __tmp_reg__
+ 969               	/* epilogue: frame size=0 */
+ 970 0376 0895      		ret
+ 971               	/* epilogue end (size=1) */
+ 972               	/* function setCamPanServo size 39 (38) */
+ 974               	.Lscope13:
+ 976               		.stabd	78,0,0
+ 978               	.global	setThrottleServo
+ 980               	setThrottleServo:
+ 981               		.stabd	46,0,0
+ 983               	.LM73:
+ 984               	/* prologue: frame size=0 */
+ 985               	/* prologue end (size=0) */
+ 987               	.LM74:
+ 988 0378 0E94 0000 		call parserGetArgInt
+ 989 037c 9093 0000 		sts (throttleServoPos)+1,r25
+ 990 0380 8093 0000 		sts throttleServoPos,r24
+ 992               	.LM75:
+ 993 0384 9927      		clr r25
+ 994 0386 87FD      		sbrc r24,7
+ 995 0388 9095      		com r25
+ 996 038a BC01      		movw r22,r24
+ 997 038c 82E0      		ldi r24,lo8(2)
+ 998 038e 90E0      		ldi r25,hi8(2)
+ 999 0390 0E94 0000 		call servoSetPosition
+ 1001               	.LM76:
+ 1002 0394 80E0      		ldi r24,lo8(.LC1)
+ 1003 0396 90E0      		ldi r25,hi8(.LC1)
+ 1004 0398 9F93      		push r25
+ 1005 039a 8F93      		push r24
+ 1006 039c 0E94 0000 		call printf
+ 1008               	.LM77:
+ 1009 03a0 6091 0000 		lds r22,__iob+2
+ 1010 03a4 7091 0000 		lds r23,(__iob+2)+1
+ 1011 03a8 8DE0      		ldi r24,lo8(13)
+ 1012 03aa 90E0      		ldi r25,hi8(13)
+ 1013 03ac 0E94 0000 		call fputc
+ 1015               	.LM78:
+ 1016 03b0 6091 0000 		lds r22,__iob+2
+ 1017 03b4 7091 0000 		lds r23,(__iob+2)+1
+ 1018 03b8 8AE0      		ldi r24,lo8(10)
+ 1019 03ba 90E0      		ldi r25,hi8(10)
+ 1020 03bc 0E94 0000 		call fputc
+ 1021 03c0 0F90      		pop __tmp_reg__
+ 1022 03c2 0F90      		pop __tmp_reg__
+ 1023               	/* epilogue: frame size=0 */
+ 1024 03c4 0895      		ret
+ 1025               	/* epilogue end (size=1) */
+ 1026               	/* function setThrottleServo size 39 (38) */
+ 1028               	.Lscope14:
+ 1030               		.stabd	78,0,0
+ 1032               	.global	setRightServo
+ 1034               	setRightServo:
+ 1035               		.stabd	46,0,0
+ 1037               	.LM79:
+ 1038               	/* prologue: frame size=0 */
+ 1039               	/* prologue end (size=0) */
+ 1041               	.LM80:
+ 1042 03c6 0E94 0000 		call parserGetArgInt
+ 1043 03ca 9093 0000 		sts (rightServoPos)+1,r25
+ 1044 03ce 8093 0000 		sts rightServoPos,r24
+ 1046               	.LM81:
+ 1047 03d2 9927      		clr r25
+ 1048 03d4 87FD      		sbrc r24,7
+ 1049 03d6 9095      		com r25
+ 1050 03d8 BC01      		movw r22,r24
+ 1051 03da 81E0      		ldi r24,lo8(1)
+ 1052 03dc 90E0      		ldi r25,hi8(1)
+ 1053 03de 0E94 0000 		call servoSetPosition
+ 1055               	.LM82:
+ 1056 03e2 80E0      		ldi r24,lo8(.LC1)
+ 1057 03e4 90E0      		ldi r25,hi8(.LC1)
+ 1058 03e6 9F93      		push r25
+ 1059 03e8 8F93      		push r24
+ 1060 03ea 0E94 0000 		call printf
+ 1062               	.LM83:
+ 1063 03ee 6091 0000 		lds r22,__iob+2
+ 1064 03f2 7091 0000 		lds r23,(__iob+2)+1
+ 1065 03f6 8DE0      		ldi r24,lo8(13)
+ 1066 03f8 90E0      		ldi r25,hi8(13)
+ 1067 03fa 0E94 0000 		call fputc
+ 1069               	.LM84:
+ 1070 03fe 6091 0000 		lds r22,__iob+2
+ 1071 0402 7091 0000 		lds r23,(__iob+2)+1
+ 1072 0406 8AE0      		ldi r24,lo8(10)
+ 1073 0408 90E0      		ldi r25,hi8(10)
+ 1074 040a 0E94 0000 		call fputc
+ 1075 040e 0F90      		pop __tmp_reg__
+ 1076 0410 0F90      		pop __tmp_reg__
+ 1077               	/* epilogue: frame size=0 */
+ 1078 0412 0895      		ret
+ 1079               	/* epilogue end (size=1) */
+ 1080               	/* function setRightServo size 39 (38) */
+ 1082               	.Lscope15:
+ 1084               		.stabd	78,0,0
+ 1086               	.global	setLeftServo
+ 1088               	setLeftServo:
+ 1089               		.stabd	46,0,0
+ 1091               	.LM85:
+ 1092               	/* prologue: frame size=0 */
+ 1093               	/* prologue end (size=0) */
+ 1095               	.LM86:
+ 1096 0414 0E94 0000 		call parserGetArgInt
+ 1097 0418 9093 0000 		sts (leftServoPos)+1,r25
+ 1098 041c 8093 0000 		sts leftServoPos,r24
+ 1100               	.LM87:
+ 1101 0420 9927      		clr r25
+ 1102 0422 87FD      		sbrc r24,7
+ 1103 0424 9095      		com r25
+ 1104 0426 BC01      		movw r22,r24
+ 1105 0428 80E0      		ldi r24,lo8(0)
+ 1106 042a 90E0      		ldi r25,hi8(0)
+ 1107 042c 0E94 0000 		call servoSetPosition
+ 1109               	.LM88:
+ 1110 0430 80E0      		ldi r24,lo8(.LC1)
+ 1111 0432 90E0      		ldi r25,hi8(.LC1)
+ 1112 0434 9F93      		push r25
+ 1113 0436 8F93      		push r24
+ 1114 0438 0E94 0000 		call printf
+ 1116               	.LM89:
+ 1117 043c 6091 0000 		lds r22,__iob+2
+ 1118 0440 7091 0000 		lds r23,(__iob+2)+1
+ 1119 0444 8DE0      		ldi r24,lo8(13)
+ 1120 0446 90E0      		ldi r25,hi8(13)
+ 1121 0448 0E94 0000 		call fputc
+ 1123               	.LM90:
+ 1124 044c 6091 0000 		lds r22,__iob+2
+ 1125 0450 7091 0000 		lds r23,(__iob+2)+1
+ 1126 0454 8AE0      		ldi r24,lo8(10)
+ 1127 0456 90E0      		ldi r25,hi8(10)
+ 1128 0458 0E94 0000 		call fputc
+ 1129 045c 0F90      		pop __tmp_reg__
+ 1130 045e 0F90      		pop __tmp_reg__
+ 1131               	/* epilogue: frame size=0 */
+ 1132 0460 0895      		ret
+ 1133               	/* epilogue end (size=1) */
+ 1134               	/* function setLeftServo size 39 (38) */
+ 1136               	.Lscope16:
+ 1138               		.stabd	78,0,0
+ 1139               		.data
+ 1140               	.LC2:
+ 1141 001f 6C00      		.string	"l"
+ 1142               	.LC3:
+ 1143 0021 7200      		.string	"r"
+ 1144               	.LC4:
+ 1145 0023 7400      		.string	"t"
+ 1146               	.LC5:
+ 1147 0025 7000      		.string	"p"
+ 1148               	.LC6:
+ 1149 0027 6900      		.string	"i"
+ 1150               		.text
+ 1152               	.global	main
+ 1154               	main:
+ 1155               		.stabd	46,0,0
+ 1157               	.LM91:
+ 1158               	/* prologue: frame size=0 */
+ 1159 0462 C0E0      		ldi r28,lo8(__stack - 0)
+ 1160 0464 D0E0      		ldi r29,hi8(__stack - 0)
+ 1161 0466 DEBF      		out __SP_H__,r29
+ 1162 0468 CDBF      		out __SP_L__,r28
+ 1163               	/* prologue end (size=4) */
+ 1165               	.LM92:
+ 1166 046a 80E0      		ldi r24,lo8(0)
+ 1167 046c 90E0      		ldi r25,hi8(0)
+ 1168 046e 0E94 0000 		call AvrXSetKernelStack
+ 1170               	.LM93:
+ 1171 0472 80E8      		ldi r24,lo8(-128)
+ 1172 0474 85BF      		out 85-0x20,r24
+ 1174               	.LM94:
+ 1175 0476 81EC      		ldi r24,lo8(-63)
+ 1176 0478 82BF      		out 82-0x20,r24
+ 1178               	.LM95:
+ 1179 047a 84E0      		ldi r24,lo8(4)
+ 1180 047c 83BF      		out 83-0x20,r24
+ 1182               	.LM96:
+ 1183 047e 81E0      		ldi r24,lo8(1)
+ 1184 0480 89BF      		out 89-0x20,r24
+ 1186               	.LM97:
+ 1187 0482 81E2      		ldi r24,lo8(33)
+ 1188 0484 90E0      		ldi r25,hi8(33)
+ 1189 0486 0E94 0000 		call InitSerial0
+ 1191               	.LM98:
+ 1192 048a 00E0      		ldi r16,lo8(pm(put_char0))
+ 1193 048c 10E0      		ldi r17,hi8(pm(put_char0))
+ 1194 048e 40E0      		ldi r20,lo8(0)
+ 1195 0490 50E0      		ldi r21,hi8(0)
+ 1196 0492 60E0      		ldi r22,lo8(pm(get_c0))
+ 1197 0494 70E0      		ldi r23,hi8(pm(get_c0))
+ 1198 0496 C801      		movw r24,r16
+ 1199 0498 0E94 0000 		call fdevopen
+ 1200               	.LBB4:
+ 1202               	.Ltext5:
+ 1204               	.LM99:
+ 1205 049c 1092 0000 		sts parserBufferLength,__zero_reg__
+ 1207               	.LM100:
+ 1208 04a0 1092 0000 		sts (ParserExecFunction)+1,__zero_reg__
+ 1209 04a4 1092 0000 		sts ParserExecFunction,__zero_reg__
+ 1211               	.LM101:
+ 1212 04a8 1092 0000 		sts parserNumCommands,__zero_reg__
+ 1213               	.LBE4:
+ 1214               	.LBB5:
+ 1216               	.LM102:
+ 1217 04ac 1093 0000 		sts (parserOutputFunc)+1,r17
+ 1218 04b0 0093 0000 		sts parserOutputFunc,r16
+ 1219               	.LBE5:
+ 1221               	.Ltext6:
+ 1223               	.LM103:
+ 1224 04b4 60E0      		ldi r22,lo8(pm(setLeftServo))
+ 1225 04b6 70E0      		ldi r23,hi8(pm(setLeftServo))
+ 1226 04b8 80E0      		ldi r24,lo8(.LC2)
+ 1227 04ba 90E0      		ldi r25,hi8(.LC2)
+ 1228 04bc 0E94 0000 		call parserAddCommand
+ 1230               	.LM104:
+ 1231 04c0 60E0      		ldi r22,lo8(pm(setRightServo))
+ 1232 04c2 70E0      		ldi r23,hi8(pm(setRightServo))
+ 1233 04c4 80E0      		ldi r24,lo8(.LC3)
+ 1234 04c6 90E0      		ldi r25,hi8(.LC3)
+ 1235 04c8 0E94 0000 		call parserAddCommand
+ 1237               	.LM105:
+ 1238 04cc 60E0      		ldi r22,lo8(pm(setThrottleServo))
+ 1239 04ce 70E0      		ldi r23,hi8(pm(setThrottleServo))
+ 1240 04d0 80E0      		ldi r24,lo8(.LC4)
+ 1241 04d2 90E0      		ldi r25,hi8(.LC4)
+ 1242 04d4 0E94 0000 		call parserAddCommand
+ 1244               	.LM106:
+ 1245 04d8 60E0      		ldi r22,lo8(pm(setCamPanServo))
+ 1246 04da 70E0      		ldi r23,hi8(pm(setCamPanServo))
+ 1247 04dc 80E0      		ldi r24,lo8(.LC5)
+ 1248 04de 90E0      		ldi r25,hi8(.LC5)
+ 1249 04e0 0E94 0000 		call parserAddCommand
+ 1251               	.LM107:
+ 1252 04e4 60E0      		ldi r22,lo8(pm(setCamTiltServo))
+ 1253 04e6 70E0      		ldi r23,hi8(pm(setCamTiltServo))
+ 1254 04e8 80E0      		ldi r24,lo8(.LC6)
+ 1255 04ea 90E0      		ldi r25,hi8(.LC6)
+ 1256 04ec 0E94 0000 		call parserAddCommand
+ 1258               	.LM108:
+ 1259 04f0 0E94 0000 		call servoInit
+ 1261               	.LM109:
+ 1262 04f4 40E0      		ldi r20,lo8(0)
+ 1263 04f6 50E0      		ldi r21,hi8(0)
+ 1264 04f8 65E1      		ldi r22,lo8(21)
+ 1265 04fa 70E0      		ldi r23,hi8(21)
+ 1266 04fc 80E0      		ldi r24,lo8(0)
+ 1267 04fe 90E0      		ldi r25,hi8(0)
+ 1268 0500 0E94 0000 		call servoSetChannelIO
+ 1270               	.LM110:
+ 1271 0504 41E0      		ldi r20,lo8(1)
+ 1272 0506 50E0      		ldi r21,hi8(1)
+ 1273 0508 65E1      		ldi r22,lo8(21)
+ 1274 050a 70E0      		ldi r23,hi8(21)
+ 1275 050c 81E0      		ldi r24,lo8(1)
+ 1276 050e 90E0      		ldi r25,hi8(1)
+ 1277 0510 0E94 0000 		call servoSetChannelIO
+ 1279               	.LM111:
+ 1280 0514 42E0      		ldi r20,lo8(2)
+ 1281 0516 50E0      		ldi r21,hi8(2)
+ 1282 0518 65E1      		ldi r22,lo8(21)
+ 1283 051a 70E0      		ldi r23,hi8(21)
+ 1284 051c 82E0      		ldi r24,lo8(2)
+ 1285 051e 90E0      		ldi r25,hi8(2)
+ 1286 0520 0E94 0000 		call servoSetChannelIO
+ 1288               	.LM112:
+ 1289 0524 43E0      		ldi r20,lo8(3)
+ 1290 0526 50E0      		ldi r21,hi8(3)
+ 1291 0528 65E1      		ldi r22,lo8(21)
+ 1292 052a 70E0      		ldi r23,hi8(21)
+ 1293 052c 83E0      		ldi r24,lo8(3)
+ 1294 052e 90E0      		ldi r25,hi8(3)
+ 1295 0530 0E94 0000 		call servoSetChannelIO
+ 1297               	.LM113:
+ 1298 0534 44E0      		ldi r20,lo8(4)
+ 1299 0536 50E0      		ldi r21,hi8(4)
+ 1300 0538 65E1      		ldi r22,lo8(21)
+ 1301 053a 70E0      		ldi r23,hi8(21)
+ 1302 053c 84E0      		ldi r24,lo8(4)
+ 1303 053e 90E0      		ldi r25,hi8(4)
+ 1304 0540 0E94 0000 		call servoSetChannelIO
+ 1306               	.LM114:
+ 1307 0544 8FE1      		ldi r24,lo8(31)
+ 1308 0546 84BB      		out 52-0x20,r24
+ 1310               	.LM115:
+ 1311 0548 80E0      		ldi r24,lo8(getCommandsTcb)
+ 1312 054a 90E0      		ldi r25,hi8(getCommandsTcb)
+ 1313 054c 0E94 0000 		call AvrXRunTask
+ 1315               	.LM116:
+ 1316 0550 80E0      		ldi r24,lo8(getUAVStatusTcb)
+ 1317 0552 90E0      		ldi r25,hi8(getUAVStatusTcb)
+ 1318 0554 0E94 0000 		call AvrXRunTask
+ 1320               	.LM117:
+ 1321 0558 0E94 0000 		call Epilog
+ 1323               	.LM118:
+ 1324 055c 80E0      		ldi r24,lo8(0)
+ 1325 055e 90E0      		ldi r25,hi8(0)
+ 1326               	/* epilogue: frame size=0 */
+ 1327 0560 0C94 0000 		jmp exit
+ 1328               	/* epilogue end (size=2) */
+ 1329               	/* function main size 129 (123) */
+ 1331               	.Lscope17:
+ 1333               		.stabd	78,0,0
+ 1352               		.comm getCommandsPid,6,1
+ 1353               		.comm getCommandsStk,135,1
+ 1354               		.comm getUAVStatusPid,6,1
+ 1355               		.comm getUAVStatusStk,111,1
+ 1356               		.comm camTiltServoPos,2,1
+ 1357               		.comm camPanServoPos,2,1
+ 1358               		.comm throttleServoPos,2,1
+ 1359               		.comm rightServoPos,2,1
+ 1360               		.comm parserOutputFunc,2,1
+ 1361               		.comm ParserExecFunction,2,1
+ 1362               		.comm parserBuffer,15,1
+ 1363               		.comm parserBufferLength,1,1
+ 1364               		.comm parserNumCommands,1,1
+ 1365               		.comm ParserFunctionList,20,1
+ 1366               		.comm CommandList,150,1
+ 1368               	.Letext0:
+ 1369               	/* File "SerialExample.c": code  696 = 0x02b8 ( 633), prologues  36, epilogues  27 */
 DEFINED SYMBOLS
                             *ABS*:00000000 SerialExample.c
-                            *ABS*:0000003f __SREG__
-                            *ABS*:0000003e __SP_H__
-                            *ABS*:0000003d __SP_L__
-                            *ABS*:00000000 __tmp_reg__
-                            *ABS*:00000001 __zero_reg__
-/var/tmp//ccScxyLZ.s:144    .progmem.data:00000000 getCommandsTcb
+/var/tmp//ccCpPzUl.s:3      *ABS*:0000003f __SREG__
+/var/tmp//ccCpPzUl.s:4      *ABS*:0000003e __SP_H__
+/var/tmp//ccCpPzUl.s:5      *ABS*:0000003d __SP_L__
+/var/tmp//ccCpPzUl.s:6      *ABS*:00000000 __tmp_reg__
+/var/tmp//ccCpPzUl.s:7      *ABS*:00000001 __zero_reg__
+/var/tmp//ccCpPzUl.s:138    .progmem.data:00000000 getCommandsTcb
                             *COM*:00000087 getCommandsStk
-/var/tmp//ccScxyLZ.s:803    .text:000002ae getCommands
+/var/tmp//ccCpPzUl.s:756    .text:0000025c getCommands
                             *COM*:00000006 getCommandsPid
-/var/tmp//ccScxyLZ.s:152    .progmem.data:00000007 getUAVStatusTcb
+/var/tmp//ccCpPzUl.s:146    .progmem.data:00000007 getUAVStatusTcb
                             *COM*:0000006f getUAVStatusStk
-/var/tmp//ccScxyLZ.s:613    .text:0000016c getUAVStatus
+/var/tmp//ccCpPzUl.s:588    .text:0000014e getUAVStatus
                             *COM*:00000006 getUAVStatusPid
-/var/tmp//ccScxyLZ.s:161    .data:00000000 leftServoPos
-/var/tmp//ccScxyLZ.s:167    .text:00000000 parserInit
+/var/tmp//ccCpPzUl.s:155    .data:00000000 leftServoPos
+/var/tmp//ccCpPzUl.s:161    .text:00000000 parserInit
                             *COM*:00000001 parserBufferLength
                             *COM*:00000002 ParserExecFunction
                             *COM*:00000001 parserNumCommands
-/var/tmp//ccScxyLZ.s:196    .text:00000012 parserAddCommand
+/var/tmp//ccCpPzUl.s:192    .text:00000012 parserAddCommand
                             *COM*:00000096 CommandList
                             *COM*:00000014 ParserFunctionList
-/var/tmp//ccScxyLZ.s:244    .text:00000050 parserSetOutputFunc
+/var/tmp//ccCpPzUl.s:242    .text:00000050 parserSetOutputFunc
                             *COM*:00000002 parserOutputFunc
-/var/tmp//ccScxyLZ.s:263    .text:0000005a parserProcessInputString
+/var/tmp//ccCpPzUl.s:263    .text:0000005a parserProcessInputString
                             *COM*:0000000f parserBuffer
-/var/tmp//ccScxyLZ.s:342    .text:000000c4 parserInputFunc
-/var/tmp//ccScxyLZ.s:389    .text:000000f2 parserGetArgStr
-/var/tmp//ccScxyLZ.s:408    .text:000000f8 parserGetArgInt
-/var/tmp//ccScxyLZ.s:427    .text:00000102 __vector_11
-/var/tmp//ccScxyLZ.s:461    .text:00000114 myputs
-/var/tmp//ccScxyLZ.s:503    .text:0000013c myputs_P
-/var/tmp//ccScxyLZ.s:571    .progmem.data:0000000e __c.0
-/var/tmp//ccScxyLZ.s:575    .progmem.data:00000010 __c.1
-/var/tmp//ccScxyLZ.s:579    .progmem.data:00000016 __c.2
-/var/tmp//ccScxyLZ.s:583    .progmem.data:00000023 __c.3
-/var/tmp//ccScxyLZ.s:587    .progmem.data:00000030 __c.4
-/var/tmp//ccScxyLZ.s:591    .progmem.data:00000036 __c.5
-/var/tmp//ccScxyLZ.s:595    .progmem.data:0000003c __c.6
-/var/tmp//ccScxyLZ.s:599    .progmem.data:00000042 __c.7
-/var/tmp//ccScxyLZ.s:603    .progmem.data:00000048 __c.8
-/var/tmp//ccScxyLZ.s:607    .progmem.data:0000004e __c.9
-/var/tmp//ccScxyLZ.s:888    .text:00000312 main
-/var/tmp//ccScxyLZ.s:1053   .text:000003fc setLeftServo
-/var/tmp//ccScxyLZ.s:1106   .text:0000044e setRightServo
-/var/tmp//ccScxyLZ.s:1159   .text:000004a0 setThrottleServo
-/var/tmp//ccScxyLZ.s:1212   .text:000004f2 setCamPanServo
-/var/tmp//ccScxyLZ.s:1269   .text:00000544 setCamTiltServo
-                            *COM*:00000002 rightServoPos
-                            *COM*:00000002 throttleServoPos
-                            *COM*:00000002 camPanServoPos
+/var/tmp//ccCpPzUl.s:337    .text:000000b8 parserInputFunc
+/var/tmp//ccCpPzUl.s:386    .text:000000e6 parserGetArgStr
+/var/tmp//ccCpPzUl.s:407    .text:000000ec __vector_11
+/var/tmp//ccCpPzUl.s:443    .text:000000fe myputs
+/var/tmp//ccCpPzUl.s:485    .text:00000122 myputs_P
+/var/tmp//ccCpPzUl.s:546    .progmem.data:0000000e __c.1904
+/var/tmp//ccCpPzUl.s:550    .progmem.data:00000014 __c.1902
+/var/tmp//ccCpPzUl.s:554    .progmem.data:0000001a __c.1900
+/var/tmp//ccCpPzUl.s:558    .progmem.data:00000020 __c.1898
+/var/tmp//ccCpPzUl.s:562    .progmem.data:00000026 __c.1896
+/var/tmp//ccCpPzUl.s:566    .progmem.data:0000002c __c.1894
+/var/tmp//ccCpPzUl.s:570    .progmem.data:00000032 __c.1892
+/var/tmp//ccCpPzUl.s:574    .progmem.data:0000003f __c.1890
+/var/tmp//ccCpPzUl.s:578    .progmem.data:0000004c __c.1888
+/var/tmp//ccCpPzUl.s:582    .progmem.data:00000052 __c.1886
+/var/tmp//ccCpPzUl.s:832    .text:000002c2 parserGetArgInt
+/var/tmp//ccCpPzUl.s:860    .text:000002cc setCamTiltServo
                             *COM*:00000002 camTiltServoPos
-/var/tmp//ccScxyLZ.s:1360   .text:000005a6 Letext
+/var/tmp//ccCpPzUl.s:926    .text:0000032a setCamPanServo
+                            *COM*:00000002 camPanServoPos
+/var/tmp//ccCpPzUl.s:980    .text:00000378 setThrottleServo
+                            *COM*:00000002 throttleServoPos
+/var/tmp//ccCpPzUl.s:1034   .text:000003c6 setRightServo
+                            *COM*:00000002 rightServoPos
+/var/tmp//ccCpPzUl.s:1088   .text:00000414 setLeftServo
+/var/tmp//ccCpPzUl.s:1154   .text:00000462 main
 
 UNDEFINED SYMBOLS
 __do_copy_data
 __do_clear_bss
 strcpy
-atoi
 IntProlog
 AvrXTimerHandler
 Epilog
@@ -1449,15 +1457,16 @@ __iob
 fputc
 AvrXDelay
 fgetc
+atoi
+servoSetPosition
+printf
 __stack
 AvrXSetKernelStack
 InitSerial0
-get_c0
 put_char0
+get_c0
 fdevopen
 servoInit
 servoSetChannelIO
 AvrXRunTask
 exit
-servoSetPosition
-printf
