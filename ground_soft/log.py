@@ -27,13 +27,14 @@ class MyLog(wx.PyLog):
 		self.tc = wx.TextCtrl(notebook, -1, style = wx.TE_MULTILINE|wx.TE_READONLY)
 		self.logTime = True
 		self.mutex = mutex.mutex() #control access to text controls
+		self.name = name
 		try:
 			os.mkdir('logs')
 		except OSError:
 			#directory already exists
 			pass
 			
-		self.filename = 'logs/'+time.strftime("%Y%m%d-%H%M")+name+'.txt'
+		self.filename = 'logs/'+time.strftime("%Y%m%d-%H%M")+self.name+'.txt'
 		self.logfile_opened = False
 		#logfile opened in button in main
 		
@@ -47,6 +48,7 @@ class MyLog(wx.PyLog):
 			pass
 			
 	def CloseLogFile(self):
+		self.outfile.flush()
 		self.outfile.close()
 		self.logfile_opened = False
 	
@@ -62,6 +64,9 @@ class MyLog(wx.PyLog):
 			self.outfile.write(message + '\n')
 			self.outfile.flush()
 		else:
-			print message
+			if self.name is "downlink":
+				print message[:-1] #strip \r\n
+			if self.name is "error":
+				print message
 		self.mutex.unlock()
 #end of class MyLog

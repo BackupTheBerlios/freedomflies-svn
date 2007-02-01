@@ -51,6 +51,9 @@ class radiolink(object):
 		print "start uplink thread"
 		if self.radio is None:
 			self.radio = self.GetRadio(self.radio_port,9600)
+			if not self.radio.isOpen():
+				self.radio.open()
+				print "restarting radio on: "+self.radio.portstr
 		self.upthread = threading.Thread(target=self.UplinkThread)
 		self.upthread.setDaemon(1)
 		self.upalive.set()
@@ -60,6 +63,9 @@ class radiolink(object):
 		print "start downlink thread"
 		if self.radio is None:
 			self.radio = self.GetRadio(self.radio_port,9600)
+			if not self.radio.isOpen():
+				self.radio.open()
+				print "restarting radio on: "+self.radio.portstr
 		self.downthread = threading.Thread(target=self.DownlinkThread)
 		self.downthread.setDaemon(1)
 		self.downalive.set()	
@@ -67,20 +73,22 @@ class radiolink(object):
 				
 	def StopUplinkThread(self):
 		if self.upthread is not None:
-			if self.radio is not None:
-				self.radio.close()
 			self.upalive.clear()
 			self.upthread.join()
 			self.upthread = None
+			if not self.downalive.isSet():
+				#don't kill the radio if the downlink thread is using it
+				self.radio.close()
 			
 	def StopDownlinkThread(self):
 		if self.downthread is not None:
-			if self.radio is not None:
-				self.radio.close()
 			self.downalive.clear()
 			self.downthread.join()
 			self.downthread = None
-	
+			if not self.upalive.isSet():
+				#don't kill the radio if the uplink thread is using it
+				self.radio.close()
+				
 	def UplinkThread(self):
 		run = 0
 		
@@ -118,15 +126,15 @@ class radiolink(object):
 				#command = string.join([data_type,' ',chr(data_value),'\r\n'],'')
 				#serial protocol is "x <ascii code>\r"
 				#use chr to get string of one character with ordinal i; 0 <= i < 256
-				if data_value != 0:	
+				if data_value > 1:	
 					command_list.append(command)
-					#only write commands with valid data
+					#only write commands with interesting data
 				
 			for out_string in command_list:
 				if (self.radio is not None) and (self.radio.isOpen()):
 					self.radio.write(out_string)
 					print "UPLINK:",out_string[:-2] #strip \r\n	
-				log.Log('u',out_string[:-2]) #strip \r\n
+					log.Log('u',out_string[:-2]) #strip \r\n
 			time.sleep(1/30.) #run at 30 Hz
 	#end UplinkThread		
 	
@@ -139,22 +147,27 @@ class radiolink(object):
 			#input
 			try:
 				buffer = self.radio.readline()
-			except (serial.SerialException,AttributeError):
-				print "no radio"
-				continue				
+				print buffer[:-2]
+			except serial.SerialException,e:
+				print "radio serial error:",e
+				continue
+			except AttributeError,e:
+				print "no radio:",e
+				continue			
 			if len(buffer) == 0:
 				#print "no input"
 				continue
+			if buffer.startswith("e0"):
+				#it's a joystick event acknowledge
+				print "ACK"
 			try:
 				self.downproc.ProcessBuffer(buffer)
-			except KeyError,e:
-				log.Log('e',"got unrecognized packet: %s"%buffer)
+				
 			except Exception,e:
 				#catch exceptions here, so we don't freeze pyserial
 				print "datalink exception:",e
 				print "unrecognized data: %s" % buffer
 			
-			log.Log('d',buffer)
 			#TODO: construct NMEA sentences, mirror GPS data to gpsout
 			
 	#end DownlinkThread

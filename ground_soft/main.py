@@ -222,6 +222,7 @@ class AppFrame(wx.Frame):
 		
 	def OnQuit(self, event):
 		self.Close()
+		pygame.quit()
 		sys.exit()
 		
 	def OnAbout(self, event):
@@ -321,11 +322,13 @@ class AppFrame(wx.Frame):
 	
 	def OnLogToFile(self,event):
 		btn = event.GetEventObject()
-		if btn.GetValue() == True:		
+		if btn.GetValue() == True:
+			print "opening logfile, all further messages will go there"		
 			self.error_log.OpenLogFile()
 			self.downlink_log.OpenLogFile()
 			self.uplink_log.OpenLogFile()
-		if btn.GetValue() == False:	
+		if btn.GetValue() == False:
+			print "closing logfile, all further messages will go to stdout"	
 			self.error_log.CloseLogFile()
 			self.downlink_log.CloseLogFile()
 			self.uplink_log.CloseLogFile()
