@@ -42,30 +42,37 @@ class radiolink(object):
 				log.Log('e',str(error))
 			#timeout = 0 means non-blocking mode, returns immediately on read
 			#timeout in seconds, accepts floats
-		else:
-			log.Log('e',"cannot start radio on port:"+port)
-			
 		return radio
 		
 	def StartUplinkThread(self):
-		print "start uplink thread"
+		log.Log('u',"start uplink thread")
 		if self.radio is None:
-			self.radio = self.GetRadio(self.radio_port,9600)
-			if not self.radio.isOpen():
-				self.radio.open()
-				print "restarting radio on: "+self.radio.portstr
+			tmp = self.GetRadio(self.radio_port,9600)
+			if tmp is None:
+				log.Log('e',"radio port not set")
+				return #still no radio
+			else:
+				self.radio = tmp
+		if not self.radio.isOpen():
+			self.radio.open()
+			print "restarting radio on: "+self.radio.portstr
 		self.upthread = threading.Thread(target=self.UplinkThread)
 		self.upthread.setDaemon(1)
 		self.upalive.set()
 		self.upthread.start()
 		
 	def StartDownlinkThread(self):
-		print "start downlink thread"
+		log.Log('d',"start downlink thread")
 		if self.radio is None:
-			self.radio = self.GetRadio(self.radio_port,9600)
-			if not self.radio.isOpen():
-				self.radio.open()
-				print "restarting radio on: "+self.radio.portstr
+			tmp = self.GetRadio(self.radio_port,9600)
+			if tmp is None:
+				log.Log('e',"radio port not set")
+				return
+			else:
+				self.radio = tmp
+		if not self.radio.isOpen():
+			self.radio.open()
+			print "restarting radio on: "+self.radio.portstr
 		self.downthread = threading.Thread(target=self.DownlinkThread)
 		self.downthread.setDaemon(1)
 		self.downalive.set()	
