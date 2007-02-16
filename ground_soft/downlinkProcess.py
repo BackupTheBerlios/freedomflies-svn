@@ -61,18 +61,20 @@ class MyDownlinkProcessor(object):
 		#print "got airspeed:",airspeed_knots
 		self.parent.UpdateAirspeed(airspeed_knots)
 		# TODO: convert from total pressure to airspeed
+
 	def ProcessGroundspeed(self,data_val):
 		#groundspeed [0,127]
 		#print "got groundspeed:",data_val
 		pass
 		# TODO: display to GUI
+
 	def Dummy(self,data_val):
 		#airspeed [0,127]
 		print "got weird:",data_val
 		# TODO: convert from total pressure to airspeed
 		
 	def ProcessBuffer(self,buffer):
-		data_types = ['c','a','o','s','g','f','b','q','w','z','1']
+		data_types = ['c','e0','a','o','s','g','f','b','q','w','z','1']
 		data_separator = ','
 		
 		packets = buffer.split(data_separator)
@@ -89,6 +91,7 @@ class MyDownlinkProcessor(object):
 			 'f':self.ProcessFuel,
 			 's':self.ProcessAirspeed,
 			 'g':self.ProcessGroundspeed}
+
 		
 		for p in packets:
 			if len(p) < 3:
