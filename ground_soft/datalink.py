@@ -123,16 +123,20 @@ class radiolink(object):
 						data_value = -1*int(x_val*127/100.0)
 					else:
 						data_value = 0
+				
 				elif data_type == 'r':
 					#joystick right
 					if ((x_val > 0) and (x_val != old_x_val)):
 						data_value = int(x_val*127/100.0)
 					else:
 						data_value = 0
+				
 				elif data_type == 't':
 					#throttle
 					if throttle_val != old_throttle_val:
 						data_value = int(throttle_val*127/100.0)
+					else:
+						data_value = 0
 				#TODO: add camera pan, tilt
 				else:
 					data_value = 0
