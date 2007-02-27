@@ -22,7 +22,10 @@ class radiolink(object):
 		#radio object really created in prefs.OnSave
 		self.radio = None
 		self.gpsout = None
-			
+	    
+		#warning... CsikCode!
+		
+		#end csik code
 		try:
 			self.stik = self.parent.stik
 		except AttributeError:
@@ -98,7 +101,11 @@ class radiolink(object):
 				
 	def UplinkThread(self):
 		run = 0
-		
+		#csik
+		old_x_val = 0
+		old_y_val = 0
+		old_throttle_val = 0
+		#end csik
 		while(self.upalive.isSet()):
 			#get current stick axis values
 			pygame.event.pump()
@@ -112,19 +119,20 @@ class radiolink(object):
 			for data_type in data_types:
 				if data_type == 'l':
 					#joystick left
-					if x_val < 0:
+					if ((x_val < 0) and (x_val != old_x_val)):
 						data_value = -1*int(x_val*127/100.0)
 					else:
 						data_value = 0
 				elif data_type == 'r':
 					#joystick right
-					if x_val > 0:
+					if ((x_val > 0) and (x_val != old_x_val)):
 						data_value = int(x_val*127/100.0)
 					else:
 						data_value = 0
 				elif data_type == 't':
 					#throttle
-					data_value = int(throttle_val*127/100.0)
+					if throttle_val != old_throttle_val:
+						data_value = int(throttle_val*127/100.0)
 				#TODO: add camera pan, tilt
 				else:
 					data_value = 0
@@ -136,20 +144,26 @@ class radiolink(object):
 				if data_value > 1:	
 					command_list.append(command)
 					#only write commands with interesting data
-				
+			
 			for out_string in command_list:
 				if (self.radio is not None) and (self.radio.isOpen()):
 					self.radio.write(out_string)
 					print "UPLINK:",out_string[:-2] #strip \r\n	
 					log.Log('u',out_string[:-2]) #strip \r\n
-			time.sleep(1/30.) #run at 30 Hz
+			#time.sleep(1/30.) #run at 30 Hz
+			#csik		
+			time.sleep(1/15.) #run at 15 Hz
+			old_x_val = x_val
+			old_y_val = y_val
+			old_throttle_val = throttle_val
+			#end csik
 	#end UplinkThread		
 	
 			
 	def DownlinkThread(self):	
 		while(self.downalive.isSet()):
 			#sleep first, so continues still have to wait
-			time.sleep(1/30.) #run at 30 Hz
+			time.sleep(1/15.) #run at 15 Hz
 			buffer = ""
 			#input
 			try:

@@ -86,7 +86,7 @@ class Joystick(object):
 	def getThrottle(self):
 		"ranges 0-100"
 		try:
-			raw_pos = self.stick.get_axis(2)
+			raw_pos = self.stick.get_axis(3)  #csik changed for his SAITEK joystick from 2, which apparently was "z rotation"
 			throttle = (raw_pos-1)*-50 #should range (0,100)
 		except AttributeError:
 			log.Log('e',"could not access throttle")
