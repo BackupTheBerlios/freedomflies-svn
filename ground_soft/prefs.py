@@ -1,5 +1,6 @@
 import wx
 import os
+import log
 
 class PrefFrame(wx.MiniFrame):
 	def __init__(self, *args, **kwds):
@@ -64,12 +65,15 @@ class PrefFrame(wx.MiniFrame):
 		self.gpsout_baud_ctrl.SetValue("9600")
 
 	def OnJoystickChoice(self,evt):
-		data = self.joystickDict[evt.GetString()]
-		self.XCtrl.SetValue(str(data['X']))
-		self.YCtrl.SetValue(str(data['Y']))
-		self.ThrottleCtrl.SetValue(str(data['Throttle']))
-		self.HatCtrl.SetValue(str(data['Hat']))
-		
+		try:
+			data = self.joystickDict[evt.GetString()]
+			self.XCtrl.SetValue(str(data['X']))
+			self.YCtrl.SetValue(str(data['Y']))
+			self.ThrottleCtrl.SetValue(str(data['Throttle']))
+			self.HatCtrl.SetValue(str(data['Hat']))
+		except KeyError:
+			log.Log('e',"error in joystick-config.txt")
+					
 	def SaveJoystickChoices(self):
 		xVal = int(self.XCtrl.GetValue())
 		yVal = int(self.YCtrl.GetValue())
