@@ -154,7 +154,6 @@ class radiolink(object):
 					self.radio.write(out_string)
 					print "UPLINK:",out_string[:-2] #strip \r\n	
 					log.Log('u',out_string[:-2]) #strip \r\n
-			#time.sleep(1/30.) #run at 30 Hz
 			#csik		
 			time.sleep(1/15.) #run at 15 Hz
 			old_x_val = x_val
@@ -172,7 +171,6 @@ class radiolink(object):
 			#input
 			try:
 				buffer = self.radio.readline()
-				print buffer[:-2]
 			except serial.SerialException,e:
 				print "radio serial error:",e
 				continue
@@ -182,6 +180,8 @@ class radiolink(object):
 			if len(buffer) == 0:
 				#print "no input"
 				continue
+			else:
+				print "DOWNLINK:",buffer[:-2]
 			if buffer.startswith("e0"):
 				#it's a joystick event acknowledge
 				print "ACK"

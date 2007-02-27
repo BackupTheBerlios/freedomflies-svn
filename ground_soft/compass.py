@@ -22,16 +22,16 @@ class MyCompass(BufferedCanvas):
 			theta = self.heading
 		#draw background
 		dc.SetBrush(wx.WHITE_BRUSH)
-		dc.DrawRectangle(0,0,250,250)
+		dc.DrawRectangle(0,0,200,200)
 		
 		#draw compass rose
 		dc.SetBrush(wx.LIGHT_GREY_BRUSH)
-		dc.DrawCircle(125,125,120)
+		dc.DrawCircle(100,100,95)
 		dc.SetBrush(wx.WHITE_BRUSH)
-		dc.DrawCircle(125,125,110)
+		dc.DrawCircle(100,100,85)
 		
 		#draw info
-		origin = wx.Point(125,125)
+		origin = wx.Point(100,100)
 		r_x = math.cos(theta)
 		r_y = math.sin(theta)
 		
@@ -43,8 +43,8 @@ class MyCompass(BufferedCanvas):
 			angle_rad = angle*math.pi/180
 			r_x = math.cos(angle_rad)
 			r_y = math.sin(angle_rad)
-			start = wx.Point(int(r_x*100),int(r_y*100)) + origin
-			end = wx.Point(int(r_x*120),int(r_y*120)) + origin
+			start = wx.Point(int(r_x*80),int(r_y*80)) + origin
+			end = wx.Point(int(r_x*95),int(r_y*95)) + origin
 			dc.DrawLine(start.x,start.y,end.x,end.y)
 			
 		#draw north
@@ -53,8 +53,8 @@ class MyCompass(BufferedCanvas):
 		r_y = math.sin(theta)
 		red = wx.Pen("red",5,wx.SOLID)
 		dc.SetPen(red)
-		north_start = wx.Point(int(r_x*100),int(r_y*100)) + origin
-		north_end = wx.Point(int(r_x*120),int(r_y*120)) + origin
+		north_start = wx.Point(int(r_x*80),int(r_y*80)) + origin
+		north_end = wx.Point(int(r_x*95),int(r_y*95)) + origin
 		dc.DrawLine(north_start.x,north_start.y,north_end.x,north_end.y)
 
 		#draw direction labels
@@ -64,19 +64,19 @@ class MyCompass(BufferedCanvas):
 		dc.SetTextBackground(wx.WHITE)
 		(r_x,r_y) = (math.cos(theta),math.sin(theta))
 		(x_size,y_size) = dc.GetTextExtent("N")
-		text_left_corner = wx.Point(int(r_x*90-x_size/2),int(r_y*90)-y_size/2) + origin
+		text_left_corner = wx.Point(int(r_x*70-x_size/2),int(r_y*70)-y_size/2) + origin
 		dc.DrawText("N",text_left_corner.x,text_left_corner.y)
 		(r_x,r_y) = (math.cos(theta+math.pi/2),math.sin(theta+math.pi/2))
 		(x_size,y_size) = dc.GetTextExtent("E")
-		text_left_corner = wx.Point(int(r_x*90-x_size/2),int(r_y*90)-y_size/2) + origin
+		text_left_corner = wx.Point(int(r_x*70-x_size/2),int(r_y*70)-y_size/2) + origin
 		dc.DrawText("E",text_left_corner.x,text_left_corner.y)
 		(r_x,r_y) = (math.cos(theta+math.pi),math.sin(theta+math.pi))
 		(x_size,y_size) = dc.GetTextExtent("S")
-		text_left_corner = wx.Point(int(r_x*90-x_size/2),int(r_y*90)-y_size/2) + origin
+		text_left_corner = wx.Point(int(r_x*70-x_size/2),int(r_y*70)-y_size/2) + origin
 		dc.DrawText("S",text_left_corner.x,text_left_corner.y)
 		(r_x,r_y) = (math.cos(theta+3*math.pi/2),math.sin(theta+3*math.pi/2))
 		(x_size,y_size) = dc.GetTextExtent("W")
-		text_left_corner = wx.Point(int(r_x*90-x_size/2),int(r_y*90)-y_size/2) + origin
+		text_left_corner = wx.Point(int(r_x*70-x_size/2),int(r_y*70)-y_size/2) + origin
 		dc.DrawText("W",text_left_corner.x,text_left_corner.y)
 		
 		#draw plane

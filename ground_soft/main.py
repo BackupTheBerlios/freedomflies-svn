@@ -39,26 +39,26 @@ import datalink
 try:
 	import wx
 	import wx.glcanvas
-	
 except ImportError:
 	print "cannot import wx"
+	sys.quit()
 	
 try:
 	import pygame
-	
 except ImportError:
 	print "cannot import pygame"
+	sys.quit()
 
 try:
 	import serial
 except ImportError:
 	print "cannot import pyserial"
+	sys.quit()
 
 
 class AppFrame(wx.Frame):
 	def __init__(self,*args,**kwds):
 		wx.Frame.__init__(self,*args,**kwds)
-		
 		
 		#init pygame first, may take awhile
 		pygame.init()
@@ -66,16 +66,13 @@ class AppFrame(wx.Frame):
 		#top sizer elements
 		self.airspeed_gauge = wx.Gauge(self, -1, 100, size=(20,400), style=wx.GA_VERTICAL|wx.GA_SMOOTH)
 		self.altitude_gauge = wx.Gauge(self, -1, 100, size=(20,400), style=wx.GA_VERTICAL|wx.GA_SMOOTH)
-		self.horizon = horizon.MyHorizonIndicator(self,-1,(500,500)) #sizes here are wrong
-		#use old compass (not OGL)
-		self.compass = compass.MyCompass(self,-1,(250,250))
-		#self.compass = heading.MyHeadingIndicator(self,-1,(500,500)) #but it needs to be this way
+		self.horizon = horizon.MyHorizonIndicator(self,-1,(500,500)) #sizes here are wrong, but it needs to be this way
 		
 		#force initial paint of OGL, mega-kludge
-		e1 = wx.PaintEvent()
-		e2 = wx.PaintEvent()
-		self.horizon.OnPaint(e1)
+		tempPaintEvent = wx.PaintEvent()
+		self.horizon.OnPaint(tempPaintEvent)
 		self.horizon.SetClientSize((400,400)) #proper size
+		del tempPaintEvent
 		
 		self.airspeed_value = wx.TextCtrl(self,-1,size=(50,20),style=wx.TE_READONLY)
 		self.altitude_value = wx.TextCtrl(self,-1,size=(50,20),style=wx.TE_READONLY)
@@ -89,7 +86,7 @@ class AppFrame(wx.Frame):
 		self.radio_down_button = wx.ToggleButton(self, -1, "Radio Down",size=button_width)
 		self.gps_loopback_button = wx.ToggleButton(self, -1, "GPS Loopback",size=button_width)
 		
-		self.notebook = wx.Notebook(self, -1, size = (350,150), style=0)
+		self.notebook = wx.Notebook(self, -1, size = (350,125), style=0)
 		self.error_log = log.MyLog('error',self.notebook)
 		self.downlink_log = log.MyLog('downlink',self.notebook)
 		self.uplink_log = log.MyLog('uplink',self.notebook)
@@ -109,8 +106,10 @@ class AppFrame(wx.Frame):
 		self.throttle_gauge = wx.Gauge(self, -1, 10,size=(100,20),style=wx.GA_HORIZONTAL|wx.GA_SMOOTH)
 		
 		#right sizer elements
-		self.joystickCalibrated = False
 		self.joystick = joystickClass.Joystick()
+		self.joystickPanel = joystickClass.JoyPanel(self)
+		self.compass = compass.MyCompass(self,-1,(250,250)) #use old compass (not OGL)
+		#self.compass = heading.MyHeadingIndicator(self,-1,(500,500))
 		
 		#start sizer layout
 		main_sizer = wx.BoxSizer(wx.VERTICAL) #the big kahuna
@@ -130,11 +129,11 @@ class AppFrame(wx.Frame):
 		horizon_sizer.Add(altitude_sizer, 0)
 		
 		right_sizer.Add(self.compass,0,wx.CENTER)
-		right_sizer.Add(joystickClass.JoyPanel(self),0,wx.RIGHT)
+		right_sizer.Add(self.joystickPanel,0,wx.RIGHT)
 
 		top_sizer.Add(horizon_sizer,0,wx.RIGHT,5)
 		top_sizer.Add(right_sizer,0,wx.LEFT,0)
-		main_sizer.Add(top_sizer,0,wx.ALIGN_CENTER_VERTICAL|wx.TOP,3)
+		main_sizer.Add(top_sizer,0,wx.ALIGN_CENTER_VERTICAL|wx.TOP|wx.RIGHT,3)
 		
 		button_sizer = wx.GridSizer(4, 2, vgap=5,hgap=5)
 		button_sizer.Add(self.radio_up_button, 0)
@@ -174,7 +173,7 @@ class AppFrame(wx.Frame):
 		self.SetAutoLayout(True)
 		self.SetSizer(main_sizer)
 		self.Layout()
-		self.SetMinSize((800,575))
+		self.SetMinSize((800,600))
 		#end of main window items
 		
 		#Menubar
@@ -195,7 +194,7 @@ class AppFrame(wx.Frame):
 		#HelpMenu = wx.Menu()
 		#about = HelpMenu.Append(-1, 'About FreedomFlies')
 		#self.Bind(wx.EVT_MENU,self.OnAbout,about)
-		#self.Bind(wx.EVT_MENU,self.OnPrefs,prefs)
+		self.Bind(wx.EVT_MENU,self.OnPrefs,prefs)
 		#if "__WXMAC__" in wx.PlatformInfo: 
 		#	wx.App.SetMacAboutMenuItemId(about.GetId())
 		#	wx.App_SetMacHelpMenuTitleName("&Help")
@@ -222,6 +221,7 @@ class AppFrame(wx.Frame):
 	#end __init__
 		
 	def OnQuit(self, event):
+		self.joystickPanel.OnClose(event)
 		self.Close()
 		pygame.quit()
 		sys.exit()
@@ -240,8 +240,10 @@ class AppFrame(wx.Frame):
 		wx.AboutBox(info)
 		
 	def OnPrefs(self,event):
-		p = prefs.PrefFrame(self,-1,"Preferences",(975,265),(300,150))
+		p = prefs.PrefFrame(self,-1,"Preferences",(850,25),(300,275))
 		p.Show()
+		
+		
 	def OnGraphicsTest(self,event):
 		max_pitch = 30
 		max_roll = 75
@@ -283,11 +285,6 @@ class AppFrame(wx.Frame):
 		for i in range(0,361,2):
 			self.compass.SetHeading(i)
 			wx.Yield()
-		
-	#def OnJoystickCalibrate(self,event):
-	#	self.calib = joystickClass.JoyFrame(self,-1,"Joystick Calibration",(975,30),(200,225))
-	#	self.calib.Layout()
-	#	self.calib.Show()
 		
 	def OnRadioUpButton(self,event):
 		btn = event.GetEventObject()
@@ -352,10 +349,8 @@ class AppFrame(wx.Frame):
 
 class MyApp(wx.App):
 	def OnInit(self):
-		#pygame.init()
 		wx.InitAllImageHandlers()
-		self.win = AppFrame(None, -1, "Freedom Flies",(50,25),(800,575))
-		self.win.Layout()
+		self.win = AppFrame(None, 1, "Freedom Flies",(50,25),(800,600))
 		self.win.Show()
 		self.SetTopWindow(self.win)
 		self.Bind(wx.EVT_CLOSE,self.OnExit)
@@ -371,6 +366,10 @@ if __name__ == "__main__":
 	app = MyApp(0)
 	try:
 		app.MainLoop()
+		#fake move event so horizon settles properly, but doesn't work
+		TempMoveEvent = wx.MoveEvent(pos=(50,50),winid=1)
+		TempMoveEvent.ResumePropagation(1)
+		del TempMoveEvent
 	finally:
 		if app.radio.radio is not None:
 			app.radio.radio.close()

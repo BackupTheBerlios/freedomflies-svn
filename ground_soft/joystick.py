@@ -31,30 +31,26 @@ class JoyPanel(wx.Panel):
 		#self.SetAutoLayout(True)
 		#self.Layout()
 		
-		#start calibration automatically
-		self.timer.Start(10) #every 10 ms, or 100hz
+		#self.timer.Start(50) #every 50 ms, or 20hz
+		#start timer in OnSave in prefs.py
 		x,y = self.joystick.getPos()
-		if (x == -99900) or (y == -99900): #absurd values, trap errors
-			log.Log('e',"Unable to access joystick")
-			self.timer.Stop()
-			wx.Bell()
 	#end method __init__
 	
 	def OnTimer(self, event):
 		pygame.event.pump()
-		x,y = self.joystick.getPos()
-		throttle = self.joystick.getThrottle()
-		self.control.Update()
-		self.throttle_pos.SetValue(throttle)
+		try:
+			x,y = self.joystick.getPos()
+			self.control.Update(x,y)
+			
+			throttle = self.joystick.getThrottle()
+			self.throttle_pos.SetValue(throttle)
+		except pygame.error:
+			#user already notified in Joystick.SetAxes
+			pass
 		
 	def OnClose(self, event):
 		self.timer.Stop()
-		self.Close()
-		
-	def OnCalibrated(self, event):
-		self.parent.joystickCalibrated = True
-		e = wx.CloseEvent()
-		self.OnClose(e)
+		#self.Close()
 		
 class Joystick(object):
 	def __init__(self,*args,**kwds):
@@ -62,21 +58,50 @@ class Joystick(object):
 			self.stick = pygame.joystick.Joystick(0)
 			status = self.stick.init() #returns none
 			if(status == None):
-				 log.Log('e',"joystick successfully initialized")
+				pass
+			#	 log.Log('e',"joystick successfully initialized")
 			else:
 				log.Log('e',"could not initialize joystick, status " + str(status))
 		except pygame.error,err:
 			log.Log('e',str(err))
 			self.stick = None
-
+		
+	def SetAxes(self,X,Y,T,H):
+		self.XNum = X
+		self.YNum = Y
+		self.ThrottleNum = T
+		self.HatNum = H
+		try:
+			testX = self.stick.get_axis(self.XNum)
+		except pygame.error:
+			log.Log('e',"Invalid Joystick X-Axis Setting")
+			self.XNum = -1
+		try:
+			testY = self.stick.get_axis(self.YNum)
+		except pygame.error:
+			log.Log('e',"Invalid Joystick Y-Axis Setting")
+			self.YNum = -1	
+		try:
+			testThrottle = self.stick.get_axis(self.ThrottleNum)
+		except pygame.error:
+			log.Log('e',"Invalid Joystick Throttle Setting")
+			self.ThrottleNum = -1	
+		try:
+			testHat = self.stick.get_hat(self.HatNum)
+		except pygame.error:
+			log.Log('e',"Invalid Joystick Hatswitch Setting")
+			self.HatNum = -1
+			
+		
 	def getPos(self):
 		"ranges 0-100"
 		try:
-			raw_x = self.stick.get_axis(0)
-			raw_y = self.stick.get_axis(1)
+			raw_x = self.stick.get_axis(self.XNum)
+			raw_y = self.stick.get_axis(self.YNum)
 		except AttributeError:
-			raw_x,raw_y = -999,-999
-			#an invalid raw position, used to trap errors
+			raw_x,raw_y = 0,0 #incorrect values
+		except NameError:
+			log.Log('e',"joystick axes not set")
 		x = int(raw_x * 100)
 		y = int(raw_y * -100)
 		return x,y
@@ -84,11 +109,13 @@ class Joystick(object):
 	def getThrottle(self):
 		"ranges 0-100"
 		try:
-			raw_pos = self.stick.get_axis(2)  #csik changed for his SAITEK joystick from 2, which apparently was "z rotation"
+			raw_pos = self.stick.get_axis(self.ThrottleNum)
 			throttle = (raw_pos-1)*-50 #should range (0,100)
 		except AttributeError:
 			log.Log('e',"could not access throttle")
 			throttle = -1
+		except NameError:
+			log.Log('e',"joystick axes not set")
 		return throttle
 		
 class JoyGauge(wx.Panel):
@@ -107,7 +134,7 @@ class JoyGauge(wx.Panel):
         self.buffer = wx.EmptyBitmap(*size)
         dc = wx.BufferedDC(None, self.buffer)
         self.DrawFace(dc)
-        self.DrawJoystick(dc)
+        self.DrawJoystick(dc,0,0)
        
     def OnSize(self, event):
         # The face Bitmap init is done here, to make sure the buffer is always
@@ -116,7 +143,7 @@ class JoyGauge(wx.Panel):
         self.buffer = wx.EmptyBitmap(w,h)
         dc = wx.BufferedDC(wx.ClientDC(self), self.buffer)
         self.DrawFace(dc)
-        self.DrawJoystick(dc)
+        self.DrawJoystick(dc,0,0)
 
 
     def DrawFace(self, dc):
@@ -131,7 +158,7 @@ class JoyGauge(wx.Panel):
         dc = wx.BufferedPaintDC(self, self.buffer)
 
 
-    def DrawJoystick(self, dc):
+    def DrawJoystick(self, dc,joyx,joyy):
         # draw the gauge as a maxed square in the center of this window.
         w, h = self.GetClientSize()
         edgeSize = min(w, h)
@@ -157,8 +184,8 @@ class JoyGauge(wx.Panel):
 
         if self.stick:
             # Get the joystick position as a float
-            joyx,joyy = self.stick.getPos()
-            
+            #joyx,joyy passed in from above
+
             #Get the joystick range of motion
             xmin = -100 #self.stick.GetXMin()
             xmax = 100 #self.stick.GetXMax()
@@ -195,7 +222,7 @@ class JoyGauge(wx.Panel):
         # Turn off drawing optimization
         dc.EndDrawing()
 
-    def Update(self):
+    def Update(self,x,y):
         dc = wx.BufferedDC(wx.ClientDC(self), self.buffer)
         self.DrawFace(dc)
-        self.DrawJoystick(dc)
+        self.DrawJoystick(dc,x,y)

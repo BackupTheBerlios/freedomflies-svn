@@ -7,6 +7,7 @@ class PrefFrame(wx.MiniFrame):
 		self.parent = self.GetParent()
 		mainsizer = wx.BoxSizer(wx.VERTICAL)
 		portsizer = wx.FlexGridSizer(4,2)
+		joysizer = wx.FlexGridSizer(5,2)
 		self.gpsout_port_ctrl = wx.ComboBox(self,-1,'',size=(175,30))
 		self.radio_port_ctrl = wx.ComboBox(self,-1,'',size=(175,30))
 		portsizer.Add(wx.StaticText(self,-1,"Radio Port"),0)
@@ -27,9 +28,32 @@ class PrefFrame(wx.MiniFrame):
 			self.radio_port_ctrl.SetValue(ports[0])
 		if len(ports) > 1:
 			self.gpsout_port_ctrl.SetValue(ports[1])
+			
+		self.joystickDict = self.ReadJoystickConfig()
+		joystickList = ['']
+		joystickList.extend(self.joystickDict.keys())
+		joystickChoice = wx.Choice(self,-1,choices=joystickList)
+		joystickChoice.SetSelection(0)
+		self.Bind(wx.EVT_CHOICE, self.OnJoystickChoice, joystickChoice)
+		joysizer.Add(wx.StaticText(self,-1,'Preset'),0,wx.ALIGN_LEFT)
+		joysizer.Add(joystickChoice,0,wx.ALIGN_CENTER|wx.BOTTOM,border=5)
+		joysizer.Add(wx.StaticText(self,-1,'X-Axis'),0,wx.ALIGN_LEFT)
+		self.XCtrl = wx.TextCtrl(self,-1,size=(70,20))
+		joysizer.Add(self.XCtrl,0,wx.ALIGN_LEFT)
+		joysizer.Add(wx.StaticText(self,-1,'Y-Axis'),0,wx.ALIGN_LEFT)
+		self.YCtrl = wx.TextCtrl(self,-1,size=(70,20))
+		joysizer.Add(self.YCtrl,0,wx.ALIGN_LEFT)
+		joysizer.Add(wx.StaticText(self,-1,'Throttle'),0,wx.ALIGN_LEFT)
+		self.ThrottleCtrl = wx.TextCtrl(self,-1,size=(70,20))
+		joysizer.Add(self.ThrottleCtrl,0,wx.ALIGN_LEFT)
+		joysizer.Add(wx.StaticText(self,-1,'Hat'),0,wx.ALIGN_LEFT)
+		self.HatCtrl = wx.TextCtrl(self,-1,size=(70,20))
+		joysizer.Add(self.HatCtrl,0,wx.ALIGN_LEFT)
+		
 		save_button = wx.Button(self,-1,"Apply")
 		save_button.SetDefault()
 		mainsizer.Add(portsizer,0,wx.LEFT|wx.TOP|wx.RIGHT,3)
+		mainsizer.Add(joysizer,0,wx.LEFT|wx.TOP,3)
 		mainsizer.Add(save_button,0,wx.ALIGN_CENTER_HORIZONTAL|wx.BOTTOM|wx.TOP,5)
 		self.SetSizer(mainsizer)
 		self.Bind(wx.EVT_BUTTON,self.OnSave,save_button)
@@ -39,7 +63,24 @@ class PrefFrame(wx.MiniFrame):
 		self.radio_baud_ctrl.SetValue("57600")
 		self.gpsout_baud_ctrl.SetValue("9600")
 
+	def OnJoystickChoice(self,evt):
+		data = self.joystickDict[evt.GetString()]
+		self.XCtrl.SetValue(str(data['X']))
+		self.YCtrl.SetValue(str(data['Y']))
+		self.ThrottleCtrl.SetValue(str(data['Throttle']))
+		self.HatCtrl.SetValue(str(data['Hat']))
+		
+	def SaveJoystickChoices(self):
+		xVal = int(self.XCtrl.GetValue())
+		yVal = int(self.YCtrl.GetValue())
+		tVal = int(self.ThrottleCtrl.GetValue())
+		hVal = int(self.HatCtrl.GetValue())
+		self.parent.joystick.SetAxes(xVal,yVal,tVal,hVal)
+
 	def OnSave(self,evt):
+		self.SaveJoystickChoices()
+		self.parent.joystickPanel.timer.Start(50)
+		
 		radio_port = self.radio_port_ctrl.GetValue()
 		gpsout_port = self.gpsout_port_ctrl.GetValue()
 		radio_baud = self.radio_baud_ctrl.GetValue()
@@ -52,8 +93,8 @@ class PrefFrame(wx.MiniFrame):
 
 		if (self.parent.radio.radio is not None) or  (self.parent.radio.gpsout is not None):
 			#both ports were successfully set
-			self.Close()
-	 	
+			self.Close() 	
+	
 	def GetSerialPorts(self):
 		if "__WXMAC__" in wx.PlatformInfo:
 			d = os.listdir('/dev')
@@ -66,5 +107,19 @@ class PrefFrame(wx.MiniFrame):
 			pass
 			#figure out what to do on other platforms
 			
-    #TODO
-        #get joystick axes programatically
+	def ReadJoystickConfig(self):
+		try:
+			f = open('joystick-config.txt','r')
+			j = eval(f.read())
+			return j
+		except SyntaxError:
+			dlg = wx.MessageDialog(self,"Syntax error in joystick-config.txt, make sure there are no empty lines or statements.","Parse error",wx.OK | wx.ICON_INFORMATION)
+			dlg.ShowModal()
+			dlg.Destroy()
+			j = {'Error reading joystick-config.txt':{}}
+		except IOError:
+			dlg = wx.MessageDialog(self,"Cannot read joystick-config.txt","IO error",wx.OK | wx.ICON_INFORMATION)
+			dlg.ShowModal()
+			dlg.Destroy()
+			j = {'Error reading joystick-config.txt':{}}
+		return j
