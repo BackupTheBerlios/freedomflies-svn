@@ -1,0 +1,7 @@
+#A dictionary of preset joysticks
+
+{
+'Logitech Wingman Attack2':{'X':0,'Y':1,'Throttle':2,'Hat':-1},
+'Saitek X45':{'X':0,'Y':1,'Throttle':3,'Hat':-1}
+}
+
