@@ -5,33 +5,31 @@ import wx
 import pygame
 import log
 
-class JoyFrame(wx.MiniFrame):
-	def __init__(self, *args, **kwds):
-		wx.MiniFrame.__init__(self, *args, **kwds)
-
-		self.parent = self.GetParent()
+class JoyPanel(wx.Panel):
+	def __init__(self, parent, *args, **kwargs):
+		wx.Panel.__init__(self, parent, *args, **kwargs)
 		self.timer = wx.Timer(self, 1)
 		self.Bind(wx.EVT_TIMER, self.OnTimer, self.timer)
 		
 		#parent's already got the joystick
-		self.joystick = self.parent.joystick
+		self.joystick = parent.joystick
 			
 		sizer = wx.BoxSizer(wx.VERTICAL)
 		self.control = JoyGauge(self,self.joystick)
 		self.throttle_pos = wx.Gauge(self, -1,100,size=(100,20),style=wx.GA_HORIZONTAL|wx.GA_SMOOTH)
-		self.text = wx.StaticText(self, -1, "Move joystick to the extreme of each axis.",size=(150,50))
-		self.CalibratedButton = wx.Button(self,-1,"Calibrated")
+		#self.text = wx.StaticText(self, -1, "Move joystick to the extreme of each axis.",size=(150,50))
+		#self.CalibratedButton = wx.Button(self,-1,"Calibrated")
 		sizer.Add(self.control,0,wx.ALIGN_CENTER_HORIZONTAL|wx.ALL,5)
 		sizer.Add(self.throttle_pos,0,wx.ALIGN_CENTER_HORIZONTAL)
-		sizer.Add(self.text,1,wx.ALIGN_CENTER)
-		sizer.Add(self.CalibratedButton,1,wx.ALIGN_CENTER)
-		self.Bind(wx.EVT_BUTTON,self.OnCalibrated,self.CalibratedButton)
-		self.CalibratedButton.SetDefault()
+		#sizer.Add(self.text,1,wx.ALIGN_CENTER)
+		#sizer.Add(self.CalibratedButton,1,wx.ALIGN_CENTER)
+		#self.Bind(wx.EVT_BUTTON,self.OnCalibrated,self.CalibratedButton)
+		#self.CalibratedButton.SetDefault()
 
 		self.SetSizer(sizer)
-		self.SetMinSize((200,300))
-		self.SetAutoLayout(True)
-		self.Layout()
+		#self.SetMinSize((200,300))
+		#self.SetAutoLayout(True)
+		#self.Layout()
 		
 		#start calibration automatically
 		self.timer.Start(10) #every 10 ms, or 100hz

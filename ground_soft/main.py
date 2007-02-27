@@ -31,7 +31,6 @@ import prefs
 import joystick as joystickClass #avoid name collision
 import compass
 import horizon
-import heading
 import log
 from bufferedcanvas import *
 import datalink
@@ -65,17 +64,18 @@ class AppFrame(wx.Frame):
 		pygame.init()
 
 		#top sizer elements
-		self.airspeed_gauge = wx.Gauge(self, -1, 100, size=(20,300), style=wx.GA_VERTICAL|wx.GA_SMOOTH)
-		self.altitude_gauge = wx.Gauge(self, -1, 100, size=(20,300), style=wx.GA_VERTICAL|wx.GA_SMOOTH)
-		self.horizon = horizon.MyHorizonIndicator(self,-1,(500,500))
-		#self.compass = heading.MyHeadingIndicator(self,-1,(500,500))
+		self.airspeed_gauge = wx.Gauge(self, -1, 100, size=(20,400), style=wx.GA_VERTICAL|wx.GA_SMOOTH)
+		self.altitude_gauge = wx.Gauge(self, -1, 100, size=(20,400), style=wx.GA_VERTICAL|wx.GA_SMOOTH)
+		self.horizon = horizon.MyHorizonIndicator(self,-1,(500,500)) #sizes here are wrong
+		#use old compass (not OGL)
+		self.compass = compass.MyCompass(self,-1,(250,250))
+		#self.compass = heading.MyHeadingIndicator(self,-1,(500,500)) #but it needs to be this way
 		
-		#force initial paint of OGL
-		e = wx.PaintEvent()
-		self.horizon.OnPaint(e)
-		self.horizon.SetClientSize((400,400))
-		#self.compass.OnPaint(e)
-		#self.compass.SetClientSize((400,150))
+		#force initial paint of OGL, mega-kludge
+		e1 = wx.PaintEvent()
+		e2 = wx.PaintEvent()
+		self.horizon.OnPaint(e1)
+		self.horizon.SetClientSize((400,400)) #proper size
 		
 		self.airspeed_value = wx.TextCtrl(self,-1,size=(50,20),style=wx.TE_READONLY)
 		self.altitude_value = wx.TextCtrl(self,-1,size=(50,20),style=wx.TE_READONLY)
@@ -89,7 +89,7 @@ class AppFrame(wx.Frame):
 		self.radio_down_button = wx.ToggleButton(self, -1, "Radio Down",size=button_width)
 		self.gps_loopback_button = wx.ToggleButton(self, -1, "GPS Loopback",size=button_width)
 		
-		self.notebook = wx.Notebook(self, -1, size = (200,150), style=0)
+		self.notebook = wx.Notebook(self, -1, size = (350,150), style=0)
 		self.error_log = log.MyLog('error',self.notebook)
 		self.downlink_log = log.MyLog('downlink',self.notebook)
 		self.uplink_log = log.MyLog('uplink',self.notebook)
@@ -108,13 +108,16 @@ class AppFrame(wx.Frame):
 		self.gps_error_ctrl = wx.TextCtrl(self, -1,size=(100,20),style=wx.TE_READONLY|wx.TE_RICH2)
 		self.throttle_gauge = wx.Gauge(self, -1, 10,size=(100,20),style=wx.GA_HORIZONTAL|wx.GA_SMOOTH)
 		
+		#right sizer elements
+		self.joystickCalibrated = False
+		self.joystick = joystickClass.Joystick()
+		
 		#start sizer layout
-		main_box_sizer = wx.BoxSizer(wx.HORIZONTAL)
-		main_grid_sizer = wx.GridSizer(3, 1)
-	
-		top_sizer = wx.BoxSizer(wx.HORIZONTAL)
-		#compass_sizer = wx.BoxSizer(wx.HORIZONTAL)
-		bottom_sizer = wx.FlexGridSizer(1, 3,hgap=5)
+		main_sizer = wx.BoxSizer(wx.VERTICAL) #the big kahuna
+		top_sizer = wx.BoxSizer(wx.HORIZONTAL) #holds horizon and right sizers
+		horizon_sizer = wx.BoxSizer(wx.HORIZONTAL) #holds horizon, alt and speed
+		right_sizer = wx.BoxSizer(wx.VERTICAL) #holds joystick, radio checks
+		bottom_sizer = wx.FlexGridSizer(1, 3,hgap=5) #holds buttons, logs, text display
 		
 		airspeed_sizer = wx.BoxSizer(wx.HORIZONTAL)
 		altitude_sizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -122,15 +125,16 @@ class AppFrame(wx.Frame):
 		airspeed_sizer.Add(self.airspeed_gauge,0,wx.RIGHT,-2)
 		altitude_sizer.Add(self.altitude_gauge,0,wx.LEFT,5)
 		altitude_sizer.Add(self.altitude_value,0,wx.ALIGN_CENTER_VERTICAL|wx.RIGHT,0)
+		horizon_sizer.Add(airspeed_sizer, 0)
+		horizon_sizer.Add(self.horizon, 0)
+		horizon_sizer.Add(altitude_sizer, 0)
 		
-		top_sizer.Add(airspeed_sizer, 0)
-		top_sizer.Add(self.horizon, 0,wx.LEFT)
-		top_sizer.Add(altitude_sizer, 0)
-		main_grid_sizer.Add(top_sizer,1,wx.LEFT,0)
-		
-		#heading indicator doesn't quite work yet
-		#compass_sizer.Add(self.compass,0,wx.CENTER)
-		#main_grid_sizer.Add(compass_sizer,1,wx.CENTER,0)
+		right_sizer.Add(self.compass,0,wx.CENTER)
+		right_sizer.Add(joystickClass.JoyPanel(self),0,wx.RIGHT)
+
+		top_sizer.Add(horizon_sizer,0,wx.RIGHT,5)
+		top_sizer.Add(right_sizer,0,wx.LEFT,0)
+		main_sizer.Add(top_sizer,0,wx.ALIGN_CENTER_VERTICAL|wx.TOP,3)
 		
 		button_sizer = wx.GridSizer(4, 2, vgap=5,hgap=5)
 		button_sizer.Add(self.radio_up_button, 0)
@@ -139,7 +143,7 @@ class AppFrame(wx.Frame):
 		button_sizer.Add(self.logfile_button, 0)
 		button_sizer.Add(self.gps_loopback_button, 0)
 		button_sizer.Add(self.engine_button, 0)
-		bottom_sizer.Add(button_sizer,1,wx.LEFT|wx.ALIGN_CENTER_VERTICAL,5)
+		bottom_sizer.Add(button_sizer,0,wx.LEFT|wx.ALIGN_CENTER_VERTICAL,5)
 		self.Bind(wx.EVT_TOGGLEBUTTON,self.OnRadioUpButton,self.radio_up_button)
 		self.Bind(wx.EVT_TOGGLEBUTTON, # \
 				self.OnRadioDownButton,self.radio_down_button)
@@ -166,12 +170,11 @@ class AppFrame(wx.Frame):
 		bottom_sizer.Add(self.notebook,1)
 		bottom_sizer.Add(info_sizer, 0, wx.ALIGN_CENTER_VERTICAL|wx.RIGHT)
 		
-		main_grid_sizer.Add(bottom_sizer,1,wx.LEFT,0)
-		main_box_sizer.Add(main_grid_sizer,1,wx.LEFT,0)
+		main_sizer.Add(bottom_sizer,0)
 		self.SetAutoLayout(True)
-		self.SetSizer(main_box_sizer)
+		self.SetSizer(main_sizer)
 		self.Layout()
-		self.SetMinSize((575,575))
+		self.SetMinSize((800,575))
 		#end of main window items
 		
 		#Menubar
@@ -200,17 +203,15 @@ class AppFrame(wx.Frame):
 		#	self.MenuBar.Append(HelpMenu, "&Help")
 			
 		SetupMenu = wx.Menu()
-		cal = SetupMenu.Append(-1,'Calibrate Joystick')
-		self.Bind(wx.EVT_MENU,self.OnJoystickCalibrate,cal)
+		#cal = SetupMenu.Append(-1,'Calibrate Joystick')
+		#self.Bind(wx.EVT_MENU,self.OnJoystickCalibrate,cal)
 		gtest = SetupMenu.Append(-1,"Graphics Test")
 		self.Bind(wx.EVT_MENU,self.OnGraphicsTest,gtest)
 		self.MenuBar.Append(SetupMenu,"Setup")
 		self.SetMenuBar(self.MenuBar)
 		#end of menubar
 		
-		# flags for main
-		self.joystickCalibrated = False
-		self.joystick = joystickClass.Joystick()	
+		# flags for main	
 		self.gpsout_port = ""
 		self.radio_port = ""
 		#init radio, set for real by prefs dialog
@@ -234,7 +235,7 @@ class AppFrame(wx.Frame):
 		info.AddDeveloper('Jorge de la Garza')
 		info.AddDeveloper('Josh Levinger')
 		info.SetLicence(__doc__)
-		info.SetCopyright("Copyright (C) 2005-2006 MIT Media Lab")
+		info.SetCopyright("Copyright (C) 2005-2007 MIT Media Lab")
 		info.SetWebSite('http://freedomflies.berlios.de')
 		wx.AboutBox(info)
 		
@@ -242,8 +243,8 @@ class AppFrame(wx.Frame):
 		p = prefs.PrefFrame(self,-1,"Preferences",(975,265),(300,150))
 		p.Show()
 	def OnGraphicsTest(self,event):
-		max_pitch = 20
-		max_roll = 45
+		max_pitch = 30
+		max_roll = 75
 		incr = 1
 		sleep_time = 0.01 #sec
 	
@@ -279,21 +280,21 @@ class AppFrame(wx.Frame):
 		self.horizon.SetPitch(0)
 		self.horizon.SetRoll(0)
 			
-		#for i in range(0,361,2):
-		#	self.compass.SetHeading(i)
-		#	wx.Yield()
+		for i in range(0,361,2):
+			self.compass.SetHeading(i)
+			wx.Yield()
 		
-	def OnJoystickCalibrate(self,event):
-		self.calib = joystickClass.JoyFrame(self,-1,"Joystick Calibration",(975,30),(200,225))
-		self.calib.Layout()
-		self.calib.Show()
+	#def OnJoystickCalibrate(self,event):
+	#	self.calib = joystickClass.JoyFrame(self,-1,"Joystick Calibration",(975,30),(200,225))
+	#	self.calib.Layout()
+	#	self.calib.Show()
 		
 	def OnRadioUpButton(self,event):
 		btn = event.GetEventObject()
 		if btn.GetValue() == True:
-			if self.joystickCalibrated is False:
-				log.Log('e',"Calibrate Joystick")
-				self.OnJoystickCalibrate(None)
+			#if self.joystickCalibrated is False:
+				#log.Log('e',"Calibrate Joystick")
+				#self.OnJoystickCalibrate(None)
 			self.radio.StartUplinkThread()
 		if btn.GetValue() == False:
 			self.radio.StopUplinkThread()
@@ -353,7 +354,7 @@ class MyApp(wx.App):
 	def OnInit(self):
 		#pygame.init()
 		wx.InitAllImageHandlers()
-		self.win = AppFrame(None, -1, "Freedom Flies",(50,25),(575,575))
+		self.win = AppFrame(None, -1, "Freedom Flies",(50,25),(800,575))
 		self.win.Layout()
 		self.win.Show()
 		self.SetTopWindow(self.win)

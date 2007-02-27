@@ -18,6 +18,9 @@ class MyHeadingIndicator(GLCanvas):
 		self.Bind(wx.EVT_SIZE, self.OnSize)
 		self.Bind(wx.EVT_PAINT, self.OnPaint)
 		self.heading = 0
+		self.refresh = wx.Timer(self,id=1)
+		self.refresh.Start(33) #in ms, so 30hz
+		self.Bind(wx.EVT_TIMER,self.OnDraw,self.refresh)
 	
 	def OnEraseBackground(self, event):
 		pass # Do nothing, to avoid flashing on MSW.
@@ -35,7 +38,8 @@ class MyHeadingIndicator(GLCanvas):
 		if not self.init:
 			self.InitGL()
 			self.init = True
-		self.OnDraw()
+		e = wx.PaintEvent()
+		self.OnDraw(e)
 	
 	def InitGL(self):
 		m_UnitsPerPixel = 1
@@ -51,12 +55,12 @@ class MyHeadingIndicator(GLCanvas):
 		
 		#The location in pixels is calculated based on the size of the
 		#gauge component and the offset of the parent guage
-		m_PixelPosition_x = (m_PhysicalPosition_x * m_Scale_x + parentPhysicalPosition_x ) / m_UnitsPerPixel
-		m_PixelPosition_y = (m_PhysicalPosition_y * m_Scale_y + parentPhysicalPosition_y ) / m_UnitsPerPixel
+		m_PixelPosition_x = GLsizei(int((m_PhysicalPosition_x * m_Scale_x + parentPhysicalPosition_x ) / m_UnitsPerPixel))
+		m_PixelPosition_y = GLsizei(int((m_PhysicalPosition_y * m_Scale_y + parentPhysicalPosition_y ) / m_UnitsPerPixel))
 		
 		#The size in pixels of the gauge is the physical size / mm per pixel
-		m_PixelSize_x = (int) ( m_PhysicalSize_x / m_UnitsPerPixel * m_Scale_x)
-		m_PixelSize_y = (int) ( m_PhysicalSize_y / m_UnitsPerPixel * m_Scale_y)
+		m_PixelSize_x =  GLint(int(( m_PhysicalSize_x / m_UnitsPerPixel * m_Scale_x)))
+		m_PixelSize_y =  GLint(int(( m_PhysicalSize_y / m_UnitsPerPixel * m_Scale_y)))
 		
 		self.SetCurrent()
 		glViewport(m_PixelPosition_x, m_PixelPosition_y, m_PixelSize_x, m_PixelSize_y)
@@ -70,10 +74,13 @@ class MyHeadingIndicator(GLCanvas):
 		glLoadIdentity()
 		glScalef(m_Scale_x, m_Scale_y, 1.0)
 
-	def getHeading(self):
+	def GetHeading(self):
 		return self.heading
+		
+	def SetHeading(self,h):
+		self.heading = h
 
-	def OnDraw(self):
+	def OnDraw(self,event):
 		centerX = 60
 		centerY = -35
 		radius = 70.0
@@ -85,7 +92,7 @@ class MyHeadingIndicator(GLCanvas):
 		buffer = ""
 		
 		glMatrixMode(GL_MODELVIEW)
-		#glPushMatrix()
+		glPushMatrix()
 		
 		glTranslated(centerX, centerY, 0)
 		
@@ -114,7 +121,7 @@ class MyHeadingIndicator(GLCanvas):
 		glVertex2f(2.8,radius+3.25)
 		glEnd()
 		
-		heading = self.getHeading()
+		heading = self.GetHeading()
 		
 		#m_pFontManager->SetSize(m_Font, 5.0, 5.0 );
 		#m_pFontManager->Print( -25, 38, &buffer[0], m_Font ); 
@@ -173,10 +180,10 @@ class MyHeadingIndicator(GLCanvas):
 	
 			glRotated(5.0 * indicatorDegreesPerTrueDegrees,0,0,-1)
 			
-			# Finally, restore the modelview matrix to what we received
-			#glPopMatrix()
+		# Finally, restore the modelview matrix to what we received
+		glPopMatrix()
 		
-			glFlush()
-			self.SwapBuffers()
+		glFlush()
+		self.SwapBuffers()
 		#end OnDraw
 
