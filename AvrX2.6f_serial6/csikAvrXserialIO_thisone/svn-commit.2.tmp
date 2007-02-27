@@ -1,0 +1,19 @@
+Major changes to avrx timing and input/output.
+--This line, and those below, will be ignored--
+
+M    AvrXBufferedSerial.lss
+M    AvrXBufferedSerial.lst
+D    AvrXBufferedSerial.elf
+M    AvrXSimpleSerial.lss
+M    AvrXBufferedSerial.sym
+M    AvrXSimpleSerial.lst
+M    SerialExample.lst
+M    AvrXSerialIo.h
+M    AvrXSimpleSerial.elf
+M    AvrXBufferedSerial.map
+M    AvrXSimpleSerial.sym
+M    AvrXSimpleSerial.map
+M    AvrXBufferedSerial.hex
+M    SerialExample.c
+M    AvrXSimpleSerial.hex
+M    parser.c

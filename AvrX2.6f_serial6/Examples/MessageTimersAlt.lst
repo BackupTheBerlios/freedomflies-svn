@@ -1,0 +1,244 @@
+   1               		.file	"MessageTimersAlt.c"
+   2               		.arch atmega32
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  10               	.global	switcherTcb
+  11               		.section	.progmem.data,"a",@progbits
+  14               	switcherTcb:
+  15 0000 0000      		.word	switcherStk+44
+  16 0002 0000      		.word	pm(switcher)
+  17 0004 0000      		.word	switcherPid
+  18 0006 03        		.byte	3
+  19               	.global	flasherTcb
+  22               	flasherTcb:
+  23 0007 0000      		.word	flasherStk+54
+  24 0009 0000      		.word	pm(flasher)
+  25 000b 0000      		.word	flasherPid
+  26 000d 02        		.byte	2
+  27               	.global	MonitorTcb
+  30               	MonitorTcb:
+  31 000e 0000      		.word	MonitorStk+54
+  32 0010 0000      		.word	pm(Monitor)
+  33 0012 0000      		.word	MonitorPid
+  34 0014 00        		.byte	0
+  35               		.text
+  36               	.global	__vector_11
+  38               	__vector_11:
+  39               	/* prologue: frame size=0 */
+  40               	/* prologue: naked */
+  41               	/* prologue end (size=0) */
+  42 0000 0E94 0000 		call IntProlog
+  43 0004 80EE      		ldi r24,lo8(-32)
+  44 0006 82BF      		out 82-0x20,r24
+  45 0008 0E94 0000 		call AvrXTimerHandler
+  46 000c 0E94 0000 		call Epilog
+  47               	/* epilogue: frame size=0 */
+  48               	/* epilogue: naked */
+  49               	/* epilogue end (size=0) */
+  50               	/* function __vector_11 size 8 (8) */
+  52               	.global	flasher
+  54               	flasher:
+  55               	/* prologue: frame size=0 */
+  56               	/* prologue end (size=0) */
+  57 0010 10E0      		ldi r17,lo8(0)
+  58 0012 8FEF      		ldi r24,lo8(-1)
+  59 0014 87BB      		out 55-0x20,r24
+  60 0016 C82F      		mov r28,r24
+  61               	.L14:
+  62 0018 40E0      		ldi r20,lo8(MyQueue)
+  63 001a 50E0      		ldi r21,hi8(MyQueue)
+  64 001c 66E9      		ldi r22,lo8(150)
+  65 001e 70E0      		ldi r23,hi8(150)
+  66 0020 80E0      		ldi r24,lo8(Timer)
+  67 0022 90E0      		ldi r25,hi8(Timer)
+  68 0024 0E94 0000 		call AvrXStartTimerMessage
+  69 0028 C8BB      		out 56-0x20,r28
+  70 002a 80E0      		ldi r24,lo8(MyQueue)
+  71 002c 90E0      		ldi r25,hi8(MyQueue)
+  72 002e 0E94 0000 		call AvrXWaitMessage
+  73 0032 9C01      		movw r18,r24
+  74 0034 80E0      		ldi r24,hi8(SwitchMsg)
+  75 0036 2030      		cpi r18,lo8(SwitchMsg)
+  76 0038 3807      		cpc r19,r24
+  77 003a 51F0      		breq .L16
+  78 003c 2050      		subi r18,lo8(Timer)
+  79 003e 3040      		sbci r19,hi8(Timer)
+  80 0040 19F0      		breq .L17
+  81 0042 0E94 0000 		call AvrXHalt
+  82 0046 E8CF      		rjmp .L14
+  83               	.L17:
+  84               	/* #APP */
+  85 0048 111F      		rol r17
+  86 004a 08F4      		brcc .+2
+  87 004c 1395      		inc r17
+  88               	
+  89               	/* #NOAPP */
+  90 004e E4CF      		rjmp .L14
+  91               	.L16:
+  92 0050 8091 0000 		lds r24,SwitchMsg+4
+  93 0054 8095      		com r24
+  94 0056 1827      		eor r17,r24
+  95 0058 C901      		movw r24,r18
+  96 005a 0E94 0000 		call AvrXAckMessage
+  97 005e 60E0      		ldi r22,lo8(MyQueue)
+  98 0060 70E0      		ldi r23,hi8(MyQueue)
+  99 0062 80E0      		ldi r24,lo8(Timer)
+ 100 0064 90E0      		ldi r25,hi8(Timer)
+ 101 0066 0E94 0000 		call AvrXCancelTimerMessage
+ 102 006a 8050      		subi r24,lo8(Timer)
+ 103 006c 9040      		sbci r25,hi8(Timer)
+ 104 006e 11F0      		breq .L10
+ 105 0070 0E94 0000 		call AvrXHalt
+ 106               	.L10:
+ 107 0074 C12F      		mov r28,r17
+ 108 0076 C095      		com r28
+ 109 0078 CFCF      		rjmp .L14
+ 110               	/* epilogue: frame size=0 */
+ 111               	/* epilogue: noreturn */
+ 112               	/* epilogue end (size=0) */
+ 113               	/* function flasher size 60 (60) */
+ 115               	.global	switcher
+ 117               	switcher:
+ 118               	/* prologue: frame size=0 */
+ 119               	/* prologue end (size=0) */
+ 120 007a 8FEF      		ldi r24,lo8(-1)
+ 121 007c 8BBB      		out 59-0x20,r24
+ 122               	.L25:
+ 123 007e 6AE0      		ldi r22,lo8(10)
+ 124 0080 70E0      		ldi r23,hi8(10)
+ 125 0082 80E0      		ldi r24,lo8(SwTimer)
+ 126 0084 90E0      		ldi r25,hi8(SwTimer)
+ 127 0086 0E94 0000 		call AvrXDelay
+ 128 008a 9091 0000 		lds r25,SwitchMsg+4
+ 129 008e 89B3      		in r24,57-0x20
+ 130 0090 9817      		cp r25,r24
+ 131 0092 A9F3      		breq .L25
+ 132               	.L26:
+ 133 0094 89B3      		in r24,57-0x20
+ 134 0096 8093 0000 		sts SwitchMsg+4,r24
+ 135 009a 60E0      		ldi r22,lo8(SwitchMsg)
+ 136 009c 70E0      		ldi r23,hi8(SwitchMsg)
+ 137 009e 80E0      		ldi r24,lo8(MyQueue)
+ 138 00a0 90E0      		ldi r25,hi8(MyQueue)
+ 139 00a2 0E94 0000 		call AvrXSendMessage
+ 140 00a6 80E0      		ldi r24,lo8(SwitchMsg)
+ 141 00a8 90E0      		ldi r25,hi8(SwitchMsg)
+ 142 00aa 0E94 0000 		call AvrXWaitMessageAck
+ 143 00ae 6AE0      		ldi r22,lo8(10)
+ 144 00b0 70E0      		ldi r23,hi8(10)
+ 145 00b2 80E0      		ldi r24,lo8(SwTimer)
+ 146 00b4 90E0      		ldi r25,hi8(SwTimer)
+ 147 00b6 0E94 0000 		call AvrXDelay
+ 148 00ba 9091 0000 		lds r25,SwitchMsg+4
+ 149 00be 89B3      		in r24,57-0x20
+ 150 00c0 9817      		cp r25,r24
+ 151 00c2 41F7      		brne .L26
+ 152 00c4 DCCF      		rjmp .L25
+ 153               	/* epilogue: frame size=0 */
+ 154               	/* epilogue: noreturn */
+ 155               	/* epilogue end (size=0) */
+ 156               	/* function switcher size 38 (38) */
+ 158               	.global	main
+ 160               	main:
+ 161               	/* prologue: frame size=0 */
+ 162 00c6 C0E0      		ldi r28,lo8(__stack - 0)
+ 163 00c8 D0E0      		ldi r29,hi8(__stack - 0)
+ 164 00ca DEBF      		out __SP_H__,r29
+ 165 00cc CDBF      		out __SP_L__,r28
+ 166               	/* prologue end (size=4) */
+ 167 00ce 80E0      		ldi r24,lo8(0)
+ 168 00d0 90E0      		ldi r25,hi8(0)
+ 169 00d2 0E94 0000 		call AvrXSetKernelStack
+ 170 00d6 80E8      		ldi r24,lo8(-128)
+ 171 00d8 85BF      		out 85-0x20,r24
+ 172 00da 80EE      		ldi r24,lo8(-32)
+ 173 00dc 82BF      		out 82-0x20,r24
+ 174 00de 84E0      		ldi r24,lo8(4)
+ 175 00e0 83BF      		out 83-0x20,r24
+ 176 00e2 81E0      		ldi r24,lo8(1)
+ 177 00e4 89BF      		out 89-0x20,r24
+ 178 00e6 80E0      		ldi r24,lo8(flasherTcb)
+ 179 00e8 90E0      		ldi r25,hi8(flasherTcb)
+ 180 00ea 0E94 0000 		call AvrXRunTask
+ 181 00ee 80E0      		ldi r24,lo8(switcherTcb)
+ 182 00f0 90E0      		ldi r25,hi8(switcherTcb)
+ 183 00f2 0E94 0000 		call AvrXRunTask
+ 184 00f6 80E0      		ldi r24,lo8(MonitorTcb)
+ 185 00f8 90E0      		ldi r25,hi8(MonitorTcb)
+ 186 00fa 0E94 0000 		call AvrXRunTask
+ 187 00fe 80E0      		ldi r24,lo8(EEPromMutex)
+ 188 0100 90E0      		ldi r25,hi8(EEPromMutex)
+ 189 0102 0E94 0000 		call AvrXSetSemaphore
+ 190 0106 89E1      		ldi r24,lo8(25)
+ 191 0108 90E0      		ldi r25,hi8(25)
+ 192 010a 0E94 0000 		call InitSerialIO
+ 193 010e 0E94 0000 		call Epilog
+ 194 0112 80E0      		ldi r24,lo8(0)
+ 195 0114 90E0      		ldi r25,hi8(0)
+ 196               	/* epilogue: frame size=0 */
+ 197 0116 0C94 0000 		jmp exit
+ 198               	/* epilogue end (size=2) */
+ 199               	/* function main size 42 (36) */
+ 201               		.comm MonitorStk,55,1
+ 202               		.comm MonitorPid,6,1
+ 203               		.comm SwTimer,6,1
+ 204               		.comm Timer,8,1
+ 205               		.comm SwitchMsg,5,1
+ 206               		.comm MyQueue,4,1
+ 207               		.comm flasherStk,55,1
+ 208               		.comm flasherPid,6,1
+ 209               		.comm switcherStk,45,1
+ 210               		.comm switcherPid,6,1
+ 211               	/* File "MessageTimersAlt.c": code  148 = 0x0094 ( 142), prologues   4, epilogues   2 */
+DEFINED SYMBOLS
+                            *ABS*:00000000 MessageTimersAlt.c
+                            *ABS*:0000003f __SREG__
+                            *ABS*:0000003e __SP_H__
+                            *ABS*:0000003d __SP_L__
+                            *ABS*:00000000 __tmp_reg__
+                            *ABS*:00000001 __zero_reg__
+/var/tmp//ccTEfO4O.s:14     .progmem.data:00000000 switcherTcb
+                            *COM*:0000002d switcherStk
+/var/tmp//ccTEfO4O.s:117    .text:0000007a switcher
+                            *COM*:00000006 switcherPid
+/var/tmp//ccTEfO4O.s:22     .progmem.data:00000007 flasherTcb
+                            *COM*:00000037 flasherStk
+/var/tmp//ccTEfO4O.s:54     .text:00000010 flasher
+                            *COM*:00000006 flasherPid
+/var/tmp//ccTEfO4O.s:30     .progmem.data:0000000e MonitorTcb
+                            *COM*:00000037 MonitorStk
+                            *COM*:00000006 MonitorPid
+/var/tmp//ccTEfO4O.s:38     .text:00000000 __vector_11
+                            *COM*:00000004 MyQueue
+                            *COM*:00000008 Timer
+                            *COM*:00000005 SwitchMsg
+                            *COM*:00000006 SwTimer
+/var/tmp//ccTEfO4O.s:160    .text:000000c6 main
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+Monitor
+IntProlog
+AvrXTimerHandler
+Epilog
+AvrXStartTimerMessage
+AvrXWaitMessage
+AvrXHalt
+AvrXAckMessage
+AvrXCancelTimerMessage
+AvrXDelay
+AvrXSendMessage
+AvrXWaitMessageAck
+__stack
+AvrXSetKernelStack
+AvrXRunTask
+EEPromMutex
+AvrXSetSemaphore
+InitSerialIO
+exit

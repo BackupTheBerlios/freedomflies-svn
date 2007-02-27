@@ -1,0 +1,7 @@
+nd again
+--This line, and those below, will be ignored--
+
+D    AvrXBufferedSerial.elf
+M    AvrXSerialIo.h
+M    SerialExample.c
+M    parser.c
