@@ -11,7 +11,7 @@ class MyCompass(BufferedCanvas):
 		self.plane = wx.BitmapFromImage(self.plane_img,-1)
 		BufferedCanvas.__init__(self,parent,id,size=sizeT)
 		self.SetHeading(0) #start pointed at north
-		#default size is (250,250)
+		#default size is (200,200)
 		
 	def draw(self,dc):
 		try:

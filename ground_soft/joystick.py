@@ -174,7 +174,8 @@ class JoyGauge(wx.Panel):
         # Optimize drawing a bit (for Win)
         dc.BeginDrawing()
 
-        dc.SetBrush(wx.Brush(wx.Colour(251, 252, 237)))
+        #dc.SetBrush(wx.Brush(wx.Colour(251, 252, 237)))
+        dc.SetBrush(wx.WHITE_BRUSH)
         dc.DrawRectangle(xorigin, yorigin, edgeSize, edgeSize)
 
         dc.SetPen(wx.Pen(wx.BLACK, 1, wx.DOT_DASH))
