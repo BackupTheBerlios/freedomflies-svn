@@ -75,10 +75,14 @@ class PrefFrame(wx.MiniFrame):
 			log.Log('e',"error in joystick-config.txt")
 					
 	def SaveJoystickChoices(self):
-		xVal = int(self.XCtrl.GetValue())
-		yVal = int(self.YCtrl.GetValue())
-		tVal = int(self.ThrottleCtrl.GetValue())
-		hVal = int(self.HatCtrl.GetValue())
+		xVal,yVal,tVal,hVal = 0,0,0,0	
+		try:
+			xVal = int(self.XCtrl.GetValue())
+			yVal = int(self.YCtrl.GetValue())
+			tVal = int(self.ThrottleCtrl.GetValue())
+			hVal = int(self.HatCtrl.GetValue())
+		except ValueError:
+			pass #no value set by user, use default
 		self.parent.joystick.SetAxes(xVal,yVal,tVal,hVal)
 
 	def OnSave(self,evt):
