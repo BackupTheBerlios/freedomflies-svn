@@ -106,6 +106,10 @@ class Joystick(object):
 		y = int(raw_y * -100)
 		return x,y
 		
+	#def getHat(self):
+	#	try:
+			
+		
 	def getThrottle(self):
 		"ranges 0-100"
 		try:

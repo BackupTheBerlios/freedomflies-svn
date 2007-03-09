@@ -141,8 +141,9 @@ class radiolink(object):
 				else:
 					data_value = 0
 				
-				command = string.join([data_type,' ',str(data_value),'\r\n'],'')
-				#command = string.join([data_type,' ',chr(data_value),'\r\n'],'')
+				command = string.join([data_type," ",str(data_value),"\r"],"")
+				#command = string.join([data_type," ",str(data_value),"\r\n"],"")
+				#command = string.join([data_type," ",chr(data_value),"\r\n"],"")
 				#serial protocol is "x <ascii code>\r"
 				#use chr to get string of one character with ordinal i; 0 <= i < 256
 				if data_value > 1:	
@@ -152,7 +153,7 @@ class radiolink(object):
 			for out_string in command_list:
 				if (self.radio is not None) and (self.radio.isOpen()):
 					self.radio.write(out_string)
-					print "UPLINK:",out_string[:-2] #strip \r\n	
+					#print "UPLINK:",out_string[:-2] #strip \r\n	
 					log.Log('u',out_string[:-2]) #strip \r\n
 			#csik		
 			time.sleep(1/15.) #run at 15 Hz
@@ -184,7 +185,7 @@ class radiolink(object):
 				print "DOWNLINK:",buffer[:-2]
 			if buffer.startswith("e0"):
 				#it's a joystick event acknowledge
-				print "ACK"
+			#	print "ACK"
 			try:
 				self.downproc.ProcessBuffer(buffer)
 				
