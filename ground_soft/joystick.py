@@ -13,7 +13,7 @@ class JoyPanel(wx.Panel):
 		
 		#parent's already got the joystick
 		self.joystick = parent.joystick
-			
+		
 		sizer = wx.BoxSizer(wx.VERTICAL)
 		self.control = JoyGauge(self,self.joystick)
 		self.throttle_pos = wx.Gauge(self, -1,100,size=(100,20),style=wx.GA_HORIZONTAL|wx.GA_SMOOTH)
@@ -25,7 +25,7 @@ class JoyPanel(wx.Panel):
 		#sizer.Add(self.CalibratedButton,1,wx.ALIGN_CENTER)
 		#self.Bind(wx.EVT_BUTTON,self.OnCalibrated,self.CalibratedButton)
 		#self.CalibratedButton.SetDefault()
-
+		
 		self.SetSizer(sizer)
 		#self.SetMinSize((200,300))
 		#self.SetAutoLayout(True)
@@ -47,11 +47,11 @@ class JoyPanel(wx.Panel):
 		except pygame.error:
 			#user already notified in Joystick.SetAxes
 			pass
-		
+	
 	def OnClose(self, event):
 		self.timer.Stop()
 		#self.Close()
-		
+
 class Joystick(object):
 	def __init__(self,*args,**kwds):
 		try:
@@ -65,7 +65,7 @@ class Joystick(object):
 		except pygame.error,err:
 			log.Log('e',str(err))
 			self.stick = None
-		
+	
 	def SetAxes(self,X,Y,T,H):
 		self.XNum = X
 		self.YNum = Y
@@ -80,19 +80,19 @@ class Joystick(object):
 			testY = self.stick.get_axis(self.YNum)
 		except pygame.error:
 			log.Log('e',"Invalid Joystick Y-Axis Setting")
-			self.YNum = -1	
+			self.YNum = -1
 		try:
 			testThrottle = self.stick.get_axis(self.ThrottleNum)
 		except pygame.error:
 			log.Log('e',"Invalid Joystick Throttle Setting")
-			self.ThrottleNum = -1	
+			self.ThrottleNum = -1
 		try:
 			testHat = self.stick.get_hat(self.HatNum)
 		except pygame.error:
 			log.Log('e',"Invalid Joystick Hatswitch Setting")
 			self.HatNum = -1
-			
 		
+	
 	def getPos(self):
 		"ranges 0-100"
 		try:
@@ -105,7 +105,7 @@ class Joystick(object):
 		x = int(raw_x * 100)
 		y = int(raw_y * -100)
 		return x,y
-		
+	
 	#def getHat(self):
 	#	try:
 			
@@ -121,25 +121,25 @@ class Joystick(object):
 		except NameError:
 			log.Log('e',"joystick axes not set")
 		return throttle
-		
+
 class JoyGauge(wx.Panel):
 	#shamelessly stolen from the wxPython Demo, but using pygame for joystick
     def __init__(self, parent, stick):
-
+        
         self.stick = stick
         size = (150,150)
         
         wx.Panel.__init__(self, parent, -1, size=size)
-
+        
         self.Bind(wx.EVT_PAINT, self.OnPaint)
         self.Bind(wx.EVT_SIZE, self.OnSize)
         self.Bind(wx.EVT_ERASE_BACKGROUND, lambda e: None)
-
+        
         self.buffer = wx.EmptyBitmap(*size)
         dc = wx.BufferedDC(None, self.buffer)
         self.DrawFace(dc)
         self.DrawJoystick(dc,0,0)
-       
+    
     def OnSize(self, event):
         # The face Bitmap init is done here, to make sure the buffer is always
         # the same size as the Window
@@ -149,48 +149,48 @@ class JoyGauge(wx.Panel):
         self.DrawFace(dc)
         self.DrawJoystick(dc,0,0)
 
-
+    
     def DrawFace(self, dc):
         dc.SetBackground(wx.Brush(self.GetBackgroundColour()))
         dc.Clear()
 
-
+    
     def OnPaint(self, evt):
         # When dc is destroyed it will blit self.buffer to the window,
         # since no other drawing is needed we'll just return and let it
         # do it's thing
         dc = wx.BufferedPaintDC(self, self.buffer)
 
-
+    
     def DrawJoystick(self, dc,joyx,joyy):
         # draw the gauge as a maxed square in the center of this window.
         w, h = self.GetClientSize()
         edgeSize = min(w, h)
-
+        
         xorigin = (w - edgeSize) / 2
         yorigin = (h - edgeSize) / 2
         center = edgeSize / 2
-
+        
         # Restrict our drawing activities to the square defined
         # above.
         dc.SetClippingRegion(xorigin, yorigin, edgeSize, edgeSize)
-
+        
         # Optimize drawing a bit (for Win)
         dc.BeginDrawing()
-
+        
         #dc.SetBrush(wx.Brush(wx.Colour(251, 252, 237)))
         dc.SetBrush(wx.WHITE_BRUSH)
         dc.DrawRectangle(xorigin, yorigin, edgeSize, edgeSize)
-
+        
         dc.SetPen(wx.Pen(wx.BLACK, 1, wx.DOT_DASH))
-
+        
         dc.DrawLine(xorigin, yorigin + center, xorigin + edgeSize, yorigin + center)
         dc.DrawLine(xorigin + center, yorigin, xorigin + center, yorigin + edgeSize)
-
+        
         if self.stick:
             # Get the joystick position as a float
             #joyx,joyy passed in from above
-
+            
             #Get the joystick range of motion
             xmin = -100 #self.stick.GetXMin()
             xmax = 100 #self.stick.GetXMax()
@@ -199,7 +199,7 @@ class JoyGauge(wx.Panel):
                 joyx += abs(xmin)
                 xmin = 0
             xrange = max(xmax - xmin, 1)
-
+            
             ymin = -100 #self.stick.GetYMin()
             ymax = 100 #self.stick.GetYMax()
             if ymin < 0:
@@ -207,26 +207,26 @@ class JoyGauge(wx.Panel):
                 joyy += abs(ymin)
                 ymin = 0
             yrange = max(ymax - ymin, 1)
-
+            
             # calc a ratio of our range versus the joystick range
             xratio = float(edgeSize) / xrange
             yratio = float(edgeSize) / yrange
-
+            
             # calc the displayable value based on position times ratio
             xval = int(joyx * xratio)
             yval = int(joyy * yratio)
-
+            
             # and normalize the value from our brush's origin
             x = xval + xorigin
             y = yval + yorigin
-
+            
             # Now to draw it.
             dc.SetPen(wx.Pen(wx.RED, 2))
             dc.CrossHair(x, y)
-
+        
         # Turn off drawing optimization
         dc.EndDrawing()
-
+    
     def Update(self,x,y):
         dc = wx.BufferedDC(wx.ClientDC(self), self.buffer)
         self.DrawFace(dc)
