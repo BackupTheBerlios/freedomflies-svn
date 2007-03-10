@@ -70,8 +70,8 @@ if __name__ == "__main__":
     # Make Sure Joystick Initilized
     status = stick.get_init()
     if(status== 1):
-        print "Joystick Successfully Initialized"
-	print "Press Trigger or Move Hat Up to Capture State"
+        print "Joystick Successfully Initialized with %s axes, %s buttons, %s hats" % (stick.get_numaxes(),stick.get_numbuttons(),stick.get_numhats())
+    	print "Press Trigger or Move Hat Up to Capture State"
     else:
         print "Joystick Failure"
         sys.exit()
@@ -87,7 +87,8 @@ if __name__ == "__main__":
 	b1,b2,b3,b4,b5,b6,b7,b8,b9,b10 = getButtons()
 	# Print Joystick Position if Trigger is Pushed or Hat is Up
 	if (b1 == 1) or (hat == "Up"):
-            print x,y,yaw,throt
+            print x,y,yaw,throt,hat
+            
         # Pause
 	time.sleep(.15)
         # Exit Loop If Buttons 9 and 10 Are Pushed

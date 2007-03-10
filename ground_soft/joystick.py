@@ -87,11 +87,23 @@ class Joystick(object):
 			log.Log('e',"Invalid Joystick Throttle Setting")
 			self.ThrottleNum = -1
 		try:
-			testHat = self.stick.get_hat(self.HatNum)
-		except pygame.error:
-			log.Log('e',"Invalid Joystick Hatswitch Setting")
-			self.HatNum = -1
-		
+			if len(H) > 1:
+				try:
+					#it's a series of buttons
+					testHat0 = self.stick.get_button(int(self.HatNum[0]))
+					testHat1 = self.stick.get_button(int(self.HatNum[1]))
+					testHat2 = self.stick.get_button(int(self.HatNum[2]))
+					testHat3 = self.stick.get_button(int(self.HatNum[3]))
+				except pygame.error:
+					log.Log('e',"Invalid Joystick Hatswitch Button List")
+					self.HatNum = -1
+		except TypeError:
+			#it's a real hatswitch
+			try:
+				testHat = self.stick.get_hat(self.HatNum)
+			except pygame.error:
+				log.Log('e',"Invalid Joystick Hatswitch Setting")
+				self.HatNum = -1
 	
 	def getPos(self):
 		"ranges 0-100"
@@ -106,9 +118,23 @@ class Joystick(object):
 		y = int(raw_y * -100)
 		return x,y
 	
-	#def getHat(self):
-	#	try:
-			
+	def getHat(self):
+		raw_x,raw_y = 0,0 #init
+		try:
+			if len(self.HatNum) > 1:
+				#it's a list of buttons, build the hat ourselves
+				raw_north = self.stick.get_button(self.HatNum[0])
+				raw_east = self.stick.get_button(self.HatNum[1])
+				raw_south = self.stick.get_button(self.HatNum[2])
+				raw_west = self.stick.get_button(self.HatNum[3])
+				#convert to x,y
+				raw_x = raw_east - raw_west
+				raw_y = raw_north - raw_south
+		except TypeError:
+			raw_x,raw_y = self.stick.get_hat(self.HatNum)
+		except NameError:
+				log.Log('e','joystick hat not set')
+		return raw_x,raw_y
 		
 	def getThrottle(self):
 		"ranges 0-100"

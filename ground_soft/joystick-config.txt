@@ -1,7 +1,11 @@
 #A dictionary of preset joysticks
+#Hat is a list of buttons to be treated as a hat
+# if hat is of length one, the id will be used as the hat
+# if hat is > len(1), id is from north proceeding clockwise
+#first entry is default
 
 {
-'Logitech Wingman Attack2':{'X':0,'Y':1,'Throttle':2,'Hat':-1},
-'Saitek X45':{'X':0,'Y':1,'Throttle':3,'Hat':-1}
+'Logitech Wingman Attack2':{'X':0,'Y':1,'Throttle':2,'Hat':(-1)},
+'Saitek X45':{'X':0,'Y':1,'Throttle':2,'Hat':(14,15,16,17)}
 }
 

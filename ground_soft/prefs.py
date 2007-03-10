@@ -34,8 +34,8 @@ class PrefFrame(wx.MiniFrame):
 		joystickList = ['']
 		joystickList.extend(self.joystickDict.keys())
 		joystickChoice = wx.Choice(self,-1,choices=joystickList)
-		joystickChoice.SetSelection(0)
 		self.Bind(wx.EVT_CHOICE, self.OnJoystickChoice, joystickChoice)
+		joystickChoice.SetSelection(0)
 		joysizer.Add(wx.StaticText(self,-1,'Preset'),0,wx.ALIGN_LEFT)
 		joysizer.Add(joystickChoice,0,wx.ALIGN_CENTER|wx.BOTTOM,border=5)
 		joysizer.Add(wx.StaticText(self,-1,'X-Axis'),0,wx.ALIGN_LEFT)
@@ -48,7 +48,7 @@ class PrefFrame(wx.MiniFrame):
 		self.ThrottleCtrl = wx.TextCtrl(self,-1,size=(70,20))
 		joysizer.Add(self.ThrottleCtrl,0,wx.ALIGN_LEFT)
 		joysizer.Add(wx.StaticText(self,-1,'Hat'),0,wx.ALIGN_LEFT)
-		self.HatCtrl = wx.TextCtrl(self,-1,size=(70,20))
+		self.HatCtrl = wx.TextCtrl(self,-1,size=(140,20))
 		joysizer.Add(self.HatCtrl,0,wx.ALIGN_LEFT)
 		
 		save_button = wx.Button(self,-1,"Apply")
@@ -75,12 +75,13 @@ class PrefFrame(wx.MiniFrame):
 			log.Log('e',"error in joystick-config.txt")
 					
 	def SaveJoystickChoices(self):
-		xVal,yVal,tVal,hVal = 0,0,0,0	
+		xVal,yVal,tVal,hVal = 0,0,0,(-1)
+			
 		try:
 			xVal = int(self.XCtrl.GetValue())
 			yVal = int(self.YCtrl.GetValue())
 			tVal = int(self.ThrottleCtrl.GetValue())
-			hVal = int(self.HatCtrl.GetValue())
+			hVal = eval(self.HatCtrl.GetValue()) #it's a list
 		except ValueError:
 			pass #no value set by user, use default
 		self.parent.joystick.SetAxes(xVal,yVal,tVal,hVal)

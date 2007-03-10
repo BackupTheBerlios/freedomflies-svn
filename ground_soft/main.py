@@ -221,8 +221,10 @@ class AppFrame(wx.Frame):
 	#end __init__
 		
 	def OnQuit(self, event):
-		self.joystickPanel.OnClose(event)
+		self.radio.StopUplinkThread()
+		self.radio.StopDownlinkThread()
 		self.Close()
+		time.sleep(1) #to allow the threads to really close
 		pygame.quit()
 		sys.exit()
 		
@@ -353,13 +355,8 @@ class MyApp(wx.App):
 		self.win = AppFrame(None, 1, "Freedom Flies",(50,25),(800,600))
 		self.win.Show()
 		self.SetTopWindow(self.win)
-		self.Bind(wx.EVT_CLOSE,self.OnExit)
+		self.Bind(wx.EVT_CLOSE,self.win.OnQuit)
 		return True
-		
-	def OnExit(self):
-		self.radio.StopUplinkThread()
-		self.radio.StopDownlinkThread()
-		pygame.quit()
 # end of class MyApp
 
 if __name__ == "__main__":
@@ -371,6 +368,4 @@ if __name__ == "__main__":
 		TempMoveEvent.ResumePropagation(1)
 		del TempMoveEvent
 	finally:
-		if app.radio.radio is not None:
-			app.radio.radio.close()
 		pygame.quit()

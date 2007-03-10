@@ -22,10 +22,7 @@ class radiolink(object):
 		#radio object really created in prefs.OnSave
 		self.radio = None
 		self.gpsout = None
-	    
-		#warning... CsikCode!
-		
-		#end csik code
+	   
 		try:
 			self.stik = self.parent.stik
 		except AttributeError:
@@ -100,17 +97,16 @@ class radiolink(object):
 				self.radio.close()
 				
 	def UplinkThread(self):
-		run = 0
-		#csik
+		#save values between loops
 		old_x_val = 0
 		old_y_val = 0
 		old_throttle_val = 0
-		#end csik
 		while(self.upalive.isSet()):
 			#get current stick axis values
 			pygame.event.pump()
 			x_val,y_val = self.parent.joystick.getPos()
 			throttle_val = self.parent.joystick.getThrottle()
+			x_hat,y_hat = self.parent.joystick.getHat()
 			#get camera pan, tilt
 			
 			data_types = ['l','r','t','p','i']
@@ -137,8 +133,16 @@ class radiolink(object):
 						data_value = int(throttle_val*127/100.0)
 					else:
 						data_value = 0
-				#TODO: add camera pan, tilt
-				else:
+						
+				elif data_type == 'p':
+					#camera pan
+					data_value = x_hat
+						
+				elif data_type == 'i':
+					#camera tilt
+					data_value = y_hat #export for write
+					
+				else: #shouldn't ever get here
 					data_value = 0
 				
 				command = string.join([data_type," ",str(data_value),"\r"],"")
@@ -146,15 +150,15 @@ class radiolink(object):
 				#command = string.join([data_type," ",chr(data_value),"\r\n"],"")
 				#serial protocol is "x <ascii code>\r"
 				#use chr to get string of one character with ordinal i; 0 <= i < 256
-				if data_value > 1:	
-					command_list.append(command)
+				if abs(data_value) > 0:	
 					#only write commands with interesting data
+					command_list.append(command)
 			
 			for out_string in command_list:
 				if (self.radio is not None) and (self.radio.isOpen()):
 					self.radio.write(out_string)
-					#print "UPLINK:",out_string[:-2] #strip \r\n	
-					log.Log('u',out_string[:-2]) #strip \r\n
+					print "UPLINK:",out_string
+					log.Log('u',out_string)
 			#csik		
 			time.sleep(1/15.) #run at 15 Hz
 			old_x_val = x_val
@@ -185,7 +189,8 @@ class radiolink(object):
 				print "DOWNLINK:",buffer[:-2]
 			if buffer.startswith("e0"):
 				#it's a joystick event acknowledge
-			#	print "ACK"
+				#print "ACK"
+				pass
 			try:
 				self.downproc.ProcessBuffer(buffer)
 				
