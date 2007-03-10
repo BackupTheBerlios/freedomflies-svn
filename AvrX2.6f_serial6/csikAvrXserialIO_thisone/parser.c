@@ -60,7 +60,8 @@ void parserInputFunc(unsigned char c)
 {
 	// process the received character
 	
-	if (c != '\n')		//anything other than return character must be a part of the command
+	if (c != '\r')		//anything other than return character must be a part of the command
+						//change to '\r' for terminal apz
 	{	
 		// echo character to the output
 //		parserOutputFunc(c);

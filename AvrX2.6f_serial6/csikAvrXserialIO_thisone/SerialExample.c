@@ -22,6 +22,12 @@
 #include <avr/interrupt.h>	// include interrupt support
 #include <stdlib.h>
 
+#include "servo.h"
+#include "a2d.h"		// include A/D converter function library
+#include "timer.h"		// include timer function library (timing, PWM, etc)
+#include "i2c.h"		// include i2c support
+#include "i2c.c"		// should be fixed in make?
+
 // Uncomment this to override "AvrXSerialIo.h and just use one channel
 #define USART_CHANNELS (1<1)	// 0 - USART0, 1 = USART1
 
@@ -29,7 +35,11 @@
 
 #include "parserconf.h"
 #include "parser.h"
-#include "parser.c"
+#include "parser.c"		//should be fixed in make?
+
+//I2C address definitions
+#define LOCAL_ADDR	0xA0
+#define TARGET_ADDR	0xA0
 
 
 // global AVRLIB defines
@@ -72,11 +82,29 @@ void setThrottleServo(void);
 void setCamPanServo(void);
 void setCamTiltServo(void);
 
+void 	i2cTest(void);
+void  	i2cSlaveReceiveService(u08 receiveDataLength, u08* receiveData);
+u08 	i2cSlaveTransmitService(u08 receiveDataLength, u08* receiveData);
+void 	i2cMasterSendDiag(u08 deviceAddr, u08 length, u08* data);
+
+void 	i2cMaster_Receive();
+void 	i2cMaster_Send();
+
+// I2C buffers
+unsigned char slaveBuffer[] = "Pascal is cool!!Pascal is Cool!!";
+unsigned char slaveBufferLength = 0x20;
+
+unsigned char masterBuffer[] = "This is one the Master board";
+unsigned char masterBufferLength = 0x20;
+
 int leftServoPos = 50;		//0 seems to be beyond its reach
 int rightServoPos;
 int throttleServoPos;
 int camPanServoPos;
 int camTiltServoPos;
+
+
+
 
 //long funcAParam;
 //long funcBParam;
@@ -188,7 +216,16 @@ AVRX_GCC_TASKDEF(getCommands, 200, 1)
 	}
 }
 
-
+AVRX_GCC_TASKDEF(sendSPI, 100, 3)
+{	
+	int c;		
+	TimerControlBlock timer;
+	
+	while (1)
+	{
+		AvrXDelay(&timer, 5);
+	}
+}
 	
 
 
@@ -208,7 +245,7 @@ int main(void)
 	TIMSK = _BV(TOIE0);
 
     InitSerial0(BAUD(57600));
-    fdevopen(put_c0, get_c0,0);		// Set up standard I/O
+    fdevopen(put_c0, get_c0);		// Set up standard I/O
 
 	// initialize parser system
 	parserInit();
@@ -221,6 +258,10 @@ int main(void)
 	parserAddCommand("p", 		setCamPanServo);
 	parserAddCommand("i", 		setCamTiltServo);
 	
+	parserAddCommand("2", 		i2cMaster_Send);
+	parserAddCommand("3", 		i2cMaster_Receive);
+	
+	
 	// initialize the timer system -- FROM AVRLIB
 	//timerInit();
 	
@@ -228,19 +269,32 @@ int main(void)
 	servoInit();
 	// setup servo output channel-to-I/Opin mapping
 	// format is servoSetChannelIO( CHANNEL#, PORT, PIN );
-	servoSetChannelIO(0, _SFR_IO_ADDR(PORTC), PC0);
-	servoSetChannelIO(1, _SFR_IO_ADDR(PORTC), PC1);
-	servoSetChannelIO(2, _SFR_IO_ADDR(PORTC), PC2);
-	servoSetChannelIO(3, _SFR_IO_ADDR(PORTC), PC3);
-	servoSetChannelIO(4, _SFR_IO_ADDR(PORTC), PC4);
-
+	servoSetChannelIO(0, _SFR_IO_ADDR(PORTC), PC2);
+	servoSetChannelIO(1, _SFR_IO_ADDR(PORTC), PC3);
+	servoSetChannelIO(2, _SFR_IO_ADDR(PORTC), PC4);
+	servoSetChannelIO(3, _SFR_IO_ADDR(PORTC), PC5);
+	servoSetChannelIO(4, _SFR_IO_ADDR(PORTC), PC6);
+	servoSetChannelIO(5, _SFR_IO_ADDR(PORTC), PC7);
 	// set port pins to output
 	outb(DDRC, 0x1F);
-
+	
 	
 	#define SPEED_SERVO	1
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	i2cTest();
+
 	//////////////////////////////////////////////////////////////////////////////////
 	printf("**********************powerup*************************");
+	/*i2cMaster_Send();
+	i2cMaster_Send();
+	i2cMaster_Send();
+	i2cMaster_Send();
+	i2cMaster_Send();
+	i2cMaster_Send();
+	
+	while(1) printf_P(PSTR("a 072.5759E,"));
+	*/
 	AvrXRunTask(TCB(getCommands));
 	AvrXRunTask(TCB(getUAVStatus));
 
@@ -248,7 +302,115 @@ int main(void)
 	Epilog();
 	return(0);
 }
+void i2cTest(void)
+{
+	// initialize i2c function library
+	i2cInit();
+	// set local device address and allow response to general call
+	i2cSetLocalDeviceAddr(LOCAL_ADDR, TRUE);
+	// set the Slave Receive Handler function
+	// (this function will run whenever a master somewhere else on the bus
+	//  writes data to us as a slave)
+	i2cSetSlaveReceiveHandler( i2cSlaveReceiveService );
+	// set the Slave Transmit Handler function
+	// (this function will run whenever a master somewhere else on the bus
+	//  attempts to read data from us as a slave)
+	i2cSetSlaveTransmitHandler( i2cSlaveTransmitService );
+}
+// slave operations
+void i2cSlaveReceiveService(u08 receiveDataLength, u08* receiveData)
+{
+	u08 i;
 
+	// this function will run when a master somewhere else on the bus
+	// addresses us and wishes to write data to us
+
+	// copy the received data to a local buffer
+	for(i=0; i<receiveDataLength; i++)
+	{
+		slaveBuffer[i] = *receiveData++;
+	}
+	slaveBufferLength = receiveDataLength;
+	// print the buffer
+//	for(i=0;i<slaveBufferLength;i++)
+//	{
+//		putchar(slaveBuffer[i]);
+//	}
+}
+
+u08 i2cSlaveTransmitService(u08 transmitDataLengthMax, u08* transmitData)
+{
+	u08 i;
+
+	// this function will run when a master somewhere else on the bus
+	// addresses us and wishes to read data from us
+
+	cbi(PORTB, PB7);
+
+	// copy the local buffer to the transmit buffer
+	for(i=0; i<slaveBufferLength; i++)
+	{
+		*transmitData++ = slaveBuffer[i];
+	}
+
+	slaveBuffer[0]++;
+
+	return slaveBufferLength;
+}
+
+void i2cMasterSendDiag(u08 deviceAddr, u08 length, u08* data)
+{
+	// this function is equivalent to the i2cMasterSendNI() in the I2C library
+	// except it will print information about transmission progress to the terminal
+
+	// disable TWI interrupt
+	cbi(TWCR, TWIE);
+
+	// send start condition
+	i2cSendStart();
+	i2cWaitForComplete();
+	//printf_P(PSTR(("STA-")));
+
+	// send device address with write
+	i2cSendByte( deviceAddr&0xFE );
+	i2cWaitForComplete();
+	//printf_P(PSTR(("SLA+W-")));
+	
+	// send data
+	while(length)
+	{
+		i2cSendByte( *data++ );
+		i2cWaitForComplete();
+		//printf_P(PSTR(("DATA-")));
+		length--;
+	}
+	
+	// transmit stop condition
+	// leave with TWEA on for slave receiving
+	i2cSendStop();
+	while( !(inb(TWCR) & BV(TWSTO)) );
+	//printf_P(PSTR(("STO")));
+
+	// enable TWI interrupt
+	sbi(TWCR, TWIE);
+}
+
+void i2cMaster_Send(void)
+{
+	u08* sendData = parserGetArgStr();
+	sendData[0x10] = 0;
+	i2cMasterSend(TARGET_ADDR, 0x10, masterBuffer);
+	putchar('!');
+	
+}
+void i2cMaster_Receive(void)
+{
+	i2cMasterReceive(TARGET_ADDR, 0x10, slaveBuffer);
+	slaveBuffer[0x10] = 0;
+	printf("S:\t%s\n",slaveBuffer); 
+	putchar('\r');
+	putchar('\n');
+}
 void setLeftServo(void)
 {	
 	leftServoPos = parserGetArgInt();
@@ -287,23 +449,44 @@ void setThrottleServo(void)
 
 void setCamPanServo(void)
 {
-	camPanServoPos = parserGetArgInt();
-	servoSetPosition(CAM_PAN_SERVO_CHAN, (char)camPanServoPos * 2);
-	if (DEBUG)
-	{	
-		printf("e0");
-		putchar('\r');
-		putchar('\n');
+	u08 rawPan;
+	
+	rawPan = parserGetArgInt();
+	
+	if( 0<= rawPan || rawPan <= 2 )
+	{
+		camPanServoPos = camPanServoPos + (rawPan - 1);
+		if(camPanServoPos < 1) camPanServoPos = 1;
+		if(camPanServoPos > 255) camPanServoPos = 255;
+	
+		servoSetPosition(CAM_PAN_SERVO_CHAN, (char)camPanServoPos);
+		if (DEBUG)
+		{	
+			printf("e0");
+			putchar('\r');
+			putchar('\n');
+		}
 	}
 }
 
 void setCamTiltServo(void)
 {
-	camTiltServoPos = parserGetArgInt();
-	servoSetPosition(CAM_TILT_SERVO_CHAN, (char)camTiltServoPos * 2);
-	if (DEBUG)
-	{	printf("Camera Tilt Servo Set: %d", camTiltServoPos);
-		putchar('\r');
-		putchar('\n');
+	u08 rawTilt;
+	
+	rawTilt = parserGetArgInt();
+	if( 0 <= rawTilt || rawTilt <= 2 )
+	{
+		camTiltServoPos = camTiltServoPos + (rawTilt - 1);
+		if(camTiltServoPos < 1) camTiltServoPos = 1;
+		if(camTiltServoPos > 255) camTiltServoPos = 255;
+	
+		servoSetPosition(CAM_TILT_SERVO_CHAN, (char)camTiltServoPos);
+		if (DEBUG)
+		{	
+			printf("Camera Tilt Servo Set: %d", camTiltServoPos);
+			putchar('\r');
+			putchar('\n');
+		}
 	}
 }
+
