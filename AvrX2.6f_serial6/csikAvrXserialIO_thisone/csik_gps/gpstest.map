@@ -1,0 +1,1210 @@
+Archive member included because of file (symbol)
+
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3.o)
+                              /opt/local/avr/sixcode//rprintf.o (__subsf3)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3x.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3.o) (__addsf3x)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan2.o)
+                              gpstest.o (atan2)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(cos.o)
+                              gpstest.o (cos)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(divsf3.o)
+                              /opt/local/avr/sixcode//rprintf.o (__divsf3)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(divsf3x.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(divsf3.o) (__divsf3x)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fixsfsi.o)
+                              gpstest.o (__fixsfsi)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(floatsisf.o)
+                              /opt/local/avr/sixcode//rprintf.o (__floatsisf)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fmod.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(cos.o) (fmod)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cmp.o)
+                              /opt/local/avr/sixcode//rprintf.o (__eqsf2)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cosinus.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(cos.o) (__fp_cosinus)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_merge.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3.o) (__fp_merge)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_nan.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan2.o) (__fp_nanERANGE)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_powerseries.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cosinus.o) (__fp_powerseries)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_split.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3.o) (__fp_split3)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_zero.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fixsfsi.o) (__fp_zero)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(modf.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fmod.o) (modf)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(mulsf3.o)
+                              /opt/local/avr/sixcode//rprintf.o (__mulsf3)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(mulsf3x.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(mulsf3.o) (__mulsf3x)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sin.o)
+                              gpstest.o (sin)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sqrt.o)
+                              gpstest.o (sqrt)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(square.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cosinus.o) (square)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o)
+                              gpstest.o (atof)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan2.o) (atan)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_flashconst.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_powerseries.o) (__fp_flashconst)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_inverse.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan.o) (__fp_inverse)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(ldexp.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sqrt.o) (ldexp)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_m_inf.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(ldexp.o) (__fp_m_inf)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_p_inf.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(ldexp.o) (__fp_p_inf)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_mulsi3.o)
+                              /opt/local/avr/sixcode//timer.o (__mulsi3)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodhi4.o)
+                              /opt/local/avr/sixcode//buffer.o (__udivmodhi4)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodhi4.o)
+                              /opt/local/avr/sixcode//i2c.o (__divmodhi4)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodsi4.o)
+                              /opt/local/avr/sixcode//uart.o (__udivmodsi4)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodsi4.o)
+                              /opt/local/avr/sixcode//timer.o (__divmodsi4)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_prologue.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o) (__prologue_saves__)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_epilogue.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o) (__epilogue_restores__)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_copy_data.o)
+                              /opt/local/avr/sixcode//buffer.o (__do_copy_data)
+/opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_clear_bss.o)
+                              /opt/local/avr/sixcode//buffer.o (__do_clear_bss)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(atoi.o)
+                              gpstest.o (atoi)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalnum.o)
+                              gpstest.o (isalnum)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(cty_isfalse.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalnum.o) (__ctype_isfalse)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalpha.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalnum.o) (isalpha)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isdigit.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalnum.o) (isdigit)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isxdigit.o)
+                              gpstest.o (isxdigit)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncmp.o)
+                              gpstest.o (strncmp)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncpy.o)
+                              gpstest.o (strncpy)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(mul10.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o) (__mulhi_const_10)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)
+                              gpstest.o (printf)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o) (vfprintf)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strlen_P.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o) (strlen_P)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o) (strnlen_P)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o) (strnlen)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fputc.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o) (fputc)
+/opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(iob.o)
+                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o) (__iob)
+
+Allocating common symbols
+Common symbol       size              file
+
+uartReadyTx         0x1               /opt/local/avr/sixcode//uart.o
+stackem             0x20              gpstest.o
+Timer0Reg0          0x4               /opt/local/avr/sixcode//timer.o
+uartRxBuffer        0x8               /opt/local/avr/sixcode//uart.o
+TimerPauseReg       0x4               /opt/local/avr/sixcode//timer.o
+Timer2Reg0          0x4               /opt/local/avr/sixcode//timer.o
+uartBufferedTx      0x1               /opt/local/avr/sixcode//uart.o
+message_sent        0x1               gpstest.o
+uartTxBuffer        0x8               /opt/local/avr/sixcode//uart.o
+uartRxOverflow      0x2               /opt/local/avr/sixcode//uart.o
+__iob               0x6               /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(iob.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+LOAD /opt/local/avr/sixcode//buffer.o
+LOAD /opt/local/avr/sixcode//uart.o
+LOAD /opt/local/avr/sixcode//rprintf.o
+LOAD /opt/local/avr/sixcode//timer.o
+LOAD /opt/local/avr/sixcode//lcd.o
+LOAD /opt/local/avr/sixcode//i2c.o
+LOAD video.o
+LOAD gpstest.o
+LOAD /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a
+LOAD /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a
+LOAD /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a
+LOAD /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000     0x3f40
+ *(.vectors)
+ .vectors       0x00000000       0x54 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+                0x00000054                __ctors_start = .
+ *(.ctors)
+                0x00000054                __ctors_end = .
+                0x00000054                __dtors_start = .
+ *(.dtors)
+                0x00000054                __dtors_end = .
+ *(.progmem.gcc*)
+ .progmem.gcc_fplib
+                0x00000054       0x26 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cosinus.o)
+ .progmem.gcc_fplib
+                0x0000007a       0x30 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o)
+ .progmem.gcc_fplib
+                0x000000aa       0x26 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan.o)
+ *(.progmem*)
+ .progmem.data  0x000000d0       0x11 /opt/local/avr/sixcode//rprintf.o
+ .progmem.data  0x000000e1       0x1c /opt/local/avr/sixcode//timer.o
+                0x000000e1                TimerRTCPrescaleFactor
+                0x000000f1                TimerPrescaleFactor
+ .progmem.data  0x000000fd       0x88 /opt/local/avr/sixcode//lcd.o
+                0x000000fd                LcdCustomChar
+ .progmem.data  0x00000185       0x6a video.o
+ .progmem.data  0x000001ef       0x92 gpstest.o
+                0x00000282                . = ALIGN (0x2)
+ *fill*         0x00000281        0x1 00
+ *(.init0)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000282        0xc /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+ *(.init3)
+ *(.init4)
+ .init4         0x0000028e       0x16 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_copy_data.o)
+                0x0000028e                __do_copy_data
+ .init4         0x000002a4       0x10 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_clear_bss.o)
+                0x000002a4                __do_clear_bss
+ *(.init5)
+ *(.init6)
+ *(.init7)
+ *(.init8)
+ *(.init9)
+ .init9         0x000002b4        0x4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+ *(.text)
+ .text          0x000002b8        0x4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+                0x000002b8                __vector_1
+                0x000002b8                __vector_12
+                0x000002b8                __bad_interrupt
+                0x000002b8                __vector_3
+                0x000002b8                __vector_17
+                0x000002b8                __vector_2
+                0x000002b8                __vector_14
+                0x000002b8                __vector_16
+                0x000002b8                __vector_18
+                0x000002b8                __vector_20
+ .text          0x000002bc      0x15a /opt/local/avr/sixcode//buffer.o
+                0x000003f2                bufferIsNotFull
+                0x000002d6                bufferGetFromFront
+                0x00000376                bufferGetAtIndex
+                0x00000332                bufferDumpFromFront
+                0x000002bc                bufferInit
+                0x000003a0                bufferAddToEnd
+                0x00000408                bufferFlush
+ .text          0x00000416      0x260 /opt/local/avr/sixcode//uart.o
+                0x00000656                uartSendTxBuffer
+                0x000004b4                uartSendByte
+                0x0000044a                uartInitBuffers
+                0x000004c6                uartReceiveByte
+                0x0000055c                uartAddToTxBuffer
+                0x0000049e                uartSetRxHandler
+                0x000005d8                __vector_13
+                0x0000053a                uartFlushReceiveBuffer
+                0x0000046c                uartInit
+                0x00000544                uartReceiveBufferIsEmpty
+                0x00000416                uartSetBaudRate
+                0x000004ae                uartGetTxBuffer
+                0x000004fe                uartGetByte
+                0x000004a8                uartGetRxBuffer
+                0x0000056a                __vector_15
+ .text          0x00000676      0x590 /opt/local/avr/sixcode//rprintf.o
+                0x00000aca                rprintf1RamRom
+                0x00000756                rprintfu08
+                0x00000786                rprintfu32
+                0x000006a4                rprintfStr
+                0x00000922                rprintfFloat
+                0x000006c2                rprintfStrLen
+                0x00000718                rprintfProgStr
+                0x0000076c                rprintfu16
+                0x00000676                rprintfInit
+                0x00000680                rprintfChar
+                0x00000738                rprintfCRLF
+                0x00000740                rprintfu04
+                0x000007ac                rprintfNum
+ .text          0x00000c06      0x67c /opt/local/avr/sixcode//timer.o
+                0x00000df0                timer2GetOverflowCount
+                0x00000c34                timerDetach
+                0x00000c66                timer1SetPrescaler
+                0x00000e66                timer1PWMBOff
+                0x00000cb8                timer2GetPrescaler
+                0x0000112a                __vector_6
+                0x000011de                timer0Init
+                0x00000e58                timer1PWMAOff
+                0x00000e96                timer1PWMBSet
+                0x00000e9c                __vector_11
+                0x00000e32                timer1PWMInitICR
+                0x00000c8c                timer0GetPrescaler
+                0x00001076                __vector_7
+                0x00000dde                timer0GetOverflowCount
+                0x00000f9c                __vector_5
+                0x00001236                timerInit
+                0x00000c70                timer2SetPrescaler
+                0x00000e74                timer1PWMAOn
+                0x00000c4a                timer0SetPrescaler
+                0x00000c06                delay_us
+                0x00001184                __vector_4
+                0x00000c54                timer0ClearOverflowCount
+                0x00000f42                __vector_9
+                0x00001200                timer1Init
+                0x00000e02                timer1PWMInit
+                0x00000e82                timer1PWMBOn
+                0x00001214                timer2Init
+                0x000010d0                __vector_8
+                0x00000e90                timer1PWMASet
+                0x00000cce                timerAttach
+                0x0000125c                timer1PWMOff
+                0x0000101c                __vector_10
+                0x00000ca2                timer1GetPrescaler
+                0x00000c7a                timer2ClearOverflowCount
+                0x00000ce4                timerPause
+ .text          0x00001282      0x3d8 /opt/local/avr/sixcode//lcd.o
+                0x000015ac                lcdProgressBar
+                0x0000143c                lcdLoadCustomChar
+                0x00001546                lcdHome
+                0x0000135e                lcdControlRead
+                0x00001574                lcdPrintData
+                0x00001310                lcdControlWrite
+                0x000013a6                lcdDataWrite
+                0x000014b8                lcdInit
+                0x00001296                lcdBusyWait
+                0x00001282                lcdInitHW
+                0x00001556                lcdGotoXY
+                0x000013f4                lcdDataRead
+                0x0000154e                lcdClear
+ .text          0x0000165a      0x4c2 /opt/local/avr/sixcode//i2c.o
+                0x00001688                i2cInit
+                0x000016e8                i2cSendStart
+                0x000016fc                i2cWaitForComplete
+                0x00001726                i2cGetReceivedByte
+                0x0000173c                i2cMasterSend
+                0x0000178a                i2cMasterReceive
+                0x000017e4                i2cMasterSendNI
+                0x00001852                __vector_19
+                0x000016d4                i2cSetSlaveReceiveHandler
+                0x00001732                i2cGetState
+                0x0000172c                i2cGetStatus
+                0x00001704                i2cSendByte
+                0x000016de                i2cSetSlaveTransmitHandler
+                0x000016c6                i2cSetLocalDeviceAddr
+                0x00001a9e                i2cMasterReceiveNI
+                0x00001710                i2cReceiveByte
+                0x0000165a                i2cSetBitrate
+                0x000016f2                i2cSendStop
+ .text          0x00001b1c      0x1ec video.o
+                0x00001b1c                initVideo
+                0x00001bb8                writeVideoScreen
+ .text          0x00001d08     0x1214 gpstest.o
+                0x00002552                i2cSlaveReceiveService
+                0x00002bec                nmeap_addParser
+                0x00002a0a                nmeap_gpgga
+                0x0000212c                nmeap_parseBuffer
+                0x00002764                nmeap_longitude
+                0x0000219a                dist
+                0x00001d08                nmeap_altitude
+                0x0000283a                nmeap_gprmc
+                0x00002546                addToBuffer
+                0x00001d9e                nmeap_process
+                0x00002c78                main
+                0x0000268e                nmeap_latitude
+                0x00002bca                nmeap_init
+                0x00002578                i2cSlaveTransmitService
+                0x00001d42                nmeap_tokenize
+                0x00001e42                nmeap_parse
+                0x0000266a                print_to_string
+                0x00002380                bearing
+ .text          0x00002f1c       0x5a /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(atoi.o)
+                0x00002f1c                atoi
+ .text          0x00002f76       0x1c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncmp.o)
+                0x00002f76                strncmp
+ .text          0x00002f92       0x1e /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncpy.o)
+                0x00002f92                strncpy
+ .text          0x00002fb0       0x10 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(mul10.o)
+                0x00002fb0                __mulhi_const_10
+ .text          0x00002fc0       0x44 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)
+                0x00002fc0                printf
+ .text          0x00003004      0x5a8 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                0x00003004                vfprintf
+ .text          0x000035ac       0x12 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strlen_P.o)
+                0x000035ac                strlen_P
+ .text          0x000035be       0x16 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
+                0x000035be                strnlen_P
+ .text          0x000035d4       0x16 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen.o)
+                0x000035d4                strnlen
+ .text          0x000035ea       0x5a /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fputc.o)
+                0x000035ea                fputc
+                0x00003644                . = ALIGN (0x2)
+ *(.text.*)
+ .text.fplib    0x00003644        0xa /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3.o)
+                0x00003644                __subsf3
+                0x00003646                __addsf3
+ .text.fplib    0x0000364e       0x7c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3x.o)
+                0x0000364e                __addsf3x
+ .text.fplib    0x000036ca       0x66 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan2.o)
+                0x000036ca                atan2
+ .text.fplib    0x00003730        0xc /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(cos.o)
+                0x00003730                cos
+ .text.fplib    0x0000373c        0x6 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(divsf3.o)
+                0x0000373c                __divsf3
+ .text.fplib    0x00003742       0x86 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(divsf3x.o)
+                0x00003742                __divsf3x
+ .text.fplib    0x000037c8       0x36 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fixsfsi.o)
+                0x000037c8                __fixsfsi
+                0x000037ee                __fp_lneg
+                0x000037c8                __fixunssfsi
+ .text.fplib    0x000037fe       0x18 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(floatsisf.o)
+                0x00003802                __floatsisf
+                0x000037fe                __floatunssisf
+ .text.fplib    0x00003816       0x26 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fmod.o)
+                0x00003816                fmod
+ .text.fplib    0x0000383c       0x44 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cmp.o)
+                0x0000383c                __lesf2
+                0x0000383c                __nesf2
+                0x00003842                __gtsf2
+                0x0000383c                __eqsf2
+                0x00003848                __cmpsf2
+                0x0000383c                __ltsf2
+                0x00003842                __gesf2
+ .text.fplib    0x00003880       0x3c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cosinus.o)
+                0x00003880                __fp_cosinus
+ .text.fplib    0x000038bc       0x3a /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_merge.o)
+                0x000038c6                __fp_merge
+ .text.fplib    0x000038f6        0x6 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_nan.o)
+                0x000038f6                __fp_nanERANGE
+                0x000038f6                __fp_nan
+                0x000038f6                __fp_nanEDOM
+                0x000038f6                __fp_nanx
+ .text.fplib    0x000038fc       0x66 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_powerseries.o)
+                0x000038fc                __fp_powerseries
+ .text.fplib    0x00003962       0x52 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_split.o)
+                0x00003962                __fp_split3
+                0x00003968                __fp_split2
+                0x0000397a                __fp_split1
+                0x00003996                __fp_split_a
+ .text.fplib    0x000039b4        0xa /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_zero.o)
+                0x000039b4                __fp_zero
+                0x000039ba                __fp_zerox
+ .text.fplib    0x000039be       0x60 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(modf.o)
+                0x000039be                modf
+ .text.fplib    0x00003a1e        0x6 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(mulsf3.o)
+                0x00003a1e                __mulsf3
+ .text.fplib    0x00003a24       0x8a /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(mulsf3x.o)
+                0x00003a24                __mulsf3x
+ .text.fplib    0x00003aae       0x26 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sin.o)
+                0x00003aae                sin
+ .text.fplib    0x00003ad4       0x7c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sqrt.o)
+                0x00003ad4                sqrt
+ .text.fplib    0x00003b50        0x8 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(square.o)
+                0x00003b50                square
+ .text.fplib    0x00003b58      0x178 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o)
+                0x00003b5c                strtod
+                0x00003b58                atof
+ .text.fplib    0x00003cd0       0x5e /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan.o)
+                0x00003cd0                atan
+ .text.fplib    0x00003d2e        0xa /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_flashconst.o)
+                0x00003d2e                __fp_flashconst
+ .text.fplib    0x00003d38       0x10 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_inverse.o)
+                0x00003d38                __fp_inverse
+ .text.fplib    0x00003d48       0x24 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(ldexp.o)
+                0x00003d48                ldexp
+ .text.fplib    0x00003d6c        0xa /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_m_inf.o)
+                0x00003d6c                __fp_m_inf
+ .text.fplib    0x00003d76        0xa /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_p_inf.o)
+                0x00003d76                __fp_p_inf
+ .text.libgcc   0x00003d80       0x3e /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_mulsi3.o)
+                0x00003d80                __mulsi3
+ .text.libgcc   0x00003dbe       0x28 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodhi4.o)
+                0x00003dbe                __udivmodhi4
+ .text.libgcc   0x00003de6       0x26 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodhi4.o)
+                0x00003de6                __divmodhi4
+                0x00003de6                _div
+ .text.libgcc   0x00003e0c       0x44 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodsi4.o)
+                0x00003e0c                __udivmodsi4
+ .text.libgcc   0x00003e50       0x36 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodsi4.o)
+                0x00003e50                __divmodsi4
+ .text.libgcc   0x00003e86       0x38 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_prologue.o)
+                0x00003e86                __prologue_saves__
+ .text.libgcc   0x00003ebe       0x36 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_epilogue.o)
+                0x00003ebe                __epilogue_restores__
+ .text.ctype    0x00003ef4       0x12 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalnum.o)
+                0x00003ef4                isalnum
+ .text.ctype    0x00003f06        0x6 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(cty_isfalse.o)
+                0x00003f0a                __ctype_istrue
+                0x00003f06                __ctype_isfalse
+ .text.ctype    0x00003f0c       0x14 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalpha.o)
+                0x00003f12                islower
+                0x00003f0c                isupper
+                0x00003f10                isalpha
+ .text.ctype    0x00003f20        0xc /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isdigit.o)
+                0x00003f20                isdigit
+ .text.ctype    0x00003f2c       0x14 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isxdigit.o)
+                0x00003f2c                isxdigit
+                0x00003f40                . = ALIGN (0x2)
+ *(.fini9)
+ *(.fini8)
+ *(.fini7)
+ *(.fini6)
+ *(.fini5)
+ *(.fini4)
+ *(.fini3)
+ *(.fini2)
+ *(.fini1)
+ *(.fini0)
+                0x00003f40                _etext = .
+
+.data           0x00800060       0x5a load address 0x00003f40
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800060        0xd video.o
+ .data          0x0080006d       0x4c gpstest.o
+                0x0080006d                localBufferLength
+                0x0080006e                localBuffer
+ *(.gnu.linkonce.d*)
+                0x008000ba                . = ALIGN (0x2)
+ *fill*         0x008000b9        0x1 00
+                0x008000ba                _edata = .
+                0x008000ba                PROVIDE (__data_end, .)
+
+.bss            0x008000ba      0x4f8
+                0x008000ba                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x008000ba       0xc2 /opt/local/avr/sixcode//uart.o
+ .bss           0x0080017c        0x2 /opt/local/avr/sixcode//rprintf.o
+ .bss           0x0080017e       0x10 /opt/local/avr/sixcode//timer.o
+ .bss           0x0080018e       0x4b /opt/local/avr/sixcode//i2c.o
+ .bss           0x008001d9      0x392 gpstest.o
+                0x008001d9                stackem_pointer
+ *(COMMON)
+ COMMON         0x0080056b       0x14 /opt/local/avr/sixcode//uart.o
+                0x0080056b                uartReadyTx
+                0x0080056c                uartRxBuffer
+                0x00800574                uartBufferedTx
+                0x00800575                uartTxBuffer
+                0x0080057d                uartRxOverflow
+ COMMON         0x0080057f        0xc /opt/local/avr/sixcode//timer.o
+                0x0080057f                Timer0Reg0
+                0x00800583                TimerPauseReg
+                0x00800587                Timer2Reg0
+ COMMON         0x0080058b       0x21 gpstest.o
+                0x0080058b                stackem
+                0x008005ab                message_sent
+ COMMON         0x008005ac        0x6 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(iob.o)
+                0x008005ac                __iob
+                0x008005b2                PROVIDE (__bss_end, .)
+                0x00003f40                __data_load_start = LOADADDR (.data)
+                0x00003f9a                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x008005b2        0x0
+                0x008005b2                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x008005b2                PROVIDE (__noinit_end, .)
+                0x008005b2                _end = .
+                0x008005b2                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.stab           0x00000000     0xa9d4
+ *(.stab)
+ .stab          0x00000000      0x36c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+ .stab          0x0000036c      0x918 /opt/local/avr/sixcode//buffer.o
+                                0x924 (size before relaxing)
+ .stab          0x00000c84      0x840 /opt/local/avr/sixcode//uart.o
+                                0xb04 (size before relaxing)
+ .stab          0x000014c4      0xbc4 /opt/local/avr/sixcode//rprintf.o
+                                0xe4c (size before relaxing)
+ .stab          0x00002088      0xff0 /opt/local/avr/sixcode//timer.o
+                               0x1338 (size before relaxing)
+ .stab          0x00003078      0xaf8 /opt/local/avr/sixcode//lcd.o
+                                0xe40 (size before relaxing)
+ .stab          0x00003b70      0xdd4 /opt/local/avr/sixcode//i2c.o
+                               0x1140 (size before relaxing)
+ .stab          0x00004944      0x300 video.o
+                                0x648 (size before relaxing)
+ .stab          0x00004c44     0x1614 gpstest.o
+                               0x19bc (size before relaxing)
+ .stab          0x00006258       0x78 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3.o)
+                                 0x84 (size before relaxing)
+ .stab          0x000062d0      0x324 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3x.o)
+                                0x330 (size before relaxing)
+ .stab          0x000065f4      0x1e0 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan2.o)
+                                0x1ec (size before relaxing)
+ .stab          0x000067d4       0x84 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(cos.o)
+                                 0x90 (size before relaxing)
+ .stab          0x00006858       0x60 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(divsf3.o)
+                                 0x6c (size before relaxing)
+ .stab          0x000068b8      0x360 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(divsf3x.o)
+                                0x36c (size before relaxing)
+ .stab          0x00006c18      0x180 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fixsfsi.o)
+                                0x18c (size before relaxing)
+ .stab          0x00006d98       0xcc /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(floatsisf.o)
+                                 0xd8 (size before relaxing)
+ .stab          0x00006e64      0x120 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fmod.o)
+                                0x12c (size before relaxing)
+ .stab          0x00006f84      0x21c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cmp.o)
+                                0x228 (size before relaxing)
+ .stab          0x000071a0      0x1a4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cosinus.o)
+                                0x1b0 (size before relaxing)
+ .stab          0x00007344      0x198 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_merge.o)
+                                0x1a4 (size before relaxing)
+ .stab          0x000074dc       0x60 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_nan.o)
+                                 0x6c (size before relaxing)
+ .stab          0x0000753c      0x27c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_powerseries.o)
+                                0x288 (size before relaxing)
+ .stab          0x000077b8      0x240 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_split.o)
+                                0x24c (size before relaxing)
+ .stab          0x000079f8       0x78 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_zero.o)
+                                 0x84 (size before relaxing)
+ .stab          0x00007a70      0x27c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(modf.o)
+                                0x288 (size before relaxing)
+ .stab          0x00007cec       0x60 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(mulsf3.o)
+                                 0x6c (size before relaxing)
+ .stab          0x00007d4c      0x378 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(mulsf3x.o)
+                                0x384 (size before relaxing)
+ .stab          0x000080c4      0x120 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sin.o)
+                                0x12c (size before relaxing)
+ .stab          0x000081e4      0x30c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sqrt.o)
+                                0x318 (size before relaxing)
+ .stab          0x000084f0       0x60 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(square.o)
+                                 0x6c (size before relaxing)
+ .stab          0x00008550      0x8f4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o)
+                                0x900 (size before relaxing)
+ .stab          0x00008e44      0x1d4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan.o)
+                                0x1e0 (size before relaxing)
+ .stab          0x00009018       0x78 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_flashconst.o)
+                                 0x84 (size before relaxing)
+ .stab          0x00009090       0x90 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_inverse.o)
+                                 0x9c (size before relaxing)
+ .stab          0x00009120      0x114 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(ldexp.o)
+                                0x120 (size before relaxing)
+ .stab          0x00009234       0x78 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_m_inf.o)
+                                 0x84 (size before relaxing)
+ .stab          0x000092ac       0x78 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_p_inf.o)
+                                 0x84 (size before relaxing)
+ .stab          0x00009324      0x228 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(atoi.o)
+                                0x234 (size before relaxing)
+ .stab          0x0000954c       0xa8 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalnum.o)
+                                 0xb4 (size before relaxing)
+ .stab          0x000095f4       0x60 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(cty_isfalse.o)
+                                 0x6c (size before relaxing)
+ .stab          0x00009654       0xb4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalpha.o)
+                                 0xc0 (size before relaxing)
+ .stab          0x00009708       0x84 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isdigit.o)
+                                 0x90 (size before relaxing)
+ .stab          0x0000978c       0xb4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isxdigit.o)
+                                 0xc0 (size before relaxing)
+ .stab          0x00009840       0xc0 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncmp.o)
+                                 0xcc (size before relaxing)
+ .stab          0x00009900       0xcc /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncpy.o)
+                                 0xd8 (size before relaxing)
+ .stab          0x000099cc       0x78 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(mul10.o)
+                                 0x84 (size before relaxing)
+ .stab          0x00009a44      0x348 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)
+                                0x390 (size before relaxing)
+ .stab          0x00009d8c      0x798 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                                0x990 (size before relaxing)
+ .stab          0x0000a524       0x84 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strlen_P.o)
+                                 0x90 (size before relaxing)
+ .stab          0x0000a5a8       0x9c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
+                                 0xa8 (size before relaxing)
+ .stab          0x0000a644       0x9c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen.o)
+                                 0xa8 (size before relaxing)
+ .stab          0x0000a6e0      0x1d4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fputc.o)
+                                0x3b4 (size before relaxing)
+ .stab          0x0000a8b4      0x120 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(iob.o)
+                                0x300 (size before relaxing)
+
+.stabstr        0x00000000     0x3fb7
+ *(.stabstr)
+ .stabstr       0x00000000     0x3fb7 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info)
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(gpstest.elf elf32-avr)
+
+Cross Reference Table
+
+Symbol                                            File
+LcdCustomChar                                     /opt/local/avr/sixcode//lcd.o
+Timer0Reg0                                        /opt/local/avr/sixcode//timer.o
+Timer2Reg0                                        /opt/local/avr/sixcode//timer.o
+TimerPauseReg                                     /opt/local/avr/sixcode//timer.o
+TimerPrescaleFactor                               /opt/local/avr/sixcode//timer.o
+TimerRTCPrescaleFactor                            /opt/local/avr/sixcode//timer.o
+__addsf3                                          /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sqrt.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sin.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(modf.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_powerseries.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cosinus.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan2.o)
+                                                  gpstest.o
+__addsf3x                                         /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3x.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3.o)
+__bad_interrupt                                   /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__bss_end                                         /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_clear_bss.o)
+__bss_start                                       /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_clear_bss.o)
+__cmpsf2                                          /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cmp.o)
+__ctype_isfalse                                   /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(cty_isfalse.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isxdigit.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isdigit.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalpha.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalnum.o)
+__ctype_istrue                                    /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(cty_isfalse.o)
+__data_end                                        /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_copy_data.o)
+__data_load_start                                 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_copy_data.o)
+__data_start                                      /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_copy_data.o)
+__divmodhi4                                       /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodhi4.o)
+                                                  /opt/local/avr/sixcode//i2c.o
+__divmodsi4                                       /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodsi4.o)
+                                                  /opt/local/avr/sixcode//i2c.o
+                                                  /opt/local/avr/sixcode//timer.o
+__divsf3                                          /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(divsf3.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_inverse.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sqrt.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_powerseries.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fmod.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan2.o)
+                                                  gpstest.o
+                                                  /opt/local/avr/sixcode//rprintf.o
+__divsf3x                                         /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(divsf3x.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(divsf3.o)
+__do_clear_bss                                    /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_clear_bss.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(iob.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fputc.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)
+                                                  gpstest.o
+                                                  video.o
+                                                  /opt/local/avr/sixcode//i2c.o
+                                                  /opt/local/avr/sixcode//lcd.o
+                                                  /opt/local/avr/sixcode//timer.o
+                                                  /opt/local/avr/sixcode//rprintf.o
+                                                  /opt/local/avr/sixcode//uart.o
+                                                  /opt/local/avr/sixcode//buffer.o
+__do_copy_data                                    /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_copy_data.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(iob.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fputc.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)
+                                                  gpstest.o
+                                                  video.o
+                                                  /opt/local/avr/sixcode//i2c.o
+                                                  /opt/local/avr/sixcode//lcd.o
+                                                  /opt/local/avr/sixcode//timer.o
+                                                  /opt/local/avr/sixcode//rprintf.o
+                                                  /opt/local/avr/sixcode//uart.o
+                                                  /opt/local/avr/sixcode//buffer.o
+__epilogue_restores__                             /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_epilogue.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o)
+__eqsf2                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cmp.o)
+                                                  /opt/local/avr/sixcode//rprintf.o
+__fixsfsi                                         /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fixsfsi.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(modf.o)
+                                                  gpstest.o
+__fixunssfsi                                      /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fixsfsi.o)
+                                                  /opt/local/avr/sixcode//rprintf.o
+__floatsisf                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(floatsisf.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(modf.o)
+                                                  gpstest.o
+                                                  /opt/local/avr/sixcode//rprintf.o
+__floatunssisf                                    /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(floatsisf.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o)
+__fp_cosinus                                      /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cosinus.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sin.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(cos.o)
+__fp_flashconst                                   /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_flashconst.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_powerseries.o)
+__fp_inverse                                      /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_inverse.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan.o)
+__fp_lneg                                         /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fixsfsi.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(floatsisf.o)
+__fp_m_inf                                        /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_m_inf.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(ldexp.o)
+__fp_merge                                        /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_merge.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(ldexp.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sqrt.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(mulsf3.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(modf.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(floatsisf.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(divsf3.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3.o)
+__fp_nan                                          /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_nan.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_split.o)
+__fp_nanEDOM                                      /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_nan.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sqrt.o)
+__fp_nanERANGE                                    /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_nan.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fmod.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan2.o)
+__fp_nanx                                         /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_nan.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(mulsf3x.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(divsf3x.o)
+__fp_p_inf                                        /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_p_inf.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(ldexp.o)
+__fp_powerseries                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_powerseries.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cosinus.o)
+__fp_split1                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_split.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fixsfsi.o)
+__fp_split2                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_split.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cmp.o)
+__fp_split3                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_split.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(mulsf3.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(divsf3.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3.o)
+__fp_split_a                                      /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_split.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(ldexp.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sqrt.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(modf.o)
+__fp_zero                                         /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_zero.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(ldexp.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_merge.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fixsfsi.o)
+__fp_zerox                                        /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_zero.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(mulsf3x.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(divsf3x.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3x.o)
+__gesf2                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cmp.o)
+__gtsf2                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cmp.o)
+                                                  /opt/local/avr/sixcode//rprintf.o
+__heap_end                                        /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__init                                            /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__iob                                             /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(iob.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)
+__lesf2                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cmp.o)
+__ltsf2                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cmp.o)
+                                                  /opt/local/avr/sixcode//rprintf.o
+__mulhi_const_10                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(mul10.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(atoi.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o)
+__mulsf3                                          /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(mulsf3.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(square.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_powerseries.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fmod.o)
+                                                  gpstest.o
+                                                  /opt/local/avr/sixcode//rprintf.o
+__mulsf3x                                         /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(mulsf3x.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(mulsf3.o)
+__mulsi3                                          /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_mulsi3.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o)
+                                                  /opt/local/avr/sixcode//timer.o
+__nesf2                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cmp.o)
+__prologue_saves__                                /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_prologue.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o)
+__stack                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+                                                  gpstest.o
+__subsf3                                          /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(addsf3.o)
+                                                  gpstest.o
+                                                  /opt/local/avr/sixcode//rprintf.o
+__udivmodhi4                                      /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodhi4.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodhi4.o)
+                                                  /opt/local/avr/sixcode//lcd.o
+                                                  /opt/local/avr/sixcode//timer.o
+                                                  /opt/local/avr/sixcode//rprintf.o
+                                                  /opt/local/avr/sixcode//buffer.o
+__udivmodsi4                                      /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodsi4.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodsi4.o)
+                                                  /opt/local/avr/sixcode//lcd.o
+                                                  /opt/local/avr/sixcode//timer.o
+                                                  /opt/local/avr/sixcode//rprintf.o
+                                                  /opt/local/avr/sixcode//uart.o
+__vector_1                                        /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_10                                       /opt/local/avr/sixcode//timer.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_11                                       /opt/local/avr/sixcode//timer.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_12                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_13                                       /opt/local/avr/sixcode//uart.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_14                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_15                                       /opt/local/avr/sixcode//uart.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_16                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_17                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_18                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_19                                       /opt/local/avr/sixcode//i2c.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_2                                        /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_20                                       /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_3                                        /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_4                                        /opt/local/avr/sixcode//timer.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_5                                        /opt/local/avr/sixcode//timer.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_6                                        /opt/local/avr/sixcode//timer.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_7                                        /opt/local/avr/sixcode//timer.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_8                                        /opt/local/avr/sixcode//timer.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_9                                        /opt/local/avr/sixcode//timer.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vector_default                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+__vectors                                         /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+_div                                              /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodhi4.o)
+addToBuffer                                       gpstest.o
+atan                                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan2.o)
+atan2                                             /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan2.o)
+                                                  gpstest.o
+atof                                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o)
+                                                  gpstest.o
+atoi                                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(atoi.o)
+                                                  gpstest.o
+bearing                                           gpstest.o
+bufferAddToEnd                                    /opt/local/avr/sixcode//buffer.o
+                                                  gpstest.o
+                                                  /opt/local/avr/sixcode//uart.o
+bufferDumpFromFront                               /opt/local/avr/sixcode//buffer.o
+bufferFlush                                       /opt/local/avr/sixcode//buffer.o
+bufferGetAtIndex                                  /opt/local/avr/sixcode//buffer.o
+bufferGetFromFront                                /opt/local/avr/sixcode//buffer.o
+                                                  gpstest.o
+                                                  /opt/local/avr/sixcode//uart.o
+bufferInit                                        /opt/local/avr/sixcode//buffer.o
+                                                  gpstest.o
+                                                  /opt/local/avr/sixcode//uart.o
+bufferIsNotFull                                   /opt/local/avr/sixcode//buffer.o
+cos                                               /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(cos.o)
+                                                  gpstest.o
+delay_us                                          /opt/local/avr/sixcode//timer.o
+                                                  /opt/local/avr/sixcode//lcd.o
+dist                                              gpstest.o
+fmod                                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fmod.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sin.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(cos.o)
+fputc                                             /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(fputc.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+i2cGetReceivedByte                                /opt/local/avr/sixcode//i2c.o
+i2cGetState                                       /opt/local/avr/sixcode//i2c.o
+i2cGetStatus                                      /opt/local/avr/sixcode//i2c.o
+i2cInit                                           /opt/local/avr/sixcode//i2c.o
+                                                  gpstest.o
+i2cMasterReceive                                  /opt/local/avr/sixcode//i2c.o
+i2cMasterReceiveNI                                /opt/local/avr/sixcode//i2c.o
+i2cMasterSend                                     /opt/local/avr/sixcode//i2c.o
+i2cMasterSendNI                                   /opt/local/avr/sixcode//i2c.o
+i2cReceiveByte                                    /opt/local/avr/sixcode//i2c.o
+i2cSendByte                                       /opt/local/avr/sixcode//i2c.o
+i2cSendStart                                      /opt/local/avr/sixcode//i2c.o
+i2cSendStop                                       /opt/local/avr/sixcode//i2c.o
+i2cSetBitrate                                     /opt/local/avr/sixcode//i2c.o
+i2cSetLocalDeviceAddr                             /opt/local/avr/sixcode//i2c.o
+                                                  gpstest.o
+i2cSetSlaveReceiveHandler                         /opt/local/avr/sixcode//i2c.o
+                                                  gpstest.o
+i2cSetSlaveTransmitHandler                        /opt/local/avr/sixcode//i2c.o
+                                                  gpstest.o
+i2cSlaveReceiveService                            gpstest.o
+i2cSlaveTransmitService                           gpstest.o
+i2cWaitForComplete                                /opt/local/avr/sixcode//i2c.o
+initVideo                                         video.o
+                                                  gpstest.o
+isalnum                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalnum.o)
+                                                  gpstest.o
+isalpha                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalpha.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalnum.o)
+isdigit                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isdigit.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isxdigit.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalnum.o)
+islower                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalpha.o)
+isupper                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isalpha.o)
+isxdigit                                          /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isxdigit.o)
+                                                  gpstest.o
+lcdBusyWait                                       /opt/local/avr/sixcode//lcd.o
+lcdClear                                          /opt/local/avr/sixcode//lcd.o
+lcdControlRead                                    /opt/local/avr/sixcode//lcd.o
+lcdControlWrite                                   /opt/local/avr/sixcode//lcd.o
+lcdDataRead                                       /opt/local/avr/sixcode//lcd.o
+lcdDataWrite                                      /opt/local/avr/sixcode//lcd.o
+lcdGotoXY                                         /opt/local/avr/sixcode//lcd.o
+lcdHome                                           /opt/local/avr/sixcode//lcd.o
+lcdInit                                           /opt/local/avr/sixcode//lcd.o
+lcdInitHW                                         /opt/local/avr/sixcode//lcd.o
+lcdLoadCustomChar                                 /opt/local/avr/sixcode//lcd.o
+lcdPrintData                                      /opt/local/avr/sixcode//lcd.o
+lcdProgressBar                                    /opt/local/avr/sixcode//lcd.o
+ldexp                                             /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(ldexp.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sqrt.o)
+localBuffer                                       gpstest.o
+localBufferLength                                 gpstest.o
+main                                              gpstest.o
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+message_sent                                      gpstest.o
+modf                                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(modf.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fmod.o)
+nmeap_addParser                                   gpstest.o
+nmeap_altitude                                    gpstest.o
+nmeap_gpgga                                       gpstest.o
+nmeap_gprmc                                       gpstest.o
+nmeap_init                                        gpstest.o
+nmeap_latitude                                    gpstest.o
+nmeap_longitude                                   gpstest.o
+nmeap_parse                                       gpstest.o
+nmeap_parseBuffer                                 gpstest.o
+nmeap_process                                     gpstest.o
+nmeap_tokenize                                    gpstest.o
+print_to_string                                   gpstest.o
+printf                                            /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)
+                                                  gpstest.o
+rprintf1RamRom                                    /opt/local/avr/sixcode//rprintf.o
+                                                  gpstest.o
+                                                  video.o
+rprintfCRLF                                       /opt/local/avr/sixcode//rprintf.o
+rprintfChar                                       /opt/local/avr/sixcode//rprintf.o
+rprintfFloat                                      /opt/local/avr/sixcode//rprintf.o
+                                                  gpstest.o
+rprintfInit                                       /opt/local/avr/sixcode//rprintf.o
+                                                  gpstest.o
+rprintfNum                                        /opt/local/avr/sixcode//rprintf.o
+rprintfProgStr                                    /opt/local/avr/sixcode//rprintf.o
+rprintfStr                                        /opt/local/avr/sixcode//rprintf.o
+rprintfStrLen                                     /opt/local/avr/sixcode//rprintf.o
+rprintfu04                                        /opt/local/avr/sixcode//rprintf.o
+rprintfu08                                        /opt/local/avr/sixcode//rprintf.o
+rprintfu16                                        /opt/local/avr/sixcode//rprintf.o
+rprintfu32                                        /opt/local/avr/sixcode//rprintf.o
+sin                                               /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sin.o)
+                                                  gpstest.o
+sqrt                                              /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(sqrt.o)
+                                                  gpstest.o
+square                                            /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(square.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(atan.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(fp_cosinus.o)
+stackem                                           gpstest.o
+stackem_pointer                                   gpstest.o
+strlen_P                                          /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strlen_P.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+strncmp                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncmp.o)
+                                                  gpstest.o
+strncpy                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncpy.o)
+                                                  gpstest.o
+strnlen                                           /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+strnlen_P                                         /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+strtod                                            /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libm.a(strtod.o)
+timer0ClearOverflowCount                          /opt/local/avr/sixcode//timer.o
+timer0GetOverflowCount                            /opt/local/avr/sixcode//timer.o
+timer0GetPrescaler                                /opt/local/avr/sixcode//timer.o
+timer0Init                                        /opt/local/avr/sixcode//timer.o
+timer0SetPrescaler                                /opt/local/avr/sixcode//timer.o
+timer1GetPrescaler                                /opt/local/avr/sixcode//timer.o
+timer1Init                                        /opt/local/avr/sixcode//timer.o
+timer1PWMAOff                                     /opt/local/avr/sixcode//timer.o
+timer1PWMAOn                                      /opt/local/avr/sixcode//timer.o
+timer1PWMASet                                     /opt/local/avr/sixcode//timer.o
+timer1PWMBOff                                     /opt/local/avr/sixcode//timer.o
+timer1PWMBOn                                      /opt/local/avr/sixcode//timer.o
+timer1PWMBSet                                     /opt/local/avr/sixcode//timer.o
+timer1PWMInit                                     /opt/local/avr/sixcode//timer.o
+timer1PWMInitICR                                  /opt/local/avr/sixcode//timer.o
+timer1PWMOff                                      /opt/local/avr/sixcode//timer.o
+timer1SetPrescaler                                /opt/local/avr/sixcode//timer.o
+timer2ClearOverflowCount                          /opt/local/avr/sixcode//timer.o
+timer2GetOverflowCount                            /opt/local/avr/sixcode//timer.o
+timer2GetPrescaler                                /opt/local/avr/sixcode//timer.o
+timer2Init                                        /opt/local/avr/sixcode//timer.o
+timer2SetPrescaler                                /opt/local/avr/sixcode//timer.o
+timerAttach                                       /opt/local/avr/sixcode//timer.o
+timerDetach                                       /opt/local/avr/sixcode//timer.o
+timerInit                                         /opt/local/avr/sixcode//timer.o
+                                                  gpstest.o
+timerPause                                        /opt/local/avr/sixcode//timer.o
+                                                  gpstest.o
+uartAddToTxBuffer                                 /opt/local/avr/sixcode//uart.o
+uartBufferedTx                                    /opt/local/avr/sixcode//uart.o
+uartFlushReceiveBuffer                            /opt/local/avr/sixcode//uart.o
+uartGetByte                                       /opt/local/avr/sixcode//uart.o
+uartGetRxBuffer                                   /opt/local/avr/sixcode//uart.o
+uartGetTxBuffer                                   /opt/local/avr/sixcode//uart.o
+uartInit                                          /opt/local/avr/sixcode//uart.o
+                                                  gpstest.o
+uartInitBuffers                                   /opt/local/avr/sixcode//uart.o
+uartReadyTx                                       /opt/local/avr/sixcode//uart.o
+uartReceiveBufferIsEmpty                          /opt/local/avr/sixcode//uart.o
+uartReceiveByte                                   /opt/local/avr/sixcode//uart.o
+uartRxBuffer                                      /opt/local/avr/sixcode//uart.o
+uartRxOverflow                                    /opt/local/avr/sixcode//uart.o
+uartSendByte                                      /opt/local/avr/sixcode//uart.o
+                                                  gpstest.o
+uartSendTxBuffer                                  /opt/local/avr/sixcode//uart.o
+uartSetBaudRate                                   /opt/local/avr/sixcode//uart.o
+                                                  gpstest.o
+uartSetRxHandler                                  /opt/local/avr/sixcode//uart.o
+                                                  gpstest.o
+uartTxBuffer                                      /opt/local/avr/sixcode//uart.o
+vfprintf                                          /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                                                  /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(printf.o)
+writeVideoScreen                                  video.o
+                                                  gpstest.o

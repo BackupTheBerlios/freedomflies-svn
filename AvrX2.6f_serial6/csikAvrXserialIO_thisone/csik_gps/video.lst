@@ -1,0 +1,636 @@
+GAS LISTING /var/tmp//ccDW9pmE.s 			page 1
+
+
+   1               		.file	"video.c"
+   2               		.arch atmega32
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  10               		.stabs	"/opt/local/avr/avrlib/freedomflies/AvrX2.6f_serial6/csikAvrXserialIO_thisone/gps/",100,0,2
+  11               		.stabs	"video.c",100,0,2,.Ltext0
+  12               		.text
+  13               	.Ltext0:
+  14               		.stabs	"gcc2_compiled.",60,0,0,0
+  15               		.stabs	"int:t(0,1)=r(0,1);-32768;32767;",128,0,0,0
+  16               		.stabs	"char:t(0,2)=r(0,2);0;127;",128,0,0,0
+  17               		.stabs	"long int:t(0,3)=@s32;r(0,3);020000000000;017777777777;",128,0,0,0
+  18               		.stabs	"unsigned int:t(0,4)=r(0,4);0;0177777;",128,0,0,0
+  19               		.stabs	"long unsigned int:t(0,5)=@s32;r(0,5);0;037777777777;",128,0,0,0
+  20               		.stabs	"long long int:t(0,6)=@s64;r(0,6);01000000000000000000000;0777777777777777777777;",128,0,0,
+  21               		.stabs	"long long unsigned int:t(0,7)=@s64;r(0,7);0;01777777777777777777777;",128,0,0,0
+  22               		.stabs	"short int:t(0,8)=r(0,8);-32768;32767;",128,0,0,0
+  23               		.stabs	"short unsigned int:t(0,9)=r(0,9);0;0177777;",128,0,0,0
+  24               		.stabs	"signed char:t(0,10)=@s8;r(0,10);-128;127;",128,0,0,0
+  25               		.stabs	"unsigned char:t(0,11)=@s8;r(0,11);0;255;",128,0,0,0
+  26               		.stabs	"float:t(0,12)=r(0,1);4;0;",128,0,0,0
+  27               		.stabs	"double:t(0,13)=r(0,1);4;0;",128,0,0,0
+  28               		.stabs	"long double:t(0,14)=r(0,1);4;0;",128,0,0,0
+  29               		.stabs	"void:t(0,15)=(0,15)",128,0,0,0
+  30               		.stabs	"/opt/local/lib/gcc/avr/4.0.2/../../../../avr/include/avr/io.h",130,0,0,0
+  31               		.stabs	"/opt/local/lib/gcc/avr/4.0.2/../../../../avr/include/avr/sfr_defs.h",130,0,0,0
+  32               		.stabs	"/opt/local/lib/gcc/avr/4.0.2/../../../../avr/include/inttypes.h",130,0,0,0
+  33               		.stabs	"/opt/local/lib/gcc/avr/4.0.2/../../../../avr/include/stdint.h",130,0,0,0
+  34               		.stabs	"int8_t:t(4,1)=(0,10)",128,0,116,0
+  35               		.stabs	"uint8_t:t(4,2)=(0,11)",128,0,117,0
+  36               		.stabs	"int16_t:t(4,3)=(0,1)",128,0,118,0
+  37               		.stabs	"uint16_t:t(4,4)=(0,4)",128,0,119,0
+  38               		.stabs	"int32_t:t(4,5)=(0,3)",128,0,120,0
+  39               		.stabs	"uint32_t:t(4,6)=(0,5)",128,0,121,0
+  40               		.stabs	"int64_t:t(4,7)=(0,6)",128,0,122,0
+  41               		.stabs	"uint64_t:t(4,8)=(0,7)",128,0,123,0
+  42               		.stabs	"intptr_t:t(4,9)=(4,3)",128,0,135,0
+  43               		.stabs	"uintptr_t:t(4,10)=(4,4)",128,0,140,0
+  44               		.stabs	"int_least8_t:t(4,11)=(4,1)",128,0,152,0
+  45               		.stabs	"uint_least8_t:t(4,12)=(4,2)",128,0,157,0
+  46               		.stabs	"int_least16_t:t(4,13)=(4,3)",128,0,162,0
+  47               		.stabs	"uint_least16_t:t(4,14)=(4,4)",128,0,167,0
+  48               		.stabs	"int_least32_t:t(4,15)=(4,5)",128,0,172,0
+  49               		.stabs	"uint_least32_t:t(4,16)=(4,6)",128,0,177,0
+  50               		.stabs	"int_least64_t:t(4,17)=(4,7)",128,0,182,0
+  51               		.stabs	"uint_least64_t:t(4,18)=(4,8)",128,0,187,0
+  52               		.stabs	"int_fast8_t:t(4,19)=(4,1)",128,0,200,0
+  53               		.stabs	"uint_fast8_t:t(4,20)=(4,2)",128,0,205,0
+  54               		.stabs	"int_fast16_t:t(4,21)=(4,3)",128,0,210,0
+  55               		.stabs	"uint_fast16_t:t(4,22)=(4,4)",128,0,215,0
+  56               		.stabs	"int_fast32_t:t(4,23)=(4,5)",128,0,220,0
+  57               		.stabs	"uint_fast32_t:t(4,24)=(4,6)",128,0,225,0
+GAS LISTING /var/tmp//ccDW9pmE.s 			page 2
+
+
+  58               		.stabs	"int_fast64_t:t(4,25)=(4,7)",128,0,230,0
+  59               		.stabs	"uint_fast64_t:t(4,26)=(4,8)",128,0,235,0
+  60               		.stabs	"intmax_t:t(4,27)=(4,7)",128,0,249,0
+  61               		.stabs	"uintmax_t:t(4,28)=(4,8)",128,0,254,0
+  62               		.stabn	162,0,0,0
+  63               		.stabs	"int_farptr_t:t(3,1)=(4,5)",128,0,76,0
+  64               		.stabs	"uint_farptr_t:t(3,2)=(4,6)",128,0,80,0
+  65               		.stabn	162,0,0,0
+  66               		.stabn	162,0,0,0
+  67               		.stabn	162,0,0,0
+  68               		.stabs	"/opt/local/avr/sixcode/uart.h",130,0,0,0
+  69               		.stabs	"./global.h",130,0,0,0
+  70               		.stabs	"/opt/local/avr/sixcode/avrlibtypes.h",130,0,0,0
+  71               		.stabs	"u08:t(7,1)=(0,11)",128,0,32,0
+  72               		.stabs	"s08:t(7,2)=(0,10)",128,0,33,0
+  73               		.stabs	"u16:t(7,3)=(0,9)",128,0,34,0
+  74               		.stabs	"s16:t(7,4)=(0,8)",128,0,35,0
+  75               		.stabs	"u32:t(7,5)=(0,5)",128,0,36,0
+  76               		.stabs	"s32:t(7,6)=(0,3)",128,0,37,0
+  77               		.stabs	"u64:t(7,7)=(0,7)",128,0,38,0
+  78               		.stabs	"s64:t(7,8)=(0,6)",128,0,39,0
+  79               		.stabs	"BOOL:t(7,9)=(0,11)",128,0,69,0
+  80               		.stabs	"BYTE:t(7,10)=(0,11)",128,0,70,0
+  81               		.stabs	"WORD:t(7,11)=(0,4)",128,0,71,0
+  82               		.stabs	"DWORD:t(7,12)=(0,5)",128,0,72,0
+  83               		.stabs	"UCHAR:t(7,13)=(0,11)",128,0,74,0
+  84               		.stabs	"UINT:t(7,14)=(0,4)",128,0,75,0
+  85               		.stabs	"USHORT:t(7,15)=(0,9)",128,0,76,0
+  86               		.stabs	"ULONG:t(7,16)=(0,5)",128,0,77,0
+  87               		.stabs	"CHAR:t(7,17)=(0,2)",128,0,79,0
+  88               		.stabs	"INT:t(7,18)=(0,1)",128,0,80,0
+  89               		.stabs	"LONG:t(7,19)=(0,3)",128,0,81,0
+  90               		.stabn	162,0,0,0
+  91               		.stabn	162,0,0,0
+  92               		.stabs	"/opt/local/avr/sixcode/buffer.h",130,0,0,0
+  93               		.stabs	"struct_cBuffer:T(8,1)=s8dataptr:(8,2)=*(0,11),0,16;size:(0,9),16,16;datalength:(0,9),32,16
+  94               		.stabs	"cBuffer:t(8,3)=(8,1)",128,0,47,0
+  95               		.stabn	162,0,0,0
+  96               		.stabn	162,0,0,0
+  97               		.stabs	"/opt/local/avr/sixcode/rprintf.h",130,0,0,0
+  98               		.stabs	"/opt/local/lib/gcc/avr/4.0.2/../../../../avr/include/avr/pgmspace.h",130,0,0,0
+  99               		.stabs	"/opt/local/lib/gcc/avr/4.0.2/include/stddef.h",130,0,0,0
+ 100               		.stabs	"size_t:t(11,1)=(0,4)",128,0,214,0
+ 101               		.stabn	162,0,0,0
+ 102               		.stabs	"prog_void:t(10,1)=(10,2)=(10,2)",128,0,203,0
+ 103               		.stabs	"prog_char:t(10,3)=(10,4)=@s8;r(10,4);-128;127;",128,0,204,0
+ 104               		.stabs	"prog_uchar:t(10,5)=(10,6)=@s8;r(10,6);0;255;",128,0,205,0
+ 105               		.stabs	"prog_int8_t:t(10,7)=(10,4)",128,0,207,0
+ 106               		.stabs	"prog_uint8_t:t(10,8)=(10,6)",128,0,208,0
+ 107               		.stabs	"prog_int16_t:t(10,9)=(10,10)=(0,1)",128,0,209,0
+ 108               		.stabs	"prog_uint16_t:t(10,11)=(10,12)=(0,4)",128,0,210,0
+ 109               		.stabs	"prog_int32_t:t(10,13)=(10,14)=(0,3)",128,0,211,0
+ 110               		.stabs	"prog_uint32_t:t(10,15)=(10,16)=(0,5)",128,0,212,0
+ 111               		.stabs	"prog_int64_t:t(10,17)=(10,18)=(0,6)",128,0,213,0
+ 112               		.stabs	"prog_uint64_t:t(10,19)=(10,20)=(0,7)",128,0,214,0
+ 113               		.stabn	162,0,0,0
+ 114               		.stabn	162,0,0,0
+GAS LISTING /var/tmp//ccDW9pmE.s 			page 3
+
+
+ 115               		.section	.progmem.data,"a",@progbits
+ 116               		.type	__c.1480, @object
+ 117               		.size	__c.1480, 6
+ 118               	__c.1480:
+ 119 0000 2573 3031 		.string	"%s01\r"
+ 119      0D00 
+ 120               		.type	__c.1478, @object
+ 121               		.size	__c.1478, 6
+ 122               	__c.1478:
+ 123 0006 2573 3037 		.string	"%s07\r"
+ 123      0D00 
+ 124               		.type	__c.1476, @object
+ 125               		.size	__c.1476, 4
+ 126               	__c.1476:
+ 127 000c 2573 0D00 		.string	"%s\r"
+ 128               		.type	__c.1474, @object
+ 129               		.size	__c.1474, 4
+ 130               	__c.1474:
+ 131 0010 2573 0D00 		.string	"%s\r"
+ 132               		.type	__c.1472, @object
+ 133               		.size	__c.1472, 4
+ 134               	__c.1472:
+ 135 0014 2573 0D00 		.string	"%s\r"
+ 136               		.type	__c.1470, @object
+ 137               		.size	__c.1470, 4
+ 138               	__c.1470:
+ 139 0018 2573 0D00 		.string	"%s\r"
+ 140               		.data
+ 141               	.LC0:
+ 142 0000 5500      		.string	"U"
+ 143               	.LC1:
+ 144 0002 4100      		.string	"A"
+ 145               	.LC2:
+ 146 0004 4B00      		.string	"K"
+ 147               	.LC3:
+ 148 0006 4D00      		.string	"M"
+ 149               	.LC4:
+ 150 0008 5A45 00   		.string	"ZE"
+ 151               	.LC5:
+ 152 000b 5700      		.string	"W"
+ 153               		.text
+ 154               		.stabs	"initVideo:F(0,15)",36,0,58,initVideo
+ 155               	.global	initVideo
+ 156               		.type	initVideo, @function
+ 157               	initVideo:
+ 158               		.stabd	46,0,0
+   1:video.c       **** #include <avr/io.h>		// include I/O definitions (port names, pin names, etc)
+   2:video.c       **** #include <avr/signal.h>	// include "signal" names (interrupt names)
+   3:video.c       **** #include <avr/interrupt.h>	// include interrupt support
+   4:video.c       **** #include "uart.h"		// include uart function library
+   5:video.c       **** #include "rprintf.h"	// include printf function library
+   6:video.c       **** #include "timer.h"		// include timer function library
+   7:video.c       **** #include "global.h"		// include our global settings
+   8:video.c       **** #include "string.h"		// use for strlen()
+   9:video.c       **** #include "video.h"  //user video thingy
+  10:video.c       **** 
+  11:video.c       **** 
+GAS LISTING /var/tmp//ccDW9pmE.s 			page 4
+
+
+  12:video.c       **** #define CLEARSCREEN "A"
+  13:video.c       **** #define RESET "U"				//Reset registers to default
+  14:video.c       **** #define CHAR_BG_DISPLAY "B"
+  15:video.c       **** #define TOGGLE_BLINK "T"
+  16:video.c       **** #define GET_CHAR "E"
+  17:video.c       **** #define ASCII_MODE "K"
+  18:video.c       **** #define pX_AXIS "X"			//Xnn/r 00..27
+  19:video.c       **** #define pY_AXIS "Y"			//Ynn/r 00..10
+  20:video.c       **** #define pTYPE	"T"			//T/r[text]/r types until next return, then re-enters command mode
+  21:video.c       **** #define pCHAR_COLOR "ZE"		//ZEnn/r 00=Black 01=Blue 02=Green 03=Cyan 04=Red 05=Magenta 06=Red 07=Wh
+  22:video.c       **** 
+  23:video.c       **** 
+  24:video.c       **** #define pBAUD "W"				//Baud Rate 00=2400 [<-DEFAULT] 01=4800 02=9600 03=14200 04=38400
+  25:video.c       **** 
+  26:video.c       **** #define FULL_PAGE_MODE "N"
+  27:video.c       **** #define MIXED_MODE "M"
+  28:video.c       **** 
+  29:video.c       **** #define ASCII_MODE "K"
+  30:video.c       **** #define NUMERIC_MODE "J"
+  31:video.c       **** 
+  32:video.c       **** #define BG_ON "ZJ"
+  33:video.c       **** #define BG_OFF "ZH"
+  34:video.c       **** #define BLINK_ON "ZJ"
+  35:video.c       **** #define BLINK_OFF "ZH"
+  36:video.c       **** 
+  37:video.c       **** #define pFONT_SIZE	"V"		//Size1		Size2		Size3		Size4  Each row may be set indep of each other!
+  38:video.c       **** 						//row0	00		01			02			03
+  39:video.c       **** 						//row1-9 04		05			06			07
+  40:video.c       **** 						//row10	08		09			10			11
+  41:video.c       **** 						
+  42:video.c       **** ////////////////////////////////////Fields for STVSER//////////////////////////////////////////
+  43:video.c       **** #define LAT_FIELD_X 0
+  44:video.c       **** #define LAT_FIELD_Y 1
+  45:video.c       **** #define LONG_FIELD_X 17
+  46:video.c       **** #define LONG_FIELD_Y 1
+  47:video.c       **** #define TIME_FIELD_X 10
+  48:video.c       **** #define TIME_FIELD_Y 1
+  49:video.c       **** #define ALTITUDE_FIELD_X 14
+  50:video.c       **** #define ALTITUDE_FIELD_Y 1
+  51:video.c       **** #define COMPASS_FIELD_X 15
+  52:video.c       **** #define COMPASS_FIELD_Y 10
+  53:video.c       **** #define ERROR_FIELD_X 26
+  54:video.c       **** #define ERROR_FIELD_Y 10
+  55:video.c       **** 
+  56:video.c       **** 
+  57:video.c       **** void initVideo(void)
+  58:video.c       **** {
+ 159               		.stabn	68,0,58,.LM0-initVideo
+ 160               	.LM0:
+ 161               	/* prologue: frame size=0 */
+ 162 0000 1F93      		push r17
+ 163               	/* prologue end (size=1) */
+  59:video.c       **** 	rprintf("%s\r",RESET);
+ 164               		.stabn	68,0,59,.LM1-initVideo
+ 165               	.LM1:
+ 166 0002 80E0      		ldi r24,lo8(.LC0)
+ 167 0004 90E0      		ldi r25,hi8(.LC0)
+GAS LISTING /var/tmp//ccDW9pmE.s 			page 5
+
+
+ 168 0006 9F93      		push r25
+ 169 0008 8F93      		push r24
+ 170 000a 80E0      		ldi r24,lo8(__c.1470)
+ 171 000c 90E0      		ldi r25,hi8(__c.1470)
+ 172 000e 9F93      		push r25
+ 173 0010 8F93      		push r24
+ 174 0012 11E0      		ldi r17,lo8(1)
+ 175 0014 1F93      		push r17
+ 176 0016 0E94 0000 		call rprintf1RamRom
+  60:video.c       **** 	rprintf("%s\r",CLEARSCREEN);
+ 177               		.stabn	68,0,60,.LM2-initVideo
+ 178               	.LM2:
+ 179 001a 80E0      		ldi r24,lo8(.LC1)
+ 180 001c 90E0      		ldi r25,hi8(.LC1)
+ 181 001e 9F93      		push r25
+ 182 0020 8F93      		push r24
+ 183 0022 80E0      		ldi r24,lo8(__c.1472)
+ 184 0024 90E0      		ldi r25,hi8(__c.1472)
+ 185 0026 9F93      		push r25
+ 186 0028 8F93      		push r24
+ 187 002a 1F93      		push r17
+ 188 002c 0E94 0000 		call rprintf1RamRom
+  61:video.c       **** 	rprintf("%s\r",ASCII_MODE);
+ 189               		.stabn	68,0,61,.LM3-initVideo
+ 190               	.LM3:
+ 191 0030 80E0      		ldi r24,lo8(.LC2)
+ 192 0032 90E0      		ldi r25,hi8(.LC2)
+ 193 0034 9F93      		push r25
+ 194 0036 8F93      		push r24
+ 195 0038 80E0      		ldi r24,lo8(__c.1474)
+ 196 003a 90E0      		ldi r25,hi8(__c.1474)
+ 197 003c 9F93      		push r25
+ 198 003e 8F93      		push r24
+ 199 0040 1F93      		push r17
+ 200 0042 0E94 0000 		call rprintf1RamRom
+  62:video.c       **** 	rprintf("%s\r",MIXED_MODE);
+ 201               		.stabn	68,0,62,.LM4-initVideo
+ 202               	.LM4:
+ 203 0046 80E0      		ldi r24,lo8(.LC3)
+ 204 0048 90E0      		ldi r25,hi8(.LC3)
+ 205 004a 9F93      		push r25
+ 206 004c 8F93      		push r24
+ 207 004e 80E0      		ldi r24,lo8(__c.1476)
+ 208 0050 90E0      		ldi r25,hi8(__c.1476)
+ 209 0052 9F93      		push r25
+ 210 0054 8F93      		push r24
+ 211 0056 1F93      		push r17
+ 212 0058 0E94 0000 		call rprintf1RamRom
+  63:video.c       **** 	rprintf("%s07\r",pCHAR_COLOR); //set char color to white
+ 213               		.stabn	68,0,63,.LM5-initVideo
+ 214               	.LM5:
+ 215 005c 80E0      		ldi r24,lo8(.LC4)
+ 216 005e 90E0      		ldi r25,hi8(.LC4)
+ 217 0060 9F93      		push r25
+ 218 0062 8F93      		push r24
+ 219 0064 80E0      		ldi r24,lo8(__c.1478)
+ 220 0066 90E0      		ldi r25,hi8(__c.1478)
+GAS LISTING /var/tmp//ccDW9pmE.s 			page 6
+
+
+ 221 0068 9F93      		push r25
+ 222 006a 8F93      		push r24
+ 223 006c 1F93      		push r17
+ 224 006e 0E94 0000 		call rprintf1RamRom
+  64:video.c       **** 	rprintf("%s01\r",pBAUD); //set baud at 4800 to work with gps unit
+ 225               		.stabn	68,0,64,.LM6-initVideo
+ 226               	.LM6:
+ 227 0072 80E0      		ldi r24,lo8(.LC5)
+ 228 0074 90E0      		ldi r25,hi8(.LC5)
+ 229 0076 9F93      		push r25
+ 230 0078 8F93      		push r24
+ 231 007a 80E0      		ldi r24,lo8(__c.1480)
+ 232 007c 90E0      		ldi r25,hi8(__c.1480)
+ 233 007e 9F93      		push r25
+ 234 0080 8F93      		push r24
+ 235 0082 1F93      		push r17
+ 236 0084 0E94 0000 		call rprintf1RamRom
+ 237 0088 8DB7      		in r24,__SP_L__
+ 238 008a 9EB7      		in r25,__SP_H__
+ 239 008c 4E96      		adiw r24,30
+ 240 008e 0FB6      		in __tmp_reg__,__SREG__
+ 241 0090 F894      		cli
+ 242 0092 9EBF      		out __SP_H__,r25
+ 243 0094 0FBE      		out __SREG__,__tmp_reg__
+ 244 0096 8DBF      		out __SP_L__,r24
+ 245               	/* epilogue: frame size=0 */
+ 246 0098 1F91      		pop r17
+ 247 009a 0895      		ret
+ 248               	/* epilogue end (size=2) */
+ 249               	/* function initVideo size 78 (75) */
+ 250               		.size	initVideo, .-initVideo
+ 251               	.Lscope0:
+ 252               		.stabs	"",36,0,0,.Lscope0-initVideo
+ 253               		.stabd	78,0,0
+ 254               		.section	.progmem.data
+ 255               		.type	__c.1500, @object
+ 256               		.size	__c.1500, 13
+ 257               	__c.1500:
+ 258 001c 5825 640D 		.string	"X%d\rY%d\rS%f\r"
+ 258      5925 640D 
+ 258      5325 660D 
+ 258      00
+ 259               		.type	__c.1498, @object
+ 260               		.size	__c.1498, 13
+ 261               	__c.1498:
+ 262 0029 5825 640D 		.string	"X%d\rY%d\rS%f\r"
+ 262      5925 640D 
+ 262      5325 660D 
+ 262      00
+ 263               		.type	__c.1496, @object
+ 264               		.size	__c.1496, 13
+ 265               	__c.1496:
+ 266 0036 5825 640D 		.string	"X%d\rY%d\rS%f\r"
+ 266      5925 640D 
+ 266      5325 660D 
+ 266      00
+ 267               		.type	__c.1494, @object
+GAS LISTING /var/tmp//ccDW9pmE.s 			page 7
+
+
+ 268               		.size	__c.1494, 13
+ 269               	__c.1494:
+ 270 0043 5825 640D 		.string	"X%d\rY%d\rS%f\r"
+ 270      5925 640D 
+ 270      5325 660D 
+ 270      00
+ 271               		.type	__c.1492, @object
+ 272               		.size	__c.1492, 13
+ 273               	__c.1492:
+ 274 0050 5825 640D 		.string	"X%d\rY%d\rS%f\r"
+ 274      5925 640D 
+ 274      5325 660D 
+ 274      00
+ 275               		.type	__c.1490, @object
+ 276               		.size	__c.1490, 13
+ 277               	__c.1490:
+ 278 005d 5825 640D 		.string	"X%d\rY%d\rS%f\r"
+ 278      5925 640D 
+ 278      5325 660D 
+ 278      00
+ 279               		.text
+ 280               		.stabs	"writeVideoScreen:F(0,15)",36,0,69,writeVideoScreen
+ 281               		.stabs	"LAT:P(0,12)",64,0,68,22
+ 282               		.stabs	"LONG:P(0,12)",64,0,68,4
+ 283               		.stabs	"TIME:P(0,12)",64,0,68,14
+ 284               		.stabs	"ALTITUDE:P(0,12)",64,0,68,10
+ 285               		.stabs	"COMPASS:p(0,12)",160,0,68,20
+ 286               		.stabs	"ERROR:p(0,2)",160,0,68,24
+ 287               	.global	writeVideoScreen
+ 288               		.type	writeVideoScreen, @function
+ 289               	writeVideoScreen:
+ 290               		.stabd	46,0,0
+  65:video.c       **** }
+  66:video.c       **** 
+  67:video.c       **** 
+  68:video.c       **** void writeVideoScreen(float LAT, float LONG, float TIME, float ALTITUDE, float COMPASS, char ERROR)
+  69:video.c       **** {
+ 291               		.stabn	68,0,69,.LM7-writeVideoScreen
+ 292               	.LM7:
+ 293               	/* prologue: frame size=0 */
+ 294 009c 2F92      		push r2
+ 295 009e 3F92      		push r3
+ 296 00a0 4F92      		push r4
+ 297 00a2 5F92      		push r5
+ 298 00a4 6F92      		push r6
+ 299 00a6 7F92      		push r7
+ 300 00a8 8F92      		push r8
+ 301 00aa AF92      		push r10
+ 302 00ac BF92      		push r11
+ 303 00ae CF92      		push r12
+ 304 00b0 DF92      		push r13
+ 305 00b2 EF92      		push r14
+ 306 00b4 FF92      		push r15
+ 307 00b6 0F93      		push r16
+ 308 00b8 1F93      		push r17
+ 309 00ba CF93      		push r28
+ 310 00bc DF93      		push r29
+GAS LISTING /var/tmp//ccDW9pmE.s 			page 8
+
+
+ 311 00be CDB7      		in r28,__SP_L__
+ 312 00c0 DEB7      		in r29,__SP_H__
+ 313               	/* prologue end (size=19) */
+ 314 00c2 2901      		movw r4,r18
+ 315 00c4 3A01      		movw r6,r20
+ 316 00c6 288C      		ldd r2,Y+24
+  70:video.c       **** 	rprintf("X%d\rY%d\rS%f\r",LAT_FIELD_X,LAT_FIELD_Y,LAT);
+ 317               		.stabn	68,0,70,.LM8-writeVideoScreen
+ 318               	.LM8:
+ 319 00c8 9F93      		push r25
+ 320 00ca 8F93      		push r24
+ 321 00cc 7F93      		push r23
+ 322 00ce 6F93      		push r22
+ 323 00d0 21E0      		ldi r18,lo8(1)
+ 324 00d2 30E0      		ldi r19,hi8(1)
+ 325 00d4 3F93      		push r19
+ 326 00d6 2F93      		push r18
+ 327 00d8 1F92      		push __zero_reg__
+ 328 00da 1F92      		push __zero_reg__
+ 329 00dc 80E0      		ldi r24,lo8(__c.1490)
+ 330 00de 90E0      		ldi r25,hi8(__c.1490)
+ 331 00e0 9F93      		push r25
+ 332 00e2 8F93      		push r24
+ 333 00e4 81E0      		ldi r24,lo8(1)
+ 334 00e6 882E      		mov r8,r24
+ 335 00e8 8F92      		push r8
+ 336 00ea 0E94 0000 		call rprintf1RamRom
+  71:video.c       **** 	rprintf("X%d\rY%d\rS%f\r",LONG_FIELD_X,LONG_FIELD_X,LONG);
+ 337               		.stabn	68,0,71,.LM9-writeVideoScreen
+ 338               	.LM9:
+ 339 00ee 7F92      		push r7
+ 340 00f0 6F92      		push r6
+ 341 00f2 5F92      		push r5
+ 342 00f4 4F92      		push r4
+ 343 00f6 81E1      		ldi r24,lo8(17)
+ 344 00f8 90E0      		ldi r25,hi8(17)
+ 345 00fa 9F93      		push r25
+ 346 00fc 8F93      		push r24
+ 347 00fe 9F93      		push r25
+ 348 0100 8F93      		push r24
+ 349 0102 80E0      		ldi r24,lo8(__c.1492)
+ 350 0104 90E0      		ldi r25,hi8(__c.1492)
+ 351 0106 9F93      		push r25
+ 352 0108 8F93      		push r24
+ 353 010a 8F92      		push r8
+ 354 010c 0E94 0000 		call rprintf1RamRom
+  72:video.c       **** 	rprintf("X%d\rY%d\rS%f\r",TIME_FIELD_X,TIME_FIELD_Y,TIME);
+ 355               		.stabn	68,0,72,.LM10-writeVideoScreen
+ 356               	.LM10:
+ 357 0110 1F93      		push r17
+ 358 0112 0F93      		push r16
+ 359 0114 FF92      		push r15
+ 360 0116 EF92      		push r14
+ 361 0118 41E0      		ldi r20,lo8(1)
+ 362 011a 50E0      		ldi r21,hi8(1)
+ 363 011c 5F93      		push r21
+ 364 011e 4F93      		push r20
+GAS LISTING /var/tmp//ccDW9pmE.s 			page 9
+
+
+ 365 0120 0AE0      		ldi r16,lo8(10)
+ 366 0122 10E0      		ldi r17,hi8(10)
+ 367 0124 1F93      		push r17
+ 368 0126 0F93      		push r16
+ 369 0128 80E0      		ldi r24,lo8(__c.1494)
+ 370 012a 90E0      		ldi r25,hi8(__c.1494)
+ 371 012c 9F93      		push r25
+ 372 012e 8F93      		push r24
+ 373 0130 8F92      		push r8
+ 374 0132 0E94 0000 		call rprintf1RamRom
+  73:video.c       **** 	rprintf("X%d\rY%d\rS%f\r",TIME_FIELD_X,TIME_FIELD_Y,ALTITUDE);
+ 375               		.stabn	68,0,73,.LM11-writeVideoScreen
+ 376               	.LM11:
+ 377 0136 8DB7      		in r24,__SP_L__
+ 378 0138 9EB7      		in r25,__SP_H__
+ 379 013a 8196      		adiw r24,33
+ 380 013c 0FB6      		in __tmp_reg__,__SREG__
+ 381 013e F894      		cli
+ 382 0140 9EBF      		out __SP_H__,r25
+ 383 0142 0FBE      		out __SREG__,__tmp_reg__
+ 384 0144 8DBF      		out __SP_L__,r24
+ 385 0146 DF92      		push r13
+ 386 0148 CF92      		push r12
+ 387 014a BF92      		push r11
+ 388 014c AF92      		push r10
+ 389 014e A1E0      		ldi r26,lo8(1)
+ 390 0150 B0E0      		ldi r27,hi8(1)
+ 391 0152 BF93      		push r27
+ 392 0154 AF93      		push r26
+ 393 0156 1F93      		push r17
+ 394 0158 0F93      		push r16
+ 395 015a 80E0      		ldi r24,lo8(__c.1496)
+ 396 015c 90E0      		ldi r25,hi8(__c.1496)
+ 397 015e 9F93      		push r25
+ 398 0160 8F93      		push r24
+ 399 0162 8F92      		push r8
+ 400 0164 0E94 0000 		call rprintf1RamRom
+  74:video.c       **** 	rprintf("X%d\rY%d\rS%f\r",COMPASS_FIELD_X,COMPASS_FIELD_X,COMPASS);
+ 401               		.stabn	68,0,74,.LM12-writeVideoScreen
+ 402               	.LM12:
+ 403 0168 2C89      		ldd r18,Y+20
+ 404 016a 3D89      		ldd r19,Y+21
+ 405 016c 4E89      		ldd r20,Y+22
+ 406 016e 5F89      		ldd r21,Y+23
+ 407 0170 5F93      		push r21
+ 408 0172 4F93      		push r20
+ 409 0174 3F93      		push r19
+ 410 0176 2F93      		push r18
+ 411 0178 8FE0      		ldi r24,lo8(15)
+ 412 017a 90E0      		ldi r25,hi8(15)
+ 413 017c 9F93      		push r25
+ 414 017e 8F93      		push r24
+ 415 0180 9F93      		push r25
+ 416 0182 8F93      		push r24
+ 417 0184 80E0      		ldi r24,lo8(__c.1498)
+ 418 0186 90E0      		ldi r25,hi8(__c.1498)
+ 419 0188 9F93      		push r25
+GAS LISTING /var/tmp//ccDW9pmE.s 			page 10
+
+
+ 420 018a 8F93      		push r24
+ 421 018c 8F92      		push r8
+ 422 018e 0E94 0000 		call rprintf1RamRom
+  75:video.c       **** 	rprintf("X%d\rY%d\rS%f\r",ERROR_FIELD_X,ERROR_FIELD_X,ERROR);
+ 423               		.stabn	68,0,75,.LM13-writeVideoScreen
+ 424               	.LM13:
+ 425 0192 3324      		clr r3
+ 426 0194 27FC      		sbrc r2,7
+ 427 0196 3094      		com r3
+ 428 0198 3F92      		push r3
+ 429 019a 2F92      		push r2
+ 430 019c 8AE1      		ldi r24,lo8(26)
+ 431 019e 90E0      		ldi r25,hi8(26)
+ 432 01a0 9F93      		push r25
+ 433 01a2 8F93      		push r24
+ 434 01a4 9F93      		push r25
+ 435 01a6 8F93      		push r24
+ 436 01a8 80E0      		ldi r24,lo8(__c.1500)
+ 437 01aa 90E0      		ldi r25,hi8(__c.1500)
+ 438 01ac 9F93      		push r25
+ 439 01ae 8F93      		push r24
+ 440 01b0 8F92      		push r8
+ 441 01b2 0E94 0000 		call rprintf1RamRom
+ 442 01b6 4DB7      		in r20,__SP_L__
+ 443 01b8 5EB7      		in r21,__SP_H__
+ 444 01ba 415E      		subi r20,lo8(-(31))
+ 445 01bc 5F4F      		sbci r21,hi8(-(31))
+ 446 01be 0FB6      		in __tmp_reg__,__SREG__
+ 447 01c0 F894      		cli
+ 448 01c2 5EBF      		out __SP_H__,r21
+ 449 01c4 0FBE      		out __SREG__,__tmp_reg__
+ 450 01c6 4DBF      		out __SP_L__,r20
+ 451               	/* epilogue: frame size=0 */
+ 452 01c8 DF91      		pop r29
+ 453 01ca CF91      		pop r28
+ 454 01cc 1F91      		pop r17
+ 455 01ce 0F91      		pop r16
+ 456 01d0 FF90      		pop r15
+ 457 01d2 EF90      		pop r14
+ 458 01d4 DF90      		pop r13
+ 459 01d6 CF90      		pop r12
+ 460 01d8 BF90      		pop r11
+ 461 01da AF90      		pop r10
+ 462 01dc 8F90      		pop r8
+ 463 01de 7F90      		pop r7
+ 464 01e0 6F90      		pop r6
+ 465 01e2 5F90      		pop r5
+ 466 01e4 4F90      		pop r4
+ 467 01e6 3F90      		pop r3
+ 468 01e8 2F90      		pop r2
+ 469 01ea 0895      		ret
+ 470               	/* epilogue end (size=18) */
+ 471               	/* function writeVideoScreen size 168 (131) */
+ 472               		.size	writeVideoScreen, .-writeVideoScreen
+ 473               		.stabs	"ERROR:r(0,2)",64,0,68,2
+ 474               	.Lscope1:
+ 475               		.stabs	"",36,0,0,.Lscope1-writeVideoScreen
+GAS LISTING /var/tmp//ccDW9pmE.s 			page 11
+
+
+ 476               		.stabd	78,0,0
+ 477               		.stabs	"",100,0,0,.Letext0
+ 478               	.Letext0:
+ 479               	/* File "video.c": code  246 = 0x00f6 ( 206), prologues  20, epilogues  20 */
+GAS LISTING /var/tmp//ccDW9pmE.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 video.c
+/var/tmp//ccDW9pmE.s:3      *ABS*:0000003f __SREG__
+/var/tmp//ccDW9pmE.s:4      *ABS*:0000003e __SP_H__
+/var/tmp//ccDW9pmE.s:5      *ABS*:0000003d __SP_L__
+/var/tmp//ccDW9pmE.s:6      *ABS*:00000000 __tmp_reg__
+/var/tmp//ccDW9pmE.s:7      *ABS*:00000001 __zero_reg__
+/var/tmp//ccDW9pmE.s:118    .progmem.data:00000000 __c.1480
+/var/tmp//ccDW9pmE.s:122    .progmem.data:00000006 __c.1478
+/var/tmp//ccDW9pmE.s:126    .progmem.data:0000000c __c.1476
+/var/tmp//ccDW9pmE.s:130    .progmem.data:00000010 __c.1474
+/var/tmp//ccDW9pmE.s:134    .progmem.data:00000014 __c.1472
+/var/tmp//ccDW9pmE.s:138    .progmem.data:00000018 __c.1470
+/var/tmp//ccDW9pmE.s:157    .text:00000000 initVideo
+/var/tmp//ccDW9pmE.s:257    .progmem.data:0000001c __c.1500
+/var/tmp//ccDW9pmE.s:261    .progmem.data:00000029 __c.1498
+/var/tmp//ccDW9pmE.s:265    .progmem.data:00000036 __c.1496
+/var/tmp//ccDW9pmE.s:269    .progmem.data:00000043 __c.1494
+/var/tmp//ccDW9pmE.s:273    .progmem.data:00000050 __c.1492
+/var/tmp//ccDW9pmE.s:277    .progmem.data:0000005d __c.1490
+/var/tmp//ccDW9pmE.s:289    .text:0000009c writeVideoScreen
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+rprintf1RamRom

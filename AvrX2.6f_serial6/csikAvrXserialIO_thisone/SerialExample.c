@@ -13,6 +13,16 @@
 	the buffer size - 1 is) charactors can be received while
 	delaying.
 */
+
+/****************************************************************************************
+ ***** 					TO DO														*****
+ ***** Just realized that a blocked i2c routine stops the whole scene.  Must		*****
+ ***** make that a semaphore to another routine, and watch to see that it isn't		*****
+ ***** taking too long, or kill it and kick an error.								*****
+ ****************************************************************************************/
+
+
+
 #include <avr/io.h>
 #include <avr/pgmspace.h>
 #include <avrx-signal.h>
@@ -21,6 +31,7 @@
 #include <avr/signal.h>	// include "signal" names (interrupt names)
 #include <avr/interrupt.h>	// include interrupt support
 #include <stdlib.h>
+
 
 #include "servo.h"
 #include "a2d.h"		// include A/D converter function library
@@ -91,10 +102,10 @@ void 	i2cMaster_Receive();
 void 	i2cMaster_Send();
 
 // I2C buffers
-unsigned char slaveBuffer[] = "Pascal is cool!!Pascal is Cool!!";
-unsigned char slaveBufferLength = 0x20;
+u08 slaveBuffer[] = "Pascal is cool!!Pascal is Cool!!";
+u08 slaveBufferLength = 0x20;
 
-unsigned char masterBuffer[] = "This is one the Master board";
+unsigned char masterBuffer[] = "This one is the Master board";
 unsigned char masterBufferLength = 0x20;
 
 int leftServoPos = 50;		//0 seems to be beyond its reach
@@ -286,15 +297,7 @@ int main(void)
 
 	//////////////////////////////////////////////////////////////////////////////////
 	printf("**********************powerup*************************");
-	/*i2cMaster_Send();
-	i2cMaster_Send();
-	i2cMaster_Send();
-	i2cMaster_Send();
-	i2cMaster_Send();
-	i2cMaster_Send();
-	
-	while(1) printf_P(PSTR("a 072.5759E,"));
-	*/
+
 	AvrXRunTask(TCB(getCommands));
 	AvrXRunTask(TCB(getUAVStatus));
 
@@ -397,17 +400,19 @@ void i2cMasterSendDiag(u08 deviceAddr, u08 length, u08* data)
 
 void i2cMaster_Send(void)
 {
-	u08* sendData = parserGetArgStr();
-	sendData[0x10] = 0;
-	i2cMasterSend(TARGET_ADDR, 0x10, masterBuffer);
-	putchar('!');
+	unsigned char sendData[2];
+	sendData[0] = *parserGetArgStr();
+	sendData[1] = '\0';
+	i2cMasterSend(TARGET_ADDR, 0x02, sendData);
+	putchar(sendData[0]);
+
 	
 }
 void i2cMaster_Receive(void)
 {
-	i2cMasterReceive(TARGET_ADDR, 0x10, slaveBuffer);
-	slaveBuffer[0x10] = 0;
-	printf("S:\t%s\n",slaveBuffer); 
+	i2cMasterReceive(TARGET_ADDR, slaveBufferLength, slaveBuffer);
+	slaveBuffer[0x19] = 0;
+	printf("slav:\t%s\n",slaveBuffer); 
 	putchar('\r');
 	putchar('\n');
 }
