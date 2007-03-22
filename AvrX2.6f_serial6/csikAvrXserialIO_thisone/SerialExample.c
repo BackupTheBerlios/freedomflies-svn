@@ -79,11 +79,11 @@ typedef unsigned char BOOL;
 // Peripheral initialization
 
 #define TCNT0_INIT (0xFF-CPUCLK/256/TICKRATE)
-#define LEFT_SERVO_CHAN 	0
-#define RIGHT_SERVO_CHAN 	1
-#define THROTTLE_SERVO_CHAN 2
-#define CAM_PAN_SERVO_CHAN  3
-#define CAM_TILT_SERVO_CHAN 4
+#define LEFT_SERVO_CHAN 	4
+#define RIGHT_SERVO_CHAN 	3
+#define THROTTLE_SERVO_CHAN 0
+#define CAM_PAN_SERVO_CHAN  1
+#define CAM_TILT_SERVO_CHAN 2
 
 #define DEBUG 0
 
@@ -93,13 +93,15 @@ void setThrottleServo(void);
 void setCamPanServo(void);
 void setCamTiltServo(void);
 
-void 	i2cTest(void);
+void 	i2cSetup(void);
 void  	i2cSlaveReceiveService(u08 receiveDataLength, u08* receiveData);
 u08 	i2cSlaveTransmitService(u08 receiveDataLength, u08* receiveData);
 void 	i2cMasterSendDiag(u08 deviceAddr, u08 length, u08* data);
 
 void 	i2cMaster_Receive();
 void 	i2cMaster_Send();
+void 	i2cMaster_Auto_Send(u08 message);
+void 	i2cMaster_Auto_Receive(u08 command);
 
 // I2C buffers
 u08 slaveBuffer[] = "Pascal is cool!!Pascal is Cool!!";
@@ -172,7 +174,15 @@ AVRX_GCC_TASKDEF(getUAVStatus, 120, 4)
 //		printf_P(PSTR("1"));
 		
 		// info on all these protocols is in groundsoft/interfaces.txt
-		AvrXDelay(&timer, 100);				// these should execute at around 10hz
+		AvrXDelay(&timer, 8000);				// these should execute at around 10hz
+		i2cMaster_Auto_Send('a');
+		AvrXDelay(&timer, 1000);
+		i2cMaster_Auto_Receive('a');
+		AvrXDelay(&timer, 1000);
+		i2cMaster_Send('o');
+		AvrXDelay(&timer, 1000);
+		i2cMaster_Auto_Receive('o');
+		/*
 		printf_P(PSTR("q %d,"), 23); 
 		printf_P(PSTR("w %d,"), 5);
 		printf_P(PSTR("h %d,"), 80);
@@ -202,6 +212,7 @@ AVRX_GCC_TASKDEF(getUAVStatus, 120, 4)
 			putchar('\n');
 		}
       	task_divisor++;
+		*/
 
 	}
 }
@@ -226,18 +237,15 @@ AVRX_GCC_TASKDEF(getCommands, 200, 1)
 		AvrXDelay(&timer, 5);
 	}
 }
+/*
 
-AVRX_GCC_TASKDEF(sendSPI, 100, 3)
+AVRX_GCC_TASKDEF(init, 50, 3)
 {	
 	int c;		
 	TimerControlBlock timer;
-	
-	while (1)
-	{
-		AvrXDelay(&timer, 5);
-	}
+
 }
-	
+*/	
 
 
 int main(void)
@@ -273,8 +281,14 @@ int main(void)
 	parserAddCommand("3", 		i2cMaster_Receive);
 	
 	
+	
 	// initialize the timer system -- FROM AVRLIB
-	//timerInit();
+	timerInit();
+	
+	
+	//////////////////////////////////////////////////I2C/////////////////////////////
+	i2cSetup();
+	
 	
 	//////////////////////////////////////////////////Servos//////////////////////////
 	servoInit();
@@ -287,25 +301,22 @@ int main(void)
 	servoSetChannelIO(4, _SFR_IO_ADDR(PORTC), PC6);
 	servoSetChannelIO(5, _SFR_IO_ADDR(PORTC), PC7);
 	// set port pins to output
-	outb(DDRC, 0x1F);
+	outb(DDRC, 0xFC);
 	
-	
+
 	#define SPEED_SERVO	1
-	
-	//////////////////////////////////////////////////////////////////////////////////
-	i2cTest();
 
 	//////////////////////////////////////////////////////////////////////////////////
 	printf("**********************powerup*************************");
 
 	AvrXRunTask(TCB(getCommands));
 	AvrXRunTask(TCB(getUAVStatus));
-
-    
+	//AvrXRunTask(TCB(init));
+	
 	Epilog();
 	return(0);
 }
-void i2cTest(void)
+void i2cSetup(void)
 {
 	// initialize i2c function library
 	i2cInit();
@@ -400,21 +411,31 @@ void i2cMasterSendDiag(u08 deviceAddr, u08 length, u08* data)
 
 void i2cMaster_Send(void)
 {
-	unsigned char sendData[2];
+	u08 sendData[2];
 	sendData[0] = *parserGetArgStr();
 	sendData[1] = '\0';
 	i2cMasterSend(TARGET_ADDR, 0x02, sendData);
-	putchar(sendData[0]);
-
-	
+//	putchar(sendData[0]);
+}
+void i2cMaster_Auto_Send(u08 message)
+{
+	u08 sendData[2];
+	sendData[0] = message;
+	sendData[1] = '\0';
+	i2cMasterSend(TARGET_ADDR, 0x02, sendData);
 }
 void i2cMaster_Receive(void)
+{	
+	u08 command = *parserGetArgStr();
+	i2cMasterReceive(TARGET_ADDR, slaveBufferLength, slaveBuffer);
+	slaveBuffer[0x19] = 0;
+	printf("%c %s,",command,slaveBuffer); 
+}
+void i2cMaster_Auto_Receive(u08 command)
 {
 	i2cMasterReceive(TARGET_ADDR, slaveBufferLength, slaveBuffer);
 	slaveBuffer[0x19] = 0;
-	printf("slav:\t%s\n",slaveBuffer); 
-	putchar('\r');
-	putchar('\n');
+	printf("%c %s,",command,slaveBuffer); 
 }
 void setLeftServo(void)
 {	
@@ -454,11 +475,11 @@ void setThrottleServo(void)
 
 void setCamPanServo(void)
 {
-	u08 rawPan;
+	int rawPan;
 	
 	rawPan = parserGetArgInt();
 	
-	if( 0<= rawPan || rawPan <= 2 )
+	if( (0<= rawPan) && (rawPan <= 2) )
 	{
 		camPanServoPos = camPanServoPos + (rawPan - 1);
 		if(camPanServoPos < 1) camPanServoPos = 1;
@@ -476,10 +497,10 @@ void setCamPanServo(void)
 
 void setCamTiltServo(void)
 {
-	u08 rawTilt;
+	int rawTilt;
 	
 	rawTilt = parserGetArgInt();
-	if( 0 <= rawTilt || rawTilt <= 2 )
+	if(( 0 <= rawTilt) && (rawTilt <= 2) )
 	{
 		camTiltServoPos = camTiltServoPos + (rawTilt - 1);
 		if(camTiltServoPos < 1) camTiltServoPos = 1;
@@ -494,4 +515,5 @@ void setCamTiltServo(void)
 		}
 	}
 }
+
 

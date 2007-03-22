@@ -281,7 +281,7 @@ u08 i2cSlaveTransmitService(u08 transmitDataLengthMax, u08* transmitData)
 			rprintfFloat(8,rmc.date);
 			break;
 		default:
-			rprintf("err: ?\r\n");
+			rprintf(" E");  //CE = Command Error
 			break;
 	}
 	rprintfInit(uartSendByte);
