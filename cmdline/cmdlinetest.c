@@ -28,6 +28,7 @@
 #include "servo.h"
 #include "i2c.h"
 #include "string.h"
+#include "servoconf.h"
 //I2C address definitions
 #define LOCAL_ADDR	0xA0
 #define TARGET_ADDR	0xA0
@@ -41,6 +42,7 @@
 #define CAM_PAN_SERVO_CHAN  1
 #define CAM_TILT_SERVO_CHAN 2
 
+#define SPEED_SERVO	1
 #undef DEBUG
 
 void setLeftServo(void);
@@ -48,6 +50,7 @@ void setRightServo(void);
 void setThrottleServo(void);
 void setCamPanServo(void);
 void setCamTiltServo(void);
+void setFeedbackInterval(void);
 
 void 	i2cSetup(void);
 void  	i2cSlaveReceiveService(u08 receiveDataLength, u08* receiveData);
@@ -74,11 +77,13 @@ void dumpArgsStr(void);
 void dumpArgsInt(void);
 void dumpArgsHex(void);
 
-int leftServoPos = 50;		//0 seems to be beyond its reach
-int rightServoPos;
-int throttleServoPos;
-int camPanServoPos;
-int camTiltServoPos;
+u08 leftServoPos = 50;		//0 seems to be beyond its reach
+u08 rightServoPos;
+u08 throttleServoPos;
+u08 camPanServoPos;
+u08 camTiltServoPos;
+
+long numTimesThrough = 0;  // number of times through mainloop to send feedback
 
 //----- Begin Code ------------------------------------------------------------
 int main(void)
@@ -118,7 +123,7 @@ int main(void)
 	outb(DDRC, 0xFC);
 	
 
-	#define SPEED_SERVO	1
+
 
 	//////////////////////////////////////////////////////////////////////////////////
 	rprintf("**********************powerup*************************");
@@ -133,7 +138,7 @@ int main(void)
 void goCmdline(void)
 {
 	u08 c;
-
+	long timesThrough =0;
 	// print welcome message
 	vt100ClearScreen();
 	vt100SetCursorPos(1,0);
@@ -153,9 +158,12 @@ void goCmdline(void)
     cmdlineAddCommand("t", 		setThrottleServo);
 	cmdlineAddCommand("p", 		setCamPanServo);
 	cmdlineAddCommand("i", 		setCamTiltServo);
+	cmdlineAddCommand("f", 		setFeedbackInterval);
 	
 	cmdlineAddCommand("2", 		i2cMaster_Send);
 	cmdlineAddCommand("3", 		i2cMaster_Receive);
+	cmdlineAddCommand("das",	dumpArgsStr);
+	cmdlineAddCommand("dai",	dumpArgsInt);
 	// send a CR to cmdline input to stimulate a prompt
 	cmdlineInputFunc('\r');
 
@@ -171,6 +179,15 @@ void goCmdline(void)
 
 		// run the cmdline execution functions
 		cmdlineMainLoop();
+		timesThrough++;
+		if(numTimesThrough != 0)
+		{
+			if((timesThrough >= numTimesThrough)) 
+			{
+				rprintf("times through!\r\n");
+				timesThrough = 0;
+			}
+		}
 	}
 
 	rprintfCRLF();
@@ -368,8 +385,8 @@ void i2cMaster_Auto_Receive(u08 command)
 }
 void setLeftServo(void)
 {	
-	leftServoPos = cmdlineGetArgInt(1);
-	servoSetPosition(LEFT_SERVO_CHAN, (char)leftServoPos * 2);
+	leftServoPos = (unsigned char) cmdlineGetArgInt(1);
+	servoSetPosition(LEFT_SERVO_CHAN, leftServoPos);
 #ifdef DEBUG	
 		rprintf("e0\r\n");
 #endif DEBUG
@@ -377,8 +394,8 @@ void setLeftServo(void)
 
 void setRightServo(void)
 {	
-	rightServoPos = cmdlineGetArgInt(1);
-	servoSetPosition(RIGHT_SERVO_CHAN, (char)rightServoPos * 2);
+	rightServoPos = (unsigned char) cmdlineGetArgInt(1);
+	servoSetPosition(RIGHT_SERVO_CHAN, rightServoPos);
 #ifdef DEBUG
 		rprintf("e0\r\n");
 #endif DEBUG
@@ -386,11 +403,15 @@ void setRightServo(void)
 
 void setThrottleServo(void)
 {
-	throttleServoPos = cmdlineGetArgInt(1);
-	servoSetPosition(THROTTLE_SERVO_CHAN, (char)throttleServoPos * 2);
+	throttleServoPos = (unsigned char) cmdlineGetArgInt(1);
+	servoSetPosition(THROTTLE_SERVO_CHAN, throttleServoPos);
 #ifdef DEBUG
 		rprintf("e0\r\n");
 #endif DEBUG
+}
+void setFeedbackInterval(void)
+{
+	numTimesThrough = cmdlineGetArgInt(1);
 }
 
 void setCamPanServo(void)

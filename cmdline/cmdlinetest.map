@@ -34,14 +34,14 @@ Common symbol       size              file
 
 uartReadyTx         0x1               /opt/local/avr/sixcode//uart.o
 ServoChannel        0x1               /opt/local/avr/sixcode//servo.o
-ServoChannels       0x18              /opt/local/avr/sixcode//servo.o
-camPanServoPos      0x2               cmdlinetest.o
+ServoChannels       0x14              /opt/local/avr/sixcode//servo.o
+camPanServoPos      0x1               cmdlinetest.o
 Run                 0x1               cmdlinetest.o
 CmdlineBufferLength
                     0x1               /opt/local/avr/sixcode//cmdline.o
 errno               0x2               /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(errno.o)
-camTiltServoPos     0x2               cmdlinetest.o
-rightServoPos       0x2               cmdlinetest.o
+camTiltServoPos     0x1               cmdlinetest.o
+rightServoPos       0x1               cmdlinetest.o
 CmdlineExecFunction
                     0x2               /opt/local/avr/sixcode//cmdline.o
 ServoPosTics        0x2               /opt/local/avr/sixcode//servo.o
@@ -53,7 +53,7 @@ Timer2Reg0          0x4               /opt/local/avr/sixcode//timer.o
 ServoPeriodTics     0x2               /opt/local/avr/sixcode//servo.o
 CmdlineInputVT100State
                     0x1               /opt/local/avr/sixcode//cmdline.o
-throttleServoPos    0x2               cmdlinetest.o
+throttleServoPos    0x1               cmdlinetest.o
 CmdlineBufferEditPos
                     0x1               /opt/local/avr/sixcode//cmdline.o
 uartBufferedTx      0x1               /opt/local/avr/sixcode//uart.o
@@ -178,7 +178,7 @@ LOAD /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x29c2
+.text           0x00000000     0x29bc
  *(.vectors)
  .vectors       0x00000000       0x54 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -196,218 +196,219 @@ LOAD /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a
                 0x00000065                TimerRTCPrescaleFactor
                 0x00000075                TimerPrescaleFactor
  .progmem.data  0x00000081       0x25 /opt/local/avr/sixcode//vt100.o
- .progmem.data  0x000000a6       0x21 /opt/local/avr/sixcode//cmdline.o
+ .progmem.data  0x000000a6        0x8 /opt/local/avr/sixcode//cmdline.o
                 0x000000a6                CmdlineCmdNotFound
-                0x000000b8                CmdlineNotice
-                0x000000c2                CmdlinePrompt
- .progmem.data  0x000000c7      0x22c cmdlinetest.o
-                0x000002f4                . = ALIGN (0x2)
- *fill*         0x000002f3        0x1 00
+                0x000000ac                CmdlineNotice
+                0x000000ad                CmdlinePrompt
+ .progmem.data  0x000000ae      0x23d cmdlinetest.o
+                0x000002ec                . = ALIGN (0x2)
+ *fill*         0x000002eb        0x1 00
  *(.init0)
  *(.init1)
  *(.init2)
- .init2         0x000002f4        0xc /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+ .init2         0x000002ec        0xc /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
  *(.init3)
  *(.init4)
- .init4         0x00000300       0x16 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_copy_data.o)
-                0x00000300                __do_copy_data
- .init4         0x00000316       0x10 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_clear_bss.o)
-                0x00000316                __do_clear_bss
+ .init4         0x000002f8       0x16 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_copy_data.o)
+                0x000002f8                __do_copy_data
+ .init4         0x0000030e       0x10 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_clear_bss.o)
+                0x0000030e                __do_clear_bss
  *(.init5)
  *(.init6)
  *(.init7)
  *(.init8)
  *(.init9)
- .init9         0x00000326        0x4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+ .init9         0x0000031e        0x4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
  *(.text)
- .text          0x0000032a        0x4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
-                0x0000032a                __vector_1
-                0x0000032a                __vector_12
-                0x0000032a                __bad_interrupt
-                0x0000032a                __vector_3
-                0x0000032a                __vector_17
-                0x0000032a                __vector_2
-                0x0000032a                __vector_14
-                0x0000032a                __vector_18
-                0x0000032a                __vector_20
- .text          0x0000032e      0x15a /opt/local/avr/sixcode//buffer.o
-                0x00000464                bufferIsNotFull
-                0x00000348                bufferGetFromFront
-                0x000003e8                bufferGetAtIndex
-                0x000003a4                bufferDumpFromFront
-                0x0000032e                bufferInit
-                0x00000412                bufferAddToEnd
-                0x0000047a                bufferFlush
- .text          0x00000488      0x260 /opt/local/avr/sixcode//uart.o
-                0x000006c8                uartSendTxBuffer
-                0x00000526                uartSendByte
-                0x000004bc                uartInitBuffers
-                0x00000538                uartReceiveByte
-                0x000005ce                uartAddToTxBuffer
-                0x00000510                uartSetRxHandler
-                0x0000064a                __vector_13
-                0x000005ac                uartFlushReceiveBuffer
-                0x000004de                uartInit
-                0x000005b6                uartReceiveBufferIsEmpty
-                0x00000488                uartSetBaudRate
-                0x00000520                uartGetTxBuffer
-                0x00000570                uartGetByte
-                0x0000051a                uartGetRxBuffer
-                0x000005dc                __vector_15
- .text          0x000006e8      0x3e8 /opt/local/avr/sixcode//rprintf.o
-                0x00000994                rprintf1RamRom
-                0x000007c8                rprintfu08
-                0x000007f8                rprintfu32
-                0x00000716                rprintfStr
-                0x00000734                rprintfStrLen
-                0x0000078a                rprintfProgStr
-                0x000007de                rprintfu16
-                0x000006e8                rprintfInit
-                0x000006f2                rprintfChar
-                0x000007aa                rprintfCRLF
-                0x000007b2                rprintfu04
-                0x0000081e                rprintfNum
- .text          0x00000ad0      0x67c /opt/local/avr/sixcode//timer.o
-                0x00000cba                timer2GetOverflowCount
-                0x00000afe                timerDetach
-                0x00000b30                timer1SetPrescaler
-                0x00000d30                timer1PWMBOff
-                0x00000b82                timer2GetPrescaler
-                0x00000ff4                __vector_6
-                0x000010a8                timer0Init
-                0x00000d22                timer1PWMAOff
-                0x00000d60                timer1PWMBSet
-                0x00000d66                __vector_11
-                0x00000cfc                timer1PWMInitICR
-                0x00000b56                timer0GetPrescaler
-                0x00000f40                __vector_7
-                0x00000ca8                timer0GetOverflowCount
-                0x00000e66                __vector_5
-                0x00001100                timerInit
-                0x00000b3a                timer2SetPrescaler
-                0x00000d3e                timer1PWMAOn
-                0x00000b14                timer0SetPrescaler
-                0x00000ad0                delay_us
-                0x0000104e                __vector_4
-                0x00000b1e                timer0ClearOverflowCount
-                0x00000e0c                __vector_9
-                0x000010ca                timer1Init
-                0x00000ccc                timer1PWMInit
-                0x00000d4c                timer1PWMBOn
-                0x000010de                timer2Init
-                0x00000f9a                __vector_8
-                0x00000d5a                timer1PWMASet
-                0x00000b98                timerAttach
-                0x00001126                timer1PWMOff
-                0x00000ee6                __vector_10
-                0x00000b6c                timer1GetPrescaler
-                0x00000b44                timer2ClearOverflowCount
-                0x00000bae                timerPause
- .text          0x0000114c       0xb2 /opt/local/avr/sixcode//a2d.o
-                0x00001180                a2dIsComplete
-                0x000011b2                a2dConvert8bit
-                0x00001168                a2dOff
-                0x0000114c                a2dSetPrescaler
-                0x0000118a                a2dConvert10bit
-                0x000011e0                a2dInit
-                0x00001156                a2dSetReference
-                0x000011c2                __vector_16
-                0x0000116e                a2dSetChannel
-                0x0000117a                a2dStartConvert
- .text          0x000011fe       0x86 /opt/local/avr/sixcode//vt100.o
-                0x000011fe                vt100Init
-                0x00001212                vt100SetAttr
-                0x00001234                vt100SetCursorMode
-                0x00001256                vt100SetCursorPos
-                0x00001208                vt100ClearScreen
- .text          0x00001284      0x234 /opt/local/avr/sixcode//servo.o
-                0x00001284                servoInit
-                0x00001304                servoOff
-                0x00001366                servoSetPosition
-                0x00001384                servoGetPositionRaw
-                0x00001312                servoSetChannelIO
-                0x0000139a                servoService
-                0x0000147c                servoGetPosition
-                0x00001338                servoSetPositionRaw
- .text          0x000014b8      0x4c2 /opt/local/avr/sixcode//i2c.o
-                0x000014e6                i2cInit
-                0x00001546                i2cSendStart
-                0x0000155a                i2cWaitForComplete
-                0x00001584                i2cGetReceivedByte
-                0x0000159a                i2cMasterSend
-                0x000015e8                i2cMasterReceive
-                0x00001642                i2cMasterSendNI
-                0x000016b0                __vector_19
-                0x00001532                i2cSetSlaveReceiveHandler
-                0x00001590                i2cGetState
-                0x0000158a                i2cGetStatus
-                0x00001562                i2cSendByte
-                0x0000153c                i2cSetSlaveTransmitHandler
-                0x00001524                i2cSetLocalDeviceAddr
-                0x000018fc                i2cMasterReceiveNI
-                0x0000156e                i2cReceiveByte
-                0x000014b8                i2cSetBitrate
-                0x00001550                i2cSendStop
- .text          0x0000197a      0x568 /opt/local/avr/sixcode//cmdline.o
-                0x00001994                cmdlineAddCommand
-                0x0000197a                cmdlineInit
-                0x00001bbc                cmdlineInputFunc
-                0x00001eaa                cmdlineGetArgHex
-                0x00001a4a                cmdlineDoHistory
-                0x00001e00                cmdlineMainLoop
-                0x00001b32                cmdlineProcessInputString
-                0x000019d2                cmdlineSetOutputFunc
-                0x000019dc                cmdlinePrintPrompt
-                0x00001e1c                cmdlineGetArgStr
-                0x00001a06                cmdlineRepaint
-                0x00001aa0                cmdlinePrintError
-                0x00001e72                cmdlineGetArgInt
- .text          0x00001ee2      0x734 cmdlinetest.o
-                0x0000202e                dumpArgsStr
-                0x00002400                i2cMaster_Receive
-                0x000022d2                i2cSlaveReceiveService
-                0x0000253e                setThrottleServo
-                0x00001fc8                helpFunction
-                0x0000237c                i2cMaster_Send
-                0x0000251e                setRightServo
-                0x00002322                i2cMasterSendDiag
-                0x0000249c                i2cMaster_Auto_Receive
-                0x000025ba                setCamTiltServo
-                0x000024fe                setLeftServo
-                0x00002234                main
-                0x0000215e                dumpArgsHex
-                0x000023c8                i2cMaster_Auto_Send
-                0x0000255e                setCamPanServo
-                0x00001ee2                goCmdline
-                0x000022f6                i2cSlaveTransmitService
-                0x000020a6                dumpArgsInt
-                0x00002216                i2cSetup
-                0x00001fc2                exitFunction
- .text          0x00002616      0x256 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strtol.o)
-                0x00002616                strtol
- .text          0x0000286c        0xe /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strcpy.o)
-                0x0000286c                strcpy
- .text          0x0000287a       0x1c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncmp.o)
-                0x0000287a                strncmp
-                0x00002896                . = ALIGN (0x2)
+ .text          0x00000322        0x4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+                0x00000322                __vector_1
+                0x00000322                __vector_12
+                0x00000322                __bad_interrupt
+                0x00000322                __vector_3
+                0x00000322                __vector_17
+                0x00000322                __vector_2
+                0x00000322                __vector_14
+                0x00000322                __vector_18
+                0x00000322                __vector_20
+ .text          0x00000326      0x15a /opt/local/avr/sixcode//buffer.o
+                0x0000045c                bufferIsNotFull
+                0x00000340                bufferGetFromFront
+                0x000003e0                bufferGetAtIndex
+                0x0000039c                bufferDumpFromFront
+                0x00000326                bufferInit
+                0x0000040a                bufferAddToEnd
+                0x00000472                bufferFlush
+ .text          0x00000480      0x260 /opt/local/avr/sixcode//uart.o
+                0x000006c0                uartSendTxBuffer
+                0x0000051e                uartSendByte
+                0x000004b4                uartInitBuffers
+                0x00000530                uartReceiveByte
+                0x000005c6                uartAddToTxBuffer
+                0x00000508                uartSetRxHandler
+                0x00000642                __vector_13
+                0x000005a4                uartFlushReceiveBuffer
+                0x000004d6                uartInit
+                0x000005ae                uartReceiveBufferIsEmpty
+                0x00000480                uartSetBaudRate
+                0x00000518                uartGetTxBuffer
+                0x00000568                uartGetByte
+                0x00000512                uartGetRxBuffer
+                0x000005d4                __vector_15
+ .text          0x000006e0      0x3e8 /opt/local/avr/sixcode//rprintf.o
+                0x0000098c                rprintf1RamRom
+                0x000007c0                rprintfu08
+                0x000007f0                rprintfu32
+                0x0000070e                rprintfStr
+                0x0000072c                rprintfStrLen
+                0x00000782                rprintfProgStr
+                0x000007d6                rprintfu16
+                0x000006e0                rprintfInit
+                0x000006ea                rprintfChar
+                0x000007a2                rprintfCRLF
+                0x000007aa                rprintfu04
+                0x00000816                rprintfNum
+ .text          0x00000ac8      0x67c /opt/local/avr/sixcode//timer.o
+                0x00000cb2                timer2GetOverflowCount
+                0x00000af6                timerDetach
+                0x00000b28                timer1SetPrescaler
+                0x00000d28                timer1PWMBOff
+                0x00000b7a                timer2GetPrescaler
+                0x00000fec                __vector_6
+                0x000010a0                timer0Init
+                0x00000d1a                timer1PWMAOff
+                0x00000d58                timer1PWMBSet
+                0x00000d5e                __vector_11
+                0x00000cf4                timer1PWMInitICR
+                0x00000b4e                timer0GetPrescaler
+                0x00000f38                __vector_7
+                0x00000ca0                timer0GetOverflowCount
+                0x00000e5e                __vector_5
+                0x000010f8                timerInit
+                0x00000b32                timer2SetPrescaler
+                0x00000d36                timer1PWMAOn
+                0x00000b0c                timer0SetPrescaler
+                0x00000ac8                delay_us
+                0x00001046                __vector_4
+                0x00000b16                timer0ClearOverflowCount
+                0x00000e04                __vector_9
+                0x000010c2                timer1Init
+                0x00000cc4                timer1PWMInit
+                0x00000d44                timer1PWMBOn
+                0x000010d6                timer2Init
+                0x00000f92                __vector_8
+                0x00000d52                timer1PWMASet
+                0x00000b90                timerAttach
+                0x0000111e                timer1PWMOff
+                0x00000ede                __vector_10
+                0x00000b64                timer1GetPrescaler
+                0x00000b3c                timer2ClearOverflowCount
+                0x00000ba6                timerPause
+ .text          0x00001144       0xb2 /opt/local/avr/sixcode//a2d.o
+                0x00001178                a2dIsComplete
+                0x000011aa                a2dConvert8bit
+                0x00001160                a2dOff
+                0x00001144                a2dSetPrescaler
+                0x00001182                a2dConvert10bit
+                0x000011d8                a2dInit
+                0x0000114e                a2dSetReference
+                0x000011ba                __vector_16
+                0x00001166                a2dSetChannel
+                0x00001172                a2dStartConvert
+ .text          0x000011f6       0x86 /opt/local/avr/sixcode//vt100.o
+                0x000011f6                vt100Init
+                0x0000120a                vt100SetAttr
+                0x0000122c                vt100SetCursorMode
+                0x0000124e                vt100SetCursorPos
+                0x00001200                vt100ClearScreen
+ .text          0x0000127c      0x238 /opt/local/avr/sixcode//servo.o
+                0x0000127c                servoInit
+                0x000012fc                servoOff
+                0x0000135e                servoSetPosition
+                0x0000137c                servoGetPositionRaw
+                0x0000130a                servoSetChannelIO
+                0x00001392                servoService
+                0x00001478                servoGetPosition
+                0x00001330                servoSetPositionRaw
+ .text          0x000014b4      0x4c2 /opt/local/avr/sixcode//i2c.o
+                0x000014e2                i2cInit
+                0x00001542                i2cSendStart
+                0x00001556                i2cWaitForComplete
+                0x00001580                i2cGetReceivedByte
+                0x00001596                i2cMasterSend
+                0x000015e4                i2cMasterReceive
+                0x0000163e                i2cMasterSendNI
+                0x000016ac                __vector_19
+                0x0000152e                i2cSetSlaveReceiveHandler
+                0x0000158c                i2cGetState
+                0x00001586                i2cGetStatus
+                0x0000155e                i2cSendByte
+                0x00001538                i2cSetSlaveTransmitHandler
+                0x00001520                i2cSetLocalDeviceAddr
+                0x000018f8                i2cMasterReceiveNI
+                0x0000156a                i2cReceiveByte
+                0x000014b4                i2cSetBitrate
+                0x0000154c                i2cSendStop
+ .text          0x00001976      0x552 /opt/local/avr/sixcode//cmdline.o
+                0x00001990                cmdlineAddCommand
+                0x00001976                cmdlineInit
+                0x00001bb8                cmdlineInputFunc
+                0x00001e90                cmdlineGetArgHex
+                0x00001a46                cmdlineDoHistory
+                0x00001de6                cmdlineMainLoop
+                0x00001b2e                cmdlineProcessInputString
+                0x000019ce                cmdlineSetOutputFunc
+                0x000019d8                cmdlinePrintPrompt
+                0x00001e02                cmdlineGetArgStr
+                0x00001a02                cmdlineRepaint
+                0x00001a9c                cmdlinePrintError
+                0x00001e58                cmdlineGetArgInt
+ .text          0x00001ec8      0x748 cmdlinetest.o
+                0x00002096                dumpArgsStr
+                0x00002468                i2cMaster_Receive
+                0x0000233a                i2cSlaveReceiveService
+                0x0000258a                setThrottleServo
+                0x00002030                helpFunction
+                0x000023e4                i2cMaster_Send
+                0x00002578                setRightServo
+                0x0000238a                i2cMasterSendDiag
+                0x00002504                i2cMaster_Auto_Receive
+                0x000025e2                setCamTiltServo
+                0x00002566                setLeftServo
+                0x0000259c                setFeedbackInterval
+                0x0000229c                main
+                0x000021c6                dumpArgsHex
+                0x00002430                i2cMaster_Auto_Send
+                0x000025b4                setCamPanServo
+                0x00001ec8                goCmdline
+                0x0000235e                i2cSlaveTransmitService
+                0x0000210e                dumpArgsInt
+                0x0000227e                i2cSetup
+                0x0000202a                exitFunction
+ .text          0x00002610      0x256 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strtol.o)
+                0x00002610                strtol
+ .text          0x00002866        0xe /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strcpy.o)
+                0x00002866                strcpy
+ .text          0x00002874       0x1c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncmp.o)
+                0x00002874                strncmp
+                0x00002890                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x00002896       0x3e /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_mulsi3.o)
-                0x00002896                __mulsi3
- .text.libgcc   0x000028d4       0x28 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodhi4.o)
-                0x000028d4                __udivmodhi4
- .text.libgcc   0x000028fc       0x26 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodhi4.o)
-                0x000028fc                __divmodhi4
-                0x000028fc                _div
- .text.libgcc   0x00002922       0x44 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodsi4.o)
-                0x00002922                __udivmodsi4
- .text.libgcc   0x00002966       0x36 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodsi4.o)
-                0x00002966                __divmodsi4
- .text.ctype    0x0000299c       0x1e /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isspace.o)
-                0x0000299c                isspace
- .text.ctype    0x000029ba        0x6 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(cty_isfalse.o)
-                0x000029be                __ctype_istrue
-                0x000029ba                __ctype_isfalse
-                0x000029c0                . = ALIGN (0x2)
+ .text.libgcc   0x00002890       0x3e /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_mulsi3.o)
+                0x00002890                __mulsi3
+ .text.libgcc   0x000028ce       0x28 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodhi4.o)
+                0x000028ce                __udivmodhi4
+ .text.libgcc   0x000028f6       0x26 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodhi4.o)
+                0x000028f6                __divmodhi4
+                0x000028f6                _div
+ .text.libgcc   0x0000291c       0x44 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodsi4.o)
+                0x0000291c                __udivmodsi4
+ .text.libgcc   0x00002960       0x36 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodsi4.o)
+                0x00002960                __divmodsi4
+ .text.ctype    0x00002996       0x1e /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isspace.o)
+                0x00002996                isspace
+ .text.ctype    0x000029b4        0x6 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(cty_isfalse.o)
+                0x000029b8                __ctype_istrue
+                0x000029b4                __ctype_isfalse
+                0x000029ba                . = ALIGN (0x2)
  *(.fini9)
  *(.fini8)
  *(.fini7)
@@ -418,81 +419,84 @@ LOAD /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a
  *(.fini2)
  *(.fini1)
  *(.fini0)
- .fini0         0x000029c0        0x2 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_exit.o)
-                0x000029c2                _etext = .
+ .fini0         0x000029ba        0x2 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_exit.o)
+                0x000029bc                _etext = .
 
-.data           0x00800060       0x50 load address 0x000029c2
+.data           0x00800060       0x5a load address 0x000029bc
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
- .data          0x00800060       0x50 cmdlinetest.o
-                0x00800063                masterBuffer
-                0x00800081                slaveBuffer
-                0x00800062                masterBufferLength
-                0x00800080                slaveBufferLength
+ .data          0x00800060       0x59 cmdlinetest.o
+                0x00800062                masterBuffer
+                0x00800080                slaveBuffer
+                0x00800061                masterBufferLength
+                0x0080007f                slaveBufferLength
                 0x00800060                leftServoPos
  *(.gnu.linkonce.d*)
-                0x008000b0                . = ALIGN (0x2)
-                0x008000b0                _edata = .
-                0x008000b0                PROVIDE (__data_end, .)
+                0x008000ba                . = ALIGN (0x2)
+ *fill*         0x008000b9        0x1 00
+                0x008000ba                _edata = .
+                0x008000ba                PROVIDE (__data_end, .)
 
-.bss            0x008000b0      0x27a
-                0x008000b0                PROVIDE (__bss_start, .)
+.bss            0x008000ba      0x276
+                0x008000ba                PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x008000b0       0x82 /opt/local/avr/sixcode//uart.o
- .bss           0x00800132        0x2 /opt/local/avr/sixcode//rprintf.o
- .bss           0x00800134       0x10 /opt/local/avr/sixcode//timer.o
- .bss           0x00800144       0x4b /opt/local/avr/sixcode//i2c.o
- .bss           0x0080018f       0xac /opt/local/avr/sixcode//cmdline.o
+ .bss           0x008000ba       0x82 /opt/local/avr/sixcode//uart.o
+ .bss           0x0080013c        0x2 /opt/local/avr/sixcode//rprintf.o
+ .bss           0x0080013e       0x10 /opt/local/avr/sixcode//timer.o
+ .bss           0x0080014e       0x4b /opt/local/avr/sixcode//i2c.o
+ .bss           0x00800199       0xac /opt/local/avr/sixcode//cmdline.o
+ .bss           0x00800245        0x4 cmdlinetest.o
+                0x00800245                numTimesThrough
  *(COMMON)
- COMMON         0x0080023b       0x14 /opt/local/avr/sixcode//uart.o
-                0x0080023b                uartReadyTx
-                0x0080023c                uartRxBuffer
-                0x00800244                uartBufferedTx
-                0x00800245                uartTxBuffer
-                0x0080024d                uartRxOverflow
- COMMON         0x0080024f        0xc /opt/local/avr/sixcode//timer.o
-                0x0080024f                Timer0Reg0
-                0x00800253                TimerPauseReg
-                0x00800257                Timer2Reg0
- COMMON         0x0080025b        0x1 /opt/local/avr/sixcode//a2d.o
-                0x0080025b                a2dCompleteFlag
- COMMON         0x0080025c       0x1d /opt/local/avr/sixcode//servo.o
-                0x0080025c                ServoChannel
-                0x0080025d                ServoChannels
-                0x00800275                ServoPosTics
-                0x00800277                ServoPeriodTics
- COMMON         0x00800279       0xa6 /opt/local/avr/sixcode//cmdline.o
-                0x00800279                CmdlineBufferLength
-                0x0080027a                CmdlineExecFunction
-                0x0080027c                CmdlineNumCommands
-                0x0080027d                CmdlineInputVT100State
-                0x0080027e                CmdlineBufferEditPos
-                0x0080027f                CmdlineBuffer
-                0x008002cf                CmdlineHistory
- COMMON         0x0080031f        0x9 cmdlinetest.o
-                0x0080031f                camPanServoPos
-                0x00800321                Run
-                0x00800322                camTiltServoPos
-                0x00800324                rightServoPos
-                0x00800326                throttleServoPos
- COMMON         0x00800328        0x2 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(errno.o)
-                0x00800328                errno
-                0x0080032a                PROVIDE (__bss_end, .)
-                0x000029c2                __data_load_start = LOADADDR (.data)
-                0x00002a12                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800249       0x14 /opt/local/avr/sixcode//uart.o
+                0x00800249                uartReadyTx
+                0x0080024a                uartRxBuffer
+                0x00800252                uartBufferedTx
+                0x00800253                uartTxBuffer
+                0x0080025b                uartRxOverflow
+ COMMON         0x0080025d        0xc /opt/local/avr/sixcode//timer.o
+                0x0080025d                Timer0Reg0
+                0x00800261                TimerPauseReg
+                0x00800265                Timer2Reg0
+ COMMON         0x00800269        0x1 /opt/local/avr/sixcode//a2d.o
+                0x00800269                a2dCompleteFlag
+ COMMON         0x0080026a       0x19 /opt/local/avr/sixcode//servo.o
+                0x0080026a                ServoChannel
+                0x0080026b                ServoChannels
+                0x0080027f                ServoPosTics
+                0x00800281                ServoPeriodTics
+ COMMON         0x00800283       0xa6 /opt/local/avr/sixcode//cmdline.o
+                0x00800283                CmdlineBufferLength
+                0x00800284                CmdlineExecFunction
+                0x00800286                CmdlineNumCommands
+                0x00800287                CmdlineInputVT100State
+                0x00800288                CmdlineBufferEditPos
+                0x00800289                CmdlineBuffer
+                0x008002d9                CmdlineHistory
+ COMMON         0x00800329        0x5 cmdlinetest.o
+                0x00800329                camPanServoPos
+                0x0080032a                Run
+                0x0080032b                camTiltServoPos
+                0x0080032c                rightServoPos
+                0x0080032d                throttleServoPos
+ COMMON         0x0080032e        0x2 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(errno.o)
+                0x0080032e                errno
+                0x00800330                PROVIDE (__bss_end, .)
+                0x000029bc                __data_load_start = LOADADDR (.data)
+                0x00002a16                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080032a        0x0
-                0x0080032a                PROVIDE (__noinit_start, .)
+.noinit         0x00800330        0x0
+                0x00800330                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x0080032a                PROVIDE (__noinit_end, .)
-                0x0080032a                _end = .
-                0x0080032a                PROVIDE (__heap_start, .)
+                0x00800330                PROVIDE (__noinit_end, .)
+                0x00800330                _end = .
+                0x00800330                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
                 0x00810000                __eeprom_end = .
 
-.stab           0x00000000     0x6e7c
+.stab           0x00000000     0x6f24
  *(.stab)
  .stab          0x00000000      0x36c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
  .stab          0x0000036c      0x918 /opt/local/avr/sixcode//buffer.o
@@ -507,30 +511,30 @@ LOAD /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a
                                 0x7b0 (size before relaxing)
  .stab          0x0000342c      0x2f4 /opt/local/avr/sixcode//vt100.o
                                 0x63c (size before relaxing)
- .stab          0x00003720      0x618 /opt/local/avr/sixcode//servo.o
-                                0x8b8 (size before relaxing)
- .stab          0x00003d38      0xdd4 /opt/local/avr/sixcode//i2c.o
+ .stab          0x00003720      0x630 /opt/local/avr/sixcode//servo.o
+                                0x8d0 (size before relaxing)
+ .stab          0x00003d50      0xdd4 /opt/local/avr/sixcode//i2c.o
                                0x1140 (size before relaxing)
- .stab          0x00004b0c      0xd44 /opt/local/avr/sixcode//cmdline.o
-                               0x108c (size before relaxing)
- .stab          0x00005850      0xeb8 cmdlinetest.o
-                               0x11f4 (size before relaxing)
- .stab          0x00006708      0x414 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strtol.o)
+ .stab          0x00004b24      0xd38 /opt/local/avr/sixcode//cmdline.o
+                               0x1080 (size before relaxing)
+ .stab          0x0000585c      0xf54 cmdlinetest.o
+                               0x1290 (size before relaxing)
+ .stab          0x000067b0      0x414 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strtol.o)
                                 0x420 (size before relaxing)
- .stab          0x00006b1c       0xf0 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isspace.o)
+ .stab          0x00006bc4       0xf0 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isspace.o)
                                  0xfc (size before relaxing)
- .stab          0x00006c0c       0x6c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strcpy.o)
+ .stab          0x00006cb4       0x6c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strcpy.o)
                                  0x78 (size before relaxing)
- .stab          0x00006c78       0xc0 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncmp.o)
+ .stab          0x00006d20       0xc0 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncmp.o)
                                  0xcc (size before relaxing)
- .stab          0x00006d38       0xe4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(errno.o)
+ .stab          0x00006de0       0xe4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(errno.o)
                                  0xf0 (size before relaxing)
- .stab          0x00006e1c       0x60 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(cty_isfalse.o)
+ .stab          0x00006ec4       0x60 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(cty_isfalse.o)
                                  0x6c (size before relaxing)
 
-.stabstr        0x00000000     0x30ab
+.stabstr        0x00000000     0x30f1
  *(.stabstr)
- .stabstr       0x00000000     0x30ab /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
+ .stabstr       0x00000000     0x30f1 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
 
 .stab.excl
  *(.stab.excl)
@@ -803,6 +807,7 @@ main                                              cmdlinetest.o
                                                   /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
 masterBuffer                                      cmdlinetest.o
 masterBufferLength                                cmdlinetest.o
+numTimesThrough                                   cmdlinetest.o
 rightServoPos                                     cmdlinetest.o
 rprintf1RamRom                                    /opt/local/avr/sixcode//rprintf.o
                                                   cmdlinetest.o
@@ -837,6 +842,7 @@ servoSetPosition                                  /opt/local/avr/sixcode//servo.
 servoSetPositionRaw                               /opt/local/avr/sixcode//servo.o
 setCamPanServo                                    cmdlinetest.o
 setCamTiltServo                                   cmdlinetest.o
+setFeedbackInterval                               cmdlinetest.o
 setLeftServo                                      cmdlinetest.o
 setRightServo                                     cmdlinetest.o
 setThrottleServo                                  cmdlinetest.o

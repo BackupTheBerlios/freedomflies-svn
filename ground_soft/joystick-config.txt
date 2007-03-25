@@ -5,6 +5,7 @@
 #first entry is default
 
 {
+'Saitek AV8R-01':{'X':0,'Y':1,'Throttle':3,'Hat':(0)}, 
 'Logitech Wingman Attack2':{'X':0,'Y':1,'Throttle':2,'Hat':(-1)},
 'Saitek X45':{'X':0,'Y':1,'Throttle':2,'Hat':(14,15,16,17)}
 }

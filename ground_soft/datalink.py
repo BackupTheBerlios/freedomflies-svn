@@ -98,9 +98,11 @@ class radiolink(object):
 				
 	def UplinkThread(self):
 		#save values between loops
-		old_x_val = 0
-		old_y_val = 0
+		old_l_val = 0
+		old_r_val = 0
 		old_throttle_val = 0
+		old_xhat = 0
+		old_yhat = 0
 		while(self.upalive.isSet()):
 			#get current stick axis values
 			pygame.event.pump()
@@ -111,37 +113,41 @@ class radiolink(object):
 			
 			data_types = ['l','r','t','p','i']
 			command_list = []
+			data_value = 0
 			
 			for data_type in data_types:
+				new_data = 0
 				if data_type == 'l':
 					#joystick left
-					if ((x_val < 0) and (x_val != old_x_val)):
-						data_value = -1*int(x_val*127/100.0)
-					else:
-						data_value = 0
-				
+					if ((x_val <= 0) and (abs(x_val - old_l_val)>2)):
+						data_value = -1*int(x_val*255/100.0)
+						old_l_val = x_val
+						new_data = 1
 				elif data_type == 'r':
 					#joystick right
-					if ((x_val > 0) and (x_val != old_x_val)):
-						data_value = int(x_val*127/100.0)
-					else:
-						data_value = 0
-				
+					if ((x_val >= 0) and (abs(x_val - old_r_val)>2)):
+						data_value = int(x_val*255/100.0)
+						old_r_val = x_val	
+						new_data = 1
 				elif data_type == 't':
 					#throttle
-					if throttle_val != old_throttle_val:
-						data_value = int(throttle_val*127/100.0)
-					else:
-						data_value = 0
-						
+					# it seems like this is pretty weird -- just for the av8r?
+					if((abs(throttle_val-old_throttle_val))>2):
+						data_value = int(throttle_val*255/100.0)
+						old_throttle_val = throttle_val
+						new_data = 1
 				elif data_type == 'p':
 					#camera pan
-					data_value = x_hat
-						
+					if(x_hat != old_xhat):
+						data_value = x_hat
+						old_xhat = data_value
+						new_data = 1
 				elif data_type == 'i':
 					#camera tilt
-					data_value = y_hat #export for write
-					
+					if(x_hat != old_xhat):
+						data_value = y_hat #export for write
+						old_yhat = data_value
+						new_data = 1
 				else: #shouldn't ever get here
 					data_value = 0
 				
@@ -150,8 +156,7 @@ class radiolink(object):
 				#command = string.join([data_type," ",chr(data_value),"\r\n"],"")
 				#serial protocol is "x <ascii code>\r"
 				#use chr to get string of one character with ordinal i; 0 <= i < 256
-				if abs(data_value) > 0:	
-					#only write commands with interesting data
+				if (new_data != 0):
 					command_list.append(command)
 			
 			for out_string in command_list:
