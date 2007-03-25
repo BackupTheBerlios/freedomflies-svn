@@ -178,7 +178,7 @@ LOAD /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x29bc
+.text           0x00000000     0x29a4
  *(.vectors)
  .vectors       0x00000000       0x54 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -348,67 +348,67 @@ LOAD /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a
                 0x0000156a                i2cReceiveByte
                 0x000014b4                i2cSetBitrate
                 0x0000154c                i2cSendStop
- .text          0x00001976      0x552 /opt/local/avr/sixcode//cmdline.o
+ .text          0x00001976      0x53a /opt/local/avr/sixcode//cmdline.o
                 0x00001990                cmdlineAddCommand
                 0x00001976                cmdlineInit
                 0x00001bb8                cmdlineInputFunc
-                0x00001e90                cmdlineGetArgHex
+                0x00001e78                cmdlineGetArgHex
                 0x00001a46                cmdlineDoHistory
-                0x00001de6                cmdlineMainLoop
+                0x00001dce                cmdlineMainLoop
                 0x00001b2e                cmdlineProcessInputString
                 0x000019ce                cmdlineSetOutputFunc
                 0x000019d8                cmdlinePrintPrompt
-                0x00001e02                cmdlineGetArgStr
+                0x00001dea                cmdlineGetArgStr
                 0x00001a02                cmdlineRepaint
                 0x00001a9c                cmdlinePrintError
-                0x00001e58                cmdlineGetArgInt
- .text          0x00001ec8      0x748 cmdlinetest.o
-                0x00002096                dumpArgsStr
-                0x00002468                i2cMaster_Receive
-                0x0000233a                i2cSlaveReceiveService
-                0x0000258a                setThrottleServo
-                0x00002030                helpFunction
-                0x000023e4                i2cMaster_Send
-                0x00002578                setRightServo
-                0x0000238a                i2cMasterSendDiag
-                0x00002504                i2cMaster_Auto_Receive
-                0x000025e2                setCamTiltServo
-                0x00002566                setLeftServo
-                0x0000259c                setFeedbackInterval
-                0x0000229c                main
-                0x000021c6                dumpArgsHex
-                0x00002430                i2cMaster_Auto_Send
-                0x000025b4                setCamPanServo
-                0x00001ec8                goCmdline
-                0x0000235e                i2cSlaveTransmitService
-                0x0000210e                dumpArgsInt
-                0x0000227e                i2cSetup
-                0x0000202a                exitFunction
- .text          0x00002610      0x256 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strtol.o)
-                0x00002610                strtol
- .text          0x00002866        0xe /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strcpy.o)
-                0x00002866                strcpy
- .text          0x00002874       0x1c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncmp.o)
-                0x00002874                strncmp
-                0x00002890                . = ALIGN (0x2)
+                0x00001e40                cmdlineGetArgInt
+ .text          0x00001eb0      0x748 cmdlinetest.o
+                0x0000207e                dumpArgsStr
+                0x00002450                i2cMaster_Receive
+                0x00002322                i2cSlaveReceiveService
+                0x00002572                setThrottleServo
+                0x00002018                helpFunction
+                0x000023cc                i2cMaster_Send
+                0x00002560                setRightServo
+                0x00002372                i2cMasterSendDiag
+                0x000024ec                i2cMaster_Auto_Receive
+                0x000025ca                setCamTiltServo
+                0x0000254e                setLeftServo
+                0x00002584                setFeedbackInterval
+                0x00002284                main
+                0x000021ae                dumpArgsHex
+                0x00002418                i2cMaster_Auto_Send
+                0x0000259c                setCamPanServo
+                0x00001eb0                goCmdline
+                0x00002346                i2cSlaveTransmitService
+                0x000020f6                dumpArgsInt
+                0x00002266                i2cSetup
+                0x00002012                exitFunction
+ .text          0x000025f8      0x256 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strtol.o)
+                0x000025f8                strtol
+ .text          0x0000284e        0xe /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strcpy.o)
+                0x0000284e                strcpy
+ .text          0x0000285c       0x1c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncmp.o)
+                0x0000285c                strncmp
+                0x00002878                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x00002890       0x3e /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_mulsi3.o)
-                0x00002890                __mulsi3
- .text.libgcc   0x000028ce       0x28 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodhi4.o)
-                0x000028ce                __udivmodhi4
- .text.libgcc   0x000028f6       0x26 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodhi4.o)
-                0x000028f6                __divmodhi4
-                0x000028f6                _div
- .text.libgcc   0x0000291c       0x44 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodsi4.o)
-                0x0000291c                __udivmodsi4
- .text.libgcc   0x00002960       0x36 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodsi4.o)
-                0x00002960                __divmodsi4
- .text.ctype    0x00002996       0x1e /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isspace.o)
-                0x00002996                isspace
- .text.ctype    0x000029b4        0x6 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(cty_isfalse.o)
-                0x000029b8                __ctype_istrue
-                0x000029b4                __ctype_isfalse
-                0x000029ba                . = ALIGN (0x2)
+ .text.libgcc   0x00002878       0x3e /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_mulsi3.o)
+                0x00002878                __mulsi3
+ .text.libgcc   0x000028b6       0x28 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodhi4.o)
+                0x000028b6                __udivmodhi4
+ .text.libgcc   0x000028de       0x26 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodhi4.o)
+                0x000028de                __divmodhi4
+                0x000028de                _div
+ .text.libgcc   0x00002904       0x44 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_udivmodsi4.o)
+                0x00002904                __udivmodsi4
+ .text.libgcc   0x00002948       0x36 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_divmodsi4.o)
+                0x00002948                __divmodsi4
+ .text.ctype    0x0000297e       0x1e /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isspace.o)
+                0x0000297e                isspace
+ .text.ctype    0x0000299c        0x6 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(cty_isfalse.o)
+                0x000029a0                __ctype_istrue
+                0x0000299c                __ctype_isfalse
+                0x000029a2                . = ALIGN (0x2)
  *(.fini9)
  *(.fini8)
  *(.fini7)
@@ -419,10 +419,10 @@ LOAD /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a
  *(.fini2)
  *(.fini1)
  *(.fini0)
- .fini0         0x000029ba        0x2 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_exit.o)
-                0x000029bc                _etext = .
+ .fini0         0x000029a2        0x2 /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a(_exit.o)
+                0x000029a4                _etext = .
 
-.data           0x00800060       0x5a load address 0x000029bc
+.data           0x00800060       0x5a load address 0x000029a4
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060       0x59 cmdlinetest.o
@@ -482,8 +482,8 @@ LOAD /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a
  COMMON         0x0080032e        0x2 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(errno.o)
                 0x0080032e                errno
                 0x00800330                PROVIDE (__bss_end, .)
-                0x000029bc                __data_load_start = LOADADDR (.data)
-                0x00002a16                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000029a4                __data_load_start = LOADADDR (.data)
+                0x000029fe                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800330        0x0
                 0x00800330                PROVIDE (__noinit_start, .)
@@ -496,7 +496,7 @@ LOAD /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a
  *(.eeprom*)
                 0x00810000                __eeprom_end = .
 
-.stab           0x00000000     0x6f24
+.stab           0x00000000     0x6f0c
  *(.stab)
  .stab          0x00000000      0x36c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/crtm32.o
  .stab          0x0000036c      0x918 /opt/local/avr/sixcode//buffer.o
@@ -515,21 +515,21 @@ LOAD /opt/local/lib/gcc/avr/4.0.2/avr5/libgcc.a
                                 0x8d0 (size before relaxing)
  .stab          0x00003d50      0xdd4 /opt/local/avr/sixcode//i2c.o
                                0x1140 (size before relaxing)
- .stab          0x00004b24      0xd38 /opt/local/avr/sixcode//cmdline.o
-                               0x1080 (size before relaxing)
- .stab          0x0000585c      0xf54 cmdlinetest.o
+ .stab          0x00004b24      0xd20 /opt/local/avr/sixcode//cmdline.o
+                               0x1068 (size before relaxing)
+ .stab          0x00005844      0xf54 cmdlinetest.o
                                0x1290 (size before relaxing)
- .stab          0x000067b0      0x414 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strtol.o)
+ .stab          0x00006798      0x414 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strtol.o)
                                 0x420 (size before relaxing)
- .stab          0x00006bc4       0xf0 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isspace.o)
+ .stab          0x00006bac       0xf0 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(isspace.o)
                                  0xfc (size before relaxing)
- .stab          0x00006cb4       0x6c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strcpy.o)
+ .stab          0x00006c9c       0x6c /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strcpy.o)
                                  0x78 (size before relaxing)
- .stab          0x00006d20       0xc0 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncmp.o)
+ .stab          0x00006d08       0xc0 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(strncmp.o)
                                  0xcc (size before relaxing)
- .stab          0x00006de0       0xe4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(errno.o)
+ .stab          0x00006dc8       0xe4 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(errno.o)
                                  0xf0 (size before relaxing)
- .stab          0x00006ec4       0x60 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(cty_isfalse.o)
+ .stab          0x00006eac       0x60 /opt/local/lib/gcc/avr/4.0.2/../../../../avr/lib/avr5/libc.a(cty_isfalse.o)
                                  0x6c (size before relaxing)
 
 .stabstr        0x00000000     0x30f1

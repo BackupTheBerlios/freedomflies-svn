@@ -165,10 +165,7 @@ class radiolink(object):
 					print "UPLINK:",out_string
 					log.Log('u',out_string)
 			#csik		
-			time.sleep(1/15.) #run at 15 Hz
-			old_x_val = x_val
-			old_y_val = y_val
-			old_throttle_val = throttle_val
+			time.sleep(1/30.) #run at 15 Hz
 			#end csik
 	#end UplinkThread		
 	
