@@ -48,8 +48,10 @@
 #define TIME_FIELD_Y 1
 #define ALTITUDE_FIELD_X 14
 #define ALTITUDE_FIELD_Y 1
-#define COMPASS_FIELD_X 15
-#define COMPASS_FIELD_Y 10
+#define COURSE_FIELD_X 15
+#define COURSE_FIELD_Y 10
+#define SPEED_FIELD_X 10
+#define SPEED_FIELD_Y 10
 #define ERROR_FIELD_X 26
 #define ERROR_FIELD_Y 10
 
@@ -65,12 +67,13 @@ void initVideo(void)
 }
 
 
-void writeVideoScreen(float LAT, float LONG, float TIME, float ALTITUDE, float COMPASS, char ERROR)
+void writeVideoScreen(float LAT, float LONG, float TIME, float ALTITUDE, float COURSE, float SPEED, char ERROR)
 {
 	rprintf("X%d\rY%d\rS%f\r",LAT_FIELD_X,LAT_FIELD_Y,LAT);
 	rprintf("X%d\rY%d\rS%f\r",LONG_FIELD_X,LONG_FIELD_X,LONG);
 	rprintf("X%d\rY%d\rS%f\r",TIME_FIELD_X,TIME_FIELD_Y,TIME);
 	rprintf("X%d\rY%d\rS%f\r",TIME_FIELD_X,TIME_FIELD_Y,ALTITUDE);
-	rprintf("X%d\rY%d\rS%f\r",COMPASS_FIELD_X,COMPASS_FIELD_X,COMPASS);
+	rprintf("X%d\rY%d\rS%f\r",COURSE_FIELD_X,COURSE_FIELD_Y,COURSE);
+	rprintf("X%d\rY%d\rS%f\r",SPEED_FIELD_X,SPEED_FIELD_Y,SPEED);
 	rprintf("X%d\rY%d\rS%f\r",ERROR_FIELD_X,ERROR_FIELD_X,ERROR);
 }

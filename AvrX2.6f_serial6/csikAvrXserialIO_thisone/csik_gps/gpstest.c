@@ -87,15 +87,17 @@ int main(void)
 	//vt100ClearScreen();
 	//vt100SetCursorPos(1,1);
 	// print a little intro message so we know things are working
-	rprintf("\r\nWelcome to i2c test!\r\n");
+#ifndef USE_VID_CARD 
+	// print an intro message
+	rprintf("\r\nWelcome to GPS subsystem!\r\n");
+#endif USE_VID_CARD
 
-	// initialize the timer system
+////// initialize the timer system
 	timerInit();
  	timerPause(500);
-	// print an intro message
-	rprintf("\r\nGPS TEST\r\n");
-	
-	//initialize i2c
+
+
+////// initialize i2c///////////////////////////////////////////////////////////////////
 	// initialize i2c function library
 	i2cInit();
 	// set local device address and allow response to general call
@@ -146,7 +148,7 @@ int main(void)
 				switch(status) {
 					case NMEAP_GPGGA:
 #ifdef USE_VID_CARD
-						writeVideoScreen(gga.latitude, gga.longitude, gga.time, gga.altitude, rmc.course, 'n');
+						writeVideoScreen(gga.latitude, gga.longitude, gga.time, gga.altitude, rmc.course, rmc.speed, 'n');
 #endif /*#define USE_VID_CARD*/
 #ifndef USE_VID_CARD
 						rprintf("GGA");
@@ -171,7 +173,7 @@ int main(void)
 						break;
 					case NMEAP_GPRMC:
 #ifdef USE_VID_CARD
-						writeVideoScreen(gga.latitude, gga.longitude, gga.time, gga.altitude, rmc.course, 'n');
+						writeVideoScreen(gga.latitude, gga.longitude, gga.time, gga.altitude, rmc.course, rmc.speed, 'n');
 #endif /* USE_VID_CARD */
 #ifndef USE_VID_CARD
 						rprintf("RMC");

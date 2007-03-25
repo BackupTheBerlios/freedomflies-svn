@@ -110,6 +110,8 @@ u08 slaveBufferLength = 0x20;
 unsigned char masterBuffer[] = "This one is the Master board";
 unsigned char masterBufferLength = 0x20;
 
+char buffer[20]; //used for sprintfing
+
 int leftServoPos = 50;		//0 seems to be beyond its reach
 int rightServoPos;
 int throttleServoPos;
@@ -161,11 +163,10 @@ void myputs_P(int (*putch)(char), const uint8_t * psz)
 //#if (USART_CHANNELS & CHANNEL_0)
 
 //tell the ground station I am OK by sending a "1" 10 times a second
-AVRX_GCC_TASKDEF(getUAVStatus, 120, 4)
+AVRX_GCC_TASKDEF(getUAVStatus, 120, 1)
 {	
 	TimerControlBlock timer;
-	int roll = 0;
-	char updown = 1;
+	
 	char task_divisor = 0;
 	while(1)
 	{
@@ -174,7 +175,9 @@ AVRX_GCC_TASKDEF(getUAVStatus, 120, 4)
 //		printf_P(PSTR("1"));
 		
 		// info on all these protocols is in groundsoft/interfaces.txt
+		
 		AvrXDelay(&timer, 8000);				// these should execute at around 10hz
+		/*
 		i2cMaster_Auto_Send('a');
 		AvrXDelay(&timer, 1000);
 		i2cMaster_Auto_Receive('a');
@@ -182,6 +185,7 @@ AVRX_GCC_TASKDEF(getUAVStatus, 120, 4)
 		i2cMaster_Send('o');
 		AvrXDelay(&timer, 1000);
 		i2cMaster_Auto_Receive('o');
+		*/
 		/*
 		printf_P(PSTR("q %d,"), 23); 
 		printf_P(PSTR("w %d,"), 5);
@@ -427,15 +431,20 @@ void i2cMaster_Auto_Send(u08 message)
 void i2cMaster_Receive(void)
 {	
 	u08 command = *parserGetArgStr();
+	
 	i2cMasterReceive(TARGET_ADDR, slaveBufferLength, slaveBuffer);
 	slaveBuffer[0x19] = 0;
-	printf("%c %s,",command,slaveBuffer); 
+	sprintf(buffer,"%c %s,",command,slaveBuffer );
+	printf(buffer); 
 }
 void i2cMaster_Auto_Receive(u08 command)
 {
 	i2cMasterReceive(TARGET_ADDR, slaveBufferLength, slaveBuffer);
+
+	
 	slaveBuffer[0x19] = 0;
-	printf("%c %s,",command,slaveBuffer); 
+	sprintf(buffer,"%c %s,",command,slaveBuffer );
+	printf(buffer);
 }
 void setLeftServo(void)
 {	
@@ -443,9 +452,7 @@ void setLeftServo(void)
 	servoSetPosition(LEFT_SERVO_CHAN, (char)leftServoPos * 2);
 	if (DEBUG)
 	{	
-		printf("e0");
-		putchar('\r');
-		putchar('\n');
+		printf_P(PSTR("e0\r\n"));
 	}
 }
 
@@ -455,9 +462,7 @@ void setRightServo(void)
 	servoSetPosition(RIGHT_SERVO_CHAN, (char)rightServoPos * 2);
 	if (DEBUG)
 	{	
-		printf("e0");
-		putchar('\r');
-		putchar('\n');
+		printf_P(PSTR("e0\r\n"));
 	}
 }
 
@@ -467,10 +472,9 @@ void setThrottleServo(void)
 	servoSetPosition(THROTTLE_SERVO_CHAN, (char)throttleServoPos * 2);
 	if (DEBUG)
 	{	
-		printf("e0");
-		putchar('\r');
-		putchar('\n');
+		printf_P(PSTR("e0\r\n"));
 	}
+
 }
 
 void setCamPanServo(void)
@@ -488,10 +492,9 @@ void setCamPanServo(void)
 		servoSetPosition(CAM_PAN_SERVO_CHAN, (char)camPanServoPos);
 		if (DEBUG)
 		{	
-			printf("e0");
-			putchar('\r');
-			putchar('\n');
+			printf_P(PSTR("e0\r\n"));
 		}
+
 	}
 }
 
@@ -509,10 +512,9 @@ void setCamTiltServo(void)
 		servoSetPosition(CAM_TILT_SERVO_CHAN, (char)camTiltServoPos);
 		if (DEBUG)
 		{	
-			printf("Camera Tilt Servo Set: %d", camTiltServoPos);
-			putchar('\r');
-			putchar('\n');
+			printf_P(PSTR("e0\r\n"));
 		}
+
 	}
 }
 

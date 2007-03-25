@@ -1,4 +1,4 @@
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
 
 
    1               		.file	"gpstest.c"
@@ -58,7 +58,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
   55               		.stabs	"uint_fast16_t:t(4,22)=(4,4)",128,0,215,0
   56               		.stabs	"int_fast32_t:t(4,23)=(4,5)",128,0,220,0
   57               		.stabs	"uint_fast32_t:t(4,24)=(4,6)",128,0,225,0
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 2
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 2
 
 
   58               		.stabs	"int_fast64_t:t(4,25)=(4,7)",128,0,230,0
@@ -118,7 +118,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  112               		.stabs	"prog_uint64_t:t(10,19)=(10,20)=(0,7)",128,0,214,0
  113               		.stabn	162,0,0,0
  114               		.stabn	162,0,0,0
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 3
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 3
 
 
  115               		.stabs	"nmeap.h",130,0,0,0
@@ -178,7 +178,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  169               		.type	localBuffer, @object
  170               		.size	localBuffer, 34
  171               	localBuffer:
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 4
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 4
 
 
  172 0001 5468 6973 		.string	"This should be filling with data!"
@@ -238,7 +238,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
   40:nmeap01.c     **** /* forward references */
   41:nmeap01.c     **** int nmeap_init(nmeap_context_t *context,void *user_data);
   42:nmeap01.c     **** int nmeap_addParser(nmeap_context_t         *context,
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 5
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 5
 
 
   43:nmeap01.c     **** 					 const char             *sentence_name,
@@ -298,7 +298,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
   97:nmeap01.c     **** 
   98:nmeap01.c     **** 
   99:nmeap01.c     **** 
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 6
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 6
 
 
  100:nmeap01.c     **** /**
@@ -358,7 +358,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  184               	.LM0:
  185               	/* prologue: frame size=0 */
  186 0000 CF93      		push r28
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 7
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 7
 
 
  187 0002 DF93      		push r29
@@ -418,7 +418,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  226 0034 DF91      		pop r29
  227 0036 CF91      		pop r28
  228 0038 0895      		ret
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 8
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 8
 
 
  229               	/* epilogue end (size=3) */
@@ -478,7 +478,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  207:nmeap01.c     ****     /* point at next empty sentence buffer */
  208:nmeap01.c     ****     s = &context->sentence[context->sentence_count];
  209:nmeap01.c     ****     
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 9
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 9
 
 
  210:nmeap01.c     ****     /* advance sentence data count */
@@ -538,7 +538,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  263 0050 30E0      		ldi r19,hi8(0)
  264 0052 19C0      		rjmp .L9
  265               	.L10:
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 10
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 10
 
 
  245:nmeap01.c     ****     /* get rest of tokens */
@@ -598,7 +598,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  299               	.LM15:
  300 007c 1C92      		st X,__zero_reg__
  301 007e 02C0      		rjmp .L15
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 11
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 11
 
 
  302               	.L11:
@@ -658,7 +658,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  340               		.stabd	46,0,0
  282:nmeap01.c     **** /**
  283:nmeap01.c     ****  * process a sentence 
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 12
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 12
 
 
  284:nmeap01.c     ****  */
@@ -718,7 +718,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  298:nmeap01.c     ****     /* try to find a matching sentence parser */
  299:nmeap01.c     ****     /* this search is O(n). it has a lot of potential for optimization, at the expense of complexit
  300:nmeap01.c     ****     /* binary search instead of linear (have to keep sentences in sorted order) O(NlogN) */
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 13
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 13
 
 
  301:nmeap01.c     ****     /* OR, when sentences are added, create a TRIE structure to find the names with a constant time
@@ -778,7 +778,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  426 0118 8881      		ld r24,Y
  427 011a 9981      		ldd r25,Y+1
  428 011c C057      		subi r28,lo8(-(-112))
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 14
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 14
 
 
  429 011e D040      		sbci r29,hi8(-(-112))
@@ -838,7 +838,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  329:nmeap01.c     ****                                  
  330:nmeap01.c     **** return to start conditions:
  331:nmeap01.c     **** 1. buffer overflow
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 15
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 15
 
 
  332:nmeap01.c     **** 2. invalid character for state
@@ -898,7 +898,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  499 0170 1982      		std Y+1,__zero_reg__
  500 0172 1882      		st Y,__zero_reg__
  501 0174 C457      		subi r28,lo8(-(-372))
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 16
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 16
 
 
  502 0176 D140      		sbci r29,hi8(-(-372))
@@ -958,7 +958,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  544 01b8 09F4      		brne .+2
  545 01ba 5EC0      		rjmp .L37
  546 01bc 8430      		cpi r24,4
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 17
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 17
 
 
  547 01be 9105      		cpc r25,__zero_reg__
@@ -1018,7 +1018,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  594 0208 FEC0      		rjmp .L74
  595               	.L42:
  370:nmeap01.c     ****         else {
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 18
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 18
 
 
  371:nmeap01.c     ****             /* header error, start over */
@@ -1078,7 +1078,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  632 023e E3C0      		rjmp .L74
  389:nmeap01.c     ****                 context->input_state = 2;
  390:nmeap01.c     ****             }
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 19
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 19
 
 
  633               		.stabn	68,0,390,.LM44-nmeap_parse
@@ -1138,7 +1138,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  669 026a 1882      		st Y,__zero_reg__
  409:nmeap01.c     ****             context->input_state = 6;
  670               		.stabn	68,0,409,.LM50-nmeap_parse
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 20
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 20
 
 
  671               	.LM50:
@@ -1198,7 +1198,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  710 02a4 802F      		mov r24,r16
  711 02a6 8295      		swap r24
  712 02a8 807F      		andi r24,0xf0
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 21
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 21
 
 
  713 02aa C458      		subi r28,lo8(-(380))
@@ -1258,7 +1258,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  752 02ea 6753      		subi r22,lo8(-(-55))
  753               	.L64:
  754 02ec C458      		subi r28,lo8(-(380))
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 22
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 22
 
 
  755 02ee DE4F      		sbci r29,hi8(-(380))
@@ -1318,7 +1318,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  796               		.stabn	68,0,452,.LM62-nmeap_parse
  797               	.LM62:
  798 032a 86E0      		ldi r24,lo8(6)
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 23
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 23
 
 
  799 032c 90E0      		ldi r25,hi8(6)
@@ -1378,7 +1378,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  472:nmeap01.c     **** 				
  834               		.stabn	68,0,472,.LM66-nmeap_parse
  835               	.LM66:
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 24
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 24
 
 
  836 0362 CE01      		movw r24,r28
@@ -1438,7 +1438,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  879 03aa DE4F      		sbci r29,hi8(-(372))
  880 03ac 1982      		std Y+1,__zero_reg__
  881 03ae 1882      		st Y,__zero_reg__
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 25
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 25
 
 
  484:nmeap01.c     ****         }
@@ -1498,7 +1498,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  925 03ec A281      		ldd r26,Z+2
  926 03ee B381      		ldd r27,Z+3
  927 03f0 0196      		adiw r24,1
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 26
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 26
 
 
  928 03f2 A11D      		adc r26,__zero_reg__
@@ -1558,7 +1558,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  976               		.stabd	46,0,0
  501:nmeap01.c     **** /** 
  502:nmeap01.c     ****  * parse a buffer of nmea data
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 27
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 27
 
 
  503:nmeap01.c     ****  */
@@ -1618,7 +1618,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1013 0456 C401      		movw r24,r8
  1014 0458 0E94 0000 		call nmeap_parse
  521:nmeap01.c     ****             /* message found or error */
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 28
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 28
 
 
  1015               		.stabn	68,0,521,.LM81-nmeap_parseBuffer
@@ -1678,7 +1678,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1062               		.stabd	78,0,0
  1063               		.stabs	"dist:F(0,13)",36,0,4,dist
  1064               		.stabs	"from:p(20,1)",160,0,4,1
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 29
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 29
 
 
  1065               		.stabs	"to:p(20,1)",160,0,4,9
@@ -1738,7 +1738,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1115 04e0 FE86      		std Y+14,r15
  1116 04e2 0F87      		std Y+15,r16
  1117 04e4 188B      		std Y+16,r17
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 30
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 30
 
 
    5:gpsmath.c     ****     double a, delta_lat, delta_lon;
@@ -1798,7 +1798,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1161 0538 5C89      		ldd r21,Y+20
  1162 053a 0E94 0000 		call __subsf3
  1163 053e 20E0      		ldi r18,lo8(0x3f000000)
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 31
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 31
 
 
  1164 0540 30E0      		ldi r19,hi8(0x3f000000)
@@ -1858,7 +1858,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1218 05be 0E94 0000 		call __mulsf3
  1219 05c2 3B01      		movw r6,r22
  1220 05c4 4C01      		movw r8,r24
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 32
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 32
 
 
  1221 05c6 6989      		ldd r22,Y+17
@@ -1918,7 +1918,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1274 0642 0E94 0000 		call __mulsf3
  1275               	/* epilogue: frame size=20 */
  1276 0646 6496      		adiw r28,20
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 33
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 33
 
 
  1277 0648 0FB6      		in __tmp_reg__,__SREG__
@@ -1978,7 +1978,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1325 0688 AF92      		push r10
  1326 068a BF92      		push r11
  1327 068c CF92      		push r12
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 34
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 34
 
 
  1328 068e DF92      		push r13
@@ -2038,7 +2038,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1379 06f2 9C8B      		std Y+20,r25
   26:gpsmath.c     ****     to.lat = to.lat*M_PI/180;
  1380               		.stabn	68,0,26,.LM91-bearing
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 35
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 35
 
 
  1381               	.LM91:
@@ -2098,7 +2098,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1431 075e AC01      		movw r20,r24
  1432 0760 C801      		movw r24,r16
  1433 0762 B701      		movw r22,r14
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 36
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 36
 
 
  1434 0764 0E94 0000 		call __subsf3
@@ -2158,7 +2158,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1487               	.LM94:
  1488 07dc C401      		movw r24,r8
  1489 07de B301      		movw r22,r6
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 37
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 37
 
 
  1490 07e0 0E94 0000 		call sin
@@ -2210,15 +2210,15 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1536               	.Lscope6:
  1537               		.stabs	"",36,0,0,.Lscope6-bearing
  1538               		.stabd	78,0,0
- 1539               		.stabs	"addToBuffer:F(0,15)",36,0,214,addToBuffer
- 1540               		.stabs	"ch:P(0,11)",64,0,214,24
+ 1539               		.stabs	"addToBuffer:F(0,15)",36,0,216,addToBuffer
+ 1540               		.stabs	"ch:P(0,11)",64,0,216,24
  1541               	.global	addToBuffer
  1542               		.type	addToBuffer, @function
  1543               	addToBuffer:
  1544               		.stabd	46,0,0
  1545               		.stabs	"gpstest.c",132,0,0,.Ltext3
  1546               	.Ltext3:
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 38
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 38
 
 
    1:gpstest.c     **** //Integration test of GPs nmea parse code with No.6
@@ -2278,7 +2278,7 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
   55:gpstest.c     **** 	int status;
   56:gpstest.c     ****     // Test of csik's gps math code
   57:gpstest.c     ****     struct waypoint from,to;
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 39
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 39
 
 
   58:gpstest.c     ****     //from.lat = 50.0912;
@@ -2313,197 +2313,199 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
   87:gpstest.c     **** 	//vt100ClearScreen();
   88:gpstest.c     **** 	//vt100SetCursorPos(1,1);
   89:gpstest.c     **** 	// print a little intro message so we know things are working
-  90:gpstest.c     **** 	rprintf("\r\nWelcome to i2c test!\r\n");
-  91:gpstest.c     **** 
-  92:gpstest.c     **** 	// initialize the timer system
-  93:gpstest.c     **** 	timerInit();
-  94:gpstest.c     ****  	timerPause(500);
-  95:gpstest.c     **** 	// print an intro message
-  96:gpstest.c     **** 	rprintf("\r\nGPS TEST\r\n");
-  97:gpstest.c     **** 	
-  98:gpstest.c     **** 	//initialize i2c
-  99:gpstest.c     **** 	// initialize i2c function library
- 100:gpstest.c     **** 	i2cInit();
- 101:gpstest.c     **** 	// set local device address and allow response to general call
- 102:gpstest.c     **** 	i2cSetLocalDeviceAddr(LOCAL_ADDR, TRUE);
- 103:gpstest.c     **** 	// set the Slave Receive Handler function
- 104:gpstest.c     **** 	// (this function will run whenever a master somewhere else on the bus
- 105:gpstest.c     **** 	//  writes data to us as a slave)
- 106:gpstest.c     **** 	i2cSetSlaveReceiveHandler( i2cSlaveReceiveService );
- 107:gpstest.c     **** 	// set the Slave Transmit Handler function
- 108:gpstest.c     **** 	// (this function will run whenever a master somewhere else on the bus
- 109:gpstest.c     **** 	//  attempts to read data from us as a slave)
- 110:gpstest.c     **** 	i2cSetSlaveTransmitHandler( i2cSlaveTransmitService );
- 111:gpstest.c     **** 	
- 112:gpstest.c     **** 	
- 113:gpstest.c     ****    	//initialize the gps receive buffer
- 114:gpstest.c     ****    	bufferInit(&gpsBuffer,gpsBufferData,UART_RX_BUFFER_SIZE);
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 40
+  90:gpstest.c     **** #ifndef USE_VID_CARD 
+  91:gpstest.c     **** 	// print an intro message
+  92:gpstest.c     **** 	rprintf("\r\nWelcome to GPS subsystem!\r\n");
+  93:gpstest.c     **** #endif USE_VID_CARD
+  94:gpstest.c     **** 
+  95:gpstest.c     **** ////// initialize the timer system
+  96:gpstest.c     **** 	timerInit();
+  97:gpstest.c     ****  	timerPause(500);
+  98:gpstest.c     **** 
+  99:gpstest.c     **** 
+ 100:gpstest.c     **** ////// initialize i2c///////////////////////////////////////////////////////////////////
+ 101:gpstest.c     **** 	// initialize i2c function library
+ 102:gpstest.c     **** 	i2cInit();
+ 103:gpstest.c     **** 	// set local device address and allow response to general call
+ 104:gpstest.c     **** 	i2cSetLocalDeviceAddr(LOCAL_ADDR, TRUE);
+ 105:gpstest.c     **** 	// set the Slave Receive Handler function
+ 106:gpstest.c     **** 	// (this function will run whenever a master somewhere else on the bus
+ 107:gpstest.c     **** 	//  writes data to us as a slave)
+ 108:gpstest.c     **** 	i2cSetSlaveReceiveHandler( i2cSlaveReceiveService );
+ 109:gpstest.c     **** 	// set the Slave Transmit Handler function
+ 110:gpstest.c     **** 	// (this function will run whenever a master somewhere else on the bus
+ 111:gpstest.c     **** 	//  attempts to read data from us as a slave)
+ 112:gpstest.c     **** 	i2cSetSlaveTransmitHandler( i2cSlaveTransmitService );
+ 113:gpstest.c     **** 	
+ 114:gpstest.c     **** 	
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 40
 
 
- 115:gpstest.c     **** 
- 116:gpstest.c     **** 	uartSetRxHandler(addToBuffer); //custom handler	
- 117:gpstest.c     **** 	
- 118:gpstest.c     **** 	rprintf("set handler\r\n");
+ 115:gpstest.c     ****    	//initialize the gps receive buffer
+ 116:gpstest.c     ****    	bufferInit(&gpsBuffer,gpsBufferData,UART_RX_BUFFER_SIZE);
+ 117:gpstest.c     **** 
+ 118:gpstest.c     **** 	uartSetRxHandler(addToBuffer); //custom handler	
  119:gpstest.c     **** 	
- 120:gpstest.c     **** 	//initialize gps library
- 121:gpstest.c     **** 	status = nmeap_init(&nmea,&user_data);
- 122:gpstest.c     **** 	if (status != 0) {
- 123:gpstest.c     ****         rprintf("nmeap_init %d\n",status);
- 124:gpstest.c     ****     }
- 125:gpstest.c     ****    	// initialize gps parsers 
- 126:gpstest.c     **** 	status = nmeap_addParser(&nmea,"GPGGA",nmeap_gpgga,0,&gga);
- 127:gpstest.c     **** 	if (status != 0) {
- 128:gpstest.c     ****         rprintf("nmeap_add GGA %d\n",status);
- 129:gpstest.c     ****     }
- 130:gpstest.c     ****     status = nmeap_addParser(&nmea,"GPRMC",nmeap_gprmc,0,&rmc);
- 131:gpstest.c     ****     if (status != 0) {
- 132:gpstest.c     ****         rprintf("nmeap_add RMC %d\n",status);
- 133:gpstest.c     ****     }
- 134:gpstest.c     **** 	rprintf("gga.latitude = ");
- 135:gpstest.c     **** 	rprintfFloat(8,gga.latitude);
- 136:gpstest.c     **** 	rprintf("\r\n");
- 137:gpstest.c     **** 	
- 138:gpstest.c     **** 	for(;;) {
- 139:gpstest.c     **** 		//set up variables for access by spi routine
- 140:gpstest.c     **** 		float latitude, longitude, altitude, speed;
- 141:gpstest.c     **** 		//make sure we have data
- 142:gpstest.c     **** 		char ch = bufferGetFromFront(&gpsBuffer);
- 143:gpstest.c     **** 		if(ch != 0) {
- 144:gpstest.c     **** 				//rprintf("%c",ch); //debug
- 145:gpstest.c     **** 				status = nmeap_parse(&nmea,ch);
- 146:gpstest.c     **** 				switch(status) {
- 147:gpstest.c     **** 					case NMEAP_GPGGA:
- 148:gpstest.c     **** #ifdef USE_VID_CARD
- 149:gpstest.c     **** 						writeVideoScreen(gga.latitude, gga.longitude, gga.time, gga.altitude, rmc.course, 'n');
- 150:gpstest.c     **** #endif /*#define USE_VID_CARD*/
- 151:gpstest.c     **** #ifndef USE_VID_CARD
- 152:gpstest.c     **** 						rprintf("GGA");
- 153:gpstest.c     **** 						rprintf("\tLat: ");
- 154:gpstest.c     **** 						rprintfFloat(8,gga.latitude);
- 155:gpstest.c     **** 						rprintf(" Lon: ");
- 156:gpstest.c     **** 						rprintfFloat(8,gga.longitude);
- 157:gpstest.c     **** 						rprintf(" Alt: ");
- 158:gpstest.c     **** 						rprintfFloat(8,gga.altitude);
- 159:gpstest.c     **** 						rprintf("\r\n");
- 160:gpstest.c     **** 						
- 161:gpstest.c     **** 						//print distance to 77 Mass Ave
- 162:gpstest.c     **** 						from.lat = gga.latitude;
- 163:gpstest.c     **** 						from.lon = gga.longitude;
- 164:gpstest.c     **** 						rprintf("Dist to 77 (km): ");
- 165:gpstest.c     **** 						rprintfFloat(8,dist(from,to));
- 166:gpstest.c     **** 						rprintf("\r\n");
- 167:gpstest.c     **** 						rprintf("Bearing to 77 (deg): ");
- 168:gpstest.c     **** 						rprintfFloat(8,bearing(from,to));
- 169:gpstest.c     **** 						rprintf("\r\n\r\n");
- 170:gpstest.c     **** #endif /* NOT using vid card */
- 171:gpstest.c     **** 						break;
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 41
+ 120:gpstest.c     **** 	rprintf("set handler\r\n");
+ 121:gpstest.c     **** 	
+ 122:gpstest.c     **** 	//initialize gps library
+ 123:gpstest.c     **** 	status = nmeap_init(&nmea,&user_data);
+ 124:gpstest.c     **** 	if (status != 0) {
+ 125:gpstest.c     ****         rprintf("nmeap_init %d\n",status);
+ 126:gpstest.c     ****     }
+ 127:gpstest.c     ****    	// initialize gps parsers 
+ 128:gpstest.c     **** 	status = nmeap_addParser(&nmea,"GPGGA",nmeap_gpgga,0,&gga);
+ 129:gpstest.c     **** 	if (status != 0) {
+ 130:gpstest.c     ****         rprintf("nmeap_add GGA %d\n",status);
+ 131:gpstest.c     ****     }
+ 132:gpstest.c     ****     status = nmeap_addParser(&nmea,"GPRMC",nmeap_gprmc,0,&rmc);
+ 133:gpstest.c     ****     if (status != 0) {
+ 134:gpstest.c     ****         rprintf("nmeap_add RMC %d\n",status);
+ 135:gpstest.c     ****     }
+ 136:gpstest.c     **** 	rprintf("gga.latitude = ");
+ 137:gpstest.c     **** 	rprintfFloat(8,gga.latitude);
+ 138:gpstest.c     **** 	rprintf("\r\n");
+ 139:gpstest.c     **** 	
+ 140:gpstest.c     **** 	for(;;) {
+ 141:gpstest.c     **** 		//set up variables for access by spi routine
+ 142:gpstest.c     **** 		float latitude, longitude, altitude, speed;
+ 143:gpstest.c     **** 		//make sure we have data
+ 144:gpstest.c     **** 		char ch = bufferGetFromFront(&gpsBuffer);
+ 145:gpstest.c     **** 		if(ch != 0) {
+ 146:gpstest.c     **** 				//rprintf("%c",ch); //debug
+ 147:gpstest.c     **** 				status = nmeap_parse(&nmea,ch);
+ 148:gpstest.c     **** 				switch(status) {
+ 149:gpstest.c     **** 					case NMEAP_GPGGA:
+ 150:gpstest.c     **** #ifdef USE_VID_CARD
+ 151:gpstest.c     **** 						writeVideoScreen(gga.latitude, gga.longitude, gga.time, gga.altitude, rmc.course, rmc.speed, 
+ 152:gpstest.c     **** #endif /*#define USE_VID_CARD*/
+ 153:gpstest.c     **** #ifndef USE_VID_CARD
+ 154:gpstest.c     **** 						rprintf("GGA");
+ 155:gpstest.c     **** 						rprintf("\tLat: ");
+ 156:gpstest.c     **** 						rprintfFloat(8,gga.latitude);
+ 157:gpstest.c     **** 						rprintf(" Lon: ");
+ 158:gpstest.c     **** 						rprintfFloat(8,gga.longitude);
+ 159:gpstest.c     **** 						rprintf(" Alt: ");
+ 160:gpstest.c     **** 						rprintfFloat(8,gga.altitude);
+ 161:gpstest.c     **** 						rprintf("\r\n");
+ 162:gpstest.c     **** 						
+ 163:gpstest.c     **** 						//print distance to 77 Mass Ave
+ 164:gpstest.c     **** 						from.lat = gga.latitude;
+ 165:gpstest.c     **** 						from.lon = gga.longitude;
+ 166:gpstest.c     **** 						rprintf("Dist to 77 (km): ");
+ 167:gpstest.c     **** 						rprintfFloat(8,dist(from,to));
+ 168:gpstest.c     **** 						rprintf("\r\n");
+ 169:gpstest.c     **** 						rprintf("Bearing to 77 (deg): ");
+ 170:gpstest.c     **** 						rprintfFloat(8,bearing(from,to));
+ 171:gpstest.c     **** 						rprintf("\r\n\r\n");
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 41
 
 
- 172:gpstest.c     **** 					case NMEAP_GPRMC:
- 173:gpstest.c     **** #ifdef USE_VID_CARD
- 174:gpstest.c     **** 						writeVideoScreen(gga.latitude, gga.longitude, gga.time, gga.altitude, rmc.course, 'n');
- 175:gpstest.c     **** #endif /* USE_VID_CARD */
- 176:gpstest.c     **** #ifndef USE_VID_CARD
- 177:gpstest.c     **** 						rprintf("RMC");
- 178:gpstest.c     **** 						//rprintf("\tLat: ");
- 179:gpstest.c     **** 						//rprintfFloat(8,rmc.latitude);
- 180:gpstest.c     **** 						//rprintf(" Lon: ");
- 181:gpstest.c     **** 						//rprintfFloat(8,rmc.longitude);
- 182:gpstest.c     **** 						rprintf(" Vel (kt): ");
- 183:gpstest.c     **** 						rprintfFloat(8,rmc.speed);
- 184:gpstest.c     **** 						rprintf(" Course over ground (deg): ")
- 185:gpstest.c     **** 						rprintfFloat(8,rmc.course);
- 186:gpstest.c     **** 						rprintf("\r\n");
- 187:gpstest.c     **** #endif /* NOT using vid card */
- 188:gpstest.c     **** 						break;
- 189:gpstest.c     **** 					default:
+ 172:gpstest.c     **** #endif /* NOT using vid card */
+ 173:gpstest.c     **** 						break;
+ 174:gpstest.c     **** 					case NMEAP_GPRMC:
+ 175:gpstest.c     **** #ifdef USE_VID_CARD
+ 176:gpstest.c     **** 						writeVideoScreen(gga.latitude, gga.longitude, gga.time, gga.altitude, rmc.course, rmc.speed, 
+ 177:gpstest.c     **** #endif /* USE_VID_CARD */
+ 178:gpstest.c     **** #ifndef USE_VID_CARD
+ 179:gpstest.c     **** 						rprintf("RMC");
+ 180:gpstest.c     **** 						//rprintf("\tLat: ");
+ 181:gpstest.c     **** 						//rprintfFloat(8,rmc.latitude);
+ 182:gpstest.c     **** 						//rprintf(" Lon: ");
+ 183:gpstest.c     **** 						//rprintfFloat(8,rmc.longitude);
+ 184:gpstest.c     **** 						rprintf(" Vel (kt): ");
+ 185:gpstest.c     **** 						rprintfFloat(8,rmc.speed);
+ 186:gpstest.c     **** 						rprintf(" Course over ground (deg): ")
+ 187:gpstest.c     **** 						rprintfFloat(8,rmc.course);
+ 188:gpstest.c     **** 						rprintf("\r\n");
+ 189:gpstest.c     **** #endif /* NOT using vid card */
  190:gpstest.c     **** 						break;
- 191:gpstest.c     **** 			        } //end switch	
- 192:gpstest.c     **** 			
- 193:gpstest.c     **** 			}//	end if(ch != 0)
+ 191:gpstest.c     **** 					default:
+ 192:gpstest.c     **** 						break;
+ 193:gpstest.c     **** 			        } //end switch	
  194:gpstest.c     **** 			
- 195:gpstest.c     **** 			//  here one would write to the video and the i2c buffer... set a mutex?  in other words, we wan
- 196:gpstest.c     **** 			// use two data objects, write back and forth and switch in a single operation?
- 197:gpstest.c     **** 			// write a make a readable write b make b readable
- 198:gpstest.c     **** 			// writeVideoScreen(gga.latitude, gga.longitude, gga.altitude, speed, char ERROR)
- 199:gpstest.c     **** 			
- 200:gpstest.c     **** 			// OR, should the master give a character and then receive a value?
- 201:gpstest.c     **** 			// that would seem to make more sense, but it means sort of immediate updates...
- 202:gpstest.c     **** 			rprintf(".\r");
- 203:gpstest.c     **** 
- 204:gpstest.c     **** 			if(message_sent != 0)
- 205:gpstest.c     **** 			{
- 206:gpstest.c     **** 				message_sent = 1;
- 207:gpstest.c     **** 				rprintf("\r\nsent i2c!");
- 208:gpstest.c     **** 			}
- 209:gpstest.c     **** 	} //end for
- 210:gpstest.c     **** 	
- 211:gpstest.c     **** 	return 0;
- 212:gpstest.c     **** }
- 213:gpstest.c     **** 
- 214:gpstest.c     **** void addToBuffer(unsigned char ch) {
- 1547               		.stabn	68,0,214,.LM95-addToBuffer
+ 195:gpstest.c     **** 			}//	end if(ch != 0)
+ 196:gpstest.c     **** 			
+ 197:gpstest.c     **** 			//  here one would write to the video and the i2c buffer... set a mutex?  in other words, we wan
+ 198:gpstest.c     **** 			// use two data objects, write back and forth and switch in a single operation?
+ 199:gpstest.c     **** 			// write a make a readable write b make b readable
+ 200:gpstest.c     **** 			// writeVideoScreen(gga.latitude, gga.longitude, gga.altitude, speed, char ERROR)
+ 201:gpstest.c     **** 			
+ 202:gpstest.c     **** 			// OR, should the master give a character and then receive a value?
+ 203:gpstest.c     **** 			// that would seem to make more sense, but it means sort of immediate updates...
+ 204:gpstest.c     **** 			rprintf(".\r");
+ 205:gpstest.c     **** 
+ 206:gpstest.c     **** 			if(message_sent != 0)
+ 207:gpstest.c     **** 			{
+ 208:gpstest.c     **** 				message_sent = 1;
+ 209:gpstest.c     **** 				rprintf("\r\nsent i2c!");
+ 210:gpstest.c     **** 			}
+ 211:gpstest.c     **** 	} //end for
+ 212:gpstest.c     **** 	
+ 213:gpstest.c     **** 	return 0;
+ 214:gpstest.c     **** }
+ 215:gpstest.c     **** 
+ 216:gpstest.c     **** void addToBuffer(unsigned char ch) {
+ 1547               		.stabn	68,0,216,.LM95-addToBuffer
  1548               	.LM95:
  1549               	/* prologue: frame size=0 */
  1550               	/* prologue end (size=0) */
- 215:gpstest.c     **** 	bufferAddToEnd(&gpsBuffer,ch);
- 1551               		.stabn	68,0,215,.LM96-addToBuffer
+ 217:gpstest.c     **** 	bufferAddToEnd(&gpsBuffer,ch);
+ 1551               		.stabn	68,0,217,.LM96-addToBuffer
  1552               	.LM96:
  1553 083e 682F      		mov r22,r24
  1554 0840 80E0      		ldi r24,lo8(gpsBuffer)
  1555 0842 90E0      		ldi r25,hi8(gpsBuffer)
  1556 0844 0E94 0000 		call bufferAddToEnd
  1557               	/* epilogue: frame size=0 */
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 42
+
+
  1558 0848 0895      		ret
  1559               	/* epilogue end (size=1) */
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 42
-
-
  1560               	/* function addToBuffer size 6 (5) */
  1561               		.size	addToBuffer, .-addToBuffer
  1562               	.Lscope7:
  1563               		.stabs	"",36,0,0,.Lscope7-addToBuffer
  1564               		.stabd	78,0,0
- 1565               		.stabs	"i2cSlaveReceiveService:F(0,15)",36,0,220,i2cSlaveReceiveService
- 1566               		.stabs	"receiveDataLength:P(7,1)",64,0,219,25
- 1567               		.stabs	"receiveData:P(0,20)=*(7,1)",64,0,219,26
+ 1565               		.stabs	"i2cSlaveReceiveService:F(0,15)",36,0,222,i2cSlaveReceiveService
+ 1566               		.stabs	"receiveDataLength:P(7,1)",64,0,221,25
+ 1567               		.stabs	"receiveData:P(0,20)=*(7,1)",64,0,221,26
  1568               	.global	i2cSlaveReceiveService
  1569               		.type	i2cSlaveReceiveService, @function
  1570               	i2cSlaveReceiveService:
  1571               		.stabd	46,0,0
- 216:gpstest.c     **** }
- 217:gpstest.c     **** 
- 218:gpstest.c     **** // slave operations
- 219:gpstest.c     **** void i2cSlaveReceiveService(u08 receiveDataLength, u08* receiveData)
- 220:gpstest.c     **** {
- 1572               		.stabn	68,0,220,.LM97-i2cSlaveReceiveService
+ 218:gpstest.c     **** }
+ 219:gpstest.c     **** 
+ 220:gpstest.c     **** // slave operations
+ 221:gpstest.c     **** void i2cSlaveReceiveService(u08 receiveDataLength, u08* receiveData)
+ 222:gpstest.c     **** {
+ 1572               		.stabn	68,0,222,.LM97-i2cSlaveReceiveService
  1573               	.LM97:
  1574               	/* prologue: frame size=0 */
  1575               	/* prologue end (size=0) */
  1576 084a 982F      		mov r25,r24
  1577 084c DB01      		movw r26,r22
- 221:gpstest.c     **** 	u08 i;
- 222:gpstest.c     **** 
- 223:gpstest.c     **** 	// this function will run when a master somewhere else on the bus
- 224:gpstest.c     **** 	// addresses us and wishes to write data to us
- 225:gpstest.c     **** 
- 226:gpstest.c     **** 	//showByte(*receiveData);
- 227:gpstest.c     **** 	cbi(PORTB, PB6);
- 1578               		.stabn	68,0,227,.LM98-i2cSlaveReceiveService
+ 223:gpstest.c     **** 	u08 i;
+ 224:gpstest.c     **** 
+ 225:gpstest.c     **** 	// this function will run when a master somewhere else on the bus
+ 226:gpstest.c     **** 	// addresses us and wishes to write data to us
+ 227:gpstest.c     **** 
+ 228:gpstest.c     **** 	//showByte(*receiveData);
+ 229:gpstest.c     **** 	cbi(PORTB, PB6);
+ 1578               		.stabn	68,0,229,.LM98-i2cSlaveReceiveService
  1579               	.LM98:
  1580 084e C698      		cbi 56-0x20,6
  1581 0850 20E0      		ldi r18,lo8(0)
  1582 0852 30E0      		ldi r19,hi8(0)
  1583 0854 07C0      		rjmp .L92
  1584               	.L93:
- 228:gpstest.c     **** 
- 229:gpstest.c     **** 	// copy the received data to a local buffer
- 230:gpstest.c     **** 	for(i=0; i<receiveDataLength; i++)
- 231:gpstest.c     **** 	{
- 232:gpstest.c     **** 		localBuffer[i] = *receiveData++;
- 1585               		.stabn	68,0,232,.LM99-i2cSlaveReceiveService
+ 230:gpstest.c     **** 
+ 231:gpstest.c     **** 	// copy the received data to a local buffer
+ 232:gpstest.c     **** 	for(i=0; i<receiveDataLength; i++)
+ 233:gpstest.c     **** 	{
+ 234:gpstest.c     **** 		localBuffer[i] = *receiveData++;
+ 1585               		.stabn	68,0,234,.LM99-i2cSlaveReceiveService
  1586               	.LM99:
  1587 0856 8D91      		ld r24,X+
  1588 0858 FF27      		clr r31
@@ -2514,16 +2516,16 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1593 0862 3F4F      		sbci r19,hi8(-(1))
  1594               	.L92:
  1595 0864 E22F      		mov r30,r18
- 1596               		.stabn	68,0,230,.LM100-i2cSlaveReceiveService
+ 1596               		.stabn	68,0,232,.LM100-i2cSlaveReceiveService
  1597               	.LM100:
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 43
+
+
  1598 0866 2917      		cp r18,r25
  1599 0868 B0F3      		brlo .L93
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 43
-
-
- 233:gpstest.c     **** 	}
- 234:gpstest.c     **** 	localBufferLength = receiveDataLength;
- 1600               		.stabn	68,0,234,.LM101-i2cSlaveReceiveService
+ 235:gpstest.c     **** 	}
+ 236:gpstest.c     **** 	localBufferLength = receiveDataLength;
+ 1600               		.stabn	68,0,236,.LM101-i2cSlaveReceiveService
  1601               	.LM101:
  1602 086a 9093 0000 		sts localBufferLength,r25
  1603               	/* epilogue: frame size=0 */
@@ -2531,84 +2533,84 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1605               	/* epilogue end (size=1) */
  1606               	/* function i2cSlaveReceiveService size 19 (18) */
  1607               		.size	i2cSlaveReceiveService, .-i2cSlaveReceiveService
- 1608               		.stabs	"i:r(7,1)",64,0,221,30
+ 1608               		.stabs	"i:r(7,1)",64,0,223,30
  1609               		.stabn	192,0,0,i2cSlaveReceiveService-i2cSlaveReceiveService
  1610               		.stabn	224,0,0,.Lscope8-i2cSlaveReceiveService
  1611               	.Lscope8:
  1612               		.stabs	"",36,0,0,.Lscope8-i2cSlaveReceiveService
  1613               		.stabd	78,0,0
  1614               		.section	.progmem.data,"a",@progbits
- 1615               		.type	__c.2433, @object
- 1616               		.size	__c.2433, 3
- 1617               	__c.2433:
+ 1615               		.type	__c.2432, @object
+ 1616               		.size	__c.2432, 3
+ 1617               	__c.2432:
  1618 0000 2045 00   		.string	" E"
  1619               		.text
- 1620               		.stabs	"i2cSlaveTransmitService:F(7,1)",36,0,252,i2cSlaveTransmitService
- 1621               		.stabs	"transmitDataLengthMax:P(7,1)",64,0,251,24
- 1622               		.stabs	"transmitData:P(0,20)",64,0,251,28
+ 1620               		.stabs	"i2cSlaveTransmitService:F(7,1)",36,0,254,i2cSlaveTransmitService
+ 1621               		.stabs	"transmitDataLengthMax:P(7,1)",64,0,253,24
+ 1622               		.stabs	"transmitData:P(0,20)",64,0,253,28
  1623               	.global	i2cSlaveTransmitService
  1624               		.type	i2cSlaveTransmitService, @function
  1625               	i2cSlaveTransmitService:
  1626               		.stabd	46,0,0
- 235:gpstest.c     **** 	
- 236:gpstest.c     **** }
- 237:gpstest.c     **** 
- 238:gpstest.c     **** /*
- 239:gpstest.c     **** #define	 q "pitch"
- 240:gpstest.c     **** #define	 w "Roll"
- 241:gpstest.c     **** #define	 c "Heading"
- 242:gpstest.c     **** #define	 a "Latitude"
- 243:gpstest.c     **** #define	 o "Longitude"
- 244:gpstest.c     **** #define	 z "Altitude"
- 245:gpstest.c     **** #define	 b "Battery"
- 246:gpstest.c     **** #define	 f "Fuel"
- 247:gpstest.c     **** #define	 s "Airspeed"
- 248:gpstest.c     **** #define	 g "Groundspeed"
- 249:gpstest.c     **** */
- 250:gpstest.c     **** 
- 251:gpstest.c     **** u08 i2cSlaveTransmitService(u08 transmitDataLengthMax, u08* transmitData)
- 252:gpstest.c     **** {
- 1627               		.stabn	68,0,252,.LM102-i2cSlaveTransmitService
+ 237:gpstest.c     **** 	
+ 238:gpstest.c     **** }
+ 239:gpstest.c     **** 
+ 240:gpstest.c     **** /*
+ 241:gpstest.c     **** #define	 q "pitch"
+ 242:gpstest.c     **** #define	 w "Roll"
+ 243:gpstest.c     **** #define	 c "Heading"
+ 244:gpstest.c     **** #define	 a "Latitude"
+ 245:gpstest.c     **** #define	 o "Longitude"
+ 246:gpstest.c     **** #define	 z "Altitude"
+ 247:gpstest.c     **** #define	 b "Battery"
+ 248:gpstest.c     **** #define	 f "Fuel"
+ 249:gpstest.c     **** #define	 s "Airspeed"
+ 250:gpstest.c     **** #define	 g "Groundspeed"
+ 251:gpstest.c     **** */
+ 252:gpstest.c     **** 
+ 253:gpstest.c     **** u08 i2cSlaveTransmitService(u08 transmitDataLengthMax, u08* transmitData)
+ 254:gpstest.c     **** {
+ 1627               		.stabn	68,0,254,.LM102-i2cSlaveTransmitService
  1628               	.LM102:
  1629               	/* prologue: frame size=0 */
  1630 0870 CF93      		push r28
  1631 0872 DF93      		push r29
  1632               	/* prologue end (size=2) */
  1633 0874 EB01      		movw r28,r22
- 253:gpstest.c     **** 	u08 i;
- 254:gpstest.c     **** 	// this function will run when a master somewhere else on the bus
- 255:gpstest.c     **** 	// addresses us and wishes to read data from us
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 44
+ 255:gpstest.c     **** 	u08 i;
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 44
 
 
- 256:gpstest.c     **** 	
- 257:gpstest.c     **** 	// I believe that this might be the place to load the response...
+ 256:gpstest.c     **** 	// this function will run when a master somewhere else on the bus
+ 257:gpstest.c     **** 	// addresses us and wishes to read data from us
  258:gpstest.c     **** 	
- 259:gpstest.c     **** 	//showByte(*transmitData);	
- 260:gpstest.c     **** 	cbi(PORTB, PB7);
- 1634               		.stabn	68,0,260,.LM103-i2cSlaveTransmitService
+ 259:gpstest.c     **** 	// I believe that this might be the place to load the response...
+ 260:gpstest.c     **** 	
+ 261:gpstest.c     **** 	//showByte(*transmitData);	
+ 262:gpstest.c     **** 	cbi(PORTB, PB7);
+ 1634               		.stabn	68,0,262,.LM103-i2cSlaveTransmitService
  1635               	.LM103:
  1636 0876 C798      		cbi 56-0x20,7
- 261:gpstest.c     **** 	rprintfInit(print_to_string);
- 1637               		.stabn	68,0,261,.LM104-i2cSlaveTransmitService
+ 263:gpstest.c     **** 	rprintfInit(print_to_string);
+ 1637               		.stabn	68,0,263,.LM104-i2cSlaveTransmitService
  1638               	.LM104:
  1639 0878 80E0      		ldi r24,lo8(pm(print_to_string))
  1640 087a 90E0      		ldi r25,hi8(pm(print_to_string))
  1641 087c 0E94 0000 		call rprintfInit
- 262:gpstest.c     **** 	// temp for debugging.... CHANGE!
- 263:gpstest.c     **** 	float test = 420.6661;
- 264:gpstest.c     **** 	double test2 = 420.6661;
- 265:gpstest.c     **** 	stackem_pointer = 0;
- 1642               		.stabn	68,0,265,.LM105-i2cSlaveTransmitService
+ 264:gpstest.c     **** 	// temp for debugging.... CHANGE!
+ 265:gpstest.c     **** 	float test = 420.6661;
+ 266:gpstest.c     **** 	double test2 = 420.6661;
+ 267:gpstest.c     **** 	stackem_pointer = 0;
+ 1642               		.stabn	68,0,267,.LM105-i2cSlaveTransmitService
  1643               	.LM105:
  1644 0880 1092 0000 		sts stackem_pointer,__zero_reg__
- 266:gpstest.c     **** 	switch(localBuffer[0])
- 1645               		.stabn	68,0,266,.LM106-i2cSlaveTransmitService
+ 268:gpstest.c     **** 	switch(localBuffer[0])
+ 1645               		.stabn	68,0,268,.LM106-i2cSlaveTransmitService
  1646               	.LM106:
  1647 0884 8091 0000 		lds r24,localBuffer
  1648 0888 8436      		cpi r24,lo8(100)
  1649 088a 41F1      		breq .L100
- 1650               		.stabn	68,0,266,.LM107-i2cSlaveTransmitService
+ 1650               		.stabn	68,0,268,.LM107-i2cSlaveTransmitService
  1651               	.LM107:
  1652 088c 8536      		cpi r24,lo8(101)
  1653 088e 30F4      		brsh .L103
@@ -2626,24 +2628,24 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1665 08a4 41C0      		rjmp .L97
  1666 08a6 09C0      		rjmp .L102
  1667               	.L98:
- 267:gpstest.c     **** 	{
- 268:gpstest.c     **** 		case 'a': //latitude
- 269:gpstest.c     **** 			rprintfFloat(8,gga.latitude);
- 1668               		.stabn	68,0,269,.LM108-i2cSlaveTransmitService
+ 269:gpstest.c     **** 	{
+ 270:gpstest.c     **** 		case 'a': //latitude
+ 271:gpstest.c     **** 			rprintfFloat(8,gga.latitude);
+ 1668               		.stabn	68,0,271,.LM108-i2cSlaveTransmitService
  1669               	.LM108:
  1670 08a8 4091 0000 		lds r20,gga
  1671 08ac 5091 0000 		lds r21,(gga)+1
  1672 08b0 6091 0000 		lds r22,(gga)+2
  1673 08b4 7091 0000 		lds r23,(gga)+3
  1674 08b8 04C0      		rjmp .L111
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 45
+
+
  1675               	.L102:
- 270:gpstest.c     **** 			break;
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 45
-
-
- 271:gpstest.c     **** 		case 'o': //longitude
- 272:gpstest.c     **** 			rprintfFloat(8,test);	
- 1676               		.stabn	68,0,272,.LM109-i2cSlaveTransmitService
+ 272:gpstest.c     **** 			break;
+ 273:gpstest.c     **** 		case 'o': //longitude
+ 274:gpstest.c     **** 			rprintfFloat(8,test);	
+ 1676               		.stabn	68,0,274,.LM109-i2cSlaveTransmitService
  1677               	.LM109:
  1678 08ba 43E4      		ldi r20,lo8(0x43d25543)
  1679 08bc 55E5      		ldi r21,hi8(0x43d25543)
@@ -2654,13 +2656,13 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1684 08c4 0E94 0000 		call rprintfFloat
  1685 08c8 3AC0      		rjmp .L104
  1686               	.L99:
- 273:gpstest.c     **** 			break;
- 274:gpstest.c     **** 		case 'g': //groundspeed
- 275:gpstest.c     **** 			rprintfFloat(8,test2);
- 276:gpstest.c     **** 			break;
- 277:gpstest.c     **** 		case 'c':
- 278:gpstest.c     **** 			rprintfFloat(8,rmc.course);
- 1687               		.stabn	68,0,278,.LM110-i2cSlaveTransmitService
+ 275:gpstest.c     **** 			break;
+ 276:gpstest.c     **** 		case 'g': //groundspeed
+ 277:gpstest.c     **** 			rprintfFloat(8,test2);
+ 278:gpstest.c     **** 			break;
+ 279:gpstest.c     **** 		case 'c':
+ 280:gpstest.c     **** 			rprintfFloat(8,rmc.course);
+ 1687               		.stabn	68,0,280,.LM110-i2cSlaveTransmitService
  1688               	.LM110:
  1689 08ca 4091 0000 		lds r20,rmc+17
  1690 08ce 5091 0000 		lds r21,(rmc+17)+1
@@ -2668,10 +2670,10 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1692 08d6 7091 0000 		lds r23,(rmc+17)+3
  1693 08da F3CF      		rjmp .L111
  1694               	.L100:
- 279:gpstest.c     **** 			break;
- 280:gpstest.c     **** 		case 'd':
- 281:gpstest.c     **** 			rprintfFloat(8,rmc.date);
- 1695               		.stabn	68,0,281,.LM111-i2cSlaveTransmitService
+ 281:gpstest.c     **** 			break;
+ 282:gpstest.c     **** 		case 'd':
+ 283:gpstest.c     **** 			rprintfFloat(8,rmc.date);
+ 1695               		.stabn	68,0,283,.LM111-i2cSlaveTransmitService
  1696               	.LM111:
  1697 08dc 2091 0000 		lds r18,rmc+21
  1698 08e0 3091 0000 		lds r19,(rmc+21)+1
@@ -2696,11 +2698,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1717 090c 2795      		ror r18
  1718 090e 622B      		or r22,r18
  1719 0910 732B      		or r23,r19
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 46
+
+
  1720 0912 842B      		or r24,r20
  1721 0914 952B      		or r25,r21
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 46
-
-
  1722 0916 0E94 0000 		call __floatsisf
  1723 091a 9B01      		movw r18,r22
  1724 091c AC01      		movw r20,r24
@@ -2710,13 +2712,13 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1728 0924 BC01      		movw r22,r24
  1729 0926 CDCF      		rjmp .L111
  1730               	.L97:
- 282:gpstest.c     **** 			break;
- 283:gpstest.c     **** 		default:
- 284:gpstest.c     **** 			rprintf(" E");  //CE = Command Error
- 1731               		.stabn	68,0,284,.LM112-i2cSlaveTransmitService
+ 284:gpstest.c     **** 			break;
+ 285:gpstest.c     **** 		default:
+ 286:gpstest.c     **** 			rprintf(" E");  //CE = Command Error
+ 1731               		.stabn	68,0,286,.LM112-i2cSlaveTransmitService
  1732               	.LM112:
- 1733 0928 80E0      		ldi r24,lo8(__c.2433)
- 1734 092a 90E0      		ldi r25,hi8(__c.2433)
+ 1733 0928 80E0      		ldi r24,lo8(__c.2432)
+ 1734 092a 90E0      		ldi r25,hi8(__c.2432)
  1735 092c 9F93      		push r25
  1736 092e 8F93      		push r24
  1737 0930 81E0      		ldi r24,lo8(1)
@@ -2726,10 +2728,10 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1741 093a 0F90      		pop __tmp_reg__
  1742 093c 0F90      	 	pop __tmp_reg__
  1743               	.L104:
- 285:gpstest.c     **** 			break;
- 286:gpstest.c     **** 	}
- 287:gpstest.c     **** 	rprintfInit(uartSendByte);
- 1744               		.stabn	68,0,287,.LM113-i2cSlaveTransmitService
+ 287:gpstest.c     **** 			break;
+ 288:gpstest.c     **** 	}
+ 289:gpstest.c     **** 	rprintfInit(uartSendByte);
+ 1744               		.stabn	68,0,289,.LM113-i2cSlaveTransmitService
  1745               	.LM113:
  1746 093e 80E0      		ldi r24,lo8(pm(uartSendByte))
  1747 0940 90E0      		ldi r25,hi8(pm(uartSendByte))
@@ -2737,13 +2739,13 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1749 0946 DE01      		movw r26,r28
  1750 0948 05C0      		rjmp .L107
  1751               	.L108:
- 288:gpstest.c     **** 	//sprintf(temp_buffer, "%f,%f",gga.latitude,gga.longitude);
- 289:gpstest.c     **** 	
- 290:gpstest.c     **** 	// copy the local buffer to the transmit buffer -- this buffer size is set in i2c.conf
- 291:gpstest.c     **** 	for(i=0; i<=stackem_pointer; i++)
- 292:gpstest.c     **** 	{
- 293:gpstest.c     **** 		*transmitData++ = stackem[i];
- 1752               		.stabn	68,0,293,.LM114-i2cSlaveTransmitService
+ 290:gpstest.c     **** 	//sprintf(temp_buffer, "%f,%f",gga.latitude,gga.longitude);
+ 291:gpstest.c     **** 	
+ 292:gpstest.c     **** 	// copy the local buffer to the transmit buffer -- this buffer size is set in i2c.conf
+ 293:gpstest.c     **** 	for(i=0; i<=stackem_pointer; i++)
+ 294:gpstest.c     **** 	{
+ 295:gpstest.c     **** 		*transmitData++ = stackem[i];
+ 1752               		.stabn	68,0,295,.LM114-i2cSlaveTransmitService
  1753               	.LM114:
  1754 094a FF27      		clr r31
  1755 094c E050      		subi r30,lo8(-(stackem))
@@ -2753,24 +2755,24 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1759               	.L107:
  1760 0954 EA2F      		mov r30,r26
  1761 0956 EC1B      		sub r30,r28
- 1762               		.stabn	68,0,291,.LM115-i2cSlaveTransmitService
+ 1762               		.stabn	68,0,293,.LM115-i2cSlaveTransmitService
  1763               	.LM115:
  1764 0958 8091 0000 		lds r24,stackem_pointer
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 47
+
+
  1765 095c 8E17      		cp r24,r30
  1766 095e A8F7      		brsh .L108
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 47
-
-
  1767 0960 8F5F      		subi r24,lo8(-(1))
- 294:gpstest.c     **** 	}
- 295:gpstest.c     **** 	
- 296:gpstest.c     **** 	
- 297:gpstest.c     **** 	//localBuffer[0]++;
- 298:gpstest.c     **** 	//message_sent = 1;
- 299:gpstest.c     **** 
- 300:gpstest.c     **** 	return stackem_pointer+1;
- 301:gpstest.c     **** }
- 1768               		.stabn	68,0,301,.LM116-i2cSlaveTransmitService
+ 296:gpstest.c     **** 	}
+ 297:gpstest.c     **** 	
+ 298:gpstest.c     **** 	
+ 299:gpstest.c     **** 	//localBuffer[0]++;
+ 300:gpstest.c     **** 	//message_sent = 1;
+ 301:gpstest.c     **** 
+ 302:gpstest.c     **** 	return stackem_pointer+1;
+ 303:gpstest.c     **** }
+ 1768               		.stabn	68,0,303,.LM116-i2cSlaveTransmitService
  1769               	.LM116:
  1770 0962 9927      		clr r25
  1771               	/* epilogue: frame size=0 */
@@ -2780,50 +2782,50 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1775               	/* epilogue end (size=3) */
  1776               	/* function i2cSlaveTransmitService size 125 (120) */
  1777               		.size	i2cSlaveTransmitService, .-i2cSlaveTransmitService
- 1778               		.stabs	"i:r(7,1)",64,0,253,30
+ 1778               		.stabs	"i:r(7,1)",64,0,255,30
  1779               		.stabn	192,0,0,i2cSlaveTransmitService-i2cSlaveTransmitService
  1780               		.stabn	224,0,0,.Lscope9-i2cSlaveTransmitService
  1781               	.Lscope9:
  1782               		.stabs	"",36,0,0,.Lscope9-i2cSlaveTransmitService
  1783               		.stabd	78,0,0
- 1784               		.stabs	"print_to_string:F(0,15)",36,0,303,print_to_string
- 1785               		.stabs	"the_char:P(7,1)",64,0,302,24
+ 1784               		.stabs	"print_to_string:F(0,15)",36,0,305,print_to_string
+ 1785               		.stabs	"the_char:P(7,1)",64,0,304,24
  1786               	.global	print_to_string
  1787               		.type	print_to_string, @function
  1788               	print_to_string:
  1789               		.stabd	46,0,0
- 302:gpstest.c     **** void print_to_string(u08 the_char)
- 303:gpstest.c     **** {
- 1790               		.stabn	68,0,303,.LM117-print_to_string
+ 304:gpstest.c     **** void print_to_string(u08 the_char)
+ 305:gpstest.c     **** {
+ 1790               		.stabn	68,0,305,.LM117-print_to_string
  1791               	.LM117:
  1792               	/* prologue: frame size=0 */
  1793               	/* prologue end (size=0) */
- 304:gpstest.c     **** 	if(stackem_pointer<(stackem_length-1))  //-1 to allow for null char to still fit
- 1794               		.stabn	68,0,304,.LM118-print_to_string
+ 306:gpstest.c     **** 	if(stackem_pointer<(stackem_length-1))  //-1 to allow for null char to still fit
+ 1794               		.stabn	68,0,306,.LM118-print_to_string
  1795               	.LM118:
  1796 096a 9091 0000 		lds r25,stackem_pointer
  1797 096e 9F31      		cpi r25,lo8(31)
  1798 0970 68F4      		brsh .L115
- 305:gpstest.c     **** 	{
- 306:gpstest.c     **** 		stackem[stackem_pointer] = the_char;
- 1799               		.stabn	68,0,306,.LM119-print_to_string
+ 307:gpstest.c     **** 	{
+ 308:gpstest.c     **** 		stackem[stackem_pointer] = the_char;
+ 1799               		.stabn	68,0,308,.LM119-print_to_string
  1800               	.LM119:
  1801 0972 E92F      		mov r30,r25
  1802 0974 FF27      		clr r31
  1803 0976 E050      		subi r30,lo8(-(stackem))
  1804 0978 F040      		sbci r31,hi8(-(stackem))
  1805 097a 8083      		st Z,r24
- 307:gpstest.c     **** 		stackem_pointer++;
- 1806               		.stabn	68,0,307,.LM120-print_to_string
+ 309:gpstest.c     **** 		stackem_pointer++;
+ 1806               		.stabn	68,0,309,.LM120-print_to_string
  1807               	.LM120:
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 48
+
+
  1808 097c E92F      		mov r30,r25
  1809 097e EF5F      		subi r30,lo8(-(1))
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 48
-
-
  1810 0980 E093 0000 		sts stackem_pointer,r30
- 308:gpstest.c     **** 		stackem[stackem_pointer] = 0;
- 1811               		.stabn	68,0,308,.LM121-print_to_string
+ 310:gpstest.c     **** 		stackem[stackem_pointer] = 0;
+ 1811               		.stabn	68,0,310,.LM121-print_to_string
  1812               	.LM121:
  1813 0984 FF27      		clr r31
  1814 0986 E050      		subi r30,lo8(-(stackem))
@@ -2876,11 +2878,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1861 09ac 672B      		or r22,r23
  1862 09ae 09F4      		brne .L119
  1863               	.L131:
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 49
+
+
  1864 09b0 FFCF      		rjmp .L131
  1865               	.L119:
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 49
-
-
  1866               		.stabn	68,0,67,.LM125-nmeap_latitude
  1867               	.LM125:
  1868 09b2 8081      		ld r24,Z
@@ -2936,11 +2938,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1918 0a02 30E0      		ldi r19,hi8(0xc2c80000)
  1919 0a04 48EC      		ldi r20,hlo8(0xc2c80000)
  1920 0a06 52EC      		ldi r21,hhi8(0xc2c80000)
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 50
+
+
  1921 0a08 0E94 0000 		call __mulsf3
  1922 0a0c 9B01      		movw r18,r22
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 50
-
-
  1923 0a0e AC01      		movw r20,r24
  1924 0a10 C601      		movw r24,r12
  1925 0a12 B501      		movw r22,r10
@@ -2996,11 +2998,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  1975               		.stabs	"phem:P(0,16)",64,0,104,26
  1976               	.global	nmeap_longitude
  1977               		.type	nmeap_longitude, @function
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 51
+
+
  1978               	nmeap_longitude:
  1979               		.stabd	46,0,0
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 51
-
-
  1980               		.stabn	68,0,105,.LM131-nmeap_longitude
  1981               	.LM131:
  1982               	/* prologue: frame size=0 */
@@ -3056,11 +3058,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2032 0aa4 D0E0      		ldi r29,hi8(1)
  2033 0aa6 02C0      		rjmp .L145
  2034               	.L143:
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 52
+
+
  2035 0aa8 CFEF      		ldi r28,lo8(-1)
  2036 0aaa DFEF      		ldi r29,hi8(-1)
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 52
-
-
  2037               	.L145:
  2038               		.stabn	68,0,132,.LM137-nmeap_longitude
  2039               	.LM137:
@@ -3116,11 +3118,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2089 0b18 9B01      		movw r18,r22
  2090 0b1a AC01      		movw r20,r24
  2091 0b1c C801      		movw r24,r16
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 53
+
+
  2092 0b1e B701      		movw r22,r14
  2093 0b20 0E94 0000 		call __mulsf3
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 53
-
-
  2094               	.L140:
  2095               	/* epilogue: frame size=0 */
  2096 0b24 DF91      		pop r29
@@ -3176,11 +3178,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  538:nmeap01.c     ****     int i;
  539:nmeap01.c     **** #endif
  540:nmeap01.c     ****     
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 54
+
+
  541:nmeap01.c     ****     /* get pointer to sentence data */
  542:nmeap01.c     ****     nmeap_gga_t *gga = (nmeap_gga_t *)sentence->data;
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 54
-
-
  543:nmeap01.c     ****     
  544:nmeap01.c     ****     /* if there is a data element, extract data from the tokens */
  545:nmeap01.c     **** 	if (gga != 0) {
@@ -3236,11 +3238,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2144 0b4c DF93      		push r29
  2145               	/* prologue end (size=10) */
  2146 0b4e EC01      		movw r28,r24
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 55
+
+
  2147 0b50 5B01      		movw r10,r22
  583:nmeap01.c     ****     int i;
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 55
-
-
  584:nmeap01.c     **** #endif
  585:nmeap01.c     **** 
  586:nmeap01.c     ****     /* get pointer to sentence data */
@@ -3296,11 +3298,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2188 0b90 8A91      		ld r24,-Y
  2189 0b92 0E94 0000 		call nmeap_latitude
  2190 0b96 F801      		movw r30,r16
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 56
+
+
  2191 0b98 6583      		std Z+5,r22
  2192 0b9a 7683      		std Z+6,r23
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 56
-
-
  2193 0b9c 8783      		std Z+7,r24
  2194 0b9e 9087      		std Z+8,r25
  596:nmeap01.c     **** 		rmc->speed      = atof(context->token[7]);
@@ -3356,11 +3358,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2241 0bf2 FE01      		movw r30,r28
  2242 0bf4 E057      		subi r30,lo8(-(400))
  2243 0bf6 FE4F      		sbci r31,hi8(-(400))
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 57
+
+
  2244 0bf8 8081      		ld r24,Z
  2245 0bfa 9181      		ldd r25,Z+1
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 57
-
-
  2246 0bfc 0E94 0000 		call atoi
  2247 0c00 AA27      		clr r26
  2248 0c02 97FD      		sbrc r25,7
@@ -3416,11 +3418,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2289 0c4a 9F93      		push r25
  2290 0c4c 8F93      		push r24
  2291 0c4e 8A91      		ld r24,-Y
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 58
+
+
  2292 0c50 9927      		clr r25
  2293 0c52 87FD      		sbrc r24,7
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 58
-
-
  2294 0c54 9095      		com r25
  2295 0c56 9F93      		push r25
  2296 0c58 8F93      		push r24
@@ -3476,11 +3478,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2342 0caa E11C      		adc r14,__zero_reg__
  2343 0cac F11C      		adc r15,__zero_reg__
  2344 0cae 8DB7      		in r24,__SP_L__
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 59
+
+
  2345 0cb0 9EB7      		in r25,__SP_H__
  2346 0cb2 0696      		adiw r24,6
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 59
-
-
  2347               	.L159:
  2348 0cb4 0FB6      		in __tmp_reg__,__SREG__
  2349 0cb6 F894      		cli
@@ -3536,11 +3538,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2389 0cf6 CF91      		pop r28
  2390 0cf8 1F91      		pop r17
  2391 0cfa 0F91      		pop r16
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 60
+
+
  2392 0cfc FF90      		pop r15
  2393 0cfe EF90      		pop r14
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 60
-
-
  2394 0d00 DF90      		pop r13
  2395 0d02 CF90      		pop r12
  2396 0d04 BF90      		pop r11
@@ -3596,11 +3598,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2446 0d32 DE4F      		sbci r29,hi8(-(388))
  2447 0d34 6881      		ld r22,Y
  2448 0d36 7981      		ldd r23,Y+1
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 61
+
+
  2449 0d38 9A91      		ld r25,-Y
  2450 0d3a 8A91      		ld r24,-Y
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 61
-
-
  2451 0d3c 0E94 0000 		call nmeap_latitude
  2452 0d40 F801      		movw r30,r16
  2453 0d42 6083      		st Z,r22
@@ -3656,11 +3658,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2503 0d9c 0E94 0000 		call atoi
  2504 0da0 F801      		movw r30,r16
  2505 0da2 918B      		std Z+17,r25
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 62
+
+
  2506 0da4 808B      		std Z+16,r24
  2507               		.stabn	68,0,552,.LM167-nmeap_gpgga
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 62
-
-
  2508               	.LM167:
  2509 0da6 9A91      		ld r25,-Y
  2510 0da8 8A91      		ld r24,-Y
@@ -3716,11 +3718,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2560 0e02 8881      		ld r24,Y
  2561 0e04 9927      		clr r25
  2562 0e06 87FD      		sbrc r24,7
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 63
+
+
  2563 0e08 9095      		com r25
  2564 0e0a 9F93      		push r25
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 63
-
-
  2565 0e0c 8F93      		push r24
  2566 0e0e 8A91      		ld r24,-Y
  2567 0e10 9927      		clr r25
@@ -3776,11 +3778,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2617 0e6a E11C      		adc r14,__zero_reg__
  2618 0e6c F11C      		adc r15,__zero_reg__
  2619 0e6e 8DB7      		in r24,__SP_L__
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 64
+
+
  2620 0e70 9EB7      		in r25,__SP_H__
  2621 0e72 0696      		adiw r24,6
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 64
-
-
  2622               	.L169:
  2623 0e74 0FB6      		in __tmp_reg__,__SREG__
  2624 0e76 F894      		cli
@@ -3836,11 +3838,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2674               	/* epilogue end (size=11) */
  2675               	/* function nmeap_gpgga size 224 (203) */
  2676               		.size	nmeap_gpgga, .-nmeap_gpgga
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 65
+
+
  2677               		.stabs	"i:r(0,1)",64,0,539,14
  2678               		.stabs	"gga:r(0,23)=*(12,8)",64,0,543,16
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 65
-
-
  2679               		.stabn	192,0,0,nmeap_gpgga-nmeap_gpgga
  2680               		.stabn	224,0,0,.Lscope14-nmeap_gpgga
  2681               	.Lscope14:
@@ -3896,11 +3898,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2731               		.stabs	"sentence_name:P(0,16)",64,0,192,22
  2732               		.stabs	"sentence_parser:P(12,4)",64,0,193,28
  2733               		.stabs	"sentence_callout:P(12,1)",64,0,194,14
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 66
+
+
  2734               		.stabs	"sentence_data:P(13,4)",64,0,196,12
  2735               	.global	nmeap_addParser
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 66
-
-
  2736               		.type	nmeap_addParser, @function
  2737               	nmeap_addParser:
  2738               		.stabd	46,0,0
@@ -3956,11 +3958,11 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2788 0f34 0E0F      		add r16,r30
  2789 0f36 1F1F      		adc r17,r31
  2790               		.stabn	68,0,212,.LM187-nmeap_addParser
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 67
+
+
  2791               	.LM187:
  2792 0f38 2F5F      		subi r18,lo8(-(1))
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 67
-
-
  2793 0f3a 3F4F      		sbci r19,hi8(-(1))
  2794 0f3c 2D93      		st X+,r18
  2795 0f3e 3C93      		st X,r19
@@ -4013,567 +4015,536 @@ GAS LISTING /var/tmp//ccfjv8yI.s 			page 1
  2842               		.stabs	"",36,0,0,.Lscope16-nmeap_addParser
  2843               		.stabd	78,0,0
  2844               		.section	.progmem.data
- 2845               		.type	__c.2381, @object
- 2846               		.size	__c.2381, 12
- 2847               	__c.2381:
+ 2845               		.type	__c.2378, @object
+ 2846               		.size	__c.2378, 12
+ 2847               	__c.2378:
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 68
+
+
  2848 0003 0D0A 7365 		.string	"\r\nsent i2c!"
  2848      6E74 2069 
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 68
-
-
  2848      3263 2100 
- 2849               		.type	__c.2379, @object
- 2850               		.size	__c.2379, 3
- 2851               	__c.2379:
+ 2849               		.type	__c.2376, @object
+ 2850               		.size	__c.2376, 3
+ 2851               	__c.2376:
  2852 000f 2E0D 00   		.string	".\r"
- 2853               		.type	__c.2368, @object
- 2854               		.size	__c.2368, 3
- 2855               	__c.2368:
+ 2853               		.type	__c.2365, @object
+ 2854               		.size	__c.2365, 3
+ 2855               	__c.2365:
  2856 0012 0D0A 00   		.string	"\r\n"
- 2857               		.type	__c.2366, @object
- 2858               		.size	__c.2366, 16
- 2859               	__c.2366:
+ 2857               		.type	__c.2363, @object
+ 2858               		.size	__c.2363, 16
+ 2859               	__c.2363:
  2860 0015 6767 612E 		.string	"gga.latitude = "
  2860      6C61 7469 
  2860      7475 6465 
  2860      203D 2000 
- 2861               		.type	__c.2364, @object
- 2862               		.size	__c.2364, 18
- 2863               	__c.2364:
+ 2861               		.type	__c.2361, @object
+ 2862               		.size	__c.2361, 18
+ 2863               	__c.2361:
  2864 0025 6E6D 6561 		.string	"nmeap_add RMC %d\n"
  2864      705F 6164 
  2864      6420 524D 
  2864      4320 2564 
  2864      0A00 
- 2865               		.type	__c.2362, @object
- 2866               		.size	__c.2362, 18
- 2867               	__c.2362:
+ 2865               		.type	__c.2359, @object
+ 2866               		.size	__c.2359, 18
+ 2867               	__c.2359:
  2868 0037 6E6D 6561 		.string	"nmeap_add GGA %d\n"
  2868      705F 6164 
  2868      6420 4747 
  2868      4120 2564 
  2868      0A00 
- 2869               		.type	__c.2360, @object
- 2870               		.size	__c.2360, 15
- 2871               	__c.2360:
+ 2869               		.type	__c.2357, @object
+ 2870               		.size	__c.2357, 15
+ 2871               	__c.2357:
  2872 0049 6E6D 6561 		.string	"nmeap_init %d\n"
  2872      705F 696E 
  2872      6974 2025 
  2872      640A 00
- 2873               		.type	__c.2358, @object
- 2874               		.size	__c.2358, 14
- 2875               	__c.2358:
+ 2873               		.type	__c.2355, @object
+ 2874               		.size	__c.2355, 14
+ 2875               	__c.2355:
  2876 0058 7365 7420 		.string	"set handler\r\n"
  2876      6861 6E64 
  2876      6C65 720D 
  2876      0A00 
- 2877               		.type	__c.2356, @object
- 2878               		.size	__c.2356, 13
- 2879               	__c.2356:
- 2880 0066 0D0A 4750 		.string	"\r\nGPS TEST\r\n"
- 2880      5320 5445 
- 2880      5354 0D0A 
- 2880      00
- 2881               		.type	__c.2354, @object
- 2882               		.size	__c.2354, 25
- 2883               	__c.2354:
- 2884 0073 0D0A 5765 		.string	"\r\nWelcome to i2c test!\r\n"
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 69
+ 2877               		.data
+ 2878               	.LC3:
+ 2879 0040 4750 4747 		.string	"GPGGA"
+ 2879      4100 
+ 2880               	.LC4:
+ 2881 0046 4750 524D 		.string	"GPRMC"
+ 2881      4300 
+ 2882               		.text
+ 2883               		.stabs	"main:F(0,1)",36,0,54,main
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 69
 
 
- 2884      6C63 6F6D 
- 2884      6520 746F 
- 2884      2069 3263 
- 2884      2074 6573 
- 2885               		.data
- 2886               	.LC3:
- 2887 0040 4750 4747 		.string	"GPGGA"
- 2887      4100 
- 2888               	.LC4:
- 2889 0046 4750 524D 		.string	"GPRMC"
- 2889      4300 
- 2890               		.text
- 2891               		.stabs	"main:F(0,1)",36,0,54,main
- 2892               	.global	main
- 2893               		.type	main, @function
- 2894               	main:
- 2895               		.stabd	46,0,0
- 2896               		.stabs	"gpstest.c",132,0,0,.Ltext5
- 2897               	.Ltext5:
- 2898               		.stabn	68,0,54,.LM193-main
- 2899               	.LM193:
- 2900               	/* prologue: frame size=0 */
- 2901 0f78 C0E0      		ldi r28,lo8(__stack - 0)
- 2902 0f7a D0E0      		ldi r29,hi8(__stack - 0)
- 2903 0f7c DEBF      		out __SP_H__,r29
- 2904 0f7e CDBF      		out __SP_L__,r28
- 2905               	/* prologue end (size=4) */
- 2906               		.stabn	68,0,66,.LM194-main
- 2907               	.LM194:
- 2908 0f80 1092 0000 		sts message_sent,__zero_reg__
- 2909               		.stabn	68,0,73,.LM195-main
- 2910               	.LM195:
- 2911 0f84 0E94 0000 		call uartInit
- 2912               		.stabn	68,0,75,.LM196-main
- 2913               	.LM196:
- 2914 0f88 60E6      		ldi r22,lo8(2400)
- 2915 0f8a 79E0      		ldi r23,hi8(2400)
- 2916 0f8c 80E0      		ldi r24,hlo8(2400)
- 2917 0f8e 90E0      		ldi r25,hhi8(2400)
- 2918 0f90 0E94 0000 		call uartSetBaudRate
- 2919               		.stabn	68,0,77,.LM197-main
- 2920               	.LM197:
- 2921 0f94 80E0      		ldi r24,lo8(pm(uartSendByte))
- 2922 0f96 90E0      		ldi r25,hi8(pm(uartSendByte))
- 2923 0f98 0E94 0000 		call rprintfInit
- 2924               		.stabn	68,0,78,.LM198-main
- 2925               	.LM198:
- 2926 0f9c 0E94 0000 		call initVideo
- 2927               		.stabn	68,0,80,.LM199-main
- 2928               	.LM199:
- 2929 0fa0 60EC      		ldi r22,lo8(4800)
- 2930 0fa2 72E1      		ldi r23,hi8(4800)
- 2931 0fa4 80E0      		ldi r24,hlo8(4800)
- 2932 0fa6 90E0      		ldi r25,hhi8(4800)
- 2933 0fa8 0E94 0000 		call uartSetBaudRate
- 2934               		.stabn	68,0,82,.LM200-main
- 2935               	.LM200:
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 70
+ 2884               	.global	main
+ 2885               		.type	main, @function
+ 2886               	main:
+ 2887               		.stabd	46,0,0
+ 2888               		.stabs	"gpstest.c",132,0,0,.Ltext5
+ 2889               	.Ltext5:
+ 2890               		.stabn	68,0,54,.LM193-main
+ 2891               	.LM193:
+ 2892               	/* prologue: frame size=0 */
+ 2893 0f78 C0E0      		ldi r28,lo8(__stack - 0)
+ 2894 0f7a D0E0      		ldi r29,hi8(__stack - 0)
+ 2895 0f7c DEBF      		out __SP_H__,r29
+ 2896 0f7e CDBF      		out __SP_L__,r28
+ 2897               	/* prologue end (size=4) */
+ 2898               		.stabn	68,0,66,.LM194-main
+ 2899               	.LM194:
+ 2900 0f80 1092 0000 		sts message_sent,__zero_reg__
+ 2901               		.stabn	68,0,73,.LM195-main
+ 2902               	.LM195:
+ 2903 0f84 0E94 0000 		call uartInit
+ 2904               		.stabn	68,0,75,.LM196-main
+ 2905               	.LM196:
+ 2906 0f88 60E6      		ldi r22,lo8(2400)
+ 2907 0f8a 79E0      		ldi r23,hi8(2400)
+ 2908 0f8c 80E0      		ldi r24,hlo8(2400)
+ 2909 0f8e 90E0      		ldi r25,hhi8(2400)
+ 2910 0f90 0E94 0000 		call uartSetBaudRate
+ 2911               		.stabn	68,0,77,.LM197-main
+ 2912               	.LM197:
+ 2913 0f94 80E0      		ldi r24,lo8(pm(uartSendByte))
+ 2914 0f96 90E0      		ldi r25,hi8(pm(uartSendByte))
+ 2915 0f98 0E94 0000 		call rprintfInit
+ 2916               		.stabn	68,0,78,.LM198-main
+ 2917               	.LM198:
+ 2918 0f9c 0E94 0000 		call initVideo
+ 2919               		.stabn	68,0,80,.LM199-main
+ 2920               	.LM199:
+ 2921 0fa0 60EC      		ldi r22,lo8(4800)
+ 2922 0fa2 72E1      		ldi r23,hi8(4800)
+ 2923 0fa4 80E0      		ldi r24,hlo8(4800)
+ 2924 0fa6 90E0      		ldi r25,hhi8(4800)
+ 2925 0fa8 0E94 0000 		call uartSetBaudRate
+ 2926               		.stabn	68,0,82,.LM200-main
+ 2927               	.LM200:
+ 2928 0fac 80E0      		ldi r24,lo8(pm(uartSendByte))
+ 2929 0fae 90E0      		ldi r25,hi8(pm(uartSendByte))
+ 2930 0fb0 0E94 0000 		call rprintfInit
+ 2931               		.stabn	68,0,84,.LM201-main
+ 2932               	.LM201:
+ 2933 0fb4 0E94 0000 		call timerInit
+ 2934               		.stabn	68,0,96,.LM202-main
+ 2935               	.LM202:
+ 2936 0fb8 0E94 0000 		call timerInit
+ 2937               		.stabn	68,0,97,.LM203-main
+ 2938               	.LM203:
+ 2939 0fbc 84EF      		ldi r24,lo8(500)
+ 2940 0fbe 91E0      		ldi r25,hi8(500)
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 70
 
 
- 2936 0fac 80E0      		ldi r24,lo8(pm(uartSendByte))
- 2937 0fae 90E0      		ldi r25,hi8(pm(uartSendByte))
- 2938 0fb0 0E94 0000 		call rprintfInit
- 2939               		.stabn	68,0,84,.LM201-main
- 2940               	.LM201:
- 2941 0fb4 0E94 0000 		call timerInit
- 2942               		.stabn	68,0,90,.LM202-main
- 2943               	.LM202:
- 2944 0fb8 80E0      		ldi r24,lo8(__c.2354)
- 2945 0fba 90E0      		ldi r25,hi8(__c.2354)
- 2946 0fbc 9F93      		push r25
- 2947 0fbe 8F93      		push r24
- 2948 0fc0 11E0      		ldi r17,lo8(1)
- 2949 0fc2 F12E      		mov r15,r17
- 2950 0fc4 FF92      		push r15
- 2951 0fc6 0E94 0000 		call rprintf1RamRom
- 2952               		.stabn	68,0,93,.LM203-main
- 2953               	.LM203:
- 2954 0fca 0E94 0000 		call timerInit
- 2955               		.stabn	68,0,94,.LM204-main
- 2956               	.LM204:
- 2957 0fce 84EF      		ldi r24,lo8(500)
- 2958 0fd0 91E0      		ldi r25,hi8(500)
- 2959 0fd2 0E94 0000 		call timerPause
- 2960               		.stabn	68,0,96,.LM205-main
- 2961               	.LM205:
- 2962 0fd6 80E0      		ldi r24,lo8(__c.2356)
- 2963 0fd8 90E0      		ldi r25,hi8(__c.2356)
- 2964 0fda 9F93      		push r25
- 2965 0fdc 8F93      		push r24
- 2966 0fde FF92      		push r15
- 2967 0fe0 0E94 0000 		call rprintf1RamRom
- 2968               		.stabn	68,0,100,.LM206-main
- 2969               	.LM206:
- 2970 0fe4 0E94 0000 		call i2cInit
- 2971               		.stabn	68,0,102,.LM207-main
- 2972               	.LM207:
- 2973 0fe8 6FEF      		ldi r22,lo8(-1)
- 2974 0fea 80EA      		ldi r24,lo8(-96)
- 2975 0fec 0E94 0000 		call i2cSetLocalDeviceAddr
- 2976               		.stabn	68,0,106,.LM208-main
- 2977               	.LM208:
- 2978 0ff0 80E0      		ldi r24,lo8(pm(i2cSlaveReceiveService))
- 2979 0ff2 90E0      		ldi r25,hi8(pm(i2cSlaveReceiveService))
- 2980 0ff4 0E94 0000 		call i2cSetSlaveReceiveHandler
- 2981               		.stabn	68,0,110,.LM209-main
- 2982               	.LM209:
- 2983 0ff8 80E0      		ldi r24,lo8(pm(i2cSlaveTransmitService))
- 2984 0ffa 90E0      		ldi r25,hi8(pm(i2cSlaveTransmitService))
- 2985 0ffc 0E94 0000 		call i2cSetSlaveTransmitHandler
- 2986               		.stabn	68,0,114,.LM210-main
- 2987               	.LM210:
- 2988 1000 40E8      		ldi r20,lo8(128)
- 2989 1002 50E0      		ldi r21,hi8(128)
- 2990 1004 60E0      		ldi r22,lo8(gpsBufferData)
- 2991 1006 70E0      		ldi r23,hi8(gpsBufferData)
- 2992 1008 80E0      		ldi r24,lo8(gpsBuffer)
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 71
+ 2941 0fc0 0E94 0000 		call timerPause
+ 2942               		.stabn	68,0,102,.LM204-main
+ 2943               	.LM204:
+ 2944 0fc4 0E94 0000 		call i2cInit
+ 2945               		.stabn	68,0,104,.LM205-main
+ 2946               	.LM205:
+ 2947 0fc8 6FEF      		ldi r22,lo8(-1)
+ 2948 0fca 80EA      		ldi r24,lo8(-96)
+ 2949 0fcc 0E94 0000 		call i2cSetLocalDeviceAddr
+ 2950               		.stabn	68,0,108,.LM206-main
+ 2951               	.LM206:
+ 2952 0fd0 80E0      		ldi r24,lo8(pm(i2cSlaveReceiveService))
+ 2953 0fd2 90E0      		ldi r25,hi8(pm(i2cSlaveReceiveService))
+ 2954 0fd4 0E94 0000 		call i2cSetSlaveReceiveHandler
+ 2955               		.stabn	68,0,112,.LM207-main
+ 2956               	.LM207:
+ 2957 0fd8 80E0      		ldi r24,lo8(pm(i2cSlaveTransmitService))
+ 2958 0fda 90E0      		ldi r25,hi8(pm(i2cSlaveTransmitService))
+ 2959 0fdc 0E94 0000 		call i2cSetSlaveTransmitHandler
+ 2960               		.stabn	68,0,116,.LM208-main
+ 2961               	.LM208:
+ 2962 0fe0 40E8      		ldi r20,lo8(128)
+ 2963 0fe2 50E0      		ldi r21,hi8(128)
+ 2964 0fe4 60E0      		ldi r22,lo8(gpsBufferData)
+ 2965 0fe6 70E0      		ldi r23,hi8(gpsBufferData)
+ 2966 0fe8 80E0      		ldi r24,lo8(gpsBuffer)
+ 2967 0fea 90E0      		ldi r25,hi8(gpsBuffer)
+ 2968 0fec 0E94 0000 		call bufferInit
+ 2969               		.stabn	68,0,118,.LM209-main
+ 2970               	.LM209:
+ 2971 0ff0 80E0      		ldi r24,lo8(pm(addToBuffer))
+ 2972 0ff2 90E0      		ldi r25,hi8(pm(addToBuffer))
+ 2973 0ff4 0E94 0000 		call uartSetRxHandler
+ 2974               		.stabn	68,0,120,.LM210-main
+ 2975               	.LM210:
+ 2976 0ff8 80E0      		ldi r24,lo8(__c.2355)
+ 2977 0ffa 90E0      		ldi r25,hi8(__c.2355)
+ 2978 0ffc 9F93      		push r25
+ 2979 0ffe 8F93      		push r24
+ 2980 1000 11E0      		ldi r17,lo8(1)
+ 2981 1002 F12E      		mov r15,r17
+ 2982 1004 FF92      		push r15
+ 2983 1006 0E94 0000 		call rprintf1RamRom
+ 2984               		.stabn	68,0,123,.LM211-main
+ 2985               	.LM211:
+ 2986 100a 60E0      		ldi r22,lo8(user_data)
+ 2987 100c 70E0      		ldi r23,hi8(user_data)
+ 2988 100e 80E0      		ldi r24,lo8(nmea)
+ 2989 1010 90E0      		ldi r25,hi8(nmea)
+ 2990 1012 0E94 0000 		call nmeap_init
+ 2991               		.stabn	68,0,124,.LM212-main
+ 2992               	.LM212:
+ 2993 1016 0F90      		pop __tmp_reg__
+ 2994 1018 0F90      		pop __tmp_reg__
+ 2995 101a 0F90      	 	pop __tmp_reg__
+ 2996 101c 0097      		sbiw r24,0
+ 2997 101e 71F0      		breq .L184
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 71
 
 
- 2993 100a 90E0      		ldi r25,hi8(gpsBuffer)
- 2994 100c 0E94 0000 		call bufferInit
- 2995               		.stabn	68,0,116,.LM211-main
- 2996               	.LM211:
- 2997 1010 80E0      		ldi r24,lo8(pm(addToBuffer))
- 2998 1012 90E0      		ldi r25,hi8(pm(addToBuffer))
- 2999 1014 0E94 0000 		call uartSetRxHandler
- 3000               		.stabn	68,0,118,.LM212-main
- 3001               	.LM212:
- 3002 1018 80E0      		ldi r24,lo8(__c.2358)
- 3003 101a 90E0      		ldi r25,hi8(__c.2358)
- 3004 101c 9F93      		push r25
- 3005 101e 8F93      		push r24
- 3006 1020 FF92      		push r15
- 3007 1022 0E94 0000 		call rprintf1RamRom
- 3008               		.stabn	68,0,121,.LM213-main
- 3009               	.LM213:
- 3010 1026 60E0      		ldi r22,lo8(user_data)
- 3011 1028 70E0      		ldi r23,hi8(user_data)
- 3012 102a 80E0      		ldi r24,lo8(nmea)
- 3013 102c 90E0      		ldi r25,hi8(nmea)
- 3014 102e 0E94 0000 		call nmeap_init
- 3015               		.stabn	68,0,122,.LM214-main
- 3016               	.LM214:
- 3017 1032 2DB7      		in r18,__SP_L__
- 3018 1034 3EB7      		in r19,__SP_H__
- 3019 1036 275F      		subi r18,lo8(-(9))
- 3020 1038 3F4F      		sbci r19,hi8(-(9))
- 3021 103a 0FB6      		in __tmp_reg__,__SREG__
- 3022 103c F894      		cli
- 3023 103e 3EBF      		out __SP_H__,r19
- 3024 1040 0FBE      		out __SREG__,__tmp_reg__
- 3025 1042 2DBF      		out __SP_L__,r18
- 3026 1044 0097      		sbiw r24,0
- 3027 1046 71F0      		breq .L184
- 3028               		.stabn	68,0,123,.LM215-main
- 3029               	.LM215:
- 3030 1048 9F93      		push r25
- 3031 104a 8F93      		push r24
- 3032 104c 80E0      		ldi r24,lo8(__c.2360)
- 3033 104e 90E0      		ldi r25,hi8(__c.2360)
- 3034 1050 9F93      		push r25
- 3035 1052 8F93      		push r24
- 3036 1054 FF92      		push r15
- 3037 1056 0E94 0000 		call rprintf1RamRom
- 3038 105a 0F90      		pop __tmp_reg__
- 3039 105c 0F90      		pop __tmp_reg__
- 3040 105e 0F90      		pop __tmp_reg__
- 3041 1060 0F90      		pop __tmp_reg__
- 3042 1062 0F90      		pop __tmp_reg__
- 3043               	.L184:
- 3044               		.stabn	68,0,126,.LM216-main
- 3045               	.LM216:
- 3046 1064 00E0      		ldi r16,lo8(gga)
- 3047 1066 10E0      		ldi r17,hi8(gga)
- 3048 1068 20E0      		ldi r18,lo8(0)
- 3049 106a 30E0      		ldi r19,hi8(0)
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 72
+ 2998               		.stabn	68,0,125,.LM213-main
+ 2999               	.LM213:
+ 3000 1020 9F93      		push r25
+ 3001 1022 8F93      		push r24
+ 3002 1024 80E0      		ldi r24,lo8(__c.2357)
+ 3003 1026 90E0      		ldi r25,hi8(__c.2357)
+ 3004 1028 9F93      		push r25
+ 3005 102a 8F93      		push r24
+ 3006 102c FF92      		push r15
+ 3007 102e 0E94 0000 		call rprintf1RamRom
+ 3008 1032 0F90      		pop __tmp_reg__
+ 3009 1034 0F90      		pop __tmp_reg__
+ 3010 1036 0F90      		pop __tmp_reg__
+ 3011 1038 0F90      		pop __tmp_reg__
+ 3012 103a 0F90      		pop __tmp_reg__
+ 3013               	.L184:
+ 3014               		.stabn	68,0,128,.LM214-main
+ 3015               	.LM214:
+ 3016 103c 00E0      		ldi r16,lo8(gga)
+ 3017 103e 10E0      		ldi r17,hi8(gga)
+ 3018 1040 20E0      		ldi r18,lo8(0)
+ 3019 1042 30E0      		ldi r19,hi8(0)
+ 3020 1044 40E0      		ldi r20,lo8(pm(nmeap_gpgga))
+ 3021 1046 50E0      		ldi r21,hi8(pm(nmeap_gpgga))
+ 3022 1048 60E0      		ldi r22,lo8(.LC3)
+ 3023 104a 70E0      		ldi r23,hi8(.LC3)
+ 3024 104c 80E0      		ldi r24,lo8(nmea)
+ 3025 104e 90E0      		ldi r25,hi8(nmea)
+ 3026 1050 0E94 0000 		call nmeap_addParser
+ 3027               		.stabn	68,0,129,.LM215-main
+ 3028               	.LM215:
+ 3029 1054 0097      		sbiw r24,0
+ 3030 1056 71F0      		breq .L186
+ 3031               		.stabn	68,0,130,.LM216-main
+ 3032               	.LM216:
+ 3033 1058 9F93      		push r25
+ 3034 105a 8F93      		push r24
+ 3035 105c 80E0      		ldi r24,lo8(__c.2359)
+ 3036 105e 90E0      		ldi r25,hi8(__c.2359)
+ 3037 1060 9F93      		push r25
+ 3038 1062 8F93      		push r24
+ 3039 1064 FF92      		push r15
+ 3040 1066 0E94 0000 		call rprintf1RamRom
+ 3041 106a 0F90      		pop __tmp_reg__
+ 3042 106c 0F90      		pop __tmp_reg__
+ 3043 106e 0F90      		pop __tmp_reg__
+ 3044 1070 0F90      		pop __tmp_reg__
+ 3045 1072 0F90      		pop __tmp_reg__
+ 3046               	.L186:
+ 3047               		.stabn	68,0,132,.LM217-main
+ 3048               	.LM217:
+ 3049 1074 00E0      		ldi r16,lo8(rmc)
+ 3050 1076 10E0      		ldi r17,hi8(rmc)
+ 3051 1078 20E0      		ldi r18,lo8(0)
+ 3052 107a 30E0      		ldi r19,hi8(0)
+ 3053 107c 40E0      		ldi r20,lo8(pm(nmeap_gprmc))
+ 3054 107e 50E0      		ldi r21,hi8(pm(nmeap_gprmc))
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 72
 
 
- 3050 106c 40E0      		ldi r20,lo8(pm(nmeap_gpgga))
- 3051 106e 50E0      		ldi r21,hi8(pm(nmeap_gpgga))
- 3052 1070 60E0      		ldi r22,lo8(.LC3)
- 3053 1072 70E0      		ldi r23,hi8(.LC3)
- 3054 1074 80E0      		ldi r24,lo8(nmea)
- 3055 1076 90E0      		ldi r25,hi8(nmea)
- 3056 1078 0E94 0000 		call nmeap_addParser
- 3057               		.stabn	68,0,127,.LM217-main
- 3058               	.LM217:
- 3059 107c 0097      		sbiw r24,0
- 3060 107e 71F0      		breq .L186
- 3061               		.stabn	68,0,128,.LM218-main
- 3062               	.LM218:
- 3063 1080 9F93      		push r25
- 3064 1082 8F93      		push r24
- 3065 1084 80E0      		ldi r24,lo8(__c.2362)
- 3066 1086 90E0      		ldi r25,hi8(__c.2362)
- 3067 1088 9F93      		push r25
- 3068 108a 8F93      		push r24
- 3069 108c FF92      		push r15
- 3070 108e 0E94 0000 		call rprintf1RamRom
- 3071 1092 0F90      		pop __tmp_reg__
- 3072 1094 0F90      		pop __tmp_reg__
- 3073 1096 0F90      		pop __tmp_reg__
- 3074 1098 0F90      		pop __tmp_reg__
- 3075 109a 0F90      		pop __tmp_reg__
- 3076               	.L186:
- 3077               		.stabn	68,0,130,.LM219-main
- 3078               	.LM219:
- 3079 109c 00E0      		ldi r16,lo8(rmc)
- 3080 109e 10E0      		ldi r17,hi8(rmc)
- 3081 10a0 20E0      		ldi r18,lo8(0)
- 3082 10a2 30E0      		ldi r19,hi8(0)
- 3083 10a4 40E0      		ldi r20,lo8(pm(nmeap_gprmc))
- 3084 10a6 50E0      		ldi r21,hi8(pm(nmeap_gprmc))
- 3085 10a8 60E0      		ldi r22,lo8(.LC4)
- 3086 10aa 70E0      		ldi r23,hi8(.LC4)
- 3087 10ac 80E0      		ldi r24,lo8(nmea)
- 3088 10ae 90E0      		ldi r25,hi8(nmea)
- 3089 10b0 0E94 0000 		call nmeap_addParser
- 3090               		.stabn	68,0,131,.LM220-main
- 3091               	.LM220:
- 3092 10b4 0097      		sbiw r24,0
- 3093 10b6 71F0      		breq .L188
- 3094               		.stabn	68,0,132,.LM221-main
- 3095               	.LM221:
- 3096 10b8 9F93      		push r25
- 3097 10ba 8F93      		push r24
- 3098 10bc 80E0      		ldi r24,lo8(__c.2364)
- 3099 10be 90E0      		ldi r25,hi8(__c.2364)
- 3100 10c0 9F93      		push r25
- 3101 10c2 8F93      		push r24
- 3102 10c4 FF92      		push r15
- 3103 10c6 0E94 0000 		call rprintf1RamRom
- 3104 10ca 0F90      		pop __tmp_reg__
- 3105 10cc 0F90      		pop __tmp_reg__
- 3106 10ce 0F90      		pop __tmp_reg__
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 73
+ 3055 1080 60E0      		ldi r22,lo8(.LC4)
+ 3056 1082 70E0      		ldi r23,hi8(.LC4)
+ 3057 1084 80E0      		ldi r24,lo8(nmea)
+ 3058 1086 90E0      		ldi r25,hi8(nmea)
+ 3059 1088 0E94 0000 		call nmeap_addParser
+ 3060               		.stabn	68,0,133,.LM218-main
+ 3061               	.LM218:
+ 3062 108c 0097      		sbiw r24,0
+ 3063 108e 71F0      		breq .L188
+ 3064               		.stabn	68,0,134,.LM219-main
+ 3065               	.LM219:
+ 3066 1090 9F93      		push r25
+ 3067 1092 8F93      		push r24
+ 3068 1094 80E0      		ldi r24,lo8(__c.2361)
+ 3069 1096 90E0      		ldi r25,hi8(__c.2361)
+ 3070 1098 9F93      		push r25
+ 3071 109a 8F93      		push r24
+ 3072 109c FF92      		push r15
+ 3073 109e 0E94 0000 		call rprintf1RamRom
+ 3074 10a2 0F90      		pop __tmp_reg__
+ 3075 10a4 0F90      		pop __tmp_reg__
+ 3076 10a6 0F90      		pop __tmp_reg__
+ 3077 10a8 0F90      		pop __tmp_reg__
+ 3078 10aa 0F90      		pop __tmp_reg__
+ 3079               	.L188:
+ 3080               		.stabn	68,0,136,.LM220-main
+ 3081               	.LM220:
+ 3082 10ac 80E0      		ldi r24,lo8(__c.2363)
+ 3083 10ae 90E0      		ldi r25,hi8(__c.2363)
+ 3084 10b0 9F93      		push r25
+ 3085 10b2 8F93      		push r24
+ 3086 10b4 FF92      		push r15
+ 3087 10b6 0E94 0000 		call rprintf1RamRom
+ 3088               		.stabn	68,0,137,.LM221-main
+ 3089               	.LM221:
+ 3090 10ba 4091 0000 		lds r20,gga
+ 3091 10be 5091 0000 		lds r21,(gga)+1
+ 3092 10c2 6091 0000 		lds r22,(gga)+2
+ 3093 10c6 7091 0000 		lds r23,(gga)+3
+ 3094 10ca 88E0      		ldi r24,lo8(8)
+ 3095 10cc 0E94 0000 		call rprintfFloat
+ 3096               		.stabn	68,0,138,.LM222-main
+ 3097               	.LM222:
+ 3098 10d0 80E0      		ldi r24,lo8(__c.2365)
+ 3099 10d2 90E0      		ldi r25,hi8(__c.2365)
+ 3100 10d4 9F93      		push r25
+ 3101 10d6 8F93      		push r24
+ 3102 10d8 FF92      		push r15
+ 3103 10da 0E94 0000 		call rprintf1RamRom
+ 3104 10de 8DB7      		in r24,__SP_L__
+ 3105 10e0 9EB7      		in r25,__SP_H__
+ 3106 10e2 0696      		adiw r24,6
+ 3107 10e4 0FB6      		in __tmp_reg__,__SREG__
+ 3108 10e6 F894      		cli
+ 3109 10e8 9EBF      		out __SP_H__,r25
+ 3110 10ea 0FBE      		out __SREG__,__tmp_reg__
+ 3111 10ec 8DBF      		out __SP_L__,r24
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 73
 
 
- 3107 10d0 0F90      		pop __tmp_reg__
- 3108 10d2 0F90      		pop __tmp_reg__
- 3109               	.L188:
- 3110               		.stabn	68,0,134,.LM222-main
- 3111               	.LM222:
- 3112 10d4 80E0      		ldi r24,lo8(__c.2366)
- 3113 10d6 90E0      		ldi r25,hi8(__c.2366)
- 3114 10d8 9F93      		push r25
- 3115 10da 8F93      		push r24
- 3116 10dc FF92      		push r15
- 3117 10de 0E94 0000 		call rprintf1RamRom
- 3118               		.stabn	68,0,135,.LM223-main
- 3119               	.LM223:
- 3120 10e2 4091 0000 		lds r20,gga
- 3121 10e6 5091 0000 		lds r21,(gga)+1
- 3122 10ea 6091 0000 		lds r22,(gga)+2
- 3123 10ee 7091 0000 		lds r23,(gga)+3
- 3124 10f2 88E0      		ldi r24,lo8(8)
- 3125 10f4 0E94 0000 		call rprintfFloat
- 3126               		.stabn	68,0,136,.LM224-main
- 3127               	.LM224:
- 3128 10f8 80E0      		ldi r24,lo8(__c.2368)
- 3129 10fa 90E0      		ldi r25,hi8(__c.2368)
- 3130 10fc 9F93      		push r25
- 3131 10fe 8F93      		push r24
- 3132 1100 FF92      		push r15
- 3133 1102 0E94 0000 		call rprintf1RamRom
- 3134 1106 8DB7      		in r24,__SP_L__
- 3135 1108 9EB7      		in r25,__SP_H__
- 3136 110a 0696      		adiw r24,6
- 3137 110c 0FB6      		in __tmp_reg__,__SREG__
- 3138 110e F894      		cli
- 3139 1110 9EBF      		out __SP_H__,r25
- 3140 1112 0FBE      		out __SREG__,__tmp_reg__
- 3141 1114 8DBF      		out __SP_L__,r24
- 3142               	.L210:
- 3143               	.LBB2:
- 3144               		.stabn	68,0,142,.LM225-main
- 3145               	.LM225:
- 3146 1116 80E0      		ldi r24,lo8(gpsBuffer)
- 3147 1118 90E0      		ldi r25,hi8(gpsBuffer)
- 3148 111a 0E94 0000 		call bufferGetFromFront
- 3149 111e 682F      		mov r22,r24
- 3150               		.stabn	68,0,143,.LM226-main
- 3151               	.LM226:
- 3152 1120 8823      		tst r24
- 3153 1122 09F4      		brne .+2
- 3154 1124 5EC0      		rjmp .L191
- 3155               		.stabn	68,0,145,.LM227-main
- 3156               	.LM227:
- 3157 1126 80E0      		ldi r24,lo8(nmea)
- 3158 1128 90E0      		ldi r25,hi8(nmea)
- 3159 112a 0E94 0000 		call nmeap_parse
- 3160               		.stabn	68,0,146,.LM228-main
- 3161               	.LM228:
- 3162 112e 8130      		cpi r24,1
- 3163 1130 9105      		cpc r25,__zero_reg__
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 74
+ 3112               	.L210:
+ 3113               	.LBB2:
+ 3114               		.stabn	68,0,144,.LM223-main
+ 3115               	.LM223:
+ 3116 10ee 80E0      		ldi r24,lo8(gpsBuffer)
+ 3117 10f0 90E0      		ldi r25,hi8(gpsBuffer)
+ 3118 10f2 0E94 0000 		call bufferGetFromFront
+ 3119 10f6 682F      		mov r22,r24
+ 3120               		.stabn	68,0,145,.LM224-main
+ 3121               	.LM224:
+ 3122 10f8 8823      		tst r24
+ 3123 10fa 09F4      		brne .+2
+ 3124 10fc 6DC0      		rjmp .L191
+ 3125               		.stabn	68,0,147,.LM225-main
+ 3126               	.LM225:
+ 3127 10fe 80E0      		ldi r24,lo8(nmea)
+ 3128 1100 90E0      		ldi r25,hi8(nmea)
+ 3129 1102 0E94 0000 		call nmeap_parse
+ 3130               		.stabn	68,0,148,.LM226-main
+ 3131               	.LM226:
+ 3132 1106 8130      		cpi r24,1
+ 3133 1108 9105      		cpc r25,__zero_reg__
+ 3134 110a 19F0      		breq .L194
+ 3135 110c 0297      		sbiw r24,2
+ 3136 110e 09F0      		breq .+2
+ 3137 1110 63C0      		rjmp .L191
+ 3138               	.L194:
+ 3139               		.stabn	68,0,176,.LM227-main
+ 3140               	.LM227:
+ 3141 1112 A090 0000 		lds r10,gga+8
+ 3142 1116 B090 0000 		lds r11,(gga+8)+1
+ 3143 111a C090 0000 		lds r12,(gga+8)+2
+ 3144 111e D090 0000 		lds r13,(gga+8)+3
+ 3145 1122 2091 0000 		lds r18,gga+12
+ 3146 1126 3091 0000 		lds r19,(gga+12)+1
+ 3147 112a 4091 0000 		lds r20,(gga+12)+2
+ 3148 112e 5091 0000 		lds r21,(gga+12)+3
+ 3149 1132 57FD      		sbrc r21,7
+ 3150 1134 05C0      		rjmp .L198
+ 3151 1136 CA01      		movw r24,r20
+ 3152 1138 B901      		movw r22,r18
+ 3153 113a 0E94 0000 		call __floatsisf
+ 3154 113e 14C0      		rjmp .L207
+ 3155               	.L198:
+ 3156 1140 CA01      		movw r24,r20
+ 3157 1142 B901      		movw r22,r18
+ 3158 1144 6170      		andi r22,lo8(1)
+ 3159 1146 7070      		andi r23,hi8(1)
+ 3160 1148 8070      		andi r24,hlo8(1)
+ 3161 114a 9070      		andi r25,hhi8(1)
+ 3162 114c 5695      		lsr r21
+ 3163 114e 4795      		ror r20
+ 3164 1150 3795      		ror r19
+ 3165 1152 2795      		ror r18
+ 3166 1154 622B      		or r22,r18
+ 3167 1156 732B      		or r23,r19
+ 3168 1158 842B      		or r24,r20
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 74
 
 
- 3164 1132 19F0      		breq .L194
- 3165 1134 0297      		sbiw r24,2
- 3166 1136 09F0      		breq .+2
- 3167 1138 54C0      		rjmp .L191
- 3168               	.L194:
- 3169               		.stabn	68,0,174,.LM229-main
- 3170               	.LM229:
- 3171 113a A090 0000 		lds r10,gga+8
- 3172 113e B090 0000 		lds r11,(gga+8)+1
- 3173 1142 C090 0000 		lds r12,(gga+8)+2
- 3174 1146 D090 0000 		lds r13,(gga+8)+3
- 3175 114a 2091 0000 		lds r18,gga+12
- 3176 114e 3091 0000 		lds r19,(gga+12)+1
- 3177 1152 4091 0000 		lds r20,(gga+12)+2
- 3178 1156 5091 0000 		lds r21,(gga+12)+3
- 3179 115a 57FD      		sbrc r21,7
- 3180 115c 05C0      		rjmp .L198
- 3181 115e CA01      		movw r24,r20
- 3182 1160 B901      		movw r22,r18
- 3183 1162 0E94 0000 		call __floatsisf
- 3184 1166 14C0      		rjmp .L207
- 3185               	.L198:
- 3186 1168 CA01      		movw r24,r20
- 3187 116a B901      		movw r22,r18
- 3188 116c 6170      		andi r22,lo8(1)
- 3189 116e 7070      		andi r23,hi8(1)
- 3190 1170 8070      		andi r24,hlo8(1)
- 3191 1172 9070      		andi r25,hhi8(1)
- 3192 1174 5695      		lsr r21
- 3193 1176 4795      		ror r20
- 3194 1178 3795      		ror r19
- 3195 117a 2795      		ror r18
- 3196 117c 622B      		or r22,r18
- 3197 117e 732B      		or r23,r19
- 3198 1180 842B      		or r24,r20
- 3199 1182 952B      		or r25,r21
- 3200 1184 0E94 0000 		call __floatsisf
- 3201 1188 9B01      		movw r18,r22
- 3202 118a AC01      		movw r20,r24
- 3203 118c 0E94 0000 		call __addsf3
- 3204               	.L207:
- 3205 1190 3B01      		movw r6,r22
- 3206 1192 4C01      		movw r8,r24
- 3207 1194 2091 0000 		lds r18,gga+4
- 3208 1198 3091 0000 		lds r19,(gga+4)+1
- 3209 119c 4091 0000 		lds r20,(gga+4)+2
- 3210 11a0 5091 0000 		lds r21,(gga+4)+3
- 3211 11a4 6091 0000 		lds r22,gga
- 3212 11a8 7091 0000 		lds r23,(gga)+1
- 3213 11ac 8091 0000 		lds r24,(gga)+2
- 3214 11b0 9091 0000 		lds r25,(gga)+3
- 3215 11b4 EEE6      		ldi r30,lo8(110)
- 3216 11b6 EF93      		push r30
- 3217 11b8 E090 0000 		lds r14,rmc+17
- 3218 11bc F090 0000 		lds r15,(rmc+17)+1
- 3219 11c0 0091 0000 		lds r16,(rmc+17)+2
- 3220 11c4 1091 0000 		lds r17,(rmc+17)+3
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 75
+ 3169 115a 952B      		or r25,r21
+ 3170 115c 0E94 0000 		call __floatsisf
+ 3171 1160 9B01      		movw r18,r22
+ 3172 1162 AC01      		movw r20,r24
+ 3173 1164 0E94 0000 		call __addsf3
+ 3174               	.L207:
+ 3175 1168 3B01      		movw r6,r22
+ 3176 116a 4C01      		movw r8,r24
+ 3177 116c 2091 0000 		lds r18,gga+4
+ 3178 1170 3091 0000 		lds r19,(gga+4)+1
+ 3179 1174 4091 0000 		lds r20,(gga+4)+2
+ 3180 1178 5091 0000 		lds r21,(gga+4)+3
+ 3181 117c 6091 0000 		lds r22,gga
+ 3182 1180 7091 0000 		lds r23,(gga)+1
+ 3183 1184 8091 0000 		lds r24,(gga)+2
+ 3184 1188 9091 0000 		lds r25,(gga)+3
+ 3185 118c EEE6      		ldi r30,lo8(110)
+ 3186 118e EF93      		push r30
+ 3187 1190 E090 0000 		lds r14,rmc+13
+ 3188 1194 F090 0000 		lds r15,(rmc+13)+1
+ 3189 1198 0091 0000 		lds r16,(rmc+13)+2
+ 3190 119c 1091 0000 		lds r17,(rmc+13)+3
+ 3191 11a0 1F93      		push r17
+ 3192 11a2 0F93      		push r16
+ 3193 11a4 FF92      		push r15
+ 3194 11a6 EF92      		push r14
+ 3195 11a8 E090 0000 		lds r14,rmc+17
+ 3196 11ac F090 0000 		lds r15,(rmc+17)+1
+ 3197 11b0 0091 0000 		lds r16,(rmc+17)+2
+ 3198 11b4 1091 0000 		lds r17,(rmc+17)+3
+ 3199 11b8 1F93      		push r17
+ 3200 11ba 0F93      		push r16
+ 3201 11bc FF92      		push r15
+ 3202 11be EF92      		push r14
+ 3203 11c0 8401      		movw r16,r8
+ 3204 11c2 7301      		movw r14,r6
+ 3205 11c4 0E94 0000 		call writeVideoScreen
+ 3206 11c8 8DB7      		in r24,__SP_L__
+ 3207 11ca 9EB7      		in r25,__SP_H__
+ 3208 11cc 0996      		adiw r24,9
+ 3209 11ce 0FB6      		in __tmp_reg__,__SREG__
+ 3210 11d0 F894      		cli
+ 3211 11d2 9EBF      		out __SP_H__,r25
+ 3212 11d4 0FBE      		out __SREG__,__tmp_reg__
+ 3213 11d6 8DBF      		out __SP_L__,r24
+ 3214               	.L191:
+ 3215               		.stabn	68,0,204,.LM228-main
+ 3216               	.LM228:
+ 3217 11d8 80E0      		ldi r24,lo8(__c.2376)
+ 3218 11da 90E0      		ldi r25,hi8(__c.2376)
+ 3219 11dc 9F93      		push r25
+ 3220 11de 8F93      		push r24
+ 3221 11e0 11E0      		ldi r17,lo8(1)
+ 3222 11e2 1F93      		push r17
+ 3223 11e4 0E94 0000 		call rprintf1RamRom
+ 3224               		.stabn	68,0,206,.LM229-main
+ 3225               	.LM229:
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 75
 
 
- 3221 11c8 1F93      		push r17
- 3222 11ca 0F93      		push r16
- 3223 11cc FF92      		push r15
- 3224 11ce EF92      		push r14
- 3225 11d0 8401      		movw r16,r8
- 3226 11d2 7301      		movw r14,r6
- 3227 11d4 0E94 0000 		call writeVideoScreen
- 3228 11d8 0F90      		pop __tmp_reg__
- 3229 11da 0F90      		pop __tmp_reg__
- 3230 11dc 0F90      		pop __tmp_reg__
- 3231 11de 0F90      		pop __tmp_reg__
- 3232 11e0 0F90      		pop __tmp_reg__
- 3233               	.L191:
- 3234               		.stabn	68,0,202,.LM230-main
- 3235               	.LM230:
- 3236 11e2 80E0      		ldi r24,lo8(__c.2379)
- 3237 11e4 90E0      		ldi r25,hi8(__c.2379)
- 3238 11e6 9F93      		push r25
- 3239 11e8 8F93      		push r24
- 3240 11ea 11E0      		ldi r17,lo8(1)
- 3241 11ec 1F93      		push r17
- 3242 11ee 0E94 0000 		call rprintf1RamRom
- 3243               		.stabn	68,0,204,.LM231-main
- 3244               	.LM231:
- 3245 11f2 0F90      		pop __tmp_reg__
- 3246 11f4 0F90      		pop __tmp_reg__
- 3247 11f6 0F90      	 	pop __tmp_reg__
- 3248 11f8 8091 0000 		lds r24,message_sent
- 3249 11fc 8823      		tst r24
- 3250 11fe 09F4      		brne .+2
- 3251 1200 8ACF      		rjmp .L210
- 3252               		.stabn	68,0,206,.LM232-main
- 3253               	.LM232:
- 3254 1202 1093 0000 		sts message_sent,r17
- 3255               		.stabn	68,0,207,.LM233-main
- 3256               	.LM233:
- 3257 1206 80E0      		ldi r24,lo8(__c.2381)
- 3258 1208 90E0      		ldi r25,hi8(__c.2381)
- 3259 120a 9F93      		push r25
- 3260 120c 8F93      		push r24
- 3261 120e 1F93      		push r17
- 3262 1210 0E94 0000 		call rprintf1RamRom
- 3263 1214 0F90      		pop __tmp_reg__
- 3264 1216 0F90      		pop __tmp_reg__
- 3265 1218 0F90      	 	pop __tmp_reg__
- 3266 121a 7DCF      		rjmp .L210
- 3267               	.LBE2:
- 3268               	/* epilogue: frame size=0 */
- 3269               	/* epilogue: noreturn */
- 3270               	/* epilogue end (size=0) */
- 3271               	/* function main size 339 (335) */
- 3272               		.size	main, .-main
- 3273               		.stabs	"status:r(0,1)",64,0,55,24
- 3274               		.stabn	192,0,0,main-main
- 3275               		.stabn	224,0,0,.Lscope17-main
- 3276               	.Lscope17:
- 3277               		.stabs	"",36,0,0,.Lscope17-main
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 76
-
-
- 3278               		.stabd	78,0,0
- 3279               		.stabs	"nmea:S(13,11)",40,0,31,nmea
- 3280               		.stabs	"user_data:S(0,1)",40,0,32,user_data
- 3281               		.stabs	"gga:S(12,8)",40,0,33,gga
- 3282               		.stabs	"rmc:S(12,10)",40,0,34,rmc
- 3283               		.stabs	"gpsBuffer:S(8,3)",40,0,36,gpsBuffer
- 3284               		.stabs	"gpsBufferData:S(0,24)=ar(13,3);0;127;(0,2)",40,0,37,gpsBufferData
- 3285               		.stabs	"localBuffer:G(0,25)=ar(13,3);0;33;(0,11)",32,0,28,0
- 3286               		.stabs	"localBufferLength:G(0,11)",32,0,29,0
- 3287               		.stabs	"message_sent:G(7,1)",32,0,43,0
- 3288               		.stabs	"stackem:G(0,26)=ar(13,3);0;31;(7,1)",32,0,48,0
- 3289               		.stabs	"stackem_pointer:G(7,1)",32,0,49,0
- 3290               		.comm stackem,32,1
- 3291               		.comm message_sent,1,1
- 3292               		.lcomm gpsBufferData,128
- 3293               		.lcomm gpsBuffer,8
- 3294               		.lcomm rmc,29
- 3295               		.lcomm gga,28
- 3296               		.lcomm user_data,2
- 3297               		.lcomm nmea,718
- 3298               		.stabs	"",100,0,0,.Letext0
- 3299               	.Letext0:
- 3300               	/* File "gpstest.c": code 2320 = 0x0910 (2034), prologues 139, epilogues 147 */
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 77
+ 3226 11e8 0F90      		pop __tmp_reg__
+ 3227 11ea 0F90      		pop __tmp_reg__
+ 3228 11ec 0F90      	 	pop __tmp_reg__
+ 3229 11ee 8091 0000 		lds r24,message_sent
+ 3230 11f2 8823      		tst r24
+ 3231 11f4 09F4      		brne .+2
+ 3232 11f6 7BCF      		rjmp .L210
+ 3233               		.stabn	68,0,208,.LM230-main
+ 3234               	.LM230:
+ 3235 11f8 1093 0000 		sts message_sent,r17
+ 3236               		.stabn	68,0,209,.LM231-main
+ 3237               	.LM231:
+ 3238 11fc 80E0      		ldi r24,lo8(__c.2378)
+ 3239 11fe 90E0      		ldi r25,hi8(__c.2378)
+ 3240 1200 9F93      		push r25
+ 3241 1202 8F93      		push r24
+ 3242 1204 1F93      		push r17
+ 3243 1206 0E94 0000 		call rprintf1RamRom
+ 3244 120a 0F90      		pop __tmp_reg__
+ 3245 120c 0F90      		pop __tmp_reg__
+ 3246 120e 0F90      	 	pop __tmp_reg__
+ 3247 1210 6ECF      		rjmp .L210
+ 3248               	.LBE2:
+ 3249               	/* epilogue: frame size=0 */
+ 3250               	/* epilogue: noreturn */
+ 3251               	/* epilogue end (size=0) */
+ 3252               	/* function main size 334 (330) */
+ 3253               		.size	main, .-main
+ 3254               		.stabs	"status:r(0,1)",64,0,55,24
+ 3255               		.stabn	192,0,0,main-main
+ 3256               		.stabn	224,0,0,.Lscope17-main
+ 3257               	.Lscope17:
+ 3258               		.stabs	"",36,0,0,.Lscope17-main
+ 3259               		.stabd	78,0,0
+ 3260               		.stabs	"nmea:S(13,11)",40,0,31,nmea
+ 3261               		.stabs	"user_data:S(0,1)",40,0,32,user_data
+ 3262               		.stabs	"gga:S(12,8)",40,0,33,gga
+ 3263               		.stabs	"rmc:S(12,10)",40,0,34,rmc
+ 3264               		.stabs	"gpsBuffer:S(8,3)",40,0,36,gpsBuffer
+ 3265               		.stabs	"gpsBufferData:S(0,24)=ar(13,3);0;127;(0,2)",40,0,37,gpsBufferData
+ 3266               		.stabs	"localBuffer:G(0,25)=ar(13,3);0;33;(0,11)",32,0,28,0
+ 3267               		.stabs	"localBufferLength:G(0,11)",32,0,29,0
+ 3268               		.stabs	"message_sent:G(7,1)",32,0,43,0
+ 3269               		.stabs	"stackem:G(0,26)=ar(13,3);0;31;(7,1)",32,0,48,0
+ 3270               		.stabs	"stackem_pointer:G(7,1)",32,0,49,0
+ 3271               		.comm stackem,32,1
+ 3272               		.comm message_sent,1,1
+ 3273               		.lcomm gpsBufferData,128
+ 3274               		.lcomm gpsBuffer,8
+ 3275               		.lcomm rmc,29
+ 3276               		.lcomm gga,28
+ 3277               		.lcomm user_data,2
+ 3278               		.lcomm nmea,718
+ 3279               		.stabs	"",100,0,0,.Letext0
+ 3280               	.Letext0:
+ 3281               	/* File "gpstest.c": code 2315 = 0x090b (2029), prologues 139, epilogues 147 */
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 76
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 gpstest.c
-/var/tmp//ccfjv8yI.s:3      *ABS*:0000003f __SREG__
-/var/tmp//ccfjv8yI.s:4      *ABS*:0000003e __SP_H__
-/var/tmp//ccfjv8yI.s:5      *ABS*:0000003d __SP_L__
-/var/tmp//ccfjv8yI.s:6      *ABS*:00000000 __tmp_reg__
-/var/tmp//ccfjv8yI.s:7      *ABS*:00000001 __zero_reg__
-/var/tmp//ccfjv8yI.s:160    .bss:00000000 stackem_pointer
-/var/tmp//ccfjv8yI.s:166    .data:00000000 localBufferLength
-/var/tmp//ccfjv8yI.s:171    .data:00000001 localBuffer
-/var/tmp//ccfjv8yI.s:179    .text:00000000 nmeap_altitude
-/var/tmp//ccfjv8yI.s:242    .text:0000003a nmeap_tokenize
-/var/tmp//ccfjv8yI.s:339    .text:00000096 nmeap_process
-/var/tmp//ccfjv8yI.s:462    .text:0000013a nmeap_parse
-/var/tmp//ccfjv8yI.s:975    .text:00000424 nmeap_parseBuffer
-/var/tmp//ccfjv8yI.s:1068   .text:00000492 dist
-/var/tmp//ccfjv8yI.s:1312   .text:00000678 bearing
-/var/tmp//ccfjv8yI.s:1543   .text:0000083e addToBuffer
-/var/tmp//ccfjv8yI.s:3292   .bss:00000081 gpsBuffer
-/var/tmp//ccfjv8yI.s:1570   .text:0000084a i2cSlaveReceiveService
-/var/tmp//ccfjv8yI.s:1617   .progmem.data:00000000 __c.2433
-/var/tmp//ccfjv8yI.s:1625   .text:00000870 i2cSlaveTransmitService
-/var/tmp//ccfjv8yI.s:1788   .text:0000096a print_to_string
-/var/tmp//ccfjv8yI.s:3294   .bss:000000a6 gga
-/var/tmp//ccfjv8yI.s:3293   .bss:00000089 rmc
+/var/tmp//ccCC1ycJ.s:3      *ABS*:0000003f __SREG__
+/var/tmp//ccCC1ycJ.s:4      *ABS*:0000003e __SP_H__
+/var/tmp//ccCC1ycJ.s:5      *ABS*:0000003d __SP_L__
+/var/tmp//ccCC1ycJ.s:6      *ABS*:00000000 __tmp_reg__
+/var/tmp//ccCC1ycJ.s:7      *ABS*:00000001 __zero_reg__
+/var/tmp//ccCC1ycJ.s:160    .bss:00000000 stackem_pointer
+/var/tmp//ccCC1ycJ.s:166    .data:00000000 localBufferLength
+/var/tmp//ccCC1ycJ.s:171    .data:00000001 localBuffer
+/var/tmp//ccCC1ycJ.s:179    .text:00000000 nmeap_altitude
+/var/tmp//ccCC1ycJ.s:242    .text:0000003a nmeap_tokenize
+/var/tmp//ccCC1ycJ.s:339    .text:00000096 nmeap_process
+/var/tmp//ccCC1ycJ.s:462    .text:0000013a nmeap_parse
+/var/tmp//ccCC1ycJ.s:975    .text:00000424 nmeap_parseBuffer
+/var/tmp//ccCC1ycJ.s:1068   .text:00000492 dist
+/var/tmp//ccCC1ycJ.s:1312   .text:00000678 bearing
+/var/tmp//ccCC1ycJ.s:1543   .text:0000083e addToBuffer
+/var/tmp//ccCC1ycJ.s:3273   .bss:00000081 gpsBuffer
+/var/tmp//ccCC1ycJ.s:1570   .text:0000084a i2cSlaveReceiveService
+/var/tmp//ccCC1ycJ.s:1617   .progmem.data:00000000 __c.2432
+/var/tmp//ccCC1ycJ.s:1625   .text:00000870 i2cSlaveTransmitService
+/var/tmp//ccCC1ycJ.s:1788   .text:0000096a print_to_string
+/var/tmp//ccCC1ycJ.s:3275   .bss:000000a6 gga
+/var/tmp//ccCC1ycJ.s:3274   .bss:00000089 rmc
                             *COM*:00000020 stackem
-/var/tmp//ccfjv8yI.s:1832   .text:0000098e nmeap_latitude
-/var/tmp//ccfjv8yI.s:1978   .text:00000a64 nmeap_longitude
-/var/tmp//ccfjv8yI.s:2130   .text:00000b3a nmeap_gprmc
-/var/tmp//ccfjv8yI.s:2414   .text:00000d0a nmeap_gpgga
-/var/tmp//ccfjv8yI.s:2689   .text:00000eca nmeap_init
-/var/tmp//ccfjv8yI.s:2737   .text:00000eec nmeap_addParser
-/var/tmp//ccfjv8yI.s:2847   .progmem.data:00000003 __c.2381
-/var/tmp//ccfjv8yI.s:2851   .progmem.data:0000000f __c.2379
-/var/tmp//ccfjv8yI.s:2855   .progmem.data:00000012 __c.2368
-/var/tmp//ccfjv8yI.s:2859   .progmem.data:00000015 __c.2366
-/var/tmp//ccfjv8yI.s:2863   .progmem.data:00000025 __c.2364
-/var/tmp//ccfjv8yI.s:2867   .progmem.data:00000037 __c.2362
-/var/tmp//ccfjv8yI.s:2871   .progmem.data:00000049 __c.2360
-/var/tmp//ccfjv8yI.s:2875   .progmem.data:00000058 __c.2358
-/var/tmp//ccfjv8yI.s:2879   .progmem.data:00000066 __c.2356
-/var/tmp//ccfjv8yI.s:2883   .progmem.data:00000073 __c.2354
-/var/tmp//ccfjv8yI.s:2894   .text:00000f78 main
+/var/tmp//ccCC1ycJ.s:1832   .text:0000098e nmeap_latitude
+/var/tmp//ccCC1ycJ.s:1978   .text:00000a64 nmeap_longitude
+/var/tmp//ccCC1ycJ.s:2130   .text:00000b3a nmeap_gprmc
+/var/tmp//ccCC1ycJ.s:2414   .text:00000d0a nmeap_gpgga
+/var/tmp//ccCC1ycJ.s:2689   .text:00000eca nmeap_init
+/var/tmp//ccCC1ycJ.s:2737   .text:00000eec nmeap_addParser
+/var/tmp//ccCC1ycJ.s:2847   .progmem.data:00000003 __c.2378
+/var/tmp//ccCC1ycJ.s:2851   .progmem.data:0000000f __c.2376
+/var/tmp//ccCC1ycJ.s:2855   .progmem.data:00000012 __c.2365
+/var/tmp//ccCC1ycJ.s:2859   .progmem.data:00000015 __c.2363
+/var/tmp//ccCC1ycJ.s:2863   .progmem.data:00000025 __c.2361
+/var/tmp//ccCC1ycJ.s:2867   .progmem.data:00000037 __c.2359
+/var/tmp//ccCC1ycJ.s:2871   .progmem.data:00000049 __c.2357
+/var/tmp//ccCC1ycJ.s:2875   .progmem.data:00000058 __c.2355
+/var/tmp//ccCC1ycJ.s:2886   .text:00000f78 main
                             *COM*:00000001 message_sent
                              .bss:00000001 gpsBufferData
-/var/tmp//ccfjv8yI.s:3295   .bss:000000c2 user_data
-/var/tmp//ccfjv8yI.s:3296   .bss:000000c4 nmea
+/var/tmp//ccCC1ycJ.s:3276   .bss:000000c2 user_data
+/var/tmp//ccCC1ycJ.s:3277   .bss:000000c4 nmea
 
 UNDEFINED SYMBOLS
 __do_copy_data
@@ -4584,11 +4555,11 @@ strncpy
 strncmp
 isalnum
 isxdigit
-GAS LISTING /var/tmp//ccfjv8yI.s 			page 78
-
-
 __divsf3
 __subsf3
+GAS LISTING /var/tmp//ccCC1ycJ.s 			page 77
+
+
 sin
 cos
 __addsf3

@@ -91,7 +91,7 @@ EXTRAINCDIRS = $(AVRLIB)
 CSTANDARD = -std=gnu99
 
 # Place -D or -U options here
-CDEFS = -D$(TARGET) -DCPUCLK=$(CPUCLK) -DTICKRATE=$(TICKRATE)
+CDEFS = -D$(TARGET) -DCPUCLK=$(CPUCLK) -DTICKRATE=$(TICKRATE) -DAVRX_COMPILE
 
 # Place -I options here
 CINCS = -I../avrx -I$(AVRLIB)
