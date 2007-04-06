@@ -13,15 +13,15 @@ def main():
 	parser.add_option("-p", "--port",
 		action="store", type="string", dest="portname",default=0,
 		help="the serial port")
+	parser.add_option("-f", "--file",
+		action="store", type="string", dest="filename",
+		help="the .hex file to be loaded")
 	parser.add_option("-b", "--baud",
 		action="store", type="int", dest="baudrate", default=57600,
 		help="the baud rate")
 	parser.add_option("-l", "--linedelay",
 		action="store", type="int", dest="linedelay", default=1,
 		help="line delay, in 60ths of a second")
-	parser.add_option("-f", "--file",
-		action="store", type="string", dest="filename",
-		help="the .hex file to be loaded")
 	(options, args) = parser.parse_args()
 
 	if (options.filename is None):
@@ -38,7 +38,7 @@ def main():
 		print "Serial Exception:",e
 		return 2
 
-	#ensure #6 is there
+	#ensure 6 is there
 	port.write("This is a test. Testing 123.\r\n")
 	time.sleep(.1)
 	buffer = port.readlines()
@@ -54,28 +54,22 @@ def main():
 	print "writing",options.filename,"to #6"
 	
 	i = 0
-	
 	for l in lines:
-		try:
-			port.write(l)
-			print l[:-2] #strip newlines
+		try:	
+			w = l[:-2] + '\n' #get newlines right
+			port.write(w)
+			print repr(w) #show
 			i=i+1
-			if (i%50 == 0):
-				print ".",
-				time.sleep(0.5) #heartbeat
-				#sleep longer
-			else:
-				time.sleep(1/60.0)
-			
+			time.sleep(options.linedelay/60.0)
 		except serial.serialutil.SerialTimeoutException:
 			print "write timeout on line",i
-			#port.flushOutput()
-			#port.close()
+			port.close()
 			return -1
 			
-	
-	buffer = port.readlines()
+	buffer = port.read(100)
 	print buffer
+	
+	port.close()
 	
 if __name__ == "__main__":
 	sys.exit(main())
