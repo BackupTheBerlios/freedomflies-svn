@@ -1,4 +1,4 @@
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
+GAS LISTING /var/tmp//ccqKAok3.s 			page 1
 
 
    1               		.file	"gpstest.c"
@@ -58,7 +58,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
   55               		.stabs	"uint_fast16_t:t(4,22)=(4,4)",128,0,215,0
   56               		.stabs	"int_fast32_t:t(4,23)=(4,5)",128,0,220,0
   57               		.stabs	"uint_fast32_t:t(4,24)=(4,6)",128,0,225,0
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 2
+GAS LISTING /var/tmp//ccqKAok3.s 			page 2
 
 
   58               		.stabs	"int_fast64_t:t(4,25)=(4,7)",128,0,230,0
@@ -118,7 +118,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  112               		.stabs	"prog_uint64_t:t(10,19)=(10,20)=(0,7)",128,0,214,0
  113               		.stabn	162,0,0,0
  114               		.stabn	162,0,0,0
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 3
+GAS LISTING /var/tmp//ccqKAok3.s 			page 3
 
 
  115               		.stabs	"nmeap.h",130,0,0,0
@@ -178,7 +178,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  169               		.type	localBuffer, @object
  170               		.size	localBuffer, 34
  171               	localBuffer:
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 4
+GAS LISTING /var/tmp//ccqKAok3.s 			page 4
 
 
  172 0001 5468 6973 		.string	"This should be filling with data!"
@@ -238,7 +238,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
   40:nmeap01.c     **** /* forward references */
   41:nmeap01.c     **** int nmeap_init(nmeap_context_t *context,void *user_data);
   42:nmeap01.c     **** int nmeap_addParser(nmeap_context_t         *context,
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 5
+GAS LISTING /var/tmp//ccqKAok3.s 			page 5
 
 
   43:nmeap01.c     **** 					 const char             *sentence_name,
@@ -298,7 +298,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
   97:nmeap01.c     **** 
   98:nmeap01.c     **** 
   99:nmeap01.c     **** 
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 6
+GAS LISTING /var/tmp//ccqKAok3.s 			page 6
 
 
  100:nmeap01.c     **** /**
@@ -358,7 +358,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  184               	.LM0:
  185               	/* prologue: frame size=0 */
  186 0000 CF93      		push r28
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 7
+GAS LISTING /var/tmp//ccqKAok3.s 			page 7
 
 
  187 0002 DF93      		push r29
@@ -418,7 +418,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  226 0034 DF91      		pop r29
  227 0036 CF91      		pop r28
  228 0038 0895      		ret
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 8
+GAS LISTING /var/tmp//ccqKAok3.s 			page 8
 
 
  229               	/* epilogue end (size=3) */
@@ -478,7 +478,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  207:nmeap01.c     ****     /* point at next empty sentence buffer */
  208:nmeap01.c     ****     s = &context->sentence[context->sentence_count];
  209:nmeap01.c     ****     
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 9
+GAS LISTING /var/tmp//ccqKAok3.s 			page 9
 
 
  210:nmeap01.c     ****     /* advance sentence data count */
@@ -538,7 +538,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  263 0050 30E0      		ldi r19,hi8(0)
  264 0052 19C0      		rjmp .L9
  265               	.L10:
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 10
+GAS LISTING /var/tmp//ccqKAok3.s 			page 10
 
 
  245:nmeap01.c     ****     /* get rest of tokens */
@@ -598,7 +598,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  299               	.LM15:
  300 007c 1C92      		st X,__zero_reg__
  301 007e 02C0      		rjmp .L15
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 11
+GAS LISTING /var/tmp//ccqKAok3.s 			page 11
 
 
  302               	.L11:
@@ -658,7 +658,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  340               		.stabd	46,0,0
  282:nmeap01.c     **** /**
  283:nmeap01.c     ****  * process a sentence 
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 12
+GAS LISTING /var/tmp//ccqKAok3.s 			page 12
 
 
  284:nmeap01.c     ****  */
@@ -718,7 +718,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  298:nmeap01.c     ****     /* try to find a matching sentence parser */
  299:nmeap01.c     ****     /* this search is O(n). it has a lot of potential for optimization, at the expense of complexit
  300:nmeap01.c     ****     /* binary search instead of linear (have to keep sentences in sorted order) O(NlogN) */
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 13
+GAS LISTING /var/tmp//ccqKAok3.s 			page 13
 
 
  301:nmeap01.c     ****     /* OR, when sentences are added, create a TRIE structure to find the names with a constant time
@@ -778,7 +778,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  426 0118 8881      		ld r24,Y
  427 011a 9981      		ldd r25,Y+1
  428 011c C057      		subi r28,lo8(-(-112))
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 14
+GAS LISTING /var/tmp//ccqKAok3.s 			page 14
 
 
  429 011e D040      		sbci r29,hi8(-(-112))
@@ -838,7 +838,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  329:nmeap01.c     ****                                  
  330:nmeap01.c     **** return to start conditions:
  331:nmeap01.c     **** 1. buffer overflow
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 15
+GAS LISTING /var/tmp//ccqKAok3.s 			page 15
 
 
  332:nmeap01.c     **** 2. invalid character for state
@@ -898,7 +898,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  499 0170 1982      		std Y+1,__zero_reg__
  500 0172 1882      		st Y,__zero_reg__
  501 0174 C457      		subi r28,lo8(-(-372))
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 16
+GAS LISTING /var/tmp//ccqKAok3.s 			page 16
 
 
  502 0176 D140      		sbci r29,hi8(-(-372))
@@ -958,7 +958,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  544 01b8 09F4      		brne .+2
  545 01ba 5EC0      		rjmp .L37
  546 01bc 8430      		cpi r24,4
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 17
+GAS LISTING /var/tmp//ccqKAok3.s 			page 17
 
 
  547 01be 9105      		cpc r25,__zero_reg__
@@ -1018,7 +1018,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  594 0208 FEC0      		rjmp .L74
  595               	.L42:
  370:nmeap01.c     ****         else {
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 18
+GAS LISTING /var/tmp//ccqKAok3.s 			page 18
 
 
  371:nmeap01.c     ****             /* header error, start over */
@@ -1078,7 +1078,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  632 023e E3C0      		rjmp .L74
  389:nmeap01.c     ****                 context->input_state = 2;
  390:nmeap01.c     ****             }
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 19
+GAS LISTING /var/tmp//ccqKAok3.s 			page 19
 
 
  633               		.stabn	68,0,390,.LM44-nmeap_parse
@@ -1138,7 +1138,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  669 026a 1882      		st Y,__zero_reg__
  409:nmeap01.c     ****             context->input_state = 6;
  670               		.stabn	68,0,409,.LM50-nmeap_parse
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 20
+GAS LISTING /var/tmp//ccqKAok3.s 			page 20
 
 
  671               	.LM50:
@@ -1198,7 +1198,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  710 02a4 802F      		mov r24,r16
  711 02a6 8295      		swap r24
  712 02a8 807F      		andi r24,0xf0
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 21
+GAS LISTING /var/tmp//ccqKAok3.s 			page 21
 
 
  713 02aa C458      		subi r28,lo8(-(380))
@@ -1258,7 +1258,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  752 02ea 6753      		subi r22,lo8(-(-55))
  753               	.L64:
  754 02ec C458      		subi r28,lo8(-(380))
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 22
+GAS LISTING /var/tmp//ccqKAok3.s 			page 22
 
 
  755 02ee DE4F      		sbci r29,hi8(-(380))
@@ -1318,7 +1318,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  796               		.stabn	68,0,452,.LM62-nmeap_parse
  797               	.LM62:
  798 032a 86E0      		ldi r24,lo8(6)
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 23
+GAS LISTING /var/tmp//ccqKAok3.s 			page 23
 
 
  799 032c 90E0      		ldi r25,hi8(6)
@@ -1378,7 +1378,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  472:nmeap01.c     **** 				
  834               		.stabn	68,0,472,.LM66-nmeap_parse
  835               	.LM66:
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 24
+GAS LISTING /var/tmp//ccqKAok3.s 			page 24
 
 
  836 0362 CE01      		movw r24,r28
@@ -1438,7 +1438,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  879 03aa DE4F      		sbci r29,hi8(-(372))
  880 03ac 1982      		std Y+1,__zero_reg__
  881 03ae 1882      		st Y,__zero_reg__
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 25
+GAS LISTING /var/tmp//ccqKAok3.s 			page 25
 
 
  484:nmeap01.c     ****         }
@@ -1498,7 +1498,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  925 03ec A281      		ldd r26,Z+2
  926 03ee B381      		ldd r27,Z+3
  927 03f0 0196      		adiw r24,1
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 26
+GAS LISTING /var/tmp//ccqKAok3.s 			page 26
 
 
  928 03f2 A11D      		adc r26,__zero_reg__
@@ -1558,7 +1558,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  976               		.stabd	46,0,0
  501:nmeap01.c     **** /** 
  502:nmeap01.c     ****  * parse a buffer of nmea data
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 27
+GAS LISTING /var/tmp//ccqKAok3.s 			page 27
 
 
  503:nmeap01.c     ****  */
@@ -1618,7 +1618,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1013 0456 C401      		movw r24,r8
  1014 0458 0E94 0000 		call nmeap_parse
  521:nmeap01.c     ****             /* message found or error */
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 28
+GAS LISTING /var/tmp//ccqKAok3.s 			page 28
 
 
  1015               		.stabn	68,0,521,.LM81-nmeap_parseBuffer
@@ -1678,7 +1678,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1062               		.stabd	78,0,0
  1063               		.stabs	"dist:F(0,13)",36,0,4,dist
  1064               		.stabs	"from:p(20,1)",160,0,4,1
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 29
+GAS LISTING /var/tmp//ccqKAok3.s 			page 29
 
 
  1065               		.stabs	"to:p(20,1)",160,0,4,9
@@ -1738,7 +1738,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1115 04e0 FE86      		std Y+14,r15
  1116 04e2 0F87      		std Y+15,r16
  1117 04e4 188B      		std Y+16,r17
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 30
+GAS LISTING /var/tmp//ccqKAok3.s 			page 30
 
 
    5:gpsmath.c     ****     double a, delta_lat, delta_lon;
@@ -1798,7 +1798,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1161 0538 5C89      		ldd r21,Y+20
  1162 053a 0E94 0000 		call __subsf3
  1163 053e 20E0      		ldi r18,lo8(0x3f000000)
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 31
+GAS LISTING /var/tmp//ccqKAok3.s 			page 31
 
 
  1164 0540 30E0      		ldi r19,hi8(0x3f000000)
@@ -1858,7 +1858,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1218 05be 0E94 0000 		call __mulsf3
  1219 05c2 3B01      		movw r6,r22
  1220 05c4 4C01      		movw r8,r24
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 32
+GAS LISTING /var/tmp//ccqKAok3.s 			page 32
 
 
  1221 05c6 6989      		ldd r22,Y+17
@@ -1918,7 +1918,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1274 0642 0E94 0000 		call __mulsf3
  1275               	/* epilogue: frame size=20 */
  1276 0646 6496      		adiw r28,20
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 33
+GAS LISTING /var/tmp//ccqKAok3.s 			page 33
 
 
  1277 0648 0FB6      		in __tmp_reg__,__SREG__
@@ -1978,7 +1978,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1325 0688 AF92      		push r10
  1326 068a BF92      		push r11
  1327 068c CF92      		push r12
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 34
+GAS LISTING /var/tmp//ccqKAok3.s 			page 34
 
 
  1328 068e DF92      		push r13
@@ -2038,7 +2038,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1379 06f2 9C8B      		std Y+20,r25
   26:gpsmath.c     ****     to.lat = to.lat*M_PI/180;
  1380               		.stabn	68,0,26,.LM91-bearing
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 35
+GAS LISTING /var/tmp//ccqKAok3.s 			page 35
 
 
  1381               	.LM91:
@@ -2098,7 +2098,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1431 075e AC01      		movw r20,r24
  1432 0760 C801      		movw r24,r16
  1433 0762 B701      		movw r22,r14
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 36
+GAS LISTING /var/tmp//ccqKAok3.s 			page 36
 
 
  1434 0764 0E94 0000 		call __subsf3
@@ -2158,7 +2158,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1487               	.LM94:
  1488 07dc C401      		movw r24,r8
  1489 07de B301      		movw r22,r6
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 37
+GAS LISTING /var/tmp//ccqKAok3.s 			page 37
 
 
  1490 07e0 0E94 0000 		call sin
@@ -2218,7 +2218,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1544               		.stabd	46,0,0
  1545               		.stabs	"gpstest.c",132,0,0,.Ltext3
  1546               	.Ltext3:
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 38
+GAS LISTING /var/tmp//ccqKAok3.s 			page 38
 
 
    1:gpstest.c     **** //Integration test of GPs nmea parse code with No.6
@@ -2278,7 +2278,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
   55:gpstest.c     **** 	int status;
   56:gpstest.c     ****     // Test of csik's gps math code
   57:gpstest.c     ****     struct waypoint from,to;
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 39
+GAS LISTING /var/tmp//ccqKAok3.s 			page 39
 
 
   58:gpstest.c     ****     //from.lat = 50.0912;
@@ -2338,7 +2338,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  112:gpstest.c     **** 	i2cSetSlaveTransmitHandler( i2cSlaveTransmitService );
  113:gpstest.c     **** 	
  114:gpstest.c     **** 	
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 40
+GAS LISTING /var/tmp//ccqKAok3.s 			page 40
 
 
  115:gpstest.c     ****    	//initialize the gps receive buffer
@@ -2398,7 +2398,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  169:gpstest.c     **** 						rprintf("Bearing to 77 (deg): ");
  170:gpstest.c     **** 						rprintfFloat(8,bearing(from,to));
  171:gpstest.c     **** 						rprintf("\r\n\r\n");
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 41
+GAS LISTING /var/tmp//ccqKAok3.s 			page 41
 
 
  172:gpstest.c     **** #endif /* NOT using vid card */
@@ -2458,7 +2458,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1555 0842 90E0      		ldi r25,hi8(gpsBuffer)
  1556 0844 0E94 0000 		call bufferAddToEnd
  1557               	/* epilogue: frame size=0 */
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 42
+GAS LISTING /var/tmp//ccqKAok3.s 			page 42
 
 
  1558 0848 0895      		ret
@@ -2518,7 +2518,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1595 0864 E22F      		mov r30,r18
  1596               		.stabn	68,0,232,.LM100-i2cSlaveReceiveService
  1597               	.LM100:
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 43
+GAS LISTING /var/tmp//ccqKAok3.s 			page 43
 
 
  1598 0866 2917      		cp r18,r25
@@ -2578,7 +2578,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1632               	/* prologue end (size=2) */
  1633 0874 EB01      		movw r28,r22
  255:gpstest.c     **** 	u08 i;
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 44
+GAS LISTING /var/tmp//ccqKAok3.s 			page 44
 
 
  256:gpstest.c     **** 	// this function will run when a master somewhere else on the bus
@@ -2638,7 +2638,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1672 08b0 6091 0000 		lds r22,(gga)+2
  1673 08b4 7091 0000 		lds r23,(gga)+3
  1674 08b8 04C0      		rjmp .L111
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 45
+GAS LISTING /var/tmp//ccqKAok3.s 			page 45
 
 
  1675               	.L102:
@@ -2698,7 +2698,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1717 090c 2795      		ror r18
  1718 090e 622B      		or r22,r18
  1719 0910 732B      		or r23,r19
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 46
+GAS LISTING /var/tmp//ccqKAok3.s 			page 46
 
 
  1720 0912 842B      		or r24,r20
@@ -2758,7 +2758,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1762               		.stabn	68,0,293,.LM115-i2cSlaveTransmitService
  1763               	.LM115:
  1764 0958 8091 0000 		lds r24,stackem_pointer
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 47
+GAS LISTING /var/tmp//ccqKAok3.s 			page 47
 
 
  1765 095c 8E17      		cp r24,r30
@@ -2818,7 +2818,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  309:gpstest.c     **** 		stackem_pointer++;
  1806               		.stabn	68,0,309,.LM120-print_to_string
  1807               	.LM120:
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 48
+GAS LISTING /var/tmp//ccqKAok3.s 			page 48
 
 
  1808 097c E92F      		mov r30,r25
@@ -2878,7 +2878,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1861 09ac 672B      		or r22,r23
  1862 09ae 09F4      		brne .L119
  1863               	.L131:
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 49
+GAS LISTING /var/tmp//ccqKAok3.s 			page 49
 
 
  1864 09b0 FFCF      		rjmp .L131
@@ -2938,7 +2938,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1918 0a02 30E0      		ldi r19,hi8(0xc2c80000)
  1919 0a04 48EC      		ldi r20,hlo8(0xc2c80000)
  1920 0a06 52EC      		ldi r21,hhi8(0xc2c80000)
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 50
+GAS LISTING /var/tmp//ccqKAok3.s 			page 50
 
 
  1921 0a08 0E94 0000 		call __mulsf3
@@ -2998,7 +2998,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  1975               		.stabs	"phem:P(0,16)",64,0,104,26
  1976               	.global	nmeap_longitude
  1977               		.type	nmeap_longitude, @function
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 51
+GAS LISTING /var/tmp//ccqKAok3.s 			page 51
 
 
  1978               	nmeap_longitude:
@@ -3058,7 +3058,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2032 0aa4 D0E0      		ldi r29,hi8(1)
  2033 0aa6 02C0      		rjmp .L145
  2034               	.L143:
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 52
+GAS LISTING /var/tmp//ccqKAok3.s 			page 52
 
 
  2035 0aa8 CFEF      		ldi r28,lo8(-1)
@@ -3118,7 +3118,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2089 0b18 9B01      		movw r18,r22
  2090 0b1a AC01      		movw r20,r24
  2091 0b1c C801      		movw r24,r16
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 53
+GAS LISTING /var/tmp//ccqKAok3.s 			page 53
 
 
  2092 0b1e B701      		movw r22,r14
@@ -3178,7 +3178,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  538:nmeap01.c     ****     int i;
  539:nmeap01.c     **** #endif
  540:nmeap01.c     ****     
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 54
+GAS LISTING /var/tmp//ccqKAok3.s 			page 54
 
 
  541:nmeap01.c     ****     /* get pointer to sentence data */
@@ -3238,7 +3238,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2144 0b4c DF93      		push r29
  2145               	/* prologue end (size=10) */
  2146 0b4e EC01      		movw r28,r24
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 55
+GAS LISTING /var/tmp//ccqKAok3.s 			page 55
 
 
  2147 0b50 5B01      		movw r10,r22
@@ -3298,7 +3298,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2188 0b90 8A91      		ld r24,-Y
  2189 0b92 0E94 0000 		call nmeap_latitude
  2190 0b96 F801      		movw r30,r16
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 56
+GAS LISTING /var/tmp//ccqKAok3.s 			page 56
 
 
  2191 0b98 6583      		std Z+5,r22
@@ -3358,7 +3358,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2241 0bf2 FE01      		movw r30,r28
  2242 0bf4 E057      		subi r30,lo8(-(400))
  2243 0bf6 FE4F      		sbci r31,hi8(-(400))
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 57
+GAS LISTING /var/tmp//ccqKAok3.s 			page 57
 
 
  2244 0bf8 8081      		ld r24,Z
@@ -3418,7 +3418,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2289 0c4a 9F93      		push r25
  2290 0c4c 8F93      		push r24
  2291 0c4e 8A91      		ld r24,-Y
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 58
+GAS LISTING /var/tmp//ccqKAok3.s 			page 58
 
 
  2292 0c50 9927      		clr r25
@@ -3478,7 +3478,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2342 0caa E11C      		adc r14,__zero_reg__
  2343 0cac F11C      		adc r15,__zero_reg__
  2344 0cae 8DB7      		in r24,__SP_L__
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 59
+GAS LISTING /var/tmp//ccqKAok3.s 			page 59
 
 
  2345 0cb0 9EB7      		in r25,__SP_H__
@@ -3538,7 +3538,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2389 0cf6 CF91      		pop r28
  2390 0cf8 1F91      		pop r17
  2391 0cfa 0F91      		pop r16
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 60
+GAS LISTING /var/tmp//ccqKAok3.s 			page 60
 
 
  2392 0cfc FF90      		pop r15
@@ -3598,7 +3598,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2446 0d32 DE4F      		sbci r29,hi8(-(388))
  2447 0d34 6881      		ld r22,Y
  2448 0d36 7981      		ldd r23,Y+1
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 61
+GAS LISTING /var/tmp//ccqKAok3.s 			page 61
 
 
  2449 0d38 9A91      		ld r25,-Y
@@ -3658,7 +3658,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2503 0d9c 0E94 0000 		call atoi
  2504 0da0 F801      		movw r30,r16
  2505 0da2 918B      		std Z+17,r25
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 62
+GAS LISTING /var/tmp//ccqKAok3.s 			page 62
 
 
  2506 0da4 808B      		std Z+16,r24
@@ -3718,7 +3718,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2560 0e02 8881      		ld r24,Y
  2561 0e04 9927      		clr r25
  2562 0e06 87FD      		sbrc r24,7
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 63
+GAS LISTING /var/tmp//ccqKAok3.s 			page 63
 
 
  2563 0e08 9095      		com r25
@@ -3778,7 +3778,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2617 0e6a E11C      		adc r14,__zero_reg__
  2618 0e6c F11C      		adc r15,__zero_reg__
  2619 0e6e 8DB7      		in r24,__SP_L__
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 64
+GAS LISTING /var/tmp//ccqKAok3.s 			page 64
 
 
  2620 0e70 9EB7      		in r25,__SP_H__
@@ -3838,7 +3838,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2674               	/* epilogue end (size=11) */
  2675               	/* function nmeap_gpgga size 224 (203) */
  2676               		.size	nmeap_gpgga, .-nmeap_gpgga
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 65
+GAS LISTING /var/tmp//ccqKAok3.s 			page 65
 
 
  2677               		.stabs	"i:r(0,1)",64,0,539,14
@@ -3898,7 +3898,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2731               		.stabs	"sentence_name:P(0,16)",64,0,192,22
  2732               		.stabs	"sentence_parser:P(12,4)",64,0,193,28
  2733               		.stabs	"sentence_callout:P(12,1)",64,0,194,14
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 66
+GAS LISTING /var/tmp//ccqKAok3.s 			page 66
 
 
  2734               		.stabs	"sentence_data:P(13,4)",64,0,196,12
@@ -3958,7 +3958,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2788 0f34 0E0F      		add r16,r30
  2789 0f36 1F1F      		adc r17,r31
  2790               		.stabn	68,0,212,.LM187-nmeap_addParser
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 67
+GAS LISTING /var/tmp//ccqKAok3.s 			page 67
 
 
  2791               	.LM187:
@@ -4018,7 +4018,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2845               		.type	__c.2378, @object
  2846               		.size	__c.2378, 12
  2847               	__c.2378:
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 68
+GAS LISTING /var/tmp//ccqKAok3.s 			page 68
 
 
  2848 0003 0D0A 7365 		.string	"\r\nsent i2c!"
@@ -4078,7 +4078,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2881      4300 
  2882               		.text
  2883               		.stabs	"main:F(0,1)",36,0,54,main
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 69
+GAS LISTING /var/tmp//ccqKAok3.s 			page 69
 
 
  2884               	.global	main
@@ -4138,7 +4138,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2938               	.LM203:
  2939 0fbc 84EF      		ldi r24,lo8(500)
  2940 0fbe 91E0      		ldi r25,hi8(500)
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 70
+GAS LISTING /var/tmp//ccqKAok3.s 			page 70
 
 
  2941 0fc0 0E94 0000 		call timerPause
@@ -4198,7 +4198,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  2995 101a 0F90      	 	pop __tmp_reg__
  2996 101c 0097      		sbiw r24,0
  2997 101e 71F0      		breq .L184
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 71
+GAS LISTING /var/tmp//ccqKAok3.s 			page 71
 
 
  2998               		.stabn	68,0,125,.LM213-main
@@ -4258,7 +4258,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  3052 107a 30E0      		ldi r19,hi8(0)
  3053 107c 40E0      		ldi r20,lo8(pm(nmeap_gprmc))
  3054 107e 50E0      		ldi r21,hi8(pm(nmeap_gprmc))
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 72
+GAS LISTING /var/tmp//ccqKAok3.s 			page 72
 
 
  3055 1080 60E0      		ldi r22,lo8(.LC4)
@@ -4318,7 +4318,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  3109 10e8 9EBF      		out __SP_H__,r25
  3110 10ea 0FBE      		out __SREG__,__tmp_reg__
  3111 10ec 8DBF      		out __SP_L__,r24
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 73
+GAS LISTING /var/tmp//ccqKAok3.s 			page 73
 
 
  3112               	.L210:
@@ -4378,7 +4378,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  3166 1154 622B      		or r22,r18
  3167 1156 732B      		or r23,r19
  3168 1158 842B      		or r24,r20
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 74
+GAS LISTING /var/tmp//ccqKAok3.s 			page 74
 
 
  3169 115a 952B      		or r25,r21
@@ -4438,7 +4438,7 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  3223 11e4 0E94 0000 		call rprintf1RamRom
  3224               		.stabn	68,0,206,.LM229-main
  3225               	.LM229:
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 75
+GAS LISTING /var/tmp//ccqKAok3.s 			page 75
 
 
  3226 11e8 0F90      		pop __tmp_reg__
@@ -4497,54 +4497,54 @@ GAS LISTING /var/tmp//ccCC1ycJ.s 			page 1
  3279               		.stabs	"",100,0,0,.Letext0
  3280               	.Letext0:
  3281               	/* File "gpstest.c": code 2315 = 0x090b (2029), prologues 139, epilogues 147 */
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 76
+GAS LISTING /var/tmp//ccqKAok3.s 			page 76
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 gpstest.c
-/var/tmp//ccCC1ycJ.s:3      *ABS*:0000003f __SREG__
-/var/tmp//ccCC1ycJ.s:4      *ABS*:0000003e __SP_H__
-/var/tmp//ccCC1ycJ.s:5      *ABS*:0000003d __SP_L__
-/var/tmp//ccCC1ycJ.s:6      *ABS*:00000000 __tmp_reg__
-/var/tmp//ccCC1ycJ.s:7      *ABS*:00000001 __zero_reg__
-/var/tmp//ccCC1ycJ.s:160    .bss:00000000 stackem_pointer
-/var/tmp//ccCC1ycJ.s:166    .data:00000000 localBufferLength
-/var/tmp//ccCC1ycJ.s:171    .data:00000001 localBuffer
-/var/tmp//ccCC1ycJ.s:179    .text:00000000 nmeap_altitude
-/var/tmp//ccCC1ycJ.s:242    .text:0000003a nmeap_tokenize
-/var/tmp//ccCC1ycJ.s:339    .text:00000096 nmeap_process
-/var/tmp//ccCC1ycJ.s:462    .text:0000013a nmeap_parse
-/var/tmp//ccCC1ycJ.s:975    .text:00000424 nmeap_parseBuffer
-/var/tmp//ccCC1ycJ.s:1068   .text:00000492 dist
-/var/tmp//ccCC1ycJ.s:1312   .text:00000678 bearing
-/var/tmp//ccCC1ycJ.s:1543   .text:0000083e addToBuffer
-/var/tmp//ccCC1ycJ.s:3273   .bss:00000081 gpsBuffer
-/var/tmp//ccCC1ycJ.s:1570   .text:0000084a i2cSlaveReceiveService
-/var/tmp//ccCC1ycJ.s:1617   .progmem.data:00000000 __c.2432
-/var/tmp//ccCC1ycJ.s:1625   .text:00000870 i2cSlaveTransmitService
-/var/tmp//ccCC1ycJ.s:1788   .text:0000096a print_to_string
-/var/tmp//ccCC1ycJ.s:3275   .bss:000000a6 gga
-/var/tmp//ccCC1ycJ.s:3274   .bss:00000089 rmc
+/var/tmp//ccqKAok3.s:3      *ABS*:0000003f __SREG__
+/var/tmp//ccqKAok3.s:4      *ABS*:0000003e __SP_H__
+/var/tmp//ccqKAok3.s:5      *ABS*:0000003d __SP_L__
+/var/tmp//ccqKAok3.s:6      *ABS*:00000000 __tmp_reg__
+/var/tmp//ccqKAok3.s:7      *ABS*:00000001 __zero_reg__
+/var/tmp//ccqKAok3.s:160    .bss:00000000 stackem_pointer
+/var/tmp//ccqKAok3.s:166    .data:00000000 localBufferLength
+/var/tmp//ccqKAok3.s:171    .data:00000001 localBuffer
+/var/tmp//ccqKAok3.s:179    .text:00000000 nmeap_altitude
+/var/tmp//ccqKAok3.s:242    .text:0000003a nmeap_tokenize
+/var/tmp//ccqKAok3.s:339    .text:00000096 nmeap_process
+/var/tmp//ccqKAok3.s:462    .text:0000013a nmeap_parse
+/var/tmp//ccqKAok3.s:975    .text:00000424 nmeap_parseBuffer
+/var/tmp//ccqKAok3.s:1068   .text:00000492 dist
+/var/tmp//ccqKAok3.s:1312   .text:00000678 bearing
+/var/tmp//ccqKAok3.s:1543   .text:0000083e addToBuffer
+/var/tmp//ccqKAok3.s:3273   .bss:00000081 gpsBuffer
+/var/tmp//ccqKAok3.s:1570   .text:0000084a i2cSlaveReceiveService
+/var/tmp//ccqKAok3.s:1617   .progmem.data:00000000 __c.2432
+/var/tmp//ccqKAok3.s:1625   .text:00000870 i2cSlaveTransmitService
+/var/tmp//ccqKAok3.s:1788   .text:0000096a print_to_string
+/var/tmp//ccqKAok3.s:3275   .bss:000000a6 gga
+/var/tmp//ccqKAok3.s:3274   .bss:00000089 rmc
                             *COM*:00000020 stackem
-/var/tmp//ccCC1ycJ.s:1832   .text:0000098e nmeap_latitude
-/var/tmp//ccCC1ycJ.s:1978   .text:00000a64 nmeap_longitude
-/var/tmp//ccCC1ycJ.s:2130   .text:00000b3a nmeap_gprmc
-/var/tmp//ccCC1ycJ.s:2414   .text:00000d0a nmeap_gpgga
-/var/tmp//ccCC1ycJ.s:2689   .text:00000eca nmeap_init
-/var/tmp//ccCC1ycJ.s:2737   .text:00000eec nmeap_addParser
-/var/tmp//ccCC1ycJ.s:2847   .progmem.data:00000003 __c.2378
-/var/tmp//ccCC1ycJ.s:2851   .progmem.data:0000000f __c.2376
-/var/tmp//ccCC1ycJ.s:2855   .progmem.data:00000012 __c.2365
-/var/tmp//ccCC1ycJ.s:2859   .progmem.data:00000015 __c.2363
-/var/tmp//ccCC1ycJ.s:2863   .progmem.data:00000025 __c.2361
-/var/tmp//ccCC1ycJ.s:2867   .progmem.data:00000037 __c.2359
-/var/tmp//ccCC1ycJ.s:2871   .progmem.data:00000049 __c.2357
-/var/tmp//ccCC1ycJ.s:2875   .progmem.data:00000058 __c.2355
-/var/tmp//ccCC1ycJ.s:2886   .text:00000f78 main
+/var/tmp//ccqKAok3.s:1832   .text:0000098e nmeap_latitude
+/var/tmp//ccqKAok3.s:1978   .text:00000a64 nmeap_longitude
+/var/tmp//ccqKAok3.s:2130   .text:00000b3a nmeap_gprmc
+/var/tmp//ccqKAok3.s:2414   .text:00000d0a nmeap_gpgga
+/var/tmp//ccqKAok3.s:2689   .text:00000eca nmeap_init
+/var/tmp//ccqKAok3.s:2737   .text:00000eec nmeap_addParser
+/var/tmp//ccqKAok3.s:2847   .progmem.data:00000003 __c.2378
+/var/tmp//ccqKAok3.s:2851   .progmem.data:0000000f __c.2376
+/var/tmp//ccqKAok3.s:2855   .progmem.data:00000012 __c.2365
+/var/tmp//ccqKAok3.s:2859   .progmem.data:00000015 __c.2363
+/var/tmp//ccqKAok3.s:2863   .progmem.data:00000025 __c.2361
+/var/tmp//ccqKAok3.s:2867   .progmem.data:00000037 __c.2359
+/var/tmp//ccqKAok3.s:2871   .progmem.data:00000049 __c.2357
+/var/tmp//ccqKAok3.s:2875   .progmem.data:00000058 __c.2355
+/var/tmp//ccqKAok3.s:2886   .text:00000f78 main
                             *COM*:00000001 message_sent
                              .bss:00000001 gpsBufferData
-/var/tmp//ccCC1ycJ.s:3276   .bss:000000c2 user_data
-/var/tmp//ccCC1ycJ.s:3277   .bss:000000c4 nmea
+/var/tmp//ccqKAok3.s:3276   .bss:000000c2 user_data
+/var/tmp//ccqKAok3.s:3277   .bss:000000c4 nmea
 
 UNDEFINED SYMBOLS
 __do_copy_data
@@ -4557,7 +4557,7 @@ isalnum
 isxdigit
 __divsf3
 __subsf3
-GAS LISTING /var/tmp//ccCC1ycJ.s 			page 77
+GAS LISTING /var/tmp//ccqKAok3.s 			page 77
 
 
 sin

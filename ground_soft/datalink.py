@@ -103,6 +103,8 @@ class radiolink(object):
 		old_throttle_val = 0
 		old_xhat = 0
 		old_yhat = 0
+		time_through = 0
+		interval = 30.0
 		while(self.upalive.isSet()):
 			#get current stick axis values
 			pygame.event.pump()
@@ -158,6 +160,28 @@ class radiolink(object):
 				#use chr to get string of one character with ordinal i; 0 <= i < 256
 				if (new_data != 0):
 					command_list.append(command)
+					
+			if (time_through == ((interval / 5)*1)): # This means a second has passed
+				command = "2 a\r"
+				command_list.append(command)
+				print time_through
+			elif (time_through == ((interval / 5)*2)):
+				command = "3\r"
+				command_list.append(command)
+				print time_through
+			elif (time_through == ((interval / 5)*3)):
+				command = "2 o\r"
+				command_list.append(command)
+				print time_through
+			elif (time_through == ((interval / 5)*4)):
+				command = "3\r"
+				command_list.append(command)
+				print time_through
+			else:
+				command = 0
+							
+			if (time_through >=interval): 
+				time_through = 0
 			
 			for out_string in command_list:
 				if (self.radio is not None) and (self.radio.isOpen()):
@@ -165,7 +189,9 @@ class radiolink(object):
 					print "UPLINK:",out_string
 					log.Log('u',out_string)
 			#csik		
-			time.sleep(1/30.) #run at 15 Hz
+			time.sleep(1/interval) #run at 1 Hz
+			time_through = time_through + 1
+				
 			#end csik
 	#end UplinkThread		
 	
