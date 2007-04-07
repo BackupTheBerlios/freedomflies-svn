@@ -28,14 +28,14 @@ class MyDownlinkProcessor(object):
 		#print "got heading:",heading_deg
 		#self.parent.compass.SetHeading(heading_deg)		
 	def ProcessLatitude(self,data_val):
-		direction = data_val[-1]
-		degmin = data_val[:-1]
+		direction = data_val[1] #second character
+		degmin = data_val[2:-1] #strip off " +" from front, \r from back
 		(degrees,minutes) = string.split(degmin,'.')
 		#print "got latitude:",data_val
 		self.parent.UpdateLatitude(degrees,minutes,direction)
 	def ProcessLongitude(self,data_val):
-		direction = data_val[-1]
-		degmin = data_val[:-1]
+		direction = data_val[1] #second character
+		degmin = data_val[2:-1] #strip off " +" from front, \r from back
 		(degrees,minutes) = string.split(degmin,'.')
 		#print "got longitude:",data_val
 		self.parent.UpdateLongitude(degrees,minutes,direction)
@@ -67,14 +67,17 @@ class MyDownlinkProcessor(object):
 		#print "got groundspeed:",data_val
 		pass
 		# TODO: display to GUI
-
+		
+	def ProcessError(self,data_val):
+		log.Log('e',"got no6 error"+data_val)
+			
 	def Dummy(self,data_val):
 		#airspeed [0,127]
 		print "got weird:",data_val
 		# TODO: convert from total pressure to airspeed
 		
 	def ProcessBuffer(self,buffer):
-		data_types = ['c','e0','a','o','s','g','f','b','q','w','z','1']
+		data_types = ['c','a','o','s','g','f','b','q','w','z','1','E']
 		data_separator = ','
 		
 		packets = buffer.split(data_separator)
@@ -90,7 +93,8 @@ class MyDownlinkProcessor(object):
 			 'b':self.ProcessBattery,
 			 'f':self.ProcessFuel,
 			 's':self.ProcessAirspeed,
-			 'g':self.ProcessGroundspeed}
+			 'g':self.ProcessGroundspeed,
+			 'E':self.ProcessError}
 
 		
 		for p in packets:

@@ -105,6 +105,10 @@ class radiolink(object):
 		old_yhat = 0
 		time_through = 0
 		interval = 30.0
+
+		#initialize no6 frequency
+		self.radio.write("f 120000\r") #finagle's constant
+		
 		while(self.upalive.isSet()):
 			#get current stick axis values
 			pygame.event.pump()
@@ -154,34 +158,33 @@ class radiolink(object):
 					data_value = 0
 				
 				command = string.join([data_type," ",str(data_value),"\r"],"")
-				#command = string.join([data_type," ",str(data_value),"\r\n"],"")
-				#command = string.join([data_type," ",chr(data_value),"\r\n"],"")
+				#command = string.join([data_type," ",chr(data_value),"\r"],"")
 				#serial protocol is "x <ascii code>\r"
 				#use chr to get string of one character with ordinal i; 0 <= i < 256
 				if (new_data != 0):
 					command_list.append(command)
 					
-			if (time_through == ((interval / 5)*1)): # This means a second has passed
-				command = "2 a\r"
-				command_list.append(command)
-				print time_through
-			elif (time_through == ((interval / 5)*2)):
-				command = "3\r"
-				command_list.append(command)
-				print time_through
-			elif (time_through == ((interval / 5)*3)):
-				command = "2 o\r"
-				command_list.append(command)
-				print time_through
-			elif (time_through == ((interval / 5)*4)):
-				command = "3\r"
-				command_list.append(command)
-				print time_through
-			else:
-				command = 0
-							
-			if (time_through >=interval): 
-				time_through = 0
+		  #if (time_through == ((interval / 5)*1)): # This means a second has passed
+		  #	command = "2 a\r"
+		  #	command_list.append(command)
+		  #	print time_through
+		  #elif (time_through == ((interval / 5)*2)):
+		  #	command = "3\r"
+		  #	command_list.append(command)
+		  #	print time_through
+		  #elif (time_through == ((interval / 5)*3)):
+		  #	command = "2 o\r"
+		  #	command_list.append(command)
+		  #	print time_through
+		  #elif (time_through == ((interval / 5)*4)):
+		  #	command = "3\r"
+		  #	command_list.append(command)
+		  #	print time_through
+		  #else:
+		  #	command = 0
+		  #				
+		  #if (time_through >=interval): 
+		  #	time_through = 0
 			
 			for out_string in command_list:
 				if (self.radio is not None) and (self.radio.isOpen()):
