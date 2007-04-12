@@ -28,14 +28,14 @@ class MyDownlinkProcessor(object):
 		#print "got heading:",heading_deg
 		#self.parent.compass.SetHeading(heading_deg)		
 	def ProcessLatitude(self,data_val):
-		direction = data_val[1] #second character
-		degmin = data_val[2:-1] #strip off " +" from front, \r from back
+		direction = data_val[0] #first character
+		degmin = data_val[1:-1] #strip off " +" from front, \r from back
 		(degrees,minutes) = string.split(degmin,'.')
 		#print "got latitude:",data_val
 		self.parent.UpdateLatitude(degrees,minutes,direction)
 	def ProcessLongitude(self,data_val):
-		direction = data_val[1] #second character
-		degmin = data_val[2:-1] #strip off " +" from front, \r from back
+		direction = data_val[0] #first character
+		degmin = data_val[1:-1] #strip off " +" from front, \r from back
 		(degrees,minutes) = string.split(degmin,'.')
 		#print "got longitude:",data_val
 		self.parent.UpdateLongitude(degrees,minutes,direction)
@@ -80,7 +80,8 @@ class MyDownlinkProcessor(object):
 		data_types = ['c','a','o','s','g','f','b','q','w','z','1','E']
 		data_separator = ','
 		
-		packets = buffer.split(data_separator)
+		#strip to get rid of extra spaces
+		packets = (buffer.strip()).split(data_separator)
 	
 		#dictionary of functions, with data types for keys	
 		func_dict = {'1':self.ProcessOK,

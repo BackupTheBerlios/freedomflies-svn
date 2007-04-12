@@ -1,23 +1,11 @@
 #!/usr/bin/env pythonw
 """Licensed under the MIT License
---------------------------------------------------------------
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
---------------------------------------------------------------
+***
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+***
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+***
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 
 #main imports
@@ -32,8 +20,10 @@ import joystick as joystickClass #avoid name collision
 import compass
 import horizon
 import log
+import map
 from bufferedcanvas import *
 import datalink
+from pyTS import TerraImage
 
 #external library imports
 try:
@@ -62,7 +52,7 @@ class AppFrame(wx.Frame):
 		
 		#init pygame first, may take awhile
 		pygame.init()
-
+		
 		#top sizer elements
 		self.airspeed_gauge = wx.Gauge(self, -1, 100, size=(20,400), style=wx.GA_VERTICAL|wx.GA_SMOOTH)
 		self.altitude_gauge = wx.Gauge(self, -1, 100, size=(20,400), style=wx.GA_VERTICAL|wx.GA_SMOOTH)
@@ -82,9 +72,7 @@ class AppFrame(wx.Frame):
 		self.autopilot_button = wx.ToggleButton(self, -1, "Autopilot",size=button_width)
 		self.engine_button = wx.ToggleButton(self, -1, "Engine",size=button_width)
 		self.logfile_button = wx.ToggleButton(self, -1, "Log to file",size=button_width)
-		self.radio_up_button = wx.ToggleButton(self, -1, "Radio Up",size=button_width)
-		self.radio_down_button = wx.ToggleButton(self, -1, "Radio Down",size=button_width)
-		self.gps_loopback_button = wx.ToggleButton(self, -1, "GPS Loopback",size=button_width)
+		self.radio_button = wx.ToggleButton(self, -1, "Radio",size=button_width)
 		
 		self.notebook = wx.Notebook(self, -1, size = (350,125), style=0)
 		self.error_log = log.MyLog('error',self.notebook)
@@ -135,17 +123,13 @@ class AppFrame(wx.Frame):
 		top_sizer.Add(right_sizer,0,wx.LEFT,0)
 		main_sizer.Add(top_sizer,0,wx.ALIGN_CENTER_VERTICAL|wx.TOP|wx.RIGHT,3)
 		
-		button_sizer = wx.GridSizer(4, 2, vgap=5,hgap=5)
-		button_sizer.Add(self.radio_up_button, 0)
+		button_sizer = wx.GridSizer(2, 2, vgap=5,hgap=5)
+		button_sizer.Add(self.radio_button, 0)
 		button_sizer.Add(self.autopilot_button, 0)
-		button_sizer.Add(self.radio_down_button, 0)
 		button_sizer.Add(self.logfile_button, 0)
-		button_sizer.Add(self.gps_loopback_button, 0)
 		button_sizer.Add(self.engine_button, 0)
 		bottom_sizer.Add(button_sizer,0,wx.LEFT|wx.ALIGN_CENTER_VERTICAL,5)
-		self.Bind(wx.EVT_TOGGLEBUTTON,self.OnRadioUpButton,self.radio_up_button)
-		self.Bind(wx.EVT_TOGGLEBUTTON, # \
-				self.OnRadioDownButton,self.radio_down_button)
+		self.Bind(wx.EVT_TOGGLEBUTTON,self.OnRadioButton,self.radio_button)
 		self.Bind(wx.EVT_TOGGLEBUTTON, self.OnLogToFile,self.logfile_button)
 		
 		info_sizer = wx.FlexGridSizer(4,2,vgap=5)
@@ -206,6 +190,8 @@ class AppFrame(wx.Frame):
 		#self.Bind(wx.EVT_MENU,self.OnJoystickCalibrate,cal)
 		gtest = SetupMenu.Append(-1,"Graphics Test")
 		self.Bind(wx.EVT_MENU,self.OnGraphicsTest,gtest)
+		map = SetupMenu.Append(-1,"Map")
+		self.Bind(wx.EVT_MENU,self.OnMap,map)
 		self.MenuBar.Append(SetupMenu,"Setup")
 		self.SetMenuBar(self.MenuBar)
 		#end of menubar
@@ -215,9 +201,6 @@ class AppFrame(wx.Frame):
 		self.radio_port = ""
 		#init radio, set for real by prefs dialog
 		self.radio = datalink.radiolink(self,self.radio_port,self.gpsout_port)
-		
-		#startup
-		self.OnPrefs(None)
 	#end __init__
 		
 	def OnQuit(self, event):
@@ -236,15 +219,17 @@ class AppFrame(wx.Frame):
 		info.AddDeveloper('Chris Csikszentmihalyi')
 		info.AddDeveloper('Jorge de la Garza')
 		info.AddDeveloper('Josh Levinger')
+		info.AddDeveloper('Ryan Luerson')
 		info.SetLicence(__doc__)
 		info.SetCopyright("Copyright (C) 2005-2007 MIT Media Lab")
 		info.SetWebSite('http://freedomflies.berlios.de')
 		wx.AboutBox(info)
 		
+	def OnMap(self,event):
+		self.parent.map.Show()
+	
 	def OnPrefs(self,event):
-		p = prefs.PrefFrame(self,-1,"Preferences",(850,25),(300,275))
-		p.Show()
-		
+		self.parent.prefs.Show()
 		
 	def OnGraphicsTest(self,event):
 		max_pitch = 30
@@ -288,37 +273,14 @@ class AppFrame(wx.Frame):
 			self.compass.SetHeading(i)
 			wx.Yield()
 		
-	def OnRadioUpButton(self,event):
+	def OnRadioButton(self,event):
 		btn = event.GetEventObject()
 		if btn.GetValue() == True:
-			#if self.joystickCalibrated is False:
-				#log.Log('e',"Calibrate Joystick")
-				#self.OnJoystickCalibrate(None)
 			self.radio.StartUplinkThread()
+			self.radio.StartDownlinkThread()
 		if btn.GetValue() == False:
 			self.radio.StopUplinkThread()
-
-	
-	def OnRadioDownButton(self,event):
-		btn = event.GetEventObject()
-		if btn.GetValue() == True:
-			#radio_port, gpsout_port are set by prefs dialog
-			black = wx.TextAttr(wx.BLACK)
-			self.lat_deg_ctrl.SetDefaultStyle(black)
-			self.lat_min_ctrl.SetDefaultStyle(black)
-			self.lon_deg_ctrl.SetDefaultStyle(black)
-			self.lon_min_ctrl.SetDefaultStyle(black)
-			#self.accuracy_ctrl.SetDefaultStyle(black)
-			self.radio.StartDownlinkThread()
-		if btn.GetValue() == False:	
 			self.radio.StopDownlinkThread()
-			red = wx.TextAttr(wx.RED)
-			self.lat_deg_ctrl.SetDefaultStyle(red)
-			self.lat_min_ctrl.SetDefaultStyle(red)
-			self.lon_deg_ctrl.SetDefaultStyle(red)
-			self.lon_min_ctrl.SetDefaultStyle(red)
-			#self.accuracy_ctrl.SetDefaultStyle(red)
-			#set old data to red
 	
 	def OnLogToFile(self,event):
 		btn = event.GetEventObject()
@@ -337,25 +299,41 @@ class AppFrame(wx.Frame):
 		self.lat_deg_ctrl.SetValue(lat_deg)
 		self.lat_min_ctrl.SetValue(lat_min)
 		self.lat_dir_text.SetLabel(lat_dir)
+		if lat_dir is ("+" or "W"):
+			dirVal = 1
+		if lat_dir is ("-" or "E"):
+			dirVal = -1
+		self.currentLocation.Lat = dirVal*(lat_deg + lat_min/60)
+		self.parent.map.setPosition(self.currentLocation)
 	def UpdateLongitude(self,lon_deg,lon_min,lon_dir):	
 		self.lon_deg_ctrl.SetValue(lon_deg)
 		self.lon_min_ctrl.SetValue(lon_min)
 		self.lon_dir_text.SetLabel(lon_dir)
+		if lon_dir is ("+" or "N"):
+			dirVal = 1
+		if lon_dir is ("-" or "S"):
+			dirVal = -1
+		self.currentLocation.Lon = dirVal*(lon_deg + lon_min/60)
+		self.parent.map.setPosition(self.currentLocation)
 	def UpdateAltitude(self,alt):
 		self.altitude_value.SetValue(alt)
-		#self.altitude_gauge.SetValue(alt/100)
 	def UpdateAirspeed(self,v):
 		self.airspeed_value.SetValue(v)
-		#self.airspeed_gauge.SetValue(v/100)
 # end of class AppFrame
 
 class MyApp(wx.App):
 	def OnInit(self):
 		wx.InitAllImageHandlers()
-		self.win = AppFrame(None, 1, "Freedom Flies",(50,25),(800,600))
-		self.win.Show()
-		self.SetTopWindow(self.win)
-		self.Bind(wx.EVT_CLOSE,self.win.OnQuit)
+		self.mainWin = AppFrame(None, 1, "Freedom Flies",(50,25),(800,600))
+		self.mainWin.parent = self #just for link in OnMap and OnPrefs
+		self.mainWin.currentLocation = TerraImage.point(42.35830436,-71.09108681) #start location is MIT
+		self.map = map.MapFrame(self.mainWin,-1,"Map",(855,25),(400,400))
+		self.prefs = prefs.PrefFrame(self.mainWin,-1,"Preferences",(855,425),(300,225))
+		self.mainWin.Show()
+		self.map.Show()
+		self.prefs.Show()
+		self.SetTopWindow(self.mainWin)
+		self.Bind(wx.EVT_CLOSE,self.mainWin.OnQuit)
 		return True
 # end of class MyApp
 

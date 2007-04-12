@@ -4,11 +4,7 @@
  Will automatically ensure that all build prerequisites are available
  via ez_setup
 
- Usage (Mac OS X):
-     python setup.py py2app
-
- Usage (Windows):
-     python setup.py py2exe
+ Usage: python setup.py
 """
 
 #import ez_setup
@@ -34,11 +30,15 @@ if sys.platform == 'darwin':
 	
 	extra_options = dict(
 		setup_requires=['py2app'],
-		 app=[mainscript],
-		 options=dict(py2app=dict(argv_emulation=True,
-		 	iconfile='images/icon.icns',
-		 	plist=plist)),
-		 data_files=data_files
+		app=[mainscript],
+		options=dict(py2app=dict(argv_emulation=True,
+			iconfile='images/icon.icns',
+			plist=plist,
+			semi_standalone=False,
+			site_packages=True)
+		),
+		data_files=data_files,
+		script_args=("py2app",)
 	)
 	
 	
@@ -46,7 +46,8 @@ elif sys.platform == 'win32':
 	extra_options = dict(
 		setup_requires=['py2exe'],
 		app=[mainscript],
-		data_files=[data_files]
+		data_files=[data_files],
+		script_args=("py2exe",)
 	)
 	
 	

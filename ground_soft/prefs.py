@@ -9,26 +9,17 @@ class PrefFrame(wx.MiniFrame):
 		mainsizer = wx.BoxSizer(wx.VERTICAL)
 		portsizer = wx.FlexGridSizer(4,2)
 		joysizer = wx.FlexGridSizer(5,2)
-		self.gpsout_port_ctrl = wx.ComboBox(self,-1,'',size=(175,30))
 		self.radio_port_ctrl = wx.ComboBox(self,-1,'',size=(175,30))
 		portsizer.Add(wx.StaticText(self,-1,"Radio Port"),0)
 		portsizer.Add(self.radio_port_ctrl,1)
 		portsizer.Add(wx.StaticText(self,-1,"Radio Baud"),0)
 		self.radio_baud_ctrl = wx.TextCtrl(self,-1,size=(50,20))
 		portsizer.Add(self.radio_baud_ctrl,1)
-		portsizer.Add(wx.StaticText(self,-1,"GPS Loopback"),0)
-		portsizer.Add(self.gpsout_port_ctrl,1)
-		portsizer.Add(wx.StaticText(self,-1,"GPS Baud"),0)
-		self.gpsout_baud_ctrl = wx.TextCtrl(self,-1,size=(50,20))
-		portsizer.Add(self.gpsout_baud_ctrl,1)
 		ports = self.GetSerialPorts()
 		for port in ports:
-			self.gpsout_port_ctrl.Append(port)
 			self.radio_port_ctrl.Append(port)
 		if len(ports) > 0:
 			self.radio_port_ctrl.SetValue(ports[0])
-		if len(ports) > 1:
-			self.gpsout_port_ctrl.SetValue(ports[1])
 			
 		self.joystickDict = self.ReadJoystickConfig()
 		joystickList = ['']
@@ -62,7 +53,6 @@ class PrefFrame(wx.MiniFrame):
 		
 		#set default baud
 		self.radio_baud_ctrl.SetValue("57600")
-		self.gpsout_baud_ctrl.SetValue("9600")
 
 	def OnJoystickChoice(self,evt):
 		try:
@@ -91,17 +81,12 @@ class PrefFrame(wx.MiniFrame):
 		self.parent.joystickPanel.timer.Start(50)
 		
 		radio_port = self.radio_port_ctrl.GetValue()
-		gpsout_port = self.gpsout_port_ctrl.GetValue()
 		radio_baud = self.radio_baud_ctrl.GetValue()
-		gpsout_baud = self.gpsout_baud_ctrl.GetValue()
 		if radio_port != "":
 			self.parent.radio.radio = self.parent.radio.GetRadio(radio_port,radio_baud)
-	 	
-	 	if gpsout_port != "":
-			self.parent.radio.gpsout = self.parent.radio.GetRadio(gpsout_port,gpsout_baud)
 
-		if (self.parent.radio.radio is not None) or  (self.parent.radio.gpsout is not None):
-			#both ports were successfully set
+		if (self.parent.radio.radio is not None):
+			#port successfully set
 			self.Close() 	
 	
 	def GetSerialPorts(self):
