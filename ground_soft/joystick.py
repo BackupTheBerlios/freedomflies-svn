@@ -17,10 +17,13 @@ class JoyPanel(wx.Panel):
 		sizer = wx.BoxSizer(wx.VERTICAL)
 		self.control = JoyGauge(self,self.joystick)
 		self.throttle_pos = wx.Gauge(self, -1,100,size=(100,20),style=wx.GA_HORIZONTAL|wx.GA_SMOOTH)
-		#self.text = wx.StaticText(self, -1, "Move joystick to the extreme of each axis.",size=(150,50))
+		self.throttle_dir_text = wx.StaticText(self, -1, " ")
 		#self.CalibratedButton = wx.Button(self,-1,"Calibrated")
 		sizer.Add(self.control,0,wx.ALIGN_CENTER_HORIZONTAL|wx.ALL,5)
-		sizer.Add(self.throttle_pos,0,wx.ALIGN_CENTER_HORIZONTAL)
+		throttle_sizer = wx.BoxSizer(wx.HORIZONTAL)
+		throttle_sizer.Add(self.throttle_pos,0,wx.ALIGN_CENTER_HORIZONTAL|wx.RIGHT,5)
+		throttle_sizer.Add(self.throttle_dir_text,0,wx.ALIGN_RIGHT)
+		sizer.Add(throttle_sizer,wx.ALIGN_CENTER_HORIZONTAL)
 		#sizer.Add(self.text,1,wx.ALIGN_CENTER)
 		#sizer.Add(self.CalibratedButton,1,wx.ALIGN_CENTER)
 		#self.Bind(wx.EVT_BUTTON,self.OnCalibrated,self.CalibratedButton)
@@ -43,7 +46,13 @@ class JoyPanel(wx.Panel):
 			self.control.Update(x,y)
 			
 			throttle = self.joystick.getThrottle()
-			self.throttle_pos.SetValue(throttle)
+			self.throttle_pos.SetValue(abs(throttle))
+			dir = "X"
+			if throttle < 0:
+				dir = "R"
+			if throttle > 0:
+				dir = "F"
+			self.throttle_dir_text.SetLabel(dir)
 		except pygame.error:
 			#user already notified in Joystick.SetAxes
 			pass
@@ -66,26 +75,41 @@ class Joystick(object):
 			log.Log('e',str(err))
 			self.stick = None
 	
-	def SetAxes(self,X,Y,T,H):
+	def SetAxes(self,X,Y,T,TD,H):
 		self.XNum = X
 		self.YNum = Y
 		self.ThrottleNum = T
+		self.ThrottleDir = TD
 		self.HatNum = H
 		try:
 			testX = self.stick.get_axis(self.XNum)
 		except pygame.error:
 			log.Log('e',"Invalid Joystick X-Axis Setting")
 			self.XNum = -1
+			
 		try:
 			testY = self.stick.get_axis(self.YNum)
 		except pygame.error:
 			log.Log('e',"Invalid Joystick Y-Axis Setting")
 			self.YNum = -1
+			
 		try:
 			testThrottle = self.stick.get_axis(self.ThrottleNum)
 		except pygame.error:
 			log.Log('e',"Invalid Joystick Throttle Setting")
 			self.ThrottleNum = -1
+				
+		try:
+			testThrottleR = self.stick.get_button(int(self.ThrottleDir[0]))
+		except pygame.error:
+			log.Log('e','Invalid Throttle Direction List')
+			self.ThrottleDir[0] = -1
+		try:
+			testThrottleF = self.stick.get_button(int(self.ThrottleDir[1]))
+		except pygame.error:
+			#log.Log('e','Invalid Throttle Button Forward')
+			self.ThrottleDir[1] = -1
+		
 		try:
 			if len(H) > 1:
 				try:
@@ -131,21 +155,41 @@ class Joystick(object):
 				raw_x = raw_east - raw_west
 				raw_y = raw_north - raw_south
 		except TypeError:
+			#it's a real hatswitch
 			raw_x,raw_y = self.stick.get_hat(self.HatNum)
 		except NameError:
-				log.Log('e','joystick hat not set')
+			log.Log('e','joystick hat not set')
 		return raw_x,raw_y
 		
 	def getThrottle(self):
 		"ranges 0-100"
 		try:
+			dir = 0
+			try:
+				R = self.stick.get_button(self.ThrottleDir[0])
+			except pygame.error:
+				R = 0
+			try:
+				F = self.stick.get_button(self.ThrottleDir[1])
+			except pygame.error:
+				#button doesn't exist, pretend it is pressed
+				#so default action is forward, unless reverse is pressed
+				F = 1
+				
+			if (F is 1):
+				dir = 1
+			if (R is 1):
+				dir = -1
+
 			raw_pos = self.stick.get_axis(self.ThrottleNum)
-			throttle = (raw_pos-1)*-50 #should range (0,100)
+			throttle = dir*float((raw_pos-1)*-50) #should range (0,100)
+			
 		except AttributeError:
 			log.Log('e',"could not access throttle")
-			throttle = -1
-		except NameError:
+			throttle = 0
+		except NameError,e:
 			log.Log('e',"joystick axes not set")
+			throttle = 0
 		return throttle
 
 class JoyGauge(wx.Panel):
@@ -204,7 +248,6 @@ class JoyGauge(wx.Panel):
         # Optimize drawing a bit (for Win)
         dc.BeginDrawing()
         
-        #dc.SetBrush(wx.Brush(wx.Colour(251, 252, 237)))
         dc.SetBrush(wx.WHITE_BRUSH)
         dc.DrawRectangle(xorigin, yorigin, edgeSize, edgeSize)
         

@@ -22,23 +22,21 @@ class MyDownlinkProcessor(object):
 		#print "got roll:",roll_deg
 		self.parent.horizon.SetRoll(roll_deg)
 	def ProcessHeading(self,data_val):
-		#compass heading [0,127]
-		heading_deg = round(int(data_val) * 360/127.0)
-		#heading_deg [0,360]
+		#compass heading [0,360]
+		#strip off +/-
+		heading_deg = round(float(data_val[1:]))
 		#print "got heading:",heading_deg
-		#self.parent.compass.SetHeading(heading_deg)		
+		self.parent.compass.SetHeading(heading_deg)
 	def ProcessLatitude(self,data_val):
 		direction = data_val[0] #first character
-		degmin = data_val[1:-1] #strip off " +" from front, \r from back
-		(degrees,minutes) = string.split(degmin,'.')
+		degrees = data_val[1:-1] #strip off " +" from front, \r from back
 		#print "got latitude:",data_val
-		self.parent.UpdateLatitude(degrees,minutes,direction)
+		self.parent.UpdateLatitude(degrees,direction)
 	def ProcessLongitude(self,data_val):
 		direction = data_val[0] #first character
-		degmin = data_val[1:-1] #strip off " +" from front, \r from back
-		(degrees,minutes) = string.split(degmin,'.')
+		degrees = data_val[1:-1] #strip off " +" from front, \r from back
 		#print "got longitude:",data_val
-		self.parent.UpdateLongitude(degrees,minutes,direction)
+		self.parent.UpdateLongitude(degrees,direction)
 	def ProcessAltitude(self,data_val):
 		altitude_m = data_val #TODO, convert
 		#print "got altitude:",altitude_m

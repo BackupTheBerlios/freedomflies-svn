@@ -8,7 +8,7 @@ class PrefFrame(wx.MiniFrame):
 		self.parent = self.GetParent()
 		mainsizer = wx.BoxSizer(wx.VERTICAL)
 		portsizer = wx.FlexGridSizer(4,2)
-		joysizer = wx.FlexGridSizer(5,2)
+		joysizer = wx.FlexGridSizer(6,2)
 		self.radio_port_ctrl = wx.ComboBox(self,-1,'',size=(175,30))
 		portsizer.Add(wx.StaticText(self,-1,"Radio Port"),0)
 		portsizer.Add(self.radio_port_ctrl,1)
@@ -19,25 +19,32 @@ class PrefFrame(wx.MiniFrame):
 		for port in ports:
 			self.radio_port_ctrl.Append(port)
 		if len(ports) > 0:
-			self.radio_port_ctrl.SetValue(ports[0])
+			self.radio_port_ctrl.SetValue(ports[-1])
 			
 		self.joystickDict = self.ReadJoystickConfig()
 		joystickList = ['']
 		joystickList.extend(self.joystickDict.keys())
 		joystickChoice = wx.Choice(self,-1,choices=joystickList)
 		self.Bind(wx.EVT_CHOICE, self.OnJoystickChoice, joystickChoice)
-		joystickChoice.SetSelection(0)
+		joystickChoice.SetSelection(1)
 		joysizer.Add(wx.StaticText(self,-1,'Preset'),0,wx.ALIGN_LEFT)
 		joysizer.Add(joystickChoice,0,wx.ALIGN_CENTER|wx.BOTTOM,border=5)
+		
 		joysizer.Add(wx.StaticText(self,-1,'X-Axis'),0,wx.ALIGN_LEFT)
 		self.XCtrl = wx.TextCtrl(self,-1,size=(70,20))
 		joysizer.Add(self.XCtrl,0,wx.ALIGN_LEFT)
 		joysizer.Add(wx.StaticText(self,-1,'Y-Axis'),0,wx.ALIGN_LEFT)
 		self.YCtrl = wx.TextCtrl(self,-1,size=(70,20))
 		joysizer.Add(self.YCtrl,0,wx.ALIGN_LEFT)
+		
 		joysizer.Add(wx.StaticText(self,-1,'Throttle'),0,wx.ALIGN_LEFT)
 		self.ThrottleCtrl = wx.TextCtrl(self,-1,size=(70,20))
 		joysizer.Add(self.ThrottleCtrl,0,wx.ALIGN_LEFT)
+		joysizer.Add(wx.StaticText(self,-1,'Dir'),0,wx.ALIGN_LEFT)
+		self.ThrottleDirCtrl = wx.TextCtrl(self,-1,size=(70,20))
+		joysizer.Add(self.ThrottleDirCtrl)
+		
+		
 		joysizer.Add(wx.StaticText(self,-1,'Hat'),0,wx.ALIGN_LEFT)
 		self.HatCtrl = wx.TextCtrl(self,-1,size=(140,20))
 		joysizer.Add(self.HatCtrl,0,wx.ALIGN_LEFT)
@@ -60,6 +67,7 @@ class PrefFrame(wx.MiniFrame):
 			self.XCtrl.SetValue(str(data['X']))
 			self.YCtrl.SetValue(str(data['Y']))
 			self.ThrottleCtrl.SetValue(str(data['Throttle']))
+			self.ThrottleDirCtrl.SetValue(str(data['ThrottleDir']))
 			self.HatCtrl.SetValue(str(data['Hat']))
 		except KeyError:
 			log.Log('e',"error in joystick-config.txt")
@@ -71,14 +79,15 @@ class PrefFrame(wx.MiniFrame):
 			xVal = int(self.XCtrl.GetValue())
 			yVal = int(self.YCtrl.GetValue())
 			tVal = int(self.ThrottleCtrl.GetValue())
+			tDirVal = eval(self.ThrottleDirCtrl.GetValue())
 			hVal = eval(self.HatCtrl.GetValue()) #it's a list
 		except ValueError:
 			pass #no value set by user, use default
-		self.parent.joystick.SetAxes(xVal,yVal,tVal,hVal)
+		self.parent.joystick.SetAxes(xVal,yVal,tVal,tDirVal,hVal)
 
 	def OnSave(self,evt):
 		self.SaveJoystickChoices()
-		self.parent.joystickPanel.timer.Start(50)
+		self.parent.joystickPanel.timer.Start(50) #ms
 		
 		radio_port = self.radio_port_ctrl.GetValue()
 		radio_baud = self.radio_baud_ctrl.GetValue()

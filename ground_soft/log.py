@@ -43,9 +43,6 @@ class MyLog(wx.PyLog):
 		if not self.logfile_opened:
 			self.outfile = open(self.filename,'w')
 			self.logfile_opened = True
-		else:
-			#logfile already exists
-			pass
 			
 	def CloseLogFile(self):
 		self.outfile.flush()
@@ -65,8 +62,10 @@ class MyLog(wx.PyLog):
 			self.outfile.flush()
 		else:
 			if self.name is "downlink":
-				print message[:-1] #strip \r\n
+				print "d",message[:-1] #strip \r\n
 			if self.name is "error":
-				print message
+				print "e",message
+			if self.name is "uplink":
+				print "u",message
 		self.mutex.unlock()
 #end of class MyLog

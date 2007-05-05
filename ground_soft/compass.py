@@ -7,7 +7,7 @@ class MyCompass(BufferedCanvas):
 	def __init__(self,parent,id,sizeT):
 		#get bitmaps before init
 		wx.InitAllImageHandlers()
-		self.plane_img = wx.Image('images/plane.png', wx.BITMAP_TYPE_PNG)
+		self.plane_img = wx.Image('images/compass-plane.png', wx.BITMAP_TYPE_PNG)
 		self.plane = wx.BitmapFromImage(self.plane_img,-1)
 		BufferedCanvas.__init__(self,parent,id,size=sizeT)
 		self.SetHeading(0) #start pointed at north

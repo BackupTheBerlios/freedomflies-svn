@@ -106,6 +106,10 @@ class radiolink(object):
 		old_yhat = 0
 		time_through = 0
 		interval = 30.0
+		
+		#TODO: implement gui/config-file for these settings
+		NumSteeringServo = 1
+		ThrottleReversible = True
 
 		#initialize no6 frequency
 		#self.radio.write("f 120000\r") #finagle's constant
@@ -116,7 +120,6 @@ class radiolink(object):
 			x_val,y_val = self.parent.joystick.getPos()
 			throttle_val = self.parent.joystick.getThrottle()
 			x_hat,y_hat = self.parent.joystick.getHat()
-			#get camera pan, tilt
 			
 			data_types = ['l','r','t','p','i']
 			command_list = []
@@ -126,21 +129,35 @@ class radiolink(object):
 				new_data = 0
 				if data_type == 'l':
 					#joystick left
-					if ((x_val <= 0) and (abs(x_val - old_l_val)>2)):
-						data_value = -1*int(x_val*255/100.0)
-						old_l_val = x_val
-						new_data = 1
+					if NumSteeringServo == 1:
+						#full throw for left servo
+						if (abs(x_val - old_l_val)>2):
+							data_value = int(x_val*255/200.0 + 127.5)
+							old_l_val = x_val
+							new_data = 1
+					if NumSteeringServo == 2:
+						if ((x_val <= 0) and (abs(x_val - old_l_val)>2)):
+							data_value = -1*int(x_val*255/100.0)
+							old_l_val = x_val
+							new_data = 1
 				elif data_type == 'r':
 					#joystick right
-					if ((x_val >= 0) and (abs(x_val - old_r_val)>2)):
-						data_value = int(x_val*255/100.0)
-						old_r_val = x_val	
-						new_data = 1
+					if NumSteeringServo == 1:
+						pass
+					if NumSteeringServo == 2:
+						if ((x_val >= 0) and (abs(x_val - old_r_val)>2)):
+							data_value = int(x_val*255/100.0)
+							old_r_val = x_val	
+							new_data = 1
 				elif data_type == 't':
 					#throttle
 					# it seems like this is pretty weird -- just for the av8r?
 					if((abs(throttle_val-old_throttle_val))>2):
-						data_value = int(throttle_val*255/100.0)
+						if ThrottleReversible == True:
+							data_value = int(throttle_val*255/200.0 + 127.5)
+							#goes from 0-255, 127 is mid
+						if ThrottleReversible == False:
+							data_value = abs(int(throttle_val*255/100.0))
 						old_throttle_val = throttle_val
 						new_data = 1
 				elif data_type == 'p':
@@ -165,22 +182,25 @@ class radiolink(object):
 				if (new_data != 0):
 					command_list.append(command)
 					
-			if (time_through == ((interval / 5)*1)): # This means a second has passed
+			# request data from slave
+			if (time_through == ((interval / 10)*1)):
 				command = "2 a\r"
 				command_list.append(command)
-				#print time_through
-			elif (time_through == ((interval / 5)*2)):
+			elif (time_through == ((interval / 10)*2)):
 				command = "3\r"
 				command_list.append(command)
-				#print time_through
-			elif (time_through == ((interval / 5)*3)):
+			elif (time_through == ((interval / 10)*3)):
 				command = "2 o\r"
 				command_list.append(command)
-				#print time_through
-			elif (time_through == ((interval / 5)*4)):
+			elif (time_through == ((interval / 10)*4)):
 				command = "3\r"
 				command_list.append(command)
-				#print time_through
+			elif (time_through == ((interval / 10)*5)):
+				command = "2 c\r"
+				command_list.append(command)
+			elif (time_through == ((interval / 10)*6)):
+				command = "3\r"
+				command_list.append(command)
 			else:
 				command = 0
 	 				
@@ -190,13 +210,9 @@ class radiolink(object):
 			for out_string in command_list:
 				if (self.radio is not None) and (self.radio.isOpen()):
 					self.radio.write(out_string)
-					#print "UPLINK:",out_string
-					log.Log('u',out_string)
-			#csik		
-			time.sleep(1/interval) #run at 1 Hz
+					log.Log('u',out_string)	
+			time.sleep(1/interval) #run at 30 Hz
 			time_through = time_through + 1
-				
-			#end csik
 	#end UplinkThread		
 	
 			
@@ -218,7 +234,8 @@ class radiolink(object):
 				#print "no input"
 				continue
 			else:
-				print "DOWNLINK:",buffer[:-2]
+				#print "DOWNLINK:",buffer[:-2]
+				log.Log('d',buffer[:-2])
 			if buffer.startswith("e0"):
 				#it's a joystick event acknowledge
 				#print "ACK"
@@ -229,8 +246,8 @@ class radiolink(object):
 			except Exception,e:
 				#catch exceptions here, so we don't freeze pyserial
 				print "datalink exception:",e
+				import traceback
+				traceback.print_exc()
 				print "unrecognized data: %s" % buffer
-			
-			#TODO: construct NMEA sentences, mirror GPS data to gpsout
 			
 	#end DownlinkThread

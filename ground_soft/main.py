@@ -84,14 +84,13 @@ class AppFrame(wx.Frame):
 		log.SetGlobals(self.error_log,self.downlink_log,self.uplink_log)
 		#pass these objects to log class
 		
-		self.lat_deg_ctrl = wx.TextCtrl(self, -1,size=(30,20),style=wx.TE_READONLY|wx.TE_RICH2)
-		self.lat_min_ctrl = wx.TextCtrl(self, -1,size=(60,20),style=wx.TE_READONLY|wx.TE_RICH2)
+		self.lat_ctrl = wx.TextCtrl(self, -1,size=(80,20),style=wx.TE_READONLY|wx.TE_RICH2)
 		self.lat_dir_text = wx.StaticText(self, -1, " ")
-		self.lon_deg_ctrl = wx.TextCtrl(self, -1,size=(30,20),style=wx.TE_READONLY|wx.TE_RICH2)
-		self.lon_min_ctrl = wx.TextCtrl(self, -1,size=(60,20),style=wx.TE_READONLY|wx.TE_RICH2)
+		self.lon_ctrl = wx.TextCtrl(self, -1,size=(80,20),style=wx.TE_READONLY|wx.TE_RICH2)
 		self.lon_dir_text = wx.StaticText(self, -1, " ")
-		self.gps_error_ctrl = wx.TextCtrl(self, -1,size=(100,20),style=wx.TE_READONLY|wx.TE_RICH2)
+		self.gps_error_ctrl = wx.TextCtrl(self, -1,size=(80,20),style=wx.TE_READONLY|wx.TE_RICH2)
 		self.throttle_gauge = wx.Gauge(self, -1, 10,size=(100,20),style=wx.GA_HORIZONTAL|wx.GA_SMOOTH)
+		
 		
 		#right sizer elements
 		self.joystick = joystickClass.Joystick()
@@ -135,15 +134,13 @@ class AppFrame(wx.Frame):
 		info_sizer = wx.FlexGridSizer(4,2,vgap=5)
 		lat_sizer = wx.BoxSizer(wx.HORIZONTAL)
 		info_sizer.Add(wx.StaticText(self, -1, "Latitude"),1)
-		lat_sizer.Add(self.lat_deg_ctrl,0,wx.RIGHT,5)
-		lat_sizer.Add(self.lat_min_ctrl,0,wx.RIGHT,5)
-		lat_sizer.Add(self.lat_dir_text,0)
+		lat_sizer.Add(self.lat_dir_text,0,wx.RIGHT,7)
+		lat_sizer.Add(self.lat_ctrl,0,wx.RIGHT,5)
 		info_sizer.Add(lat_sizer,0,wx.ALIGN_LEFT,0)
 		lon_sizer = wx.BoxSizer(wx.HORIZONTAL)
 		info_sizer.Add(wx.StaticText(self, -1, "Longitude"),1)
-		lon_sizer.Add(self.lon_deg_ctrl,0,wx.RIGHT,5)
-		lon_sizer.Add(self.lon_min_ctrl,0,wx.RIGHT,5)
-		lon_sizer.Add(self.lon_dir_text,0)
+		lon_sizer.Add(self.lon_dir_text,0,wx.RIGHT,7)
+		lon_sizer.Add(self.lon_ctrl,0,wx.RIGHT,5)
 		info_sizer.Add(lon_sizer,0,wx.ALIGN_LEFT,0)
 		
 		info_sizer.Add(wx.StaticText(self, -1, "Accuracy"),1)
@@ -295,26 +292,25 @@ class AppFrame(wx.Frame):
 			self.downlink_log.CloseLogFile()
 			self.uplink_log.CloseLogFile()
 					
-	def UpdateLatitude(self,lat_deg,lat_min,lat_dir):
-		self.lat_deg_ctrl.SetValue(lat_deg)
-		self.lat_min_ctrl.SetValue(lat_min)
-		self.lat_dir_text.SetLabel(lat_dir)
+	def UpdateLatitude(self,lat_deg,lat_dir):
 		if lat_dir is ("+" or "W"):
 			dirVal = 1
 		if lat_dir is ("-" or "E"):
 			dirVal = -1
-		self.currentLocation.Lat = dirVal*(lat_deg + lat_min/60)
-		self.parent.map.setPosition(self.currentLocation)
-	def UpdateLongitude(self,lon_deg,lon_min,lon_dir):	
-		self.lon_deg_ctrl.SetValue(lon_deg)
-		self.lon_min_ctrl.SetValue(lon_min)
-		self.lon_dir_text.SetLabel(lon_dir)
+		self.currentLocation.Lat = dirVal*lat_deg
+		self.parent.map.map.setCenter(self.currentLocation)
+		self.lat_ctrl.SetValue(str(lat_deg))
+		self.lat_dir_text.SetLabel(lat_dir)
+		
+	def UpdateLongitude(self,lon_deg,lon_dir):	
 		if lon_dir is ("+" or "N"):
 			dirVal = 1
 		if lon_dir is ("-" or "S"):
 			dirVal = -1
-		self.currentLocation.Lon = dirVal*(lon_deg + lon_min/60)
-		self.parent.map.setPosition(self.currentLocation)
+		self.currentLocation.Lon = dirVal*lon_deg
+		self.parent.map.map.setCenter(self.currentLocation)
+		self.lon_ctrl.SetValue(str(lon_deg))
+		self.lon_dir_text.SetLabel(lon_dir)
 	def UpdateAltitude(self,alt):
 		self.altitude_value.SetValue(alt)
 	def UpdateAirspeed(self,v):
