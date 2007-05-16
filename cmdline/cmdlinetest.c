@@ -367,8 +367,8 @@ void i2cMaster_Receive(void)
 	
 	i2cMasterReceive(TARGET_ADDR, slaveBufferLength, slaveBuffer);
 	slaveBuffer[0x19] = 0;
-	rprintfStr(command);
-	rprintf(" ");
+	//rprintfStr(command);
+	//rprintf(" ");
 	rprintfStr(slaveBuffer);
 	rprintf(",");
 	
@@ -378,8 +378,8 @@ void i2cMaster_Auto_Receive(u08 command)
 	i2cMasterReceive(TARGET_ADDR, slaveBufferLength, slaveBuffer);
 	
 	slaveBuffer[0x19] = 0;
-	rprintfStr(command);
-	rprintf(" ");
+	//rprintfStr(command);
+	//rprintf(" ");
 	rprintfStr(slaveBuffer);
 	rprintf(",");
 }

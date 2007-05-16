@@ -1,4 +1,4 @@
-GAS LISTING /var/tmp//ccqKAok3.s 			page 1
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 1
 
 
    1               		.file	"gpstest.c"
@@ -58,7 +58,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
   55               		.stabs	"uint_fast16_t:t(4,22)=(4,4)",128,0,215,0
   56               		.stabs	"int_fast32_t:t(4,23)=(4,5)",128,0,220,0
   57               		.stabs	"uint_fast32_t:t(4,24)=(4,6)",128,0,225,0
-GAS LISTING /var/tmp//ccqKAok3.s 			page 2
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 2
 
 
   58               		.stabs	"int_fast64_t:t(4,25)=(4,7)",128,0,230,0
@@ -118,7 +118,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  112               		.stabs	"prog_uint64_t:t(10,19)=(10,20)=(0,7)",128,0,214,0
  113               		.stabn	162,0,0,0
  114               		.stabn	162,0,0,0
-GAS LISTING /var/tmp//ccqKAok3.s 			page 3
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 3
 
 
  115               		.stabs	"nmeap.h",130,0,0,0
@@ -178,7 +178,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  169               		.type	localBuffer, @object
  170               		.size	localBuffer, 34
  171               	localBuffer:
-GAS LISTING /var/tmp//ccqKAok3.s 			page 4
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 4
 
 
  172 0001 5468 6973 		.string	"This should be filling with data!"
@@ -238,7 +238,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
   40:nmeap01.c     **** /* forward references */
   41:nmeap01.c     **** int nmeap_init(nmeap_context_t *context,void *user_data);
   42:nmeap01.c     **** int nmeap_addParser(nmeap_context_t         *context,
-GAS LISTING /var/tmp//ccqKAok3.s 			page 5
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 5
 
 
   43:nmeap01.c     **** 					 const char             *sentence_name,
@@ -298,7 +298,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
   97:nmeap01.c     **** 
   98:nmeap01.c     **** 
   99:nmeap01.c     **** 
-GAS LISTING /var/tmp//ccqKAok3.s 			page 6
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 6
 
 
  100:nmeap01.c     **** /**
@@ -358,7 +358,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  184               	.LM0:
  185               	/* prologue: frame size=0 */
  186 0000 CF93      		push r28
-GAS LISTING /var/tmp//ccqKAok3.s 			page 7
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 7
 
 
  187 0002 DF93      		push r29
@@ -418,7 +418,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  226 0034 DF91      		pop r29
  227 0036 CF91      		pop r28
  228 0038 0895      		ret
-GAS LISTING /var/tmp//ccqKAok3.s 			page 8
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 8
 
 
  229               	/* epilogue end (size=3) */
@@ -478,7 +478,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  207:nmeap01.c     ****     /* point at next empty sentence buffer */
  208:nmeap01.c     ****     s = &context->sentence[context->sentence_count];
  209:nmeap01.c     ****     
-GAS LISTING /var/tmp//ccqKAok3.s 			page 9
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 9
 
 
  210:nmeap01.c     ****     /* advance sentence data count */
@@ -538,7 +538,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  263 0050 30E0      		ldi r19,hi8(0)
  264 0052 19C0      		rjmp .L9
  265               	.L10:
-GAS LISTING /var/tmp//ccqKAok3.s 			page 10
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 10
 
 
  245:nmeap01.c     ****     /* get rest of tokens */
@@ -598,7 +598,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  299               	.LM15:
  300 007c 1C92      		st X,__zero_reg__
  301 007e 02C0      		rjmp .L15
-GAS LISTING /var/tmp//ccqKAok3.s 			page 11
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 11
 
 
  302               	.L11:
@@ -658,7 +658,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  340               		.stabd	46,0,0
  282:nmeap01.c     **** /**
  283:nmeap01.c     ****  * process a sentence 
-GAS LISTING /var/tmp//ccqKAok3.s 			page 12
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 12
 
 
  284:nmeap01.c     ****  */
@@ -718,7 +718,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  298:nmeap01.c     ****     /* try to find a matching sentence parser */
  299:nmeap01.c     ****     /* this search is O(n). it has a lot of potential for optimization, at the expense of complexit
  300:nmeap01.c     ****     /* binary search instead of linear (have to keep sentences in sorted order) O(NlogN) */
-GAS LISTING /var/tmp//ccqKAok3.s 			page 13
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 13
 
 
  301:nmeap01.c     ****     /* OR, when sentences are added, create a TRIE structure to find the names with a constant time
@@ -778,7 +778,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  426 0118 8881      		ld r24,Y
  427 011a 9981      		ldd r25,Y+1
  428 011c C057      		subi r28,lo8(-(-112))
-GAS LISTING /var/tmp//ccqKAok3.s 			page 14
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 14
 
 
  429 011e D040      		sbci r29,hi8(-(-112))
@@ -838,7 +838,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  329:nmeap01.c     ****                                  
  330:nmeap01.c     **** return to start conditions:
  331:nmeap01.c     **** 1. buffer overflow
-GAS LISTING /var/tmp//ccqKAok3.s 			page 15
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 15
 
 
  332:nmeap01.c     **** 2. invalid character for state
@@ -898,7 +898,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  499 0170 1982      		std Y+1,__zero_reg__
  500 0172 1882      		st Y,__zero_reg__
  501 0174 C457      		subi r28,lo8(-(-372))
-GAS LISTING /var/tmp//ccqKAok3.s 			page 16
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 16
 
 
  502 0176 D140      		sbci r29,hi8(-(-372))
@@ -958,7 +958,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  544 01b8 09F4      		brne .+2
  545 01ba 5EC0      		rjmp .L37
  546 01bc 8430      		cpi r24,4
-GAS LISTING /var/tmp//ccqKAok3.s 			page 17
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 17
 
 
  547 01be 9105      		cpc r25,__zero_reg__
@@ -1018,7 +1018,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  594 0208 FEC0      		rjmp .L74
  595               	.L42:
  370:nmeap01.c     ****         else {
-GAS LISTING /var/tmp//ccqKAok3.s 			page 18
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 18
 
 
  371:nmeap01.c     ****             /* header error, start over */
@@ -1078,7 +1078,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  632 023e E3C0      		rjmp .L74
  389:nmeap01.c     ****                 context->input_state = 2;
  390:nmeap01.c     ****             }
-GAS LISTING /var/tmp//ccqKAok3.s 			page 19
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 19
 
 
  633               		.stabn	68,0,390,.LM44-nmeap_parse
@@ -1138,7 +1138,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  669 026a 1882      		st Y,__zero_reg__
  409:nmeap01.c     ****             context->input_state = 6;
  670               		.stabn	68,0,409,.LM50-nmeap_parse
-GAS LISTING /var/tmp//ccqKAok3.s 			page 20
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 20
 
 
  671               	.LM50:
@@ -1198,7 +1198,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  710 02a4 802F      		mov r24,r16
  711 02a6 8295      		swap r24
  712 02a8 807F      		andi r24,0xf0
-GAS LISTING /var/tmp//ccqKAok3.s 			page 21
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 21
 
 
  713 02aa C458      		subi r28,lo8(-(380))
@@ -1258,7 +1258,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  752 02ea 6753      		subi r22,lo8(-(-55))
  753               	.L64:
  754 02ec C458      		subi r28,lo8(-(380))
-GAS LISTING /var/tmp//ccqKAok3.s 			page 22
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 22
 
 
  755 02ee DE4F      		sbci r29,hi8(-(380))
@@ -1318,7 +1318,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  796               		.stabn	68,0,452,.LM62-nmeap_parse
  797               	.LM62:
  798 032a 86E0      		ldi r24,lo8(6)
-GAS LISTING /var/tmp//ccqKAok3.s 			page 23
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 23
 
 
  799 032c 90E0      		ldi r25,hi8(6)
@@ -1378,7 +1378,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  472:nmeap01.c     **** 				
  834               		.stabn	68,0,472,.LM66-nmeap_parse
  835               	.LM66:
-GAS LISTING /var/tmp//ccqKAok3.s 			page 24
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 24
 
 
  836 0362 CE01      		movw r24,r28
@@ -1438,7 +1438,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  879 03aa DE4F      		sbci r29,hi8(-(372))
  880 03ac 1982      		std Y+1,__zero_reg__
  881 03ae 1882      		st Y,__zero_reg__
-GAS LISTING /var/tmp//ccqKAok3.s 			page 25
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 25
 
 
  484:nmeap01.c     ****         }
@@ -1498,7 +1498,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  925 03ec A281      		ldd r26,Z+2
  926 03ee B381      		ldd r27,Z+3
  927 03f0 0196      		adiw r24,1
-GAS LISTING /var/tmp//ccqKAok3.s 			page 26
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 26
 
 
  928 03f2 A11D      		adc r26,__zero_reg__
@@ -1558,7 +1558,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  976               		.stabd	46,0,0
  501:nmeap01.c     **** /** 
  502:nmeap01.c     ****  * parse a buffer of nmea data
-GAS LISTING /var/tmp//ccqKAok3.s 			page 27
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 27
 
 
  503:nmeap01.c     ****  */
@@ -1618,7 +1618,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  1013 0456 C401      		movw r24,r8
  1014 0458 0E94 0000 		call nmeap_parse
  521:nmeap01.c     ****             /* message found or error */
-GAS LISTING /var/tmp//ccqKAok3.s 			page 28
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 28
 
 
  1015               		.stabn	68,0,521,.LM81-nmeap_parseBuffer
@@ -1678,7 +1678,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  1062               		.stabd	78,0,0
  1063               		.stabs	"dist:F(0,13)",36,0,4,dist
  1064               		.stabs	"from:p(20,1)",160,0,4,1
-GAS LISTING /var/tmp//ccqKAok3.s 			page 29
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 29
 
 
  1065               		.stabs	"to:p(20,1)",160,0,4,9
@@ -1738,7 +1738,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  1115 04e0 FE86      		std Y+14,r15
  1116 04e2 0F87      		std Y+15,r16
  1117 04e4 188B      		std Y+16,r17
-GAS LISTING /var/tmp//ccqKAok3.s 			page 30
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 30
 
 
    5:gpsmath.c     ****     double a, delta_lat, delta_lon;
@@ -1798,7 +1798,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  1161 0538 5C89      		ldd r21,Y+20
  1162 053a 0E94 0000 		call __subsf3
  1163 053e 20E0      		ldi r18,lo8(0x3f000000)
-GAS LISTING /var/tmp//ccqKAok3.s 			page 31
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 31
 
 
  1164 0540 30E0      		ldi r19,hi8(0x3f000000)
@@ -1858,7 +1858,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  1218 05be 0E94 0000 		call __mulsf3
  1219 05c2 3B01      		movw r6,r22
  1220 05c4 4C01      		movw r8,r24
-GAS LISTING /var/tmp//ccqKAok3.s 			page 32
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 32
 
 
  1221 05c6 6989      		ldd r22,Y+17
@@ -1918,7 +1918,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  1274 0642 0E94 0000 		call __mulsf3
  1275               	/* epilogue: frame size=20 */
  1276 0646 6496      		adiw r28,20
-GAS LISTING /var/tmp//ccqKAok3.s 			page 33
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 33
 
 
  1277 0648 0FB6      		in __tmp_reg__,__SREG__
@@ -1978,7 +1978,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  1325 0688 AF92      		push r10
  1326 068a BF92      		push r11
  1327 068c CF92      		push r12
-GAS LISTING /var/tmp//ccqKAok3.s 			page 34
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 34
 
 
  1328 068e DF92      		push r13
@@ -2038,7 +2038,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  1379 06f2 9C8B      		std Y+20,r25
   26:gpsmath.c     ****     to.lat = to.lat*M_PI/180;
  1380               		.stabn	68,0,26,.LM91-bearing
-GAS LISTING /var/tmp//ccqKAok3.s 			page 35
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 35
 
 
  1381               	.LM91:
@@ -2098,7 +2098,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  1431 075e AC01      		movw r20,r24
  1432 0760 C801      		movw r24,r16
  1433 0762 B701      		movw r22,r14
-GAS LISTING /var/tmp//ccqKAok3.s 			page 36
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 36
 
 
  1434 0764 0E94 0000 		call __subsf3
@@ -2158,7 +2158,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  1487               	.LM94:
  1488 07dc C401      		movw r24,r8
  1489 07de B301      		movw r22,r6
-GAS LISTING /var/tmp//ccqKAok3.s 			page 37
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 37
 
 
  1490 07e0 0E94 0000 		call sin
@@ -2210,15 +2210,15 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  1536               	.Lscope6:
  1537               		.stabs	"",36,0,0,.Lscope6-bearing
  1538               		.stabd	78,0,0
- 1539               		.stabs	"addToBuffer:F(0,15)",36,0,216,addToBuffer
- 1540               		.stabs	"ch:P(0,11)",64,0,216,24
+ 1539               		.stabs	"addToBuffer:F(0,15)",36,0,217,addToBuffer
+ 1540               		.stabs	"ch:P(0,11)",64,0,217,24
  1541               	.global	addToBuffer
  1542               		.type	addToBuffer, @function
  1543               	addToBuffer:
  1544               		.stabd	46,0,0
  1545               		.stabs	"gpstest.c",132,0,0,.Ltext3
  1546               	.Ltext3:
-GAS LISTING /var/tmp//ccqKAok3.s 			page 38
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 38
 
 
    1:gpstest.c     **** //Integration test of GPs nmea parse code with No.6
@@ -2278,7 +2278,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
   55:gpstest.c     **** 	int status;
   56:gpstest.c     ****     // Test of csik's gps math code
   57:gpstest.c     ****     struct waypoint from,to;
-GAS LISTING /var/tmp//ccqKAok3.s 			page 39
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 39
 
 
   58:gpstest.c     ****     //from.lat = 50.0912;
@@ -2338,7 +2338,7 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  112:gpstest.c     **** 	i2cSetSlaveTransmitHandler( i2cSlaveTransmitService );
  113:gpstest.c     **** 	
  114:gpstest.c     **** 	
-GAS LISTING /var/tmp//ccqKAok3.s 			page 40
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 40
 
 
  115:gpstest.c     ****    	//initialize the gps receive buffer
@@ -2362,105 +2362,106 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  133:gpstest.c     ****     if (status != 0) {
  134:gpstest.c     ****         rprintf("nmeap_add RMC %d\n",status);
  135:gpstest.c     ****     }
- 136:gpstest.c     **** 	rprintf("gga.latitude = ");
- 137:gpstest.c     **** 	rprintfFloat(8,gga.latitude);
- 138:gpstest.c     **** 	rprintf("\r\n");
- 139:gpstest.c     **** 	
- 140:gpstest.c     **** 	for(;;) {
- 141:gpstest.c     **** 		//set up variables for access by spi routine
- 142:gpstest.c     **** 		float latitude, longitude, altitude, speed;
- 143:gpstest.c     **** 		//make sure we have data
- 144:gpstest.c     **** 		char ch = bufferGetFromFront(&gpsBuffer);
- 145:gpstest.c     **** 		if(ch != 0) {
- 146:gpstest.c     **** 				//rprintf("%c",ch); //debug
- 147:gpstest.c     **** 				status = nmeap_parse(&nmea,ch);
- 148:gpstest.c     **** 				switch(status) {
- 149:gpstest.c     **** 					case NMEAP_GPGGA:
- 150:gpstest.c     **** #ifdef USE_VID_CARD
- 151:gpstest.c     **** 						writeVideoScreen(gga.latitude, gga.longitude, gga.time, gga.altitude, rmc.course, rmc.speed, 
- 152:gpstest.c     **** #endif /*#define USE_VID_CARD*/
- 153:gpstest.c     **** #ifndef USE_VID_CARD
- 154:gpstest.c     **** 						rprintf("GGA");
- 155:gpstest.c     **** 						rprintf("\tLat: ");
- 156:gpstest.c     **** 						rprintfFloat(8,gga.latitude);
- 157:gpstest.c     **** 						rprintf(" Lon: ");
- 158:gpstest.c     **** 						rprintfFloat(8,gga.longitude);
- 159:gpstest.c     **** 						rprintf(" Alt: ");
- 160:gpstest.c     **** 						rprintfFloat(8,gga.altitude);
- 161:gpstest.c     **** 						rprintf("\r\n");
- 162:gpstest.c     **** 						
- 163:gpstest.c     **** 						//print distance to 77 Mass Ave
- 164:gpstest.c     **** 						from.lat = gga.latitude;
- 165:gpstest.c     **** 						from.lon = gga.longitude;
- 166:gpstest.c     **** 						rprintf("Dist to 77 (km): ");
- 167:gpstest.c     **** 						rprintfFloat(8,dist(from,to));
- 168:gpstest.c     **** 						rprintf("\r\n");
- 169:gpstest.c     **** 						rprintf("Bearing to 77 (deg): ");
- 170:gpstest.c     **** 						rprintfFloat(8,bearing(from,to));
- 171:gpstest.c     **** 						rprintf("\r\n\r\n");
-GAS LISTING /var/tmp//ccqKAok3.s 			page 41
+ 136:gpstest.c     **** 	// WHAT IS THIS?????
+ 137:gpstest.c     **** 	rprintf("gga.latitude = ");
+ 138:gpstest.c     **** 	rprintfFloat(8,gga.latitude);
+ 139:gpstest.c     **** 	rprintf("\r\n");
+ 140:gpstest.c     **** 	
+ 141:gpstest.c     **** 	for(;;) {
+ 142:gpstest.c     **** 		//set up variables for access by spi routine
+ 143:gpstest.c     **** 		float latitude, longitude, altitude, speed;
+ 144:gpstest.c     **** 		//make sure we have data
+ 145:gpstest.c     **** 		char ch = bufferGetFromFront(&gpsBuffer);
+ 146:gpstest.c     **** 		if(ch != 0) {
+ 147:gpstest.c     **** 				//rprintf("%c",ch); //debug
+ 148:gpstest.c     **** 				status = nmeap_parse(&nmea,ch);
+ 149:gpstest.c     **** 				switch(status) {
+ 150:gpstest.c     **** 					case NMEAP_GPGGA:
+ 151:gpstest.c     **** #ifdef USE_VID_CARD
+ 152:gpstest.c     **** 						writeVideoScreen(gga.latitude, gga.longitude, gga.time, gga.altitude, rmc.course, rmc.speed, 
+ 153:gpstest.c     **** #endif /*#define USE_VID_CARD*/
+ 154:gpstest.c     **** #ifndef USE_VID_CARD
+ 155:gpstest.c     **** 						rprintf("GGA");
+ 156:gpstest.c     **** 						rprintf("\tLat: ");
+ 157:gpstest.c     **** 						rprintfFloat(8,gga.latitude);
+ 158:gpstest.c     **** 						rprintf(" Lon: ");
+ 159:gpstest.c     **** 						rprintfFloat(8,gga.longitude);
+ 160:gpstest.c     **** 						rprintf(" Alt: ");
+ 161:gpstest.c     **** 						rprintfFloat(8,gga.altitude);
+ 162:gpstest.c     **** 						rprintf("\r\n");
+ 163:gpstest.c     **** 						
+ 164:gpstest.c     **** 						//print distance to 77 Mass Ave
+ 165:gpstest.c     **** 						from.lat = gga.latitude;
+ 166:gpstest.c     **** 						from.lon = gga.longitude;
+ 167:gpstest.c     **** 						rprintf("Dist to 77 (km): ");
+ 168:gpstest.c     **** 						rprintfFloat(8,dist(from,to));
+ 169:gpstest.c     **** 						rprintf("\r\n");
+ 170:gpstest.c     **** 						rprintf("Bearing to 77 (deg): ");
+ 171:gpstest.c     **** 						rprintfFloat(8,bearing(from,to));
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 41
 
 
- 172:gpstest.c     **** #endif /* NOT using vid card */
- 173:gpstest.c     **** 						break;
- 174:gpstest.c     **** 					case NMEAP_GPRMC:
- 175:gpstest.c     **** #ifdef USE_VID_CARD
- 176:gpstest.c     **** 						writeVideoScreen(gga.latitude, gga.longitude, gga.time, gga.altitude, rmc.course, rmc.speed, 
- 177:gpstest.c     **** #endif /* USE_VID_CARD */
- 178:gpstest.c     **** #ifndef USE_VID_CARD
- 179:gpstest.c     **** 						rprintf("RMC");
- 180:gpstest.c     **** 						//rprintf("\tLat: ");
- 181:gpstest.c     **** 						//rprintfFloat(8,rmc.latitude);
- 182:gpstest.c     **** 						//rprintf(" Lon: ");
- 183:gpstest.c     **** 						//rprintfFloat(8,rmc.longitude);
- 184:gpstest.c     **** 						rprintf(" Vel (kt): ");
- 185:gpstest.c     **** 						rprintfFloat(8,rmc.speed);
- 186:gpstest.c     **** 						rprintf(" Course over ground (deg): ")
- 187:gpstest.c     **** 						rprintfFloat(8,rmc.course);
- 188:gpstest.c     **** 						rprintf("\r\n");
- 189:gpstest.c     **** #endif /* NOT using vid card */
- 190:gpstest.c     **** 						break;
- 191:gpstest.c     **** 					default:
- 192:gpstest.c     **** 						break;
- 193:gpstest.c     **** 			        } //end switch	
- 194:gpstest.c     **** 			
- 195:gpstest.c     **** 			}//	end if(ch != 0)
- 196:gpstest.c     **** 			
- 197:gpstest.c     **** 			//  here one would write to the video and the i2c buffer... set a mutex?  in other words, we wan
- 198:gpstest.c     **** 			// use two data objects, write back and forth and switch in a single operation?
- 199:gpstest.c     **** 			// write a make a readable write b make b readable
- 200:gpstest.c     **** 			// writeVideoScreen(gga.latitude, gga.longitude, gga.altitude, speed, char ERROR)
- 201:gpstest.c     **** 			
- 202:gpstest.c     **** 			// OR, should the master give a character and then receive a value?
- 203:gpstest.c     **** 			// that would seem to make more sense, but it means sort of immediate updates...
- 204:gpstest.c     **** 			rprintf(".\r");
- 205:gpstest.c     **** 
- 206:gpstest.c     **** 			if(message_sent != 0)
- 207:gpstest.c     **** 			{
- 208:gpstest.c     **** 				message_sent = 1;
- 209:gpstest.c     **** 				rprintf("\r\nsent i2c!");
- 210:gpstest.c     **** 			}
- 211:gpstest.c     **** 	} //end for
- 212:gpstest.c     **** 	
- 213:gpstest.c     **** 	return 0;
- 214:gpstest.c     **** }
- 215:gpstest.c     **** 
- 216:gpstest.c     **** void addToBuffer(unsigned char ch) {
- 1547               		.stabn	68,0,216,.LM95-addToBuffer
+ 172:gpstest.c     **** 						rprintf("\r\n\r\n");
+ 173:gpstest.c     **** #endif /* NOT using vid card */
+ 174:gpstest.c     **** 						break;
+ 175:gpstest.c     **** 					case NMEAP_GPRMC:
+ 176:gpstest.c     **** #ifdef USE_VID_CARD
+ 177:gpstest.c     **** 						writeVideoScreen(gga.latitude, gga.longitude, gga.time, gga.altitude, rmc.course, rmc.speed, 
+ 178:gpstest.c     **** #endif /* USE_VID_CARD */
+ 179:gpstest.c     **** #ifndef USE_VID_CARD
+ 180:gpstest.c     **** 						rprintf("RMC");
+ 181:gpstest.c     **** 						//rprintf("\tLat: ");
+ 182:gpstest.c     **** 						//rprintfFloat(8,rmc.latitude);
+ 183:gpstest.c     **** 						//rprintf(" Lon: ");
+ 184:gpstest.c     **** 						//rprintfFloat(8,rmc.longitude);
+ 185:gpstest.c     **** 						rprintf(" Vel (kt): ");
+ 186:gpstest.c     **** 						rprintfFloat(8,rmc.speed);
+ 187:gpstest.c     **** 						rprintf(" Course over ground (deg): ")
+ 188:gpstest.c     **** 						rprintfFloat(8,rmc.course);
+ 189:gpstest.c     **** 						rprintf("\r\n");
+ 190:gpstest.c     **** #endif /* NOT using vid card */
+ 191:gpstest.c     **** 						break;
+ 192:gpstest.c     **** 					default:
+ 193:gpstest.c     **** 						break;
+ 194:gpstest.c     **** 			        } //end switch	
+ 195:gpstest.c     **** 			
+ 196:gpstest.c     **** 			}//	end if(ch != 0)
+ 197:gpstest.c     **** 			
+ 198:gpstest.c     **** 			//  here one would write to the video and the i2c buffer... set a mutex?  in other words, we wan
+ 199:gpstest.c     **** 			// use two data objects, write back and forth and switch in a single operation?
+ 200:gpstest.c     **** 			// write a make a readable write b make b readable
+ 201:gpstest.c     **** 			// writeVideoScreen(gga.latitude, gga.longitude, gga.altitude, speed, char ERROR)
+ 202:gpstest.c     **** 			
+ 203:gpstest.c     **** 			// OR, should the master give a character and then receive a value?
+ 204:gpstest.c     **** 			// that would seem to make more sense, but it means sort of immediate updates...
+ 205:gpstest.c     **** 			rprintf(".\r");
+ 206:gpstest.c     **** 
+ 207:gpstest.c     **** 			if(message_sent != 0)
+ 208:gpstest.c     **** 			{
+ 209:gpstest.c     **** 				message_sent = 1;
+ 210:gpstest.c     **** 				rprintf("\r\nsent i2c!");
+ 211:gpstest.c     **** 			}
+ 212:gpstest.c     **** 	} //end for
+ 213:gpstest.c     **** 	
+ 214:gpstest.c     **** 	return 0;
+ 215:gpstest.c     **** }
+ 216:gpstest.c     **** 
+ 217:gpstest.c     **** void addToBuffer(unsigned char ch) {
+ 1547               		.stabn	68,0,217,.LM95-addToBuffer
  1548               	.LM95:
  1549               	/* prologue: frame size=0 */
  1550               	/* prologue end (size=0) */
- 217:gpstest.c     **** 	bufferAddToEnd(&gpsBuffer,ch);
- 1551               		.stabn	68,0,217,.LM96-addToBuffer
+ 218:gpstest.c     **** 	bufferAddToEnd(&gpsBuffer,ch);
+ 1551               		.stabn	68,0,218,.LM96-addToBuffer
  1552               	.LM96:
  1553 083e 682F      		mov r22,r24
  1554 0840 80E0      		ldi r24,lo8(gpsBuffer)
  1555 0842 90E0      		ldi r25,hi8(gpsBuffer)
  1556 0844 0E94 0000 		call bufferAddToEnd
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 42
+
+
  1557               	/* epilogue: frame size=0 */
-GAS LISTING /var/tmp//ccqKAok3.s 			page 42
-
-
  1558 0848 0895      		ret
  1559               	/* epilogue end (size=1) */
  1560               	/* function addToBuffer size 6 (5) */
@@ -2468,44 +2469,44 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  1562               	.Lscope7:
  1563               		.stabs	"",36,0,0,.Lscope7-addToBuffer
  1564               		.stabd	78,0,0
- 1565               		.stabs	"i2cSlaveReceiveService:F(0,15)",36,0,222,i2cSlaveReceiveService
- 1566               		.stabs	"receiveDataLength:P(7,1)",64,0,221,25
- 1567               		.stabs	"receiveData:P(0,20)=*(7,1)",64,0,221,26
+ 1565               		.stabs	"i2cSlaveReceiveService:F(0,15)",36,0,223,i2cSlaveReceiveService
+ 1566               		.stabs	"receiveDataLength:P(7,1)",64,0,222,25
+ 1567               		.stabs	"receiveData:P(0,20)=*(7,1)",64,0,222,26
  1568               	.global	i2cSlaveReceiveService
  1569               		.type	i2cSlaveReceiveService, @function
  1570               	i2cSlaveReceiveService:
  1571               		.stabd	46,0,0
- 218:gpstest.c     **** }
- 219:gpstest.c     **** 
- 220:gpstest.c     **** // slave operations
- 221:gpstest.c     **** void i2cSlaveReceiveService(u08 receiveDataLength, u08* receiveData)
- 222:gpstest.c     **** {
- 1572               		.stabn	68,0,222,.LM97-i2cSlaveReceiveService
+ 219:gpstest.c     **** }
+ 220:gpstest.c     **** 
+ 221:gpstest.c     **** // slave operations
+ 222:gpstest.c     **** void i2cSlaveReceiveService(u08 receiveDataLength, u08* receiveData)
+ 223:gpstest.c     **** {
+ 1572               		.stabn	68,0,223,.LM97-i2cSlaveReceiveService
  1573               	.LM97:
  1574               	/* prologue: frame size=0 */
  1575               	/* prologue end (size=0) */
  1576 084a 982F      		mov r25,r24
  1577 084c DB01      		movw r26,r22
- 223:gpstest.c     **** 	u08 i;
- 224:gpstest.c     **** 
- 225:gpstest.c     **** 	// this function will run when a master somewhere else on the bus
- 226:gpstest.c     **** 	// addresses us and wishes to write data to us
- 227:gpstest.c     **** 
- 228:gpstest.c     **** 	//showByte(*receiveData);
- 229:gpstest.c     **** 	cbi(PORTB, PB6);
- 1578               		.stabn	68,0,229,.LM98-i2cSlaveReceiveService
+ 224:gpstest.c     **** 	u08 i;
+ 225:gpstest.c     **** 
+ 226:gpstest.c     **** 	// this function will run when a master somewhere else on the bus
+ 227:gpstest.c     **** 	// addresses us and wishes to write data to us
+ 228:gpstest.c     **** 
+ 229:gpstest.c     **** 	//showByte(*receiveData);
+ 230:gpstest.c     **** 	cbi(PORTB, PB6);
+ 1578               		.stabn	68,0,230,.LM98-i2cSlaveReceiveService
  1579               	.LM98:
  1580 084e C698      		cbi 56-0x20,6
  1581 0850 20E0      		ldi r18,lo8(0)
  1582 0852 30E0      		ldi r19,hi8(0)
  1583 0854 07C0      		rjmp .L92
  1584               	.L93:
- 230:gpstest.c     **** 
- 231:gpstest.c     **** 	// copy the received data to a local buffer
- 232:gpstest.c     **** 	for(i=0; i<receiveDataLength; i++)
- 233:gpstest.c     **** 	{
- 234:gpstest.c     **** 		localBuffer[i] = *receiveData++;
- 1585               		.stabn	68,0,234,.LM99-i2cSlaveReceiveService
+ 231:gpstest.c     **** 
+ 232:gpstest.c     **** 	// copy the received data to a local buffer
+ 233:gpstest.c     **** 	for(i=0; i<receiveDataLength; i++)
+ 234:gpstest.c     **** 	{
+ 235:gpstest.c     **** 		localBuffer[i] = *receiveData++;
+ 1585               		.stabn	68,0,235,.LM99-i2cSlaveReceiveService
  1586               	.LM99:
  1587 0856 8D91      		ld r24,X+
  1588 0858 FF27      		clr r31
@@ -2516,16 +2517,16 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  1593 0862 3F4F      		sbci r19,hi8(-(1))
  1594               	.L92:
  1595 0864 E22F      		mov r30,r18
- 1596               		.stabn	68,0,232,.LM100-i2cSlaveReceiveService
+ 1596               		.stabn	68,0,233,.LM100-i2cSlaveReceiveService
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 43
+
+
  1597               	.LM100:
-GAS LISTING /var/tmp//ccqKAok3.s 			page 43
-
-
  1598 0866 2917      		cp r18,r25
  1599 0868 B0F3      		brlo .L93
- 235:gpstest.c     **** 	}
- 236:gpstest.c     **** 	localBufferLength = receiveDataLength;
- 1600               		.stabn	68,0,236,.LM101-i2cSlaveReceiveService
+ 236:gpstest.c     **** 	}
+ 237:gpstest.c     **** 	localBufferLength = receiveDataLength;
+ 1600               		.stabn	68,0,237,.LM101-i2cSlaveReceiveService
  1601               	.LM101:
  1602 086a 9093 0000 		sts localBufferLength,r25
  1603               	/* epilogue: frame size=0 */
@@ -2533,641 +2534,713 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  1605               	/* epilogue end (size=1) */
  1606               	/* function i2cSlaveReceiveService size 19 (18) */
  1607               		.size	i2cSlaveReceiveService, .-i2cSlaveReceiveService
- 1608               		.stabs	"i:r(7,1)",64,0,223,30
+ 1608               		.stabs	"i:r(7,1)",64,0,224,30
  1609               		.stabn	192,0,0,i2cSlaveReceiveService-i2cSlaveReceiveService
  1610               		.stabn	224,0,0,.Lscope8-i2cSlaveReceiveService
  1611               	.Lscope8:
  1612               		.stabs	"",36,0,0,.Lscope8-i2cSlaveReceiveService
  1613               		.stabd	78,0,0
  1614               		.section	.progmem.data,"a",@progbits
- 1615               		.type	__c.2432, @object
- 1616               		.size	__c.2432, 3
- 1617               	__c.2432:
- 1618 0000 2045 00   		.string	" E"
- 1619               		.text
- 1620               		.stabs	"i2cSlaveTransmitService:F(7,1)",36,0,254,i2cSlaveTransmitService
- 1621               		.stabs	"transmitDataLengthMax:P(7,1)",64,0,253,24
- 1622               		.stabs	"transmitData:P(0,20)",64,0,253,28
- 1623               	.global	i2cSlaveTransmitService
- 1624               		.type	i2cSlaveTransmitService, @function
- 1625               	i2cSlaveTransmitService:
- 1626               		.stabd	46,0,0
- 237:gpstest.c     **** 	
- 238:gpstest.c     **** }
- 239:gpstest.c     **** 
- 240:gpstest.c     **** /*
- 241:gpstest.c     **** #define	 q "pitch"
- 242:gpstest.c     **** #define	 w "Roll"
- 243:gpstest.c     **** #define	 c "Heading"
- 244:gpstest.c     **** #define	 a "Latitude"
- 245:gpstest.c     **** #define	 o "Longitude"
- 246:gpstest.c     **** #define	 z "Altitude"
- 247:gpstest.c     **** #define	 b "Battery"
- 248:gpstest.c     **** #define	 f "Fuel"
- 249:gpstest.c     **** #define	 s "Airspeed"
- 250:gpstest.c     **** #define	 g "Groundspeed"
- 251:gpstest.c     **** */
- 252:gpstest.c     **** 
- 253:gpstest.c     **** u08 i2cSlaveTransmitService(u08 transmitDataLengthMax, u08* transmitData)
- 254:gpstest.c     **** {
- 1627               		.stabn	68,0,254,.LM102-i2cSlaveTransmitService
- 1628               	.LM102:
- 1629               	/* prologue: frame size=0 */
- 1630 0870 CF93      		push r28
- 1631 0872 DF93      		push r29
- 1632               	/* prologue end (size=2) */
- 1633 0874 EB01      		movw r28,r22
- 255:gpstest.c     **** 	u08 i;
-GAS LISTING /var/tmp//ccqKAok3.s 			page 44
+ 1615               		.type	__c.2439, @object
+ 1616               		.size	__c.2439, 3
+ 1617               	__c.2439:
+ 1618 0000 6420 00   		.string	"d "
+ 1619               		.type	__c.2436, @object
+ 1620               		.size	__c.2436, 3
+ 1621               	__c.2436:
+ 1622 0003 6320 00   		.string	"c "
+ 1623               		.type	__c.2433, @object
+ 1624               		.size	__c.2433, 3
+ 1625               	__c.2433:
+ 1626 0006 6720 00   		.string	"g "
+ 1627               		.type	__c.2430, @object
+ 1628               		.size	__c.2430, 3
+ 1629               	__c.2430:
+ 1630 0009 6F20 00   		.string	"o "
+ 1631               		.type	__c.2426, @object
+ 1632               		.size	__c.2426, 3
+ 1633               	__c.2426:
+ 1634 000c 6120 00   		.string	"a "
+ 1635               		.text
+ 1636               		.stabs	"i2cSlaveTransmitService:F(7,1)",36,0,255,i2cSlaveTransmitService
+ 1637               		.stabs	"transmitDataLengthMax:P(7,1)",64,0,254,24
+ 1638               		.stabs	"transmitData:P(0,20)",64,0,254,28
+ 1639               	.global	i2cSlaveTransmitService
+ 1640               		.type	i2cSlaveTransmitService, @function
+ 1641               	i2cSlaveTransmitService:
+ 1642               		.stabd	46,0,0
+ 238:gpstest.c     **** 	
+ 239:gpstest.c     **** }
+ 240:gpstest.c     **** 
+ 241:gpstest.c     **** /*
+ 242:gpstest.c     **** #define	 q "pitch"
+ 243:gpstest.c     **** #define	 w "Roll"
+ 244:gpstest.c     **** #define	 c "Heading"
+ 245:gpstest.c     **** #define	 a "Latitude"
+ 246:gpstest.c     **** #define	 o "Longitude"
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 44
 
 
- 256:gpstest.c     **** 	// this function will run when a master somewhere else on the bus
- 257:gpstest.c     **** 	// addresses us and wishes to read data from us
- 258:gpstest.c     **** 	
- 259:gpstest.c     **** 	// I believe that this might be the place to load the response...
- 260:gpstest.c     **** 	
- 261:gpstest.c     **** 	//showByte(*transmitData);	
- 262:gpstest.c     **** 	cbi(PORTB, PB7);
- 1634               		.stabn	68,0,262,.LM103-i2cSlaveTransmitService
- 1635               	.LM103:
- 1636 0876 C798      		cbi 56-0x20,7
- 263:gpstest.c     **** 	rprintfInit(print_to_string);
- 1637               		.stabn	68,0,263,.LM104-i2cSlaveTransmitService
- 1638               	.LM104:
- 1639 0878 80E0      		ldi r24,lo8(pm(print_to_string))
- 1640 087a 90E0      		ldi r25,hi8(pm(print_to_string))
- 1641 087c 0E94 0000 		call rprintfInit
- 264:gpstest.c     **** 	// temp for debugging.... CHANGE!
- 265:gpstest.c     **** 	float test = 420.6661;
- 266:gpstest.c     **** 	double test2 = 420.6661;
- 267:gpstest.c     **** 	stackem_pointer = 0;
- 1642               		.stabn	68,0,267,.LM105-i2cSlaveTransmitService
- 1643               	.LM105:
- 1644 0880 1092 0000 		sts stackem_pointer,__zero_reg__
- 268:gpstest.c     **** 	switch(localBuffer[0])
- 1645               		.stabn	68,0,268,.LM106-i2cSlaveTransmitService
- 1646               	.LM106:
- 1647 0884 8091 0000 		lds r24,localBuffer
- 1648 0888 8436      		cpi r24,lo8(100)
- 1649 088a 41F1      		breq .L100
- 1650               		.stabn	68,0,268,.LM107-i2cSlaveTransmitService
- 1651               	.LM107:
- 1652 088c 8536      		cpi r24,lo8(101)
- 1653 088e 30F4      		brsh .L103
- 1654 0890 8136      		cpi r24,lo8(97)
- 1655 0892 51F0      		breq .L98
- 1656 0894 8336      		cpi r24,lo8(99)
- 1657 0896 09F0      		breq .+2
- 1658 0898 47C0      		rjmp .L97
- 1659 089a 17C0      		rjmp .L99
- 1660               	.L103:
- 1661 089c 8736      		cpi r24,lo8(103)
- 1662 089e 69F0      		breq .L102
- 1663 08a0 8F36      		cpi r24,lo8(111)
- 1664 08a2 09F0      		breq .+2
- 1665 08a4 41C0      		rjmp .L97
- 1666 08a6 09C0      		rjmp .L102
- 1667               	.L98:
- 269:gpstest.c     **** 	{
- 270:gpstest.c     **** 		case 'a': //latitude
- 271:gpstest.c     **** 			rprintfFloat(8,gga.latitude);
- 1668               		.stabn	68,0,271,.LM108-i2cSlaveTransmitService
- 1669               	.LM108:
- 1670 08a8 4091 0000 		lds r20,gga
- 1671 08ac 5091 0000 		lds r21,(gga)+1
- 1672 08b0 6091 0000 		lds r22,(gga)+2
- 1673 08b4 7091 0000 		lds r23,(gga)+3
- 1674 08b8 04C0      		rjmp .L111
-GAS LISTING /var/tmp//ccqKAok3.s 			page 45
+ 247:gpstest.c     **** #define	 z "Altitude"
+ 248:gpstest.c     **** #define	 b "Battery"
+ 249:gpstest.c     **** #define	 f "Fuel"
+ 250:gpstest.c     **** #define	 s "Airspeed"
+ 251:gpstest.c     **** #define	 g "Groundspeed"
+ 252:gpstest.c     **** */
+ 253:gpstest.c     **** 
+ 254:gpstest.c     **** u08 i2cSlaveTransmitService(u08 transmitDataLengthMax, u08* transmitData)
+ 255:gpstest.c     **** {
+ 1643               		.stabn	68,0,255,.LM102-i2cSlaveTransmitService
+ 1644               	.LM102:
+ 1645               	/* prologue: frame size=0 */
+ 1646 0870 CF93      		push r28
+ 1647 0872 DF93      		push r29
+ 1648               	/* prologue end (size=2) */
+ 1649 0874 EB01      		movw r28,r22
+ 256:gpstest.c     **** 	u08 i;
+ 257:gpstest.c     **** 	// this function will run when a master somewhere else on the bus
+ 258:gpstest.c     **** 	// addresses us and wishes to read data from us
+ 259:gpstest.c     **** 	
+ 260:gpstest.c     **** 	// I believe that this might be the place to load the response...
+ 261:gpstest.c     **** 	
+ 262:gpstest.c     **** 	//showByte(*transmitData);	
+ 263:gpstest.c     **** 	cbi(PORTB, PB7);
+ 1650               		.stabn	68,0,263,.LM103-i2cSlaveTransmitService
+ 1651               	.LM103:
+ 1652 0876 C798      		cbi 56-0x20,7
+ 264:gpstest.c     **** 	rprintfInit(print_to_string);
+ 1653               		.stabn	68,0,264,.LM104-i2cSlaveTransmitService
+ 1654               	.LM104:
+ 1655 0878 80E0      		ldi r24,lo8(pm(print_to_string))
+ 1656 087a 90E0      		ldi r25,hi8(pm(print_to_string))
+ 1657 087c 0E94 0000 		call rprintfInit
+ 265:gpstest.c     **** 	// temp for debugging.... CHANGE!
+ 266:gpstest.c     **** 	float test = -71.093355;
+ 267:gpstest.c     **** 	double test2 = 42.359051;
+ 268:gpstest.c     **** 	stackem_pointer = 0;
+ 1658               		.stabn	68,0,268,.LM105-i2cSlaveTransmitService
+ 1659               	.LM105:
+ 1660 0880 1092 0000 		sts stackem_pointer,__zero_reg__
+ 269:gpstest.c     **** 	switch(localBuffer[0])
+ 1661               		.stabn	68,0,269,.LM106-i2cSlaveTransmitService
+ 1662               	.LM106:
+ 1663 0884 8091 0000 		lds r24,localBuffer
+ 1664 0888 8436      		cpi r24,lo8(100)
+ 1665 088a 09F4      		brne .+2
+ 1666 088c 52C0      		rjmp .L100
+ 1667               		.stabn	68,0,269,.LM107-i2cSlaveTransmitService
+ 1668               	.LM107:
+ 1669 088e 8536      		cpi r24,lo8(101)
+ 1670 0890 30F4      		brsh .L103
+ 1671 0892 8136      		cpi r24,lo8(97)
+ 1672 0894 51F0      		breq .L98
+ 1673 0896 8336      		cpi r24,lo8(99)
+ 1674 0898 09F0      		breq .+2
+ 1675 089a 7EC0      		rjmp .L97
+ 1676 089c 39C0      		rjmp .L99
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 45
 
 
- 1675               	.L102:
- 272:gpstest.c     **** 			break;
- 273:gpstest.c     **** 		case 'o': //longitude
- 274:gpstest.c     **** 			rprintfFloat(8,test);	
- 1676               		.stabn	68,0,274,.LM109-i2cSlaveTransmitService
- 1677               	.LM109:
- 1678 08ba 43E4      		ldi r20,lo8(0x43d25543)
- 1679 08bc 55E5      		ldi r21,hi8(0x43d25543)
- 1680 08be 62ED      		ldi r22,hlo8(0x43d25543)
- 1681 08c0 73E4      		ldi r23,hhi8(0x43d25543)
- 1682               	.L111:
- 1683 08c2 88E0      		ldi r24,lo8(8)
- 1684 08c4 0E94 0000 		call rprintfFloat
- 1685 08c8 3AC0      		rjmp .L104
- 1686               	.L99:
+ 1677               	.L103:
+ 1678 089e 8736      		cpi r24,lo8(103)
+ 1679 08a0 31F1      		breq .L101
+ 1680 08a2 8F36      		cpi r24,lo8(111)
+ 1681 08a4 09F0      		breq .+2
+ 1682 08a6 78C0      		rjmp .L97
+ 1683 08a8 11C0      		rjmp .L102
+ 1684               	.L98:
+ 270:gpstest.c     **** 	{
+ 271:gpstest.c     **** 		case 'a': //latitude
+ 272:gpstest.c     **** 			rprintf("a ");
+ 1685               		.stabn	68,0,272,.LM108-i2cSlaveTransmitService
+ 1686               	.LM108:
+ 1687 08aa 80E0      		ldi r24,lo8(__c.2426)
+ 1688 08ac 90E0      		ldi r25,hi8(__c.2426)
+ 1689 08ae 9F93      		push r25
+ 1690 08b0 8F93      		push r24
+ 1691 08b2 81E0      		ldi r24,lo8(1)
+ 1692 08b4 8F93      		push r24
+ 1693 08b6 0E94 0000 		call rprintf1RamRom
+ 273:gpstest.c     **** 			rprintfFloat(8,gga.latitude);
+ 1694               		.stabn	68,0,273,.LM109-i2cSlaveTransmitService
+ 1695               	.LM109:
+ 1696 08ba 4091 0000 		lds r20,gga
+ 1697 08be 5091 0000 		lds r21,(gga)+1
+ 1698 08c2 6091 0000 		lds r22,(gga)+2
+ 1699 08c6 7091 0000 		lds r23,(gga)+3
+ 1700 08ca 60C0      		rjmp .L110
+ 1701               	.L102:
+ 274:gpstest.c     **** 			//rprintfFloat(8,test2);	
  275:gpstest.c     **** 			break;
- 276:gpstest.c     **** 		case 'g': //groundspeed
- 277:gpstest.c     **** 			rprintfFloat(8,test2);
- 278:gpstest.c     **** 			break;
- 279:gpstest.c     **** 		case 'c':
- 280:gpstest.c     **** 			rprintfFloat(8,rmc.course);
- 1687               		.stabn	68,0,280,.LM110-i2cSlaveTransmitService
- 1688               	.LM110:
- 1689 08ca 4091 0000 		lds r20,rmc+17
- 1690 08ce 5091 0000 		lds r21,(rmc+17)+1
- 1691 08d2 6091 0000 		lds r22,(rmc+17)+2
- 1692 08d6 7091 0000 		lds r23,(rmc+17)+3
- 1693 08da F3CF      		rjmp .L111
- 1694               	.L100:
- 281:gpstest.c     **** 			break;
- 282:gpstest.c     **** 		case 'd':
- 283:gpstest.c     **** 			rprintfFloat(8,rmc.date);
- 1695               		.stabn	68,0,283,.LM111-i2cSlaveTransmitService
- 1696               	.LM111:
- 1697 08dc 2091 0000 		lds r18,rmc+21
- 1698 08e0 3091 0000 		lds r19,(rmc+21)+1
- 1699 08e4 4091 0000 		lds r20,(rmc+21)+2
- 1700 08e8 5091 0000 		lds r21,(rmc+21)+3
- 1701 08ec 57FD      		sbrc r21,7
- 1702 08ee 05C0      		rjmp .L106
- 1703 08f0 CA01      		movw r24,r20
- 1704 08f2 B901      		movw r22,r18
- 1705 08f4 0E94 0000 		call __floatsisf
- 1706 08f8 14C0      		rjmp .L105
- 1707               	.L106:
- 1708 08fa CA01      		movw r24,r20
- 1709 08fc B901      		movw r22,r18
- 1710 08fe 6170      		andi r22,lo8(1)
- 1711 0900 7070      		andi r23,hi8(1)
- 1712 0902 8070      		andi r24,hlo8(1)
- 1713 0904 9070      		andi r25,hhi8(1)
- 1714 0906 5695      		lsr r21
- 1715 0908 4795      		ror r20
- 1716 090a 3795      		ror r19
- 1717 090c 2795      		ror r18
- 1718 090e 622B      		or r22,r18
- 1719 0910 732B      		or r23,r19
-GAS LISTING /var/tmp//ccqKAok3.s 			page 46
+ 276:gpstest.c     **** 		case 'o': //longitude
+ 277:gpstest.c     **** 			rprintf("o ");
+ 1702               		.stabn	68,0,277,.LM110-i2cSlaveTransmitService
+ 1703               	.LM110:
+ 1704 08cc 80E0      		ldi r24,lo8(__c.2430)
+ 1705 08ce 90E0      		ldi r25,hi8(__c.2430)
+ 1706 08d0 9F93      		push r25
+ 1707 08d2 8F93      		push r24
+ 1708 08d4 81E0      		ldi r24,lo8(1)
+ 1709 08d6 8F93      		push r24
+ 1710 08d8 0E94 0000 		call rprintf1RamRom
+ 278:gpstest.c     **** 			rprintfFloat(8,gga.longitude);
+ 1711               		.stabn	68,0,278,.LM111-i2cSlaveTransmitService
+ 1712               	.LM111:
+ 1713 08dc 4091 0000 		lds r20,gga+4
+ 1714 08e0 5091 0000 		lds r21,(gga+4)+1
+ 1715 08e4 6091 0000 		lds r22,(gga+4)+2
+ 1716 08e8 7091 0000 		lds r23,(gga+4)+3
+ 1717 08ec 4FC0      		rjmp .L110
+ 1718               	.L101:
+ 279:gpstest.c     **** 			//rprintfFloat(8,test);	
+ 280:gpstest.c     **** 			break;
+ 281:gpstest.c     **** 		case 'g': //groundspeed
+ 282:gpstest.c     **** 			rprintf("g ");
+ 1719               		.stabn	68,0,282,.LM112-i2cSlaveTransmitService
+ 1720               	.LM112:
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 46
 
 
- 1720 0912 842B      		or r24,r20
- 1721 0914 952B      		or r25,r21
- 1722 0916 0E94 0000 		call __floatsisf
- 1723 091a 9B01      		movw r18,r22
- 1724 091c AC01      		movw r20,r24
- 1725 091e 0E94 0000 		call __addsf3
- 1726               	.L105:
- 1727 0922 AB01      		movw r20,r22
- 1728 0924 BC01      		movw r22,r24
- 1729 0926 CDCF      		rjmp .L111
- 1730               	.L97:
+ 1721 08ee 80E0      		ldi r24,lo8(__c.2433)
+ 1722 08f0 90E0      		ldi r25,hi8(__c.2433)
+ 1723 08f2 9F93      		push r25
+ 1724 08f4 8F93      		push r24
+ 1725 08f6 81E0      		ldi r24,lo8(1)
+ 1726 08f8 8F93      		push r24
+ 1727 08fa 0E94 0000 		call rprintf1RamRom
+ 283:gpstest.c     **** 			rprintfFloat(8,rmc.speed);
+ 1728               		.stabn	68,0,283,.LM113-i2cSlaveTransmitService
+ 1729               	.LM113:
+ 1730 08fe 4091 0000 		lds r20,rmc+13
+ 1731 0902 5091 0000 		lds r21,(rmc+13)+1
+ 1732 0906 6091 0000 		lds r22,(rmc+13)+2
+ 1733 090a 7091 0000 		lds r23,(rmc+13)+3
+ 1734 090e 3EC0      		rjmp .L110
+ 1735               	.L99:
  284:gpstest.c     **** 			break;
- 285:gpstest.c     **** 		default:
- 286:gpstest.c     **** 			rprintf(" E");  //CE = Command Error
- 1731               		.stabn	68,0,286,.LM112-i2cSlaveTransmitService
- 1732               	.LM112:
- 1733 0928 80E0      		ldi r24,lo8(__c.2432)
- 1734 092a 90E0      		ldi r25,hi8(__c.2432)
- 1735 092c 9F93      		push r25
- 1736 092e 8F93      		push r24
- 1737 0930 81E0      		ldi r24,lo8(1)
- 1738 0932 8F93      		push r24
- 1739 0934 0E94 0000 		call rprintf1RamRom
- 1740 0938 0F90      		pop __tmp_reg__
- 1741 093a 0F90      		pop __tmp_reg__
- 1742 093c 0F90      	 	pop __tmp_reg__
- 1743               	.L104:
- 287:gpstest.c     **** 			break;
- 288:gpstest.c     **** 	}
- 289:gpstest.c     **** 	rprintfInit(uartSendByte);
- 1744               		.stabn	68,0,289,.LM113-i2cSlaveTransmitService
- 1745               	.LM113:
- 1746 093e 80E0      		ldi r24,lo8(pm(uartSendByte))
- 1747 0940 90E0      		ldi r25,hi8(pm(uartSendByte))
- 1748 0942 0E94 0000 		call rprintfInit
- 1749 0946 DE01      		movw r26,r28
- 1750 0948 05C0      		rjmp .L107
- 1751               	.L108:
- 290:gpstest.c     **** 	//sprintf(temp_buffer, "%f,%f",gga.latitude,gga.longitude);
- 291:gpstest.c     **** 	
- 292:gpstest.c     **** 	// copy the local buffer to the transmit buffer -- this buffer size is set in i2c.conf
- 293:gpstest.c     **** 	for(i=0; i<=stackem_pointer; i++)
- 294:gpstest.c     **** 	{
- 295:gpstest.c     **** 		*transmitData++ = stackem[i];
- 1752               		.stabn	68,0,295,.LM114-i2cSlaveTransmitService
- 1753               	.LM114:
- 1754 094a FF27      		clr r31
- 1755 094c E050      		subi r30,lo8(-(stackem))
- 1756 094e F040      		sbci r31,hi8(-(stackem))
- 1757 0950 8081      		ld r24,Z
- 1758 0952 8D93      		st X+,r24
- 1759               	.L107:
- 1760 0954 EA2F      		mov r30,r26
- 1761 0956 EC1B      		sub r30,r28
- 1762               		.stabn	68,0,293,.LM115-i2cSlaveTransmitService
- 1763               	.LM115:
- 1764 0958 8091 0000 		lds r24,stackem_pointer
-GAS LISTING /var/tmp//ccqKAok3.s 			page 47
+ 285:gpstest.c     **** 		case 'c':
+ 286:gpstest.c     **** 			rprintf("c ");
+ 1736               		.stabn	68,0,286,.LM114-i2cSlaveTransmitService
+ 1737               	.LM114:
+ 1738 0910 80E0      		ldi r24,lo8(__c.2436)
+ 1739 0912 90E0      		ldi r25,hi8(__c.2436)
+ 1740 0914 9F93      		push r25
+ 1741 0916 8F93      		push r24
+ 1742 0918 81E0      		ldi r24,lo8(1)
+ 1743 091a 8F93      		push r24
+ 1744 091c 0E94 0000 		call rprintf1RamRom
+ 287:gpstest.c     **** 			rprintfFloat(8,rmc.course);
+ 1745               		.stabn	68,0,287,.LM115-i2cSlaveTransmitService
+ 1746               	.LM115:
+ 1747 0920 4091 0000 		lds r20,rmc+17
+ 1748 0924 5091 0000 		lds r21,(rmc+17)+1
+ 1749 0928 6091 0000 		lds r22,(rmc+17)+2
+ 1750 092c 7091 0000 		lds r23,(rmc+17)+3
+ 1751 0930 2DC0      		rjmp .L110
+ 1752               	.L100:
+ 288:gpstest.c     **** 			break;
+ 289:gpstest.c     **** 		case 'd':
+ 290:gpstest.c     **** 			rprintf("d ");
+ 1753               		.stabn	68,0,290,.LM116-i2cSlaveTransmitService
+ 1754               	.LM116:
+ 1755 0932 80E0      		ldi r24,lo8(__c.2439)
+ 1756 0934 90E0      		ldi r25,hi8(__c.2439)
+ 1757 0936 9F93      		push r25
+ 1758 0938 8F93      		push r24
+ 1759 093a 81E0      		ldi r24,lo8(1)
+ 1760 093c 8F93      		push r24
+ 1761 093e 0E94 0000 		call rprintf1RamRom
+ 291:gpstest.c     **** 			rprintfFloat(8,rmc.date);
+ 1762               		.stabn	68,0,291,.LM117-i2cSlaveTransmitService
+ 1763               	.LM117:
+ 1764 0942 2091 0000 		lds r18,rmc+21
+ 1765 0946 3091 0000 		lds r19,(rmc+21)+1
+ 1766 094a 4091 0000 		lds r20,(rmc+21)+2
+ 1767 094e 5091 0000 		lds r21,(rmc+21)+3
+ 1768 0952 57FD      		sbrc r21,7
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 47
 
 
- 1765 095c 8E17      		cp r24,r30
- 1766 095e A8F7      		brsh .L108
- 1767 0960 8F5F      		subi r24,lo8(-(1))
+ 1769 0954 05C0      		rjmp .L105
+ 1770 0956 CA01      		movw r24,r20
+ 1771 0958 B901      		movw r22,r18
+ 1772 095a 0E94 0000 		call __floatsisf
+ 1773 095e 14C0      		rjmp .L104
+ 1774               	.L105:
+ 1775 0960 CA01      		movw r24,r20
+ 1776 0962 B901      		movw r22,r18
+ 1777 0964 6170      		andi r22,lo8(1)
+ 1778 0966 7070      		andi r23,hi8(1)
+ 1779 0968 8070      		andi r24,hlo8(1)
+ 1780 096a 9070      		andi r25,hhi8(1)
+ 1781 096c 5695      		lsr r21
+ 1782 096e 4795      		ror r20
+ 1783 0970 3795      		ror r19
+ 1784 0972 2795      		ror r18
+ 1785 0974 622B      		or r22,r18
+ 1786 0976 732B      		or r23,r19
+ 1787 0978 842B      		or r24,r20
+ 1788 097a 952B      		or r25,r21
+ 1789 097c 0E94 0000 		call __floatsisf
+ 1790 0980 9B01      		movw r18,r22
+ 1791 0982 AC01      		movw r20,r24
+ 1792 0984 0E94 0000 		call __addsf3
+ 1793               	.L104:
+ 1794 0988 AB01      		movw r20,r22
+ 1795 098a BC01      		movw r22,r24
+ 1796               	.L110:
+ 1797 098c 88E0      		ldi r24,lo8(8)
+ 1798 098e 0E94 0000 		call rprintfFloat
+ 1799 0992 0F90      		pop __tmp_reg__
+ 1800 0994 0F90      		pop __tmp_reg__
+ 1801 0996 0F90      	 	pop __tmp_reg__
+ 1802               	.L97:
+ 292:gpstest.c     **** 			break;
+ 293:gpstest.c     **** 		default:
+ 294:gpstest.c     **** 		//	rprintf(" E");  //CE = Command Error
+ 295:gpstest.c     **** 			break;
  296:gpstest.c     **** 	}
- 297:gpstest.c     **** 	
- 298:gpstest.c     **** 	
- 299:gpstest.c     **** 	//localBuffer[0]++;
- 300:gpstest.c     **** 	//message_sent = 1;
- 301:gpstest.c     **** 
- 302:gpstest.c     **** 	return stackem_pointer+1;
- 303:gpstest.c     **** }
- 1768               		.stabn	68,0,303,.LM116-i2cSlaveTransmitService
- 1769               	.LM116:
- 1770 0962 9927      		clr r25
- 1771               	/* epilogue: frame size=0 */
- 1772 0964 DF91      		pop r29
- 1773 0966 CF91      		pop r28
- 1774 0968 0895      		ret
- 1775               	/* epilogue end (size=3) */
- 1776               	/* function i2cSlaveTransmitService size 125 (120) */
- 1777               		.size	i2cSlaveTransmitService, .-i2cSlaveTransmitService
- 1778               		.stabs	"i:r(7,1)",64,0,255,30
- 1779               		.stabn	192,0,0,i2cSlaveTransmitService-i2cSlaveTransmitService
- 1780               		.stabn	224,0,0,.Lscope9-i2cSlaveTransmitService
- 1781               	.Lscope9:
- 1782               		.stabs	"",36,0,0,.Lscope9-i2cSlaveTransmitService
- 1783               		.stabd	78,0,0
- 1784               		.stabs	"print_to_string:F(0,15)",36,0,305,print_to_string
- 1785               		.stabs	"the_char:P(7,1)",64,0,304,24
- 1786               	.global	print_to_string
- 1787               		.type	print_to_string, @function
- 1788               	print_to_string:
- 1789               		.stabd	46,0,0
- 304:gpstest.c     **** void print_to_string(u08 the_char)
- 305:gpstest.c     **** {
- 1790               		.stabn	68,0,305,.LM117-print_to_string
- 1791               	.LM117:
- 1792               	/* prologue: frame size=0 */
- 1793               	/* prologue end (size=0) */
- 306:gpstest.c     **** 	if(stackem_pointer<(stackem_length-1))  //-1 to allow for null char to still fit
- 1794               		.stabn	68,0,306,.LM118-print_to_string
- 1795               	.LM118:
- 1796 096a 9091 0000 		lds r25,stackem_pointer
- 1797 096e 9F31      		cpi r25,lo8(31)
- 1798 0970 68F4      		brsh .L115
- 307:gpstest.c     **** 	{
- 308:gpstest.c     **** 		stackem[stackem_pointer] = the_char;
- 1799               		.stabn	68,0,308,.LM119-print_to_string
- 1800               	.LM119:
- 1801 0972 E92F      		mov r30,r25
- 1802 0974 FF27      		clr r31
- 1803 0976 E050      		subi r30,lo8(-(stackem))
- 1804 0978 F040      		sbci r31,hi8(-(stackem))
- 1805 097a 8083      		st Z,r24
- 309:gpstest.c     **** 		stackem_pointer++;
- 1806               		.stabn	68,0,309,.LM120-print_to_string
- 1807               	.LM120:
-GAS LISTING /var/tmp//ccqKAok3.s 			page 48
+ 297:gpstest.c     **** 	rprintfInit(uartSendByte);
+ 1803               		.stabn	68,0,297,.LM118-i2cSlaveTransmitService
+ 1804               	.LM118:
+ 1805 0998 80E0      		ldi r24,lo8(pm(uartSendByte))
+ 1806 099a 90E0      		ldi r25,hi8(pm(uartSendByte))
+ 1807 099c 0E94 0000 		call rprintfInit
+ 1808 09a0 DE01      		movw r26,r28
+ 1809 09a2 05C0      		rjmp .L106
+ 1810               	.L107:
+ 298:gpstest.c     **** 	//sprintf(temp_buffer, "%f,%f",gga.latitude,gga.longitude);
+ 299:gpstest.c     **** 	
+ 300:gpstest.c     **** 	// copy the local buffer to the transmit buffer -- this buffer size is set in i2c.conf
+ 301:gpstest.c     **** 	for(i=0; i<=stackem_pointer; i++)
+ 302:gpstest.c     **** 	{
+ 303:gpstest.c     **** 		*transmitData++ = stackem[i];
+ 1811               		.stabn	68,0,303,.LM119-i2cSlaveTransmitService
+ 1812               	.LM119:
+ 1813 09a4 FF27      		clr r31
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 48
 
 
- 1808 097c E92F      		mov r30,r25
- 1809 097e EF5F      		subi r30,lo8(-(1))
- 1810 0980 E093 0000 		sts stackem_pointer,r30
- 310:gpstest.c     **** 		stackem[stackem_pointer] = 0;
- 1811               		.stabn	68,0,310,.LM121-print_to_string
- 1812               	.LM121:
- 1813 0984 FF27      		clr r31
- 1814 0986 E050      		subi r30,lo8(-(stackem))
- 1815 0988 F040      		sbci r31,hi8(-(stackem))
- 1816 098a 1082      		st Z,__zero_reg__
- 1817               	.L115:
- 1818 098c 0895      		ret
- 1819               	/* epilogue: frame size=0 */
- 1820               	/* epilogue: noreturn */
- 1821               	/* epilogue end (size=0) */
- 1822               	/* function print_to_string size 18 (18) */
- 1823               		.size	print_to_string, .-print_to_string
- 1824               	.Lscope10:
- 1825               		.stabs	"",36,0,0,.Lscope10-print_to_string
- 1826               		.stabd	78,0,0
- 1827               		.stabs	"nmeap_latitude:F(0,13)",36,0,58,nmeap_latitude
- 1828               		.stabs	"plat:P(0,16)",64,0,57,30
- 1829               		.stabs	"phem:P(0,16)",64,0,57,26
- 1830               	.global	nmeap_latitude
- 1831               		.type	nmeap_latitude, @function
- 1832               	nmeap_latitude:
- 1833               		.stabd	46,0,0
- 1834               		.stabs	"nmeap01.c",132,0,0,.Ltext4
- 1835               	.Ltext4:
- 1836               		.stabn	68,0,58,.LM122-nmeap_latitude
- 1837               	.LM122:
- 1838               	/* prologue: frame size=0 */
- 1839 098e AF92      		push r10
- 1840 0990 BF92      		push r11
- 1841 0992 CF92      		push r12
- 1842 0994 DF92      		push r13
- 1843 0996 EF92      		push r14
- 1844 0998 FF92      		push r15
- 1845 099a 0F93      		push r16
- 1846 099c 1F93      		push r17
- 1847 099e CF93      		push r28
- 1848 09a0 DF93      		push r29
- 1849               	/* prologue end (size=10) */
- 1850 09a2 FC01      		movw r30,r24
- 1851 09a4 DB01      		movw r26,r22
- 1852               		.stabn	68,0,64,.LM123-nmeap_latitude
- 1853               	.LM123:
- 1854 09a6 892B      		or r24,r25
- 1855 09a8 09F4      		brne .L117
- 1856               	.L130:
- 1857 09aa FFCF      		rjmp .L130
- 1858               	.L117:
- 1859               		.stabn	68,0,65,.LM124-nmeap_latitude
- 1860               	.LM124:
- 1861 09ac 672B      		or r22,r23
- 1862 09ae 09F4      		brne .L119
- 1863               	.L131:
-GAS LISTING /var/tmp//ccqKAok3.s 			page 49
+ 1814 09a6 E050      		subi r30,lo8(-(stackem))
+ 1815 09a8 F040      		sbci r31,hi8(-(stackem))
+ 1816 09aa 8081      		ld r24,Z
+ 1817 09ac 8D93      		st X+,r24
+ 1818               	.L106:
+ 1819 09ae EA2F      		mov r30,r26
+ 1820 09b0 EC1B      		sub r30,r28
+ 1821               		.stabn	68,0,301,.LM120-i2cSlaveTransmitService
+ 1822               	.LM120:
+ 1823 09b2 8091 0000 		lds r24,stackem_pointer
+ 1824 09b6 8E17      		cp r24,r30
+ 1825 09b8 A8F7      		brsh .L107
+ 1826 09ba 8F5F      		subi r24,lo8(-(1))
+ 304:gpstest.c     **** 	}
+ 305:gpstest.c     **** 	
+ 306:gpstest.c     **** 	
+ 307:gpstest.c     **** 	//localBuffer[0]++;
+ 308:gpstest.c     **** 	//message_sent = 1;
+ 309:gpstest.c     **** 
+ 310:gpstest.c     **** 	return stackem_pointer+1;
+ 311:gpstest.c     **** }
+ 1827               		.stabn	68,0,311,.LM121-i2cSlaveTransmitService
+ 1828               	.LM121:
+ 1829 09bc 9927      		clr r25
+ 1830               	/* epilogue: frame size=0 */
+ 1831 09be DF91      		pop r29
+ 1832 09c0 CF91      		pop r28
+ 1833 09c2 0895      		ret
+ 1834               	/* epilogue end (size=3) */
+ 1835               	/* function i2cSlaveTransmitService size 170 (165) */
+ 1836               		.size	i2cSlaveTransmitService, .-i2cSlaveTransmitService
+ 1837               		.stabs	"i:r(7,1)",64,0,256,30
+ 1838               		.stabn	192,0,0,i2cSlaveTransmitService-i2cSlaveTransmitService
+ 1839               		.stabn	224,0,0,.Lscope9-i2cSlaveTransmitService
+ 1840               	.Lscope9:
+ 1841               		.stabs	"",36,0,0,.Lscope9-i2cSlaveTransmitService
+ 1842               		.stabd	78,0,0
+ 1843               		.stabs	"print_to_string:F(0,15)",36,0,313,print_to_string
+ 1844               		.stabs	"the_char:P(7,1)",64,0,312,24
+ 1845               	.global	print_to_string
+ 1846               		.type	print_to_string, @function
+ 1847               	print_to_string:
+ 1848               		.stabd	46,0,0
+ 312:gpstest.c     **** void print_to_string(u08 the_char)
+ 313:gpstest.c     **** {
+ 1849               		.stabn	68,0,313,.LM122-print_to_string
+ 1850               	.LM122:
+ 1851               	/* prologue: frame size=0 */
+ 1852               	/* prologue end (size=0) */
+ 314:gpstest.c     **** 	if(stackem_pointer<(stackem_length-1))  //-1 to allow for null char to still fit
+ 1853               		.stabn	68,0,314,.LM123-print_to_string
+ 1854               	.LM123:
+ 1855 09c4 9091 0000 		lds r25,stackem_pointer
+ 1856 09c8 9F31      		cpi r25,lo8(31)
+ 1857 09ca 68F4      		brsh .L114
+ 315:gpstest.c     **** 	{
+ 316:gpstest.c     **** 		stackem[stackem_pointer] = the_char;
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 49
 
 
- 1864 09b0 FFCF      		rjmp .L131
- 1865               	.L119:
- 1866               		.stabn	68,0,67,.LM125-nmeap_latitude
- 1867               	.LM125:
- 1868 09b2 8081      		ld r24,Z
- 1869 09b4 8823      		tst r24
- 1870 09b6 19F0      		breq .L132
- 1871               		.stabn	68,0,70,.LM126-nmeap_latitude
- 1872               	.LM126:
- 1873 09b8 6C91      		ld r22,X
- 1874 09ba 6623      		tst r22
- 1875 09bc 29F4      		brne .L124
- 1876               	.L132:
- 1877 09be 60E0      		ldi r22,lo8(0x0)
- 1878 09c0 70E0      		ldi r23,hi8(0x0)
- 1879 09c2 80E0      		ldi r24,hlo8(0x0)
- 1880 09c4 90E0      		ldi r25,hhi8(0x0)
- 1881 09c6 43C0      		rjmp .L123
- 1882               	.L124:
- 1883               		.stabn	68,0,75,.LM127-nmeap_latitude
- 1884               	.LM127:
- 1885 09c8 6E34      		cpi r22,lo8(78)
- 1886 09ca 19F4      		brne .L126
- 1887 09cc C1E0      		ldi r28,lo8(1)
- 1888 09ce D0E0      		ldi r29,hi8(1)
- 1889 09d0 02C0      		rjmp .L128
- 1890               	.L126:
- 1891 09d2 CFEF      		ldi r28,lo8(-1)
- 1892 09d4 DFEF      		ldi r29,hi8(-1)
- 1893               	.L128:
- 1894               		.stabn	68,0,85,.LM128-nmeap_latitude
- 1895               	.LM128:
- 1896 09d6 CF01      		movw r24,r30
- 1897 09d8 0E94 0000 		call atof
- 1898 09dc 5B01      		movw r10,r22
- 1899 09de 6C01      		movw r12,r24
- 1900               		.stabn	68,0,91,.LM129-nmeap_latitude
- 1901               	.LM129:
- 1902 09e0 20E0      		ldi r18,lo8(0x42c80000)
- 1903 09e2 30E0      		ldi r19,hi8(0x42c80000)
- 1904 09e4 48EC      		ldi r20,hlo8(0x42c80000)
- 1905 09e6 52E4      		ldi r21,hhi8(0x42c80000)
- 1906 09e8 0E94 0000 		call __divsf3
- 1907 09ec 0E94 0000 		call __fixsfsi
- 1908 09f0 8827      		clr r24
- 1909 09f2 77FD      		sbrc r23,7
- 1910 09f4 8095      		com r24
- 1911 09f6 982F      		mov r25,r24
- 1912 09f8 0E94 0000 		call __floatsisf
- 1913 09fc 7B01      		movw r14,r22
- 1914 09fe 8C01      		movw r16,r24
- 1915               		.stabn	68,0,94,.LM130-nmeap_latitude
- 1916               	.LM130:
- 1917 0a00 20E0      		ldi r18,lo8(0xc2c80000)
- 1918 0a02 30E0      		ldi r19,hi8(0xc2c80000)
- 1919 0a04 48EC      		ldi r20,hlo8(0xc2c80000)
- 1920 0a06 52EC      		ldi r21,hhi8(0xc2c80000)
-GAS LISTING /var/tmp//ccqKAok3.s 			page 50
+ 1858               		.stabn	68,0,316,.LM124-print_to_string
+ 1859               	.LM124:
+ 1860 09cc E92F      		mov r30,r25
+ 1861 09ce FF27      		clr r31
+ 1862 09d0 E050      		subi r30,lo8(-(stackem))
+ 1863 09d2 F040      		sbci r31,hi8(-(stackem))
+ 1864 09d4 8083      		st Z,r24
+ 317:gpstest.c     **** 		stackem_pointer++;
+ 1865               		.stabn	68,0,317,.LM125-print_to_string
+ 1866               	.LM125:
+ 1867 09d6 E92F      		mov r30,r25
+ 1868 09d8 EF5F      		subi r30,lo8(-(1))
+ 1869 09da E093 0000 		sts stackem_pointer,r30
+ 318:gpstest.c     **** 		stackem[stackem_pointer] = 0;
+ 1870               		.stabn	68,0,318,.LM126-print_to_string
+ 1871               	.LM126:
+ 1872 09de FF27      		clr r31
+ 1873 09e0 E050      		subi r30,lo8(-(stackem))
+ 1874 09e2 F040      		sbci r31,hi8(-(stackem))
+ 1875 09e4 1082      		st Z,__zero_reg__
+ 1876               	.L114:
+ 1877 09e6 0895      		ret
+ 1878               	/* epilogue: frame size=0 */
+ 1879               	/* epilogue: noreturn */
+ 1880               	/* epilogue end (size=0) */
+ 1881               	/* function print_to_string size 18 (18) */
+ 1882               		.size	print_to_string, .-print_to_string
+ 1883               	.Lscope10:
+ 1884               		.stabs	"",36,0,0,.Lscope10-print_to_string
+ 1885               		.stabd	78,0,0
+ 1886               		.stabs	"nmeap_latitude:F(0,13)",36,0,58,nmeap_latitude
+ 1887               		.stabs	"plat:P(0,16)",64,0,57,30
+ 1888               		.stabs	"phem:P(0,16)",64,0,57,26
+ 1889               	.global	nmeap_latitude
+ 1890               		.type	nmeap_latitude, @function
+ 1891               	nmeap_latitude:
+ 1892               		.stabd	46,0,0
+ 1893               		.stabs	"nmeap01.c",132,0,0,.Ltext4
+ 1894               	.Ltext4:
+ 1895               		.stabn	68,0,58,.LM127-nmeap_latitude
+ 1896               	.LM127:
+ 1897               	/* prologue: frame size=0 */
+ 1898 09e8 AF92      		push r10
+ 1899 09ea BF92      		push r11
+ 1900 09ec CF92      		push r12
+ 1901 09ee DF92      		push r13
+ 1902 09f0 EF92      		push r14
+ 1903 09f2 FF92      		push r15
+ 1904 09f4 0F93      		push r16
+ 1905 09f6 1F93      		push r17
+ 1906 09f8 CF93      		push r28
+ 1907 09fa DF93      		push r29
+ 1908               	/* prologue end (size=10) */
+ 1909 09fc FC01      		movw r30,r24
+ 1910 09fe DB01      		movw r26,r22
+ 1911               		.stabn	68,0,64,.LM128-nmeap_latitude
+ 1912               	.LM128:
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 50
 
 
- 1921 0a08 0E94 0000 		call __mulsf3
- 1922 0a0c 9B01      		movw r18,r22
- 1923 0a0e AC01      		movw r20,r24
- 1924 0a10 C601      		movw r24,r12
- 1925 0a12 B501      		movw r22,r10
- 1926 0a14 0E94 0000 		call __addsf3
- 1927 0a18 20E0      		ldi r18,lo8(0x42700000)
- 1928 0a1a 30E0      		ldi r19,hi8(0x42700000)
- 1929 0a1c 40E7      		ldi r20,hlo8(0x42700000)
- 1930 0a1e 52E4      		ldi r21,hhi8(0x42700000)
- 1931 0a20 0E94 0000 		call __divsf3
- 1932 0a24 9B01      		movw r18,r22
- 1933 0a26 AC01      		movw r20,r24
- 1934 0a28 C801      		movw r24,r16
- 1935 0a2a B701      		movw r22,r14
- 1936 0a2c 0E94 0000 		call __addsf3
- 1937 0a30 7B01      		movw r14,r22
- 1938 0a32 8C01      		movw r16,r24
- 1939 0a34 BE01      		movw r22,r28
- 1940 0a36 8827      		clr r24
- 1941 0a38 77FD      		sbrc r23,7
- 1942 0a3a 8095      		com r24
- 1943 0a3c 982F      		mov r25,r24
- 1944 0a3e 0E94 0000 		call __floatsisf
- 1945 0a42 9B01      		movw r18,r22
- 1946 0a44 AC01      		movw r20,r24
- 1947 0a46 C801      		movw r24,r16
- 1948 0a48 B701      		movw r22,r14
- 1949 0a4a 0E94 0000 		call __mulsf3
- 1950               	.L123:
- 1951               	/* epilogue: frame size=0 */
- 1952 0a4e DF91      		pop r29
- 1953 0a50 CF91      		pop r28
- 1954 0a52 1F91      		pop r17
- 1955 0a54 0F91      		pop r16
- 1956 0a56 FF90      		pop r15
- 1957 0a58 EF90      		pop r14
- 1958 0a5a DF90      		pop r13
- 1959 0a5c CF90      		pop r12
- 1960 0a5e BF90      		pop r11
- 1961 0a60 AF90      		pop r10
- 1962 0a62 0895      		ret
- 1963               	/* epilogue end (size=11) */
- 1964               	/* function nmeap_latitude size 107 (86) */
- 1965               		.size	nmeap_latitude, .-nmeap_latitude
- 1966               		.stabs	"lat:r(0,13)",64,0,59,22
- 1967               		.stabs	"ns:r(0,1)",64,0,62,28
- 1968               		.stabn	192,0,0,nmeap_latitude-nmeap_latitude
- 1969               		.stabn	224,0,0,.Lscope11-nmeap_latitude
- 1970               	.Lscope11:
- 1971               		.stabs	"",36,0,0,.Lscope11-nmeap_latitude
- 1972               		.stabd	78,0,0
- 1973               		.stabs	"nmeap_longitude:F(0,13)",36,0,105,nmeap_longitude
- 1974               		.stabs	"plon:P(0,16)",64,0,104,30
- 1975               		.stabs	"phem:P(0,16)",64,0,104,26
- 1976               	.global	nmeap_longitude
- 1977               		.type	nmeap_longitude, @function
-GAS LISTING /var/tmp//ccqKAok3.s 			page 51
+ 1913 0a00 892B      		or r24,r25
+ 1914 0a02 09F4      		brne .L116
+ 1915               	.L129:
+ 1916 0a04 FFCF      		rjmp .L129
+ 1917               	.L116:
+ 1918               		.stabn	68,0,65,.LM129-nmeap_latitude
+ 1919               	.LM129:
+ 1920 0a06 672B      		or r22,r23
+ 1921 0a08 09F4      		brne .L118
+ 1922               	.L130:
+ 1923 0a0a FFCF      		rjmp .L130
+ 1924               	.L118:
+ 1925               		.stabn	68,0,67,.LM130-nmeap_latitude
+ 1926               	.LM130:
+ 1927 0a0c 8081      		ld r24,Z
+ 1928 0a0e 8823      		tst r24
+ 1929 0a10 19F0      		breq .L131
+ 1930               		.stabn	68,0,70,.LM131-nmeap_latitude
+ 1931               	.LM131:
+ 1932 0a12 6C91      		ld r22,X
+ 1933 0a14 6623      		tst r22
+ 1934 0a16 29F4      		brne .L123
+ 1935               	.L131:
+ 1936 0a18 60E0      		ldi r22,lo8(0x0)
+ 1937 0a1a 70E0      		ldi r23,hi8(0x0)
+ 1938 0a1c 80E0      		ldi r24,hlo8(0x0)
+ 1939 0a1e 90E0      		ldi r25,hhi8(0x0)
+ 1940 0a20 43C0      		rjmp .L122
+ 1941               	.L123:
+ 1942               		.stabn	68,0,75,.LM132-nmeap_latitude
+ 1943               	.LM132:
+ 1944 0a22 6E34      		cpi r22,lo8(78)
+ 1945 0a24 19F4      		brne .L125
+ 1946 0a26 C1E0      		ldi r28,lo8(1)
+ 1947 0a28 D0E0      		ldi r29,hi8(1)
+ 1948 0a2a 02C0      		rjmp .L127
+ 1949               	.L125:
+ 1950 0a2c CFEF      		ldi r28,lo8(-1)
+ 1951 0a2e DFEF      		ldi r29,hi8(-1)
+ 1952               	.L127:
+ 1953               		.stabn	68,0,85,.LM133-nmeap_latitude
+ 1954               	.LM133:
+ 1955 0a30 CF01      		movw r24,r30
+ 1956 0a32 0E94 0000 		call atof
+ 1957 0a36 5B01      		movw r10,r22
+ 1958 0a38 6C01      		movw r12,r24
+ 1959               		.stabn	68,0,91,.LM134-nmeap_latitude
+ 1960               	.LM134:
+ 1961 0a3a 20E0      		ldi r18,lo8(0x42c80000)
+ 1962 0a3c 30E0      		ldi r19,hi8(0x42c80000)
+ 1963 0a3e 48EC      		ldi r20,hlo8(0x42c80000)
+ 1964 0a40 52E4      		ldi r21,hhi8(0x42c80000)
+ 1965 0a42 0E94 0000 		call __divsf3
+ 1966 0a46 0E94 0000 		call __fixsfsi
+ 1967 0a4a 8827      		clr r24
+ 1968 0a4c 77FD      		sbrc r23,7
+ 1969 0a4e 8095      		com r24
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 51
 
 
- 1978               	nmeap_longitude:
- 1979               		.stabd	46,0,0
- 1980               		.stabn	68,0,105,.LM131-nmeap_longitude
- 1981               	.LM131:
- 1982               	/* prologue: frame size=0 */
- 1983 0a64 AF92      		push r10
- 1984 0a66 BF92      		push r11
- 1985 0a68 CF92      		push r12
- 1986 0a6a DF92      		push r13
- 1987 0a6c EF92      		push r14
- 1988 0a6e FF92      		push r15
- 1989 0a70 0F93      		push r16
- 1990 0a72 1F93      		push r17
- 1991 0a74 CF93      		push r28
- 1992 0a76 DF93      		push r29
- 1993               	/* prologue end (size=10) */
- 1994 0a78 FC01      		movw r30,r24
- 1995 0a7a DB01      		movw r26,r22
- 1996               		.stabn	68,0,111,.LM132-nmeap_longitude
- 1997               	.LM132:
- 1998 0a7c 892B      		or r24,r25
- 1999 0a7e 09F4      		brne .L134
- 2000               	.L147:
- 2001 0a80 FFCF      		rjmp .L147
- 2002               	.L134:
- 2003               		.stabn	68,0,112,.LM133-nmeap_longitude
- 2004               	.LM133:
- 2005 0a82 672B      		or r22,r23
- 2006 0a84 09F4      		brne .L136
- 2007               	.L148:
- 2008 0a86 FFCF      		rjmp .L148
- 2009               	.L136:
- 2010               		.stabn	68,0,114,.LM134-nmeap_longitude
- 2011               	.LM134:
- 2012 0a88 8081      		ld r24,Z
- 2013 0a8a 8823      		tst r24
- 2014 0a8c 19F0      		breq .L149
- 2015               		.stabn	68,0,117,.LM135-nmeap_longitude
- 2016               	.LM135:
- 2017 0a8e 6C91      		ld r22,X
- 2018 0a90 6623      		tst r22
- 2019 0a92 29F4      		brne .L141
- 2020               	.L149:
- 2021 0a94 60E0      		ldi r22,lo8(0x0)
- 2022 0a96 70E0      		ldi r23,hi8(0x0)
- 2023 0a98 80E0      		ldi r24,hlo8(0x0)
- 2024 0a9a 90E0      		ldi r25,hhi8(0x0)
- 2025 0a9c 43C0      		rjmp .L140
- 2026               	.L141:
- 2027               		.stabn	68,0,122,.LM136-nmeap_longitude
- 2028               	.LM136:
- 2029 0a9e 6534      		cpi r22,lo8(69)
- 2030 0aa0 19F4      		brne .L143
- 2031 0aa2 C1E0      		ldi r28,lo8(1)
- 2032 0aa4 D0E0      		ldi r29,hi8(1)
- 2033 0aa6 02C0      		rjmp .L145
- 2034               	.L143:
-GAS LISTING /var/tmp//ccqKAok3.s 			page 52
+ 1970 0a50 982F      		mov r25,r24
+ 1971 0a52 0E94 0000 		call __floatsisf
+ 1972 0a56 7B01      		movw r14,r22
+ 1973 0a58 8C01      		movw r16,r24
+ 1974               		.stabn	68,0,94,.LM135-nmeap_latitude
+ 1975               	.LM135:
+ 1976 0a5a 20E0      		ldi r18,lo8(0xc2c80000)
+ 1977 0a5c 30E0      		ldi r19,hi8(0xc2c80000)
+ 1978 0a5e 48EC      		ldi r20,hlo8(0xc2c80000)
+ 1979 0a60 52EC      		ldi r21,hhi8(0xc2c80000)
+ 1980 0a62 0E94 0000 		call __mulsf3
+ 1981 0a66 9B01      		movw r18,r22
+ 1982 0a68 AC01      		movw r20,r24
+ 1983 0a6a C601      		movw r24,r12
+ 1984 0a6c B501      		movw r22,r10
+ 1985 0a6e 0E94 0000 		call __addsf3
+ 1986 0a72 20E0      		ldi r18,lo8(0x42700000)
+ 1987 0a74 30E0      		ldi r19,hi8(0x42700000)
+ 1988 0a76 40E7      		ldi r20,hlo8(0x42700000)
+ 1989 0a78 52E4      		ldi r21,hhi8(0x42700000)
+ 1990 0a7a 0E94 0000 		call __divsf3
+ 1991 0a7e 9B01      		movw r18,r22
+ 1992 0a80 AC01      		movw r20,r24
+ 1993 0a82 C801      		movw r24,r16
+ 1994 0a84 B701      		movw r22,r14
+ 1995 0a86 0E94 0000 		call __addsf3
+ 1996 0a8a 7B01      		movw r14,r22
+ 1997 0a8c 8C01      		movw r16,r24
+ 1998 0a8e BE01      		movw r22,r28
+ 1999 0a90 8827      		clr r24
+ 2000 0a92 77FD      		sbrc r23,7
+ 2001 0a94 8095      		com r24
+ 2002 0a96 982F      		mov r25,r24
+ 2003 0a98 0E94 0000 		call __floatsisf
+ 2004 0a9c 9B01      		movw r18,r22
+ 2005 0a9e AC01      		movw r20,r24
+ 2006 0aa0 C801      		movw r24,r16
+ 2007 0aa2 B701      		movw r22,r14
+ 2008 0aa4 0E94 0000 		call __mulsf3
+ 2009               	.L122:
+ 2010               	/* epilogue: frame size=0 */
+ 2011 0aa8 DF91      		pop r29
+ 2012 0aaa CF91      		pop r28
+ 2013 0aac 1F91      		pop r17
+ 2014 0aae 0F91      		pop r16
+ 2015 0ab0 FF90      		pop r15
+ 2016 0ab2 EF90      		pop r14
+ 2017 0ab4 DF90      		pop r13
+ 2018 0ab6 CF90      		pop r12
+ 2019 0ab8 BF90      		pop r11
+ 2020 0aba AF90      		pop r10
+ 2021 0abc 0895      		ret
+ 2022               	/* epilogue end (size=11) */
+ 2023               	/* function nmeap_latitude size 107 (86) */
+ 2024               		.size	nmeap_latitude, .-nmeap_latitude
+ 2025               		.stabs	"lat:r(0,13)",64,0,59,22
+ 2026               		.stabs	"ns:r(0,1)",64,0,62,28
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 52
 
 
- 2035 0aa8 CFEF      		ldi r28,lo8(-1)
- 2036 0aaa DFEF      		ldi r29,hi8(-1)
- 2037               	.L145:
- 2038               		.stabn	68,0,132,.LM137-nmeap_longitude
- 2039               	.LM137:
- 2040 0aac CF01      		movw r24,r30
- 2041 0aae 0E94 0000 		call atof
- 2042 0ab2 5B01      		movw r10,r22
- 2043 0ab4 6C01      		movw r12,r24
- 2044               		.stabn	68,0,138,.LM138-nmeap_longitude
- 2045               	.LM138:
- 2046 0ab6 20E0      		ldi r18,lo8(0x42c80000)
- 2047 0ab8 30E0      		ldi r19,hi8(0x42c80000)
- 2048 0aba 48EC      		ldi r20,hlo8(0x42c80000)
- 2049 0abc 52E4      		ldi r21,hhi8(0x42c80000)
- 2050 0abe 0E94 0000 		call __divsf3
- 2051 0ac2 0E94 0000 		call __fixsfsi
- 2052 0ac6 8827      		clr r24
- 2053 0ac8 77FD      		sbrc r23,7
- 2054 0aca 8095      		com r24
- 2055 0acc 982F      		mov r25,r24
- 2056 0ace 0E94 0000 		call __floatsisf
- 2057 0ad2 7B01      		movw r14,r22
- 2058 0ad4 8C01      		movw r16,r24
- 2059               		.stabn	68,0,141,.LM139-nmeap_longitude
- 2060               	.LM139:
- 2061 0ad6 20E0      		ldi r18,lo8(0xc2c80000)
- 2062 0ad8 30E0      		ldi r19,hi8(0xc2c80000)
- 2063 0ada 48EC      		ldi r20,hlo8(0xc2c80000)
- 2064 0adc 52EC      		ldi r21,hhi8(0xc2c80000)
- 2065 0ade 0E94 0000 		call __mulsf3
- 2066 0ae2 9B01      		movw r18,r22
- 2067 0ae4 AC01      		movw r20,r24
- 2068 0ae6 C601      		movw r24,r12
- 2069 0ae8 B501      		movw r22,r10
- 2070 0aea 0E94 0000 		call __addsf3
- 2071 0aee 20E0      		ldi r18,lo8(0x42700000)
- 2072 0af0 30E0      		ldi r19,hi8(0x42700000)
- 2073 0af2 40E7      		ldi r20,hlo8(0x42700000)
- 2074 0af4 52E4      		ldi r21,hhi8(0x42700000)
- 2075 0af6 0E94 0000 		call __divsf3
- 2076 0afa 9B01      		movw r18,r22
- 2077 0afc AC01      		movw r20,r24
- 2078 0afe C801      		movw r24,r16
- 2079 0b00 B701      		movw r22,r14
- 2080 0b02 0E94 0000 		call __addsf3
- 2081 0b06 7B01      		movw r14,r22
- 2082 0b08 8C01      		movw r16,r24
- 2083 0b0a BE01      		movw r22,r28
- 2084 0b0c 8827      		clr r24
- 2085 0b0e 77FD      		sbrc r23,7
- 2086 0b10 8095      		com r24
- 2087 0b12 982F      		mov r25,r24
- 2088 0b14 0E94 0000 		call __floatsisf
- 2089 0b18 9B01      		movw r18,r22
- 2090 0b1a AC01      		movw r20,r24
- 2091 0b1c C801      		movw r24,r16
-GAS LISTING /var/tmp//ccqKAok3.s 			page 53
+ 2027               		.stabn	192,0,0,nmeap_latitude-nmeap_latitude
+ 2028               		.stabn	224,0,0,.Lscope11-nmeap_latitude
+ 2029               	.Lscope11:
+ 2030               		.stabs	"",36,0,0,.Lscope11-nmeap_latitude
+ 2031               		.stabd	78,0,0
+ 2032               		.stabs	"nmeap_longitude:F(0,13)",36,0,105,nmeap_longitude
+ 2033               		.stabs	"plon:P(0,16)",64,0,104,30
+ 2034               		.stabs	"phem:P(0,16)",64,0,104,26
+ 2035               	.global	nmeap_longitude
+ 2036               		.type	nmeap_longitude, @function
+ 2037               	nmeap_longitude:
+ 2038               		.stabd	46,0,0
+ 2039               		.stabn	68,0,105,.LM136-nmeap_longitude
+ 2040               	.LM136:
+ 2041               	/* prologue: frame size=0 */
+ 2042 0abe AF92      		push r10
+ 2043 0ac0 BF92      		push r11
+ 2044 0ac2 CF92      		push r12
+ 2045 0ac4 DF92      		push r13
+ 2046 0ac6 EF92      		push r14
+ 2047 0ac8 FF92      		push r15
+ 2048 0aca 0F93      		push r16
+ 2049 0acc 1F93      		push r17
+ 2050 0ace CF93      		push r28
+ 2051 0ad0 DF93      		push r29
+ 2052               	/* prologue end (size=10) */
+ 2053 0ad2 FC01      		movw r30,r24
+ 2054 0ad4 DB01      		movw r26,r22
+ 2055               		.stabn	68,0,111,.LM137-nmeap_longitude
+ 2056               	.LM137:
+ 2057 0ad6 892B      		or r24,r25
+ 2058 0ad8 09F4      		brne .L133
+ 2059               	.L146:
+ 2060 0ada FFCF      		rjmp .L146
+ 2061               	.L133:
+ 2062               		.stabn	68,0,112,.LM138-nmeap_longitude
+ 2063               	.LM138:
+ 2064 0adc 672B      		or r22,r23
+ 2065 0ade 09F4      		brne .L135
+ 2066               	.L147:
+ 2067 0ae0 FFCF      		rjmp .L147
+ 2068               	.L135:
+ 2069               		.stabn	68,0,114,.LM139-nmeap_longitude
+ 2070               	.LM139:
+ 2071 0ae2 8081      		ld r24,Z
+ 2072 0ae4 8823      		tst r24
+ 2073 0ae6 19F0      		breq .L148
+ 2074               		.stabn	68,0,117,.LM140-nmeap_longitude
+ 2075               	.LM140:
+ 2076 0ae8 6C91      		ld r22,X
+ 2077 0aea 6623      		tst r22
+ 2078 0aec 29F4      		brne .L140
+ 2079               	.L148:
+ 2080 0aee 60E0      		ldi r22,lo8(0x0)
+ 2081 0af0 70E0      		ldi r23,hi8(0x0)
+ 2082 0af2 80E0      		ldi r24,hlo8(0x0)
+ 2083 0af4 90E0      		ldi r25,hhi8(0x0)
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 53
 
 
- 2092 0b1e B701      		movw r22,r14
- 2093 0b20 0E94 0000 		call __mulsf3
- 2094               	.L140:
- 2095               	/* epilogue: frame size=0 */
- 2096 0b24 DF91      		pop r29
- 2097 0b26 CF91      		pop r28
- 2098 0b28 1F91      		pop r17
- 2099 0b2a 0F91      		pop r16
- 2100 0b2c FF90      		pop r15
- 2101 0b2e EF90      		pop r14
- 2102 0b30 DF90      		pop r13
- 2103 0b32 CF90      		pop r12
- 2104 0b34 BF90      		pop r11
- 2105 0b36 AF90      		pop r10
- 2106 0b38 0895      		ret
- 2107               	/* epilogue end (size=11) */
- 2108               	/* function nmeap_longitude size 107 (86) */
- 2109               		.size	nmeap_longitude, .-nmeap_longitude
- 2110               		.stabs	"lon:r(0,13)",64,0,106,22
- 2111               		.stabs	"ew:r(0,1)",64,0,109,28
- 2112               		.stabn	192,0,0,nmeap_longitude-nmeap_longitude
- 2113               		.stabn	224,0,0,.Lscope12-nmeap_longitude
- 2114               	.Lscope12:
- 2115               		.stabs	"",36,0,0,.Lscope12-nmeap_longitude
- 2116               		.stabd	78,0,0
- 2117               		.data
- 2118               	.LC0:
- 2119 0023 2573 00   		.string	"%s"
- 2120               	.LC1:
- 2121 0026 2573 3D3D 		.string	"%s==%s %02x==%02x\n"
- 2121      2573 2025 
- 2121      3032 783D 
- 2121      3D25 3032 
- 2121      780A 00
- 2122               	.LC2:
- 2123 0039 2564 3A25 		.string	"%d:%s\n"
- 2123      730A 00
- 2124               		.text
- 2125               		.stabs	"nmeap_gprmc:F(0,1)",36,0,582,nmeap_gprmc
- 2126               		.stabs	"context:P(0,18)",64,0,581,28
- 2127               		.stabs	"sentence:P(0,21)=*(13,5)",64,0,581,10
- 2128               	.global	nmeap_gprmc
- 2129               		.type	nmeap_gprmc, @function
- 2130               	nmeap_gprmc:
- 2131               		.stabd	46,0,0
+ 2084 0af6 43C0      		rjmp .L139
+ 2085               	.L140:
+ 2086               		.stabn	68,0,122,.LM141-nmeap_longitude
+ 2087               	.LM141:
+ 2088 0af8 6534      		cpi r22,lo8(69)
+ 2089 0afa 19F4      		brne .L142
+ 2090 0afc C1E0      		ldi r28,lo8(1)
+ 2091 0afe D0E0      		ldi r29,hi8(1)
+ 2092 0b00 02C0      		rjmp .L144
+ 2093               	.L142:
+ 2094 0b02 CFEF      		ldi r28,lo8(-1)
+ 2095 0b04 DFEF      		ldi r29,hi8(-1)
+ 2096               	.L144:
+ 2097               		.stabn	68,0,132,.LM142-nmeap_longitude
+ 2098               	.LM142:
+ 2099 0b06 CF01      		movw r24,r30
+ 2100 0b08 0E94 0000 		call atof
+ 2101 0b0c 5B01      		movw r10,r22
+ 2102 0b0e 6C01      		movw r12,r24
+ 2103               		.stabn	68,0,138,.LM143-nmeap_longitude
+ 2104               	.LM143:
+ 2105 0b10 20E0      		ldi r18,lo8(0x42c80000)
+ 2106 0b12 30E0      		ldi r19,hi8(0x42c80000)
+ 2107 0b14 48EC      		ldi r20,hlo8(0x42c80000)
+ 2108 0b16 52E4      		ldi r21,hhi8(0x42c80000)
+ 2109 0b18 0E94 0000 		call __divsf3
+ 2110 0b1c 0E94 0000 		call __fixsfsi
+ 2111 0b20 8827      		clr r24
+ 2112 0b22 77FD      		sbrc r23,7
+ 2113 0b24 8095      		com r24
+ 2114 0b26 982F      		mov r25,r24
+ 2115 0b28 0E94 0000 		call __floatsisf
+ 2116 0b2c 7B01      		movw r14,r22
+ 2117 0b2e 8C01      		movw r16,r24
+ 2118               		.stabn	68,0,141,.LM144-nmeap_longitude
+ 2119               	.LM144:
+ 2120 0b30 20E0      		ldi r18,lo8(0xc2c80000)
+ 2121 0b32 30E0      		ldi r19,hi8(0xc2c80000)
+ 2122 0b34 48EC      		ldi r20,hlo8(0xc2c80000)
+ 2123 0b36 52EC      		ldi r21,hhi8(0xc2c80000)
+ 2124 0b38 0E94 0000 		call __mulsf3
+ 2125 0b3c 9B01      		movw r18,r22
+ 2126 0b3e AC01      		movw r20,r24
+ 2127 0b40 C601      		movw r24,r12
+ 2128 0b42 B501      		movw r22,r10
+ 2129 0b44 0E94 0000 		call __addsf3
+ 2130 0b48 20E0      		ldi r18,lo8(0x42700000)
+ 2131 0b4a 30E0      		ldi r19,hi8(0x42700000)
+ 2132 0b4c 40E7      		ldi r20,hlo8(0x42700000)
+ 2133 0b4e 52E4      		ldi r21,hhi8(0x42700000)
+ 2134 0b50 0E94 0000 		call __divsf3
+ 2135 0b54 9B01      		movw r18,r22
+ 2136 0b56 AC01      		movw r20,r24
+ 2137 0b58 C801      		movw r24,r16
+ 2138 0b5a B701      		movw r22,r14
+ 2139 0b5c 0E94 0000 		call __addsf3
+ 2140 0b60 7B01      		movw r14,r22
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 54
+
+
+ 2141 0b62 8C01      		movw r16,r24
+ 2142 0b64 BE01      		movw r22,r28
+ 2143 0b66 8827      		clr r24
+ 2144 0b68 77FD      		sbrc r23,7
+ 2145 0b6a 8095      		com r24
+ 2146 0b6c 982F      		mov r25,r24
+ 2147 0b6e 0E94 0000 		call __floatsisf
+ 2148 0b72 9B01      		movw r18,r22
+ 2149 0b74 AC01      		movw r20,r24
+ 2150 0b76 C801      		movw r24,r16
+ 2151 0b78 B701      		movw r22,r14
+ 2152 0b7a 0E94 0000 		call __mulsf3
+ 2153               	.L139:
+ 2154               	/* epilogue: frame size=0 */
+ 2155 0b7e DF91      		pop r29
+ 2156 0b80 CF91      		pop r28
+ 2157 0b82 1F91      		pop r17
+ 2158 0b84 0F91      		pop r16
+ 2159 0b86 FF90      		pop r15
+ 2160 0b88 EF90      		pop r14
+ 2161 0b8a DF90      		pop r13
+ 2162 0b8c CF90      		pop r12
+ 2163 0b8e BF90      		pop r11
+ 2164 0b90 AF90      		pop r10
+ 2165 0b92 0895      		ret
+ 2166               	/* epilogue end (size=11) */
+ 2167               	/* function nmeap_longitude size 107 (86) */
+ 2168               		.size	nmeap_longitude, .-nmeap_longitude
+ 2169               		.stabs	"lon:r(0,13)",64,0,106,22
+ 2170               		.stabs	"ew:r(0,1)",64,0,109,28
+ 2171               		.stabn	192,0,0,nmeap_longitude-nmeap_longitude
+ 2172               		.stabn	224,0,0,.Lscope12-nmeap_longitude
+ 2173               	.Lscope12:
+ 2174               		.stabs	"",36,0,0,.Lscope12-nmeap_longitude
+ 2175               		.stabd	78,0,0
+ 2176               		.data
+ 2177               	.LC0:
+ 2178 0023 2573 00   		.string	"%s"
+ 2179               	.LC1:
+ 2180 0026 2573 3D3D 		.string	"%s==%s %02x==%02x\n"
+ 2180      2573 2025 
+ 2180      3032 783D 
+ 2180      3D25 3032 
+ 2180      780A 00
+ 2181               	.LC2:
+ 2182 0039 2564 3A25 		.string	"%d:%s\n"
+ 2182      730A 00
+ 2183               		.text
+ 2184               		.stabs	"nmeap_gprmc:F(0,1)",36,0,582,nmeap_gprmc
+ 2185               		.stabs	"context:P(0,18)",64,0,581,28
+ 2186               		.stabs	"sentence:P(0,21)=*(13,5)",64,0,581,10
+ 2187               	.global	nmeap_gprmc
+ 2188               		.type	nmeap_gprmc, @function
+ 2189               	nmeap_gprmc:
+ 2190               		.stabd	46,0,0
  529:nmeap01.c     ****     return status;
  530:nmeap01.c     **** }
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 55
+
+
  531:nmeap01.c     **** 
  532:nmeap01.c     **** /** 
  533:nmeap01.c     ****  * standard GPGGA sentence parser 
@@ -3178,9 +3251,6 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  538:nmeap01.c     ****     int i;
  539:nmeap01.c     **** #endif
  540:nmeap01.c     ****     
-GAS LISTING /var/tmp//ccqKAok3.s 			page 54
-
-
  541:nmeap01.c     ****     /* get pointer to sentence data */
  542:nmeap01.c     ****     nmeap_gga_t *gga = (nmeap_gga_t *)sentence->data;
  543:nmeap01.c     ****     
@@ -3223,1328 +3293,1335 @@ GAS LISTING /var/tmp//ccqKAok3.s 			page 1
  580:nmeap01.c     **** int nmeap_gprmc(nmeap_context_t *context,nmeap_sentence_t *sentence)
  581:nmeap01.c     **** {
  582:nmeap01.c     **** #ifndef NDEBUG	
- 2132               		.stabn	68,0,582,.LM140-nmeap_gprmc
- 2133               	.LM140:
- 2134               	/* prologue: frame size=0 */
- 2135 0b3a AF92      		push r10
- 2136 0b3c BF92      		push r11
- 2137 0b3e CF92      		push r12
- 2138 0b40 DF92      		push r13
- 2139 0b42 EF92      		push r14
- 2140 0b44 FF92      		push r15
- 2141 0b46 0F93      		push r16
- 2142 0b48 1F93      		push r17
- 2143 0b4a CF93      		push r28
- 2144 0b4c DF93      		push r29
- 2145               	/* prologue end (size=10) */
- 2146 0b4e EC01      		movw r28,r24
-GAS LISTING /var/tmp//ccqKAok3.s 			page 55
+ 2191               		.stabn	68,0,582,.LM145-nmeap_gprmc
+ 2192               	.LM145:
+ 2193               	/* prologue: frame size=0 */
+ 2194 0b94 AF92      		push r10
+ 2195 0b96 BF92      		push r11
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 56
 
 
- 2147 0b50 5B01      		movw r10,r22
+ 2196 0b98 CF92      		push r12
+ 2197 0b9a DF92      		push r13
+ 2198 0b9c EF92      		push r14
+ 2199 0b9e FF92      		push r15
+ 2200 0ba0 0F93      		push r16
+ 2201 0ba2 1F93      		push r17
+ 2202 0ba4 CF93      		push r28
+ 2203 0ba6 DF93      		push r29
+ 2204               	/* prologue end (size=10) */
+ 2205 0ba8 EC01      		movw r28,r24
+ 2206 0baa 5B01      		movw r10,r22
  583:nmeap01.c     ****     int i;
  584:nmeap01.c     **** #endif
  585:nmeap01.c     **** 
  586:nmeap01.c     ****     /* get pointer to sentence data */
  587:nmeap01.c     ****     nmeap_rmc_t *rmc = (nmeap_rmc_t *)sentence->data;
  588:nmeap01.c     ****     
- 2148               		.stabn	68,0,588,.LM141-nmeap_gprmc
- 2149               	.LM141:
- 2150 0b52 FB01      		movw r30,r22
- 2151 0b54 0485      		ldd r16,Z+12
- 2152 0b56 1585      		ldd r17,Z+13
+ 2207               		.stabn	68,0,588,.LM146-nmeap_gprmc
+ 2208               	.LM146:
+ 2209 0bac FB01      		movw r30,r22
+ 2210 0bae 0485      		ldd r16,Z+12
+ 2211 0bb0 1585      		ldd r17,Z+13
  589:nmeap01.c     **** 	/* if there is a data element, use it */
  590:nmeap01.c     **** 	if (rmc != 0) {
  591:nmeap01.c     **** 		/* extract data from the tokens */
- 2153               		.stabn	68,0,591,.LM142-nmeap_gprmc
- 2154               	.LM142:
- 2155 0b58 0115      		cp r16,__zero_reg__
- 2156 0b5a 1105      		cpc r17,__zero_reg__
- 2157 0b5c 09F4      		brne .+2
- 2158 0b5e 65C0      		rjmp .L151
+ 2212               		.stabn	68,0,591,.LM147-nmeap_gprmc
+ 2213               	.LM147:
+ 2214 0bb2 0115      		cp r16,__zero_reg__
+ 2215 0bb4 1105      		cpc r17,__zero_reg__
+ 2216 0bb6 09F4      		brne .+2
+ 2217 0bb8 65C0      		rjmp .L150
  592:nmeap01.c     **** 		rmc->time       = atoi(context->token[1]);
  593:nmeap01.c     **** 		rmc->warn       = *context->token[2];
- 2159               		.stabn	68,0,593,.LM143-nmeap_gprmc
- 2160               	.LM143:
- 2161 0b60 C058      		subi r28,lo8(-(384))
- 2162 0b62 DE4F      		sbci r29,hi8(-(384))
- 2163 0b64 8991      		ld r24,Y+
- 2164 0b66 9991      		ld r25,Y+
- 2165 0b68 0E94 0000 		call atoi
- 2166 0b6c AA27      		clr r26
- 2167 0b6e 97FD      		sbrc r25,7
- 2168 0b70 A095      		com r26
- 2169 0b72 BA2F      		mov r27,r26
- 2170 0b74 F801      		movw r30,r16
- 2171 0b76 8083      		st Z,r24
- 2172 0b78 9183      		std Z+1,r25
- 2173 0b7a A283      		std Z+2,r26
- 2174 0b7c B383      		std Z+3,r27
+ 2218               		.stabn	68,0,593,.LM148-nmeap_gprmc
+ 2219               	.LM148:
+ 2220 0bba C058      		subi r28,lo8(-(384))
+ 2221 0bbc DE4F      		sbci r29,hi8(-(384))
+ 2222 0bbe 8991      		ld r24,Y+
+ 2223 0bc0 9991      		ld r25,Y+
+ 2224 0bc2 0E94 0000 		call atoi
+ 2225 0bc6 AA27      		clr r26
+ 2226 0bc8 97FD      		sbrc r25,7
+ 2227 0bca A095      		com r26
+ 2228 0bcc BA2F      		mov r27,r26
+ 2229 0bce F801      		movw r30,r16
+ 2230 0bd0 8083      		st Z,r24
+ 2231 0bd2 9183      		std Z+1,r25
+ 2232 0bd4 A283      		std Z+2,r26
+ 2233 0bd6 B383      		std Z+3,r27
  594:nmeap01.c     **** 		rmc->latitude  = nmeap_latitude(context->token[3],context->token[4]);
- 2175               		.stabn	68,0,594,.LM144-nmeap_gprmc
- 2176               	.LM144:
- 2177 0b7e E881      		ld r30,Y
- 2178 0b80 F981      		ldd r31,Y+1
- 2179 0b82 8081      		ld r24,Z
- 2180 0b84 F801      		movw r30,r16
- 2181 0b86 8483      		std Z+4,r24
+ 2234               		.stabn	68,0,594,.LM149-nmeap_gprmc
+ 2235               	.LM149:
+ 2236 0bd8 E881      		ld r30,Y
+ 2237 0bda F981      		ldd r31,Y+1
+ 2238 0bdc 8081      		ld r24,Z
+ 2239 0bde F801      		movw r30,r16
+ 2240 0be0 8483      		std Z+4,r24
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 57
+
+
  595:nmeap01.c     **** 		rmc->longitude = nmeap_longitude(context->token[5],context->token[6]);
- 2182               		.stabn	68,0,595,.LM145-nmeap_gprmc
- 2183               	.LM145:
- 2184 0b88 2496      		adiw r28,4
- 2185 0b8a 6881      		ld r22,Y
- 2186 0b8c 7981      		ldd r23,Y+1
- 2187 0b8e 9A91      		ld r25,-Y
- 2188 0b90 8A91      		ld r24,-Y
- 2189 0b92 0E94 0000 		call nmeap_latitude
- 2190 0b96 F801      		movw r30,r16
-GAS LISTING /var/tmp//ccqKAok3.s 			page 56
-
-
- 2191 0b98 6583      		std Z+5,r22
- 2192 0b9a 7683      		std Z+6,r23
- 2193 0b9c 8783      		std Z+7,r24
- 2194 0b9e 9087      		std Z+8,r25
+ 2241               		.stabn	68,0,595,.LM150-nmeap_gprmc
+ 2242               	.LM150:
+ 2243 0be2 2496      		adiw r28,4
+ 2244 0be4 6881      		ld r22,Y
+ 2245 0be6 7981      		ldd r23,Y+1
+ 2246 0be8 9A91      		ld r25,-Y
+ 2247 0bea 8A91      		ld r24,-Y
+ 2248 0bec 0E94 0000 		call nmeap_latitude
+ 2249 0bf0 F801      		movw r30,r16
+ 2250 0bf2 6583      		std Z+5,r22
+ 2251 0bf4 7683      		std Z+6,r23
+ 2252 0bf6 8783      		std Z+7,r24
+ 2253 0bf8 9087      		std Z+8,r25
  596:nmeap01.c     **** 		rmc->speed      = atof(context->token[7]);
- 2195               		.stabn	68,0,596,.LM146-nmeap_gprmc
- 2196               	.LM146:
- 2197 0ba0 2696      		adiw r28,6
- 2198 0ba2 6881      		ld r22,Y
- 2199 0ba4 7981      		ldd r23,Y+1
- 2200 0ba6 CA58      		subi r28,lo8(-(-394))
- 2201 0ba8 D140      		sbci r29,hi8(-(-394))
- 2202 0baa FE01      		movw r30,r28
- 2203 0bac E857      		subi r30,lo8(-(392))
- 2204 0bae FE4F      		sbci r31,hi8(-(392))
- 2205 0bb0 8081      		ld r24,Z
- 2206 0bb2 9181      		ldd r25,Z+1
- 2207 0bb4 0E94 0000 		call nmeap_longitude
- 2208 0bb8 F801      		movw r30,r16
- 2209 0bba 6187      		std Z+9,r22
- 2210 0bbc 7287      		std Z+10,r23
- 2211 0bbe 8387      		std Z+11,r24
- 2212 0bc0 9487      		std Z+12,r25
+ 2254               		.stabn	68,0,596,.LM151-nmeap_gprmc
+ 2255               	.LM151:
+ 2256 0bfa 2696      		adiw r28,6
+ 2257 0bfc 6881      		ld r22,Y
+ 2258 0bfe 7981      		ldd r23,Y+1
+ 2259 0c00 CA58      		subi r28,lo8(-(-394))
+ 2260 0c02 D140      		sbci r29,hi8(-(-394))
+ 2261 0c04 FE01      		movw r30,r28
+ 2262 0c06 E857      		subi r30,lo8(-(392))
+ 2263 0c08 FE4F      		sbci r31,hi8(-(392))
+ 2264 0c0a 8081      		ld r24,Z
+ 2265 0c0c 9181      		ldd r25,Z+1
+ 2266 0c0e 0E94 0000 		call nmeap_longitude
+ 2267 0c12 F801      		movw r30,r16
+ 2268 0c14 6187      		std Z+9,r22
+ 2269 0c16 7287      		std Z+10,r23
+ 2270 0c18 8387      		std Z+11,r24
+ 2271 0c1a 9487      		std Z+12,r25
  597:nmeap01.c     **** 		rmc->course     = atof(context->token[8]);
- 2213               		.stabn	68,0,597,.LM147-nmeap_gprmc
- 2214               	.LM147:
- 2215 0bc2 FE01      		movw r30,r28
- 2216 0bc4 E457      		subi r30,lo8(-(396))
- 2217 0bc6 FE4F      		sbci r31,hi8(-(396))
- 2218 0bc8 8081      		ld r24,Z
- 2219 0bca 9181      		ldd r25,Z+1
- 2220 0bcc 0E94 0000 		call atof
- 2221 0bd0 F801      		movw r30,r16
- 2222 0bd2 6587      		std Z+13,r22
- 2223 0bd4 7687      		std Z+14,r23
- 2224 0bd6 8787      		std Z+15,r24
- 2225 0bd8 908B      		std Z+16,r25
+ 2272               		.stabn	68,0,597,.LM152-nmeap_gprmc
+ 2273               	.LM152:
+ 2274 0c1c FE01      		movw r30,r28
+ 2275 0c1e E457      		subi r30,lo8(-(396))
+ 2276 0c20 FE4F      		sbci r31,hi8(-(396))
+ 2277 0c22 8081      		ld r24,Z
+ 2278 0c24 9181      		ldd r25,Z+1
+ 2279 0c26 0E94 0000 		call atof
+ 2280 0c2a F801      		movw r30,r16
+ 2281 0c2c 6587      		std Z+13,r22
+ 2282 0c2e 7687      		std Z+14,r23
+ 2283 0c30 8787      		std Z+15,r24
+ 2284 0c32 908B      		std Z+16,r25
  598:nmeap01.c     **** 		rmc->date       = atoi(context->token[9]);
- 2226               		.stabn	68,0,598,.LM148-nmeap_gprmc
- 2227               	.LM148:
- 2228 0bda FE01      		movw r30,r28
- 2229 0bdc E257      		subi r30,lo8(-(398))
- 2230 0bde FE4F      		sbci r31,hi8(-(398))
- 2231 0be0 8081      		ld r24,Z
- 2232 0be2 9181      		ldd r25,Z+1
- 2233 0be4 0E94 0000 		call atof
- 2234 0be8 F801      		movw r30,r16
- 2235 0bea 618B      		std Z+17,r22
- 2236 0bec 728B      		std Z+18,r23
- 2237 0bee 838B      		std Z+19,r24
- 2238 0bf0 948B      		std Z+20,r25
+ 2285               		.stabn	68,0,598,.LM153-nmeap_gprmc
+ 2286               	.LM153:
+ 2287 0c34 FE01      		movw r30,r28
+ 2288 0c36 E257      		subi r30,lo8(-(398))
+ 2289 0c38 FE4F      		sbci r31,hi8(-(398))
+ 2290 0c3a 8081      		ld r24,Z
+ 2291 0c3c 9181      		ldd r25,Z+1
+ 2292 0c3e 0E94 0000 		call atof
+ 2293 0c42 F801      		movw r30,r16
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 58
+
+
+ 2294 0c44 618B      		std Z+17,r22
+ 2295 0c46 728B      		std Z+18,r23
+ 2296 0c48 838B      		std Z+19,r24
+ 2297 0c4a 948B      		std Z+20,r25
  599:nmeap01.c     **** 		rmc->magvar     = atof(context->token[10]);
- 2239               		.stabn	68,0,599,.LM149-nmeap_gprmc
- 2240               	.LM149:
- 2241 0bf2 FE01      		movw r30,r28
- 2242 0bf4 E057      		subi r30,lo8(-(400))
- 2243 0bf6 FE4F      		sbci r31,hi8(-(400))
-GAS LISTING /var/tmp//ccqKAok3.s 			page 57
-
-
- 2244 0bf8 8081      		ld r24,Z
- 2245 0bfa 9181      		ldd r25,Z+1
- 2246 0bfc 0E94 0000 		call atoi
- 2247 0c00 AA27      		clr r26
- 2248 0c02 97FD      		sbrc r25,7
- 2249 0c04 A095      		com r26
- 2250 0c06 BA2F      		mov r27,r26
- 2251 0c08 F801      		movw r30,r16
- 2252 0c0a 858B      		std Z+21,r24
- 2253 0c0c 968B      		std Z+22,r25
- 2254 0c0e A78B      		std Z+23,r26
- 2255 0c10 B08F      		std Z+24,r27
+ 2298               		.stabn	68,0,599,.LM154-nmeap_gprmc
+ 2299               	.LM154:
+ 2300 0c4c FE01      		movw r30,r28
+ 2301 0c4e E057      		subi r30,lo8(-(400))
+ 2302 0c50 FE4F      		sbci r31,hi8(-(400))
+ 2303 0c52 8081      		ld r24,Z
+ 2304 0c54 9181      		ldd r25,Z+1
+ 2305 0c56 0E94 0000 		call atoi
+ 2306 0c5a AA27      		clr r26
+ 2307 0c5c 97FD      		sbrc r25,7
+ 2308 0c5e A095      		com r26
+ 2309 0c60 BA2F      		mov r27,r26
+ 2310 0c62 F801      		movw r30,r16
+ 2311 0c64 858B      		std Z+21,r24
+ 2312 0c66 968B      		std Z+22,r25
+ 2313 0c68 A78B      		std Z+23,r26
+ 2314 0c6a B08F      		std Z+24,r27
  600:nmeap01.c     **** 	}
- 2256               		.stabn	68,0,600,.LM150-nmeap_gprmc
- 2257               	.LM150:
- 2258 0c12 FE01      		movw r30,r28
- 2259 0c14 EE56      		subi r30,lo8(-(402))
- 2260 0c16 FE4F      		sbci r31,hi8(-(402))
- 2261 0c18 8081      		ld r24,Z
- 2262 0c1a 9181      		ldd r25,Z+1
- 2263 0c1c 0E94 0000 		call atof
- 2264 0c20 F801      		movw r30,r16
- 2265 0c22 618F      		std Z+25,r22
- 2266 0c24 728F      		std Z+26,r23
- 2267 0c26 838F      		std Z+27,r24
- 2268 0c28 948F      		std Z+28,r25
- 2269               	.L151:
+ 2315               		.stabn	68,0,600,.LM155-nmeap_gprmc
+ 2316               	.LM155:
+ 2317 0c6c FE01      		movw r30,r28
+ 2318 0c6e EE56      		subi r30,lo8(-(402))
+ 2319 0c70 FE4F      		sbci r31,hi8(-(402))
+ 2320 0c72 8081      		ld r24,Z
+ 2321 0c74 9181      		ldd r25,Z+1
+ 2322 0c76 0E94 0000 		call atof
+ 2323 0c7a F801      		movw r30,r16
+ 2324 0c7c 618F      		std Z+25,r22
+ 2325 0c7e 728F      		std Z+26,r23
+ 2326 0c80 838F      		std Z+27,r24
+ 2327 0c82 948F      		std Z+28,r25
+ 2328               	.L150:
  601:nmeap01.c     **** 
  602:nmeap01.c     **** #ifndef NDEBUG    
  603:nmeap01.c     ****     /* print raw input string */
  604:nmeap01.c     ****     printf("%s",context->debug_input);
  605:nmeap01.c     ****     
- 2270               		.stabn	68,0,605,.LM151-nmeap_gprmc
- 2271               	.LM151:
- 2272 0c2a C453      		subi r28,lo8(-(460))
- 2273 0c2c DE4F      		sbci r29,hi8(-(460))
- 2274 0c2e DF93      		push r29
- 2275 0c30 CF93      		push r28
- 2276 0c32 80E0      		ldi r24,lo8(.LC0)
- 2277 0c34 90E0      		ldi r25,hi8(.LC0)
- 2278 0c36 9F93      		push r25
- 2279 0c38 8F93      		push r24
- 2280 0c3a 0E94 0000 		call printf
+ 2329               		.stabn	68,0,605,.LM156-nmeap_gprmc
+ 2330               	.LM156:
+ 2331 0c84 C453      		subi r28,lo8(-(460))
+ 2332 0c86 DE4F      		sbci r29,hi8(-(460))
+ 2333 0c88 DF93      		push r29
+ 2334 0c8a CF93      		push r28
+ 2335 0c8c 80E0      		ldi r24,lo8(.LC0)
+ 2336 0c8e 90E0      		ldi r25,hi8(.LC0)
+ 2337 0c90 9F93      		push r25
+ 2338 0c92 8F93      		push r24
+ 2339 0c94 0E94 0000 		call printf
  606:nmeap01.c     ****     /* print some validation data */
  607:nmeap01.c     ****     printf("%s==%s %02x==%02x\n",context->input_name,sentence->name,context->icks,context->ccks);
  608:nmeap01.c     ****     
- 2281               		.stabn	68,0,608,.LM152-nmeap_gprmc
- 2282               	.LM152:
- 2283 0c3e CF54      		subi r28,lo8(-(-79))
- 2284 0c40 D040      		sbci r29,hi8(-(-79))
- 2285 0c42 8881      		ld r24,Y
- 2286 0c44 9927      		clr r25
- 2287 0c46 87FD      		sbrc r24,7
- 2288 0c48 9095      		com r25
- 2289 0c4a 9F93      		push r25
- 2290 0c4c 8F93      		push r24
- 2291 0c4e 8A91      		ld r24,-Y
-GAS LISTING /var/tmp//ccqKAok3.s 			page 58
+ 2340               		.stabn	68,0,608,.LM157-nmeap_gprmc
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 59
 
 
- 2292 0c50 9927      		clr r25
- 2293 0c52 87FD      		sbrc r24,7
- 2294 0c54 9095      		com r25
- 2295 0c56 9F93      		push r25
- 2296 0c58 8F93      		push r24
- 2297 0c5a BF92      		push r11
- 2298 0c5c AF92      		push r10
- 2299 0c5e 2697      		sbiw r28,6
- 2300 0c60 DF93      		push r29
- 2301 0c62 CF93      		push r28
- 2302 0c64 C657      		subi r28,lo8(-(-374))
- 2303 0c66 D140      		sbci r29,hi8(-(-374))
- 2304 0c68 80E0      		ldi r24,lo8(.LC1)
- 2305 0c6a 90E0      		ldi r25,hi8(.LC1)
- 2306 0c6c 9F93      		push r25
- 2307 0c6e 8F93      		push r24
- 2308 0c70 0E94 0000 		call printf
- 2309 0c74 FEE7      		ldi r31,lo8(382)
- 2310 0c76 CF2E      		mov r12,r31
- 2311 0c78 F1E0      		ldi r31,hi8(382)
- 2312 0c7a DF2E      		mov r13,r31
- 2313 0c7c CC0E      		add r12,r28
- 2314 0c7e DD1E      		adc r13,r29
- 2315 0c80 EE24      		clr r14
- 2316 0c82 FF24      		clr r15
+ 2341               	.LM157:
+ 2342 0c98 CF54      		subi r28,lo8(-(-79))
+ 2343 0c9a D040      		sbci r29,hi8(-(-79))
+ 2344 0c9c 8881      		ld r24,Y
+ 2345 0c9e 9927      		clr r25
+ 2346 0ca0 87FD      		sbrc r24,7
+ 2347 0ca2 9095      		com r25
+ 2348 0ca4 9F93      		push r25
+ 2349 0ca6 8F93      		push r24
+ 2350 0ca8 8A91      		ld r24,-Y
+ 2351 0caa 9927      		clr r25
+ 2352 0cac 87FD      		sbrc r24,7
+ 2353 0cae 9095      		com r25
+ 2354 0cb0 9F93      		push r25
+ 2355 0cb2 8F93      		push r24
+ 2356 0cb4 BF92      		push r11
+ 2357 0cb6 AF92      		push r10
+ 2358 0cb8 2697      		sbiw r28,6
+ 2359 0cba DF93      		push r29
+ 2360 0cbc CF93      		push r28
+ 2361 0cbe C657      		subi r28,lo8(-(-374))
+ 2362 0cc0 D140      		sbci r29,hi8(-(-374))
+ 2363 0cc2 80E0      		ldi r24,lo8(.LC1)
+ 2364 0cc4 90E0      		ldi r25,hi8(.LC1)
+ 2365 0cc6 9F93      		push r25
+ 2366 0cc8 8F93      		push r24
+ 2367 0cca 0E94 0000 		call printf
+ 2368 0cce FEE7      		ldi r31,lo8(382)
+ 2369 0cd0 CF2E      		mov r12,r31
+ 2370 0cd2 F1E0      		ldi r31,hi8(382)
+ 2371 0cd4 DF2E      		mov r13,r31
+ 2372 0cd6 CC0E      		add r12,r28
+ 2373 0cd8 DD1E      		adc r13,r29
+ 2374 0cda EE24      		clr r14
+ 2375 0cdc FF24      		clr r15
  609:nmeap01.c     ****     /* print the tokens */
  610:nmeap01.c     ****     for(i=0;i<context->tokens;i++) {
  611:nmeap01.c     ****         printf("%d:%s\n",i,context->token[i]);
- 2317               		.stabn	68,0,611,.LM153-nmeap_gprmc
- 2318               	.LM153:
- 2319 0c84 8DB7      		in r24,__SP_L__
- 2320 0c86 9EB7      		in r25,__SP_H__
- 2321 0c88 0E96      		adiw r24,14
- 2322 0c8a 14C0      		rjmp .L159
- 2323               	.L154:
+ 2376               		.stabn	68,0,611,.LM158-nmeap_gprmc
+ 2377               	.LM158:
+ 2378 0cde 8DB7      		in r24,__SP_L__
+ 2379 0ce0 9EB7      		in r25,__SP_H__
+ 2380 0ce2 0E96      		adiw r24,14
+ 2381 0ce4 14C0      		rjmp .L158
+ 2382               	.L153:
  612:nmeap01.c     ****     }
- 2324               		.stabn	68,0,612,.LM154-nmeap_gprmc
- 2325               	.LM154:
- 2326 0c8c F601      		movw r30,r12
- 2327 0c8e 8191      		ld r24,Z+
- 2328 0c90 9191      		ld r25,Z+
- 2329 0c92 6F01      		movw r12,r30
- 2330 0c94 9F93      		push r25
- 2331 0c96 8F93      		push r24
- 2332 0c98 FF92      		push r15
- 2333 0c9a EF92      		push r14
- 2334 0c9c 80E0      		ldi r24,lo8(.LC2)
- 2335 0c9e 90E0      		ldi r25,hi8(.LC2)
- 2336 0ca0 9F93      		push r25
- 2337 0ca2 8F93      		push r24
- 2338 0ca4 0E94 0000 		call printf
- 2339               		.stabn	68,0,611,.LM155-nmeap_gprmc
- 2340               	.LM155:
- 2341 0ca8 0894      		sec
- 2342 0caa E11C      		adc r14,__zero_reg__
- 2343 0cac F11C      		adc r15,__zero_reg__
- 2344 0cae 8DB7      		in r24,__SP_L__
-GAS LISTING /var/tmp//ccqKAok3.s 			page 59
+ 2383               		.stabn	68,0,612,.LM159-nmeap_gprmc
+ 2384               	.LM159:
+ 2385 0ce6 F601      		movw r30,r12
+ 2386 0ce8 8191      		ld r24,Z+
+ 2387 0cea 9191      		ld r25,Z+
+ 2388 0cec 6F01      		movw r12,r30
+ 2389 0cee 9F93      		push r25
+ 2390 0cf0 8F93      		push r24
+ 2391 0cf2 FF92      		push r15
+ 2392 0cf4 EF92      		push r14
+ 2393 0cf6 80E0      		ldi r24,lo8(.LC2)
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 60
 
 
- 2345 0cb0 9EB7      		in r25,__SP_H__
- 2346 0cb2 0696      		adiw r24,6
- 2347               	.L159:
- 2348 0cb4 0FB6      		in __tmp_reg__,__SREG__
- 2349 0cb6 F894      		cli
- 2350 0cb8 9EBF      		out __SP_H__,r25
- 2351 0cba 0FBE      		out __SREG__,__tmp_reg__
- 2352 0cbc 8DBF      		out __SP_L__,r24
- 2353 0cbe C255      		subi r28,lo8(-(430))
- 2354 0cc0 DE4F      		sbci r29,hi8(-(430))
- 2355 0cc2 8881      		ld r24,Y
- 2356 0cc4 9981      		ldd r25,Y+1
- 2357 0cc6 CE5A      		subi r28,lo8(-(-430))
- 2358 0cc8 D140      		sbci r29,hi8(-(-430))
- 2359 0cca E816      		cp r14,r24
- 2360 0ccc F906      		cpc r15,r25
- 2361 0cce F4F2      		brlt .L154
+ 2394 0cf8 90E0      		ldi r25,hi8(.LC2)
+ 2395 0cfa 9F93      		push r25
+ 2396 0cfc 8F93      		push r24
+ 2397 0cfe 0E94 0000 		call printf
+ 2398               		.stabn	68,0,611,.LM160-nmeap_gprmc
+ 2399               	.LM160:
+ 2400 0d02 0894      		sec
+ 2401 0d04 E11C      		adc r14,__zero_reg__
+ 2402 0d06 F11C      		adc r15,__zero_reg__
+ 2403 0d08 8DB7      		in r24,__SP_L__
+ 2404 0d0a 9EB7      		in r25,__SP_H__
+ 2405 0d0c 0696      		adiw r24,6
+ 2406               	.L158:
+ 2407 0d0e 0FB6      		in __tmp_reg__,__SREG__
+ 2408 0d10 F894      		cli
+ 2409 0d12 9EBF      		out __SP_H__,r25
+ 2410 0d14 0FBE      		out __SREG__,__tmp_reg__
+ 2411 0d16 8DBF      		out __SP_L__,r24
+ 2412 0d18 C255      		subi r28,lo8(-(430))
+ 2413 0d1a DE4F      		sbci r29,hi8(-(430))
+ 2414 0d1c 8881      		ld r24,Y
+ 2415 0d1e 9981      		ldd r25,Y+1
+ 2416 0d20 CE5A      		subi r28,lo8(-(-430))
+ 2417 0d22 D140      		sbci r29,hi8(-(-430))
+ 2418 0d24 E816      		cp r14,r24
+ 2419 0d26 F906      		cpc r15,r25
+ 2420 0d28 F4F2      		brlt .L153
  613:nmeap01.c     **** #endif   
  614:nmeap01.c     **** 
  615:nmeap01.c     ****     /* if the sentence has a callout, call it */
  616:nmeap01.c     ****     if (sentence->callout != 0) {
  617:nmeap01.c     ****         (*sentence->callout)(context,rmc,context->user_data);
- 2362               		.stabn	68,0,617,.LM156-nmeap_gprmc
- 2363               	.LM156:
- 2364 0cd0 F501      		movw r30,r10
- 2365 0cd2 2285      		ldd r18,Z+10
- 2366 0cd4 3385      		ldd r19,Z+11
- 2367 0cd6 2115      		cp r18,__zero_reg__
- 2368 0cd8 3105      		cpc r19,__zero_reg__
- 2369 0cda 51F0      		breq .L156
+ 2421               		.stabn	68,0,617,.LM161-nmeap_gprmc
+ 2422               	.LM161:
+ 2423 0d2a F501      		movw r30,r10
+ 2424 0d2c 2285      		ldd r18,Z+10
+ 2425 0d2e 3385      		ldd r19,Z+11
+ 2426 0d30 2115      		cp r18,__zero_reg__
+ 2427 0d32 3105      		cpc r19,__zero_reg__
+ 2428 0d34 51F0      		breq .L155
  618:nmeap01.c     ****     }
- 2370               		.stabn	68,0,618,.LM157-nmeap_gprmc
- 2371               	.LM157:
- 2372 0cdc C453      		subi r28,lo8(-(716))
- 2373 0cde DD4F      		sbci r29,hi8(-(716))
- 2374 0ce0 4881      		ld r20,Y
- 2375 0ce2 5981      		ldd r21,Y+1
- 2376 0ce4 CC5C      		subi r28,lo8(-(-716))
- 2377 0ce6 D240      		sbci r29,hi8(-(-716))
- 2378 0ce8 B801      		movw r22,r16
- 2379 0cea CE01      		movw r24,r28
- 2380 0cec F901      		movw r30,r18
- 2381 0cee 0995      		icall
- 2382               	.L156:
+ 2429               		.stabn	68,0,618,.LM162-nmeap_gprmc
+ 2430               	.LM162:
+ 2431 0d36 C453      		subi r28,lo8(-(716))
+ 2432 0d38 DD4F      		sbci r29,hi8(-(716))
+ 2433 0d3a 4881      		ld r20,Y
+ 2434 0d3c 5981      		ldd r21,Y+1
+ 2435 0d3e CC5C      		subi r28,lo8(-(-716))
+ 2436 0d40 D240      		sbci r29,hi8(-(-716))
+ 2437 0d42 B801      		movw r22,r16
+ 2438 0d44 CE01      		movw r24,r28
+ 2439 0d46 F901      		movw r30,r18
+ 2440 0d48 0995      		icall
+ 2441               	.L155:
  619:nmeap01.c     ****     
  620:nmeap01.c     ****     return NMEAP_GPRMC;
  621:nmeap01.c     **** }
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 61
+
+
  622:nmeap01.c     **** 
- 2383               		.stabn	68,0,622,.LM158-nmeap_gprmc
- 2384               	.LM158:
- 2385 0cf0 82E0      		ldi r24,lo8(2)
- 2386 0cf2 90E0      		ldi r25,hi8(2)
- 2387               	/* epilogue: frame size=0 */
- 2388 0cf4 DF91      		pop r29
- 2389 0cf6 CF91      		pop r28
- 2390 0cf8 1F91      		pop r17
- 2391 0cfa 0F91      		pop r16
-GAS LISTING /var/tmp//ccqKAok3.s 			page 60
+ 2442               		.stabn	68,0,622,.LM163-nmeap_gprmc
+ 2443               	.LM163:
+ 2444 0d4a 82E0      		ldi r24,lo8(2)
+ 2445 0d4c 90E0      		ldi r25,hi8(2)
+ 2446               	/* epilogue: frame size=0 */
+ 2447 0d4e DF91      		pop r29
+ 2448 0d50 CF91      		pop r28
+ 2449 0d52 1F91      		pop r17
+ 2450 0d54 0F91      		pop r16
+ 2451 0d56 FF90      		pop r15
+ 2452 0d58 EF90      		pop r14
+ 2453 0d5a DF90      		pop r13
+ 2454 0d5c CF90      		pop r12
+ 2455 0d5e BF90      		pop r11
+ 2456 0d60 AF90      		pop r10
+ 2457 0d62 0895      		ret
+ 2458               	/* epilogue end (size=11) */
+ 2459               	/* function nmeap_gprmc size 232 (211) */
+ 2460               		.size	nmeap_gprmc, .-nmeap_gprmc
+ 2461               		.stabs	"i:r(0,1)",64,0,584,14
+ 2462               		.stabs	"rmc:r(0,22)=*(12,10)",64,0,588,16
+ 2463               		.stabn	192,0,0,nmeap_gprmc-nmeap_gprmc
+ 2464               		.stabn	224,0,0,.Lscope13-nmeap_gprmc
+ 2465               	.Lscope13:
+ 2466               		.stabs	"",36,0,0,.Lscope13-nmeap_gprmc
+ 2467               		.stabd	78,0,0
+ 2468               		.stabs	"nmeap_gpgga:F(0,1)",36,0,537,nmeap_gpgga
+ 2469               		.stabs	"context:P(0,18)",64,0,536,28
+ 2470               		.stabs	"sentence:P(0,21)",64,0,536,10
+ 2471               	.global	nmeap_gpgga
+ 2472               		.type	nmeap_gpgga, @function
+ 2473               	nmeap_gpgga:
+ 2474               		.stabd	46,0,0
+ 2475               		.stabn	68,0,537,.LM164-nmeap_gpgga
+ 2476               	.LM164:
+ 2477               	/* prologue: frame size=0 */
+ 2478 0d64 AF92      		push r10
+ 2479 0d66 BF92      		push r11
+ 2480 0d68 CF92      		push r12
+ 2481 0d6a DF92      		push r13
+ 2482 0d6c EF92      		push r14
+ 2483 0d6e FF92      		push r15
+ 2484 0d70 0F93      		push r16
+ 2485 0d72 1F93      		push r17
+ 2486 0d74 CF93      		push r28
+ 2487 0d76 DF93      		push r29
+ 2488               	/* prologue end (size=10) */
+ 2489 0d78 EC01      		movw r28,r24
+ 2490 0d7a 5B01      		movw r10,r22
+ 2491               		.stabn	68,0,543,.LM165-nmeap_gpgga
+ 2492               	.LM165:
+ 2493 0d7c FB01      		movw r30,r22
+ 2494 0d7e 0485      		ldd r16,Z+12
+ 2495 0d80 1585      		ldd r17,Z+13
+ 2496               		.stabn	68,0,546,.LM166-nmeap_gpgga
+ 2497               	.LM166:
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 62
 
 
- 2392 0cfc FF90      		pop r15
- 2393 0cfe EF90      		pop r14
- 2394 0d00 DF90      		pop r13
- 2395 0d02 CF90      		pop r12
- 2396 0d04 BF90      		pop r11
- 2397 0d06 AF90      		pop r10
- 2398 0d08 0895      		ret
- 2399               	/* epilogue end (size=11) */
- 2400               	/* function nmeap_gprmc size 232 (211) */
- 2401               		.size	nmeap_gprmc, .-nmeap_gprmc
- 2402               		.stabs	"i:r(0,1)",64,0,584,14
- 2403               		.stabs	"rmc:r(0,22)=*(12,10)",64,0,588,16
- 2404               		.stabn	192,0,0,nmeap_gprmc-nmeap_gprmc
- 2405               		.stabn	224,0,0,.Lscope13-nmeap_gprmc
- 2406               	.Lscope13:
- 2407               		.stabs	"",36,0,0,.Lscope13-nmeap_gprmc
- 2408               		.stabd	78,0,0
- 2409               		.stabs	"nmeap_gpgga:F(0,1)",36,0,537,nmeap_gpgga
- 2410               		.stabs	"context:P(0,18)",64,0,536,28
- 2411               		.stabs	"sentence:P(0,21)",64,0,536,10
- 2412               	.global	nmeap_gpgga
- 2413               		.type	nmeap_gpgga, @function
- 2414               	nmeap_gpgga:
- 2415               		.stabd	46,0,0
- 2416               		.stabn	68,0,537,.LM159-nmeap_gpgga
- 2417               	.LM159:
- 2418               	/* prologue: frame size=0 */
- 2419 0d0a AF92      		push r10
- 2420 0d0c BF92      		push r11
- 2421 0d0e CF92      		push r12
- 2422 0d10 DF92      		push r13
- 2423 0d12 EF92      		push r14
- 2424 0d14 FF92      		push r15
- 2425 0d16 0F93      		push r16
- 2426 0d18 1F93      		push r17
- 2427 0d1a CF93      		push r28
- 2428 0d1c DF93      		push r29
- 2429               	/* prologue end (size=10) */
- 2430 0d1e EC01      		movw r28,r24
- 2431 0d20 5B01      		movw r10,r22
- 2432               		.stabn	68,0,543,.LM160-nmeap_gpgga
- 2433               	.LM160:
- 2434 0d22 FB01      		movw r30,r22
- 2435 0d24 0485      		ldd r16,Z+12
- 2436 0d26 1585      		ldd r17,Z+13
- 2437               		.stabn	68,0,546,.LM161-nmeap_gpgga
- 2438               	.LM161:
- 2439 0d28 0115      		cp r16,__zero_reg__
- 2440 0d2a 1105      		cpc r17,__zero_reg__
- 2441 0d2c 09F4      		brne .+2
- 2442 0d2e 5DC0      		rjmp .L161
- 2443               		.stabn	68,0,547,.LM162-nmeap_gpgga
- 2444               	.LM162:
- 2445 0d30 CC57      		subi r28,lo8(-(388))
- 2446 0d32 DE4F      		sbci r29,hi8(-(388))
- 2447 0d34 6881      		ld r22,Y
- 2448 0d36 7981      		ldd r23,Y+1
-GAS LISTING /var/tmp//ccqKAok3.s 			page 61
+ 2498 0d82 0115      		cp r16,__zero_reg__
+ 2499 0d84 1105      		cpc r17,__zero_reg__
+ 2500 0d86 09F4      		brne .+2
+ 2501 0d88 5DC0      		rjmp .L160
+ 2502               		.stabn	68,0,547,.LM167-nmeap_gpgga
+ 2503               	.LM167:
+ 2504 0d8a CC57      		subi r28,lo8(-(388))
+ 2505 0d8c DE4F      		sbci r29,hi8(-(388))
+ 2506 0d8e 6881      		ld r22,Y
+ 2507 0d90 7981      		ldd r23,Y+1
+ 2508 0d92 9A91      		ld r25,-Y
+ 2509 0d94 8A91      		ld r24,-Y
+ 2510 0d96 0E94 0000 		call nmeap_latitude
+ 2511 0d9a F801      		movw r30,r16
+ 2512 0d9c 6083      		st Z,r22
+ 2513 0d9e 7183      		std Z+1,r23
+ 2514 0da0 8283      		std Z+2,r24
+ 2515 0da2 9383      		std Z+3,r25
+ 2516               		.stabn	68,0,548,.LM168-nmeap_gpgga
+ 2517               	.LM168:
+ 2518 0da4 2696      		adiw r28,6
+ 2519 0da6 6881      		ld r22,Y
+ 2520 0da8 7981      		ldd r23,Y+1
+ 2521 0daa 9A91      		ld r25,-Y
+ 2522 0dac 8A91      		ld r24,-Y
+ 2523 0dae 0E94 0000 		call nmeap_longitude
+ 2524 0db2 F801      		movw r30,r16
+ 2525 0db4 6483      		std Z+4,r22
+ 2526 0db6 7583      		std Z+5,r23
+ 2527 0db8 8683      		std Z+6,r24
+ 2528 0dba 9783      		std Z+7,r25
+ 2529               		.stabn	68,0,549,.LM169-nmeap_gpgga
+ 2530               	.LM169:
+ 2531 0dbc 2C96      		adiw r28,12
+ 2532 0dbe 6881      		ld r22,Y
+ 2533 0dc0 7981      		ldd r23,Y+1
+ 2534 0dc2 9A91      		ld r25,-Y
+ 2535 0dc4 8A91      		ld r24,-Y
+ 2536 0dc6 0E94 0000 		call nmeap_altitude
+ 2537 0dca F801      		movw r30,r16
+ 2538 0dcc 6087      		std Z+8,r22
+ 2539 0dce 7187      		std Z+9,r23
+ 2540 0dd0 8287      		std Z+10,r24
+ 2541 0dd2 9387      		std Z+11,r25
+ 2542               		.stabn	68,0,550,.LM170-nmeap_gpgga
+ 2543               	.LM170:
+ 2544 0dd4 6097      		sbiw r28,16
+ 2545 0dd6 8881      		ld r24,Y
+ 2546 0dd8 9981      		ldd r25,Y+1
+ 2547 0dda 0E94 0000 		call atoi
+ 2548 0dde AA27      		clr r26
+ 2549 0de0 97FD      		sbrc r25,7
+ 2550 0de2 A095      		com r26
+ 2551 0de4 BA2F      		mov r27,r26
+ 2552 0de6 F801      		movw r30,r16
+ 2553 0de8 8487      		std Z+12,r24
+ 2554 0dea 9587      		std Z+13,r25
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 63
 
 
- 2449 0d38 9A91      		ld r25,-Y
- 2450 0d3a 8A91      		ld r24,-Y
- 2451 0d3c 0E94 0000 		call nmeap_latitude
- 2452 0d40 F801      		movw r30,r16
- 2453 0d42 6083      		st Z,r22
- 2454 0d44 7183      		std Z+1,r23
- 2455 0d46 8283      		std Z+2,r24
- 2456 0d48 9383      		std Z+3,r25
- 2457               		.stabn	68,0,548,.LM163-nmeap_gpgga
- 2458               	.LM163:
- 2459 0d4a 2696      		adiw r28,6
- 2460 0d4c 6881      		ld r22,Y
- 2461 0d4e 7981      		ldd r23,Y+1
- 2462 0d50 9A91      		ld r25,-Y
- 2463 0d52 8A91      		ld r24,-Y
- 2464 0d54 0E94 0000 		call nmeap_longitude
- 2465 0d58 F801      		movw r30,r16
- 2466 0d5a 6483      		std Z+4,r22
- 2467 0d5c 7583      		std Z+5,r23
- 2468 0d5e 8683      		std Z+6,r24
- 2469 0d60 9783      		std Z+7,r25
- 2470               		.stabn	68,0,549,.LM164-nmeap_gpgga
- 2471               	.LM164:
- 2472 0d62 2C96      		adiw r28,12
- 2473 0d64 6881      		ld r22,Y
- 2474 0d66 7981      		ldd r23,Y+1
- 2475 0d68 9A91      		ld r25,-Y
- 2476 0d6a 8A91      		ld r24,-Y
- 2477 0d6c 0E94 0000 		call nmeap_altitude
- 2478 0d70 F801      		movw r30,r16
- 2479 0d72 6087      		std Z+8,r22
- 2480 0d74 7187      		std Z+9,r23
- 2481 0d76 8287      		std Z+10,r24
- 2482 0d78 9387      		std Z+11,r25
- 2483               		.stabn	68,0,550,.LM165-nmeap_gpgga
- 2484               	.LM165:
- 2485 0d7a 6097      		sbiw r28,16
- 2486 0d7c 8881      		ld r24,Y
- 2487 0d7e 9981      		ldd r25,Y+1
- 2488 0d80 0E94 0000 		call atoi
- 2489 0d84 AA27      		clr r26
- 2490 0d86 97FD      		sbrc r25,7
- 2491 0d88 A095      		com r26
- 2492 0d8a BA2F      		mov r27,r26
- 2493 0d8c F801      		movw r30,r16
- 2494 0d8e 8487      		std Z+12,r24
- 2495 0d90 9587      		std Z+13,r25
- 2496 0d92 A687      		std Z+14,r26
- 2497 0d94 B787      		std Z+15,r27
- 2498               		.stabn	68,0,551,.LM166-nmeap_gpgga
- 2499               	.LM166:
- 2500 0d96 2C96      		adiw r28,12
- 2501 0d98 8881      		ld r24,Y
- 2502 0d9a 9981      		ldd r25,Y+1
- 2503 0d9c 0E94 0000 		call atoi
- 2504 0da0 F801      		movw r30,r16
- 2505 0da2 918B      		std Z+17,r25
-GAS LISTING /var/tmp//ccqKAok3.s 			page 62
+ 2555 0dec A687      		std Z+14,r26
+ 2556 0dee B787      		std Z+15,r27
+ 2557               		.stabn	68,0,551,.LM171-nmeap_gpgga
+ 2558               	.LM171:
+ 2559 0df0 2C96      		adiw r28,12
+ 2560 0df2 8881      		ld r24,Y
+ 2561 0df4 9981      		ldd r25,Y+1
+ 2562 0df6 0E94 0000 		call atoi
+ 2563 0dfa F801      		movw r30,r16
+ 2564 0dfc 918B      		std Z+17,r25
+ 2565 0dfe 808B      		std Z+16,r24
+ 2566               		.stabn	68,0,552,.LM172-nmeap_gpgga
+ 2567               	.LM172:
+ 2568 0e00 9A91      		ld r25,-Y
+ 2569 0e02 8A91      		ld r24,-Y
+ 2570 0e04 0E94 0000 		call atoi
+ 2571 0e08 F801      		movw r30,r16
+ 2572 0e0a 938B      		std Z+19,r25
+ 2573 0e0c 828B      		std Z+18,r24
+ 2574               		.stabn	68,0,553,.LM173-nmeap_gpgga
+ 2575               	.LM173:
+ 2576 0e0e 2496      		adiw r28,4
+ 2577 0e10 8881      		ld r24,Y
+ 2578 0e12 9981      		ldd r25,Y+1
+ 2579 0e14 0E94 0000 		call atof
+ 2580 0e18 F801      		movw r30,r16
+ 2581 0e1a 648B      		std Z+20,r22
+ 2582 0e1c 758B      		std Z+21,r23
+ 2583 0e1e 868B      		std Z+22,r24
+ 2584 0e20 978B      		std Z+23,r25
+ 2585               		.stabn	68,0,554,.LM174-nmeap_gpgga
+ 2586               	.LM174:
+ 2587 0e22 2896      		adiw r28,8
+ 2588 0e24 6881      		ld r22,Y
+ 2589 0e26 7981      		ldd r23,Y+1
+ 2590 0e28 C659      		subi r28,lo8(-(-406))
+ 2591 0e2a D140      		sbci r29,hi8(-(-406))
+ 2592 0e2c FE01      		movw r30,r28
+ 2593 0e2e EC56      		subi r30,lo8(-(404))
+ 2594 0e30 FE4F      		sbci r31,hi8(-(404))
+ 2595 0e32 8081      		ld r24,Z
+ 2596 0e34 9181      		ldd r25,Z+1
+ 2597 0e36 0E94 0000 		call nmeap_altitude
+ 2598 0e3a F801      		movw r30,r16
+ 2599 0e3c 608F      		std Z+24,r22
+ 2600 0e3e 718F      		std Z+25,r23
+ 2601 0e40 828F      		std Z+26,r24
+ 2602 0e42 938F      		std Z+27,r25
+ 2603               	.L160:
+ 2604               		.stabn	68,0,559,.LM175-nmeap_gpgga
+ 2605               	.LM175:
+ 2606 0e44 C453      		subi r28,lo8(-(460))
+ 2607 0e46 DE4F      		sbci r29,hi8(-(460))
+ 2608 0e48 DF93      		push r29
+ 2609 0e4a CF93      		push r28
+ 2610 0e4c 80E0      		ldi r24,lo8(.LC0)
+ 2611 0e4e 90E0      		ldi r25,hi8(.LC0)
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 64
 
 
- 2506 0da4 808B      		std Z+16,r24
- 2507               		.stabn	68,0,552,.LM167-nmeap_gpgga
- 2508               	.LM167:
- 2509 0da6 9A91      		ld r25,-Y
- 2510 0da8 8A91      		ld r24,-Y
- 2511 0daa 0E94 0000 		call atoi
- 2512 0dae F801      		movw r30,r16
- 2513 0db0 938B      		std Z+19,r25
- 2514 0db2 828B      		std Z+18,r24
- 2515               		.stabn	68,0,553,.LM168-nmeap_gpgga
- 2516               	.LM168:
- 2517 0db4 2496      		adiw r28,4
- 2518 0db6 8881      		ld r24,Y
- 2519 0db8 9981      		ldd r25,Y+1
- 2520 0dba 0E94 0000 		call atof
- 2521 0dbe F801      		movw r30,r16
- 2522 0dc0 648B      		std Z+20,r22
- 2523 0dc2 758B      		std Z+21,r23
- 2524 0dc4 868B      		std Z+22,r24
- 2525 0dc6 978B      		std Z+23,r25
- 2526               		.stabn	68,0,554,.LM169-nmeap_gpgga
- 2527               	.LM169:
- 2528 0dc8 2896      		adiw r28,8
- 2529 0dca 6881      		ld r22,Y
- 2530 0dcc 7981      		ldd r23,Y+1
- 2531 0dce C659      		subi r28,lo8(-(-406))
- 2532 0dd0 D140      		sbci r29,hi8(-(-406))
- 2533 0dd2 FE01      		movw r30,r28
- 2534 0dd4 EC56      		subi r30,lo8(-(404))
- 2535 0dd6 FE4F      		sbci r31,hi8(-(404))
- 2536 0dd8 8081      		ld r24,Z
- 2537 0dda 9181      		ldd r25,Z+1
- 2538 0ddc 0E94 0000 		call nmeap_altitude
- 2539 0de0 F801      		movw r30,r16
- 2540 0de2 608F      		std Z+24,r22
- 2541 0de4 718F      		std Z+25,r23
- 2542 0de6 828F      		std Z+26,r24
- 2543 0de8 938F      		std Z+27,r25
- 2544               	.L161:
- 2545               		.stabn	68,0,559,.LM170-nmeap_gpgga
- 2546               	.LM170:
- 2547 0dea C453      		subi r28,lo8(-(460))
- 2548 0dec DE4F      		sbci r29,hi8(-(460))
- 2549 0dee DF93      		push r29
- 2550 0df0 CF93      		push r28
- 2551 0df2 80E0      		ldi r24,lo8(.LC0)
- 2552 0df4 90E0      		ldi r25,hi8(.LC0)
- 2553 0df6 9F93      		push r25
- 2554 0df8 8F93      		push r24
- 2555 0dfa 0E94 0000 		call printf
- 2556               		.stabn	68,0,562,.LM171-nmeap_gpgga
- 2557               	.LM171:
- 2558 0dfe CF54      		subi r28,lo8(-(-79))
- 2559 0e00 D040      		sbci r29,hi8(-(-79))
- 2560 0e02 8881      		ld r24,Y
- 2561 0e04 9927      		clr r25
- 2562 0e06 87FD      		sbrc r24,7
-GAS LISTING /var/tmp//ccqKAok3.s 			page 63
+ 2612 0e50 9F93      		push r25
+ 2613 0e52 8F93      		push r24
+ 2614 0e54 0E94 0000 		call printf
+ 2615               		.stabn	68,0,562,.LM176-nmeap_gpgga
+ 2616               	.LM176:
+ 2617 0e58 CF54      		subi r28,lo8(-(-79))
+ 2618 0e5a D040      		sbci r29,hi8(-(-79))
+ 2619 0e5c 8881      		ld r24,Y
+ 2620 0e5e 9927      		clr r25
+ 2621 0e60 87FD      		sbrc r24,7
+ 2622 0e62 9095      		com r25
+ 2623 0e64 9F93      		push r25
+ 2624 0e66 8F93      		push r24
+ 2625 0e68 8A91      		ld r24,-Y
+ 2626 0e6a 9927      		clr r25
+ 2627 0e6c 87FD      		sbrc r24,7
+ 2628 0e6e 9095      		com r25
+ 2629 0e70 9F93      		push r25
+ 2630 0e72 8F93      		push r24
+ 2631 0e74 BF92      		push r11
+ 2632 0e76 AF92      		push r10
+ 2633 0e78 2697      		sbiw r28,6
+ 2634 0e7a DF93      		push r29
+ 2635 0e7c CF93      		push r28
+ 2636 0e7e C657      		subi r28,lo8(-(-374))
+ 2637 0e80 D140      		sbci r29,hi8(-(-374))
+ 2638 0e82 80E0      		ldi r24,lo8(.LC1)
+ 2639 0e84 90E0      		ldi r25,hi8(.LC1)
+ 2640 0e86 9F93      		push r25
+ 2641 0e88 8F93      		push r24
+ 2642 0e8a 0E94 0000 		call printf
+ 2643 0e8e AEE7      		ldi r26,lo8(382)
+ 2644 0e90 CA2E      		mov r12,r26
+ 2645 0e92 A1E0      		ldi r26,hi8(382)
+ 2646 0e94 DA2E      		mov r13,r26
+ 2647 0e96 CC0E      		add r12,r28
+ 2648 0e98 DD1E      		adc r13,r29
+ 2649 0e9a EE24      		clr r14
+ 2650 0e9c FF24      		clr r15
+ 2651               		.stabn	68,0,565,.LM177-nmeap_gpgga
+ 2652               	.LM177:
+ 2653 0e9e 8DB7      		in r24,__SP_L__
+ 2654 0ea0 9EB7      		in r25,__SP_H__
+ 2655 0ea2 0E96      		adiw r24,14
+ 2656 0ea4 14C0      		rjmp .L168
+ 2657               	.L163:
+ 2658               		.stabn	68,0,566,.LM178-nmeap_gpgga
+ 2659               	.LM178:
+ 2660 0ea6 F601      		movw r30,r12
+ 2661 0ea8 8191      		ld r24,Z+
+ 2662 0eaa 9191      		ld r25,Z+
+ 2663 0eac 6F01      		movw r12,r30
+ 2664 0eae 9F93      		push r25
+ 2665 0eb0 8F93      		push r24
+ 2666 0eb2 FF92      		push r15
+ 2667 0eb4 EF92      		push r14
+ 2668 0eb6 80E0      		ldi r24,lo8(.LC2)
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 65
 
 
- 2563 0e08 9095      		com r25
- 2564 0e0a 9F93      		push r25
- 2565 0e0c 8F93      		push r24
- 2566 0e0e 8A91      		ld r24,-Y
- 2567 0e10 9927      		clr r25
- 2568 0e12 87FD      		sbrc r24,7
- 2569 0e14 9095      		com r25
- 2570 0e16 9F93      		push r25
- 2571 0e18 8F93      		push r24
- 2572 0e1a BF92      		push r11
- 2573 0e1c AF92      		push r10
- 2574 0e1e 2697      		sbiw r28,6
- 2575 0e20 DF93      		push r29
- 2576 0e22 CF93      		push r28
- 2577 0e24 C657      		subi r28,lo8(-(-374))
- 2578 0e26 D140      		sbci r29,hi8(-(-374))
- 2579 0e28 80E0      		ldi r24,lo8(.LC1)
- 2580 0e2a 90E0      		ldi r25,hi8(.LC1)
- 2581 0e2c 9F93      		push r25
- 2582 0e2e 8F93      		push r24
- 2583 0e30 0E94 0000 		call printf
- 2584 0e34 AEE7      		ldi r26,lo8(382)
- 2585 0e36 CA2E      		mov r12,r26
- 2586 0e38 A1E0      		ldi r26,hi8(382)
- 2587 0e3a DA2E      		mov r13,r26
- 2588 0e3c CC0E      		add r12,r28
- 2589 0e3e DD1E      		adc r13,r29
- 2590 0e40 EE24      		clr r14
- 2591 0e42 FF24      		clr r15
- 2592               		.stabn	68,0,565,.LM172-nmeap_gpgga
- 2593               	.LM172:
- 2594 0e44 8DB7      		in r24,__SP_L__
- 2595 0e46 9EB7      		in r25,__SP_H__
- 2596 0e48 0E96      		adiw r24,14
- 2597 0e4a 14C0      		rjmp .L169
- 2598               	.L164:
- 2599               		.stabn	68,0,566,.LM173-nmeap_gpgga
- 2600               	.LM173:
- 2601 0e4c F601      		movw r30,r12
- 2602 0e4e 8191      		ld r24,Z+
- 2603 0e50 9191      		ld r25,Z+
- 2604 0e52 6F01      		movw r12,r30
- 2605 0e54 9F93      		push r25
- 2606 0e56 8F93      		push r24
- 2607 0e58 FF92      		push r15
- 2608 0e5a EF92      		push r14
- 2609 0e5c 80E0      		ldi r24,lo8(.LC2)
- 2610 0e5e 90E0      		ldi r25,hi8(.LC2)
- 2611 0e60 9F93      		push r25
- 2612 0e62 8F93      		push r24
- 2613 0e64 0E94 0000 		call printf
- 2614               		.stabn	68,0,565,.LM174-nmeap_gpgga
- 2615               	.LM174:
- 2616 0e68 0894      		sec
- 2617 0e6a E11C      		adc r14,__zero_reg__
- 2618 0e6c F11C      		adc r15,__zero_reg__
- 2619 0e6e 8DB7      		in r24,__SP_L__
-GAS LISTING /var/tmp//ccqKAok3.s 			page 64
-
-
- 2620 0e70 9EB7      		in r25,__SP_H__
- 2621 0e72 0696      		adiw r24,6
- 2622               	.L169:
- 2623 0e74 0FB6      		in __tmp_reg__,__SREG__
- 2624 0e76 F894      		cli
- 2625 0e78 9EBF      		out __SP_H__,r25
- 2626 0e7a 0FBE      		out __SREG__,__tmp_reg__
- 2627 0e7c 8DBF      		out __SP_L__,r24
- 2628 0e7e C255      		subi r28,lo8(-(430))
- 2629 0e80 DE4F      		sbci r29,hi8(-(430))
- 2630 0e82 8881      		ld r24,Y
- 2631 0e84 9981      		ldd r25,Y+1
- 2632 0e86 CE5A      		subi r28,lo8(-(-430))
- 2633 0e88 D140      		sbci r29,hi8(-(-430))
- 2634 0e8a E816      		cp r14,r24
- 2635 0e8c F906      		cpc r15,r25
- 2636 0e8e F4F2      		brlt .L164
- 2637               		.stabn	68,0,571,.LM175-nmeap_gpgga
- 2638               	.LM175:
- 2639 0e90 F501      		movw r30,r10
- 2640 0e92 2285      		ldd r18,Z+10
- 2641 0e94 3385      		ldd r19,Z+11
- 2642 0e96 2115      		cp r18,__zero_reg__
- 2643 0e98 3105      		cpc r19,__zero_reg__
- 2644 0e9a 51F0      		breq .L166
- 2645               		.stabn	68,0,572,.LM176-nmeap_gpgga
- 2646               	.LM176:
- 2647 0e9c C453      		subi r28,lo8(-(716))
- 2648 0e9e DD4F      		sbci r29,hi8(-(716))
- 2649 0ea0 4881      		ld r20,Y
- 2650 0ea2 5981      		ldd r21,Y+1
- 2651 0ea4 CC5C      		subi r28,lo8(-(-716))
- 2652 0ea6 D240      		sbci r29,hi8(-(-716))
- 2653 0ea8 B801      		movw r22,r16
- 2654 0eaa CE01      		movw r24,r28
- 2655 0eac F901      		movw r30,r18
- 2656 0eae 0995      		icall
- 2657               	.L166:
- 2658               		.stabn	68,0,576,.LM177-nmeap_gpgga
- 2659               	.LM177:
- 2660 0eb0 81E0      		ldi r24,lo8(1)
- 2661 0eb2 90E0      		ldi r25,hi8(1)
- 2662               	/* epilogue: frame size=0 */
- 2663 0eb4 DF91      		pop r29
- 2664 0eb6 CF91      		pop r28
- 2665 0eb8 1F91      		pop r17
- 2666 0eba 0F91      		pop r16
- 2667 0ebc FF90      		pop r15
- 2668 0ebe EF90      		pop r14
- 2669 0ec0 DF90      		pop r13
- 2670 0ec2 CF90      		pop r12
- 2671 0ec4 BF90      		pop r11
- 2672 0ec6 AF90      		pop r10
- 2673 0ec8 0895      		ret
- 2674               	/* epilogue end (size=11) */
- 2675               	/* function nmeap_gpgga size 224 (203) */
- 2676               		.size	nmeap_gpgga, .-nmeap_gpgga
-GAS LISTING /var/tmp//ccqKAok3.s 			page 65
-
-
- 2677               		.stabs	"i:r(0,1)",64,0,539,14
- 2678               		.stabs	"gga:r(0,23)=*(12,8)",64,0,543,16
- 2679               		.stabn	192,0,0,nmeap_gpgga-nmeap_gpgga
- 2680               		.stabn	224,0,0,.Lscope14-nmeap_gpgga
- 2681               	.Lscope14:
- 2682               		.stabs	"",36,0,0,.Lscope14-nmeap_gpgga
- 2683               		.stabd	78,0,0
- 2684               		.stabs	"nmeap_init:F(0,1)",36,0,177,nmeap_init
- 2685               		.stabs	"context:P(0,18)",64,0,176,30
- 2686               		.stabs	"user_data:P(13,4)",64,0,176,22
- 2687               	.global	nmeap_init
- 2688               		.type	nmeap_init, @function
- 2689               	nmeap_init:
- 2690               		.stabd	46,0,0
- 2691               		.stabn	68,0,177,.LM178-nmeap_init
- 2692               	.LM178:
- 2693               	/* prologue: frame size=0 */
- 2694               	/* prologue end (size=0) */
- 2695 0eca FC01      		movw r30,r24
- 2696               		.stabn	68,0,178,.LM179-nmeap_init
- 2697               	.LM179:
- 2698 0ecc 892B      		or r24,r25
- 2699 0ece 09F4      		brne .L171
- 2700               	.L174:
- 2701 0ed0 FFCF      		rjmp .L174
- 2702               	.L171:
- 2703               		.stabn	68,0,180,.LM180-nmeap_init
- 2704               	.LM180:
- 2705 0ed2 8EEC      		ldi r24,lo8(718)
- 2706 0ed4 92E0      		ldi r25,hi8(718)
- 2707 0ed6 DF01      		movw r26,r30
- 2708 0ed8 1D92      		st X+,__zero_reg__
- 2709 0eda 0197      		sbiw r24,1
- 2710 0edc E9F7      		brne .-6
- 2711               		.stabn	68,0,182,.LM181-nmeap_init
- 2712               	.LM181:
- 2713 0ede E453      		subi r30,lo8(-(716))
- 2714 0ee0 FD4F      		sbci r31,hi8(-(716))
- 2715 0ee2 7183      		std Z+1,r23
- 2716 0ee4 6083      		st Z,r22
- 2717               		.stabn	68,0,185,.LM182-nmeap_init
+ 2669 0eb8 90E0      		ldi r25,hi8(.LC2)
+ 2670 0eba 9F93      		push r25
+ 2671 0ebc 8F93      		push r24
+ 2672 0ebe 0E94 0000 		call printf
+ 2673               		.stabn	68,0,565,.LM179-nmeap_gpgga
+ 2674               	.LM179:
+ 2675 0ec2 0894      		sec
+ 2676 0ec4 E11C      		adc r14,__zero_reg__
+ 2677 0ec6 F11C      		adc r15,__zero_reg__
+ 2678 0ec8 8DB7      		in r24,__SP_L__
+ 2679 0eca 9EB7      		in r25,__SP_H__
+ 2680 0ecc 0696      		adiw r24,6
+ 2681               	.L168:
+ 2682 0ece 0FB6      		in __tmp_reg__,__SREG__
+ 2683 0ed0 F894      		cli
+ 2684 0ed2 9EBF      		out __SP_H__,r25
+ 2685 0ed4 0FBE      		out __SREG__,__tmp_reg__
+ 2686 0ed6 8DBF      		out __SP_L__,r24
+ 2687 0ed8 C255      		subi r28,lo8(-(430))
+ 2688 0eda DE4F      		sbci r29,hi8(-(430))
+ 2689 0edc 8881      		ld r24,Y
+ 2690 0ede 9981      		ldd r25,Y+1
+ 2691 0ee0 CE5A      		subi r28,lo8(-(-430))
+ 2692 0ee2 D140      		sbci r29,hi8(-(-430))
+ 2693 0ee4 E816      		cp r14,r24
+ 2694 0ee6 F906      		cpc r15,r25
+ 2695 0ee8 F4F2      		brlt .L163
+ 2696               		.stabn	68,0,571,.LM180-nmeap_gpgga
+ 2697               	.LM180:
+ 2698 0eea F501      		movw r30,r10
+ 2699 0eec 2285      		ldd r18,Z+10
+ 2700 0eee 3385      		ldd r19,Z+11
+ 2701 0ef0 2115      		cp r18,__zero_reg__
+ 2702 0ef2 3105      		cpc r19,__zero_reg__
+ 2703 0ef4 51F0      		breq .L165
+ 2704               		.stabn	68,0,572,.LM181-nmeap_gpgga
+ 2705               	.LM181:
+ 2706 0ef6 C453      		subi r28,lo8(-(716))
+ 2707 0ef8 DD4F      		sbci r29,hi8(-(716))
+ 2708 0efa 4881      		ld r20,Y
+ 2709 0efc 5981      		ldd r21,Y+1
+ 2710 0efe CC5C      		subi r28,lo8(-(-716))
+ 2711 0f00 D240      		sbci r29,hi8(-(-716))
+ 2712 0f02 B801      		movw r22,r16
+ 2713 0f04 CE01      		movw r24,r28
+ 2714 0f06 F901      		movw r30,r18
+ 2715 0f08 0995      		icall
+ 2716               	.L165:
+ 2717               		.stabn	68,0,576,.LM182-nmeap_gpgga
  2718               	.LM182:
- 2719 0ee6 80E0      		ldi r24,lo8(0)
- 2720 0ee8 90E0      		ldi r25,hi8(0)
+ 2719 0f0a 81E0      		ldi r24,lo8(1)
+ 2720 0f0c 90E0      		ldi r25,hi8(1)
  2721               	/* epilogue: frame size=0 */
- 2722 0eea 0895      		ret
- 2723               	/* epilogue end (size=1) */
- 2724               	/* function nmeap_init size 17 (16) */
- 2725               		.size	nmeap_init, .-nmeap_init
- 2726               	.Lscope15:
- 2727               		.stabs	"",36,0,0,.Lscope15-nmeap_init
- 2728               		.stabd	78,0,0
- 2729               		.stabs	"nmeap_addParser:F(0,1)",36,0,197,nmeap_addParser
- 2730               		.stabs	"context:P(0,18)",64,0,191,30
- 2731               		.stabs	"sentence_name:P(0,16)",64,0,192,22
- 2732               		.stabs	"sentence_parser:P(12,4)",64,0,193,28
- 2733               		.stabs	"sentence_callout:P(12,1)",64,0,194,14
-GAS LISTING /var/tmp//ccqKAok3.s 			page 66
+ 2722 0f0e DF91      		pop r29
+ 2723 0f10 CF91      		pop r28
+ 2724 0f12 1F91      		pop r17
+ 2725 0f14 0F91      		pop r16
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 66
 
 
- 2734               		.stabs	"sentence_data:P(13,4)",64,0,196,12
- 2735               	.global	nmeap_addParser
- 2736               		.type	nmeap_addParser, @function
- 2737               	nmeap_addParser:
- 2738               		.stabd	46,0,0
- 2739               		.stabn	68,0,197,.LM183-nmeap_addParser
- 2740               	.LM183:
- 2741               	/* prologue: frame size=0 */
- 2742 0eec CF92      		push r12
- 2743 0eee DF92      		push r13
- 2744 0ef0 EF92      		push r14
- 2745 0ef2 FF92      		push r15
- 2746 0ef4 0F93      		push r16
- 2747 0ef6 1F93      		push r17
- 2748 0ef8 CF93      		push r28
- 2749 0efa DF93      		push r29
- 2750               	/* prologue end (size=8) */
- 2751 0efc FC01      		movw r30,r24
- 2752 0efe EA01      		movw r28,r20
- 2753 0f00 7901      		movw r14,r18
- 2754 0f02 6801      		movw r12,r16
- 2755               		.stabn	68,0,201,.LM184-nmeap_addParser
+ 2726 0f16 FF90      		pop r15
+ 2727 0f18 EF90      		pop r14
+ 2728 0f1a DF90      		pop r13
+ 2729 0f1c CF90      		pop r12
+ 2730 0f1e BF90      		pop r11
+ 2731 0f20 AF90      		pop r10
+ 2732 0f22 0895      		ret
+ 2733               	/* epilogue end (size=11) */
+ 2734               	/* function nmeap_gpgga size 224 (203) */
+ 2735               		.size	nmeap_gpgga, .-nmeap_gpgga
+ 2736               		.stabs	"i:r(0,1)",64,0,539,14
+ 2737               		.stabs	"gga:r(0,23)=*(12,8)",64,0,543,16
+ 2738               		.stabn	192,0,0,nmeap_gpgga-nmeap_gpgga
+ 2739               		.stabn	224,0,0,.Lscope14-nmeap_gpgga
+ 2740               	.Lscope14:
+ 2741               		.stabs	"",36,0,0,.Lscope14-nmeap_gpgga
+ 2742               		.stabd	78,0,0
+ 2743               		.stabs	"nmeap_init:F(0,1)",36,0,177,nmeap_init
+ 2744               		.stabs	"context:P(0,18)",64,0,176,30
+ 2745               		.stabs	"user_data:P(13,4)",64,0,176,22
+ 2746               	.global	nmeap_init
+ 2747               		.type	nmeap_init, @function
+ 2748               	nmeap_init:
+ 2749               		.stabd	46,0,0
+ 2750               		.stabn	68,0,177,.LM183-nmeap_init
+ 2751               	.LM183:
+ 2752               	/* prologue: frame size=0 */
+ 2753               	/* prologue end (size=0) */
+ 2754 0f24 FC01      		movw r30,r24
+ 2755               		.stabn	68,0,178,.LM184-nmeap_init
  2756               	.LM184:
- 2757 0f04 0097      		sbiw r24,0
- 2758 0f06 09F4      		brne .L176
- 2759               	.L182:
- 2760 0f08 FFCF      		rjmp .L182
- 2761               	.L176:
- 2762               		.stabn	68,0,204,.LM185-nmeap_addParser
+ 2757 0f26 892B      		or r24,r25
+ 2758 0f28 09F4      		brne .L170
+ 2759               	.L173:
+ 2760 0f2a FFCF      		rjmp .L173
+ 2761               	.L170:
+ 2762               		.stabn	68,0,180,.LM185-nmeap_init
  2763               	.LM185:
- 2764 0f0a DC01      		movw r26,r24
- 2765 0f0c A059      		subi r26,lo8(-(112))
- 2766 0f0e BF4F      		sbci r27,hi8(-(112))
- 2767 0f10 2D91      		ld r18,X+
- 2768 0f12 3C91      		ld r19,X
- 2769 0f14 1197      		sbiw r26,1
- 2770 0f16 2830      		cpi r18,8
- 2771 0f18 3105      		cpc r19,__zero_reg__
- 2772 0f1a 1CF0      		brlt .L178
- 2773 0f1c 8FEF      		ldi r24,lo8(-1)
- 2774 0f1e 9FEF      		ldi r25,hi8(-1)
- 2775 0f20 22C0      		rjmp .L180
- 2776               	.L178:
- 2777               		.stabn	68,0,209,.LM186-nmeap_addParser
- 2778               	.LM186:
- 2779 0f22 8EE0      		ldi r24,lo8(14)
- 2780 0f24 90E0      		ldi r25,hi8(14)
- 2781 0f26 289F      		mul r18,r24
- 2782 0f28 8001      		movw r16,r0
- 2783 0f2a 299F      		mul r18,r25
- 2784 0f2c 100D      		add r17,r0
- 2785 0f2e 389F      		mul r19,r24
- 2786 0f30 100D      		add r17,r0
- 2787 0f32 1124      		clr r1
- 2788 0f34 0E0F      		add r16,r30
- 2789 0f36 1F1F      		adc r17,r31
- 2790               		.stabn	68,0,212,.LM187-nmeap_addParser
-GAS LISTING /var/tmp//ccqKAok3.s 			page 67
+ 2764 0f2c 8EEC      		ldi r24,lo8(718)
+ 2765 0f2e 92E0      		ldi r25,hi8(718)
+ 2766 0f30 DF01      		movw r26,r30
+ 2767 0f32 1D92      		st X+,__zero_reg__
+ 2768 0f34 0197      		sbiw r24,1
+ 2769 0f36 E9F7      		brne .-6
+ 2770               		.stabn	68,0,182,.LM186-nmeap_init
+ 2771               	.LM186:
+ 2772 0f38 E453      		subi r30,lo8(-(716))
+ 2773 0f3a FD4F      		sbci r31,hi8(-(716))
+ 2774 0f3c 7183      		std Z+1,r23
+ 2775 0f3e 6083      		st Z,r22
+ 2776               		.stabn	68,0,185,.LM187-nmeap_init
+ 2777               	.LM187:
+ 2778 0f40 80E0      		ldi r24,lo8(0)
+ 2779 0f42 90E0      		ldi r25,hi8(0)
+ 2780               	/* epilogue: frame size=0 */
+ 2781 0f44 0895      		ret
+ 2782               	/* epilogue end (size=1) */
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 67
 
 
- 2791               	.LM187:
- 2792 0f38 2F5F      		subi r18,lo8(-(1))
- 2793 0f3a 3F4F      		sbci r19,hi8(-(1))
- 2794 0f3c 2D93      		st X+,r18
- 2795 0f3e 3C93      		st X,r19
- 2796               		.stabn	68,0,215,.LM188-nmeap_addParser
- 2797               	.LM188:
- 2798 0f40 8EE0      		ldi r24,lo8(14)
- 2799 0f42 F801      		movw r30,r16
- 2800 0f44 1192      		st Z+,__zero_reg__
- 2801 0f46 8A95      	        dec r24
- 2802 0f48 E9F7      		brne .-6
- 2803               		.stabn	68,0,218,.LM189-nmeap_addParser
- 2804               	.LM189:
- 2805 0f4a 45E0      		ldi r20,lo8(5)
- 2806 0f4c 50E0      		ldi r21,hi8(5)
- 2807 0f4e C801      		movw r24,r16
- 2808 0f50 0E94 0000 		call strncpy
- 2809               		.stabn	68,0,221,.LM190-nmeap_addParser
- 2810               	.LM190:
- 2811 0f54 F801      		movw r30,r16
- 2812 0f56 D187      		std Z+9,r29
- 2813 0f58 C087      		std Z+8,r28
- 2814               		.stabn	68,0,224,.LM191-nmeap_addParser
- 2815               	.LM191:
- 2816 0f5a F386      		std Z+11,r15
- 2817 0f5c E286      		std Z+10,r14
- 2818               		.stabn	68,0,227,.LM192-nmeap_addParser
- 2819               	.LM192:
- 2820 0f5e D586      		std Z+13,r13
- 2821 0f60 C486      		std Z+12,r12
- 2822 0f62 80E0      		ldi r24,lo8(0)
- 2823 0f64 90E0      		ldi r25,hi8(0)
- 2824               	.L180:
- 2825               	/* epilogue: frame size=0 */
- 2826 0f66 DF91      		pop r29
- 2827 0f68 CF91      		pop r28
- 2828 0f6a 1F91      		pop r17
- 2829 0f6c 0F91      		pop r16
- 2830 0f6e FF90      		pop r15
- 2831 0f70 EF90      		pop r14
- 2832 0f72 DF90      		pop r13
- 2833 0f74 CF90      		pop r12
- 2834 0f76 0895      		ret
- 2835               	/* epilogue end (size=9) */
- 2836               	/* function nmeap_addParser size 70 (53) */
- 2837               		.size	nmeap_addParser, .-nmeap_addParser
- 2838               		.stabs	"s:r(0,21)",64,0,198,16
- 2839               		.stabn	192,0,0,nmeap_addParser-nmeap_addParser
- 2840               		.stabn	224,0,0,.Lscope16-nmeap_addParser
- 2841               	.Lscope16:
- 2842               		.stabs	"",36,0,0,.Lscope16-nmeap_addParser
- 2843               		.stabd	78,0,0
- 2844               		.section	.progmem.data
- 2845               		.type	__c.2378, @object
- 2846               		.size	__c.2378, 12
- 2847               	__c.2378:
-GAS LISTING /var/tmp//ccqKAok3.s 			page 68
+ 2783               	/* function nmeap_init size 17 (16) */
+ 2784               		.size	nmeap_init, .-nmeap_init
+ 2785               	.Lscope15:
+ 2786               		.stabs	"",36,0,0,.Lscope15-nmeap_init
+ 2787               		.stabd	78,0,0
+ 2788               		.stabs	"nmeap_addParser:F(0,1)",36,0,197,nmeap_addParser
+ 2789               		.stabs	"context:P(0,18)",64,0,191,30
+ 2790               		.stabs	"sentence_name:P(0,16)",64,0,192,22
+ 2791               		.stabs	"sentence_parser:P(12,4)",64,0,193,28
+ 2792               		.stabs	"sentence_callout:P(12,1)",64,0,194,14
+ 2793               		.stabs	"sentence_data:P(13,4)",64,0,196,12
+ 2794               	.global	nmeap_addParser
+ 2795               		.type	nmeap_addParser, @function
+ 2796               	nmeap_addParser:
+ 2797               		.stabd	46,0,0
+ 2798               		.stabn	68,0,197,.LM188-nmeap_addParser
+ 2799               	.LM188:
+ 2800               	/* prologue: frame size=0 */
+ 2801 0f46 CF92      		push r12
+ 2802 0f48 DF92      		push r13
+ 2803 0f4a EF92      		push r14
+ 2804 0f4c FF92      		push r15
+ 2805 0f4e 0F93      		push r16
+ 2806 0f50 1F93      		push r17
+ 2807 0f52 CF93      		push r28
+ 2808 0f54 DF93      		push r29
+ 2809               	/* prologue end (size=8) */
+ 2810 0f56 FC01      		movw r30,r24
+ 2811 0f58 EA01      		movw r28,r20
+ 2812 0f5a 7901      		movw r14,r18
+ 2813 0f5c 6801      		movw r12,r16
+ 2814               		.stabn	68,0,201,.LM189-nmeap_addParser
+ 2815               	.LM189:
+ 2816 0f5e 0097      		sbiw r24,0
+ 2817 0f60 09F4      		brne .L175
+ 2818               	.L181:
+ 2819 0f62 FFCF      		rjmp .L181
+ 2820               	.L175:
+ 2821               		.stabn	68,0,204,.LM190-nmeap_addParser
+ 2822               	.LM190:
+ 2823 0f64 DC01      		movw r26,r24
+ 2824 0f66 A059      		subi r26,lo8(-(112))
+ 2825 0f68 BF4F      		sbci r27,hi8(-(112))
+ 2826 0f6a 2D91      		ld r18,X+
+ 2827 0f6c 3C91      		ld r19,X
+ 2828 0f6e 1197      		sbiw r26,1
+ 2829 0f70 2830      		cpi r18,8
+ 2830 0f72 3105      		cpc r19,__zero_reg__
+ 2831 0f74 1CF0      		brlt .L177
+ 2832 0f76 8FEF      		ldi r24,lo8(-1)
+ 2833 0f78 9FEF      		ldi r25,hi8(-1)
+ 2834 0f7a 22C0      		rjmp .L179
+ 2835               	.L177:
+ 2836               		.stabn	68,0,209,.LM191-nmeap_addParser
+ 2837               	.LM191:
+ 2838 0f7c 8EE0      		ldi r24,lo8(14)
+ 2839 0f7e 90E0      		ldi r25,hi8(14)
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 68
 
 
- 2848 0003 0D0A 7365 		.string	"\r\nsent i2c!"
- 2848      6E74 2069 
- 2848      3263 2100 
- 2849               		.type	__c.2376, @object
- 2850               		.size	__c.2376, 3
- 2851               	__c.2376:
- 2852 000f 2E0D 00   		.string	".\r"
- 2853               		.type	__c.2365, @object
- 2854               		.size	__c.2365, 3
- 2855               	__c.2365:
- 2856 0012 0D0A 00   		.string	"\r\n"
- 2857               		.type	__c.2363, @object
- 2858               		.size	__c.2363, 16
- 2859               	__c.2363:
- 2860 0015 6767 612E 		.string	"gga.latitude = "
- 2860      6C61 7469 
- 2860      7475 6465 
- 2860      203D 2000 
- 2861               		.type	__c.2361, @object
- 2862               		.size	__c.2361, 18
- 2863               	__c.2361:
- 2864 0025 6E6D 6561 		.string	"nmeap_add RMC %d\n"
- 2864      705F 6164 
- 2864      6420 524D 
- 2864      4320 2564 
- 2864      0A00 
- 2865               		.type	__c.2359, @object
- 2866               		.size	__c.2359, 18
- 2867               	__c.2359:
- 2868 0037 6E6D 6561 		.string	"nmeap_add GGA %d\n"
- 2868      705F 6164 
- 2868      6420 4747 
- 2868      4120 2564 
- 2868      0A00 
- 2869               		.type	__c.2357, @object
- 2870               		.size	__c.2357, 15
- 2871               	__c.2357:
- 2872 0049 6E6D 6561 		.string	"nmeap_init %d\n"
- 2872      705F 696E 
- 2872      6974 2025 
- 2872      640A 00
- 2873               		.type	__c.2355, @object
- 2874               		.size	__c.2355, 14
- 2875               	__c.2355:
- 2876 0058 7365 7420 		.string	"set handler\r\n"
- 2876      6861 6E64 
- 2876      6C65 720D 
- 2876      0A00 
- 2877               		.data
- 2878               	.LC3:
- 2879 0040 4750 4747 		.string	"GPGGA"
- 2879      4100 
- 2880               	.LC4:
- 2881 0046 4750 524D 		.string	"GPRMC"
- 2881      4300 
- 2882               		.text
- 2883               		.stabs	"main:F(0,1)",36,0,54,main
-GAS LISTING /var/tmp//ccqKAok3.s 			page 69
+ 2840 0f80 289F      		mul r18,r24
+ 2841 0f82 8001      		movw r16,r0
+ 2842 0f84 299F      		mul r18,r25
+ 2843 0f86 100D      		add r17,r0
+ 2844 0f88 389F      		mul r19,r24
+ 2845 0f8a 100D      		add r17,r0
+ 2846 0f8c 1124      		clr r1
+ 2847 0f8e 0E0F      		add r16,r30
+ 2848 0f90 1F1F      		adc r17,r31
+ 2849               		.stabn	68,0,212,.LM192-nmeap_addParser
+ 2850               	.LM192:
+ 2851 0f92 2F5F      		subi r18,lo8(-(1))
+ 2852 0f94 3F4F      		sbci r19,hi8(-(1))
+ 2853 0f96 2D93      		st X+,r18
+ 2854 0f98 3C93      		st X,r19
+ 2855               		.stabn	68,0,215,.LM193-nmeap_addParser
+ 2856               	.LM193:
+ 2857 0f9a 8EE0      		ldi r24,lo8(14)
+ 2858 0f9c F801      		movw r30,r16
+ 2859 0f9e 1192      		st Z+,__zero_reg__
+ 2860 0fa0 8A95      	        dec r24
+ 2861 0fa2 E9F7      		brne .-6
+ 2862               		.stabn	68,0,218,.LM194-nmeap_addParser
+ 2863               	.LM194:
+ 2864 0fa4 45E0      		ldi r20,lo8(5)
+ 2865 0fa6 50E0      		ldi r21,hi8(5)
+ 2866 0fa8 C801      		movw r24,r16
+ 2867 0faa 0E94 0000 		call strncpy
+ 2868               		.stabn	68,0,221,.LM195-nmeap_addParser
+ 2869               	.LM195:
+ 2870 0fae F801      		movw r30,r16
+ 2871 0fb0 D187      		std Z+9,r29
+ 2872 0fb2 C087      		std Z+8,r28
+ 2873               		.stabn	68,0,224,.LM196-nmeap_addParser
+ 2874               	.LM196:
+ 2875 0fb4 F386      		std Z+11,r15
+ 2876 0fb6 E286      		std Z+10,r14
+ 2877               		.stabn	68,0,227,.LM197-nmeap_addParser
+ 2878               	.LM197:
+ 2879 0fb8 D586      		std Z+13,r13
+ 2880 0fba C486      		std Z+12,r12
+ 2881 0fbc 80E0      		ldi r24,lo8(0)
+ 2882 0fbe 90E0      		ldi r25,hi8(0)
+ 2883               	.L179:
+ 2884               	/* epilogue: frame size=0 */
+ 2885 0fc0 DF91      		pop r29
+ 2886 0fc2 CF91      		pop r28
+ 2887 0fc4 1F91      		pop r17
+ 2888 0fc6 0F91      		pop r16
+ 2889 0fc8 FF90      		pop r15
+ 2890 0fca EF90      		pop r14
+ 2891 0fcc DF90      		pop r13
+ 2892 0fce CF90      		pop r12
+ 2893 0fd0 0895      		ret
+ 2894               	/* epilogue end (size=9) */
+ 2895               	/* function nmeap_addParser size 70 (53) */
+ 2896               		.size	nmeap_addParser, .-nmeap_addParser
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 69
 
 
- 2884               	.global	main
- 2885               		.type	main, @function
- 2886               	main:
- 2887               		.stabd	46,0,0
- 2888               		.stabs	"gpstest.c",132,0,0,.Ltext5
- 2889               	.Ltext5:
- 2890               		.stabn	68,0,54,.LM193-main
- 2891               	.LM193:
- 2892               	/* prologue: frame size=0 */
- 2893 0f78 C0E0      		ldi r28,lo8(__stack - 0)
- 2894 0f7a D0E0      		ldi r29,hi8(__stack - 0)
- 2895 0f7c DEBF      		out __SP_H__,r29
- 2896 0f7e CDBF      		out __SP_L__,r28
- 2897               	/* prologue end (size=4) */
- 2898               		.stabn	68,0,66,.LM194-main
- 2899               	.LM194:
- 2900 0f80 1092 0000 		sts message_sent,__zero_reg__
- 2901               		.stabn	68,0,73,.LM195-main
- 2902               	.LM195:
- 2903 0f84 0E94 0000 		call uartInit
- 2904               		.stabn	68,0,75,.LM196-main
- 2905               	.LM196:
- 2906 0f88 60E6      		ldi r22,lo8(2400)
- 2907 0f8a 79E0      		ldi r23,hi8(2400)
- 2908 0f8c 80E0      		ldi r24,hlo8(2400)
- 2909 0f8e 90E0      		ldi r25,hhi8(2400)
- 2910 0f90 0E94 0000 		call uartSetBaudRate
- 2911               		.stabn	68,0,77,.LM197-main
- 2912               	.LM197:
- 2913 0f94 80E0      		ldi r24,lo8(pm(uartSendByte))
- 2914 0f96 90E0      		ldi r25,hi8(pm(uartSendByte))
- 2915 0f98 0E94 0000 		call rprintfInit
- 2916               		.stabn	68,0,78,.LM198-main
- 2917               	.LM198:
- 2918 0f9c 0E94 0000 		call initVideo
- 2919               		.stabn	68,0,80,.LM199-main
- 2920               	.LM199:
- 2921 0fa0 60EC      		ldi r22,lo8(4800)
- 2922 0fa2 72E1      		ldi r23,hi8(4800)
- 2923 0fa4 80E0      		ldi r24,hlo8(4800)
- 2924 0fa6 90E0      		ldi r25,hhi8(4800)
- 2925 0fa8 0E94 0000 		call uartSetBaudRate
- 2926               		.stabn	68,0,82,.LM200-main
- 2927               	.LM200:
- 2928 0fac 80E0      		ldi r24,lo8(pm(uartSendByte))
- 2929 0fae 90E0      		ldi r25,hi8(pm(uartSendByte))
- 2930 0fb0 0E94 0000 		call rprintfInit
- 2931               		.stabn	68,0,84,.LM201-main
- 2932               	.LM201:
- 2933 0fb4 0E94 0000 		call timerInit
- 2934               		.stabn	68,0,96,.LM202-main
- 2935               	.LM202:
- 2936 0fb8 0E94 0000 		call timerInit
- 2937               		.stabn	68,0,97,.LM203-main
- 2938               	.LM203:
- 2939 0fbc 84EF      		ldi r24,lo8(500)
- 2940 0fbe 91E0      		ldi r25,hi8(500)
-GAS LISTING /var/tmp//ccqKAok3.s 			page 70
+ 2897               		.stabs	"s:r(0,21)",64,0,198,16
+ 2898               		.stabn	192,0,0,nmeap_addParser-nmeap_addParser
+ 2899               		.stabn	224,0,0,.Lscope16-nmeap_addParser
+ 2900               	.Lscope16:
+ 2901               		.stabs	"",36,0,0,.Lscope16-nmeap_addParser
+ 2902               		.stabd	78,0,0
+ 2903               		.section	.progmem.data
+ 2904               		.type	__c.2378, @object
+ 2905               		.size	__c.2378, 12
+ 2906               	__c.2378:
+ 2907 000f 0D0A 7365 		.string	"\r\nsent i2c!"
+ 2907      6E74 2069 
+ 2907      3263 2100 
+ 2908               		.type	__c.2376, @object
+ 2909               		.size	__c.2376, 3
+ 2910               	__c.2376:
+ 2911 001b 2E0D 00   		.string	".\r"
+ 2912               		.type	__c.2365, @object
+ 2913               		.size	__c.2365, 3
+ 2914               	__c.2365:
+ 2915 001e 0D0A 00   		.string	"\r\n"
+ 2916               		.type	__c.2363, @object
+ 2917               		.size	__c.2363, 16
+ 2918               	__c.2363:
+ 2919 0021 6767 612E 		.string	"gga.latitude = "
+ 2919      6C61 7469 
+ 2919      7475 6465 
+ 2919      203D 2000 
+ 2920               		.type	__c.2361, @object
+ 2921               		.size	__c.2361, 18
+ 2922               	__c.2361:
+ 2923 0031 6E6D 6561 		.string	"nmeap_add RMC %d\n"
+ 2923      705F 6164 
+ 2923      6420 524D 
+ 2923      4320 2564 
+ 2923      0A00 
+ 2924               		.type	__c.2359, @object
+ 2925               		.size	__c.2359, 18
+ 2926               	__c.2359:
+ 2927 0043 6E6D 6561 		.string	"nmeap_add GGA %d\n"
+ 2927      705F 6164 
+ 2927      6420 4747 
+ 2927      4120 2564 
+ 2927      0A00 
+ 2928               		.type	__c.2357, @object
+ 2929               		.size	__c.2357, 15
+ 2930               	__c.2357:
+ 2931 0055 6E6D 6561 		.string	"nmeap_init %d\n"
+ 2931      705F 696E 
+ 2931      6974 2025 
+ 2931      640A 00
+ 2932               		.type	__c.2355, @object
+ 2933               		.size	__c.2355, 14
+ 2934               	__c.2355:
+ 2935 0064 7365 7420 		.string	"set handler\r\n"
+ 2935      6861 6E64 
+ 2935      6C65 720D 
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 70
 
 
- 2941 0fc0 0E94 0000 		call timerPause
- 2942               		.stabn	68,0,102,.LM204-main
- 2943               	.LM204:
- 2944 0fc4 0E94 0000 		call i2cInit
- 2945               		.stabn	68,0,104,.LM205-main
- 2946               	.LM205:
- 2947 0fc8 6FEF      		ldi r22,lo8(-1)
- 2948 0fca 80EA      		ldi r24,lo8(-96)
- 2949 0fcc 0E94 0000 		call i2cSetLocalDeviceAddr
- 2950               		.stabn	68,0,108,.LM206-main
- 2951               	.LM206:
- 2952 0fd0 80E0      		ldi r24,lo8(pm(i2cSlaveReceiveService))
- 2953 0fd2 90E0      		ldi r25,hi8(pm(i2cSlaveReceiveService))
- 2954 0fd4 0E94 0000 		call i2cSetSlaveReceiveHandler
- 2955               		.stabn	68,0,112,.LM207-main
- 2956               	.LM207:
- 2957 0fd8 80E0      		ldi r24,lo8(pm(i2cSlaveTransmitService))
- 2958 0fda 90E0      		ldi r25,hi8(pm(i2cSlaveTransmitService))
- 2959 0fdc 0E94 0000 		call i2cSetSlaveTransmitHandler
- 2960               		.stabn	68,0,116,.LM208-main
- 2961               	.LM208:
- 2962 0fe0 40E8      		ldi r20,lo8(128)
- 2963 0fe2 50E0      		ldi r21,hi8(128)
- 2964 0fe4 60E0      		ldi r22,lo8(gpsBufferData)
- 2965 0fe6 70E0      		ldi r23,hi8(gpsBufferData)
- 2966 0fe8 80E0      		ldi r24,lo8(gpsBuffer)
- 2967 0fea 90E0      		ldi r25,hi8(gpsBuffer)
- 2968 0fec 0E94 0000 		call bufferInit
- 2969               		.stabn	68,0,118,.LM209-main
- 2970               	.LM209:
- 2971 0ff0 80E0      		ldi r24,lo8(pm(addToBuffer))
- 2972 0ff2 90E0      		ldi r25,hi8(pm(addToBuffer))
- 2973 0ff4 0E94 0000 		call uartSetRxHandler
- 2974               		.stabn	68,0,120,.LM210-main
- 2975               	.LM210:
- 2976 0ff8 80E0      		ldi r24,lo8(__c.2355)
- 2977 0ffa 90E0      		ldi r25,hi8(__c.2355)
- 2978 0ffc 9F93      		push r25
- 2979 0ffe 8F93      		push r24
- 2980 1000 11E0      		ldi r17,lo8(1)
- 2981 1002 F12E      		mov r15,r17
- 2982 1004 FF92      		push r15
- 2983 1006 0E94 0000 		call rprintf1RamRom
- 2984               		.stabn	68,0,123,.LM211-main
- 2985               	.LM211:
- 2986 100a 60E0      		ldi r22,lo8(user_data)
- 2987 100c 70E0      		ldi r23,hi8(user_data)
- 2988 100e 80E0      		ldi r24,lo8(nmea)
- 2989 1010 90E0      		ldi r25,hi8(nmea)
- 2990 1012 0E94 0000 		call nmeap_init
- 2991               		.stabn	68,0,124,.LM212-main
- 2992               	.LM212:
- 2993 1016 0F90      		pop __tmp_reg__
- 2994 1018 0F90      		pop __tmp_reg__
- 2995 101a 0F90      	 	pop __tmp_reg__
- 2996 101c 0097      		sbiw r24,0
- 2997 101e 71F0      		breq .L184
-GAS LISTING /var/tmp//ccqKAok3.s 			page 71
+ 2935      0A00 
+ 2936               		.data
+ 2937               	.LC3:
+ 2938 0040 4750 4747 		.string	"GPGGA"
+ 2938      4100 
+ 2939               	.LC4:
+ 2940 0046 4750 524D 		.string	"GPRMC"
+ 2940      4300 
+ 2941               		.text
+ 2942               		.stabs	"main:F(0,1)",36,0,54,main
+ 2943               	.global	main
+ 2944               		.type	main, @function
+ 2945               	main:
+ 2946               		.stabd	46,0,0
+ 2947               		.stabs	"gpstest.c",132,0,0,.Ltext5
+ 2948               	.Ltext5:
+ 2949               		.stabn	68,0,54,.LM198-main
+ 2950               	.LM198:
+ 2951               	/* prologue: frame size=0 */
+ 2952 0fd2 C0E0      		ldi r28,lo8(__stack - 0)
+ 2953 0fd4 D0E0      		ldi r29,hi8(__stack - 0)
+ 2954 0fd6 DEBF      		out __SP_H__,r29
+ 2955 0fd8 CDBF      		out __SP_L__,r28
+ 2956               	/* prologue end (size=4) */
+ 2957               		.stabn	68,0,66,.LM199-main
+ 2958               	.LM199:
+ 2959 0fda 1092 0000 		sts message_sent,__zero_reg__
+ 2960               		.stabn	68,0,73,.LM200-main
+ 2961               	.LM200:
+ 2962 0fde 0E94 0000 		call uartInit
+ 2963               		.stabn	68,0,75,.LM201-main
+ 2964               	.LM201:
+ 2965 0fe2 60E6      		ldi r22,lo8(2400)
+ 2966 0fe4 79E0      		ldi r23,hi8(2400)
+ 2967 0fe6 80E0      		ldi r24,hlo8(2400)
+ 2968 0fe8 90E0      		ldi r25,hhi8(2400)
+ 2969 0fea 0E94 0000 		call uartSetBaudRate
+ 2970               		.stabn	68,0,77,.LM202-main
+ 2971               	.LM202:
+ 2972 0fee 80E0      		ldi r24,lo8(pm(uartSendByte))
+ 2973 0ff0 90E0      		ldi r25,hi8(pm(uartSendByte))
+ 2974 0ff2 0E94 0000 		call rprintfInit
+ 2975               		.stabn	68,0,78,.LM203-main
+ 2976               	.LM203:
+ 2977 0ff6 0E94 0000 		call initVideo
+ 2978               		.stabn	68,0,80,.LM204-main
+ 2979               	.LM204:
+ 2980 0ffa 60EC      		ldi r22,lo8(4800)
+ 2981 0ffc 72E1      		ldi r23,hi8(4800)
+ 2982 0ffe 80E0      		ldi r24,hlo8(4800)
+ 2983 1000 90E0      		ldi r25,hhi8(4800)
+ 2984 1002 0E94 0000 		call uartSetBaudRate
+ 2985               		.stabn	68,0,82,.LM205-main
+ 2986               	.LM205:
+ 2987 1006 80E0      		ldi r24,lo8(pm(uartSendByte))
+ 2988 1008 90E0      		ldi r25,hi8(pm(uartSendByte))
+ 2989 100a 0E94 0000 		call rprintfInit
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 71
 
 
- 2998               		.stabn	68,0,125,.LM213-main
- 2999               	.LM213:
- 3000 1020 9F93      		push r25
- 3001 1022 8F93      		push r24
- 3002 1024 80E0      		ldi r24,lo8(__c.2357)
- 3003 1026 90E0      		ldi r25,hi8(__c.2357)
- 3004 1028 9F93      		push r25
- 3005 102a 8F93      		push r24
- 3006 102c FF92      		push r15
- 3007 102e 0E94 0000 		call rprintf1RamRom
- 3008 1032 0F90      		pop __tmp_reg__
- 3009 1034 0F90      		pop __tmp_reg__
- 3010 1036 0F90      		pop __tmp_reg__
- 3011 1038 0F90      		pop __tmp_reg__
- 3012 103a 0F90      		pop __tmp_reg__
- 3013               	.L184:
- 3014               		.stabn	68,0,128,.LM214-main
- 3015               	.LM214:
- 3016 103c 00E0      		ldi r16,lo8(gga)
- 3017 103e 10E0      		ldi r17,hi8(gga)
- 3018 1040 20E0      		ldi r18,lo8(0)
- 3019 1042 30E0      		ldi r19,hi8(0)
- 3020 1044 40E0      		ldi r20,lo8(pm(nmeap_gpgga))
- 3021 1046 50E0      		ldi r21,hi8(pm(nmeap_gpgga))
- 3022 1048 60E0      		ldi r22,lo8(.LC3)
- 3023 104a 70E0      		ldi r23,hi8(.LC3)
- 3024 104c 80E0      		ldi r24,lo8(nmea)
- 3025 104e 90E0      		ldi r25,hi8(nmea)
- 3026 1050 0E94 0000 		call nmeap_addParser
- 3027               		.stabn	68,0,129,.LM215-main
- 3028               	.LM215:
- 3029 1054 0097      		sbiw r24,0
- 3030 1056 71F0      		breq .L186
- 3031               		.stabn	68,0,130,.LM216-main
- 3032               	.LM216:
- 3033 1058 9F93      		push r25
- 3034 105a 8F93      		push r24
- 3035 105c 80E0      		ldi r24,lo8(__c.2359)
- 3036 105e 90E0      		ldi r25,hi8(__c.2359)
- 3037 1060 9F93      		push r25
- 3038 1062 8F93      		push r24
- 3039 1064 FF92      		push r15
- 3040 1066 0E94 0000 		call rprintf1RamRom
- 3041 106a 0F90      		pop __tmp_reg__
- 3042 106c 0F90      		pop __tmp_reg__
- 3043 106e 0F90      		pop __tmp_reg__
- 3044 1070 0F90      		pop __tmp_reg__
- 3045 1072 0F90      		pop __tmp_reg__
- 3046               	.L186:
- 3047               		.stabn	68,0,132,.LM217-main
- 3048               	.LM217:
- 3049 1074 00E0      		ldi r16,lo8(rmc)
- 3050 1076 10E0      		ldi r17,hi8(rmc)
- 3051 1078 20E0      		ldi r18,lo8(0)
- 3052 107a 30E0      		ldi r19,hi8(0)
- 3053 107c 40E0      		ldi r20,lo8(pm(nmeap_gprmc))
- 3054 107e 50E0      		ldi r21,hi8(pm(nmeap_gprmc))
-GAS LISTING /var/tmp//ccqKAok3.s 			page 72
+ 2990               		.stabn	68,0,84,.LM206-main
+ 2991               	.LM206:
+ 2992 100e 0E94 0000 		call timerInit
+ 2993               		.stabn	68,0,96,.LM207-main
+ 2994               	.LM207:
+ 2995 1012 0E94 0000 		call timerInit
+ 2996               		.stabn	68,0,97,.LM208-main
+ 2997               	.LM208:
+ 2998 1016 84EF      		ldi r24,lo8(500)
+ 2999 1018 91E0      		ldi r25,hi8(500)
+ 3000 101a 0E94 0000 		call timerPause
+ 3001               		.stabn	68,0,102,.LM209-main
+ 3002               	.LM209:
+ 3003 101e 0E94 0000 		call i2cInit
+ 3004               		.stabn	68,0,104,.LM210-main
+ 3005               	.LM210:
+ 3006 1022 6FEF      		ldi r22,lo8(-1)
+ 3007 1024 80EA      		ldi r24,lo8(-96)
+ 3008 1026 0E94 0000 		call i2cSetLocalDeviceAddr
+ 3009               		.stabn	68,0,108,.LM211-main
+ 3010               	.LM211:
+ 3011 102a 80E0      		ldi r24,lo8(pm(i2cSlaveReceiveService))
+ 3012 102c 90E0      		ldi r25,hi8(pm(i2cSlaveReceiveService))
+ 3013 102e 0E94 0000 		call i2cSetSlaveReceiveHandler
+ 3014               		.stabn	68,0,112,.LM212-main
+ 3015               	.LM212:
+ 3016 1032 80E0      		ldi r24,lo8(pm(i2cSlaveTransmitService))
+ 3017 1034 90E0      		ldi r25,hi8(pm(i2cSlaveTransmitService))
+ 3018 1036 0E94 0000 		call i2cSetSlaveTransmitHandler
+ 3019               		.stabn	68,0,116,.LM213-main
+ 3020               	.LM213:
+ 3021 103a 40E8      		ldi r20,lo8(128)
+ 3022 103c 50E0      		ldi r21,hi8(128)
+ 3023 103e 60E0      		ldi r22,lo8(gpsBufferData)
+ 3024 1040 70E0      		ldi r23,hi8(gpsBufferData)
+ 3025 1042 80E0      		ldi r24,lo8(gpsBuffer)
+ 3026 1044 90E0      		ldi r25,hi8(gpsBuffer)
+ 3027 1046 0E94 0000 		call bufferInit
+ 3028               		.stabn	68,0,118,.LM214-main
+ 3029               	.LM214:
+ 3030 104a 80E0      		ldi r24,lo8(pm(addToBuffer))
+ 3031 104c 90E0      		ldi r25,hi8(pm(addToBuffer))
+ 3032 104e 0E94 0000 		call uartSetRxHandler
+ 3033               		.stabn	68,0,120,.LM215-main
+ 3034               	.LM215:
+ 3035 1052 80E0      		ldi r24,lo8(__c.2355)
+ 3036 1054 90E0      		ldi r25,hi8(__c.2355)
+ 3037 1056 9F93      		push r25
+ 3038 1058 8F93      		push r24
+ 3039 105a 11E0      		ldi r17,lo8(1)
+ 3040 105c F12E      		mov r15,r17
+ 3041 105e FF92      		push r15
+ 3042 1060 0E94 0000 		call rprintf1RamRom
+ 3043               		.stabn	68,0,123,.LM216-main
+ 3044               	.LM216:
+ 3045 1064 60E0      		ldi r22,lo8(user_data)
+ 3046 1066 70E0      		ldi r23,hi8(user_data)
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 72
 
 
- 3055 1080 60E0      		ldi r22,lo8(.LC4)
- 3056 1082 70E0      		ldi r23,hi8(.LC4)
- 3057 1084 80E0      		ldi r24,lo8(nmea)
- 3058 1086 90E0      		ldi r25,hi8(nmea)
- 3059 1088 0E94 0000 		call nmeap_addParser
- 3060               		.stabn	68,0,133,.LM218-main
- 3061               	.LM218:
- 3062 108c 0097      		sbiw r24,0
- 3063 108e 71F0      		breq .L188
- 3064               		.stabn	68,0,134,.LM219-main
- 3065               	.LM219:
- 3066 1090 9F93      		push r25
- 3067 1092 8F93      		push r24
- 3068 1094 80E0      		ldi r24,lo8(__c.2361)
- 3069 1096 90E0      		ldi r25,hi8(__c.2361)
- 3070 1098 9F93      		push r25
- 3071 109a 8F93      		push r24
- 3072 109c FF92      		push r15
- 3073 109e 0E94 0000 		call rprintf1RamRom
- 3074 10a2 0F90      		pop __tmp_reg__
- 3075 10a4 0F90      		pop __tmp_reg__
- 3076 10a6 0F90      		pop __tmp_reg__
- 3077 10a8 0F90      		pop __tmp_reg__
- 3078 10aa 0F90      		pop __tmp_reg__
- 3079               	.L188:
- 3080               		.stabn	68,0,136,.LM220-main
- 3081               	.LM220:
- 3082 10ac 80E0      		ldi r24,lo8(__c.2363)
- 3083 10ae 90E0      		ldi r25,hi8(__c.2363)
- 3084 10b0 9F93      		push r25
- 3085 10b2 8F93      		push r24
- 3086 10b4 FF92      		push r15
- 3087 10b6 0E94 0000 		call rprintf1RamRom
- 3088               		.stabn	68,0,137,.LM221-main
- 3089               	.LM221:
- 3090 10ba 4091 0000 		lds r20,gga
- 3091 10be 5091 0000 		lds r21,(gga)+1
- 3092 10c2 6091 0000 		lds r22,(gga)+2
- 3093 10c6 7091 0000 		lds r23,(gga)+3
- 3094 10ca 88E0      		ldi r24,lo8(8)
- 3095 10cc 0E94 0000 		call rprintfFloat
- 3096               		.stabn	68,0,138,.LM222-main
- 3097               	.LM222:
- 3098 10d0 80E0      		ldi r24,lo8(__c.2365)
- 3099 10d2 90E0      		ldi r25,hi8(__c.2365)
- 3100 10d4 9F93      		push r25
- 3101 10d6 8F93      		push r24
- 3102 10d8 FF92      		push r15
- 3103 10da 0E94 0000 		call rprintf1RamRom
- 3104 10de 8DB7      		in r24,__SP_L__
- 3105 10e0 9EB7      		in r25,__SP_H__
- 3106 10e2 0696      		adiw r24,6
- 3107 10e4 0FB6      		in __tmp_reg__,__SREG__
- 3108 10e6 F894      		cli
- 3109 10e8 9EBF      		out __SP_H__,r25
- 3110 10ea 0FBE      		out __SREG__,__tmp_reg__
- 3111 10ec 8DBF      		out __SP_L__,r24
-GAS LISTING /var/tmp//ccqKAok3.s 			page 73
+ 3047 1068 80E0      		ldi r24,lo8(nmea)
+ 3048 106a 90E0      		ldi r25,hi8(nmea)
+ 3049 106c 0E94 0000 		call nmeap_init
+ 3050               		.stabn	68,0,124,.LM217-main
+ 3051               	.LM217:
+ 3052 1070 0F90      		pop __tmp_reg__
+ 3053 1072 0F90      		pop __tmp_reg__
+ 3054 1074 0F90      	 	pop __tmp_reg__
+ 3055 1076 0097      		sbiw r24,0
+ 3056 1078 71F0      		breq .L183
+ 3057               		.stabn	68,0,125,.LM218-main
+ 3058               	.LM218:
+ 3059 107a 9F93      		push r25
+ 3060 107c 8F93      		push r24
+ 3061 107e 80E0      		ldi r24,lo8(__c.2357)
+ 3062 1080 90E0      		ldi r25,hi8(__c.2357)
+ 3063 1082 9F93      		push r25
+ 3064 1084 8F93      		push r24
+ 3065 1086 FF92      		push r15
+ 3066 1088 0E94 0000 		call rprintf1RamRom
+ 3067 108c 0F90      		pop __tmp_reg__
+ 3068 108e 0F90      		pop __tmp_reg__
+ 3069 1090 0F90      		pop __tmp_reg__
+ 3070 1092 0F90      		pop __tmp_reg__
+ 3071 1094 0F90      		pop __tmp_reg__
+ 3072               	.L183:
+ 3073               		.stabn	68,0,128,.LM219-main
+ 3074               	.LM219:
+ 3075 1096 00E0      		ldi r16,lo8(gga)
+ 3076 1098 10E0      		ldi r17,hi8(gga)
+ 3077 109a 20E0      		ldi r18,lo8(0)
+ 3078 109c 30E0      		ldi r19,hi8(0)
+ 3079 109e 40E0      		ldi r20,lo8(pm(nmeap_gpgga))
+ 3080 10a0 50E0      		ldi r21,hi8(pm(nmeap_gpgga))
+ 3081 10a2 60E0      		ldi r22,lo8(.LC3)
+ 3082 10a4 70E0      		ldi r23,hi8(.LC3)
+ 3083 10a6 80E0      		ldi r24,lo8(nmea)
+ 3084 10a8 90E0      		ldi r25,hi8(nmea)
+ 3085 10aa 0E94 0000 		call nmeap_addParser
+ 3086               		.stabn	68,0,129,.LM220-main
+ 3087               	.LM220:
+ 3088 10ae 0097      		sbiw r24,0
+ 3089 10b0 71F0      		breq .L185
+ 3090               		.stabn	68,0,130,.LM221-main
+ 3091               	.LM221:
+ 3092 10b2 9F93      		push r25
+ 3093 10b4 8F93      		push r24
+ 3094 10b6 80E0      		ldi r24,lo8(__c.2359)
+ 3095 10b8 90E0      		ldi r25,hi8(__c.2359)
+ 3096 10ba 9F93      		push r25
+ 3097 10bc 8F93      		push r24
+ 3098 10be FF92      		push r15
+ 3099 10c0 0E94 0000 		call rprintf1RamRom
+ 3100 10c4 0F90      		pop __tmp_reg__
+ 3101 10c6 0F90      		pop __tmp_reg__
+ 3102 10c8 0F90      		pop __tmp_reg__
+ 3103 10ca 0F90      		pop __tmp_reg__
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 73
 
 
- 3112               	.L210:
- 3113               	.LBB2:
- 3114               		.stabn	68,0,144,.LM223-main
- 3115               	.LM223:
- 3116 10ee 80E0      		ldi r24,lo8(gpsBuffer)
- 3117 10f0 90E0      		ldi r25,hi8(gpsBuffer)
- 3118 10f2 0E94 0000 		call bufferGetFromFront
- 3119 10f6 682F      		mov r22,r24
- 3120               		.stabn	68,0,145,.LM224-main
- 3121               	.LM224:
- 3122 10f8 8823      		tst r24
- 3123 10fa 09F4      		brne .+2
- 3124 10fc 6DC0      		rjmp .L191
- 3125               		.stabn	68,0,147,.LM225-main
- 3126               	.LM225:
- 3127 10fe 80E0      		ldi r24,lo8(nmea)
- 3128 1100 90E0      		ldi r25,hi8(nmea)
- 3129 1102 0E94 0000 		call nmeap_parse
- 3130               		.stabn	68,0,148,.LM226-main
- 3131               	.LM226:
- 3132 1106 8130      		cpi r24,1
- 3133 1108 9105      		cpc r25,__zero_reg__
- 3134 110a 19F0      		breq .L194
- 3135 110c 0297      		sbiw r24,2
- 3136 110e 09F0      		breq .+2
- 3137 1110 63C0      		rjmp .L191
- 3138               	.L194:
- 3139               		.stabn	68,0,176,.LM227-main
- 3140               	.LM227:
- 3141 1112 A090 0000 		lds r10,gga+8
- 3142 1116 B090 0000 		lds r11,(gga+8)+1
- 3143 111a C090 0000 		lds r12,(gga+8)+2
- 3144 111e D090 0000 		lds r13,(gga+8)+3
- 3145 1122 2091 0000 		lds r18,gga+12
- 3146 1126 3091 0000 		lds r19,(gga+12)+1
- 3147 112a 4091 0000 		lds r20,(gga+12)+2
- 3148 112e 5091 0000 		lds r21,(gga+12)+3
- 3149 1132 57FD      		sbrc r21,7
- 3150 1134 05C0      		rjmp .L198
- 3151 1136 CA01      		movw r24,r20
- 3152 1138 B901      		movw r22,r18
- 3153 113a 0E94 0000 		call __floatsisf
- 3154 113e 14C0      		rjmp .L207
- 3155               	.L198:
- 3156 1140 CA01      		movw r24,r20
- 3157 1142 B901      		movw r22,r18
- 3158 1144 6170      		andi r22,lo8(1)
- 3159 1146 7070      		andi r23,hi8(1)
- 3160 1148 8070      		andi r24,hlo8(1)
- 3161 114a 9070      		andi r25,hhi8(1)
- 3162 114c 5695      		lsr r21
- 3163 114e 4795      		ror r20
- 3164 1150 3795      		ror r19
- 3165 1152 2795      		ror r18
- 3166 1154 622B      		or r22,r18
- 3167 1156 732B      		or r23,r19
- 3168 1158 842B      		or r24,r20
-GAS LISTING /var/tmp//ccqKAok3.s 			page 74
+ 3104 10cc 0F90      		pop __tmp_reg__
+ 3105               	.L185:
+ 3106               		.stabn	68,0,132,.LM222-main
+ 3107               	.LM222:
+ 3108 10ce 00E0      		ldi r16,lo8(rmc)
+ 3109 10d0 10E0      		ldi r17,hi8(rmc)
+ 3110 10d2 20E0      		ldi r18,lo8(0)
+ 3111 10d4 30E0      		ldi r19,hi8(0)
+ 3112 10d6 40E0      		ldi r20,lo8(pm(nmeap_gprmc))
+ 3113 10d8 50E0      		ldi r21,hi8(pm(nmeap_gprmc))
+ 3114 10da 60E0      		ldi r22,lo8(.LC4)
+ 3115 10dc 70E0      		ldi r23,hi8(.LC4)
+ 3116 10de 80E0      		ldi r24,lo8(nmea)
+ 3117 10e0 90E0      		ldi r25,hi8(nmea)
+ 3118 10e2 0E94 0000 		call nmeap_addParser
+ 3119               		.stabn	68,0,133,.LM223-main
+ 3120               	.LM223:
+ 3121 10e6 0097      		sbiw r24,0
+ 3122 10e8 71F0      		breq .L187
+ 3123               		.stabn	68,0,134,.LM224-main
+ 3124               	.LM224:
+ 3125 10ea 9F93      		push r25
+ 3126 10ec 8F93      		push r24
+ 3127 10ee 80E0      		ldi r24,lo8(__c.2361)
+ 3128 10f0 90E0      		ldi r25,hi8(__c.2361)
+ 3129 10f2 9F93      		push r25
+ 3130 10f4 8F93      		push r24
+ 3131 10f6 FF92      		push r15
+ 3132 10f8 0E94 0000 		call rprintf1RamRom
+ 3133 10fc 0F90      		pop __tmp_reg__
+ 3134 10fe 0F90      		pop __tmp_reg__
+ 3135 1100 0F90      		pop __tmp_reg__
+ 3136 1102 0F90      		pop __tmp_reg__
+ 3137 1104 0F90      		pop __tmp_reg__
+ 3138               	.L187:
+ 3139               		.stabn	68,0,137,.LM225-main
+ 3140               	.LM225:
+ 3141 1106 80E0      		ldi r24,lo8(__c.2363)
+ 3142 1108 90E0      		ldi r25,hi8(__c.2363)
+ 3143 110a 9F93      		push r25
+ 3144 110c 8F93      		push r24
+ 3145 110e FF92      		push r15
+ 3146 1110 0E94 0000 		call rprintf1RamRom
+ 3147               		.stabn	68,0,138,.LM226-main
+ 3148               	.LM226:
+ 3149 1114 4091 0000 		lds r20,gga
+ 3150 1118 5091 0000 		lds r21,(gga)+1
+ 3151 111c 6091 0000 		lds r22,(gga)+2
+ 3152 1120 7091 0000 		lds r23,(gga)+3
+ 3153 1124 88E0      		ldi r24,lo8(8)
+ 3154 1126 0E94 0000 		call rprintfFloat
+ 3155               		.stabn	68,0,139,.LM227-main
+ 3156               	.LM227:
+ 3157 112a 80E0      		ldi r24,lo8(__c.2365)
+ 3158 112c 90E0      		ldi r25,hi8(__c.2365)
+ 3159 112e 9F93      		push r25
+ 3160 1130 8F93      		push r24
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 74
 
 
- 3169 115a 952B      		or r25,r21
- 3170 115c 0E94 0000 		call __floatsisf
- 3171 1160 9B01      		movw r18,r22
- 3172 1162 AC01      		movw r20,r24
- 3173 1164 0E94 0000 		call __addsf3
- 3174               	.L207:
- 3175 1168 3B01      		movw r6,r22
- 3176 116a 4C01      		movw r8,r24
- 3177 116c 2091 0000 		lds r18,gga+4
- 3178 1170 3091 0000 		lds r19,(gga+4)+1
- 3179 1174 4091 0000 		lds r20,(gga+4)+2
- 3180 1178 5091 0000 		lds r21,(gga+4)+3
- 3181 117c 6091 0000 		lds r22,gga
- 3182 1180 7091 0000 		lds r23,(gga)+1
- 3183 1184 8091 0000 		lds r24,(gga)+2
- 3184 1188 9091 0000 		lds r25,(gga)+3
- 3185 118c EEE6      		ldi r30,lo8(110)
- 3186 118e EF93      		push r30
- 3187 1190 E090 0000 		lds r14,rmc+13
- 3188 1194 F090 0000 		lds r15,(rmc+13)+1
- 3189 1198 0091 0000 		lds r16,(rmc+13)+2
- 3190 119c 1091 0000 		lds r17,(rmc+13)+3
- 3191 11a0 1F93      		push r17
- 3192 11a2 0F93      		push r16
- 3193 11a4 FF92      		push r15
- 3194 11a6 EF92      		push r14
- 3195 11a8 E090 0000 		lds r14,rmc+17
- 3196 11ac F090 0000 		lds r15,(rmc+17)+1
- 3197 11b0 0091 0000 		lds r16,(rmc+17)+2
- 3198 11b4 1091 0000 		lds r17,(rmc+17)+3
- 3199 11b8 1F93      		push r17
- 3200 11ba 0F93      		push r16
- 3201 11bc FF92      		push r15
- 3202 11be EF92      		push r14
- 3203 11c0 8401      		movw r16,r8
- 3204 11c2 7301      		movw r14,r6
- 3205 11c4 0E94 0000 		call writeVideoScreen
- 3206 11c8 8DB7      		in r24,__SP_L__
- 3207 11ca 9EB7      		in r25,__SP_H__
- 3208 11cc 0996      		adiw r24,9
- 3209 11ce 0FB6      		in __tmp_reg__,__SREG__
- 3210 11d0 F894      		cli
- 3211 11d2 9EBF      		out __SP_H__,r25
- 3212 11d4 0FBE      		out __SREG__,__tmp_reg__
- 3213 11d6 8DBF      		out __SP_L__,r24
- 3214               	.L191:
- 3215               		.stabn	68,0,204,.LM228-main
- 3216               	.LM228:
- 3217 11d8 80E0      		ldi r24,lo8(__c.2376)
- 3218 11da 90E0      		ldi r25,hi8(__c.2376)
- 3219 11dc 9F93      		push r25
- 3220 11de 8F93      		push r24
- 3221 11e0 11E0      		ldi r17,lo8(1)
- 3222 11e2 1F93      		push r17
- 3223 11e4 0E94 0000 		call rprintf1RamRom
- 3224               		.stabn	68,0,206,.LM229-main
- 3225               	.LM229:
-GAS LISTING /var/tmp//ccqKAok3.s 			page 75
+ 3161 1132 FF92      		push r15
+ 3162 1134 0E94 0000 		call rprintf1RamRom
+ 3163 1138 8DB7      		in r24,__SP_L__
+ 3164 113a 9EB7      		in r25,__SP_H__
+ 3165 113c 0696      		adiw r24,6
+ 3166 113e 0FB6      		in __tmp_reg__,__SREG__
+ 3167 1140 F894      		cli
+ 3168 1142 9EBF      		out __SP_H__,r25
+ 3169 1144 0FBE      		out __SREG__,__tmp_reg__
+ 3170 1146 8DBF      		out __SP_L__,r24
+ 3171               	.L209:
+ 3172               	.LBB2:
+ 3173               		.stabn	68,0,145,.LM228-main
+ 3174               	.LM228:
+ 3175 1148 80E0      		ldi r24,lo8(gpsBuffer)
+ 3176 114a 90E0      		ldi r25,hi8(gpsBuffer)
+ 3177 114c 0E94 0000 		call bufferGetFromFront
+ 3178 1150 682F      		mov r22,r24
+ 3179               		.stabn	68,0,146,.LM229-main
+ 3180               	.LM229:
+ 3181 1152 8823      		tst r24
+ 3182 1154 09F4      		brne .+2
+ 3183 1156 6DC0      		rjmp .L190
+ 3184               		.stabn	68,0,148,.LM230-main
+ 3185               	.LM230:
+ 3186 1158 80E0      		ldi r24,lo8(nmea)
+ 3187 115a 90E0      		ldi r25,hi8(nmea)
+ 3188 115c 0E94 0000 		call nmeap_parse
+ 3189               		.stabn	68,0,149,.LM231-main
+ 3190               	.LM231:
+ 3191 1160 8130      		cpi r24,1
+ 3192 1162 9105      		cpc r25,__zero_reg__
+ 3193 1164 19F0      		breq .L193
+ 3194 1166 0297      		sbiw r24,2
+ 3195 1168 09F0      		breq .+2
+ 3196 116a 63C0      		rjmp .L190
+ 3197               	.L193:
+ 3198               		.stabn	68,0,177,.LM232-main
+ 3199               	.LM232:
+ 3200 116c A090 0000 		lds r10,gga+8
+ 3201 1170 B090 0000 		lds r11,(gga+8)+1
+ 3202 1174 C090 0000 		lds r12,(gga+8)+2
+ 3203 1178 D090 0000 		lds r13,(gga+8)+3
+ 3204 117c 2091 0000 		lds r18,gga+12
+ 3205 1180 3091 0000 		lds r19,(gga+12)+1
+ 3206 1184 4091 0000 		lds r20,(gga+12)+2
+ 3207 1188 5091 0000 		lds r21,(gga+12)+3
+ 3208 118c 57FD      		sbrc r21,7
+ 3209 118e 05C0      		rjmp .L197
+ 3210 1190 CA01      		movw r24,r20
+ 3211 1192 B901      		movw r22,r18
+ 3212 1194 0E94 0000 		call __floatsisf
+ 3213 1198 14C0      		rjmp .L206
+ 3214               	.L197:
+ 3215 119a CA01      		movw r24,r20
+ 3216 119c B901      		movw r22,r18
+ 3217 119e 6170      		andi r22,lo8(1)
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 75
 
 
- 3226 11e8 0F90      		pop __tmp_reg__
- 3227 11ea 0F90      		pop __tmp_reg__
- 3228 11ec 0F90      	 	pop __tmp_reg__
- 3229 11ee 8091 0000 		lds r24,message_sent
- 3230 11f2 8823      		tst r24
- 3231 11f4 09F4      		brne .+2
- 3232 11f6 7BCF      		rjmp .L210
- 3233               		.stabn	68,0,208,.LM230-main
- 3234               	.LM230:
- 3235 11f8 1093 0000 		sts message_sent,r17
- 3236               		.stabn	68,0,209,.LM231-main
- 3237               	.LM231:
- 3238 11fc 80E0      		ldi r24,lo8(__c.2378)
- 3239 11fe 90E0      		ldi r25,hi8(__c.2378)
- 3240 1200 9F93      		push r25
- 3241 1202 8F93      		push r24
- 3242 1204 1F93      		push r17
- 3243 1206 0E94 0000 		call rprintf1RamRom
- 3244 120a 0F90      		pop __tmp_reg__
- 3245 120c 0F90      		pop __tmp_reg__
- 3246 120e 0F90      	 	pop __tmp_reg__
- 3247 1210 6ECF      		rjmp .L210
- 3248               	.LBE2:
- 3249               	/* epilogue: frame size=0 */
- 3250               	/* epilogue: noreturn */
- 3251               	/* epilogue end (size=0) */
- 3252               	/* function main size 334 (330) */
- 3253               		.size	main, .-main
- 3254               		.stabs	"status:r(0,1)",64,0,55,24
- 3255               		.stabn	192,0,0,main-main
- 3256               		.stabn	224,0,0,.Lscope17-main
- 3257               	.Lscope17:
- 3258               		.stabs	"",36,0,0,.Lscope17-main
- 3259               		.stabd	78,0,0
- 3260               		.stabs	"nmea:S(13,11)",40,0,31,nmea
- 3261               		.stabs	"user_data:S(0,1)",40,0,32,user_data
- 3262               		.stabs	"gga:S(12,8)",40,0,33,gga
- 3263               		.stabs	"rmc:S(12,10)",40,0,34,rmc
- 3264               		.stabs	"gpsBuffer:S(8,3)",40,0,36,gpsBuffer
- 3265               		.stabs	"gpsBufferData:S(0,24)=ar(13,3);0;127;(0,2)",40,0,37,gpsBufferData
- 3266               		.stabs	"localBuffer:G(0,25)=ar(13,3);0;33;(0,11)",32,0,28,0
- 3267               		.stabs	"localBufferLength:G(0,11)",32,0,29,0
- 3268               		.stabs	"message_sent:G(7,1)",32,0,43,0
- 3269               		.stabs	"stackem:G(0,26)=ar(13,3);0;31;(7,1)",32,0,48,0
- 3270               		.stabs	"stackem_pointer:G(7,1)",32,0,49,0
- 3271               		.comm stackem,32,1
- 3272               		.comm message_sent,1,1
- 3273               		.lcomm gpsBufferData,128
- 3274               		.lcomm gpsBuffer,8
- 3275               		.lcomm rmc,29
- 3276               		.lcomm gga,28
- 3277               		.lcomm user_data,2
- 3278               		.lcomm nmea,718
- 3279               		.stabs	"",100,0,0,.Letext0
- 3280               	.Letext0:
- 3281               	/* File "gpstest.c": code 2315 = 0x090b (2029), prologues 139, epilogues 147 */
-GAS LISTING /var/tmp//ccqKAok3.s 			page 76
+ 3218 11a0 7070      		andi r23,hi8(1)
+ 3219 11a2 8070      		andi r24,hlo8(1)
+ 3220 11a4 9070      		andi r25,hhi8(1)
+ 3221 11a6 5695      		lsr r21
+ 3222 11a8 4795      		ror r20
+ 3223 11aa 3795      		ror r19
+ 3224 11ac 2795      		ror r18
+ 3225 11ae 622B      		or r22,r18
+ 3226 11b0 732B      		or r23,r19
+ 3227 11b2 842B      		or r24,r20
+ 3228 11b4 952B      		or r25,r21
+ 3229 11b6 0E94 0000 		call __floatsisf
+ 3230 11ba 9B01      		movw r18,r22
+ 3231 11bc AC01      		movw r20,r24
+ 3232 11be 0E94 0000 		call __addsf3
+ 3233               	.L206:
+ 3234 11c2 3B01      		movw r6,r22
+ 3235 11c4 4C01      		movw r8,r24
+ 3236 11c6 2091 0000 		lds r18,gga+4
+ 3237 11ca 3091 0000 		lds r19,(gga+4)+1
+ 3238 11ce 4091 0000 		lds r20,(gga+4)+2
+ 3239 11d2 5091 0000 		lds r21,(gga+4)+3
+ 3240 11d6 6091 0000 		lds r22,gga
+ 3241 11da 7091 0000 		lds r23,(gga)+1
+ 3242 11de 8091 0000 		lds r24,(gga)+2
+ 3243 11e2 9091 0000 		lds r25,(gga)+3
+ 3244 11e6 EEE6      		ldi r30,lo8(110)
+ 3245 11e8 EF93      		push r30
+ 3246 11ea E090 0000 		lds r14,rmc+13
+ 3247 11ee F090 0000 		lds r15,(rmc+13)+1
+ 3248 11f2 0091 0000 		lds r16,(rmc+13)+2
+ 3249 11f6 1091 0000 		lds r17,(rmc+13)+3
+ 3250 11fa 1F93      		push r17
+ 3251 11fc 0F93      		push r16
+ 3252 11fe FF92      		push r15
+ 3253 1200 EF92      		push r14
+ 3254 1202 E090 0000 		lds r14,rmc+17
+ 3255 1206 F090 0000 		lds r15,(rmc+17)+1
+ 3256 120a 0091 0000 		lds r16,(rmc+17)+2
+ 3257 120e 1091 0000 		lds r17,(rmc+17)+3
+ 3258 1212 1F93      		push r17
+ 3259 1214 0F93      		push r16
+ 3260 1216 FF92      		push r15
+ 3261 1218 EF92      		push r14
+ 3262 121a 8401      		movw r16,r8
+ 3263 121c 7301      		movw r14,r6
+ 3264 121e 0E94 0000 		call writeVideoScreen
+ 3265 1222 8DB7      		in r24,__SP_L__
+ 3266 1224 9EB7      		in r25,__SP_H__
+ 3267 1226 0996      		adiw r24,9
+ 3268 1228 0FB6      		in __tmp_reg__,__SREG__
+ 3269 122a F894      		cli
+ 3270 122c 9EBF      		out __SP_H__,r25
+ 3271 122e 0FBE      		out __SREG__,__tmp_reg__
+ 3272 1230 8DBF      		out __SP_L__,r24
+ 3273               	.L190:
+ 3274               		.stabn	68,0,205,.LM233-main
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 76
+
+
+ 3275               	.LM233:
+ 3276 1232 80E0      		ldi r24,lo8(__c.2376)
+ 3277 1234 90E0      		ldi r25,hi8(__c.2376)
+ 3278 1236 9F93      		push r25
+ 3279 1238 8F93      		push r24
+ 3280 123a 11E0      		ldi r17,lo8(1)
+ 3281 123c 1F93      		push r17
+ 3282 123e 0E94 0000 		call rprintf1RamRom
+ 3283               		.stabn	68,0,207,.LM234-main
+ 3284               	.LM234:
+ 3285 1242 0F90      		pop __tmp_reg__
+ 3286 1244 0F90      		pop __tmp_reg__
+ 3287 1246 0F90      	 	pop __tmp_reg__
+ 3288 1248 8091 0000 		lds r24,message_sent
+ 3289 124c 8823      		tst r24
+ 3290 124e 09F4      		brne .+2
+ 3291 1250 7BCF      		rjmp .L209
+ 3292               		.stabn	68,0,209,.LM235-main
+ 3293               	.LM235:
+ 3294 1252 1093 0000 		sts message_sent,r17
+ 3295               		.stabn	68,0,210,.LM236-main
+ 3296               	.LM236:
+ 3297 1256 80E0      		ldi r24,lo8(__c.2378)
+ 3298 1258 90E0      		ldi r25,hi8(__c.2378)
+ 3299 125a 9F93      		push r25
+ 3300 125c 8F93      		push r24
+ 3301 125e 1F93      		push r17
+ 3302 1260 0E94 0000 		call rprintf1RamRom
+ 3303 1264 0F90      		pop __tmp_reg__
+ 3304 1266 0F90      		pop __tmp_reg__
+ 3305 1268 0F90      	 	pop __tmp_reg__
+ 3306 126a 6ECF      		rjmp .L209
+ 3307               	.LBE2:
+ 3308               	/* epilogue: frame size=0 */
+ 3309               	/* epilogue: noreturn */
+ 3310               	/* epilogue end (size=0) */
+ 3311               	/* function main size 334 (330) */
+ 3312               		.size	main, .-main
+ 3313               		.stabs	"status:r(0,1)",64,0,55,24
+ 3314               		.stabn	192,0,0,main-main
+ 3315               		.stabn	224,0,0,.Lscope17-main
+ 3316               	.Lscope17:
+ 3317               		.stabs	"",36,0,0,.Lscope17-main
+ 3318               		.stabd	78,0,0
+ 3319               		.stabs	"nmea:S(13,11)",40,0,31,nmea
+ 3320               		.stabs	"user_data:S(0,1)",40,0,32,user_data
+ 3321               		.stabs	"gga:S(12,8)",40,0,33,gga
+ 3322               		.stabs	"rmc:S(12,10)",40,0,34,rmc
+ 3323               		.stabs	"gpsBuffer:S(8,3)",40,0,36,gpsBuffer
+ 3324               		.stabs	"gpsBufferData:S(0,24)=ar(13,3);0;127;(0,2)",40,0,37,gpsBufferData
+ 3325               		.stabs	"localBuffer:G(0,25)=ar(13,3);0;33;(0,11)",32,0,28,0
+ 3326               		.stabs	"localBufferLength:G(0,11)",32,0,29,0
+ 3327               		.stabs	"message_sent:G(7,1)",32,0,43,0
+ 3328               		.stabs	"stackem:G(0,26)=ar(13,3);0;31;(7,1)",32,0,48,0
+ 3329               		.stabs	"stackem_pointer:G(7,1)",32,0,49,0
+ 3330               		.comm stackem,32,1
+ 3331               		.comm message_sent,1,1
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 77
+
+
+ 3332               		.lcomm gpsBufferData,128
+ 3333               		.lcomm gpsBuffer,8
+ 3334               		.lcomm rmc,29
+ 3335               		.lcomm gga,28
+ 3336               		.lcomm user_data,2
+ 3337               		.lcomm nmea,718
+ 3338               		.stabs	"",100,0,0,.Letext0
+ 3339               	.Letext0:
+ 3340               	/* File "gpstest.c": code 2360 = 0x0938 (2074), prologues 139, epilogues 147 */
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 78
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 gpstest.c
-/var/tmp//ccqKAok3.s:3      *ABS*:0000003f __SREG__
-/var/tmp//ccqKAok3.s:4      *ABS*:0000003e __SP_H__
-/var/tmp//ccqKAok3.s:5      *ABS*:0000003d __SP_L__
-/var/tmp//ccqKAok3.s:6      *ABS*:00000000 __tmp_reg__
-/var/tmp//ccqKAok3.s:7      *ABS*:00000001 __zero_reg__
-/var/tmp//ccqKAok3.s:160    .bss:00000000 stackem_pointer
-/var/tmp//ccqKAok3.s:166    .data:00000000 localBufferLength
-/var/tmp//ccqKAok3.s:171    .data:00000001 localBuffer
-/var/tmp//ccqKAok3.s:179    .text:00000000 nmeap_altitude
-/var/tmp//ccqKAok3.s:242    .text:0000003a nmeap_tokenize
-/var/tmp//ccqKAok3.s:339    .text:00000096 nmeap_process
-/var/tmp//ccqKAok3.s:462    .text:0000013a nmeap_parse
-/var/tmp//ccqKAok3.s:975    .text:00000424 nmeap_parseBuffer
-/var/tmp//ccqKAok3.s:1068   .text:00000492 dist
-/var/tmp//ccqKAok3.s:1312   .text:00000678 bearing
-/var/tmp//ccqKAok3.s:1543   .text:0000083e addToBuffer
-/var/tmp//ccqKAok3.s:3273   .bss:00000081 gpsBuffer
-/var/tmp//ccqKAok3.s:1570   .text:0000084a i2cSlaveReceiveService
-/var/tmp//ccqKAok3.s:1617   .progmem.data:00000000 __c.2432
-/var/tmp//ccqKAok3.s:1625   .text:00000870 i2cSlaveTransmitService
-/var/tmp//ccqKAok3.s:1788   .text:0000096a print_to_string
-/var/tmp//ccqKAok3.s:3275   .bss:000000a6 gga
-/var/tmp//ccqKAok3.s:3274   .bss:00000089 rmc
+/var/tmp//ccvnAEfo.s:3      *ABS*:0000003f __SREG__
+/var/tmp//ccvnAEfo.s:4      *ABS*:0000003e __SP_H__
+/var/tmp//ccvnAEfo.s:5      *ABS*:0000003d __SP_L__
+/var/tmp//ccvnAEfo.s:6      *ABS*:00000000 __tmp_reg__
+/var/tmp//ccvnAEfo.s:7      *ABS*:00000001 __zero_reg__
+/var/tmp//ccvnAEfo.s:160    .bss:00000000 stackem_pointer
+/var/tmp//ccvnAEfo.s:166    .data:00000000 localBufferLength
+/var/tmp//ccvnAEfo.s:171    .data:00000001 localBuffer
+/var/tmp//ccvnAEfo.s:179    .text:00000000 nmeap_altitude
+/var/tmp//ccvnAEfo.s:242    .text:0000003a nmeap_tokenize
+/var/tmp//ccvnAEfo.s:339    .text:00000096 nmeap_process
+/var/tmp//ccvnAEfo.s:462    .text:0000013a nmeap_parse
+/var/tmp//ccvnAEfo.s:975    .text:00000424 nmeap_parseBuffer
+/var/tmp//ccvnAEfo.s:1068   .text:00000492 dist
+/var/tmp//ccvnAEfo.s:1312   .text:00000678 bearing
+/var/tmp//ccvnAEfo.s:1543   .text:0000083e addToBuffer
+/var/tmp//ccvnAEfo.s:3332   .bss:00000081 gpsBuffer
+/var/tmp//ccvnAEfo.s:1570   .text:0000084a i2cSlaveReceiveService
+/var/tmp//ccvnAEfo.s:1617   .progmem.data:00000000 __c.2439
+/var/tmp//ccvnAEfo.s:1621   .progmem.data:00000003 __c.2436
+/var/tmp//ccvnAEfo.s:1625   .progmem.data:00000006 __c.2433
+/var/tmp//ccvnAEfo.s:1629   .progmem.data:00000009 __c.2430
+/var/tmp//ccvnAEfo.s:1633   .progmem.data:0000000c __c.2426
+/var/tmp//ccvnAEfo.s:1641   .text:00000870 i2cSlaveTransmitService
+/var/tmp//ccvnAEfo.s:1847   .text:000009c4 print_to_string
+/var/tmp//ccvnAEfo.s:3334   .bss:000000a6 gga
+/var/tmp//ccvnAEfo.s:3333   .bss:00000089 rmc
                             *COM*:00000020 stackem
-/var/tmp//ccqKAok3.s:1832   .text:0000098e nmeap_latitude
-/var/tmp//ccqKAok3.s:1978   .text:00000a64 nmeap_longitude
-/var/tmp//ccqKAok3.s:2130   .text:00000b3a nmeap_gprmc
-/var/tmp//ccqKAok3.s:2414   .text:00000d0a nmeap_gpgga
-/var/tmp//ccqKAok3.s:2689   .text:00000eca nmeap_init
-/var/tmp//ccqKAok3.s:2737   .text:00000eec nmeap_addParser
-/var/tmp//ccqKAok3.s:2847   .progmem.data:00000003 __c.2378
-/var/tmp//ccqKAok3.s:2851   .progmem.data:0000000f __c.2376
-/var/tmp//ccqKAok3.s:2855   .progmem.data:00000012 __c.2365
-/var/tmp//ccqKAok3.s:2859   .progmem.data:00000015 __c.2363
-/var/tmp//ccqKAok3.s:2863   .progmem.data:00000025 __c.2361
-/var/tmp//ccqKAok3.s:2867   .progmem.data:00000037 __c.2359
-/var/tmp//ccqKAok3.s:2871   .progmem.data:00000049 __c.2357
-/var/tmp//ccqKAok3.s:2875   .progmem.data:00000058 __c.2355
-/var/tmp//ccqKAok3.s:2886   .text:00000f78 main
+/var/tmp//ccvnAEfo.s:1891   .text:000009e8 nmeap_latitude
+/var/tmp//ccvnAEfo.s:2037   .text:00000abe nmeap_longitude
+/var/tmp//ccvnAEfo.s:2189   .text:00000b94 nmeap_gprmc
+/var/tmp//ccvnAEfo.s:2473   .text:00000d64 nmeap_gpgga
+/var/tmp//ccvnAEfo.s:2748   .text:00000f24 nmeap_init
+/var/tmp//ccvnAEfo.s:2796   .text:00000f46 nmeap_addParser
+/var/tmp//ccvnAEfo.s:2906   .progmem.data:0000000f __c.2378
+/var/tmp//ccvnAEfo.s:2910   .progmem.data:0000001b __c.2376
+/var/tmp//ccvnAEfo.s:2914   .progmem.data:0000001e __c.2365
+/var/tmp//ccvnAEfo.s:2918   .progmem.data:00000021 __c.2363
+/var/tmp//ccvnAEfo.s:2922   .progmem.data:00000031 __c.2361
+/var/tmp//ccvnAEfo.s:2926   .progmem.data:00000043 __c.2359
+/var/tmp//ccvnAEfo.s:2930   .progmem.data:00000055 __c.2357
+/var/tmp//ccvnAEfo.s:2934   .progmem.data:00000064 __c.2355
+/var/tmp//ccvnAEfo.s:2945   .text:00000fd2 main
                             *COM*:00000001 message_sent
                              .bss:00000001 gpsBufferData
-/var/tmp//ccqKAok3.s:3276   .bss:000000c2 user_data
-/var/tmp//ccqKAok3.s:3277   .bss:000000c4 nmea
+/var/tmp//ccvnAEfo.s:3335   .bss:000000c2 user_data
+/var/tmp//ccvnAEfo.s:3336   .bss:000000c4 nmea
 
 UNDEFINED SYMBOLS
 __do_copy_data
@@ -4553,13 +4630,13 @@ atof
 __mulsf3
 strncpy
 strncmp
+GAS LISTING /var/tmp//ccvnAEfo.s 			page 79
+
+
 isalnum
 isxdigit
 __divsf3
 __subsf3
-GAS LISTING /var/tmp//ccqKAok3.s 			page 77
-
-
 sin
 cos
 __addsf3
@@ -4567,9 +4644,9 @@ sqrt
 atan2
 bufferAddToEnd
 rprintfInit
-rprintfFloat
-__floatsisf
 rprintf1RamRom
+__floatsisf
+rprintfFloat
 uartSendByte
 __fixsfsi
 atoi

@@ -1,4 +1,4 @@
-GAS LISTING /var/tmp//cc12vape.s 			page 1
+GAS LISTING /var/tmp//ccoKMVL6.s 			page 1
 
 
    1               		.file	"video.c"
@@ -58,7 +58,7 @@ GAS LISTING /var/tmp//cc12vape.s 			page 1
   55               		.stabs	"uint_fast16_t:t(4,22)=(4,4)",128,0,215,0
   56               		.stabs	"int_fast32_t:t(4,23)=(4,5)",128,0,220,0
   57               		.stabs	"uint_fast32_t:t(4,24)=(4,6)",128,0,225,0
-GAS LISTING /var/tmp//cc12vape.s 			page 2
+GAS LISTING /var/tmp//ccoKMVL6.s 			page 2
 
 
   58               		.stabs	"int_fast64_t:t(4,25)=(4,7)",128,0,230,0
@@ -118,7 +118,7 @@ GAS LISTING /var/tmp//cc12vape.s 			page 1
  112               		.stabs	"prog_uint64_t:t(10,19)=(10,20)=(0,7)",128,0,214,0
  113               		.stabn	162,0,0,0
  114               		.stabn	162,0,0,0
-GAS LISTING /var/tmp//cc12vape.s 			page 3
+GAS LISTING /var/tmp//ccoKMVL6.s 			page 3
 
 
  115               		.section	.progmem.data,"a",@progbits
@@ -178,7 +178,7 @@ GAS LISTING /var/tmp//cc12vape.s 			page 1
    9:video.c       **** #include "video.h"  //user video thingy
   10:video.c       **** 
   11:video.c       **** 
-GAS LISTING /var/tmp//cc12vape.s 			page 4
+GAS LISTING /var/tmp//ccoKMVL6.s 			page 4
 
 
   12:video.c       **** #define CLEARSCREEN "A"
@@ -238,7 +238,7 @@ GAS LISTING /var/tmp//cc12vape.s 			page 1
   61:video.c       **** 	rprintf("%s\r",RESET);
  164               		.stabn	68,0,61,.LM1-initVideo
  165               	.LM1:
-GAS LISTING /var/tmp//cc12vape.s 			page 5
+GAS LISTING /var/tmp//ccoKMVL6.s 			page 5
 
 
  166 0002 80E0      		ldi r24,lo8(.LC0)
@@ -298,7 +298,7 @@ GAS LISTING /var/tmp//cc12vape.s 			page 1
  216 005e 90E0      		ldi r25,hi8(.LC4)
  217 0060 9F93      		push r25
  218 0062 8F93      		push r24
-GAS LISTING /var/tmp//cc12vape.s 			page 6
+GAS LISTING /var/tmp//ccoKMVL6.s 			page 6
 
 
  219 0064 80E0      		ldi r24,lo8(__c.1479)
@@ -358,7 +358,7 @@ GAS LISTING /var/tmp//cc12vape.s 			page 1
  266 0036 5825 640D 		.string	"X%d\rY%d\rS%f\r"
  266      5925 640D 
  266      5325 660D 
-GAS LISTING /var/tmp//cc12vape.s 			page 7
+GAS LISTING /var/tmp//ccoKMVL6.s 			page 7
 
 
  266      00
@@ -418,7 +418,7 @@ GAS LISTING /var/tmp//cc12vape.s 			page 1
  303 00a4 6F92      		push r6
  304 00a6 7F92      		push r7
  305 00a8 8F92      		push r8
-GAS LISTING /var/tmp//cc12vape.s 			page 8
+GAS LISTING /var/tmp//ccoKMVL6.s 			page 8
 
 
  306 00aa 9F92      		push r9
@@ -478,7 +478,7 @@ GAS LISTING /var/tmp//cc12vape.s 			page 1
  358 010a 9F93      		push r25
  359 010c 8F93      		push r24
  360 010e 3F92      		push r3
-GAS LISTING /var/tmp//cc12vape.s 			page 9
+GAS LISTING /var/tmp//ccoKMVL6.s 			page 9
 
 
  361 0110 0E94 0000 		call rprintf1RamRom
@@ -538,7 +538,7 @@ GAS LISTING /var/tmp//cc12vape.s 			page 1
  412 0170 AF93      		push r26
  413 0172 9F93      		push r25
  414 0174 8F93      		push r24
-GAS LISTING /var/tmp//cc12vape.s 			page 10
+GAS LISTING /var/tmp//ccoKMVL6.s 			page 10
 
 
  415 0176 1F93      		push r17
@@ -598,7 +598,7 @@ GAS LISTING /var/tmp//cc12vape.s 			page 1
  467 01da 8F93      		push r24
  468 01dc 9F93      		push r25
  469 01de 8F93      		push r24
-GAS LISTING /var/tmp//cc12vape.s 			page 11
+GAS LISTING /var/tmp//ccoKMVL6.s 			page 11
 
 
  470 01e0 80E0      		ldi r24,lo8(__c.1504)
@@ -645,31 +645,31 @@ GAS LISTING /var/tmp//cc12vape.s 			page 1
  511               		.stabs	"",100,0,0,.Letext0
  512               	.Letext0:
  513               	/* File "video.c": code  274 = 0x0112 ( 232), prologues  21, epilogues  21 */
-GAS LISTING /var/tmp//cc12vape.s 			page 12
+GAS LISTING /var/tmp//ccoKMVL6.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 video.c
-/var/tmp//cc12vape.s:3      *ABS*:0000003f __SREG__
-/var/tmp//cc12vape.s:4      *ABS*:0000003e __SP_H__
-/var/tmp//cc12vape.s:5      *ABS*:0000003d __SP_L__
-/var/tmp//cc12vape.s:6      *ABS*:00000000 __tmp_reg__
-/var/tmp//cc12vape.s:7      *ABS*:00000001 __zero_reg__
-/var/tmp//cc12vape.s:118    .progmem.data:00000000 __c.1481
-/var/tmp//cc12vape.s:122    .progmem.data:00000006 __c.1479
-/var/tmp//cc12vape.s:126    .progmem.data:0000000c __c.1477
-/var/tmp//cc12vape.s:130    .progmem.data:00000010 __c.1475
-/var/tmp//cc12vape.s:134    .progmem.data:00000014 __c.1473
-/var/tmp//cc12vape.s:138    .progmem.data:00000018 __c.1471
-/var/tmp//cc12vape.s:157    .text:00000000 initVideo
-/var/tmp//cc12vape.s:257    .progmem.data:0000001c __c.1504
-/var/tmp//cc12vape.s:261    .progmem.data:00000029 __c.1502
-/var/tmp//cc12vape.s:265    .progmem.data:00000036 __c.1500
-/var/tmp//cc12vape.s:269    .progmem.data:00000043 __c.1498
-/var/tmp//cc12vape.s:273    .progmem.data:00000050 __c.1496
-/var/tmp//cc12vape.s:277    .progmem.data:0000005d __c.1494
-/var/tmp//cc12vape.s:281    .progmem.data:0000006a __c.1492
-/var/tmp//cc12vape.s:294    .text:0000009c writeVideoScreen
+/var/tmp//ccoKMVL6.s:3      *ABS*:0000003f __SREG__
+/var/tmp//ccoKMVL6.s:4      *ABS*:0000003e __SP_H__
+/var/tmp//ccoKMVL6.s:5      *ABS*:0000003d __SP_L__
+/var/tmp//ccoKMVL6.s:6      *ABS*:00000000 __tmp_reg__
+/var/tmp//ccoKMVL6.s:7      *ABS*:00000001 __zero_reg__
+/var/tmp//ccoKMVL6.s:118    .progmem.data:00000000 __c.1481
+/var/tmp//ccoKMVL6.s:122    .progmem.data:00000006 __c.1479
+/var/tmp//ccoKMVL6.s:126    .progmem.data:0000000c __c.1477
+/var/tmp//ccoKMVL6.s:130    .progmem.data:00000010 __c.1475
+/var/tmp//ccoKMVL6.s:134    .progmem.data:00000014 __c.1473
+/var/tmp//ccoKMVL6.s:138    .progmem.data:00000018 __c.1471
+/var/tmp//ccoKMVL6.s:157    .text:00000000 initVideo
+/var/tmp//ccoKMVL6.s:257    .progmem.data:0000001c __c.1504
+/var/tmp//ccoKMVL6.s:261    .progmem.data:00000029 __c.1502
+/var/tmp//ccoKMVL6.s:265    .progmem.data:00000036 __c.1500
+/var/tmp//ccoKMVL6.s:269    .progmem.data:00000043 __c.1498
+/var/tmp//ccoKMVL6.s:273    .progmem.data:00000050 __c.1496
+/var/tmp//ccoKMVL6.s:277    .progmem.data:0000005d __c.1494
+/var/tmp//ccoKMVL6.s:281    .progmem.data:0000006a __c.1492
+/var/tmp//ccoKMVL6.s:294    .text:0000009c writeVideoScreen
 
 UNDEFINED SYMBOLS
 __do_copy_data

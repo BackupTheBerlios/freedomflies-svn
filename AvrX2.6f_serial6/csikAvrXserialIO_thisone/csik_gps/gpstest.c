@@ -133,6 +133,7 @@ int main(void)
     if (status != 0) {
         rprintf("nmeap_add RMC %d\n",status);
     }
+	// WHAT IS THIS?????
 	rprintf("gga.latitude = ");
 	rprintfFloat(8,gga.latitude);
 	rprintf("\r\n");
@@ -262,28 +263,40 @@ u08 i2cSlaveTransmitService(u08 transmitDataLengthMax, u08* transmitData)
 	cbi(PORTB, PB7);
 	rprintfInit(print_to_string);
 	// temp for debugging.... CHANGE!
-	float test = 420.6661;
-	double test2 = 420.6661;
+	float test = -71.093355;
+	double test2 = 42.359051;
 	stackem_pointer = 0;
 	switch(localBuffer[0])
 	{
 		case 'a': //latitude
+			rprintf("a ");
 			rprintfFloat(8,gga.latitude);
+			//rprintfFloat(8,test2);	
 			break;
 		case 'o': //longitude
-			rprintfFloat(8,test);	
+			rprintf("o ");
+			rprintfFloat(8,gga.longitude);
+			//rprintfFloat(8,test);	
 			break;
 		case 'g': //groundspeed
-			rprintfFloat(8,test2);
+			rprintf("g ");
+			rprintfFloat(8,rmc.speed);
 			break;
 		case 'c':
+			rprintf("c ");
 			rprintfFloat(8,rmc.course);
 			break;
 		case 'd':
-			rprintfFloat(8,rmc.date);
+			rprintf("d ");
+			rprintfFloat(9,rmc.date);
 			break;
+		case 's':
+			rprintf("s ");
+			rprintfFloat(7,rmc.speed);
+			break;
+		
 		default:
-			rprintf(" E");  //CE = Command Error
+		//	rprintf(" E");  //CE = Command Error
 			break;
 	}
 	rprintfInit(uartSendByte);
