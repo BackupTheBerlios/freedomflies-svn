@@ -47,4 +47,5 @@ lcd.o			: lcd.c			lcd.h			global.h
 i2c.o			: i2c.c			i2c.h			global.h
 spi.o			: spi.c			spi.h			global.h
 rtc.o			: rtc.c			rtc.h			global.h
+pulseb.o		: pulseb.c		pulseb.h		global.h
 $(TRG).o		: $(TRG).c						global.h

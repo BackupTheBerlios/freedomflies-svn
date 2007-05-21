@@ -29,6 +29,9 @@
 #include "i2c.h"
 #include "string.h"
 #include "servoconf.h"
+#include <pulseb.h>
+#include <pulseb.c>
+
 //I2C address definitions
 #define LOCAL_ADDR	0xA0
 #define TARGET_ADDR	0xA0
@@ -45,12 +48,16 @@
 #define SPEED_SERVO	1
 #undef DEBUG
 
+// Pulse defines
+#define MULTIPLIER 100
+
 void setLeftServo(void);
 void setRightServo(void);
 void setThrottleServo(void);
 void setCamPanServo(void);
 void setCamTiltServo(void);
 void setFeedbackInterval(void);
+void setGeckoFreq(void);
 
 void 	i2cSetup(void);
 void  	i2cSlaveReceiveService(u08 receiveDataLength, u08* receiveData);
@@ -77,7 +84,10 @@ void dumpArgsStr(void);
 void dumpArgsInt(void);
 void dumpArgsHex(void);
 
-u08 leftServoPos = 50;		//0 seems to be beyond its reach
+u08 leftServoPos = 50 * MULTIPLIER;		//0 seems to be beyond its reach
+//below for boat only
+u16	multiplier = MULTIPLIER;
+
 u08 rightServoPos;
 u08 throttleServoPos;
 u08 camPanServoPos;
@@ -100,6 +110,11 @@ int main(void)
 	timerInit();
 	// initialize vt100 terminal
 	vt100Init();
+	// initialize modified pulse library -- pulse on t1b ONLY -- out of D4
+	sbi(DDRD, 4);  //pulses -- taken over by OCR1B
+	sbi(DDRD, 5);  //dir -- manually controlled
+	pulseInit();
+	pulseT1BSetFreq(175);	//start at a good frequency
 
 
 	// wait for hardware to power up
@@ -159,7 +174,8 @@ void goCmdline(void)
 	cmdlineAddCommand("p", 		setCamPanServo);
 	cmdlineAddCommand("i", 		setCamTiltServo);
 	cmdlineAddCommand("f", 		setFeedbackInterval);
-	
+	cmdlineAddCommand("w",		setGeckoFreq);
+
 	cmdlineAddCommand("2", 		i2cMaster_Send);
 	cmdlineAddCommand("3", 		i2cMaster_Receive);
 	cmdlineAddCommand("das",	dumpArgsStr);
@@ -383,10 +399,48 @@ void i2cMaster_Auto_Receive(u08 command)
 	rprintfStr(slaveBuffer);
 	rprintf(",");
 }
+
+	//BELOW is the original left servo code -- would be right for plane, not for boat
+/*
 void setLeftServo(void)
 {	
 	leftServoPos = (unsigned char) cmdlineGetArgInt(1);
 	servoSetPosition(LEFT_SERVO_CHAN, leftServoPos);
+#ifdef DEBUG	
+		rprintf("e0\r\n");
+#endif DEBUG
+}
+*/
+void setLeftServo(void)
+{	
+	signed long leftServo_Dest;
+	//using global signed long Pulse_Position
+	signed long thePosition = Pulse_Position>>1;
+ 	leftServo_Dest = multiplier*((signed int) cmdlineGetArgInt(1));  //get the new desired position
+	leftServo_Dest = leftServo_Dest - thePosition;  //
+	//pulseT1BStop();  // stop here so it doesn't reset pulse count to zero
+	
+	//debug
+	//rprintf("leftServo_Dest b4 compare = %d\r\n",leftServo_Dest);
+
+	if(leftServo_Dest < 0)
+	{
+		leftServo_Dest*=-1;
+		cbi(PORTD, 5);
+		pulseT1BRun(leftServo_Dest);
+	}
+	else
+	{
+		sbi(PORTD, 5);
+		pulseT1BRun(leftServo_Dest);
+	}
+	//debug
+	/*
+	rprintf("Asked to go to %d\r\n",cmdlineGetArgInt(1));
+	rprintf("Pulse_Position = %d\r\n",thePosition);
+	rprintf("leftServo_Dest after compare = %d\r\n",leftServo_Dest);
+	*/
+	
 #ifdef DEBUG	
 		rprintf("e0\r\n");
 #endif DEBUG
@@ -451,5 +505,11 @@ void setCamTiltServo(void)
 #endif DEBUG
 
 	}
+}
+
+void setGeckoFreq(void)
+{
+	pulseT1BSetFreq((u16) cmdlineGetArgInt(1));
+	multiplier = cmdlineGetArgInt(2);
 }
 
