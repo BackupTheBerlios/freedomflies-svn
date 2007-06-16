@@ -29,8 +29,8 @@
 #include "i2c.h"
 #include "string.h"
 #include "servoconf.h"
-#include <pulseb.h>
-#include <pulseb.c>
+//#include <pulseb.h>
+//#include <pulseb.c>
 
 //I2C address definitions
 #define LOCAL_ADDR	0xA0
@@ -110,12 +110,14 @@ int main(void)
 	timerInit();
 	// initialize vt100 terminal
 	vt100Init();
+	//UNCOMMENT FOR BOAT WITH GECKO
+	/*
 	// initialize modified pulse library -- pulse on t1b ONLY -- out of D4
 	sbi(DDRD, 4);  //pulses -- taken over by OCR1B
 	sbi(DDRD, 5);  //dir -- manually controlled
 	pulseInit();
 	pulseT1BSetFreq(175);	//start at a good frequency
-
+	*/
 
 	// wait for hardware to power up
 	timerPause(100);
@@ -133,7 +135,6 @@ int main(void)
 	servoSetChannelIO(2, _SFR_IO_ADDR(PORTC), PC4);
 	servoSetChannelIO(3, _SFR_IO_ADDR(PORTC), PC5);
 	servoSetChannelIO(4, _SFR_IO_ADDR(PORTC), PC6);
-	servoSetChannelIO(5, _SFR_IO_ADDR(PORTC), PC7);
 	// set port pins to output
 	outb(DDRC, 0xFC);
 	
@@ -174,7 +175,7 @@ void goCmdline(void)
 	cmdlineAddCommand("p", 		setCamPanServo);
 	cmdlineAddCommand("i", 		setCamTiltServo);
 	cmdlineAddCommand("f", 		setFeedbackInterval);
-	cmdlineAddCommand("w",		setGeckoFreq);
+	//cmdlineAddCommand("w",		setGeckoFreq); // "w freq multiplier"
 
 	cmdlineAddCommand("2", 		i2cMaster_Send);
 	cmdlineAddCommand("3", 		i2cMaster_Receive);
@@ -401,7 +402,7 @@ void i2cMaster_Auto_Receive(u08 command)
 }
 
 	//BELOW is the original left servo code -- would be right for plane, not for boat
-/*
+
 void setLeftServo(void)
 {	
 	leftServoPos = (unsigned char) cmdlineGetArgInt(1);
@@ -410,7 +411,9 @@ void setLeftServo(void)
 		rprintf("e0\r\n");
 #endif DEBUG
 }
-*/
+	//BELOW is the boat left servo code 
+
+/*
 void setLeftServo(void)
 {	
 	signed long leftServo_Dest;
@@ -435,17 +438,17 @@ void setLeftServo(void)
 		pulseT1BRun(leftServo_Dest);
 	}
 	//debug
-	/*
-	rprintf("Asked to go to %d\r\n",cmdlineGetArgInt(1));
-	rprintf("Pulse_Position = %d\r\n",thePosition);
-	rprintf("leftServo_Dest after compare = %d\r\n",leftServo_Dest);
-	*/
+	
+	//rprintf("Asked to go to %d\r\n",cmdlineGetArgInt(1));
+	//rprintf("Pulse_Position = %d\r\n",thePosition);
+	//rprintf("leftServo_Dest after compare = %d\r\n",leftServo_Dest);
+	
 	
 #ifdef DEBUG	
 		rprintf("e0\r\n");
 #endif DEBUG
 }
-
+*/
 void setRightServo(void)
 {	
 	rightServoPos = (unsigned char) cmdlineGetArgInt(1);
@@ -506,10 +509,10 @@ void setCamTiltServo(void)
 
 	}
 }
-
+/*
 void setGeckoFreq(void)
 {
 	pulseT1BSetFreq((u16) cmdlineGetArgInt(1));
 	multiplier = cmdlineGetArgInt(2);
 }
-
+*/

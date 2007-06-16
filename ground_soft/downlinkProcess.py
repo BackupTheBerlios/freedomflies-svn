@@ -1,3 +1,4 @@
+#TO DO -- Fix avionics code to output separate data for compass, roll, and pitch
 import string
 import log
 import wx
@@ -11,27 +12,35 @@ class MyDownlinkProcessor(object):
 		#print "got OK"
 	def ProcessPitch(self,data_val):
 		#horizon pitch [0,127]
-		pitch_deg = round((int(data_val) - 64) * 90/127.0)
-		#pitch_deg [-90,90]
-		#print "got pitch:",pitch_deg
+#		pitch_deg = round((int(data_val) - 64) * 90/127.0)
+		pitch_deg = -1.0*(round(float(data_val))) #pitch seems reversed on the HMR board
+
 		self.parent.horizon.SetPitch(pitch_deg)
+
 	def ProcessRoll(self,data_val):
 		#horizon roll [0.127]
-		roll_deg = round((int(data_val) - 64) * 180/127.0)
+#		roll_deg = round((int(data_val) - 64) * 180/127.0)
 		#roll_deg [-180,180]
-		#print "got roll:",roll_deg
+		roll_deg = round(float(data_val))
+		
 		self.parent.horizon.SetRoll(roll_deg)
-	def ProcessHeading(self,data_val):
-		#compass heading [0,360]
-		#strip off +/-
-		heading_deg = round(float(data_val[1:]))
-		#print "got heading:",heading_deg
-		self.parent.compass.SetHeading(heading_deg)
+
+#	def ProcessHeading(self,data_val):  #csikmodified to deal with compass, pitch, and roll
+#		#compass heading [0,360]
+#		#strip off +/-
+#		heading_deg = round(float(data_val[1:]))
+#		#print "got heading:",heading_deg
+#		self.parent.compass.SetHeading(heading_deg)
 	def ProcessLatitude(self,data_val):
 		direction = data_val[0] #first character
 		degrees = data_val[1:-1] #strip off " +" from front, \r from back
 		#print "got latitude:",data_val
 		self.parent.UpdateLatitude(degrees,direction)
+	def ProcessHeading(self,data_val):  #csikmodified to deal with compass, pitch, and roll
+		#compass heading [219.1]
+		#strip off +/-
+		heading_deg = round(float(data_val))
+		self.parent.compass.SetHeading(heading_deg)
 	def ProcessLongitude(self,data_val):
 		direction = data_val[0] #first character
 		degrees = data_val[1:-1] #strip off " +" from front, \r from back
@@ -77,7 +86,7 @@ class MyDownlinkProcessor(object):
 	def ProcessBuffer(self,buffer):
 		data_types = ['c','a','o','s','g','f','b','q','w','z','1','E']
 		data_separator = ','
-		
+			
 		#strip to get rid of extra spaces
 		packets = (buffer.strip()).split(data_separator)
 	

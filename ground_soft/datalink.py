@@ -57,6 +57,8 @@ class radiolink(object):
 		if not self.radio.isOpen():
 			self.radio.open()
 			print "restarting radio on: "+self.radio.portstr
+		#DANGER! CsikCode:  added a boat servo command -- set servo speed.
+		self.radio.write("w 2000 10\r")
 		self.upthread = threading.Thread(target=self.UplinkThread)
 		self.upthread.setDaemon(1)
 		self.upalive.set()
@@ -132,7 +134,10 @@ class radiolink(object):
 					if NumSteeringServo == 1:
 						#full throw for left servo
 						if (abs(x_val - old_l_val)>2):
-							data_value = int(x_val*255/200.0 + 127.5)
+							#DANGER! CsikCode.  Trying to get things to work with pulsed-servo steering
+							#data_value = int(x_val*255/200.0 + 127.5)
+							#NOTE: changed joystick.py to return 0-2000 values
+							data_value = int(x_val + 1000)
 							old_l_val = x_val
 							new_data = 1
 					if NumSteeringServo == 2:

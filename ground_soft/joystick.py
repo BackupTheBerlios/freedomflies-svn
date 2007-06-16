@@ -138,7 +138,8 @@ class Joystick(object):
 			raw_x,raw_y = 0,0 #incorrect values
 		except NameError:
 			log.Log('e',"joystick axes not set")
-		x = int(raw_x * 100)
+		#DANGER! CsikCode: changed from 100 to 1000
+		x = int(raw_x * 1000)
 		y = int(raw_y * -100)
 		return x,y
 	
