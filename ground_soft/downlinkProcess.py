@@ -13,17 +13,21 @@ class MyDownlinkProcessor(object):
 	def ProcessPitch(self,data_val):
 		#horizon pitch [0,127]
 #		pitch_deg = round((int(data_val) - 64) * 90/127.0)
-		pitch_deg = -1.0*(round(float(data_val))) #pitch seems reversed on the HMR board
-
-		self.parent.horizon.SetPitch(pitch_deg)
-
+ 
+		try:
+			pitch_deg = -1.0*(round(float(data_val))) #pitch seems reversed on the HMR board
+			self.parent.horizon.SetPitch(pitch_deg)
+		except ValueError:
+			print "invalid pitch value: using old value"
 	def ProcessRoll(self,data_val):
 		#horizon roll [0.127]
 #		roll_deg = round((int(data_val) - 64) * 180/127.0)
 		#roll_deg [-180,180]
-		roll_deg = round(float(data_val))
-		
-		self.parent.horizon.SetRoll(roll_deg)
+		try:
+			roll_deg = round(float(data_val))
+			self.parent.horizon.SetRoll(roll_deg)
+		except ValueError:
+			print "invalid role value: using old value"
 
 #	def ProcessHeading(self,data_val):  #csikmodified to deal with compass, pitch, and roll
 #		#compass heading [0,360]
@@ -39,8 +43,11 @@ class MyDownlinkProcessor(object):
 	def ProcessHeading(self,data_val):  #csikmodified to deal with compass, pitch, and roll
 		#compass heading [219.1]
 		#strip off +/-
-		heading_deg = round(float(data_val))
-		self.parent.compass.SetHeading(heading_deg)
+		try:
+			heading_deg = round(float(data_val))
+			self.parent.compass.SetHeading(heading_deg)
+		except ValueError:
+			print "invalid heading value: using old value"
 	def ProcessLongitude(self,data_val):
 		direction = data_val[0] #first character
 		degrees = data_val[1:-1] #strip off " +" from front, \r from back

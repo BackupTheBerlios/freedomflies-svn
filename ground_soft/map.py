@@ -30,7 +30,8 @@ class MapCanvas(BufferedCanvas):
 		self.map = mapscript.mapObj()
 		self.map.width = size[0]
 		self.map.height = size[1]
-		self.map.setProjection('proj=latlong,ellps=WGS84')
+		#self.map.setProjection('proj=latlong,ellps=WGS84')
+		self.map.setProjection('proj=lcc,ellps=GRS80')
 		# set the output format 
 		self.map.setOutputFormat(mapscript.outputFormatObj('GD/PNG')) 
 		self.map.interlace = False #PIL can't handle interlaced PNGs
@@ -71,7 +72,8 @@ class MapCanvas(BufferedCanvas):
 		topoLayer.type = mapscript.MS_LAYER_RASTER
 		topoLayer.connectiontype = mapscript.MS_RASTER
 		topoLayer.data = filename
-		topoLayer.setProjection('proj=latlong,ellps=WGS84,datum=NAD83') #TODO: choose projection
+		#topoLayer.setProjection('proj=latlong,ellps=WGS84,datum=NAD83') #TODO: choose projection
+		topoLayer.setProjection('proj=lcc,ellps=GRS80,datum=NAD83') #TODO: choose projection
 		topoLayer.status = mapscript.MS_ON
 		layerNum = self.map.insertLayer(topoLayer) #do it
 		if debug:
@@ -102,7 +104,10 @@ class MapCanvas(BufferedCanvas):
 		pt.y = position[1] #lon
 		
 		# project our point into the mapObj's projection 
-		ddproj = mapscript.projectionObj('proj=latlong,ellps=WGS84')
+		#ddproj = mapscript.projectionObj('proj=latlong,ellps=WGS84')
+		#http://www.mass.gov/mgis/dd-over.htm
+		ddproj = mapscript.projectionObj('proj=lcc,ellps=GRS80')
+		
 		origproj = mapscript.projectionObj(self.map.getProjection())
 		pt.project(ddproj,origproj)
 		
@@ -164,5 +169,5 @@ if __name__ == '__main__':
 	app = wx.PySimpleApp()
 	m = MapFrame(None,-1,"Map",size=(400,300))
 	m.Show(True)	
-	#app.MainLoop() #don't include for iPython
+	app.MainLoop() #don't include for iPython
 	

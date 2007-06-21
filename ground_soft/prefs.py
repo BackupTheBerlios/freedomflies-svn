@@ -108,7 +108,7 @@ class PrefFrame(wx.MiniFrame):
 			return l
 		else:
 			pass
-			#figure out what to do on other platforms
+			#TODO: figure out what to do on other platforms
 			
 	def ReadJoystickConfig(self):
 		try:

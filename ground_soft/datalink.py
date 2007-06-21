@@ -110,7 +110,7 @@ class radiolink(object):
 		interval = 30.0
 		
 		#TODO: implement gui/config-file for these settings
-		NumSteeringServo = 1
+		NumSteeringServo = 2
 		ThrottleReversible = True
 
 		#initialize no6 frequency
@@ -142,7 +142,7 @@ class radiolink(object):
 							new_data = 1
 					if NumSteeringServo == 2:
 						if ((x_val <= 0) and (abs(x_val - old_l_val)>2)):
-							data_value = -1*int(x_val*255/100.0)
+							data_value = 255 + int(x_val*255/100.0)
 							old_l_val = x_val
 							new_data = 1
 				elif data_type == 'r':

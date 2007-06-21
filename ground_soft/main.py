@@ -25,6 +25,19 @@ from bufferedcanvas import *
 import datalink
 from pyTS import TerraImage
 
+#temporary configuration settings
+#TODO make this a pickleable, readable config file
+class configuration(object):
+	def __init__(self, name):
+		self.name = name
+		print self.name
+	def set_map(map):
+		self.map = map
+
+theConfig = configuration("generic")
+theConfig.map = False
+
+
 #external library imports
 try:
 	import wx
@@ -187,8 +200,9 @@ class AppFrame(wx.Frame):
 		#self.Bind(wx.EVT_MENU,self.OnJoystickCalibrate,cal)
 		gtest = SetupMenu.Append(-1,"Graphics Test")
 		self.Bind(wx.EVT_MENU,self.OnGraphicsTest,gtest)
-		map = SetupMenu.Append(-1,"Map")
-		self.Bind(wx.EVT_MENU,self.OnMap,map)
+		if(theConfig.map):
+			map = SetupMenu.Append(-1,"Map")
+			self.Bind(wx.EVT_MENU,self.OnMap,map)
 		self.MenuBar.Append(SetupMenu,"Setup")
 		self.SetMenuBar(self.MenuBar)
 		#end of menubar
@@ -221,9 +235,11 @@ class AppFrame(wx.Frame):
 		info.SetCopyright("Copyright (C) 2005-2007 MIT Media Lab")
 		info.SetWebSite('http://freedomflies.berlios.de')
 		wx.AboutBox(info)
+	
 		
 	def OnMap(self,event):
-		self.parent.map.Show()
+		if (theConfig.map):
+			self.parent.map.Show()
 	
 	def OnPrefs(self,event):
 		self.parent.prefs.Show()
@@ -298,7 +314,9 @@ class AppFrame(wx.Frame):
 		if lat_dir is ("-" or "E"):
 			dirVal = -1
 		self.currentLocation.Lat = dirVal*lat_deg
-		self.parent.map.map.setCenter(self.currentLocation)
+		
+		if (theConfig.map):
+			self.parent.map.map.setCenter(self.currentLocation)
 		self.lat_ctrl.SetValue(str(lat_deg))
 		self.lat_dir_text.SetLabel(lat_dir)
 		
@@ -308,7 +326,8 @@ class AppFrame(wx.Frame):
 		if lon_dir is ("-" or "S"):
 			dirVal = -1
 		self.currentLocation.Lon = dirVal*lon_deg
-		self.parent.map.map.setCenter(self.currentLocation)
+		if (theConfig.map):
+			self.parent.map.map.setCenter(self.currentLocation)
 		self.lon_ctrl.SetValue(str(lon_deg))
 		self.lon_dir_text.SetLabel(lon_dir)
 	def UpdateAltitude(self,alt):
@@ -323,10 +342,12 @@ class MyApp(wx.App):
 		self.mainWin = AppFrame(None, 1, "Freedom Flies",(50,25),(800,600))
 		self.mainWin.parent = self #just for link in OnMap and OnPrefs
 		self.mainWin.currentLocation = TerraImage.point(42.35830436,-71.09108681) #start location is MIT
-		self.map = map.MapFrame(self.mainWin,-1,"Map",(855,25),(400,400))
+		if (theConfig.map):
+			self.map = map.MapFrame(self.mainWin,-1,"Map",(855,25),(400,400))
 		self.prefs = prefs.PrefFrame(self.mainWin,-1,"Preferences",(855,425),(300,225))
 		self.mainWin.Show()
-		self.map.Show()
+		if (theConfig.map):
+			self.map.Show()
 		self.prefs.Show()
 		self.SetTopWindow(self.mainWin)
 		self.Bind(wx.EVT_CLOSE,self.mainWin.OnQuit)
