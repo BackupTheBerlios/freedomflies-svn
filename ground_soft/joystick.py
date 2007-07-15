@@ -138,7 +138,7 @@ class Joystick(object):
 			raw_x,raw_y = 0,0 #incorrect values
 		except NameError:
 			log.Log('e',"joystick axes not set")
-		#DANGER! CsikCode: changed from 100 to 1000
+		
 		x = int(raw_x * 100)
 		y = int(raw_y * -100)
 		return x,y
@@ -183,7 +183,7 @@ class Joystick(object):
 				dir = -1
 
 			raw_pos = self.stick.get_axis(self.ThrottleNum)
-			throttle = dir*float((raw_pos-1)*-50) #should range (0,100)
+			throttle = dir*float(((raw_pos-1)*50) +3) #should range (0,100)
 			
 		except AttributeError:
 			log.Log('e',"could not access throttle")
