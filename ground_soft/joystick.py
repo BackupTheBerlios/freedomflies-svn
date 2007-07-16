@@ -142,6 +142,9 @@ class Joystick(object):
 		x = int(raw_x * 100)
 		y = int(raw_y * -100)
 		return x,y
+		
+	def getButton(self,buttonNum):
+		return self.stick.get_button(buttonNum)
 	
 	def getHat(self):
 		raw_x,raw_y = 0,0 #init

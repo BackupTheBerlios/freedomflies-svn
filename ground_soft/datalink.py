@@ -123,7 +123,7 @@ class radiolink(object):
 			throttle_val = self.parent.joystick.getThrottle()
 			x_hat,y_hat = self.parent.joystick.getHat()
 			
-			data_types = ['l','r','t','p','i']
+			data_types = ['l','r','t','p','i','v']
 			command_list = []
 			data_value = 0
 			
@@ -177,6 +177,29 @@ class radiolink(object):
 						data_value = y_hat #export for write
 						old_yhat = data_value
 						new_data = 1
+				elif data_type == 'v':
+					
+					if(self.parent.joystick.getButton(9)): 
+						print "got 9!"
+						data_type = "2 n"
+						data_value = '\r3'
+						new_data = 1
+					if(self.parent.joystick.getButton(10)): 
+						print "got 10!"
+						data_type = "2 m"
+						data_value = '\r3'
+						new_data = 1
+					if(self.parent.joystick.getButton(11)): 
+						print "got 11!"
+						data_type = "2 h"
+						data_value = '\r3'
+						new_data = 1
+					if(self.parent.joystick.getButton(8)): 
+						print "got 8!"
+						data_type = "2 p"
+						data_value = '\r3'
+						new_data = 1
+					
 				else: #shouldn't ever get here
 					data_value = 0
 				

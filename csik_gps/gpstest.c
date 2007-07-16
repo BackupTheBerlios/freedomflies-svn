@@ -28,7 +28,10 @@
 #include "i2c.h"		// include i2c support
 #define LOCAL_ADDR		0xA0
 //#define RPRINTF_FLOAT	TRUE	//This allows rprintf to print floats -- useful for lats/longs
-#define USE_VID_CARD
+
+//#define USE_VID_CARD
+#define USE_VOICE_BOX
+unsigned char voiceBoxCue;
 
 unsigned char localBuffer[] = "This should be filling with data!";
 unsigned char localBufferLength = 0x20;
@@ -46,6 +49,7 @@ void addToBuffer(unsigned char ch); //the interrupt handler
 void i2cSlaveReceiveService(u08 receiveDataLength, u08* receiveData);
 u08 i2cSlaveTransmitService(u08 transmitDataLengthMax, u08* transmitData);
 u08 message_sent;
+void initVoiceBox(void);
 
 //printing to array routines.  these are used to print floats to the i2c, since sprintf doesn't work properly with %f.  
 //instead, we set rprintfinit(print_to_string), then at the end have a string that we send to the i2c.  
@@ -53,6 +57,10 @@ u08 message_sent;
 u08 stackem[stackem_length];
 u08 stackem_pointer = 0;
 void print_to_string(u08 the_char);
+void sendTextMessage(u08);
+
+//For voice box
+#define CTRLA = 0x01
 
 //----- Begin Code ------------------------------------------------------------
 int main(void)
@@ -76,6 +84,23 @@ int main(void)
 	// initialize our libraries
 	// initialize the UART (serial port)
 	uartInit();
+	timerInit();
+ 	timerPause(500);
+
+
+#ifdef USE_VOICE_BOX
+	////PRE_INIT FOR THE V8699A VOICE SYNTH//////////////////////////////
+	uartSetBaudRate(4800);
+	// make all rprintf statements use uart for output
+	rprintfInit(uartSendByte);
+	initVoiceBox();
+	voiceBoxCue = 'x';
+#endif /* USE_VOICE_BOX */
+
+////// initialize the timer system
+
+
+#ifdef USE_VIDEO_CARD
 	////PRE_INIT FOR THE VIDEO CARD//////////////////////////////
 	uartSetBaudRate(2400);
 	// make all rprintf statements use uart for output
@@ -85,25 +110,16 @@ int main(void)
 	uartSetBaudRate(4800);
 	// make all rprintf statements use uart for output
 	rprintfInit(uartSendByte);
-	// initialize the timer system
+	// initialize the timer syste
+#endif /* USE_VIDEO_CARD */
 	
-	timerInit();
-	
-
-	
-	//vt100Init();
-	// clear terminal screen
-	//vt100ClearScreen();
-	//vt100SetCursorPos(1,1);
 	// print a little intro message so we know things are working
 #ifndef USE_VID_CARD 
 	// print an intro message
 	rprintf("\r\nWelcome to GPS subsystem!\r\n");
-#endif USE_VID_CARD
+#endif /* USE_VID_CARD */
 
-////// initialize the timer system
-	timerInit();
- 	timerPause(500);
+
 
 ////// initialize software uart
 	uartswInit();
@@ -129,7 +145,7 @@ int main(void)
 
 	uartSetRxHandler(addToBuffer); //custom handler	
 	
-	rprintf("set handler\r\n");
+	//rprintf("set handler\r\n");
 	
 	//initialize gps library
 	status = nmeap_init(&nmea,&user_data);
@@ -146,9 +162,9 @@ int main(void)
         rprintf("nmeap_add RMC %d\n",status);
     }
 	// WHAT IS THIS?????
-	rprintf("gga.latitude = ");
-	rprintfFloat(8,gga.latitude);
-	rprintf("\r\n");
+	//rprintf("gga.latitude = ");
+	//rprintfFloat(8,gga.latitude);
+	//rprintf("\r\n");
 	
 	for(;;) {
 		//set up variables for access by spi routine
@@ -162,8 +178,8 @@ int main(void)
 					case NMEAP_GPGGA:
 #ifdef USE_VID_CARD
 						writeVideoScreen(gga.latitude, gga.longitude, gga.time, gga.altitude, rmc.course, rmc.speed, 'n');
-#endif /*#define USE_VID_CARD*/
-#ifndef USE_VID_CARD
+#endif /* end USE_VID_CARD*/
+#ifdef USE_TERMINAL
 						rprintf("GGA");
 						rprintf("\tLat: ");
 						rprintfFloat(8,gga.latitude);
@@ -182,13 +198,14 @@ int main(void)
 						rprintf("Bearing to 77 (deg): ");
 						rprintfFloat(8,bearing(from,to));
 						rprintf("\r\n\r\n");
-#endif /* NOT using vid card */
+#endif /* end USE_TERMINAL */
 						break;
 					case NMEAP_GPRMC:
 #ifdef USE_VID_CARD
 						writeVideoScreen(gga.latitude, gga.longitude, gga.time, gga.altitude, rmc.course, rmc.speed, 'n');
 #endif /* USE_VID_CARD */
-#ifndef USE_VID_CARD
+
+#ifdef USE_TERMINAL
 						rprintf("RMC");
 						//rprintf("\tLat: ");
 						//rprintfFloat(8,rmc.latitude);
@@ -196,10 +213,10 @@ int main(void)
 						//rprintfFloat(8,rmc.longitude);
 						rprintf(" Vel (kt): ");
 						rprintfFloat(8,rmc.speed);
-						rprintf(" Course over ground (deg): ")
+						rprintf(" Course over ground (deg): ");
 						rprintfFloat(8,rmc.course);
 						rprintf("\r\n");
-#endif /* NOT using vid card */
+#endif /* end using terminal */
 						break;
 					default:
 						break;
@@ -214,7 +231,12 @@ int main(void)
 			
 			// OR, should the master give a character and then receive a value?
 			// that would seem to make more sense, but it means sort of immediate updates...
-			rprintf(".\r");
+			//rprintf("%c\r\n",voiceBoxCue);
+			//This should cue for the voice box...
+			if(voiceBoxCue != 'x')
+			{
+				sendTextMessage(voiceBoxCue);
+			}
 
 			if(message_sent != 0)
 			{
@@ -224,6 +246,51 @@ int main(void)
 	} //end for
 	
 	return 0;
+}
+/*
+#define  h "Restore Habeas Corpus Now!"
+#define  m "Close Guantanamo Now!  It is illegal, immoral, and hurting our national security!"
+#define  n "What do we want?  Heybeas corpuss!  When do we want it?  We already have the right, but the right is being illegaly violated!"
+#define  p "We come in peace!  We mean you no harm."
+*/
+void sendTextMessage(unsigned char theMessage)
+{	
+	switch(theMessage)
+	{
+		case 'h':
+			rprintf("\r\n Restore heybeas corpuss! Stop the torture!\r\n ");
+			break;
+		case 'm':
+			rprintf("\r\n Close Guantanamo Now!  It is illegal, immoral, and hurting our national security!\r\n ");
+			break;
+		case 'n':
+			rprintf("\r\nWhat do we want?  Heybeas corpuss!  When do we want it?  We already have the right, but the right is being illegaly violated!\r\n ");
+			break;
+		case 'p':
+			rprintf("\r\n We come in peace!  We mean you no harm.\r\n ");
+			break;
+		case 22:
+			rprintf("\r\n We come in peace!  We mean you no harm.\r\n ");
+			break;
+		default:
+			break;
+	}
+	voiceBoxCue = 'x';
+}
+
+
+void initVoiceBox(void){
+	rprintfCRLF();
+	rprintfu08(1);//rprintfu08(small);((u08) 1);  //ctrl A = ascii code 1 -- sets voicebox to accept a command
+	rprintf("4O\r\n"); //4o is the voice to use -- richochet randy!
+	rprintfu08(1); //rprintfChar((u08) 1);  //ctrl A = ascii code 1 -- sets voicebox to accept a command
+	rprintf("2P\r\n"); //4o is the voice to use -- richochet randy!
+	
+	rprintf("Close Guantanamo now!\r\n");
+	rprintfCRLF();
+	rprintf("%c4O\r\n",0x01);
+	rprintf("%c2P\r\n",0x01);
+	rprintf("Restore heybeas corpuss\r\n");
 }
 
 void addToBuffer(unsigned char ch) {
@@ -261,6 +328,10 @@ void i2cSlaveReceiveService(u08 receiveDataLength, u08* receiveData)
 #define	 f "Fuel"
 #define	 s "Airspeed"
 #define	 g "Groundspeed"
+#define  h "Restore Habeas Corpus Now!"
+#define  m "Close Guantanamo Now!  It is illegal, immoral, and hurting our national security!"
+#define  n "What do we want?  Heybeas corpuss!  When do we want it?  We already have the right, but the right is being illegaly violated!"
+#define  p "We come in peace!  We mean you no harm."
 */
 
 u08 i2cSlaveTransmitService(u08 transmitDataLengthMax, u08* transmitData)
@@ -311,7 +382,22 @@ u08 i2cSlaveTransmitService(u08 transmitDataLengthMax, u08* transmitData)
 			rprintf("s ");
 			rprintfFloat(7,rmc.speed);
 			break;
-		
+		case 'h':
+			voiceBoxCue = 'h';
+			rprintf("h ");
+			break;
+		case 'n':
+			voiceBoxCue = 'n';
+			rprintf("n ");
+			break;
+		case 'm':
+			voiceBoxCue = 'm';
+			rprintf("m ");
+			break;
+		case 'p':
+			voiceBoxCue = 22;
+			rprintf("p ");
+			break;
 		default:
 		//	rprintf(" E");  //CE = Command Error
 			break;
@@ -360,3 +446,4 @@ void setCompassBaud(void)
 	rprintf("\r\n");
 	
 }
+

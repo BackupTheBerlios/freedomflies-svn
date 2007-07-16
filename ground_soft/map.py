@@ -3,8 +3,10 @@ from bufferedcanvas import *
 import cStringIO
 import mapscript
 
-debug = False
+debug = True
 saveToDisk = False
+
+
 
 class MapFrame(wx.Frame):
 	def __init__(self,parent,id,name,pos=(50,50),size=(400,300)):
@@ -31,21 +33,32 @@ class MapCanvas(BufferedCanvas):
 		self.map.width = size[0]
 		self.map.height = size[1]
 		#self.map.setProjection('proj=latlong,ellps=WGS84')
-		self.map.setProjection('proj=lcc,ellps=GRS80')
+		self.map.setProjection('proj=lcc,ellps=GRS80') 
 		# set the output format 
-		self.map.setOutputFormat(mapscript.outputFormatObj('GD/PNG')) 
+		self.map.setOutputFormat(mapscript.outputFormatObj('GD/PNG') )
 		self.map.interlace = False #PIL can't handle interlaced PNGs
+		topo=mapscript.layerObj(None) 
+		topo.name="topo"  
+		topo.type=mapscript.MS_LAYER_RASTER  
+		topo.connectiontype=mapscript.MS_RASTER  
+		topo.setProjection('proj=lcc,ellps=GRS80,datum=NAD83')
+		topo.status = mapscript.MS_ON    
+		topo.tileindex="maps/index.shp"
+		topo.tileitem="location"
+		layerNum = self.map.insertLayer(topo)
 		
-		fn = self.lookupTopoFilename(0)
-		self.loadRaster(fn)
+		#fn = self.lookupTopoFilename(0)
+		#self.loadRaster(fn)
 		BufferedCanvas.__init__(self,parent,id)
 		
 	def draw(self,dc):
 		try:
+			self.setDist(1)
 			themap = self.map.draw()
 			data = themap.saveToString()
 			wx_image = wx.ImageFromStream(cStringIO.StringIO(data)) #convert to wx image
 			bitmap = wx_image.ConvertToBitmap()
+			if debug: print "MapServer thinks it's drawing..."
 			if saveToDisk is True:
 				f = open('map.png','wb')
 				f.write(themap.getBytes())
@@ -53,29 +66,32 @@ class MapCanvas(BufferedCanvas):
 		except mapscript.MapServerError:
 			#the map isn't ready yet
 			bitmap = wx.EmptyBitmap(self.size[0],self.size[1])
+			if debug: print "unable to draw, MapServerError in 'draw'."
 		dc.DrawBitmap(bitmap,0,0,True)
 		if debug: print "drawing"
 	
 	def setCenter(self,center):
-		self.center = center
+		self.map.center = center
 		self.update()
 	
-	def lookupTopoFilename(self,point):
-		#TODO: lookup correct map name
-		#for now, just return MIT
-		return "./maps/q237898.tif"
+#	def lookupTopoFilename(self,point):
+#		#TODO: lookup correct map name
+#		#for now, just return MIT
+#		return "./maps/q237898.tif"
 	
 	def loadRaster(self,filename):
 		"""Loads raster image from filename"""
-		topoLayer = mapscript.layerObj(None) #creating layers with parent defined will segfault
-		topoLayer.name = "Topo"
-		topoLayer.type = mapscript.MS_LAYER_RASTER
-		topoLayer.connectiontype = mapscript.MS_RASTER
-		topoLayer.data = filename
-		#topoLayer.setProjection('proj=latlong,ellps=WGS84,datum=NAD83') #TODO: choose projection
-		topoLayer.setProjection('proj=lcc,ellps=GRS80,datum=NAD83') #TODO: choose projection
-		topoLayer.status = mapscript.MS_ON
-		layerNum = self.map.insertLayer(topoLayer) #do it
+
+		topo=mapscript.layerObj(None) 
+		topo.name="topo"  
+		topo.type=MS_LAYER_RASTER  
+		topo.connectiontype=MS_RASTER  
+		topo.setProjection('proj=lcc,ellps=GRS80,datum=NAD83')
+		topo.status = MS_ON    
+		topo.tileindex="maps/index.shp"
+		topo.tileitem="location"
+		layerNum = self.map.insertLayer(topo)
+		
 		if debug:
 			print "added topolayer",self.map.getLayer(layerNum).data
 			print "topolayer extent",topoLayer.extent
@@ -84,8 +100,8 @@ class MapCanvas(BufferedCanvas):
 		"""Create an extent for our mapObj by buffering our
 		projected point by the buffer distance. Then set the mapObj's extent."""
 		extent = mapscript.rectObj() 
-		topleft = self.getPointFromDist(self.center,dist,360-45)
-		bottomright = self.getPointFromDist(self.center,dist,135) #returns (lat,lon)
+		topleft = self.getPointFromDist(self.parent.currentLocation,dist,360-45)
+		bottomright = self.getPointFromDist(self.parent.currentLocation,dist,135) #returns (lat,lon)
 		
 		extent.minx = min(topleft[1],bottomright[1])
 		extent.miny = min(topleft[0],bottomright[0])
