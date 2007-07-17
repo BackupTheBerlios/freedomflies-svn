@@ -110,7 +110,7 @@ class radiolink(object):
 		interval = 30.0
 		
 		#TODO: implement gui/config-file for these settings
-		NumSteeringServo = 2
+		NumSteeringServo = 1
 		ThrottleReversible = True
 
 		#initialize no6 frequency
@@ -137,8 +137,10 @@ class radiolink(object):
 							#DANGER! CsikCode.  Trying to get things to work with pulsed-servo steering
 							#data_value = int(x_val*255/200.0 + 127.5)
 							#NOTE: changed joystick.py to return 0-2000 values
-							data_value = int(x_val + 1000)
+							print x_val
+							data_value = int(x_val*255/200.0 + 127.5)
 							old_l_val = x_val
+							data_type = 'r'
 							new_data = 1
 					if NumSteeringServo == 2:
 						if ((x_val <= 0) and (abs(x_val - old_l_val)>2)):
@@ -159,7 +161,7 @@ class radiolink(object):
 					# it seems like this is pretty weird -- just for the av8r?
 					if((abs(throttle_val-old_throttle_val))>2):
 						if ThrottleReversible == True:
-							data_value = int(throttle_val*255/200.0 + 127.5)
+							data_value = int(255-(throttle_val*255/100.0 + 255))
 							#goes from 0-255, 127 is mid
 						if ThrottleReversible == False:
 							data_value = abs(int(throttle_val*255/100.0))
