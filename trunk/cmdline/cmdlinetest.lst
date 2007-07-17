@@ -1,0 +1,2494 @@
+GAS LISTING /var/tmp//cc9HTByh.s 			page 1
+
+
+   1               		.file	"cmdlinetest.c"
+   2               		.arch atmega32
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  10               		.stabs	"/opt/local/avr/avrlib/freedomflies/cmdline/",100,0,2,.Ltext0
+  11               		.stabs	"cmdlinetest.c",100,0,2,.Ltext0
+  12               		.text
+  13               	.Ltext0:
+  14               		.stabs	"gcc2_compiled.",60,0,0,0
+  15               		.stabs	"int:t(0,1)=r(0,1);-32768;32767;",128,0,0,0
+  16               		.stabs	"char:t(0,2)=r(0,2);0;127;",128,0,0,0
+  17               		.stabs	"long int:t(0,3)=@s32;r(0,3);020000000000;017777777777;",128,0,0,0
+  18               		.stabs	"unsigned int:t(0,4)=r(0,4);0;0177777;",128,0,0,0
+  19               		.stabs	"long unsigned int:t(0,5)=@s32;r(0,5);0;037777777777;",128,0,0,0
+  20               		.stabs	"long long int:t(0,6)=@s64;r(0,6);01000000000000000000000;0777777777777777777777;",128,0,0,
+  21               		.stabs	"long long unsigned int:t(0,7)=@s64;r(0,7);0;01777777777777777777777;",128,0,0,0
+  22               		.stabs	"short int:t(0,8)=r(0,8);-32768;32767;",128,0,0,0
+  23               		.stabs	"short unsigned int:t(0,9)=r(0,9);0;0177777;",128,0,0,0
+  24               		.stabs	"signed char:t(0,10)=@s8;r(0,10);-128;127;",128,0,0,0
+  25               		.stabs	"unsigned char:t(0,11)=@s8;r(0,11);0;255;",128,0,0,0
+  26               		.stabs	"float:t(0,12)=r(0,1);4;0;",128,0,0,0
+  27               		.stabs	"double:t(0,13)=r(0,1);4;0;",128,0,0,0
+  28               		.stabs	"long double:t(0,14)=r(0,1);4;0;",128,0,0,0
+  29               		.stabs	"void:t(0,15)=(0,15)",128,0,0,0
+  30               		.stabs	"/opt/local/lib/gcc/avr/4.0.2/../../../../avr/include/avr/io.h",130,0,0,0
+  31               		.stabs	"/opt/local/lib/gcc/avr/4.0.2/../../../../avr/include/avr/sfr_defs.h",130,0,0,0
+  32               		.stabs	"/opt/local/lib/gcc/avr/4.0.2/../../../../avr/include/inttypes.h",130,0,0,0
+  33               		.stabs	"/opt/local/lib/gcc/avr/4.0.2/../../../../avr/include/stdint.h",130,0,0,0
+  34               		.stabs	"int8_t:t(4,1)=(0,10)",128,0,116,0
+  35               		.stabs	"uint8_t:t(4,2)=(0,11)",128,0,117,0
+  36               		.stabs	"int16_t:t(4,3)=(0,1)",128,0,118,0
+  37               		.stabs	"uint16_t:t(4,4)=(0,4)",128,0,119,0
+  38               		.stabs	"int32_t:t(4,5)=(0,3)",128,0,120,0
+  39               		.stabs	"uint32_t:t(4,6)=(0,5)",128,0,121,0
+  40               		.stabs	"int64_t:t(4,7)=(0,6)",128,0,122,0
+  41               		.stabs	"uint64_t:t(4,8)=(0,7)",128,0,123,0
+  42               		.stabs	"intptr_t:t(4,9)=(4,3)",128,0,135,0
+  43               		.stabs	"uintptr_t:t(4,10)=(4,4)",128,0,140,0
+  44               		.stabs	"int_least8_t:t(4,11)=(4,1)",128,0,152,0
+  45               		.stabs	"uint_least8_t:t(4,12)=(4,2)",128,0,157,0
+  46               		.stabs	"int_least16_t:t(4,13)=(4,3)",128,0,162,0
+  47               		.stabs	"uint_least16_t:t(4,14)=(4,4)",128,0,167,0
+  48               		.stabs	"int_least32_t:t(4,15)=(4,5)",128,0,172,0
+  49               		.stabs	"uint_least32_t:t(4,16)=(4,6)",128,0,177,0
+  50               		.stabs	"int_least64_t:t(4,17)=(4,7)",128,0,182,0
+  51               		.stabs	"uint_least64_t:t(4,18)=(4,8)",128,0,187,0
+  52               		.stabs	"int_fast8_t:t(4,19)=(4,1)",128,0,200,0
+  53               		.stabs	"uint_fast8_t:t(4,20)=(4,2)",128,0,205,0
+  54               		.stabs	"int_fast16_t:t(4,21)=(4,3)",128,0,210,0
+  55               		.stabs	"uint_fast16_t:t(4,22)=(4,4)",128,0,215,0
+  56               		.stabs	"int_fast32_t:t(4,23)=(4,5)",128,0,220,0
+  57               		.stabs	"uint_fast32_t:t(4,24)=(4,6)",128,0,225,0
+GAS LISTING /var/tmp//cc9HTByh.s 			page 2
+
+
+  58               		.stabs	"int_fast64_t:t(4,25)=(4,7)",128,0,230,0
+  59               		.stabs	"uint_fast64_t:t(4,26)=(4,8)",128,0,235,0
+  60               		.stabs	"intmax_t:t(4,27)=(4,7)",128,0,249,0
+  61               		.stabs	"uintmax_t:t(4,28)=(4,8)",128,0,254,0
+  62               		.stabn	162,0,0,0
+  63               		.stabs	"int_farptr_t:t(3,1)=(4,5)",128,0,76,0
+  64               		.stabs	"uint_farptr_t:t(3,2)=(4,6)",128,0,80,0
+  65               		.stabn	162,0,0,0
+  66               		.stabn	162,0,0,0
+  67               		.stabn	162,0,0,0
+  68               		.stabs	"global.h",130,0,0,0
+  69               		.stabs	"/opt/local/avr/sixcode/avrlibtypes.h",130,0,0,0
+  70               		.stabs	"u08:t(6,1)=(0,11)",128,0,32,0
+  71               		.stabs	"s08:t(6,2)=(0,10)",128,0,33,0
+  72               		.stabs	"u16:t(6,3)=(0,9)",128,0,34,0
+  73               		.stabs	"s16:t(6,4)=(0,8)",128,0,35,0
+  74               		.stabs	"u32:t(6,5)=(0,5)",128,0,36,0
+  75               		.stabs	"s32:t(6,6)=(0,3)",128,0,37,0
+  76               		.stabs	"u64:t(6,7)=(0,7)",128,0,38,0
+  77               		.stabs	"s64:t(6,8)=(0,6)",128,0,39,0
+  78               		.stabs	"BOOL:t(6,9)=(0,11)",128,0,69,0
+  79               		.stabs	"BYTE:t(6,10)=(0,11)",128,0,70,0
+  80               		.stabs	"WORD:t(6,11)=(0,4)",128,0,71,0
+  81               		.stabs	"DWORD:t(6,12)=(0,5)",128,0,72,0
+  82               		.stabs	"UCHAR:t(6,13)=(0,11)",128,0,74,0
+  83               		.stabs	"UINT:t(6,14)=(0,4)",128,0,75,0
+  84               		.stabs	"USHORT:t(6,15)=(0,9)",128,0,76,0
+  85               		.stabs	"ULONG:t(6,16)=(0,5)",128,0,77,0
+  86               		.stabs	"CHAR:t(6,17)=(0,2)",128,0,79,0
+  87               		.stabs	"INT:t(6,18)=(0,1)",128,0,80,0
+  88               		.stabs	"LONG:t(6,19)=(0,3)",128,0,81,0
+  89               		.stabn	162,0,0,0
+  90               		.stabn	162,0,0,0
+  91               		.stabs	"/opt/local/avr/sixcode/uart.h",130,0,0,0
+  92               		.stabs	"/opt/local/avr/sixcode/buffer.h",130,0,0,0
+  93               		.stabs	"struct_cBuffer:T(8,1)=s8dataptr:(8,2)=*(0,11),0,16;size:(0,9),16,16;datalength:(0,9),32,16
+  94               		.stabs	"cBuffer:t(8,3)=(8,1)",128,0,47,0
+  95               		.stabn	162,0,0,0
+  96               		.stabn	162,0,0,0
+  97               		.stabs	"/opt/local/avr/sixcode/rprintf.h",130,0,0,0
+  98               		.stabs	"/opt/local/lib/gcc/avr/4.0.2/../../../../avr/include/avr/pgmspace.h",130,0,0,0
+  99               		.stabs	"/opt/local/lib/gcc/avr/4.0.2/include/stddef.h",130,0,0,0
+ 100               		.stabs	"size_t:t(11,1)=(0,4)",128,0,214,0
+ 101               		.stabn	162,0,0,0
+ 102               		.stabs	"prog_void:t(10,1)=(10,2)=(10,2)",128,0,203,0
+ 103               		.stabs	"prog_char:t(10,3)=(10,4)=@s8;r(10,4);-128;127;",128,0,204,0
+ 104               		.stabs	"prog_uchar:t(10,5)=(10,6)=@s8;r(10,6);0;255;",128,0,205,0
+ 105               		.stabs	"prog_int8_t:t(10,7)=(10,4)",128,0,207,0
+ 106               		.stabs	"prog_uint8_t:t(10,8)=(10,6)",128,0,208,0
+ 107               		.stabs	"prog_int16_t:t(10,9)=(10,10)=(0,1)",128,0,209,0
+ 108               		.stabs	"prog_uint16_t:t(10,11)=(10,12)=(0,4)",128,0,210,0
+ 109               		.stabs	"prog_int32_t:t(10,13)=(10,14)=(0,3)",128,0,211,0
+ 110               		.stabs	"prog_uint32_t:t(10,15)=(10,16)=(0,5)",128,0,212,0
+ 111               		.stabs	"prog_int64_t:t(10,17)=(10,18)=(0,6)",128,0,213,0
+ 112               		.stabs	"prog_uint64_t:t(10,19)=(10,20)=(0,7)",128,0,214,0
+ 113               		.stabn	162,0,0,0
+ 114               		.stabn	162,0,0,0
+GAS LISTING /var/tmp//cc9HTByh.s 			page 3
+
+
+ 115               		.stabs	"/opt/local/avr/sixcode/cmdline.h",130,0,0,0
+ 116               		.stabs	"CmdlineFuncPtrType:t(12,1)=(12,2)=*(12,3)=f(0,15)",128,0,85,0
+ 117               		.stabn	162,0,0,0
+ 118               		.stabs	"/opt/local/avr/sixcode/servo.h",130,0,0,0
+ 119               		.stabs	"struct_ServoChannel:T(13,1)=s4port:(13,2)=B(6,1),0,8;pin:(13,2),8,8;duty:(13,3)=B(6,3),16,
+ 120               		.stabs	"ServoChannelType:t(13,4)=(13,1)",128,0,78,0
+ 121               		.stabn	162,0,0,0
+ 122               		.stabs	"/opt/local/avr/sixcode/i2c.h",130,0,0,0
+ 123               		.stabs	" :T(14,1)=eI2C_IDLE:0,I2C_BUSY:1,I2C_MASTER_TX:2,I2C_MASTER_RX:3,I2C_SLAVE_TX:4,I2C_SLAVE_
+ 124               		.stabs	"eI2cStateType:t(14,2)=(14,1)",128,0,124,0
+ 125               		.stabn	162,0,0,0
+ 126               	.global	numTimesThrough
+ 127               	.global	numTimesThrough
+ 128               		.section .bss
+ 129               		.type	numTimesThrough, @object
+ 130               		.size	numTimesThrough, 4
+ 131               	numTimesThrough:
+ 132 0000 0000 0000 		.skip 4,0
+ 133               	.global	multiplier
+ 134               		.data
+ 135               		.type	multiplier, @object
+ 136               		.size	multiplier, 2
+ 137               	multiplier:
+ 138 0000 6400      		.word	100
+ 139               	.global	leftServoPos
+ 140               		.type	leftServoPos, @object
+ 141               		.size	leftServoPos, 1
+ 142               	leftServoPos:
+ 143 0002 88        		.byte	-120
+ 144               	.global	masterBufferLength
+ 145               		.type	masterBufferLength, @object
+ 146               		.size	masterBufferLength, 1
+ 147               	masterBufferLength:
+ 148 0003 20        		.byte	32
+ 149               	.global	masterBuffer
+ 150               		.type	masterBuffer, @object
+ 151               		.size	masterBuffer, 29
+ 152               	masterBuffer:
+ 153 0004 5468 6973 		.string	"This one is the Master board"
+ 153      206F 6E65 
+ 153      2069 7320 
+ 153      7468 6520 
+ 153      4D61 7374 
+ 154               	.global	slaveBufferLength
+ 155               		.type	slaveBufferLength, @object
+ 156               		.size	slaveBufferLength, 1
+ 157               	slaveBufferLength:
+ 158 0021 20        		.byte	32
+ 159               	.global	slaveBuffer
+ 160               		.type	slaveBuffer, @object
+ 161               		.size	slaveBuffer, 33
+ 162               	slaveBuffer:
+ 163 0022 5061 7363 		.string	"Pascal is cool!!Pascal is Cool!!"
+ 163      616C 2069 
+ 163      7320 636F 
+ 163      6F6C 2121 
+ 163      5061 7363 
+GAS LISTING /var/tmp//cc9HTByh.s 			page 4
+
+
+ 164               		.section	.progmem.data,"a",@progbits
+ 165               		.type	__c.1668, @object
+ 166               		.size	__c.1668, 18
+ 167               	__c.1668:
+ 168 0000 4578 6974 		.string	"Exited program!\r\n"
+ 168      6564 2070 
+ 168      726F 6772 
+ 168      616D 210D 
+ 168      0A00 
+ 169               		.type	__c.1663, @object
+ 170               		.size	__c.1663, 17
+ 171               	__c.1663:
+ 172 0012 7469 6D65 		.string	"times through!\r\n"
+ 172      7320 7468 
+ 172      726F 7567 
+ 172      6821 0D0A 
+ 172      00
+ 173               		.type	__c.1658, @object
+ 174               		.size	__c.1658, 44
+ 175               	__c.1658:
+ 176 0023 0D0A 5765 		.string	"\r\nWelcome to the Command Line Test Suite!\r\n"
+ 176      6C63 6F6D 
+ 176      6520 746F 
+ 176      2074 6865 
+ 176      2043 6F6D 
+ 177               		.data
+ 178               	.LC0:
+ 179 0043 6C00      		.string	"l"
+ 180               	.LC1:
+ 181 0045 7200      		.string	"r"
+ 182               	.LC2:
+ 183 0047 7400      		.string	"t"
+ 184               	.LC3:
+ 185 0049 7000      		.string	"p"
+ 186               	.LC4:
+ 187 004b 6900      		.string	"i"
+ 188               	.LC5:
+ 189 004d 6600      		.string	"f"
+ 190               	.LC6:
+ 191 004f 3200      		.string	"2"
+ 192               	.LC7:
+ 193 0051 3300      		.string	"3"
+ 194               	.LC8:
+ 195 0053 6461 7300 		.string	"das"
+ 196               	.LC9:
+ 197 0057 6461 6900 		.string	"dai"
+ 198               		.text
+ 199               		.stabs	"goCmdline:F(0,15)",36,0,155,goCmdline
+ 200               	.global	goCmdline
+ 201               		.type	goCmdline, @function
+ 202               	goCmdline:
+ 203               		.stabd	46,0,0
+   1:cmdlinetest.c **** //*****************************************************************************
+   2:cmdlinetest.c **** // File Name	: cmdlinetest.c
+   3:cmdlinetest.c **** // 
+   4:cmdlinetest.c **** // Title		: example usage of cmdline (command line) functions
+   5:cmdlinetest.c **** // Revision		: 1.0
+GAS LISTING /var/tmp//cc9HTByh.s 			page 5
+
+
+   6:cmdlinetest.c **** // Notes		:	
+   7:cmdlinetest.c **** // Target MCU	: Atmel AVR series
+   8:cmdlinetest.c **** // Editor Tabs	: 4
+   9:cmdlinetest.c **** // 
+  10:cmdlinetest.c **** // Revision History:
+  11:cmdlinetest.c **** // When			Who			Description of change
+  12:cmdlinetest.c **** // -----------	-----------	-----------------------
+  13:cmdlinetest.c **** // 21-Jul-2003	pstang		Created the program
+  14:cmdlinetest.c **** //*****************************************************************************
+  15:cmdlinetest.c **** 
+  16:cmdlinetest.c **** 
+  17:cmdlinetest.c **** //----- Include Files ---------------------------------------------------------
+  18:cmdlinetest.c **** #include <avr/io.h>			// include I/O definitions (port names, pin names, etc)
+  19:cmdlinetest.c **** #include <avr/interrupt.h>	// include interrupt support
+  20:cmdlinetest.c **** 
+  21:cmdlinetest.c **** #include "global.h"		// include our global settings
+  22:cmdlinetest.c **** #include "uart.h"		// include uart function library
+  23:cmdlinetest.c **** #include "rprintf.h"	// include printf function library
+  24:cmdlinetest.c **** #include "a2d.h"		// include A/D converter function library
+  25:cmdlinetest.c **** #include "timer.h"		// include timer function library (timing, PWM, etc)
+  26:cmdlinetest.c **** #include "vt100.h"		// include vt100 terminal support
+  27:cmdlinetest.c **** #include "cmdline.h"	// include cmdline function library
+  28:cmdlinetest.c **** #include "servo.h"
+  29:cmdlinetest.c **** #include "i2c.h"
+  30:cmdlinetest.c **** #include "string.h"
+  31:cmdlinetest.c **** #include "servoconf.h"
+  32:cmdlinetest.c **** //#include <pulseb.h>
+  33:cmdlinetest.c **** //#include <pulseb.c>
+  34:cmdlinetest.c **** 
+  35:cmdlinetest.c **** //I2C address definitions
+  36:cmdlinetest.c **** #define LOCAL_ADDR	0xA0
+  37:cmdlinetest.c **** #define TARGET_ADDR	0xA0
+  38:cmdlinetest.c **** 
+  39:cmdlinetest.c **** // Peripheral initialization
+  40:cmdlinetest.c **** 
+  41:cmdlinetest.c **** #define TCNT0_INIT (0xFF-CPUCLK/256/TICKRATE)
+  42:cmdlinetest.c **** #define LEFT_SERVO_CHAN 	4
+  43:cmdlinetest.c **** #define RIGHT_SERVO_CHAN 	3
+  44:cmdlinetest.c **** #define THROTTLE_SERVO_CHAN 0
+  45:cmdlinetest.c **** #define CAM_PAN_SERVO_CHAN  1
+  46:cmdlinetest.c **** #define CAM_TILT_SERVO_CHAN 2
+  47:cmdlinetest.c **** 
+  48:cmdlinetest.c **** #define SPEED_SERVO	1
+  49:cmdlinetest.c **** #undef DEBUG
+  50:cmdlinetest.c **** 
+  51:cmdlinetest.c **** // Pulse defines
+  52:cmdlinetest.c **** #define MULTIPLIER 100
+  53:cmdlinetest.c **** 
+  54:cmdlinetest.c **** void setLeftServo(void);
+  55:cmdlinetest.c **** void setRightServo(void);
+  56:cmdlinetest.c **** void setThrottleServo(void);
+  57:cmdlinetest.c **** void setCamPanServo(void);
+  58:cmdlinetest.c **** void setCamTiltServo(void);
+  59:cmdlinetest.c **** void setFeedbackInterval(void);
+  60:cmdlinetest.c **** void setGeckoFreq(void);
+  61:cmdlinetest.c **** 
+  62:cmdlinetest.c **** void 	i2cSetup(void);
+GAS LISTING /var/tmp//cc9HTByh.s 			page 6
+
+
+  63:cmdlinetest.c **** void  	i2cSlaveReceiveService(u08 receiveDataLength, u08* receiveData);
+  64:cmdlinetest.c **** u08 	i2cSlaveTransmitService(u08 receiveDataLength, u08* receiveData);
+  65:cmdlinetest.c **** void 	i2cMasterSendDiag(u08 deviceAddr, u08 length, u08* data);
+  66:cmdlinetest.c **** 
+  67:cmdlinetest.c **** void 	i2cMaster_Receive();
+  68:cmdlinetest.c **** void 	i2cMaster_Send();
+  69:cmdlinetest.c **** void 	i2cMaster_Auto_Send(u08 message);
+  70:cmdlinetest.c **** void 	i2cMaster_Auto_Receive(u08 command);
+  71:cmdlinetest.c **** 
+  72:cmdlinetest.c **** // I2C buffers
+  73:cmdlinetest.c **** u08 slaveBuffer[] = "Pascal is cool!!Pascal is Cool!!";
+  74:cmdlinetest.c **** u08 slaveBufferLength = 0x20;
+  75:cmdlinetest.c **** 
+  76:cmdlinetest.c **** unsigned char masterBuffer[] = "This one is the Master board";
+  77:cmdlinetest.c **** unsigned char masterBufferLength = 0x20;
+  78:cmdlinetest.c **** // global variables
+  79:cmdlinetest.c **** u08 Run;
+  80:cmdlinetest.c **** 
+  81:cmdlinetest.c **** // functions
+  82:cmdlinetest.c **** void goCmdline(void);
+  83:cmdlinetest.c **** void dumpArgsStr(void);
+  84:cmdlinetest.c **** void dumpArgsInt(void);
+  85:cmdlinetest.c **** void dumpArgsHex(void);
+  86:cmdlinetest.c **** 
+  87:cmdlinetest.c **** u08 leftServoPos = 50 * MULTIPLIER;		//0 seems to be beyond its reach
+  88:cmdlinetest.c **** //below for boat only
+  89:cmdlinetest.c **** u16	multiplier = MULTIPLIER;
+  90:cmdlinetest.c **** 
+  91:cmdlinetest.c **** u08 rightServoPos;
+  92:cmdlinetest.c **** u08 throttleServoPos;
+  93:cmdlinetest.c **** u08 camPanServoPos;
+  94:cmdlinetest.c **** u08 camTiltServoPos;
+  95:cmdlinetest.c **** 
+  96:cmdlinetest.c **** long numTimesThrough = 0;  // number of times through mainloop to send feedback
+  97:cmdlinetest.c **** 
+  98:cmdlinetest.c **** //----- Begin Code ------------------------------------------------------------
+  99:cmdlinetest.c **** int main(void)
+ 100:cmdlinetest.c **** {
+ 101:cmdlinetest.c **** 	// initialize our libraries
+ 102:cmdlinetest.c **** 	// initialize the UART (serial port)
+ 103:cmdlinetest.c **** 	uartInit();
+ 104:cmdlinetest.c **** 	uartSetBaudRate(57600);
+ 105:cmdlinetest.c **** 	// make all rprintf statements use uart for output
+ 106:cmdlinetest.c **** 	rprintfInit(uartSendByte);
+ 107:cmdlinetest.c **** 	// turn on and initialize A/D converter
+ 108:cmdlinetest.c **** 	a2dInit();
+ 109:cmdlinetest.c **** 	// initialize the timer system
+ 110:cmdlinetest.c **** 	timerInit();
+ 111:cmdlinetest.c **** 	// initialize vt100 terminal
+ 112:cmdlinetest.c **** 	vt100Init();
+ 113:cmdlinetest.c **** 	//UNCOMMENT FOR BOAT WITH GECKO
+ 114:cmdlinetest.c **** 	/*
+ 115:cmdlinetest.c **** 	// initialize modified pulse library -- pulse on t1b ONLY -- out of D4
+ 116:cmdlinetest.c **** 	sbi(DDRD, 4);  //pulses -- taken over by OCR1B
+ 117:cmdlinetest.c **** 	sbi(DDRD, 5);  //dir -- manually controlled
+ 118:cmdlinetest.c **** 	pulseInit();
+ 119:cmdlinetest.c **** 	pulseT1BSetFreq(175);	//start at a good frequency
+GAS LISTING /var/tmp//cc9HTByh.s 			page 7
+
+
+ 120:cmdlinetest.c **** 	*/
+ 121:cmdlinetest.c **** 
+ 122:cmdlinetest.c **** 	// wait for hardware to power up
+ 123:cmdlinetest.c **** 	timerPause(100);
+ 124:cmdlinetest.c **** 
+ 125:cmdlinetest.c **** 	//////////////////////////////////////////////////I2C/////////////////////////////
+ 126:cmdlinetest.c **** 	i2cSetup();
+ 127:cmdlinetest.c **** 	
+ 128:cmdlinetest.c **** 	
+ 129:cmdlinetest.c **** 	//////////////////////////////////////////////////Servos//////////////////////////
+ 130:cmdlinetest.c **** 	servoInit();
+ 131:cmdlinetest.c **** 	// setup servo output channel-to-I/Opin mapping
+ 132:cmdlinetest.c **** 	// format is servoSetChannelIO( CHANNEL#, PORT, PIN );
+ 133:cmdlinetest.c **** 	servoSetChannelIO(0, _SFR_IO_ADDR(PORTC), PC2);
+ 134:cmdlinetest.c **** 	servoSetChannelIO(1, _SFR_IO_ADDR(PORTC), PC3);
+ 135:cmdlinetest.c **** 	servoSetChannelIO(2, _SFR_IO_ADDR(PORTC), PC4);
+ 136:cmdlinetest.c **** 	servoSetChannelIO(3, _SFR_IO_ADDR(PORTC), PC5);
+ 137:cmdlinetest.c **** 	servoSetChannelIO(4, _SFR_IO_ADDR(PORTC), PC6);
+ 138:cmdlinetest.c **** 	// set port pins to output
+ 139:cmdlinetest.c **** 	outb(DDRC, 0xFC);
+ 140:cmdlinetest.c **** 	
+ 141:cmdlinetest.c **** 
+ 142:cmdlinetest.c **** 
+ 143:cmdlinetest.c **** 
+ 144:cmdlinetest.c **** 	//////////////////////////////////////////////////////////////////////////////////
+ 145:cmdlinetest.c **** 	rprintf("**********************powerup*************************");
+ 146:cmdlinetest.c **** 	
+ 147:cmdlinetest.c **** 
+ 148:cmdlinetest.c **** 	// start command line
+ 149:cmdlinetest.c **** 	goCmdline();
+ 150:cmdlinetest.c **** 
+ 151:cmdlinetest.c **** 	return 0;
+ 152:cmdlinetest.c **** }
+ 153:cmdlinetest.c **** 
+ 154:cmdlinetest.c **** void goCmdline(void)
+ 155:cmdlinetest.c **** {
+ 204               		.stabn	68,0,155,.LM0-goCmdline
+ 205               	.LM0:
+ 206               	/* prologue: frame size=1 */
+ 207 0000 EF92      		push r14
+ 208 0002 FF92      		push r15
+ 209 0004 0F93      		push r16
+ 210 0006 1F93      		push r17
+ 211 0008 CF93      		push r28
+ 212 000a DF93      		push r29
+ 213 000c CDB7      		in r28,__SP_L__
+ 214 000e DEB7      		in r29,__SP_H__
+ 215 0010 2197      		sbiw r28,1
+ 216 0012 0FB6      		in __tmp_reg__,__SREG__
+ 217 0014 F894      		cli
+ 218 0016 DEBF      		out __SP_H__,r29
+ 219 0018 0FBE      		out __SREG__,__tmp_reg__
+ 220 001a CDBF      		out __SP_L__,r28
+ 221               	/* prologue end (size=14) */
+ 156:cmdlinetest.c **** 	u08 c;
+ 157:cmdlinetest.c **** 	long timesThrough =0;
+ 158:cmdlinetest.c **** 	// print welcome message
+GAS LISTING /var/tmp//cc9HTByh.s 			page 8
+
+
+ 159:cmdlinetest.c **** 	vt100ClearScreen();
+ 222               		.stabn	68,0,159,.LM1-goCmdline
+ 223               	.LM1:
+ 224 001c 0E94 0000 		call vt100ClearScreen
+ 160:cmdlinetest.c **** 	vt100SetCursorPos(1,0);
+ 225               		.stabn	68,0,160,.LM2-goCmdline
+ 226               	.LM2:
+ 227 0020 60E0      		ldi r22,lo8(0)
+ 228 0022 81E0      		ldi r24,lo8(1)
+ 229 0024 0E94 0000 		call vt100SetCursorPos
+ 161:cmdlinetest.c **** 	rprintfProgStrM("\r\nWelcome to the Command Line Test Suite!\r\n");
+ 230               		.stabn	68,0,161,.LM3-goCmdline
+ 231               	.LM3:
+ 232 0028 80E0      		ldi r24,lo8(__c.1658)
+ 233 002a 90E0      		ldi r25,hi8(__c.1658)
+ 234 002c 0E94 0000 		call rprintfProgStr
+ 162:cmdlinetest.c **** 
+ 163:cmdlinetest.c **** 	// initialize cmdline system
+ 164:cmdlinetest.c **** 	cmdlineInit();
+ 235               		.stabn	68,0,164,.LM4-goCmdline
+ 236               	.LM4:
+ 237 0030 0E94 0000 		call cmdlineInit
+ 165:cmdlinetest.c **** 
+ 166:cmdlinetest.c **** 	// direct cmdline output to uart (serial port)
+ 167:cmdlinetest.c **** 	cmdlineSetOutputFunc(uartSendByte);
+ 238               		.stabn	68,0,167,.LM5-goCmdline
+ 239               	.LM5:
+ 240 0034 80E0      		ldi r24,lo8(pm(uartSendByte))
+ 241 0036 90E0      		ldi r25,hi8(pm(uartSendByte))
+ 242 0038 0E94 0000 		call cmdlineSetOutputFunc
+ 168:cmdlinetest.c **** 
+ 169:cmdlinetest.c **** 	// add commands to the command database
+ 170:cmdlinetest.c **** 
+ 171:cmdlinetest.c **** 
+ 172:cmdlinetest.c **** 	cmdlineAddCommand("l",		setLeftServo);
+ 243               		.stabn	68,0,172,.LM6-goCmdline
+ 244               	.LM6:
+ 245 003c 60E0      		ldi r22,lo8(pm(setLeftServo))
+ 246 003e 70E0      		ldi r23,hi8(pm(setLeftServo))
+ 247 0040 80E0      		ldi r24,lo8(.LC0)
+ 248 0042 90E0      		ldi r25,hi8(.LC0)
+ 249 0044 0E94 0000 		call cmdlineAddCommand
+ 173:cmdlinetest.c **** 	cmdlineAddCommand("r",		setRightServo);
+ 250               		.stabn	68,0,173,.LM7-goCmdline
+ 251               	.LM7:
+ 252 0048 60E0      		ldi r22,lo8(pm(setRightServo))
+ 253 004a 70E0      		ldi r23,hi8(pm(setRightServo))
+ 254 004c 80E0      		ldi r24,lo8(.LC1)
+ 255 004e 90E0      		ldi r25,hi8(.LC1)
+ 256 0050 0E94 0000 		call cmdlineAddCommand
+ 174:cmdlinetest.c ****     cmdlineAddCommand("t", 		setThrottleServo);
+ 257               		.stabn	68,0,174,.LM8-goCmdline
+ 258               	.LM8:
+ 259 0054 60E0      		ldi r22,lo8(pm(setThrottleServo))
+ 260 0056 70E0      		ldi r23,hi8(pm(setThrottleServo))
+ 261 0058 80E0      		ldi r24,lo8(.LC2)
+ 262 005a 90E0      		ldi r25,hi8(.LC2)
+GAS LISTING /var/tmp//cc9HTByh.s 			page 9
+
+
+ 263 005c 0E94 0000 		call cmdlineAddCommand
+ 175:cmdlinetest.c **** 	cmdlineAddCommand("p", 		setCamPanServo);
+ 264               		.stabn	68,0,175,.LM9-goCmdline
+ 265               	.LM9:
+ 266 0060 60E0      		ldi r22,lo8(pm(setCamPanServo))
+ 267 0062 70E0      		ldi r23,hi8(pm(setCamPanServo))
+ 268 0064 80E0      		ldi r24,lo8(.LC3)
+ 269 0066 90E0      		ldi r25,hi8(.LC3)
+ 270 0068 0E94 0000 		call cmdlineAddCommand
+ 176:cmdlinetest.c **** 	cmdlineAddCommand("i", 		setCamTiltServo);
+ 271               		.stabn	68,0,176,.LM10-goCmdline
+ 272               	.LM10:
+ 273 006c 60E0      		ldi r22,lo8(pm(setCamTiltServo))
+ 274 006e 70E0      		ldi r23,hi8(pm(setCamTiltServo))
+ 275 0070 80E0      		ldi r24,lo8(.LC4)
+ 276 0072 90E0      		ldi r25,hi8(.LC4)
+ 277 0074 0E94 0000 		call cmdlineAddCommand
+ 177:cmdlinetest.c **** 	cmdlineAddCommand("f", 		setFeedbackInterval);
+ 278               		.stabn	68,0,177,.LM11-goCmdline
+ 279               	.LM11:
+ 280 0078 60E0      		ldi r22,lo8(pm(setFeedbackInterval))
+ 281 007a 70E0      		ldi r23,hi8(pm(setFeedbackInterval))
+ 282 007c 80E0      		ldi r24,lo8(.LC5)
+ 283 007e 90E0      		ldi r25,hi8(.LC5)
+ 284 0080 0E94 0000 		call cmdlineAddCommand
+ 178:cmdlinetest.c **** 	//cmdlineAddCommand("w",		setGeckoFreq); // "w freq multiplier"
+ 179:cmdlinetest.c **** 
+ 180:cmdlinetest.c **** 	cmdlineAddCommand("2", 		i2cMaster_Send);
+ 285               		.stabn	68,0,180,.LM12-goCmdline
+ 286               	.LM12:
+ 287 0084 60E0      		ldi r22,lo8(pm(i2cMaster_Send))
+ 288 0086 70E0      		ldi r23,hi8(pm(i2cMaster_Send))
+ 289 0088 80E0      		ldi r24,lo8(.LC6)
+ 290 008a 90E0      		ldi r25,hi8(.LC6)
+ 291 008c 0E94 0000 		call cmdlineAddCommand
+ 181:cmdlinetest.c **** 	cmdlineAddCommand("3", 		i2cMaster_Receive);
+ 292               		.stabn	68,0,181,.LM13-goCmdline
+ 293               	.LM13:
+ 294 0090 60E0      		ldi r22,lo8(pm(i2cMaster_Receive))
+ 295 0092 70E0      		ldi r23,hi8(pm(i2cMaster_Receive))
+ 296 0094 80E0      		ldi r24,lo8(.LC7)
+ 297 0096 90E0      		ldi r25,hi8(.LC7)
+ 298 0098 0E94 0000 		call cmdlineAddCommand
+ 182:cmdlinetest.c **** 	cmdlineAddCommand("das",	dumpArgsStr);
+ 299               		.stabn	68,0,182,.LM14-goCmdline
+ 300               	.LM14:
+ 301 009c 60E0      		ldi r22,lo8(pm(dumpArgsStr))
+ 302 009e 70E0      		ldi r23,hi8(pm(dumpArgsStr))
+ 303 00a0 80E0      		ldi r24,lo8(.LC8)
+ 304 00a2 90E0      		ldi r25,hi8(.LC8)
+ 305 00a4 0E94 0000 		call cmdlineAddCommand
+ 183:cmdlinetest.c **** 	cmdlineAddCommand("dai",	dumpArgsInt);
+ 306               		.stabn	68,0,183,.LM15-goCmdline
+ 307               	.LM15:
+ 308 00a8 60E0      		ldi r22,lo8(pm(dumpArgsInt))
+ 309 00aa 70E0      		ldi r23,hi8(pm(dumpArgsInt))
+ 310 00ac 80E0      		ldi r24,lo8(.LC9)
+GAS LISTING /var/tmp//cc9HTByh.s 			page 10
+
+
+ 311 00ae 90E0      		ldi r25,hi8(.LC9)
+ 312 00b0 0E94 0000 		call cmdlineAddCommand
+ 184:cmdlinetest.c **** 	// send a CR to cmdline input to stimulate a prompt
+ 185:cmdlinetest.c **** 	cmdlineInputFunc('\r');
+ 313               		.stabn	68,0,185,.LM16-goCmdline
+ 314               	.LM16:
+ 315 00b4 8DE0      		ldi r24,lo8(13)
+ 316 00b6 0E94 0000 		call cmdlineInputFunc
+ 186:cmdlinetest.c **** 
+ 187:cmdlinetest.c **** 	// set state to run
+ 188:cmdlinetest.c **** 	Run = TRUE;
+ 317               		.stabn	68,0,188,.LM17-goCmdline
+ 318               	.LM17:
+ 319 00ba 8FEF      		ldi r24,lo8(-1)
+ 320 00bc 8093 0000 		sts Run,r24
+ 321 00c0 EE24      		clr r14
+ 322 00c2 FF24      		clr r15
+ 323 00c4 8701      		movw r16,r14
+ 324 00c6 2FC0      		rjmp .L16
+ 325               	.L3:
+ 189:cmdlinetest.c **** 
+ 190:cmdlinetest.c **** 	// main loop
+ 191:cmdlinetest.c **** 	while(Run)
+ 192:cmdlinetest.c **** 	{
+ 193:cmdlinetest.c **** 		// pass characters received on the uart (serial port)
+ 194:cmdlinetest.c **** 		// into the cmdline processor
+ 195:cmdlinetest.c **** 		while(uartReceiveByte(&c)) cmdlineInputFunc(c);
+ 326               		.stabn	68,0,195,.LM18-goCmdline
+ 327               	.LM18:
+ 328 00c8 8981      		ldd r24,Y+1
+ 329 00ca 0E94 0000 		call cmdlineInputFunc
+ 330               	.L14:
+ 331 00ce CE01      		movw r24,r28
+ 332 00d0 0196      		adiw r24,1
+ 333 00d2 0E94 0000 		call uartReceiveByte
+ 334 00d6 8823      		tst r24
+ 335 00d8 B9F7      		brne .L3
+ 196:cmdlinetest.c **** 
+ 197:cmdlinetest.c **** 		// run the cmdline execution functions
+ 198:cmdlinetest.c **** 		cmdlineMainLoop();
+ 336               		.stabn	68,0,198,.LM19-goCmdline
+ 337               	.LM19:
+ 338 00da 0E94 0000 		call cmdlineMainLoop
+ 199:cmdlinetest.c **** 		timesThrough++;
+ 339               		.stabn	68,0,199,.LM20-goCmdline
+ 340               	.LM20:
+ 341 00de 0894      		sec
+ 342 00e0 E11C      		adc r14,__zero_reg__
+ 343 00e2 F11C      		adc r15,__zero_reg__
+ 344 00e4 011D      		adc r16,__zero_reg__
+ 345 00e6 111D      		adc r17,__zero_reg__
+ 200:cmdlinetest.c **** 		if(numTimesThrough != 0)
+ 346               		.stabn	68,0,200,.LM21-goCmdline
+ 347               	.LM21:
+ 348 00e8 8091 0000 		lds r24,numTimesThrough
+ 349 00ec 9091 0000 		lds r25,(numTimesThrough)+1
+ 350 00f0 A091 0000 		lds r26,(numTimesThrough)+2
+GAS LISTING /var/tmp//cc9HTByh.s 			page 11
+
+
+ 351 00f4 B091 0000 		lds r27,(numTimesThrough)+3
+ 352 00f8 0097      		sbiw r24,0
+ 353 00fa A105      		cpc r26,__zero_reg__
+ 354 00fc B105      		cpc r27,__zero_reg__
+ 355 00fe 99F0      		breq .L16
+ 201:cmdlinetest.c **** 		{
+ 202:cmdlinetest.c **** 			if((timesThrough >= numTimesThrough)) 
+ 356               		.stabn	68,0,202,.LM22-goCmdline
+ 357               	.LM22:
+ 358 0100 E816      		cp r14,r24
+ 359 0102 F906      		cpc r15,r25
+ 360 0104 0A07      		cpc r16,r26
+ 361 0106 1B07      		cpc r17,r27
+ 362 0108 74F0      		brlt .L16
+ 203:cmdlinetest.c **** 			{
+ 204:cmdlinetest.c **** 				rprintf("times through!\r\n");
+ 363               		.stabn	68,0,204,.LM23-goCmdline
+ 364               	.LM23:
+ 365 010a 80E0      		ldi r24,lo8(__c.1663)
+ 366 010c 90E0      		ldi r25,hi8(__c.1663)
+ 367 010e 9F93      		push r25
+ 368 0110 8F93      		push r24
+ 369 0112 81E0      		ldi r24,lo8(1)
+ 370 0114 8F93      		push r24
+ 371 0116 0E94 0000 		call rprintf1RamRom
+ 372 011a EE24      		clr r14
+ 373 011c FF24      		clr r15
+ 374 011e 8701      		movw r16,r14
+ 375 0120 0F90      		pop __tmp_reg__
+ 376 0122 0F90      		pop __tmp_reg__
+ 377 0124 0F90      	 	pop __tmp_reg__
+ 378               	.L16:
+ 379               		.stabn	68,0,191,.LM24-goCmdline
+ 380               	.LM24:
+ 381 0126 8091 0000 		lds r24,Run
+ 382 012a 8823      		tst r24
+ 383 012c 81F6      		brne .L14
+ 205:cmdlinetest.c **** 				timesThrough = 0;
+ 206:cmdlinetest.c **** 			}
+ 207:cmdlinetest.c **** 		}
+ 208:cmdlinetest.c **** 	}
+ 209:cmdlinetest.c **** 
+ 210:cmdlinetest.c **** 	rprintfCRLF();
+ 384               		.stabn	68,0,210,.LM25-goCmdline
+ 385               	.LM25:
+ 386 012e 0E94 0000 		call rprintfCRLF
+ 211:cmdlinetest.c **** 	rprintf("Exited program!\r\n");
+ 387               		.stabn	68,0,211,.LM26-goCmdline
+ 388               	.LM26:
+ 389 0132 80E0      		ldi r24,lo8(__c.1668)
+ 390 0134 90E0      		ldi r25,hi8(__c.1668)
+ 391 0136 9F93      		push r25
+ 392 0138 8F93      		push r24
+ 393 013a 81E0      		ldi r24,lo8(1)
+ 394 013c 8F93      		push r24
+ 395 013e 0E94 0000 		call rprintf1RamRom
+ 396 0142 0F90      		pop __tmp_reg__
+GAS LISTING /var/tmp//cc9HTByh.s 			page 12
+
+
+ 397 0144 0F90      		pop __tmp_reg__
+ 398 0146 0F90      	 	pop __tmp_reg__
+ 399               	/* epilogue: frame size=1 */
+ 400 0148 2196      		adiw r28,1
+ 401 014a 0FB6      		in __tmp_reg__,__SREG__
+ 402 014c F894      		cli
+ 403 014e DEBF      		out __SP_H__,r29
+ 404 0150 0FBE      		out __SREG__,__tmp_reg__
+ 405 0152 CDBF      		out __SP_L__,r28
+ 406 0154 DF91      		pop r29
+ 407 0156 CF91      		pop r28
+ 408 0158 1F91      		pop r17
+ 409 015a 0F91      		pop r16
+ 410 015c FF90      		pop r15
+ 411 015e EF90      		pop r14
+ 412 0160 0895      		ret
+ 413               	/* epilogue end (size=13) */
+ 414               	/* function goCmdline size 177 (150) */
+ 415               		.size	goCmdline, .-goCmdline
+ 416               		.stabs	"c:(6,1)",128,0,156,1
+ 417               		.stabs	"timesThrough:r(0,3)",64,0,157,14
+ 418               		.stabn	192,0,0,goCmdline-goCmdline
+ 419               		.stabn	224,0,0,.Lscope0-goCmdline
+ 420               	.Lscope0:
+ 421               		.stabs	"",36,0,0,.Lscope0-goCmdline
+ 422               		.stabd	78,0,0
+ 423               		.stabs	"exitFunction:F(0,15)",36,0,215,exitFunction
+ 424               	.global	exitFunction
+ 425               		.type	exitFunction, @function
+ 426               	exitFunction:
+ 427               		.stabd	46,0,0
+ 212:cmdlinetest.c **** }
+ 213:cmdlinetest.c **** 
+ 214:cmdlinetest.c **** void exitFunction(void)
+ 215:cmdlinetest.c **** {
+ 428               		.stabn	68,0,215,.LM27-exitFunction
+ 429               	.LM27:
+ 430               	/* prologue: frame size=0 */
+ 431               	/* prologue end (size=0) */
+ 216:cmdlinetest.c **** 	// to exit, we set Run to FALSE
+ 217:cmdlinetest.c **** 	Run = FALSE;
+ 432               		.stabn	68,0,217,.LM28-exitFunction
+ 433               	.LM28:
+ 434 0162 1092 0000 		sts Run,__zero_reg__
+ 435               	/* epilogue: frame size=0 */
+ 436 0166 0895      		ret
+ 437               	/* epilogue end (size=1) */
+ 438               	/* function exitFunction size 3 (2) */
+ 439               		.size	exitFunction, .-exitFunction
+ 440               	.Lscope1:
+ 441               		.stabs	"",36,0,0,.Lscope1-exitFunction
+ 442               		.stabd	78,0,0
+ 443               		.section	.progmem.data
+ 444               		.type	__c.1688, @object
+ 445               		.size	__c.1688, 54
+ 446               	__c.1688:
+ 447 004f 6475 6D70 		.string	"dumpargs3 - dumps command arguments as hex integers\r\n"
+GAS LISTING /var/tmp//cc9HTByh.s 			page 13
+
+
+ 447      6172 6773 
+ 447      3320 2D20 
+ 447      6475 6D70 
+ 447      7320 636F 
+ 448               		.type	__c.1686, @object
+ 449               		.size	__c.1686, 58
+ 450               	__c.1686:
+ 451 0085 6475 6D70 		.string	"dumpargs2 - dumps command arguments as decimal integers\r\n"
+ 451      6172 6773 
+ 451      3220 2D20 
+ 451      6475 6D70 
+ 451      7320 636F 
+ 452               		.type	__c.1684, @object
+ 453               		.size	__c.1684, 49
+ 454               	__c.1684:
+ 455 00bf 6475 6D70 		.string	"dumpargs1 - dumps command arguments as strings\r\n"
+ 455      6172 6773 
+ 455      3120 2D20 
+ 455      6475 6D70 
+ 455      7320 636F 
+ 456               		.type	__c.1682, @object
+ 457               		.size	__c.1682, 42
+ 458               	__c.1682:
+ 459 00f0 6865 6C70 		.string	"help      - displays available commands\r\n"
+ 459      2020 2020 
+ 459      2020 2D20 
+ 459      6469 7370 
+ 459      6C61 7973 
+ 460               		.type	__c.1680, @object
+ 461               		.size	__c.1680, 26
+ 462               	__c.1680:
+ 463 011a 4176 6169 		.string	"Available commands are:\r\n"
+ 463      6C61 626C 
+ 463      6520 636F 
+ 463      6D6D 616E 
+ 463      6473 2061 
+ 464               		.text
+ 465               		.stabs	"helpFunction:F(0,15)",36,0,221,helpFunction
+ 466               	.global	helpFunction
+ 467               		.type	helpFunction, @function
+ 468               	helpFunction:
+ 469               		.stabd	46,0,0
+ 218:cmdlinetest.c **** }
+ 219:cmdlinetest.c **** 
+ 220:cmdlinetest.c **** void helpFunction(void)
+ 221:cmdlinetest.c **** {
+ 470               		.stabn	68,0,221,.LM29-helpFunction
+ 471               	.LM29:
+ 472               	/* prologue: frame size=0 */
+ 473 0168 1F93      		push r17
+ 474               	/* prologue end (size=1) */
+ 222:cmdlinetest.c **** 	rprintfCRLF();
+ 475               		.stabn	68,0,222,.LM30-helpFunction
+ 476               	.LM30:
+ 477 016a 0E94 0000 		call rprintfCRLF
+ 223:cmdlinetest.c **** 
+ 224:cmdlinetest.c **** 	rprintf("Available commands are:\r\n");
+GAS LISTING /var/tmp//cc9HTByh.s 			page 14
+
+
+ 478               		.stabn	68,0,224,.LM31-helpFunction
+ 479               	.LM31:
+ 480 016e 80E0      		ldi r24,lo8(__c.1680)
+ 481 0170 90E0      		ldi r25,hi8(__c.1680)
+ 482 0172 9F93      		push r25
+ 483 0174 8F93      		push r24
+ 484 0176 11E0      		ldi r17,lo8(1)
+ 485 0178 1F93      		push r17
+ 486 017a 0E94 0000 		call rprintf1RamRom
+ 225:cmdlinetest.c **** 	rprintf("help      - displays available commands\r\n");
+ 487               		.stabn	68,0,225,.LM32-helpFunction
+ 488               	.LM32:
+ 489 017e 80E0      		ldi r24,lo8(__c.1682)
+ 490 0180 90E0      		ldi r25,hi8(__c.1682)
+ 491 0182 9F93      		push r25
+ 492 0184 8F93      		push r24
+ 493 0186 1F93      		push r17
+ 494 0188 0E94 0000 		call rprintf1RamRom
+ 226:cmdlinetest.c **** 	rprintf("dumpargs1 - dumps command arguments as strings\r\n");
+ 495               		.stabn	68,0,226,.LM33-helpFunction
+ 496               	.LM33:
+ 497 018c 80E0      		ldi r24,lo8(__c.1684)
+ 498 018e 90E0      		ldi r25,hi8(__c.1684)
+ 499 0190 9F93      		push r25
+ 500 0192 8F93      		push r24
+ 501 0194 1F93      		push r17
+ 502 0196 0E94 0000 		call rprintf1RamRom
+ 227:cmdlinetest.c **** 	rprintf("dumpargs2 - dumps command arguments as decimal integers\r\n");
+ 503               		.stabn	68,0,227,.LM34-helpFunction
+ 504               	.LM34:
+ 505 019a 80E0      		ldi r24,lo8(__c.1686)
+ 506 019c 90E0      		ldi r25,hi8(__c.1686)
+ 507 019e 9F93      		push r25
+ 508 01a0 8F93      		push r24
+ 509 01a2 1F93      		push r17
+ 510 01a4 0E94 0000 		call rprintf1RamRom
+ 228:cmdlinetest.c **** 	rprintf("dumpargs3 - dumps command arguments as hex integers\r\n");
+ 511               		.stabn	68,0,228,.LM35-helpFunction
+ 512               	.LM35:
+ 513 01a8 80E0      		ldi r24,lo8(__c.1688)
+ 514 01aa 90E0      		ldi r25,hi8(__c.1688)
+ 515 01ac 9F93      		push r25
+ 516 01ae 8F93      		push r24
+ 517 01b0 1F93      		push r17
+ 518 01b2 0E94 0000 		call rprintf1RamRom
+ 229:cmdlinetest.c **** 
+ 230:cmdlinetest.c **** 	rprintfCRLF();
+ 519               		.stabn	68,0,230,.LM36-helpFunction
+ 520               	.LM36:
+ 521 01b6 0E94 0000 		call rprintfCRLF
+ 522 01ba 8DB7      		in r24,__SP_L__
+ 523 01bc 9EB7      		in r25,__SP_H__
+ 524 01be 0F96      		adiw r24,15
+ 525 01c0 0FB6      		in __tmp_reg__,__SREG__
+ 526 01c2 F894      		cli
+ 527 01c4 9EBF      		out __SP_H__,r25
+ 528 01c6 0FBE      		out __SREG__,__tmp_reg__
+GAS LISTING /var/tmp//cc9HTByh.s 			page 15
+
+
+ 529 01c8 8DBF      		out __SP_L__,r24
+ 530               	/* epilogue: frame size=0 */
+ 531 01ca 1F91      		pop r17
+ 532 01cc 0895      		ret
+ 533               	/* epilogue end (size=2) */
+ 534               	/* function helpFunction size 51 (48) */
+ 535               		.size	helpFunction, .-helpFunction
+ 536               	.Lscope2:
+ 537               		.stabs	"",36,0,0,.Lscope2-helpFunction
+ 538               		.stabd	78,0,0
+ 539               		.section	.progmem.data
+ 540               		.type	__c.1701, @object
+ 541               		.size	__c.1701, 7
+ 542               	__c.1701:
+ 543 0134 4172 6733 		.string	"Arg3: "
+ 543      3A20 00
+ 544               		.type	__c.1699, @object
+ 545               		.size	__c.1699, 7
+ 546               	__c.1699:
+ 547 013b 4172 6732 		.string	"Arg2: "
+ 547      3A20 00
+ 548               		.type	__c.1697, @object
+ 549               		.size	__c.1697, 7
+ 550               	__c.1697:
+ 551 0142 4172 6731 		.string	"Arg1: "
+ 551      3A20 00
+ 552               		.type	__c.1695, @object
+ 553               		.size	__c.1695, 7
+ 554               	__c.1695:
+ 555 0149 4172 6730 		.string	"Arg0: "
+ 555      3A20 00
+ 556               		.type	__c.1693, @object
+ 557               		.size	__c.1693, 28
+ 558               	__c.1693:
+ 559 0150 4475 6D70 		.string	"Dump arguments as strings\r\n"
+ 559      2061 7267 
+ 559      756D 656E 
+ 559      7473 2061 
+ 559      7320 7374 
+ 560               		.text
+ 561               		.stabs	"dumpArgsStr:F(0,15)",36,0,234,dumpArgsStr
+ 562               	.global	dumpArgsStr
+ 563               		.type	dumpArgsStr, @function
+ 564               	dumpArgsStr:
+ 565               		.stabd	46,0,0
+ 231:cmdlinetest.c **** }
+ 232:cmdlinetest.c **** 
+ 233:cmdlinetest.c **** void dumpArgsStr(void)
+ 234:cmdlinetest.c **** {
+ 566               		.stabn	68,0,234,.LM37-dumpArgsStr
+ 567               	.LM37:
+ 568               	/* prologue: frame size=0 */
+ 569               	/* prologue end (size=0) */
+ 235:cmdlinetest.c **** 	rprintfCRLF();
+ 570               		.stabn	68,0,235,.LM38-dumpArgsStr
+ 571               	.LM38:
+ 572 01ce 0E94 0000 		call rprintfCRLF
+GAS LISTING /var/tmp//cc9HTByh.s 			page 16
+
+
+ 236:cmdlinetest.c **** 	rprintf("Dump arguments as strings\r\n");
+ 573               		.stabn	68,0,236,.LM39-dumpArgsStr
+ 574               	.LM39:
+ 575 01d2 80E0      		ldi r24,lo8(__c.1693)
+ 576 01d4 90E0      		ldi r25,hi8(__c.1693)
+ 577 01d6 9F93      		push r25
+ 578 01d8 8F93      		push r24
+ 579 01da 81E0      		ldi r24,lo8(1)
+ 580 01dc 8F93      		push r24
+ 581 01de 0E94 0000 		call rprintf1RamRom
+ 237:cmdlinetest.c **** 
+ 238:cmdlinetest.c **** 	rprintfProgStrM("Arg0: "); rprintfStr(cmdlineGetArgStr(0)); rprintfCRLF();
+ 582               		.stabn	68,0,238,.LM40-dumpArgsStr
+ 583               	.LM40:
+ 584 01e2 80E0      		ldi r24,lo8(__c.1695)
+ 585 01e4 90E0      		ldi r25,hi8(__c.1695)
+ 586 01e6 0E94 0000 		call rprintfProgStr
+ 587 01ea 80E0      		ldi r24,lo8(0)
+ 588 01ec 0E94 0000 		call cmdlineGetArgStr
+ 589 01f0 0E94 0000 		call rprintfStr
+ 590 01f4 0E94 0000 		call rprintfCRLF
+ 239:cmdlinetest.c **** 	rprintfProgStrM("Arg1: "); rprintfStr(cmdlineGetArgStr(1)); rprintfCRLF();
+ 591               		.stabn	68,0,239,.LM41-dumpArgsStr
+ 592               	.LM41:
+ 593 01f8 80E0      		ldi r24,lo8(__c.1697)
+ 594 01fa 90E0      		ldi r25,hi8(__c.1697)
+ 595 01fc 0E94 0000 		call rprintfProgStr
+ 596 0200 81E0      		ldi r24,lo8(1)
+ 597 0202 0E94 0000 		call cmdlineGetArgStr
+ 598 0206 0E94 0000 		call rprintfStr
+ 599 020a 0E94 0000 		call rprintfCRLF
+ 240:cmdlinetest.c **** 	rprintfProgStrM("Arg2: "); rprintfStr(cmdlineGetArgStr(2)); rprintfCRLF();
+ 600               		.stabn	68,0,240,.LM42-dumpArgsStr
+ 601               	.LM42:
+ 602 020e 80E0      		ldi r24,lo8(__c.1699)
+ 603 0210 90E0      		ldi r25,hi8(__c.1699)
+ 604 0212 0E94 0000 		call rprintfProgStr
+ 605 0216 82E0      		ldi r24,lo8(2)
+ 606 0218 0E94 0000 		call cmdlineGetArgStr
+ 607 021c 0E94 0000 		call rprintfStr
+ 608 0220 0E94 0000 		call rprintfCRLF
+ 241:cmdlinetest.c **** 	rprintfProgStrM("Arg3: "); rprintfStr(cmdlineGetArgStr(3)); rprintfCRLF();
+ 609               		.stabn	68,0,241,.LM43-dumpArgsStr
+ 610               	.LM43:
+ 611 0224 80E0      		ldi r24,lo8(__c.1701)
+ 612 0226 90E0      		ldi r25,hi8(__c.1701)
+ 613 0228 0E94 0000 		call rprintfProgStr
+ 614 022c 83E0      		ldi r24,lo8(3)
+ 615 022e 0E94 0000 		call cmdlineGetArgStr
+ 616 0232 0E94 0000 		call rprintfStr
+ 617 0236 0E94 0000 		call rprintfCRLF
+ 242:cmdlinetest.c **** 	rprintfCRLF();
+ 618               		.stabn	68,0,242,.LM44-dumpArgsStr
+ 619               	.LM44:
+ 620 023a 0E94 0000 		call rprintfCRLF
+ 621 023e 0F90      		pop __tmp_reg__
+ 622 0240 0F90      		pop __tmp_reg__
+GAS LISTING /var/tmp//cc9HTByh.s 			page 17
+
+
+ 623 0242 0F90      	 	pop __tmp_reg__
+ 624               	/* epilogue: frame size=0 */
+ 625 0244 0895      		ret
+ 626               	/* epilogue end (size=1) */
+ 627               	/* function dumpArgsStr size 60 (59) */
+ 628               		.size	dumpArgsStr, .-dumpArgsStr
+ 629               	.Lscope3:
+ 630               		.stabs	"",36,0,0,.Lscope3-dumpArgsStr
+ 631               		.stabd	78,0,0
+ 632               		.section	.progmem.data
+ 633               		.type	__c.1720, @object
+ 634               		.size	__c.1720, 14
+ 635               	__c.1720:
+ 636 016c 4172 6733 		.string	"Arg3 as int: "
+ 636      2061 7320 
+ 636      696E 743A 
+ 636      2000 
+ 637               		.type	__c.1718, @object
+ 638               		.size	__c.1718, 14
+ 639               	__c.1718:
+ 640 017a 4172 6732 		.string	"Arg2 as int: "
+ 640      2061 7320 
+ 640      696E 743A 
+ 640      2000 
+ 641               		.type	__c.1716, @object
+ 642               		.size	__c.1716, 14
+ 643               	__c.1716:
+ 644 0188 4172 6731 		.string	"Arg1 as int: "
+ 644      2061 7320 
+ 644      696E 743A 
+ 644      2000 
+ 645               		.type	__c.1714, @object
+ 646               		.size	__c.1714, 29
+ 647               	__c.1714:
+ 648 0196 4475 6D70 		.string	"Dump arguments as integers\r\n"
+ 648      2061 7267 
+ 648      756D 656E 
+ 648      7473 2061 
+ 648      7320 696E 
+ 649               		.text
+ 650               		.stabs	"dumpArgsInt:F(0,15)",36,0,246,dumpArgsInt
+ 651               	.global	dumpArgsInt
+ 652               		.type	dumpArgsInt, @function
+ 653               	dumpArgsInt:
+ 654               		.stabd	46,0,0
+ 243:cmdlinetest.c **** }
+ 244:cmdlinetest.c **** 
+ 245:cmdlinetest.c **** void dumpArgsInt(void)
+ 246:cmdlinetest.c **** {
+ 655               		.stabn	68,0,246,.LM45-dumpArgsInt
+ 656               	.LM45:
+ 657               	/* prologue: frame size=0 */
+ 658 0246 DF92      		push r13
+ 659 0248 EF92      		push r14
+ 660 024a FF92      		push r15
+ 661 024c 0F93      		push r16
+ 662 024e 1F93      		push r17
+GAS LISTING /var/tmp//cc9HTByh.s 			page 18
+
+
+ 663               	/* prologue end (size=5) */
+ 247:cmdlinetest.c **** 	rprintfCRLF();
+ 664               		.stabn	68,0,247,.LM46-dumpArgsInt
+ 665               	.LM46:
+ 666 0250 0E94 0000 		call rprintfCRLF
+ 248:cmdlinetest.c **** 	rprintf("Dump arguments as integers\r\n");
+ 667               		.stabn	68,0,248,.LM47-dumpArgsInt
+ 668               	.LM47:
+ 669 0254 80E0      		ldi r24,lo8(__c.1714)
+ 670 0256 90E0      		ldi r25,hi8(__c.1714)
+ 671 0258 9F93      		push r25
+ 672 025a 8F93      		push r24
+ 673 025c 81E0      		ldi r24,lo8(1)
+ 674 025e D82E      		mov r13,r24
+ 675 0260 DF92      		push r13
+ 676 0262 0E94 0000 		call rprintf1RamRom
+ 249:cmdlinetest.c **** 
+ 250:cmdlinetest.c **** 	// printf %d will work but only if your numbers are less than 16-bit values
+ 251:cmdlinetest.c **** 	//rprintf("Arg1 as int: %d\r\n", cmdlineGetArgInt(1));
+ 252:cmdlinetest.c **** 	//rprintf("Arg2 as int: %d\r\n", cmdlineGetArgInt(2));
+ 253:cmdlinetest.c **** 	//rprintf("Arg3 as int: %d\r\n", cmdlineGetArgInt(3));
+ 254:cmdlinetest.c **** 
+ 255:cmdlinetest.c **** 	// printfNum is good for longs too
+ 256:cmdlinetest.c **** 	rprintf("Arg1 as int: "); rprintfNum(10, 10, TRUE, ' ', cmdlineGetArgInt(1)); rprintfCRLF();
+ 677               		.stabn	68,0,256,.LM48-dumpArgsInt
+ 678               	.LM48:
+ 679 0266 80E0      		ldi r24,lo8(__c.1716)
+ 680 0268 90E0      		ldi r25,hi8(__c.1716)
+ 681 026a 9F93      		push r25
+ 682 026c 8F93      		push r24
+ 683 026e DF92      		push r13
+ 684 0270 0E94 0000 		call rprintf1RamRom
+ 685 0274 81E0      		ldi r24,lo8(1)
+ 686 0276 0E94 0000 		call cmdlineGetArgInt
+ 687 027a 7B01      		movw r14,r22
+ 688 027c 8C01      		movw r16,r24
+ 689 027e 20E2      		ldi r18,lo8(32)
+ 690 0280 4FEF      		ldi r20,lo8(-1)
+ 691 0282 6AE0      		ldi r22,lo8(10)
+ 692 0284 8AE0      		ldi r24,lo8(10)
+ 693 0286 0E94 0000 		call rprintfNum
+ 694 028a 0E94 0000 		call rprintfCRLF
+ 257:cmdlinetest.c **** 	rprintf("Arg2 as int: "); rprintfNum(10, 10, TRUE, ' ', cmdlineGetArgInt(2)); rprintfCRLF();
+ 695               		.stabn	68,0,257,.LM49-dumpArgsInt
+ 696               	.LM49:
+ 697 028e 80E0      		ldi r24,lo8(__c.1718)
+ 698 0290 90E0      		ldi r25,hi8(__c.1718)
+ 699 0292 9F93      		push r25
+ 700 0294 8F93      		push r24
+ 701 0296 DF92      		push r13
+ 702 0298 0E94 0000 		call rprintf1RamRom
+ 703 029c 82E0      		ldi r24,lo8(2)
+ 704 029e 0E94 0000 		call cmdlineGetArgInt
+ 705 02a2 7B01      		movw r14,r22
+ 706 02a4 8C01      		movw r16,r24
+ 707 02a6 20E2      		ldi r18,lo8(32)
+ 708 02a8 4FEF      		ldi r20,lo8(-1)
+GAS LISTING /var/tmp//cc9HTByh.s 			page 19
+
+
+ 709 02aa 6AE0      		ldi r22,lo8(10)
+ 710 02ac 8AE0      		ldi r24,lo8(10)
+ 711 02ae 0E94 0000 		call rprintfNum
+ 712 02b2 0E94 0000 		call rprintfCRLF
+ 258:cmdlinetest.c **** 	rprintf("Arg3 as int: "); rprintfNum(10, 10, TRUE, ' ', cmdlineGetArgInt(3)); rprintfCRLF();
+ 713               		.stabn	68,0,258,.LM50-dumpArgsInt
+ 714               	.LM50:
+ 715 02b6 80E0      		ldi r24,lo8(__c.1720)
+ 716 02b8 90E0      		ldi r25,hi8(__c.1720)
+ 717 02ba 9F93      		push r25
+ 718 02bc 8F93      		push r24
+ 719 02be DF92      		push r13
+ 720 02c0 0E94 0000 		call rprintf1RamRom
+ 721 02c4 83E0      		ldi r24,lo8(3)
+ 722 02c6 0E94 0000 		call cmdlineGetArgInt
+ 723 02ca 7B01      		movw r14,r22
+ 724 02cc 8C01      		movw r16,r24
+ 725 02ce 20E2      		ldi r18,lo8(32)
+ 726 02d0 4FEF      		ldi r20,lo8(-1)
+ 727 02d2 6AE0      		ldi r22,lo8(10)
+ 728 02d4 8AE0      		ldi r24,lo8(10)
+ 729 02d6 0E94 0000 		call rprintfNum
+ 730 02da 0E94 0000 		call rprintfCRLF
+ 259:cmdlinetest.c **** 	rprintfCRLF();
+ 731               		.stabn	68,0,259,.LM51-dumpArgsInt
+ 732               	.LM51:
+ 733 02de 0E94 0000 		call rprintfCRLF
+ 734 02e2 8DB7      		in r24,__SP_L__
+ 735 02e4 9EB7      		in r25,__SP_H__
+ 736 02e6 0C96      		adiw r24,12
+ 737 02e8 0FB6      		in __tmp_reg__,__SREG__
+ 738 02ea F894      		cli
+ 739 02ec 9EBF      		out __SP_H__,r25
+ 740 02ee 0FBE      		out __SREG__,__tmp_reg__
+ 741 02f0 8DBF      		out __SP_L__,r24
+ 742               	/* epilogue: frame size=0 */
+ 743 02f2 1F91      		pop r17
+ 744 02f4 0F91      		pop r16
+ 745 02f6 FF90      		pop r15
+ 746 02f8 EF90      		pop r14
+ 747 02fa DF90      		pop r13
+ 748 02fc 0895      		ret
+ 749               	/* epilogue end (size=6) */
+ 750               	/* function dumpArgsInt size 92 (81) */
+ 751               		.size	dumpArgsInt, .-dumpArgsInt
+ 752               	.Lscope4:
+ 753               		.stabs	"",36,0,0,.Lscope4-dumpArgsInt
+ 754               		.stabd	78,0,0
+ 755               		.section	.progmem.data
+ 756               		.type	__c.1734, @object
+ 757               		.size	__c.1734, 14
+ 758               	__c.1734:
+ 759 01b3 4172 6733 		.string	"Arg3 as hex: "
+ 759      2061 7320 
+ 759      6865 783A 
+ 759      2000 
+ 760               		.type	__c.1732, @object
+GAS LISTING /var/tmp//cc9HTByh.s 			page 20
+
+
+ 761               		.size	__c.1732, 14
+ 762               	__c.1732:
+ 763 01c1 4172 6732 		.string	"Arg2 as hex: "
+ 763      2061 7320 
+ 763      6865 783A 
+ 763      2000 
+ 764               		.type	__c.1730, @object
+ 765               		.size	__c.1730, 14
+ 766               	__c.1730:
+ 767 01cf 4172 6731 		.string	"Arg1 as hex: "
+ 767      2061 7320 
+ 767      6865 783A 
+ 767      2000 
+ 768               		.type	__c.1728, @object
+ 769               		.size	__c.1728, 33
+ 770               	__c.1728:
+ 771 01dd 4475 6D70 		.string	"Dump arguments as hex integers\r\n"
+ 771      2061 7267 
+ 771      756D 656E 
+ 771      7473 2061 
+ 771      7320 6865 
+ 772               		.text
+ 773               		.stabs	"dumpArgsHex:F(0,15)",36,0,263,dumpArgsHex
+ 774               	.global	dumpArgsHex
+ 775               		.type	dumpArgsHex, @function
+ 776               	dumpArgsHex:
+ 777               		.stabd	46,0,0
+ 260:cmdlinetest.c **** }
+ 261:cmdlinetest.c **** 
+ 262:cmdlinetest.c **** void dumpArgsHex(void)
+ 263:cmdlinetest.c **** {
+ 778               		.stabn	68,0,263,.LM52-dumpArgsHex
+ 779               	.LM52:
+ 780               	/* prologue: frame size=0 */
+ 781 02fe DF92      		push r13
+ 782 0300 EF92      		push r14
+ 783 0302 FF92      		push r15
+ 784 0304 0F93      		push r16
+ 785 0306 1F93      		push r17
+ 786               	/* prologue end (size=5) */
+ 264:cmdlinetest.c **** 	rprintfCRLF();
+ 787               		.stabn	68,0,264,.LM53-dumpArgsHex
+ 788               	.LM53:
+ 789 0308 0E94 0000 		call rprintfCRLF
+ 265:cmdlinetest.c **** 	rprintf("Dump arguments as hex integers\r\n");
+ 790               		.stabn	68,0,265,.LM54-dumpArgsHex
+ 791               	.LM54:
+ 792 030c 80E0      		ldi r24,lo8(__c.1728)
+ 793 030e 90E0      		ldi r25,hi8(__c.1728)
+ 794 0310 9F93      		push r25
+ 795 0312 8F93      		push r24
+ 796 0314 91E0      		ldi r25,lo8(1)
+ 797 0316 D92E      		mov r13,r25
+ 798 0318 DF92      		push r13
+ 799 031a 0E94 0000 		call rprintf1RamRom
+ 266:cmdlinetest.c **** 
+ 267:cmdlinetest.c **** 	rprintf("Arg1 as hex: "); rprintfNum(16, 8, FALSE, ' ', cmdlineGetArgHex(1)); rprintfCRLF();
+GAS LISTING /var/tmp//cc9HTByh.s 			page 21
+
+
+ 800               		.stabn	68,0,267,.LM55-dumpArgsHex
+ 801               	.LM55:
+ 802 031e 80E0      		ldi r24,lo8(__c.1730)
+ 803 0320 90E0      		ldi r25,hi8(__c.1730)
+ 804 0322 9F93      		push r25
+ 805 0324 8F93      		push r24
+ 806 0326 DF92      		push r13
+ 807 0328 0E94 0000 		call rprintf1RamRom
+ 808 032c 81E0      		ldi r24,lo8(1)
+ 809 032e 0E94 0000 		call cmdlineGetArgHex
+ 810 0332 7B01      		movw r14,r22
+ 811 0334 8C01      		movw r16,r24
+ 812 0336 20E2      		ldi r18,lo8(32)
+ 813 0338 40E0      		ldi r20,lo8(0)
+ 814 033a 68E0      		ldi r22,lo8(8)
+ 815 033c 80E1      		ldi r24,lo8(16)
+ 816 033e 0E94 0000 		call rprintfNum
+ 817 0342 0E94 0000 		call rprintfCRLF
+ 268:cmdlinetest.c **** 	rprintf("Arg2 as hex: "); rprintfNum(16, 8, FALSE, ' ', cmdlineGetArgHex(2)); rprintfCRLF();
+ 818               		.stabn	68,0,268,.LM56-dumpArgsHex
+ 819               	.LM56:
+ 820 0346 80E0      		ldi r24,lo8(__c.1732)
+ 821 0348 90E0      		ldi r25,hi8(__c.1732)
+ 822 034a 9F93      		push r25
+ 823 034c 8F93      		push r24
+ 824 034e DF92      		push r13
+ 825 0350 0E94 0000 		call rprintf1RamRom
+ 826 0354 82E0      		ldi r24,lo8(2)
+ 827 0356 0E94 0000 		call cmdlineGetArgHex
+ 828 035a 7B01      		movw r14,r22
+ 829 035c 8C01      		movw r16,r24
+ 830 035e 20E2      		ldi r18,lo8(32)
+ 831 0360 40E0      		ldi r20,lo8(0)
+ 832 0362 68E0      		ldi r22,lo8(8)
+ 833 0364 80E1      		ldi r24,lo8(16)
+ 834 0366 0E94 0000 		call rprintfNum
+ 835 036a 0E94 0000 		call rprintfCRLF
+ 269:cmdlinetest.c **** 	rprintf("Arg3 as hex: "); rprintfNum(16, 8, FALSE, ' ', cmdlineGetArgHex(3)); rprintfCRLF();
+ 836               		.stabn	68,0,269,.LM57-dumpArgsHex
+ 837               	.LM57:
+ 838 036e 80E0      		ldi r24,lo8(__c.1734)
+ 839 0370 90E0      		ldi r25,hi8(__c.1734)
+ 840 0372 9F93      		push r25
+ 841 0374 8F93      		push r24
+ 842 0376 DF92      		push r13
+ 843 0378 0E94 0000 		call rprintf1RamRom
+ 844 037c 83E0      		ldi r24,lo8(3)
+ 845 037e 0E94 0000 		call cmdlineGetArgHex
+ 846 0382 7B01      		movw r14,r22
+ 847 0384 8C01      		movw r16,r24
+ 848 0386 20E2      		ldi r18,lo8(32)
+ 849 0388 40E0      		ldi r20,lo8(0)
+ 850 038a 68E0      		ldi r22,lo8(8)
+ 851 038c 80E1      		ldi r24,lo8(16)
+ 852 038e 0E94 0000 		call rprintfNum
+ 853 0392 0E94 0000 		call rprintfCRLF
+ 270:cmdlinetest.c **** 	rprintfCRLF();
+GAS LISTING /var/tmp//cc9HTByh.s 			page 22
+
+
+ 854               		.stabn	68,0,270,.LM58-dumpArgsHex
+ 855               	.LM58:
+ 856 0396 0E94 0000 		call rprintfCRLF
+ 857 039a 8DB7      		in r24,__SP_L__
+ 858 039c 9EB7      		in r25,__SP_H__
+ 859 039e 0C96      		adiw r24,12
+ 860 03a0 0FB6      		in __tmp_reg__,__SREG__
+ 861 03a2 F894      		cli
+ 862 03a4 9EBF      		out __SP_H__,r25
+ 863 03a6 0FBE      		out __SREG__,__tmp_reg__
+ 864 03a8 8DBF      		out __SP_L__,r24
+ 865               	/* epilogue: frame size=0 */
+ 866 03aa 1F91      		pop r17
+ 867 03ac 0F91      		pop r16
+ 868 03ae FF90      		pop r15
+ 869 03b0 EF90      		pop r14
+ 870 03b2 DF90      		pop r13
+ 871 03b4 0895      		ret
+ 872               	/* epilogue end (size=6) */
+ 873               	/* function dumpArgsHex size 92 (81) */
+ 874               		.size	dumpArgsHex, .-dumpArgsHex
+ 875               	.Lscope5:
+ 876               		.stabs	"",36,0,0,.Lscope5-dumpArgsHex
+ 877               		.stabd	78,0,0
+ 878               		.stabs	"i2cSetup:F(0,15)",36,0,274,i2cSetup
+ 879               	.global	i2cSetup
+ 880               		.type	i2cSetup, @function
+ 881               	i2cSetup:
+ 882               		.stabd	46,0,0
+ 271:cmdlinetest.c **** }
+ 272:cmdlinetest.c **** 
+ 273:cmdlinetest.c **** void i2cSetup(void)
+ 274:cmdlinetest.c **** {
+ 883               		.stabn	68,0,274,.LM59-i2cSetup
+ 884               	.LM59:
+ 885               	/* prologue: frame size=0 */
+ 886               	/* prologue end (size=0) */
+ 275:cmdlinetest.c **** 	// initialize i2c function library
+ 276:cmdlinetest.c **** 	i2cInit();
+ 887               		.stabn	68,0,276,.LM60-i2cSetup
+ 888               	.LM60:
+ 889 03b6 0E94 0000 		call i2cInit
+ 277:cmdlinetest.c **** 	// set local device address and allow response to general call
+ 278:cmdlinetest.c **** 	i2cSetLocalDeviceAddr(LOCAL_ADDR, TRUE);
+ 890               		.stabn	68,0,278,.LM61-i2cSetup
+ 891               	.LM61:
+ 892 03ba 6FEF      		ldi r22,lo8(-1)
+ 893 03bc 80EA      		ldi r24,lo8(-96)
+ 894 03be 0E94 0000 		call i2cSetLocalDeviceAddr
+ 279:cmdlinetest.c **** 	// set the Slave Receive Handler function
+ 280:cmdlinetest.c **** 	// (this function will run whenever a master somewhere else on the bus
+ 281:cmdlinetest.c **** 	//  writes data to us as a slave)
+ 282:cmdlinetest.c **** 	i2cSetSlaveReceiveHandler( i2cSlaveReceiveService );
+ 895               		.stabn	68,0,282,.LM62-i2cSetup
+ 896               	.LM62:
+ 897 03c2 80E0      		ldi r24,lo8(pm(i2cSlaveReceiveService))
+ 898 03c4 90E0      		ldi r25,hi8(pm(i2cSlaveReceiveService))
+GAS LISTING /var/tmp//cc9HTByh.s 			page 23
+
+
+ 899 03c6 0E94 0000 		call i2cSetSlaveReceiveHandler
+ 283:cmdlinetest.c **** 	// set the Slave Transmit Handler function
+ 284:cmdlinetest.c **** 	// (this function will run whenever a master somewhere else on the bus
+ 285:cmdlinetest.c **** 	//  attempts to read data from us as a slave)
+ 286:cmdlinetest.c **** 	i2cSetSlaveTransmitHandler( i2cSlaveTransmitService );
+ 900               		.stabn	68,0,286,.LM63-i2cSetup
+ 901               	.LM63:
+ 902 03ca 80E0      		ldi r24,lo8(pm(i2cSlaveTransmitService))
+ 903 03cc 90E0      		ldi r25,hi8(pm(i2cSlaveTransmitService))
+ 904 03ce 0E94 0000 		call i2cSetSlaveTransmitHandler
+ 905               	/* epilogue: frame size=0 */
+ 906 03d2 0895      		ret
+ 907               	/* epilogue end (size=1) */
+ 908               	/* function i2cSetup size 15 (14) */
+ 909               		.size	i2cSetup, .-i2cSetup
+ 910               	.Lscope6:
+ 911               		.stabs	"",36,0,0,.Lscope6-i2cSetup
+ 912               		.stabd	78,0,0
+ 913               		.section	.progmem.data
+ 914               		.type	__c.1649, @object
+ 915               		.size	__c.1649, 55
+ 916               	__c.1649:
+ 917 01fe 2A2A 2A2A 		.string	"**********************powerup*************************"
+ 917      2A2A 2A2A 
+ 917      2A2A 2A2A 
+ 917      2A2A 2A2A 
+ 917      2A2A 2A2A 
+ 918               		.text
+ 919               		.stabs	"main:F(0,1)",36,0,100,main
+ 920               	.global	main
+ 921               		.type	main, @function
+ 922               	main:
+ 923               		.stabd	46,0,0
+ 924               		.stabn	68,0,100,.LM64-main
+ 925               	.LM64:
+ 926               	/* prologue: frame size=0 */
+ 927 03d4 C0E0      		ldi r28,lo8(__stack - 0)
+ 928 03d6 D0E0      		ldi r29,hi8(__stack - 0)
+ 929 03d8 DEBF      		out __SP_H__,r29
+ 930 03da CDBF      		out __SP_L__,r28
+ 931               	/* prologue end (size=4) */
+ 932               		.stabn	68,0,103,.LM65-main
+ 933               	.LM65:
+ 934 03dc 0E94 0000 		call uartInit
+ 935               		.stabn	68,0,104,.LM66-main
+ 936               	.LM66:
+ 937 03e0 60E0      		ldi r22,lo8(57600)
+ 938 03e2 71EE      		ldi r23,hi8(57600)
+ 939 03e4 80E0      		ldi r24,hlo8(57600)
+ 940 03e6 90E0      		ldi r25,hhi8(57600)
+ 941 03e8 0E94 0000 		call uartSetBaudRate
+ 942               		.stabn	68,0,106,.LM67-main
+ 943               	.LM67:
+ 944 03ec 80E0      		ldi r24,lo8(pm(uartSendByte))
+ 945 03ee 90E0      		ldi r25,hi8(pm(uartSendByte))
+ 946 03f0 0E94 0000 		call rprintfInit
+ 947               		.stabn	68,0,108,.LM68-main
+GAS LISTING /var/tmp//cc9HTByh.s 			page 24
+
+
+ 948               	.LM68:
+ 949 03f4 0E94 0000 		call a2dInit
+ 950               		.stabn	68,0,110,.LM69-main
+ 951               	.LM69:
+ 952 03f8 0E94 0000 		call timerInit
+ 953               		.stabn	68,0,112,.LM70-main
+ 954               	.LM70:
+ 955 03fc 0E94 0000 		call vt100Init
+ 956               		.stabn	68,0,123,.LM71-main
+ 957               	.LM71:
+ 958 0400 84E6      		ldi r24,lo8(100)
+ 959 0402 90E0      		ldi r25,hi8(100)
+ 960 0404 0E94 0000 		call timerPause
+ 961               		.stabn	68,0,126,.LM72-main
+ 962               	.LM72:
+ 963 0408 0E94 0000 		call i2cSetup
+ 964               		.stabn	68,0,130,.LM73-main
+ 965               	.LM73:
+ 966 040c 0E94 0000 		call servoInit
+ 967               		.stabn	68,0,133,.LM74-main
+ 968               	.LM74:
+ 969 0410 42E0      		ldi r20,lo8(2)
+ 970 0412 65E1      		ldi r22,lo8(21)
+ 971 0414 80E0      		ldi r24,lo8(0)
+ 972 0416 0E94 0000 		call servoSetChannelIO
+ 973               		.stabn	68,0,134,.LM75-main
+ 974               	.LM75:
+ 975 041a 43E0      		ldi r20,lo8(3)
+ 976 041c 65E1      		ldi r22,lo8(21)
+ 977 041e 81E0      		ldi r24,lo8(1)
+ 978 0420 0E94 0000 		call servoSetChannelIO
+ 979               		.stabn	68,0,135,.LM76-main
+ 980               	.LM76:
+ 981 0424 44E0      		ldi r20,lo8(4)
+ 982 0426 65E1      		ldi r22,lo8(21)
+ 983 0428 82E0      		ldi r24,lo8(2)
+ 984 042a 0E94 0000 		call servoSetChannelIO
+ 985               		.stabn	68,0,136,.LM77-main
+ 986               	.LM77:
+ 987 042e 45E0      		ldi r20,lo8(5)
+ 988 0430 65E1      		ldi r22,lo8(21)
+ 989 0432 83E0      		ldi r24,lo8(3)
+ 990 0434 0E94 0000 		call servoSetChannelIO
+ 991               		.stabn	68,0,137,.LM78-main
+ 992               	.LM78:
+ 993 0438 46E0      		ldi r20,lo8(6)
+ 994 043a 65E1      		ldi r22,lo8(21)
+ 995 043c 84E0      		ldi r24,lo8(4)
+ 996 043e 0E94 0000 		call servoSetChannelIO
+ 997               		.stabn	68,0,139,.LM79-main
+ 998               	.LM79:
+ 999 0442 8CEF      		ldi r24,lo8(-4)
+ 1000 0444 84BB      		out 52-0x20,r24
+ 1001               		.stabn	68,0,145,.LM80-main
+ 1002               	.LM80:
+ 1003 0446 80E0      		ldi r24,lo8(__c.1649)
+ 1004 0448 90E0      		ldi r25,hi8(__c.1649)
+GAS LISTING /var/tmp//cc9HTByh.s 			page 25
+
+
+ 1005 044a 9F93      		push r25
+ 1006 044c 8F93      		push r24
+ 1007 044e 81E0      		ldi r24,lo8(1)
+ 1008 0450 8F93      		push r24
+ 1009 0452 0E94 0000 		call rprintf1RamRom
+ 1010               		.stabn	68,0,149,.LM81-main
+ 1011               	.LM81:
+ 1012 0456 0E94 0000 		call goCmdline
+ 1013 045a 0F90      		pop __tmp_reg__
+ 1014 045c 0F90      		pop __tmp_reg__
+ 1015 045e 0F90      	 	pop __tmp_reg__
+ 1016               		.stabn	68,0,152,.LM82-main
+ 1017               	.LM82:
+ 1018 0460 80E0      		ldi r24,lo8(0)
+ 1019 0462 90E0      		ldi r25,hi8(0)
+ 1020               	/* epilogue: frame size=0 */
+ 1021 0464 0C94 0000 		jmp exit
+ 1022               	/* epilogue end (size=2) */
+ 1023               	/* function main size 74 (68) */
+ 1024               		.size	main, .-main
+ 1025               	.Lscope7:
+ 1026               		.stabs	"",36,0,0,.Lscope7-main
+ 1027               		.stabd	78,0,0
+ 1028               		.stabs	"i2cSlaveReceiveService:F(0,15)",36,0,290,i2cSlaveReceiveService
+ 1029               		.stabs	"receiveDataLength:P(6,1)",64,0,289,25
+ 1030               		.stabs	"receiveData:P(0,16)=*(6,1)",64,0,289,26
+ 1031               	.global	i2cSlaveReceiveService
+ 1032               		.type	i2cSlaveReceiveService, @function
+ 1033               	i2cSlaveReceiveService:
+ 1034               		.stabd	46,0,0
+ 287:cmdlinetest.c **** }
+ 288:cmdlinetest.c **** // slave operations
+ 289:cmdlinetest.c **** void i2cSlaveReceiveService(u08 receiveDataLength, u08* receiveData)
+ 290:cmdlinetest.c **** {
+ 1035               		.stabn	68,0,290,.LM83-i2cSlaveReceiveService
+ 1036               	.LM83:
+ 1037               	/* prologue: frame size=0 */
+ 1038               	/* prologue end (size=0) */
+ 1039 0468 982F      		mov r25,r24
+ 1040 046a DB01      		movw r26,r22
+ 1041 046c 20E0      		ldi r18,lo8(0)
+ 1042 046e 30E0      		ldi r19,hi8(0)
+ 1043 0470 07C0      		rjmp .L32
+ 1044               	.L33:
+ 291:cmdlinetest.c **** 	u08 i;
+ 292:cmdlinetest.c **** 
+ 293:cmdlinetest.c **** 	// this function will run when a master somewhere else on the bus
+ 294:cmdlinetest.c **** 	// addresses us and wishes to write data to us
+ 295:cmdlinetest.c **** 
+ 296:cmdlinetest.c **** 	// copy the received data to a local buffer
+ 297:cmdlinetest.c **** 	for(i=0; i<receiveDataLength; i++)
+ 298:cmdlinetest.c **** 	{
+ 299:cmdlinetest.c **** 		slaveBuffer[i] = *receiveData++;
+ 1045               		.stabn	68,0,299,.LM84-i2cSlaveReceiveService
+ 1046               	.LM84:
+ 1047 0472 FF27      		clr r31
+ 1048 0474 E050      		subi r30,lo8(-(slaveBuffer))
+GAS LISTING /var/tmp//cc9HTByh.s 			page 26
+
+
+ 1049 0476 F040      		sbci r31,hi8(-(slaveBuffer))
+ 1050 0478 8D91      		ld r24,X+
+ 1051 047a 8083      		st Z,r24
+ 1052 047c 2F5F      		subi r18,lo8(-(1))
+ 1053 047e 3F4F      		sbci r19,hi8(-(1))
+ 1054               	.L32:
+ 1055 0480 E22F      		mov r30,r18
+ 1056               		.stabn	68,0,297,.LM85-i2cSlaveReceiveService
+ 1057               	.LM85:
+ 1058 0482 2917      		cp r18,r25
+ 1059 0484 B0F3      		brlo .L33
+ 300:cmdlinetest.c **** 	}
+ 301:cmdlinetest.c **** 	slaveBufferLength = receiveDataLength;
+ 1060               		.stabn	68,0,301,.LM86-i2cSlaveReceiveService
+ 1061               	.LM86:
+ 1062 0486 9093 0000 		sts slaveBufferLength,r25
+ 1063               	/* epilogue: frame size=0 */
+ 1064 048a 0895      		ret
+ 1065               	/* epilogue end (size=1) */
+ 1066               	/* function i2cSlaveReceiveService size 18 (17) */
+ 1067               		.size	i2cSlaveReceiveService, .-i2cSlaveReceiveService
+ 1068               		.stabs	"i:r(6,1)",64,0,291,30
+ 1069               		.stabn	192,0,0,i2cSlaveReceiveService-i2cSlaveReceiveService
+ 1070               		.stabn	224,0,0,.Lscope8-i2cSlaveReceiveService
+ 1071               	.Lscope8:
+ 1072               		.stabs	"",36,0,0,.Lscope8-i2cSlaveReceiveService
+ 1073               		.stabd	78,0,0
+ 1074               		.stabs	"i2cSlaveTransmitService:F(6,1)",36,0,310,i2cSlaveTransmitService
+ 1075               		.stabs	"transmitDataLengthMax:P(6,1)",64,0,309,24
+ 1076               		.stabs	"transmitData:P(0,16)",64,0,309,22
+ 1077               	.global	i2cSlaveTransmitService
+ 1078               		.type	i2cSlaveTransmitService, @function
+ 1079               	i2cSlaveTransmitService:
+ 1080               		.stabd	46,0,0
+ 302:cmdlinetest.c **** 	// print the buffer
+ 303:cmdlinetest.c **** //	for(i=0;i<slaveBufferLength;i++)
+ 304:cmdlinetest.c **** //	{
+ 305:cmdlinetest.c **** //		putchar(slaveBuffer[i]);
+ 306:cmdlinetest.c **** //	}
+ 307:cmdlinetest.c **** }
+ 308:cmdlinetest.c **** 
+ 309:cmdlinetest.c **** u08 i2cSlaveTransmitService(u08 transmitDataLengthMax, u08* transmitData)
+ 310:cmdlinetest.c **** {
+ 1081               		.stabn	68,0,310,.LM87-i2cSlaveTransmitService
+ 1082               	.LM87:
+ 1083               	/* prologue: frame size=0 */
+ 1084               	/* prologue end (size=0) */
+ 311:cmdlinetest.c **** 	u08 i;
+ 312:cmdlinetest.c **** 
+ 313:cmdlinetest.c **** 	// this function will run when a master somewhere else on the bus
+ 314:cmdlinetest.c **** 	// addresses us and wishes to read data from us
+ 315:cmdlinetest.c **** 
+ 316:cmdlinetest.c **** 	cbi(PORTB, PB7);
+ 1085               		.stabn	68,0,316,.LM88-i2cSlaveTransmitService
+ 1086               	.LM88:
+ 1087 048c C798      		cbi 56-0x20,7
+ 1088 048e DB01      		movw r26,r22
+GAS LISTING /var/tmp//cc9HTByh.s 			page 27
+
+
+ 1089 0490 05C0      		rjmp .L37
+ 1090               	.L38:
+ 317:cmdlinetest.c **** 
+ 318:cmdlinetest.c **** 	// copy the local buffer to the transmit buffer
+ 319:cmdlinetest.c **** 	for(i=0; i<slaveBufferLength; i++)
+ 320:cmdlinetest.c **** 	{
+ 321:cmdlinetest.c **** 		*transmitData++ = slaveBuffer[i];
+ 1091               		.stabn	68,0,321,.LM89-i2cSlaveTransmitService
+ 1092               	.LM89:
+ 1093 0492 FF27      		clr r31
+ 1094 0494 E050      		subi r30,lo8(-(slaveBuffer))
+ 1095 0496 F040      		sbci r31,hi8(-(slaveBuffer))
+ 1096 0498 8081      		ld r24,Z
+ 1097 049a 8D93      		st X+,r24
+ 1098               	.L37:
+ 1099 049c EA2F      		mov r30,r26
+ 1100 049e E61B      		sub r30,r22
+ 1101               		.stabn	68,0,319,.LM90-i2cSlaveTransmitService
+ 1102               	.LM90:
+ 1103 04a0 9091 0000 		lds r25,slaveBufferLength
+ 1104 04a4 E917      		cp r30,r25
+ 1105 04a6 A8F3      		brlo .L38
+ 322:cmdlinetest.c **** 	}
+ 323:cmdlinetest.c **** 
+ 324:cmdlinetest.c **** 	slaveBuffer[0]++;
+ 1106               		.stabn	68,0,324,.LM91-i2cSlaveTransmitService
+ 1107               	.LM91:
+ 1108 04a8 8091 0000 		lds r24,slaveBuffer
+ 1109 04ac 8F5F      		subi r24,lo8(-(1))
+ 1110 04ae 8093 0000 		sts slaveBuffer,r24
+ 325:cmdlinetest.c **** 
+ 326:cmdlinetest.c **** 	return slaveBufferLength;
+ 327:cmdlinetest.c **** }
+ 1111               		.stabn	68,0,327,.LM92-i2cSlaveTransmitService
+ 1112               	.LM92:
+ 1113 04b2 892F      		mov r24,r25
+ 1114 04b4 9927      		clr r25
+ 1115               	/* epilogue: frame size=0 */
+ 1116 04b6 0895      		ret
+ 1117               	/* epilogue end (size=1) */
+ 1118               	/* function i2cSlaveTransmitService size 22 (21) */
+ 1119               		.size	i2cSlaveTransmitService, .-i2cSlaveTransmitService
+ 1120               		.stabs	"i:r(6,1)",64,0,311,30
+ 1121               		.stabn	192,0,0,i2cSlaveTransmitService-i2cSlaveTransmitService
+ 1122               		.stabn	224,0,0,.Lscope9-i2cSlaveTransmitService
+ 1123               	.Lscope9:
+ 1124               		.stabs	"",36,0,0,.Lscope9-i2cSlaveTransmitService
+ 1125               		.stabd	78,0,0
+ 1126               		.stabs	"i2cMasterSendDiag:F(0,15)",36,0,330,i2cMasterSendDiag
+ 1127               		.stabs	"deviceAddr:P(6,1)",64,0,329,17
+ 1128               		.stabs	"length:P(6,1)",64,0,329,16
+ 1129               		.stabs	"data:P(0,16)",64,0,329,28
+ 1130               	.global	i2cMasterSendDiag
+ 1131               		.type	i2cMasterSendDiag, @function
+ 1132               	i2cMasterSendDiag:
+ 1133               		.stabd	46,0,0
+ 328:cmdlinetest.c **** 
+GAS LISTING /var/tmp//cc9HTByh.s 			page 28
+
+
+ 329:cmdlinetest.c **** void i2cMasterSendDiag(u08 deviceAddr, u08 length, u08* data)
+ 330:cmdlinetest.c **** {
+ 1134               		.stabn	68,0,330,.LM93-i2cMasterSendDiag
+ 1135               	.LM93:
+ 1136               	/* prologue: frame size=0 */
+ 1137 04b8 0F93      		push r16
+ 1138 04ba 1F93      		push r17
+ 1139 04bc CF93      		push r28
+ 1140 04be DF93      		push r29
+ 1141               	/* prologue end (size=4) */
+ 1142 04c0 182F      		mov r17,r24
+ 1143 04c2 062F      		mov r16,r22
+ 1144 04c4 EA01      		movw r28,r20
+ 331:cmdlinetest.c **** 	// this function is equivalent to the i2cMasterSendNI() in the I2C library
+ 332:cmdlinetest.c **** 	// except it will print information about transmission progress to the terminal
+ 333:cmdlinetest.c **** 
+ 334:cmdlinetest.c **** 	// disable TWI interrupt
+ 335:cmdlinetest.c **** 	cbi(TWCR, TWIE);
+ 1145               		.stabn	68,0,335,.LM94-i2cMasterSendDiag
+ 1146               	.LM94:
+ 1147 04c6 86B7      		in r24,86-0x20
+ 1148 04c8 8E7F      		andi r24,lo8(-2)
+ 1149 04ca 86BF      		out 86-0x20,r24
+ 336:cmdlinetest.c **** 
+ 337:cmdlinetest.c **** 	// send start condition
+ 338:cmdlinetest.c **** 	i2cSendStart();
+ 1150               		.stabn	68,0,338,.LM95-i2cMasterSendDiag
+ 1151               	.LM95:
+ 1152 04cc 0E94 0000 		call i2cSendStart
+ 339:cmdlinetest.c **** 	i2cWaitForComplete();
+ 1153               		.stabn	68,0,339,.LM96-i2cMasterSendDiag
+ 1154               	.LM96:
+ 1155 04d0 0E94 0000 		call i2cWaitForComplete
+ 340:cmdlinetest.c **** 	//rprintf(("STA-")));
+ 341:cmdlinetest.c **** 
+ 342:cmdlinetest.c **** 	// send device address with write
+ 343:cmdlinetest.c **** 	i2cSendByte( deviceAddr&0xFE );
+ 1156               		.stabn	68,0,343,.LM97-i2cMasterSendDiag
+ 1157               	.LM97:
+ 1158 04d4 812F      		mov r24,r17
+ 1159 04d6 8E7F      		andi r24,lo8(-2)
+ 1160 04d8 0E94 0000 		call i2cSendByte
+ 344:cmdlinetest.c **** 	i2cWaitForComplete();
+ 1161               		.stabn	68,0,344,.LM98-i2cMasterSendDiag
+ 1162               	.LM98:
+ 1163 04dc 0E94 0000 		call i2cWaitForComplete
+ 1164 04e0 10E0      		ldi r17,lo8(0)
+ 1165 04e2 06C0      		rjmp .L42
+ 1166               	.L43:
+ 345:cmdlinetest.c **** 	//rprintf(("SLA+W-")));
+ 346:cmdlinetest.c **** 	
+ 347:cmdlinetest.c **** 	// send data
+ 348:cmdlinetest.c **** 	while(length)
+ 349:cmdlinetest.c **** 	{
+ 350:cmdlinetest.c **** 		i2cSendByte( *data++ );
+ 1167               		.stabn	68,0,350,.LM99-i2cMasterSendDiag
+ 1168               	.LM99:
+GAS LISTING /var/tmp//cc9HTByh.s 			page 29
+
+
+ 1169 04e4 8991      		ld r24,Y+
+ 1170 04e6 0E94 0000 		call i2cSendByte
+ 351:cmdlinetest.c **** 		i2cWaitForComplete();
+ 1171               		.stabn	68,0,351,.LM100-i2cMasterSendDiag
+ 1172               	.LM100:
+ 1173 04ea 0E94 0000 		call i2cWaitForComplete
+ 1174 04ee 1150      		subi r17,lo8(-(-1))
+ 1175               	.L42:
+ 1176               		.stabn	68,0,348,.LM101-i2cMasterSendDiag
+ 1177               	.LM101:
+ 1178 04f0 802F      		mov r24,r16
+ 1179 04f2 8195      		neg r24
+ 1180 04f4 1817      		cp r17,r24
+ 1181 04f6 B1F7      		brne .L43
+ 352:cmdlinetest.c **** 		//rprintf(("DATA-")));
+ 353:cmdlinetest.c **** 		length--;
+ 354:cmdlinetest.c **** 	}
+ 355:cmdlinetest.c **** 	
+ 356:cmdlinetest.c **** 	// transmit stop condition
+ 357:cmdlinetest.c **** 	// leave with TWEA on for slave receiving
+ 358:cmdlinetest.c **** 	i2cSendStop();
+ 1182               		.stabn	68,0,358,.LM102-i2cMasterSendDiag
+ 1183               	.LM102:
+ 1184 04f8 0E94 0000 		call i2cSendStop
+ 1185               	.L45:
+ 359:cmdlinetest.c **** 	while( !(inb(TWCR) & BV(TWSTO)) );
+ 1186               		.stabn	68,0,359,.LM103-i2cMasterSendDiag
+ 1187               	.LM103:
+ 1188 04fc 06B6      		in __tmp_reg__,86-0x20
+ 1189 04fe 04FE      		sbrs __tmp_reg__,4
+ 1190 0500 FDCF      		rjmp .L45
+ 360:cmdlinetest.c **** 	//rprintf(("STO")));
+ 361:cmdlinetest.c **** 
+ 362:cmdlinetest.c **** 	// enable TWI interrupt
+ 363:cmdlinetest.c **** 	sbi(TWCR, TWIE);
+ 1191               		.stabn	68,0,363,.LM104-i2cMasterSendDiag
+ 1192               	.LM104:
+ 1193 0502 86B7      		in r24,86-0x20
+ 1194 0504 8160      		ori r24,lo8(1)
+ 1195 0506 86BF      		out 86-0x20,r24
+ 1196               	/* epilogue: frame size=0 */
+ 1197 0508 DF91      		pop r29
+ 1198 050a CF91      		pop r28
+ 1199 050c 1F91      		pop r17
+ 1200 050e 0F91      		pop r16
+ 1201 0510 0895      		ret
+ 1202               	/* epilogue end (size=5) */
+ 1203               	/* function i2cMasterSendDiag size 45 (36) */
+ 1204               		.size	i2cMasterSendDiag, .-i2cMasterSendDiag
+ 1205               	.Lscope10:
+ 1206               		.stabs	"",36,0,0,.Lscope10-i2cMasterSendDiag
+ 1207               		.stabd	78,0,0
+ 1208               		.stabs	"i2cMaster_Send:F(0,15)",36,0,367,i2cMaster_Send
+ 1209               	.global	i2cMaster_Send
+ 1210               		.type	i2cMaster_Send, @function
+ 1211               	i2cMaster_Send:
+ 1212               		.stabd	46,0,0
+GAS LISTING /var/tmp//cc9HTByh.s 			page 30
+
+
+ 364:cmdlinetest.c **** }
+ 365:cmdlinetest.c **** 
+ 366:cmdlinetest.c **** void i2cMaster_Send(void)
+ 367:cmdlinetest.c **** {
+ 1213               		.stabn	68,0,367,.LM105-i2cMaster_Send
+ 1214               	.LM105:
+ 1215               	/* prologue: frame size=20 */
+ 1216 0512 0F93      		push r16
+ 1217 0514 1F93      		push r17
+ 1218 0516 CF93      		push r28
+ 1219 0518 DF93      		push r29
+ 1220 051a CDB7      		in r28,__SP_L__
+ 1221 051c DEB7      		in r29,__SP_H__
+ 1222 051e 6497      		sbiw r28,20
+ 1223 0520 0FB6      		in __tmp_reg__,__SREG__
+ 1224 0522 F894      		cli
+ 1225 0524 DEBF      		out __SP_H__,r29
+ 1226 0526 0FBE      		out __SREG__,__tmp_reg__
+ 1227 0528 CDBF      		out __SP_L__,r28
+ 1228               	/* prologue end (size=12) */
+ 368:cmdlinetest.c **** 	u08 sendData[20];
+ 369:cmdlinetest.c **** 	strcpy(sendData, cmdlineGetArgStr(1));
+ 1229               		.stabn	68,0,369,.LM106-i2cMaster_Send
+ 1230               	.LM106:
+ 1231 052a 81E0      		ldi r24,lo8(1)
+ 1232 052c 0E94 0000 		call cmdlineGetArgStr
+ 1233 0530 8E01      		movw r16,r28
+ 1234 0532 0F5F      		subi r16,lo8(-(1))
+ 1235 0534 1F4F      		sbci r17,hi8(-(1))
+ 1236 0536 BC01      		movw r22,r24
+ 1237 0538 C801      		movw r24,r16
+ 1238 053a 0E94 0000 		call strcpy
+ 370:cmdlinetest.c **** 	i2cMasterSend(TARGET_ADDR, 0x02, sendData);
+ 1239               		.stabn	68,0,370,.LM107-i2cMaster_Send
+ 1240               	.LM107:
+ 1241 053e A801      		movw r20,r16
+ 1242 0540 62E0      		ldi r22,lo8(2)
+ 1243 0542 80EA      		ldi r24,lo8(-96)
+ 1244 0544 0E94 0000 		call i2cMasterSend
+ 1245               	/* epilogue: frame size=20 */
+ 1246 0548 6496      		adiw r28,20
+ 1247 054a 0FB6      		in __tmp_reg__,__SREG__
+ 1248 054c F894      		cli
+ 1249 054e DEBF      		out __SP_H__,r29
+ 1250 0550 0FBE      		out __SREG__,__tmp_reg__
+ 1251 0552 CDBF      		out __SP_L__,r28
+ 1252 0554 DF91      		pop r29
+ 1253 0556 CF91      		pop r28
+ 1254 0558 1F91      		pop r17
+ 1255 055a 0F91      		pop r16
+ 1256 055c 0895      		ret
+ 1257               	/* epilogue end (size=11) */
+ 1258               	/* function i2cMaster_Send size 38 (15) */
+ 1259               		.size	i2cMaster_Send, .-i2cMaster_Send
+ 1260               		.stabs	"sendData:(0,17)=ar(0,18)=r(0,18);0;0177777;;0;19;(6,1)",128,0,368,1
+ 1261               		.stabn	192,0,0,i2cMaster_Send-i2cMaster_Send
+ 1262               		.stabn	224,0,0,.Lscope11-i2cMaster_Send
+GAS LISTING /var/tmp//cc9HTByh.s 			page 31
+
+
+ 1263               	.Lscope11:
+ 1264               		.stabs	"",36,0,0,.Lscope11-i2cMaster_Send
+ 1265               		.stabd	78,0,0
+ 1266               		.stabs	"i2cMaster_Auto_Send:F(0,15)",36,0,374,i2cMaster_Auto_Send
+ 1267               		.stabs	"message:P(6,1)",64,0,373,24
+ 1268               	.global	i2cMaster_Auto_Send
+ 1269               		.type	i2cMaster_Auto_Send, @function
+ 1270               	i2cMaster_Auto_Send:
+ 1271               		.stabd	46,0,0
+ 371:cmdlinetest.c **** //	putchar(sendData[0]);
+ 372:cmdlinetest.c **** }
+ 373:cmdlinetest.c **** void i2cMaster_Auto_Send(u08 message)
+ 374:cmdlinetest.c **** {
+ 1272               		.stabn	68,0,374,.LM108-i2cMaster_Auto_Send
+ 1273               	.LM108:
+ 1274               	/* prologue: frame size=2 */
+ 1275 055e CF93      		push r28
+ 1276 0560 DF93      		push r29
+ 1277 0562 CDB7      		in r28,__SP_L__
+ 1278 0564 DEB7      		in r29,__SP_H__
+ 1279 0566 2297      		sbiw r28,2
+ 1280 0568 0FB6      		in __tmp_reg__,__SREG__
+ 1281 056a F894      		cli
+ 1282 056c DEBF      		out __SP_H__,r29
+ 1283 056e 0FBE      		out __SREG__,__tmp_reg__
+ 1284 0570 CDBF      		out __SP_L__,r28
+ 1285               	/* prologue end (size=10) */
+ 375:cmdlinetest.c **** 	u08 sendData[2];
+ 376:cmdlinetest.c **** 	sendData[0] = message;
+ 1286               		.stabn	68,0,376,.LM109-i2cMaster_Auto_Send
+ 1287               	.LM109:
+ 1288 0572 8983      		std Y+1,r24
+ 377:cmdlinetest.c **** 	sendData[1] = '\0';
+ 1289               		.stabn	68,0,377,.LM110-i2cMaster_Auto_Send
+ 1290               	.LM110:
+ 1291 0574 1A82      		std Y+2,__zero_reg__
+ 378:cmdlinetest.c **** 	i2cMasterSend(TARGET_ADDR, 0x02, sendData);
+ 1292               		.stabn	68,0,378,.LM111-i2cMaster_Auto_Send
+ 1293               	.LM111:
+ 1294 0576 AE01      		movw r20,r28
+ 1295 0578 4F5F      		subi r20,lo8(-(1))
+ 1296 057a 5F4F      		sbci r21,hi8(-(1))
+ 1297 057c 62E0      		ldi r22,lo8(2)
+ 1298 057e 80EA      		ldi r24,lo8(-96)
+ 1299 0580 0E94 0000 		call i2cMasterSend
+ 1300               	/* epilogue: frame size=2 */
+ 1301 0584 2296      		adiw r28,2
+ 1302 0586 0FB6      		in __tmp_reg__,__SREG__
+ 1303 0588 F894      		cli
+ 1304 058a DEBF      		out __SP_H__,r29
+ 1305 058c 0FBE      		out __SREG__,__tmp_reg__
+ 1306 058e CDBF      		out __SP_L__,r28
+ 1307 0590 DF91      		pop r29
+ 1308 0592 CF91      		pop r28
+ 1309 0594 0895      		ret
+ 1310               	/* epilogue end (size=9) */
+ 1311               	/* function i2cMaster_Auto_Send size 28 (9) */
+GAS LISTING /var/tmp//cc9HTByh.s 			page 32
+
+
+ 1312               		.size	i2cMaster_Auto_Send, .-i2cMaster_Auto_Send
+ 1313               		.stabs	"sendData:(0,19)=ar(0,18);0;1;(6,1)",128,0,375,1
+ 1314               		.stabn	192,0,0,i2cMaster_Auto_Send-i2cMaster_Auto_Send
+ 1315               		.stabn	224,0,0,.Lscope12-i2cMaster_Auto_Send
+ 1316               	.Lscope12:
+ 1317               		.stabs	"",36,0,0,.Lscope12-i2cMaster_Auto_Send
+ 1318               		.stabd	78,0,0
+ 1319               		.section	.progmem.data
+ 1320               		.type	__c.1807, @object
+ 1321               		.size	__c.1807, 2
+ 1322               	__c.1807:
+ 1323 0235 2C00      		.string	","
+ 1324               		.text
+ 1325               		.stabs	"i2cMaster_Receive:F(0,15)",36,0,381,i2cMaster_Receive
+ 1326               	.global	i2cMaster_Receive
+ 1327               		.type	i2cMaster_Receive, @function
+ 1328               	i2cMaster_Receive:
+ 1329               		.stabd	46,0,0
+ 379:cmdlinetest.c **** }
+ 380:cmdlinetest.c **** void i2cMaster_Receive(void)
+ 381:cmdlinetest.c **** {	
+ 1330               		.stabn	68,0,381,.LM112-i2cMaster_Receive
+ 1331               	.LM112:
+ 1332               	/* prologue: frame size=20 */
+ 1333 0596 0F93      		push r16
+ 1334 0598 1F93      		push r17
+ 1335 059a CF93      		push r28
+ 1336 059c DF93      		push r29
+ 1337 059e CDB7      		in r28,__SP_L__
+ 1338 05a0 DEB7      		in r29,__SP_H__
+ 1339 05a2 6497      		sbiw r28,20
+ 1340 05a4 0FB6      		in __tmp_reg__,__SREG__
+ 1341 05a6 F894      		cli
+ 1342 05a8 DEBF      		out __SP_H__,r29
+ 1343 05aa 0FBE      		out __SREG__,__tmp_reg__
+ 1344 05ac CDBF      		out __SP_L__,r28
+ 1345               	/* prologue end (size=12) */
+ 382:cmdlinetest.c **** 	u08 command[20];
+ 383:cmdlinetest.c **** 	strcpy(command, cmdlineGetArgStr(1));
+ 1346               		.stabn	68,0,383,.LM113-i2cMaster_Receive
+ 1347               	.LM113:
+ 1348 05ae 81E0      		ldi r24,lo8(1)
+ 1349 05b0 0E94 0000 		call cmdlineGetArgStr
+ 1350 05b4 BC01      		movw r22,r24
+ 1351 05b6 CE01      		movw r24,r28
+ 1352 05b8 0196      		adiw r24,1
+ 1353 05ba 0E94 0000 		call strcpy
+ 384:cmdlinetest.c **** 	
+ 385:cmdlinetest.c **** 	i2cMasterReceive(TARGET_ADDR, slaveBufferLength, slaveBuffer);
+ 1354               		.stabn	68,0,385,.LM114-i2cMaster_Receive
+ 1355               	.LM114:
+ 1356 05be 00E0      		ldi r16,lo8(slaveBuffer)
+ 1357 05c0 10E0      		ldi r17,hi8(slaveBuffer)
+ 1358 05c2 A801      		movw r20,r16
+ 1359 05c4 6091 0000 		lds r22,slaveBufferLength
+ 1360 05c8 80EA      		ldi r24,lo8(-96)
+ 1361 05ca 0E94 0000 		call i2cMasterReceive
+GAS LISTING /var/tmp//cc9HTByh.s 			page 33
+
+
+ 386:cmdlinetest.c **** 	slaveBuffer[0x19] = 0;
+ 1362               		.stabn	68,0,386,.LM115-i2cMaster_Receive
+ 1363               	.LM115:
+ 1364 05ce 1092 0000 		sts slaveBuffer+25,__zero_reg__
+ 387:cmdlinetest.c **** 	//rprintfStr(command);
+ 388:cmdlinetest.c **** 	//rprintf(" ");
+ 389:cmdlinetest.c **** 	rprintfStr(slaveBuffer);
+ 1365               		.stabn	68,0,389,.LM116-i2cMaster_Receive
+ 1366               	.LM116:
+ 1367 05d2 C801      		movw r24,r16
+ 1368 05d4 0E94 0000 		call rprintfStr
+ 390:cmdlinetest.c **** 	rprintf(",");
+ 1369               		.stabn	68,0,390,.LM117-i2cMaster_Receive
+ 1370               	.LM117:
+ 1371 05d8 80E0      		ldi r24,lo8(__c.1807)
+ 1372 05da 90E0      		ldi r25,hi8(__c.1807)
+ 1373 05dc 9F93      		push r25
+ 1374 05de 8F93      		push r24
+ 1375 05e0 81E0      		ldi r24,lo8(1)
+ 1376 05e2 8F93      		push r24
+ 1377 05e4 0E94 0000 		call rprintf1RamRom
+ 1378 05e8 0F90      		pop __tmp_reg__
+ 1379 05ea 0F90      		pop __tmp_reg__
+ 1380 05ec 0F90      	 	pop __tmp_reg__
+ 1381               	/* epilogue: frame size=20 */
+ 1382 05ee 6496      		adiw r28,20
+ 1383 05f0 0FB6      		in __tmp_reg__,__SREG__
+ 1384 05f2 F894      		cli
+ 1385 05f4 DEBF      		out __SP_H__,r29
+ 1386 05f6 0FBE      		out __SREG__,__tmp_reg__
+ 1387 05f8 CDBF      		out __SP_L__,r28
+ 1388 05fa DF91      		pop r29
+ 1389 05fc CF91      		pop r28
+ 1390 05fe 1F91      		pop r17
+ 1391 0600 0F91      		pop r16
+ 1392 0602 0895      		ret
+ 1393               	/* epilogue end (size=11) */
+ 1394               	/* function i2cMaster_Receive size 55 (32) */
+ 1395               		.size	i2cMaster_Receive, .-i2cMaster_Receive
+ 1396               		.stabs	"command:(0,17)",128,0,382,1
+ 1397               		.stabn	192,0,0,i2cMaster_Receive-i2cMaster_Receive
+ 1398               		.stabn	224,0,0,.Lscope13-i2cMaster_Receive
+ 1399               	.Lscope13:
+ 1400               		.stabs	"",36,0,0,.Lscope13-i2cMaster_Receive
+ 1401               		.stabd	78,0,0
+ 1402               		.section	.progmem.data
+ 1403               		.type	__c.1817, @object
+ 1404               		.size	__c.1817, 2
+ 1405               	__c.1817:
+ 1406 0237 2C00      		.string	","
+ 1407               		.text
+ 1408               		.stabs	"i2cMaster_Auto_Receive:F(0,15)",36,0,394,i2cMaster_Auto_Receive
+ 1409               		.stabs	"command:P(6,1)",64,0,393,24
+ 1410               	.global	i2cMaster_Auto_Receive
+ 1411               		.type	i2cMaster_Auto_Receive, @function
+ 1412               	i2cMaster_Auto_Receive:
+ 1413               		.stabd	46,0,0
+GAS LISTING /var/tmp//cc9HTByh.s 			page 34
+
+
+ 391:cmdlinetest.c **** 	
+ 392:cmdlinetest.c **** }
+ 393:cmdlinetest.c **** void i2cMaster_Auto_Receive(u08 command)
+ 394:cmdlinetest.c **** {
+ 1414               		.stabn	68,0,394,.LM118-i2cMaster_Auto_Receive
+ 1415               	.LM118:
+ 1416               	/* prologue: frame size=0 */
+ 1417 0604 0F93      		push r16
+ 1418 0606 1F93      		push r17
+ 1419               	/* prologue end (size=2) */
+ 395:cmdlinetest.c **** 	i2cMasterReceive(TARGET_ADDR, slaveBufferLength, slaveBuffer);
+ 1420               		.stabn	68,0,395,.LM119-i2cMaster_Auto_Receive
+ 1421               	.LM119:
+ 1422 0608 00E0      		ldi r16,lo8(slaveBuffer)
+ 1423 060a 10E0      		ldi r17,hi8(slaveBuffer)
+ 1424 060c A801      		movw r20,r16
+ 1425 060e 6091 0000 		lds r22,slaveBufferLength
+ 1426 0612 80EA      		ldi r24,lo8(-96)
+ 1427 0614 0E94 0000 		call i2cMasterReceive
+ 396:cmdlinetest.c **** 	
+ 397:cmdlinetest.c **** 	slaveBuffer[0x19] = 0;
+ 1428               		.stabn	68,0,397,.LM120-i2cMaster_Auto_Receive
+ 1429               	.LM120:
+ 1430 0618 1092 0000 		sts slaveBuffer+25,__zero_reg__
+ 398:cmdlinetest.c **** 	//rprintfStr(command);
+ 399:cmdlinetest.c **** 	//rprintf(" ");
+ 400:cmdlinetest.c **** 	rprintfStr(slaveBuffer);
+ 1431               		.stabn	68,0,400,.LM121-i2cMaster_Auto_Receive
+ 1432               	.LM121:
+ 1433 061c C801      		movw r24,r16
+ 1434 061e 0E94 0000 		call rprintfStr
+ 401:cmdlinetest.c **** 	rprintf(",");
+ 1435               		.stabn	68,0,401,.LM122-i2cMaster_Auto_Receive
+ 1436               	.LM122:
+ 1437 0622 80E0      		ldi r24,lo8(__c.1817)
+ 1438 0624 90E0      		ldi r25,hi8(__c.1817)
+ 1439 0626 9F93      		push r25
+ 1440 0628 8F93      		push r24
+ 1441 062a 81E0      		ldi r24,lo8(1)
+ 1442 062c 8F93      		push r24
+ 1443 062e 0E94 0000 		call rprintf1RamRom
+ 1444 0632 0F90      		pop __tmp_reg__
+ 1445 0634 0F90      		pop __tmp_reg__
+ 1446 0636 0F90      	 	pop __tmp_reg__
+ 1447               	/* epilogue: frame size=0 */
+ 1448 0638 1F91      		pop r17
+ 1449 063a 0F91      		pop r16
+ 1450 063c 0895      		ret
+ 1451               	/* epilogue end (size=3) */
+ 1452               	/* function i2cMaster_Auto_Receive size 29 (24) */
+ 1453               		.size	i2cMaster_Auto_Receive, .-i2cMaster_Auto_Receive
+ 1454               	.Lscope14:
+ 1455               		.stabs	"",36,0,0,.Lscope14-i2cMaster_Auto_Receive
+ 1456               		.stabd	78,0,0
+ 1457               		.stabs	"setLeftServo:F(0,15)",36,0,407,setLeftServo
+ 1458               	.global	setLeftServo
+ 1459               		.type	setLeftServo, @function
+GAS LISTING /var/tmp//cc9HTByh.s 			page 35
+
+
+ 1460               	setLeftServo:
+ 1461               		.stabd	46,0,0
+ 402:cmdlinetest.c **** }
+ 403:cmdlinetest.c **** 
+ 404:cmdlinetest.c **** 	//BELOW is the original left servo code -- would be right for plane, not for boat
+ 405:cmdlinetest.c **** 
+ 406:cmdlinetest.c **** void setLeftServo(void)
+ 407:cmdlinetest.c **** {	
+ 1462               		.stabn	68,0,407,.LM123-setLeftServo
+ 1463               	.LM123:
+ 1464               	/* prologue: frame size=0 */
+ 1465               	/* prologue end (size=0) */
+ 408:cmdlinetest.c **** 	leftServoPos = (unsigned char) cmdlineGetArgInt(1);
+ 1466               		.stabn	68,0,408,.LM124-setLeftServo
+ 1467               	.LM124:
+ 1468 063e 81E0      		ldi r24,lo8(1)
+ 1469 0640 0E94 0000 		call cmdlineGetArgInt
+ 1470 0644 6093 0000 		sts leftServoPos,r22
+ 409:cmdlinetest.c **** 	servoSetPosition(LEFT_SERVO_CHAN, leftServoPos);
+ 1471               		.stabn	68,0,409,.LM125-setLeftServo
+ 1472               	.LM125:
+ 1473 0648 84E0      		ldi r24,lo8(4)
+ 1474 064a 0E94 0000 		call servoSetPosition
+ 1475               	/* epilogue: frame size=0 */
+ 1476 064e 0895      		ret
+ 1477               	/* epilogue end (size=1) */
+ 1478               	/* function setLeftServo size 9 (8) */
+ 1479               		.size	setLeftServo, .-setLeftServo
+ 1480               	.Lscope15:
+ 1481               		.stabs	"",36,0,0,.Lscope15-setLeftServo
+ 1482               		.stabd	78,0,0
+ 1483               		.stabs	"setRightServo:F(0,15)",36,0,453,setRightServo
+ 1484               	.global	setRightServo
+ 1485               		.type	setRightServo, @function
+ 1486               	setRightServo:
+ 1487               		.stabd	46,0,0
+ 410:cmdlinetest.c **** #ifdef DEBUG	
+ 411:cmdlinetest.c **** 		rprintf("e0\r\n");
+ 412:cmdlinetest.c **** #endif DEBUG
+ 413:cmdlinetest.c **** }
+ 414:cmdlinetest.c **** 	//BELOW is the boat left servo code 
+ 415:cmdlinetest.c **** 
+ 416:cmdlinetest.c **** /*
+ 417:cmdlinetest.c **** void setLeftServo(void)
+ 418:cmdlinetest.c **** {	
+ 419:cmdlinetest.c **** 	signed long leftServo_Dest;
+ 420:cmdlinetest.c **** 	//using global signed long Pulse_Position
+ 421:cmdlinetest.c **** 	signed long thePosition = Pulse_Position>>1;
+ 422:cmdlinetest.c ****  	leftServo_Dest = multiplier*((signed int) cmdlineGetArgInt(1));  //get the new desired position
+ 423:cmdlinetest.c **** 	leftServo_Dest = leftServo_Dest - thePosition;  //
+ 424:cmdlinetest.c **** 	//pulseT1BStop();  // stop here so it doesn't reset pulse count to zero
+ 425:cmdlinetest.c **** 	
+ 426:cmdlinetest.c **** 	//debug
+ 427:cmdlinetest.c **** 	//rprintf("leftServo_Dest b4 compare = %d\r\n",leftServo_Dest);
+ 428:cmdlinetest.c **** 
+ 429:cmdlinetest.c **** 	if(leftServo_Dest < 0)
+ 430:cmdlinetest.c **** 	{
+GAS LISTING /var/tmp//cc9HTByh.s 			page 36
+
+
+ 431:cmdlinetest.c **** 		leftServo_Dest*=-1;
+ 432:cmdlinetest.c **** 		cbi(PORTD, 5);
+ 433:cmdlinetest.c **** 		pulseT1BRun(leftServo_Dest);
+ 434:cmdlinetest.c **** 	}
+ 435:cmdlinetest.c **** 	else
+ 436:cmdlinetest.c **** 	{
+ 437:cmdlinetest.c **** 		sbi(PORTD, 5);
+ 438:cmdlinetest.c **** 		pulseT1BRun(leftServo_Dest);
+ 439:cmdlinetest.c **** 	}
+ 440:cmdlinetest.c **** 	//debug
+ 441:cmdlinetest.c **** 	
+ 442:cmdlinetest.c **** 	//rprintf("Asked to go to %d\r\n",cmdlineGetArgInt(1));
+ 443:cmdlinetest.c **** 	//rprintf("Pulse_Position = %d\r\n",thePosition);
+ 444:cmdlinetest.c **** 	//rprintf("leftServo_Dest after compare = %d\r\n",leftServo_Dest);
+ 445:cmdlinetest.c **** 	
+ 446:cmdlinetest.c **** 	
+ 447:cmdlinetest.c **** #ifdef DEBUG	
+ 448:cmdlinetest.c **** 		rprintf("e0\r\n");
+ 449:cmdlinetest.c **** #endif DEBUG
+ 450:cmdlinetest.c **** }
+ 451:cmdlinetest.c **** */
+ 452:cmdlinetest.c **** void setRightServo(void)
+ 453:cmdlinetest.c **** {	
+ 1488               		.stabn	68,0,453,.LM126-setRightServo
+ 1489               	.LM126:
+ 1490               	/* prologue: frame size=0 */
+ 1491               	/* prologue end (size=0) */
+ 454:cmdlinetest.c **** 	rightServoPos = (unsigned char) cmdlineGetArgInt(1);
+ 1492               		.stabn	68,0,454,.LM127-setRightServo
+ 1493               	.LM127:
+ 1494 0650 81E0      		ldi r24,lo8(1)
+ 1495 0652 0E94 0000 		call cmdlineGetArgInt
+ 1496 0656 6093 0000 		sts rightServoPos,r22
+ 455:cmdlinetest.c **** 	servoSetPosition(RIGHT_SERVO_CHAN, rightServoPos);
+ 1497               		.stabn	68,0,455,.LM128-setRightServo
+ 1498               	.LM128:
+ 1499 065a 83E0      		ldi r24,lo8(3)
+ 1500 065c 0E94 0000 		call servoSetPosition
+ 1501               	/* epilogue: frame size=0 */
+ 1502 0660 0895      		ret
+ 1503               	/* epilogue end (size=1) */
+ 1504               	/* function setRightServo size 9 (8) */
+ 1505               		.size	setRightServo, .-setRightServo
+ 1506               	.Lscope16:
+ 1507               		.stabs	"",36,0,0,.Lscope16-setRightServo
+ 1508               		.stabd	78,0,0
+ 1509               		.stabs	"setThrottleServo:F(0,15)",36,0,462,setThrottleServo
+ 1510               	.global	setThrottleServo
+ 1511               		.type	setThrottleServo, @function
+ 1512               	setThrottleServo:
+ 1513               		.stabd	46,0,0
+ 456:cmdlinetest.c **** #ifdef DEBUG
+ 457:cmdlinetest.c **** 		rprintf("e0\r\n");
+ 458:cmdlinetest.c **** #endif DEBUG
+ 459:cmdlinetest.c **** }
+ 460:cmdlinetest.c **** 
+ 461:cmdlinetest.c **** void setThrottleServo(void)
+GAS LISTING /var/tmp//cc9HTByh.s 			page 37
+
+
+ 462:cmdlinetest.c **** {
+ 1514               		.stabn	68,0,462,.LM129-setThrottleServo
+ 1515               	.LM129:
+ 1516               	/* prologue: frame size=0 */
+ 1517               	/* prologue end (size=0) */
+ 463:cmdlinetest.c **** 	throttleServoPos = (unsigned char) cmdlineGetArgInt(1);
+ 1518               		.stabn	68,0,463,.LM130-setThrottleServo
+ 1519               	.LM130:
+ 1520 0662 81E0      		ldi r24,lo8(1)
+ 1521 0664 0E94 0000 		call cmdlineGetArgInt
+ 1522 0668 6093 0000 		sts throttleServoPos,r22
+ 464:cmdlinetest.c **** 	servoSetPosition(THROTTLE_SERVO_CHAN, throttleServoPos);
+ 1523               		.stabn	68,0,464,.LM131-setThrottleServo
+ 1524               	.LM131:
+ 1525 066c 80E0      		ldi r24,lo8(0)
+ 1526 066e 0E94 0000 		call servoSetPosition
+ 1527               	/* epilogue: frame size=0 */
+ 1528 0672 0895      		ret
+ 1529               	/* epilogue end (size=1) */
+ 1530               	/* function setThrottleServo size 9 (8) */
+ 1531               		.size	setThrottleServo, .-setThrottleServo
+ 1532               	.Lscope17:
+ 1533               		.stabs	"",36,0,0,.Lscope17-setThrottleServo
+ 1534               		.stabd	78,0,0
+ 1535               		.stabs	"setFeedbackInterval:F(0,15)",36,0,470,setFeedbackInterval
+ 1536               	.global	setFeedbackInterval
+ 1537               		.type	setFeedbackInterval, @function
+ 1538               	setFeedbackInterval:
+ 1539               		.stabd	46,0,0
+ 465:cmdlinetest.c **** #ifdef DEBUG
+ 466:cmdlinetest.c **** 		rprintf("e0\r\n");
+ 467:cmdlinetest.c **** #endif DEBUG
+ 468:cmdlinetest.c **** }
+ 469:cmdlinetest.c **** void setFeedbackInterval(void)
+ 470:cmdlinetest.c **** {
+ 1540               		.stabn	68,0,470,.LM132-setFeedbackInterval
+ 1541               	.LM132:
+ 1542               	/* prologue: frame size=0 */
+ 1543               	/* prologue end (size=0) */
+ 471:cmdlinetest.c **** 	numTimesThrough = cmdlineGetArgInt(1);
+ 1544               		.stabn	68,0,471,.LM133-setFeedbackInterval
+ 1545               	.LM133:
+ 1546 0674 81E0      		ldi r24,lo8(1)
+ 1547 0676 0E94 0000 		call cmdlineGetArgInt
+ 1548 067a 6093 0000 		sts numTimesThrough,r22
+ 1549 067e 7093 0000 		sts (numTimesThrough)+1,r23
+ 1550 0682 8093 0000 		sts (numTimesThrough)+2,r24
+ 1551 0686 9093 0000 		sts (numTimesThrough)+3,r25
+ 1552               	/* epilogue: frame size=0 */
+ 1553 068a 0895      		ret
+ 1554               	/* epilogue end (size=1) */
+ 1555               	/* function setFeedbackInterval size 12 (11) */
+ 1556               		.size	setFeedbackInterval, .-setFeedbackInterval
+ 1557               	.Lscope18:
+ 1558               		.stabs	"",36,0,0,.Lscope18-setFeedbackInterval
+ 1559               		.stabd	78,0,0
+ 1560               		.stabs	"setCamPanServo:F(0,15)",36,0,475,setCamPanServo
+GAS LISTING /var/tmp//cc9HTByh.s 			page 38
+
+
+ 1561               	.global	setCamPanServo
+ 1562               		.type	setCamPanServo, @function
+ 1563               	setCamPanServo:
+ 1564               		.stabd	46,0,0
+ 472:cmdlinetest.c **** }
+ 473:cmdlinetest.c **** 
+ 474:cmdlinetest.c **** void setCamPanServo(void)
+ 475:cmdlinetest.c **** {
+ 1565               		.stabn	68,0,475,.LM134-setCamPanServo
+ 1566               	.LM134:
+ 1567               	/* prologue: frame size=0 */
+ 1568               	/* prologue end (size=0) */
+ 476:cmdlinetest.c **** 	int rawPan;
+ 477:cmdlinetest.c **** 	
+ 478:cmdlinetest.c **** 	rawPan = cmdlineGetArgInt(1);
+ 1569               		.stabn	68,0,478,.LM135-setCamPanServo
+ 1570               	.LM135:
+ 1571 068c 81E0      		ldi r24,lo8(1)
+ 1572 068e 0E94 0000 		call cmdlineGetArgInt
+ 479:cmdlinetest.c **** 	
+ 480:cmdlinetest.c **** 	if( (0<= rawPan) && (rawPan <= 2) )
+ 1573               		.stabn	68,0,480,.LM136-setCamPanServo
+ 1574               	.LM136:
+ 1575 0692 6330      		cpi r22,3
+ 1576 0694 7105      		cpc r23,__zero_reg__
+ 1577 0696 80F4      		brsh .L71
+ 481:cmdlinetest.c **** 	{
+ 482:cmdlinetest.c **** 		camPanServoPos = camPanServoPos + (rawPan - 1);
+ 1578               		.stabn	68,0,482,.LM137-setCamPanServo
+ 1579               	.LM137:
+ 1580 0698 8091 0000 		lds r24,camPanServoPos
+ 1581 069c 860F      		add r24,r22
+ 1582 069e 8150      		subi r24,lo8(-(-1))
+ 1583 06a0 8093 0000 		sts camPanServoPos,r24
+ 483:cmdlinetest.c **** 		if(camPanServoPos < 1) camPanServoPos = 1;
+ 1584               		.stabn	68,0,483,.LM138-setCamPanServo
+ 1585               	.LM138:
+ 1586 06a4 8823      		tst r24
+ 1587 06a6 19F4      		brne .L69
+ 1588 06a8 81E0      		ldi r24,lo8(1)
+ 1589 06aa 8093 0000 		sts camPanServoPos,r24
+ 1590               	.L69:
+ 484:cmdlinetest.c **** 		if(camPanServoPos > 255) camPanServoPos = 255;
+ 485:cmdlinetest.c **** 	
+ 486:cmdlinetest.c **** 		servoSetPosition(CAM_PAN_SERVO_CHAN, (char)camPanServoPos);
+ 1591               		.stabn	68,0,486,.LM139-setCamPanServo
+ 1592               	.LM139:
+ 1593 06ae 6091 0000 		lds r22,camPanServoPos
+ 1594 06b2 81E0      		ldi r24,lo8(1)
+ 1595 06b4 0E94 0000 		call servoSetPosition
+ 1596               	.L71:
+ 1597 06b8 0895      		ret
+ 1598               	/* epilogue: frame size=0 */
+ 1599               	/* epilogue: noreturn */
+ 1600               	/* epilogue end (size=0) */
+ 1601               	/* function setCamPanServo size 23 (23) */
+ 1602               		.size	setCamPanServo, .-setCamPanServo
+GAS LISTING /var/tmp//cc9HTByh.s 			page 39
+
+
+ 1603               		.stabs	"rawPan:r(0,1)",64,0,476,22
+ 1604               		.stabn	192,0,0,setCamPanServo-setCamPanServo
+ 1605               		.stabn	224,0,0,.Lscope19-setCamPanServo
+ 1606               	.Lscope19:
+ 1607               		.stabs	"",36,0,0,.Lscope19-setCamPanServo
+ 1608               		.stabd	78,0,0
+ 1609               		.stabs	"setCamTiltServo:F(0,15)",36,0,495,setCamTiltServo
+ 1610               	.global	setCamTiltServo
+ 1611               		.type	setCamTiltServo, @function
+ 1612               	setCamTiltServo:
+ 1613               		.stabd	46,0,0
+ 487:cmdlinetest.c **** #ifdef DEBUG
+ 488:cmdlinetest.c **** 			rprintf("e0\r\n");
+ 489:cmdlinetest.c **** #endif DEBUG
+ 490:cmdlinetest.c **** 
+ 491:cmdlinetest.c **** 	}
+ 492:cmdlinetest.c **** }
+ 493:cmdlinetest.c **** 
+ 494:cmdlinetest.c **** void setCamTiltServo(void)
+ 495:cmdlinetest.c **** {
+ 1614               		.stabn	68,0,495,.LM140-setCamTiltServo
+ 1615               	.LM140:
+ 1616               	/* prologue: frame size=0 */
+ 1617               	/* prologue end (size=0) */
+ 496:cmdlinetest.c **** 	int rawTilt;
+ 497:cmdlinetest.c **** 	
+ 498:cmdlinetest.c **** 	rawTilt = cmdlineGetArgInt(1);
+ 1618               		.stabn	68,0,498,.LM141-setCamTiltServo
+ 1619               	.LM141:
+ 1620 06ba 81E0      		ldi r24,lo8(1)
+ 1621 06bc 0E94 0000 		call cmdlineGetArgInt
+ 499:cmdlinetest.c **** 	if(( 0 <= rawTilt) && (rawTilt <= 2) )
+ 1622               		.stabn	68,0,499,.LM142-setCamTiltServo
+ 1623               	.LM142:
+ 1624 06c0 6330      		cpi r22,3
+ 1625 06c2 7105      		cpc r23,__zero_reg__
+ 1626 06c4 80F4      		brsh .L77
+ 500:cmdlinetest.c **** 	{
+ 501:cmdlinetest.c **** 		camTiltServoPos = camTiltServoPos + (rawTilt - 1);
+ 1627               		.stabn	68,0,501,.LM143-setCamTiltServo
+ 1628               	.LM143:
+ 1629 06c6 8091 0000 		lds r24,camTiltServoPos
+ 1630 06ca 860F      		add r24,r22
+ 1631 06cc 8150      		subi r24,lo8(-(-1))
+ 1632 06ce 8093 0000 		sts camTiltServoPos,r24
+ 502:cmdlinetest.c **** 		if(camTiltServoPos < 1) camTiltServoPos = 1;
+ 1633               		.stabn	68,0,502,.LM144-setCamTiltServo
+ 1634               	.LM144:
+ 1635 06d2 8823      		tst r24
+ 1636 06d4 19F4      		brne .L75
+ 1637 06d6 81E0      		ldi r24,lo8(1)
+ 1638 06d8 8093 0000 		sts camTiltServoPos,r24
+ 1639               	.L75:
+ 503:cmdlinetest.c **** 		if(camTiltServoPos > 255) camTiltServoPos = 255;
+ 504:cmdlinetest.c **** 	
+ 505:cmdlinetest.c **** 		servoSetPosition(CAM_TILT_SERVO_CHAN, (char)camTiltServoPos);
+ 1640               		.stabn	68,0,505,.LM145-setCamTiltServo
+GAS LISTING /var/tmp//cc9HTByh.s 			page 40
+
+
+ 1641               	.LM145:
+ 1642 06dc 6091 0000 		lds r22,camTiltServoPos
+ 1643 06e0 82E0      		ldi r24,lo8(2)
+ 1644 06e2 0E94 0000 		call servoSetPosition
+ 1645               	.L77:
+ 1646 06e6 0895      		ret
+ 1647               	/* epilogue: frame size=0 */
+ 1648               	/* epilogue: noreturn */
+ 1649               	/* epilogue end (size=0) */
+ 1650               	/* function setCamTiltServo size 23 (23) */
+ 1651               		.size	setCamTiltServo, .-setCamTiltServo
+ 1652               		.stabs	"rawTilt:r(0,1)",64,0,496,22
+ 1653               		.stabn	192,0,0,setCamTiltServo-setCamTiltServo
+ 1654               		.stabn	224,0,0,.Lscope20-setCamTiltServo
+ 1655               	.Lscope20:
+ 1656               		.stabs	"",36,0,0,.Lscope20-setCamTiltServo
+ 1657               		.stabd	78,0,0
+ 1658               		.stabs	"slaveBuffer:G(0,20)=ar(0,18);0;32;(6,1)",32,0,73,0
+ 1659               		.stabs	"slaveBufferLength:G(6,1)",32,0,74,0
+ 1660               		.stabs	"masterBuffer:G(0,21)=ar(0,18);0;28;(0,11)",32,0,76,0
+ 1661               		.stabs	"masterBufferLength:G(0,11)",32,0,77,0
+ 1662               		.stabs	"Run:G(6,1)",32,0,79,0
+ 1663               		.stabs	"leftServoPos:G(6,1)",32,0,87,0
+ 1664               		.stabs	"multiplier:G(6,3)",32,0,89,0
+ 1665               		.stabs	"rightServoPos:G(6,1)",32,0,91,0
+ 1666               		.stabs	"throttleServoPos:G(6,1)",32,0,92,0
+ 1667               		.stabs	"camPanServoPos:G(6,1)",32,0,93,0
+ 1668               		.stabs	"camTiltServoPos:G(6,1)",32,0,94,0
+ 1669               		.stabs	"numTimesThrough:G(0,3)",32,0,96,0
+ 1670               		.comm camTiltServoPos,1,1
+ 1671               		.comm camPanServoPos,1,1
+ 1672               		.comm throttleServoPos,1,1
+ 1673               		.comm rightServoPos,1,1
+ 1674               		.comm Run,1,1
+ 1675               		.stabs	"",100,0,0,.Letext0
+ 1676               	.Letext0:
+ 1677               	/* File "cmdlinetest.c": code  884 = 0x0374 ( 738), prologues  69, epilogues  77 */
+GAS LISTING /var/tmp//cc9HTByh.s 			page 41
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 cmdlinetest.c
+/var/tmp//cc9HTByh.s:3      *ABS*:0000003f __SREG__
+/var/tmp//cc9HTByh.s:4      *ABS*:0000003e __SP_H__
+/var/tmp//cc9HTByh.s:5      *ABS*:0000003d __SP_L__
+/var/tmp//cc9HTByh.s:6      *ABS*:00000000 __tmp_reg__
+/var/tmp//cc9HTByh.s:7      *ABS*:00000001 __zero_reg__
+/var/tmp//cc9HTByh.s:131    .bss:00000000 numTimesThrough
+/var/tmp//cc9HTByh.s:137    .data:00000000 multiplier
+/var/tmp//cc9HTByh.s:142    .data:00000002 leftServoPos
+/var/tmp//cc9HTByh.s:147    .data:00000003 masterBufferLength
+/var/tmp//cc9HTByh.s:152    .data:00000004 masterBuffer
+/var/tmp//cc9HTByh.s:157    .data:00000021 slaveBufferLength
+/var/tmp//cc9HTByh.s:162    .data:00000022 slaveBuffer
+/var/tmp//cc9HTByh.s:167    .progmem.data:00000000 __c.1668
+/var/tmp//cc9HTByh.s:171    .progmem.data:00000012 __c.1663
+/var/tmp//cc9HTByh.s:175    .progmem.data:00000023 __c.1658
+/var/tmp//cc9HTByh.s:202    .text:00000000 goCmdline
+/var/tmp//cc9HTByh.s:1460   .text:0000063e setLeftServo
+/var/tmp//cc9HTByh.s:1486   .text:00000650 setRightServo
+/var/tmp//cc9HTByh.s:1512   .text:00000662 setThrottleServo
+/var/tmp//cc9HTByh.s:1563   .text:0000068c setCamPanServo
+/var/tmp//cc9HTByh.s:1612   .text:000006ba setCamTiltServo
+/var/tmp//cc9HTByh.s:1538   .text:00000674 setFeedbackInterval
+/var/tmp//cc9HTByh.s:1211   .text:00000512 i2cMaster_Send
+/var/tmp//cc9HTByh.s:1328   .text:00000596 i2cMaster_Receive
+/var/tmp//cc9HTByh.s:564    .text:000001ce dumpArgsStr
+/var/tmp//cc9HTByh.s:653    .text:00000246 dumpArgsInt
+                            *COM*:00000001 Run
+/var/tmp//cc9HTByh.s:426    .text:00000162 exitFunction
+/var/tmp//cc9HTByh.s:446    .progmem.data:0000004f __c.1688
+/var/tmp//cc9HTByh.s:450    .progmem.data:00000085 __c.1686
+/var/tmp//cc9HTByh.s:454    .progmem.data:000000bf __c.1684
+/var/tmp//cc9HTByh.s:458    .progmem.data:000000f0 __c.1682
+/var/tmp//cc9HTByh.s:462    .progmem.data:0000011a __c.1680
+/var/tmp//cc9HTByh.s:468    .text:00000168 helpFunction
+/var/tmp//cc9HTByh.s:542    .progmem.data:00000134 __c.1701
+/var/tmp//cc9HTByh.s:546    .progmem.data:0000013b __c.1699
+/var/tmp//cc9HTByh.s:550    .progmem.data:00000142 __c.1697
+/var/tmp//cc9HTByh.s:554    .progmem.data:00000149 __c.1695
+/var/tmp//cc9HTByh.s:558    .progmem.data:00000150 __c.1693
+/var/tmp//cc9HTByh.s:635    .progmem.data:0000016c __c.1720
+/var/tmp//cc9HTByh.s:639    .progmem.data:0000017a __c.1718
+/var/tmp//cc9HTByh.s:643    .progmem.data:00000188 __c.1716
+/var/tmp//cc9HTByh.s:647    .progmem.data:00000196 __c.1714
+/var/tmp//cc9HTByh.s:758    .progmem.data:000001b3 __c.1734
+/var/tmp//cc9HTByh.s:762    .progmem.data:000001c1 __c.1732
+/var/tmp//cc9HTByh.s:766    .progmem.data:000001cf __c.1730
+/var/tmp//cc9HTByh.s:770    .progmem.data:000001dd __c.1728
+/var/tmp//cc9HTByh.s:776    .text:000002fe dumpArgsHex
+/var/tmp//cc9HTByh.s:881    .text:000003b6 i2cSetup
+/var/tmp//cc9HTByh.s:1033   .text:00000468 i2cSlaveReceiveService
+/var/tmp//cc9HTByh.s:1079   .text:0000048c i2cSlaveTransmitService
+/var/tmp//cc9HTByh.s:916    .progmem.data:000001fe __c.1649
+/var/tmp//cc9HTByh.s:922    .text:000003d4 main
+/var/tmp//cc9HTByh.s:1132   .text:000004b8 i2cMasterSendDiag
+/var/tmp//cc9HTByh.s:1270   .text:0000055e i2cMaster_Auto_Send
+GAS LISTING /var/tmp//cc9HTByh.s 			page 42
+
+
+/var/tmp//cc9HTByh.s:1322   .progmem.data:00000235 __c.1807
+/var/tmp//cc9HTByh.s:1405   .progmem.data:00000237 __c.1817
+/var/tmp//cc9HTByh.s:1412   .text:00000604 i2cMaster_Auto_Receive
+                            *COM*:00000001 rightServoPos
+                            *COM*:00000001 throttleServoPos
+                            *COM*:00000001 camPanServoPos
+                            *COM*:00000001 camTiltServoPos
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+vt100ClearScreen
+vt100SetCursorPos
+rprintfProgStr
+cmdlineInit
+uartSendByte
+cmdlineSetOutputFunc
+cmdlineAddCommand
+cmdlineInputFunc
+uartReceiveByte
+cmdlineMainLoop
+rprintf1RamRom
+rprintfCRLF
+cmdlineGetArgStr
+rprintfStr
+cmdlineGetArgInt
+rprintfNum
+cmdlineGetArgHex
+i2cInit
+i2cSetLocalDeviceAddr
+i2cSetSlaveReceiveHandler
+i2cSetSlaveTransmitHandler
+__stack
+uartInit
+uartSetBaudRate
+rprintfInit
+a2dInit
+timerInit
+vt100Init
+timerPause
+servoInit
+servoSetChannelIO
+exit
+i2cSendStart
+i2cWaitForComplete
+i2cSendByte
+i2cSendStop
+strcpy
+i2cMasterSend
+i2cMasterReceive
+servoSetPosition
