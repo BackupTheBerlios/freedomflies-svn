@@ -35,7 +35,7 @@ class configuration(object):
 		self.map = map
 
 theConfig = configuration("generic")
-theConfig.map = False
+theConfig.map = True
 
 
 #external library imports
@@ -230,7 +230,8 @@ class AppFrame(wx.Frame):
 		info.AddDeveloper('Chris Csikszentmihalyi')
 		info.AddDeveloper('Jorge de la Garza')
 		info.AddDeveloper('Josh Levinger')
-		info.AddDeveloper('Ryan Luerson')
+		info.AddDeveloper('Kabren Levison')
+		info.AddDeveloper('Ryan Luersen')
 		info.SetLicence(__doc__)
 		info.SetCopyright("Copyright (C) 2005-2007 MIT Media Lab")
 		info.SetWebSite('http://freedomflies.berlios.de')
@@ -313,7 +314,7 @@ class AppFrame(wx.Frame):
 			dirVal = 1
 		if lat_dir is ("-" or "E"):
 			dirVal = -1
-		self.currentLocation.Lat = dirVal*lat_deg
+		self.currentLocation[0] = dirVal*lat_deg
 		
 		if (theConfig.map):
 			self.parent.map.map.setCenter(self.currentLocation)
@@ -325,7 +326,7 @@ class AppFrame(wx.Frame):
 			dirVal = 1
 		if lon_dir is ("-" or "S"):
 			dirVal = -1
-		self.currentLocation.Lon = dirVal*lon_deg
+		self.currentLocation[1] = dirVal*lon_deg
 		if (theConfig.map):
 			self.parent.map.map.setCenter(self.currentLocation)
 		self.lon_ctrl.SetValue(str(lon_deg))
@@ -341,7 +342,8 @@ class MyApp(wx.App):
 		wx.InitAllImageHandlers()
 		self.mainWin = AppFrame(None, 1, "Freedom Flies",(50,25),(800,600))
 		self.mainWin.parent = self #just for link in OnMap and OnPrefs
-		self.mainWin.currentLocation = TerraImage.point(42.35830436,-71.09108681) #start location is MIT
+		self.mainWin.currentLocation = (42.35830436,-71.09108681) #start location is MIT
+		#self.mainWin.currentLocation = (236822,901998) #start location is MIT, in lcc
 		if (theConfig.map):
 			self.map = map.MapFrame(self.mainWin,-1,"Map",(855,25),(400,400))
 		self.prefs = prefs.PrefFrame(self.mainWin,-1,"Preferences",(855,425),(300,225))

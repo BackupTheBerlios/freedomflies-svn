@@ -16,7 +16,8 @@ topo.tileindex="./index.shp"
 topo.tileitem="location"
 layerNum = map.insertLayer(topo) 
 map.setExtent(233001,897999,236822,901998)
-#map.setExtent(327000, 4691000, 328000, 4692000)
+
+#map.setExtent(9114900.00,-829917.30,9114987.00,-829017.30)
 jim = map.draw()
 jim.save("okay.png")
 

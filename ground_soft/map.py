@@ -2,22 +2,22 @@ import wx
 from bufferedcanvas import *
 import cStringIO
 import mapscript
+import math
 
 debug = True
 saveToDisk = False
 
-
-
 class MapFrame(wx.Frame):
-	def __init__(self,parent,id,name,pos=(50,50),size=(400,300)):
+	def __init__(self,parent,id,name,pos=(50,50),size=(500,500)):
 		wx.Frame.__init__(self,parent,id,name,pos,size)
+		self.parent = parent #my parent is the main app frame
 		self.map = MapCanvas(self,-1,size)
 		self.Bind(wx.EVT_CLOSE,self.OnClose)
 		
-		mit = (42.359368,-71.094208)
-		self.map.setCenter(mit)
-		self.map.setDist(1)
-		self.map.addPlaneSymbol(mit)
+		#mit = (236822,901998)
+		#self.map.setCenter(mit)
+		#self.map.setDist(1)
+		#self.map.addPlaneSymbol(mit)
 		
 	def OnClose(self,event):
 		pass
@@ -27,33 +27,36 @@ class MapCanvas(BufferedCanvas):
 	def __init__(self,parent,id,size):
 		wx.InitAllImageHandlers()
 		self.size = size
+		self.parent = parent #?
 		
 		#setup map object
 		self.map = mapscript.mapObj()
 		self.map.width = size[0]
 		self.map.height = size[1]
-		#self.map.setProjection('proj=latlong,ellps=WGS84')
-		self.map.setProjection('proj=lcc,ellps=GRS80') 
+		
+		self.map.setProjection('init=nad83:2001, units=m') #MA Stateline
+		#self.map.setProjection('init=epsg:4326') #world GPS
 		# set the output format 
 		self.map.setOutputFormat(mapscript.outputFormatObj('GD/PNG') )
 		self.map.interlace = False #PIL can't handle interlaced PNGs
 		topo=mapscript.layerObj(None) 
 		topo.name="topo"  
 		topo.type=mapscript.MS_LAYER_RASTER  
-		topo.connectiontype=mapscript.MS_RASTER  
-		topo.setProjection('proj=lcc,ellps=GRS80,datum=NAD83')
-		topo.status = mapscript.MS_ON    
-		topo.tileindex="maps/index.shp"
+		topo.connectiontype=mapscript.MS_RASTER
+		
+		topo.setProjection('init=nad83:2001, units=m')
+		#topo.setProjection('init=epsg:4326')
+		#topo.setProjection('init=epsg:26786')
+		topo.status = mapscript.MS_ON
+		topo.tileindex="./index.shp"
 		topo.tileitem="location"
 		layerNum = self.map.insertLayer(topo)
 		
-		#fn = self.lookupTopoFilename(0)
-		#self.loadRaster(fn)
 		BufferedCanvas.__init__(self,parent,id)
 		
 	def draw(self,dc):
 		try:
-			self.setDist(1)
+			self.setDist(500)
 			themap = self.map.draw()
 			data = themap.saveToString()
 			wx_image = wx.ImageFromStream(cStringIO.StringIO(data)) #convert to wx image
@@ -63,66 +66,58 @@ class MapCanvas(BufferedCanvas):
 				f = open('map.png','wb')
 				f.write(themap.getBytes())
 				print "saving"
-		except mapscript.MapServerError:
+		except mapscript.MapServerError,e:
 			#the map isn't ready yet
 			bitmap = wx.EmptyBitmap(self.size[0],self.size[1])
 			if debug: print "unable to draw, MapServerError in 'draw'."
+			if debug: print e
 		dc.DrawBitmap(bitmap,0,0,True)
 		if debug: print "drawing"
 	
 	def setCenter(self,center):
 		self.map.center = center
 		self.update()
-	
-#	def lookupTopoFilename(self,point):
-#		#TODO: lookup correct map name
-#		#for now, just return MIT
-#		return "./maps/q237898.tif"
-	
-	def loadRaster(self,filename):
-		"""Loads raster image from filename"""
-
-		topo=mapscript.layerObj(None) 
-		topo.name="topo"  
-		topo.type=MS_LAYER_RASTER  
-		topo.connectiontype=MS_RASTER  
-		topo.setProjection('proj=lcc,ellps=GRS80,datum=NAD83')
-		topo.status = MS_ON    
-		topo.tileindex="maps/index.shp"
-		topo.tileitem="location"
-		layerNum = self.map.insertLayer(topo)
-		
-		if debug:
-			print "added topolayer",self.map.getLayer(layerNum).data
-			print "topolayer extent",topoLayer.extent
+		#wx.BufferedCanvas.update() calls draw()
 	
 	def setDist(self,dist):
-		"""Create an extent for our mapObj by buffering our
-		projected point by the buffer distance. Then set the mapObj's extent."""
+		"Dist in m"
 		extent = mapscript.rectObj() 
-		topleft = self.getPointFromDist(self.parent.currentLocation,dist,360-45)
-		bottomright = self.getPointFromDist(self.parent.currentLocation,dist,135) #returns (lat,lon)
+		#main frame holds the currentLocation, it's referenced by
 		
-		extent.minx = min(topleft[1],bottomright[1])
-		extent.miny = min(topleft[0],bottomright[0])
-		extent.maxx = max(topleft[1],bottomright[1]) 
-		extent.maxy = max(topleft[0],bottomright[0])
-		#so it works for any quadrant
+		currentLocation = self.parent.parent.currentLocation
+		pt = mapscript.pointObj()
+		print "currentLocation0 = " + str(currentLocation[0])
+		print "currentLocation1 = " + str(currentLocation[0])
+		pt.y = currentLocation[0] #lat
+		pt.x = currentLocation[1] #lon
 		
-		self.map.setExtent(extent.minx, extent.miny, 
-		               extent.maxx, extent.maxy)
+		#convert currentLocation from GPS to map coordinates
+		gpsproj = mapscript.projectionObj('proj=latlong,datum=WGS84') #GPS
+		
+		#from stateline: http://gpsinformation.net/mapinfow.prj
+		mapproj = mapscript.projectionObj('init=nad83:2001, units=m') #Stateline
+		pt.project(gpsproj,mapproj)
+		
+		print pt
+		b = (dist*math.sqrt(2)/2) #distance from center to corner
+		extentquad = [pt.x-b,pt.y-b,pt.x+b,pt.y+b]
+		self.map.setExtent(int(extentquad[0]),int(extentquad[1]),int(extentquad[2]),int(extentquad[3]))
+		#should be close to: 233001,897999,236822,901998
+		
 		if debug: print "map extent:",self.map.extent
 	
 	def addPlaneSymbol(self,position):
 		"""Adds the plane symbol at the indicated position"""
 		pt = mapscript.pointObj()
-		pt.x = position[0] #lat
-		pt.y = position[1] #lon
+		print "current_position0 = " + str(position[0])
+		print "current_position1 = " + str(position[0])
+		pt.y = position[1] #lat
+		pt.x = position[0] #lon
 		
 		# project our point into the mapObj's projection 
-		#ddproj = mapscript.projectionObj('proj=latlong,ellps=WGS84')
+		ddproj = mapscript.projectionObj('init=epsg:4326')
 		#http://www.mass.gov/mgis/dd-over.htm
-		ddproj = mapscript.projectionObj('proj=lcc,ellps=GRS80')
+		#ddproj = mapscript.projectionObj('proj=lcc,ellps=GRS80')
 		
 		origproj = mapscript.projectionObj(self.map.getProjection())
 		pt.project(ddproj,origproj)

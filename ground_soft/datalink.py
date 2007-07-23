@@ -264,8 +264,8 @@ class radiolink(object):
 				#print "no input"
 				continue
 			else:
-				#print "DOWNLINK:",buffer[:-2]
-				log.Log('d',buffer[:-2])
+				#log.Log('d',buffer[:-2])
+				pass
 			if buffer.startswith("e0"):
 				#it's a joystick event acknowledge
 				#print "ACK"
