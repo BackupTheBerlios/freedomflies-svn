@@ -36,6 +36,8 @@ class MyDownlinkProcessor(object):
 #		#print "got heading:",heading_deg
 #		self.parent.compass.SetHeading(heading_deg)
 	def ProcessLatitude(self,data_val):
+		print "Lat raw data_val = " + data_val
+		#data_val=data_val[2:] #strip 'a ' from front
 		direction = data_val[0] #first character
 		degrees = data_val[1:-1] #strip off " +" from front, \r from back
 		#print "got latitude:",data_val
@@ -49,6 +51,8 @@ class MyDownlinkProcessor(object):
 		except ValueError:
 			print "invalid heading value: using old value"
 	def ProcessLongitude(self,data_val):
+		print "Lon raw data_val = " + data_val
+		#data_val=data_val[2:] #strip 'a ' from front
 		direction = data_val[0] #first character
 		degrees = data_val[1:-1] #strip off " +" from front, \r from back
 		#print "got longitude:",data_val

@@ -87,9 +87,9 @@ class MapCanvas(BufferedCanvas):
 		currentLocation = self.parent.parent.currentLocation
 		pt = mapscript.pointObj()
 		print "currentLocation0 = " + str(currentLocation[0])
-		print "currentLocation1 = " + str(currentLocation[0])
-		pt.y = currentLocation[0] #lat
-		pt.x = currentLocation[1] #lon
+		print "currentLocation1 = " + str(currentLocation[1])
+		pt.y = float(currentLocation[0]) #lat
+		pt.x = float(currentLocation[1]) #lon
 		
 		#convert currentLocation from GPS to map coordinates
 		gpsproj = mapscript.projectionObj('proj=latlong,datum=WGS84') #GPS
