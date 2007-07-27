@@ -37,11 +37,16 @@ class MyDownlinkProcessor(object):
 #		self.parent.compass.SetHeading(heading_deg)
 	def ProcessLatitude(self,data_val):
 		print "Lat raw data_val = " + data_val
-		#data_val=data_val[2:] #strip 'a ' from front
 		direction = data_val[0] #first character
 		degrees = data_val[1:-1] #strip off " +" from front, \r from back
 		#print "got latitude:",data_val
 		self.parent.UpdateLatitude(degrees,direction)
+	def ProcessLongitude(self,data_val):
+		print "Lon raw data_val = " + data_val
+		direction = data_val[0] #first character
+		degrees = data_val[1:-1] #strip off " +" from front, \r from back
+		#print "got longitude:",data_val
+		self.parent.UpdateLongitude(degrees,direction)
 	def ProcessHeading(self,data_val):  #csikmodified to deal with compass, pitch, and roll
 		#compass heading [219.1]
 		#strip off +/-
@@ -50,22 +55,23 @@ class MyDownlinkProcessor(object):
 			self.parent.compass.SetHeading(heading_deg)
 		except ValueError:
 			print "invalid heading value: using old value"
-	def ProcessLongitude(self,data_val):
-		print "Lon raw data_val = " + data_val
-		#data_val=data_val[2:] #strip 'a ' from front
-		direction = data_val[0] #first character
-		degrees = data_val[1:-1] #strip off " +" from front, \r from back
-		#print "got longitude:",data_val
-		self.parent.UpdateLongitude(degrees,direction)
+	def ProcessDirection(self,data_val):  #GPS trackangle
+		try:
+			heading_deg = round(float(data_val))
+			self.parent.compass.SetHeading(heading_deg)
+		except ValueError:
+			print "invalid direction (track angle) value: using old value"
 	def ProcessAltitude(self,data_val):
 		altitude_m = data_val #TODO, convert
 		#print "got altitude:",altitude_m
 		self.parent.UpdateAltitude(altitude_m)
 	def ProcessBattery(self,data_val):
 		#batt level [0,127]
-		batt_per = round(int(data_val) * 12/127.0)
+		for index,c in enumerate(data_val):
+			print "sensor " + str(index) + " = %d" % ord(c)
+		#Don't do anything with battery yet...
+		#batt_per = round(int(data_val) * 12/127.0)
 		#print "got battery:",batt_per
-		#batt_volt [0,12]
 		#TODO: save to battery control
 	def ProcessFuel(self,data_val):
 		#fuel level [0,127]
@@ -79,11 +85,11 @@ class MyDownlinkProcessor(object):
 		#print "got airspeed:",airspeed_knots
 		self.parent.UpdateAirspeed(airspeed_knots)
 		# TODO: convert from total pressure to airspeed
-
-	def ProcessGroundspeed(self,data_val):
+	def ProcessdateTime(self,data_val):
+		print "dateTime from vehicle: " + data_val
+	def ProcessGroundspeed(self,data_val): #	Speed over the ground in knots
 		#groundspeed [0,127]
-		#print "got groundspeed:",data_val
-		pass
+		print "got groundspeed:",data_val
 		# TODO: display to GUI
 		
 	def ProcessError(self,data_val):
@@ -93,6 +99,8 @@ class MyDownlinkProcessor(object):
 		#airspeed [0,127]
 		print "got weird:",data_val
 		# TODO: convert from total pressure to airspeed
+		
+	
 		
 	def ProcessBuffer(self,buffer):
 		data_types = ['c','a','o','s','g','f','b','q','w','z','1','E']
@@ -105,6 +113,7 @@ class MyDownlinkProcessor(object):
 		func_dict = {'1':self.ProcessOK,
 			 'q':self.ProcessPitch,
 			 'w':self.ProcessRoll,
+			 'd':self.ProcessDirection,
 			 'c':self.ProcessHeading,
 			 'a':self.ProcessLatitude,
 			 'o':self.ProcessLongitude,
@@ -113,6 +122,7 @@ class MyDownlinkProcessor(object):
 			 'f':self.ProcessFuel,
 			 's':self.ProcessAirspeed,
 			 'g':self.ProcessGroundspeed,
+			 't':self.ProcessdateTime,
 			 'E':self.ProcessError}
 
 		

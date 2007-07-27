@@ -284,7 +284,10 @@ void uartswRxBitService(void)
 					bufferAddToEnd(&uartswRxBuffer, ' ');
 				}
 			}
-			else if(UartswRxData == '\r')
+			//Since device sends /r/n, /r is used to xfer all data to the storage buffer (sentence)
+			//This would be a good place to store them into a variable instead, and parse
+			//But for now it would save time to fix it in the python instead.
+			else if(UartswRxData == '\r') 
 			{
 				string_length = uartswRxBuffer.datalength;
 				for(c=0;c<=string_length;++c)

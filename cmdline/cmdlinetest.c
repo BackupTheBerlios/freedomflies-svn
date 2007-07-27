@@ -14,6 +14,14 @@
 //*****************************************************************************
 
 
+//	TODO:
+//		Rationalize master/slave relationship.  Reduce number of calls.  Ask for SPI dump rather than individual data,
+//		even if master only returns them one by one
+//
+//		
+//
+//
+
 //----- Include Files ---------------------------------------------------------
 #include <avr/io.h>			// include I/O definitions (port names, pin names, etc)
 #include <avr/interrupt.h>	// include interrupt support
@@ -57,7 +65,7 @@ void setThrottleServo(void);
 void setCamPanServo(void);
 void setCamTiltServo(void);
 void setFeedbackInterval(void);
-void setGeckoFreq(void);
+
 
 void 	i2cSetup(void);
 void  	i2cSlaveReceiveService(u08 receiveDataLength, u08* receiveData);
@@ -69,8 +77,11 @@ void 	i2cMaster_Send();
 void 	i2cMaster_Auto_Send(u08 message);
 void 	i2cMaster_Auto_Receive(u08 command);
 
+// A2D routine
+void getA2D(void);
+
 // I2C buffers
-u08 slaveBuffer[] = "Pascal is cool!!Pascal is Cool!!";
+u08 slaveBuffer[] = "Restore Habeas Corp!";
 u08 slaveBufferLength = 0x20;
 
 unsigned char masterBuffer[] = "This one is the Master board";
@@ -105,26 +116,43 @@ int main(void)
 	// make all rprintf statements use uart for output
 	rprintfInit(uartSendByte);
 	// turn on and initialize A/D converter
+	//////////////////////////////////////////////////A2D///////////////////////////
 	a2dInit();
+	// configure a2d port (PORTA) as input
+	// so we can receive analog signals
+	DDRA = 0x00;
+	// make sure pull-up resistors are turned off
+	PORTA = 0x00;
+
+	// set the a2d prescaler (clock division ratio)
+	// - a lower prescale setting will make the a2d converter go faster
+	// - a higher setting will make it go slower but the measurements
+	//   will be more accurate
+	// - other allowed prescale values can be found in a2d.h
+	a2dSetPrescaler(ADC_PRESCALE_DIV32);
+
+	// set the a2d reference
+	// - the reference is the voltage against which a2d measurements are made
+	// - other allowed reference values can be found in a2d.h
+	a2dSetReference(ADC_REFERENCE_AVCC);
+
+	// use a2dConvert8bit(channel#) to get an 8bit a2d reading
+	// use a2dConvert10bit(channel#) to get a 10bit a2d reading
+	
+	//////////////////////////////////////////////////TIMER////////////////////////////////
 	// initialize the timer system
 	timerInit();
+	//////////////////////////////////////////////////TERMINAL/////////////////////////////
+	
 	// initialize vt100 terminal
 	vt100Init();
-	//UNCOMMENT FOR BOAT WITH GECKO
-	/*
-	// initialize modified pulse library -- pulse on t1b ONLY -- out of D4
-	sbi(DDRD, 4);  //pulses -- taken over by OCR1B
-	sbi(DDRD, 5);  //dir -- manually controlled
-	pulseInit();
-	pulseT1BSetFreq(175);	//start at a good frequency
-	*/
 
 	// wait for hardware to power up
 	timerPause(100);
 
 	//////////////////////////////////////////////////I2C/////////////////////////////
 	i2cSetup();
-	
+	//Setup I2c to speak to other boards.  Currently, other board is the gps/text board
 	
 	//////////////////////////////////////////////////Servos//////////////////////////
 	servoInit();
@@ -175,8 +203,7 @@ void goCmdline(void)
 	cmdlineAddCommand("p", 		setCamPanServo);
 	cmdlineAddCommand("i", 		setCamTiltServo);
 	cmdlineAddCommand("f", 		setFeedbackInterval);
-	//cmdlineAddCommand("w",		setGeckoFreq); // "w freq multiplier"
-
+	cmdlineAddCommand("b",		getA2D);  //returns packed values -- see code
 	cmdlineAddCommand("2", 		i2cMaster_Send);
 	cmdlineAddCommand("3", 		i2cMaster_Receive);
 	cmdlineAddCommand("das",	dumpArgsStr);
@@ -411,44 +438,7 @@ void setLeftServo(void)
 		rprintf("e0\r\n");
 #endif DEBUG
 }
-	//BELOW is the boat left servo code 
-
-/*
-void setLeftServo(void)
-{	
-	signed long leftServo_Dest;
-	//using global signed long Pulse_Position
-	signed long thePosition = Pulse_Position>>1;
- 	leftServo_Dest = multiplier*((signed int) cmdlineGetArgInt(1));  //get the new desired position
-	leftServo_Dest = leftServo_Dest - thePosition;  //
-	//pulseT1BStop();  // stop here so it doesn't reset pulse count to zero
 	
-	//debug
-	//rprintf("leftServo_Dest b4 compare = %d\r\n",leftServo_Dest);
-
-	if(leftServo_Dest < 0)
-	{
-		leftServo_Dest*=-1;
-		cbi(PORTD, 5);
-		pulseT1BRun(leftServo_Dest);
-	}
-	else
-	{
-		sbi(PORTD, 5);
-		pulseT1BRun(leftServo_Dest);
-	}
-	//debug
-	
-	//rprintf("Asked to go to %d\r\n",cmdlineGetArgInt(1));
-	//rprintf("Pulse_Position = %d\r\n",thePosition);
-	//rprintf("leftServo_Dest after compare = %d\r\n",leftServo_Dest);
-	
-	
-#ifdef DEBUG	
-		rprintf("e0\r\n");
-#endif DEBUG
-}
-*/
 void setRightServo(void)
 {	
 	rightServoPos = (unsigned char) cmdlineGetArgInt(1);
@@ -509,10 +499,24 @@ void setCamTiltServo(void)
 
 	}
 }
-/*
-void setGeckoFreq(void)
+
+//////////////////////////////////////////////////A2D ROUTINE/////////////////////////////
+//	Returns part of a full byte with analog values for each pin.  Might be overkill, but will hopefully help
+// 	battery life!
+//	A0 = main battery
+// 	A1 = secondary battery
+//	A2 = temperature
+
+void getA2D()
 {
-	pulseT1BSetFreq((u16) cmdlineGetArgInt(1));
-	multiplier = cmdlineGetArgInt(2);
+#define NUM_A2D_SENSORS 3
+	u08 i;	
+	rprintf("b ");
+
+	for(i=0; i<NUM_A2D_SENSORS; i++)
+	{
+		rprintf("%s", i, a2dConvert8bit(i));
+	}
+	rprintf(",");
+	
 }
-*/

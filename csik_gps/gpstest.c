@@ -318,13 +318,15 @@ void i2cSlaveReceiveService(u08 receiveDataLength, u08* receiveData)
 }
 
 /*
-#define	 q "pitch"
-#define	 w "Roll"
-#define	 c "Heading"
-#define	 a "Latitude"
+#define	 q "pitch" #external (hmr3300) module
+#define	 w "Roll" #external (hmr3300) module
+#define	 c "Heading" #external (hmr3300) module heading
+#define  d	"Direction" #The gps' heading
+#define	 a "Latitude" 
 #define	 o "Longitude"
 #define	 z "Altitude"
 #define	 b "Battery"
+#define  t	"dateTime"
 #define	 f "Fuel"
 #define	 s "Airspeed"
 #define	 g "Groundspeed"
@@ -346,8 +348,8 @@ u08 i2cSlaveTransmitService(u08 transmitDataLengthMax, u08* transmitData)
 	cbi(PORTB, PB7);
 	rprintfInit(print_to_string);
 	// temp for debugging.... CHANGE!
-	float test = -71.093355;
-	double test2 = 42.359051;
+	float test = -71.093355;  //MIT position
+	double test2 = 42.359051; //MIT position
 	stackem_pointer = 0;
 	switch(localBuffer[0])
 	{
@@ -361,25 +363,21 @@ u08 i2cSlaveTransmitService(u08 transmitDataLengthMax, u08* transmitData)
 			rprintfFloat(8,gga.longitude);
 			//rprintfFloat(8,test);	
 			break;
-		case 'g': //groundspeed
-			rprintf("g ");
-			rprintfFloat(8,rmc.speed);
+		case 'd':
+			rprintf("d ");
+			rprintfFloat(8,rmc.course);
 			break;
-//		case 'c':
-//			rprintf("c ");
-//			rprintfFloat(8,rmc.course);
-//			break;
 		case 'c':  // RETURNS compass, roll, and pitch
 			rprintf("c"); //ghetto -- no space before the data for some annoying reason -- blame uartsw.c
 			sentence[0] = ' ';
 			rprintfStr(sentence);
 			break;
-		case 'd':
-			rprintf("d ");
+		case 't':
+			rprintf("t ");
 			rprintfFloat(9,rmc.date);
 			break;
-		case 's':
-			rprintf("s ");
+		case 'g':  // groundspeed is speed from gps -- prone to errors
+			rprintf("g ");
 			rprintfFloat(7,rmc.speed);
 			break;
 		case 'h':
@@ -427,6 +425,7 @@ void print_to_string(u08 the_char)
 	}
 }
 
+//I think this is unused?
 void getCompass(void)
 {
 	u08 data;

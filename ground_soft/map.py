@@ -7,17 +7,46 @@ import math
 debug = True
 saveToDisk = False
 
+
 class MapFrame(wx.Frame):
 	def __init__(self,parent,id,name,pos=(50,50),size=(500,500)):
 		wx.Frame.__init__(self,parent,id,name,pos,size)
 		self.parent = parent #my parent is the main app frame
 		self.map = MapCanvas(self,-1,size)
+
+		self.sizer2 = wx.BoxSizer(wx.HORIZONTAL)
+		self.zoomin_button = wx.Button(self, -1, "Zoom in")
+		self.sizer2.Add(self.zoomin_button, 1, wx.EXPAND)
+		wx.EVT_BUTTON(self.zoomin_button, -1, self.zoom_in)
+		
+
+		self.zoomout_button = wx.Button(self, -1, "Zoom out")
+		self.sizer2.Add(self.zoomout_button, 1, wx.EXPAND)
+		wx.EVT_BUTTON(self.zoomout_button, -1, self.zoom_out)
+
+		self.sizer=wx.BoxSizer(wx.VERTICAL)
+		self.sizer.Add(self.map, 1, wx.EXPAND)
+		self.sizer.Add(self.sizer2, 0, wx.EXPAND)
+
+		self.SetSizer(self.sizer)
+		self.SetAutoLayout(1)
+		self.sizer.Fit(self)
+		self.Show(1)
+		
 		self.Bind(wx.EVT_CLOSE,self.OnClose)
 		
 		#mit = (236822,901998)
 		#self.map.setCenter(mit)
 		#self.map.setDist(1)
 		#self.map.addPlaneSymbol(mit)
+	
+	def zoom_in(self, event):
+		self.map.map_scale -= 100
+		self.map.update()
+		
+	def zoom_out(self, event):
+		self.map.map_scale += 100
+		self.map.update()
 		
 	def OnClose(self,event):
 		pass
@@ -28,6 +57,7 @@ class MapCanvas(BufferedCanvas):
 		wx.InitAllImageHandlers()
 		self.size = size
 		self.parent = parent #?
+		self.map_scale = 500
 		
 		#setup map object
 		self.map = mapscript.mapObj()
@@ -56,7 +86,7 @@ class MapCanvas(BufferedCanvas):
 		
 	def draw(self,dc):
 		try:
-			self.setDist(500)
+			self.setDist(self.map_scale)
 			themap = self.map.draw()
 			data = themap.saveToString()
 			wx_image = wx.ImageFromStream(cStringIO.StringIO(data)) #convert to wx image

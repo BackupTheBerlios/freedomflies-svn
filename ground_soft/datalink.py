@@ -140,6 +140,7 @@ class radiolink(object):
 							print x_val
 							data_value = int(x_val*255/200.0 + 127.5)
 							old_l_val = x_val
+							#This is crazy -- I'm actually changing the data value out!  Insane CsikCode
 							data_type = 'r'
 							new_data = 1
 					if NumSteeringServo == 2:
@@ -179,8 +180,7 @@ class radiolink(object):
 						data_value = y_hat #export for write
 						old_yhat = data_value
 						new_data = 1
-				elif data_type == 'v':
-					
+				elif data_type == 'v': #VOICE BUTTONS
 					if(self.parent.joystick.getButton(9)): 
 						print "got 9!"
 						data_type = "2 n"
@@ -211,25 +211,38 @@ class radiolink(object):
 				#use chr to get string of one character with ordinal i; 0 <= i < 256
 				if (new_data != 0):
 					command_list.append(command)
-					
+			#Follows is a stupid way of evenly dividing interval time into even iterations through it
+			#in an attempt to space the data.  It's done without any real knowledge of our bandwidth
+			#or the actual time that parts take.  TODO: replace with a smart system!
 			# request data from slave
-			if (time_through == ((interval / 10)*1)):
-				command = "2 a\r"
+			space_length = interval/30
+			if (time_through == ((space_length)*1)): 
+				command = "2 a\r"						#lattitude
 				command_list.append(command)
-			elif (time_through == ((interval / 10)*2)):
+			elif (time_through == ((space_length)*2)): 
 				command = "3\r"
 				command_list.append(command)
-			elif (time_through == ((interval / 10)*3)):
-				command = "2 o\r"
+			elif (time_through == ((space_length)*3)): 
+				command = "2 o\r"						#longitude
 				command_list.append(command)
-			elif (time_through == ((interval / 10)*4)):
+			elif (time_through == ((space_length)*4)): 
 				command = "3\r"
 				command_list.append(command)
-			elif (time_through == ((interval / 10)*5)):
-				command = "2 c\r"
+			elif (time_through == ((space_length)*5)): 
+				command = "2 d\r"						#gps bearing
 				command_list.append(command)
-			elif (time_through == ((interval / 10)*6)):
+			elif (time_through == ((space_length)*6)):
 				command = "3\r"
+				command_list.append(command)
+			elif (time_through == ((space_length)*7)):
+				command = "2 g\r"						#groundspeed
+				command_list.append(command)
+			elif (time_through == ((space_length)*8)):
+				command = "3\r"
+				command_list.append(command)
+			#B is a sensor command that goes to master board, hence no need for 2 or 3!!!!!!!!!!!!!!!
+			elif (time_through == ((space_length)*9)):
+				command = "b\r"						#battery and other values in a packed list
 				command_list.append(command)
 			else:
 				command = 0

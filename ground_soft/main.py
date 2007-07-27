@@ -334,7 +334,9 @@ class AppFrame(wx.Frame):
 		self.currentLocation[1] = int(dirVal)*float(lon_deg)
 		if (theConfig.map):
 			self.parent.map.map.setCenter(self.currentLocation)
+		print "setting lon_ctrl to " + str(lon_deg)
 		self.lon_ctrl.SetValue(str(lon_deg))
+		print "setting lon_dir_tesxt to " + str(lon_dir)
 		self.lon_dir_text.SetLabel(lon_dir)
 	def UpdateAltitude(self,alt):
 		self.altitude_value.SetValue(alt)
