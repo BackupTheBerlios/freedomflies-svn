@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 __all__ = ['BufferedCanvas']
 
 import wxversion
-wxversion.select("2.8.4.0-macosx10.3")
+wxversion.select("2.6-osx-ansi-universal10.4-py2.5")
 import wx
 
 class BufferedCanvas(wx.Panel):
