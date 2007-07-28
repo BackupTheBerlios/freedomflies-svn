@@ -1,3 +1,5 @@
+import wxversion
+wxversion.select("2.8.4.0-macosx10.3")
 import wx
 import os
 import log
@@ -26,7 +28,7 @@ class PrefFrame(wx.MiniFrame):
 		joystickList.extend(self.joystickDict.keys())
 		joystickChoice = wx.Choice(self,-1,choices=joystickList)
 		self.Bind(wx.EVT_CHOICE, self.OnJoystickChoice, joystickChoice)
-		joystickChoice.SetSelection(1)
+		joystickChoice.SetSelection(3) #csikchange -- changing the order in the prefs file didn't seem to work!
 		joysizer.Add(wx.StaticText(self,-1,'Preset'),0,wx.ALIGN_LEFT)
 		joysizer.Add(joystickChoice,0,wx.ALIGN_CENTER|wx.BOTTOM,border=5)
 		
@@ -74,7 +76,6 @@ class PrefFrame(wx.MiniFrame):
 					
 	def SaveJoystickChoices(self):
 		xVal,yVal,tVal,hVal = 0,0,0,(-1)
-			
 		try:
 			xVal = int(self.XCtrl.GetValue())
 			yVal = int(self.YCtrl.GetValue())

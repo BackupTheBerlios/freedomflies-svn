@@ -1,6 +1,8 @@
 #!/usr/bin/pythonw
 # joystick.py
 
+import wxversion
+wxversion.select("2.8.4.0-macosx10.3")
 import wx
 import pygame
 import log

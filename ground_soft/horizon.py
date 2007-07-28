@@ -1,5 +1,7 @@
 import pygame
 import math
+import wxversion
+wxversion.select("2.8.4.0-macosx10.3")
 import wx
 from wx.glcanvas import *
 from OpenGL.GL import *

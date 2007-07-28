@@ -31,7 +31,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "nmeap.h"#include "assert.h" 
+#include "nmeap.h"
+#include "assert.h" 
 #include <math.h>
 
 /* this only works if you are sure you have an upper case hex digit */
@@ -49,7 +50,8 @@ int nmeap_tokenize(nmeap_context_t *context);
 int nmeap_process(nmeap_context_t *context);
 int nmeap_parse(nmeap_context_t *context,char ch);
 int nmeap_parseBuffer(nmeap_context_t *context,const char *buffer,int *length);
-
+char timebuffer[10];
+char datebuffer[10];
 /**
  * get a latitude out of a pair of nmea tokens 
  */
@@ -546,7 +548,7 @@ int nmeap_gpgga(nmeap_context_t *context,nmeap_sentence_t *sentence)
 		gga->latitude  = nmeap_latitude(context->token[2],context->token[3]);
 		gga->longitude = nmeap_longitude(context->token[4],context->token[5]);
 		gga->altitude  = nmeap_altitude(context->token[9],context->token[10]);
-		gga->time       = atoi(context->token[1]);
+		gga->time       = atol(context->token[1]);
 		gga->satellites = atoi(context->token[7]);
 		gga->quality    = atoi(context->token[6]);
 		gga->hdop       = atof(context->token[8]);
@@ -589,17 +591,20 @@ int nmeap_gprmc(nmeap_context_t *context,nmeap_sentence_t *sentence)
 	/* if there is a data element, use it */
 	if (rmc != 0) {
 		/* extract data from the tokens */
-		rmc->time       = atoi(context->token[1]);
+		rmc->time       = strcpy(timebuffer,context->token[1]);
 		rmc->warn       = *context->token[2];
 		rmc->latitude  = nmeap_latitude(context->token[3],context->token[4]);
 		rmc->longitude = nmeap_longitude(context->token[5],context->token[6]);
 		rmc->speed      = atof(context->token[7]);
 		rmc->course     = atof(context->token[8]);
-		rmc->date       = atoi(context->token[9]);
+		rmc->date       = strcpy(datebuffer,context->token[9]);
 		rmc->magvar     = atof(context->token[10]);
 	}
-
+	
+	rmc->date[6]='\0';
+	rmc->time[6]='\0';
 #ifndef NDEBUG    
+	
     /* print raw input string */
     printf("%s",context->debug_input);
     

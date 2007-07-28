@@ -1,10 +1,16 @@
+import wxversion
+wxversion.select("2.8.4.0-macosx10.3")
 import wx
 from bufferedcanvas import *
 import cStringIO
 import mapscript
 import math
+import time
 
-debug = True
+problem_time=0
+
+debug=False
+
 saveToDisk = False
 
 
@@ -13,7 +19,7 @@ class MapFrame(wx.Frame):
 		wx.Frame.__init__(self,parent,id,name,pos,size)
 		self.parent = parent #my parent is the main app frame
 		self.map = MapCanvas(self,-1,size)
-
+		self.SetSize((400, 400))
 		self.sizer2 = wx.BoxSizer(wx.HORIZONTAL)
 		self.zoomin_button = wx.Button(self, -1, "Zoom in")
 		self.sizer2.Add(self.zoomin_button, 1, wx.EXPAND)
@@ -55,14 +61,15 @@ class MapFrame(wx.Frame):
 class MapCanvas(BufferedCanvas):
 	def __init__(self,parent,id,size):
 		wx.InitAllImageHandlers()
-		self.size = size
+		
 		self.parent = parent #?
 		self.map_scale = 500
+		self.size = self.parent.GetSize()
 		
 		#setup map object
 		self.map = mapscript.mapObj()
-		self.map.width = size[0]
-		self.map.height = size[1]
+		self.map.width = self.size[0]
+		self.map.height = self.size[1]
 		
 		self.map.setProjection('init=nad83:2001, units=m') #MA Stateline
 		#self.map.setProjection('init=epsg:4326') #world GPS
@@ -85,7 +92,11 @@ class MapCanvas(BufferedCanvas):
 		BufferedCanvas.__init__(self,parent,id)
 		
 	def draw(self,dc):
+		global problem_time
 		try:
+			if debug: print "Window size = " + str(self.parent.GetSize())
+			self.map.width = self.parent.GetSize()[0]
+			self.map.height = self.parent.GetSize()[1]
 			self.setDist(self.map_scale)
 			themap = self.map.draw()
 			data = themap.saveToString()
@@ -101,7 +112,19 @@ class MapCanvas(BufferedCanvas):
 			bitmap = wx.EmptyBitmap(self.size[0],self.size[1])
 			if debug: print "unable to draw, MapServerError in 'draw'."
 			if debug: print e
-		dc.DrawBitmap(bitmap,0,0,True)
+			
+		if problem_time == 0:
+			print "problem_time == 0 ... no problem, let's draw"
+			try:
+				dc.DrawBitmap(bitmap,0,0,True) #this is where it's getting an invalid dc error
+				problem_time = 0
+			except:
+				print "Unable to draw bitmap!"
+				problem_time = time.time()
+		elif ((time.time() - problem_time) > 20):
+			print "it's been 20 seconds, time to reset problem_time"
+			problem_time=0			
+			
 		if debug: print "drawing"
 	
 	def setCenter(self,center):
@@ -116,8 +139,8 @@ class MapCanvas(BufferedCanvas):
 		
 		currentLocation = self.parent.parent.currentLocation
 		pt = mapscript.pointObj()
-		print "currentLocation0 = " + str(currentLocation[0])
-		print "currentLocation1 = " + str(currentLocation[1])
+		if debug: print "currentLocation0 = " + str(currentLocation[0])
+		if debug: print "currentLocation1 = " + str(currentLocation[1])
 		pt.y = float(currentLocation[0]) #lat
 		pt.x = float(currentLocation[1]) #lon
 		
@@ -128,7 +151,7 @@ class MapCanvas(BufferedCanvas):
 		mapproj = mapscript.projectionObj('init=nad83:2001, units=m') #Stateline
 		pt.project(gpsproj,mapproj)
 		
-		print pt
+		if debug: print pt
 		b = (dist*math.sqrt(2)/2) #distance from center to corner
 		extentquad = [pt.x-b,pt.y-b,pt.x+b,pt.y+b]
 		self.map.setExtent(int(extentquad[0]),int(extentquad[1]),int(extentquad[2]),int(extentquad[3]))

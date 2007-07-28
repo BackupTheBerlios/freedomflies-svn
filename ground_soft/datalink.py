@@ -2,6 +2,8 @@
 import serial
 import time
 import threading
+import wxversion
+wxversion.select("2.8.4.0-macosx10.3")
 import wx
 import log
 import string
@@ -182,22 +184,22 @@ class radiolink(object):
 						new_data = 1
 				elif data_type == 'v': #VOICE BUTTONS
 					if(self.parent.joystick.getButton(9)): 
-						print "got 9!"
+						if debug: print "got 9!"
 						data_type = "2 n"
 						data_value = '\r3'
 						new_data = 1
 					if(self.parent.joystick.getButton(10)): 
-						print "got 10!"
+						if debug: print "got 10!"
 						data_type = "2 m"
 						data_value = '\r3'
 						new_data = 1
 					if(self.parent.joystick.getButton(11)): 
-						print "got 11!"
+						if debug: print "got 11!"
 						data_type = "2 h"
 						data_value = '\r3'
 						new_data = 1
 					if(self.parent.joystick.getButton(8)): 
-						print "got 8!"
+						if debug: print "got 8!"
 						data_type = "2 p"
 						data_value = '\r3'
 						new_data = 1
@@ -285,7 +287,6 @@ class radiolink(object):
 				pass
 			try:
 				self.downproc.ProcessBuffer(buffer)
-				
 			except Exception,e:
 				#catch exceptions here, so we don't freeze pyserial
 				print "datalink exception:",e

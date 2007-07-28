@@ -14,6 +14,7 @@ import math
 import sys,os
 import threading
 
+
 #my imports
 import prefs
 import joystick as joystickClass #avoid name collision
@@ -37,9 +38,12 @@ class configuration(object):
 theConfig = configuration("generic")
 theConfig.map = True
 
+debug = False
 
 #external library imports
 try:
+	import wxversion
+	wxversion.select("2.8.4.0-macosx10.3")
 	import wx
 	import wx.glcanvas
 except ImportError:
@@ -63,6 +67,8 @@ class AppFrame(wx.Frame):
 	def __init__(self,*args,**kwds):
 		wx.Frame.__init__(self,*args,**kwds)
 		
+		old_long=0
+		old_lat = 0
 		#init pygame first, may take awhile
 		pygame.init()
 		
@@ -310,8 +316,8 @@ class AppFrame(wx.Frame):
 			self.uplink_log.CloseLogFile()
 					
 	def UpdateLatitude(self,lat_deg,lat_dir):
-		print "lat_deg =" + lat_deg
-		print "lat_dir =" + lat_dir
+		if debug: print "lat_deg =" + lat_deg
+		if debug: print "lat_dir =" + lat_dir
 		if lat_dir is ("+" or "W"):
 			dirVal = 1
 		if lat_dir is ("-" or "E"):
@@ -324,19 +330,19 @@ class AppFrame(wx.Frame):
 		self.lat_dir_text.SetLabel(lat_dir)
 		
 	def UpdateLongitude(self,lon_deg,lon_dir):	
-		print "long_deg =" + lon_deg
-		print "long_dir =" + lon_dir
+		if debug: print "long_deg =" + lon_deg
+		if debug: print "long_dir =" + lon_dir
 		if lon_dir is ("+" or "N"):
 			dirVal = 1
 		if lon_dir is ("-" or "S"):
 			dirVal = -1
-		print "dirVal = " + str(dirVal)
+		if debug: print "dirVal = " + str(dirVal)
 		self.currentLocation[1] = int(dirVal)*float(lon_deg)
 		if (theConfig.map):
 			self.parent.map.map.setCenter(self.currentLocation)
-		print "setting lon_ctrl to " + str(lon_deg)
+		if debug: print "setting lon_ctrl to " + str(lon_deg)
 		self.lon_ctrl.SetValue(str(lon_deg))
-		print "setting lon_dir_tesxt to " + str(lon_dir)
+		if debug: print "setting lon_dir_tesxt to " + str(lon_dir)
 		self.lon_dir_text.SetLabel(lon_dir)
 	def UpdateAltitude(self,alt):
 		self.altitude_value.SetValue(alt)

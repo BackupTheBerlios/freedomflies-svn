@@ -1,4 +1,4 @@
-#A dictionary of preset joysticks, first entry is default
+#A dictionary of sss joysticks, first entry is default
 #Hat is a list of buttons to be treated as a hat
 # if hat is of length one, the id will be used as the hat
 # if hat is > len[1], id is from north proceeding clockwise

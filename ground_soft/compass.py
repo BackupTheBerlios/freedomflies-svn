@@ -1,3 +1,5 @@
+import wxversion
+wxversion.select("2.8.4.0-macosx10.3")
 import wx
 from bufferedcanvas import *
 import math
@@ -84,6 +86,7 @@ class MyCompass(BufferedCanvas):
 	#end draw method
 	def SetHeading(self,heading):
 		#heading entered as degrees from horiz, +CW
-		self.heading = heading * math.pi/180 - math.pi/2 #rad from vert, +CW
+		heading = int(heading)
+		self.heading = (360-heading) * math.pi/180 - math.pi/2 #rad from vert, +CW
 		self.update()
 #end of class MyCompass

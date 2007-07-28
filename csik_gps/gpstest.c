@@ -15,8 +15,8 @@
 
 //our nmea includes
 #include "nmeap.h"
-#include "nmeap_def.h"
-#include "nmeap01.c"
+//#include "nmeap_def.h"
+//#include "nmeap01.c"
 #include "gpsmath.c"
 
 //software uart includes
@@ -365,7 +365,7 @@ u08 i2cSlaveTransmitService(u08 transmitDataLengthMax, u08* transmitData)
 			break;
 		case 'd':
 			rprintf("d ");
-			rprintfFloat(8,rmc.course);
+			rprintfFloat(4,rmc.course);
 			break;
 		case 'c':  // RETURNS compass, roll, and pitch
 			rprintf("c"); //ghetto -- no space before the data for some annoying reason -- blame uartsw.c
@@ -374,11 +374,13 @@ u08 i2cSlaveTransmitService(u08 transmitDataLengthMax, u08* transmitData)
 			break;
 		case 't':
 			rprintf("t ");
-			rprintfFloat(9,rmc.date);
+			//rprintfu32(rmc.time);
+			rprintfStr(rmc.time);  //not float, rather hhmmss
+			//rprintfFloat(6,rmc.time);
 			break;
 		case 'g':  // groundspeed is speed from gps -- prone to errors
 			rprintf("g ");
-			rprintfFloat(7,rmc.speed);
+			rprintfFloat(4,rmc.speed);
 			break;
 		case 'h':
 			voiceBoxCue = 'h';

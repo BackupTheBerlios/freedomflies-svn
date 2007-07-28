@@ -26,6 +26,10 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
+/////////////////////////csik4u32/////////
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <avrlibtypes.h>
 /* 
 ============================================
 COMPILE TIME CONFIGURATION CONSTANTS
@@ -105,7 +109,7 @@ struct nmeap_gga {
 	double        latitude;
 	double        longitude;
 	double        altitude;
-	unsigned long time;
+	long 			time;
 	int           satellites;
 	int           quality;
 	double        hdop;
@@ -115,13 +119,13 @@ typedef struct nmeap_gga nmeap_gga_t;
 
 /** extracted data from an RMC message */
 struct nmeap_rmc {
-	unsigned long time;
+	char* 		time;
 	char          warn;
 	double        latitude;
 	double        longitude;
 	double        speed;
 	double        course;
-	unsigned long date;
+	char*		 date;
 	double        magvar;
 };
 

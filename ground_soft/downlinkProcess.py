@@ -1,7 +1,12 @@
 #TO DO -- Fix avionics code to output separate data for compass, roll, and pitch
 import string
 import log
+import wxversion
+wxversion.select("2.8.4.0-macosx10.3")
 import wx
+
+import main
+debug=main.debug
 
 class MyDownlinkProcessor(object):
 	def __init__(self,parent):
@@ -36,13 +41,13 @@ class MyDownlinkProcessor(object):
 #		#print "got heading:",heading_deg
 #		self.parent.compass.SetHeading(heading_deg)
 	def ProcessLatitude(self,data_val):
-		print "Lat raw data_val = " + data_val
+		if debug: print "Lat raw data_val = " + data_val
 		direction = data_val[0] #first character
 		degrees = data_val[1:-1] #strip off " +" from front, \r from back
 		#print "got latitude:",data_val
 		self.parent.UpdateLatitude(degrees,direction)
 	def ProcessLongitude(self,data_val):
-		print "Lon raw data_val = " + data_val
+		if debug: print "Lon raw data_val = " + data_val
 		direction = data_val[0] #first character
 		degrees = data_val[1:-1] #strip off " +" from front, \r from back
 		#print "got longitude:",data_val
@@ -56,19 +61,22 @@ class MyDownlinkProcessor(object):
 		except ValueError:
 			print "invalid heading value: using old value"
 	def ProcessDirection(self,data_val):  #GPS trackangle
+		if debug: print "GPS trackangle =" + data_val
 		try:
-			heading_deg = round(float(data_val))
+			heading_deg = int(float(data_val))
 			self.parent.compass.SetHeading(heading_deg)
 		except ValueError:
 			print "invalid direction (track angle) value: using old value"
+		
 	def ProcessAltitude(self,data_val):
 		altitude_m = data_val #TODO, convert
 		#print "got altitude:",altitude_m
 		self.parent.UpdateAltitude(altitude_m)
 	def ProcessBattery(self,data_val):
 		#batt level [0,127]
-		for index,c in enumerate(data_val):
-			print "sensor " + str(index) + " = %d" % ord(c)
+		if debug:
+			for index,c in enumerate(data_val):
+				print "sensor " + str(index) + " = %d" % ord(c)
 		#Don't do anything with battery yet...
 		#batt_per = round(int(data_val) * 12/127.0)
 		#print "got battery:",batt_per
@@ -89,7 +97,7 @@ class MyDownlinkProcessor(object):
 		print "dateTime from vehicle: " + data_val
 	def ProcessGroundspeed(self,data_val): #	Speed over the ground in knots
 		#groundspeed [0,127]
-		print "got groundspeed:",data_val
+		if debug: print "got groundspeed:",data_val
 		# TODO: display to GUI
 		
 	def ProcessError(self,data_val):
@@ -103,7 +111,7 @@ class MyDownlinkProcessor(object):
 	
 		
 	def ProcessBuffer(self,buffer):
-		data_types = ['c','a','o','s','g','f','b','q','w','z','1','E']
+		data_types = ['c','a','o','s','g','f','b','q','w','d','t','z','1','E']
 		data_separator = ','
 			
 		#strip to get rid of extra spaces

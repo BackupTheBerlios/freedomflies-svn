@@ -28,7 +28,7 @@
 #  They will be compiled in the order you list them, so it's probably best
 #  to list $(TRG).c, your top-level target file, last.
 
-	SRC = $(AVRLIB)/buffer.c $(AVRLIB)/uart.c $(AVRLIB)/rprintf.c $(AVRLIB)/timer.c $(AVRLIB)/lcd.c $(AVRLIB)/i2c.c video.c $(TRG).c
+	SRC = $(AVRLIB)/buffer.c $(AVRLIB)/uart.c $(AVRLIB)/rprintf.c $(AVRLIB)/timer.c $(AVRLIB)/lcd.c $(AVRLIB)/i2c.c nmeap01.c video.c $(TRG).c
 	
 #put additional assembler source file here
 #  The ASRC line allows you to list files which contain assembly code/routines that
@@ -87,6 +87,7 @@ servo.o		: servo.c		servo.h		global.h
 swuart.o		: swuart.c		swuart.h		global.h
 tsip.o		: tsip.c			tsip.h		global.h
 nmea.o		: nmea.c			nmea.h		global.h
+nmeap01.o   : nmeap01.c			nmeap.h	nmeap_def.h	global.h
 vt100.o		: vt100.c		vt100.h		global.h
 gps.o			: gps.c			gps.h			global.h
 video.o		:video.c		video.h		global.h
