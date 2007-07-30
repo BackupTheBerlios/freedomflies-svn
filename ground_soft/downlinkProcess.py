@@ -4,7 +4,8 @@ import log
 import wxversion
 wxversion.select("2.6-osx-ansi-universal10.4-py2.5")
 import wx
-
+old_latitude = 0
+old_longitude = 0
 import main
 debug=main.debug
 
@@ -41,17 +42,23 @@ class MyDownlinkProcessor(object):
 #		#print "got heading:",heading_deg
 #		self.parent.compass.SetHeading(heading_deg)
 	def ProcessLatitude(self,data_val):
+		global old_latitude
 		if debug: print "Lat raw data_val = " + data_val
 		direction = data_val[0] #first character
 		degrees = data_val[1:-1] #strip off " +" from front, \r from back
 		#print "got latitude:",data_val
-		self.parent.UpdateLatitude(degrees,direction)
+		if degrees != old_latitude: 
+			self.parent.UpdateLatitude(degrees,direction)
+			old_latitude = degrees
 	def ProcessLongitude(self,data_val):
+		global old_longitude
 		if debug: print "Lon raw data_val = " + data_val
 		direction = data_val[0] #first character
 		degrees = data_val[1:-1] #strip off " +" from front, \r from back
 		#print "got longitude:",data_val
-		self.parent.UpdateLongitude(degrees,direction)
+		if degrees != old_longitude:
+			self.parent.UpdateLongitude(degrees,direction)
+			old_longitude = degrees
 	def ProcessHeading(self,data_val):  #csikmodified to deal with compass, pitch, and roll
 		#compass heading [219.1]
 		#strip off +/-

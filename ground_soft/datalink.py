@@ -9,6 +9,9 @@ import log
 import string
 import pygame
 
+import main
+debug=main.debug
+
 import downlinkProcess
 
 class radiolink(object):
@@ -59,8 +62,6 @@ class radiolink(object):
 		if not self.radio.isOpen():
 			self.radio.open()
 			print "restarting radio on: "+self.radio.portstr
-		#DANGER! CsikCode:  added a boat servo command -- set servo speed.
-		self.radio.write("w 2000 10\r")
 		self.upthread = threading.Thread(target=self.UplinkThread)
 		self.upthread.setDaemon(1)
 		self.upalive.set()
@@ -224,26 +225,26 @@ class radiolink(object):
 			elif (time_through == ((space_length)*2)): 
 				command = "3\r"
 				command_list.append(command)
-			elif (time_through == ((space_length)*3)): 
+			elif (time_through == ((space_length)*9)): 
 				command = "2 o\r"						#longitude
 				command_list.append(command)
-			elif (time_through == ((space_length)*4)): 
+			elif (time_through == ((space_length)*10)): 
 				command = "3\r"
 				command_list.append(command)
-			elif (time_through == ((space_length)*5)): 
+			elif (time_through == ((space_length)*16)): 
 				command = "2 d\r"						#gps bearing
 				command_list.append(command)
-			elif (time_through == ((space_length)*6)):
+			elif (time_through == ((space_length)*17)):
 				command = "3\r"
 				command_list.append(command)
-			elif (time_through == ((space_length)*7)):
+			elif (time_through == ((space_length)*21)):
 				command = "2 g\r"						#groundspeed
 				command_list.append(command)
-			elif (time_through == ((space_length)*8)):
+			elif (time_through == ((space_length)*23)):
 				command = "3\r"
 				command_list.append(command)
 			#B is a sensor command that goes to master board, hence no need for 2 or 3!!!!!!!!!!!!!!!
-			elif (time_through == ((space_length)*9)):
+			elif (time_through == ((space_length)*24)):
 				command = "b\r"						#battery and other values in a packed list
 				command_list.append(command)
 			else:
@@ -293,5 +294,13 @@ class radiolink(object):
 				import traceback
 				traceback.print_exc()
 				print "unrecognized data: %s" % buffer
-			
-	#end DownlinkThread
+			#			try:	
+			#				if self.radio.inWaiting() > 50:
+			#					try:
+			#						self.radio.flushInput()
+			#						print "!!!!!!!!!!!!!!!!!!!!!!!INPUT FLUSHED AND LOST!!!!!!!!!!!!!!!!!!!!!!!!!!"
+			#					except Exception,e:
+			#						print "unable to flush input: %s",e
+			#			except Exception,e:
+			#				print "unable to check number of chars left in buffer: %s",e
+			#end DownlinkThread

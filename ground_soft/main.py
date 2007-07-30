@@ -45,16 +45,19 @@ try:
 	import wxversion
 	wxversion.select("2.6-osx-ansi-universal10.4-py2.5")
 	import wx
+	
 	import wx.glcanvas
 except ImportError:
 	print "cannot import wx"
 	sys.quit()
-	
+print wx.VERSION_STRING	
+
 try:
 	import pygame
 except ImportError:
 	print "cannot import pygame"
 	sys.quit()
+print pygame.version.ver 
 
 try:
 	import serial
@@ -315,6 +318,7 @@ class AppFrame(wx.Frame):
 			self.downlink_log.CloseLogFile()
 			self.uplink_log.CloseLogFile()
 					
+	#TODO -- add try:excepts for each of the updates on the chance that the data is garbled...  or fix parser
 	def UpdateLatitude(self,lat_deg,lat_dir):
 		if debug: print "lat_deg =" + lat_deg
 		if debug: print "lat_dir =" + lat_dir
@@ -322,7 +326,11 @@ class AppFrame(wx.Frame):
 			dirVal = 1
 		if lat_dir is ("-" or "E"):
 			dirVal = -1
-		self.currentLocation[0] = int(dirVal)*float(lat_deg)
+		try:
+			self.currentLocation[0] = int(dirVal)*float(lat_deg)
+		except:
+			print "unable to update badly parsed long value (main)"
+			pass
 		
 		if (theConfig.map):
 			self.parent.map.map.setCenter(self.currentLocation)
@@ -337,7 +345,13 @@ class AppFrame(wx.Frame):
 		if lon_dir is ("-" or "S"):
 			dirVal = -1
 		if debug: print "dirVal = " + str(dirVal)
-		self.currentLocation[1] = int(dirVal)*float(lon_deg)
+		
+		try:
+			self.currentLocation[1] = int(dirVal)*float(lon_deg)
+		except:
+			print "unable to update badly parsed long value (main)"
+			pass
+			
 		if (theConfig.map):
 			self.parent.map.map.setCenter(self.currentLocation)
 		if debug: print "setting lon_ctrl to " + str(lon_deg)
@@ -347,7 +361,10 @@ class AppFrame(wx.Frame):
 	def UpdateAltitude(self,alt):
 		self.altitude_value.SetValue(alt)
 	def UpdateAirspeed(self,v):
-		self.airspeed_value.SetValue(v)
+		try:
+			self.airspeed_value.SetValue(v)
+		except:
+			print "data garbled"
 # end of class AppFrame
 
 class MyApp(wx.App):
