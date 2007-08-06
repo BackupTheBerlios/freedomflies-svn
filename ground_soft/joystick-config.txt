@@ -8,7 +8,7 @@
 
 
 {
-'Saitek AV8R-01':{'X':0,'Y':1,'Throttle':3,'ThrottleDir':[-1,-1],'Hat':[0]}, 
+'Saitek AV8R-01':{'X':0,'Y':1,'Throttle':3,'ThrottleDir':[1,-1],'Hat':[0]}, 
 'Logitech Wingman Attack2':{'X':0,'Y':1,'Throttle':2,'ThrottleDir':[3,-1],'Hat':[-1]},
 'Saitek X45':{'X':0,'Y':1,'Throttle':2,'ThrottleDir':[11,13],'Hat':[14,15,16,17]}
 }

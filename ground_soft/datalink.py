@@ -3,7 +3,7 @@ import serial
 import time
 import threading
 import wxversion
-wxversion.select("2.6-osx-ansi-universal10.4-py2.5")
+#wxversion.select("2.6-osx-ansi-universal10.4-py2.5")
 import wx
 import log
 import string
@@ -165,7 +165,7 @@ class radiolink(object):
 					# it seems like this is pretty weird -- just for the av8r?
 					if((abs(throttle_val-old_throttle_val))>2):
 						if ThrottleReversible == True:
-							data_value = int(255-(throttle_val*255/100.0 + 255))
+							data_value = int(throttle_val*255/100.0)
 							#goes from 0-255, 127 is mid
 						if ThrottleReversible == False:
 							data_value = abs(int(throttle_val*255/100.0))

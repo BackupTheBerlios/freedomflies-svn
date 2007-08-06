@@ -1,5 +1,5 @@
 import wxversion
-wxversion.select("2.6-osx-ansi-universal10.4-py2.5")
+#wxversion.select("2.6-osx-ansi-universal10.4-py2.5")
 import wx
 from bufferedcanvas import *
 import cStringIO
@@ -25,7 +25,6 @@ class MapFrame(wx.Frame):
 		self.sizer2.Add(self.zoomin_button, 1, wx.EXPAND)
 		wx.EVT_BUTTON(self.zoomin_button, -1, self.zoom_in)
 		
-
 		self.zoomout_button = wx.Button(self, -1, "Zoom out")
 		self.sizer2.Add(self.zoomout_button, 1, wx.EXPAND)
 		wx.EVT_BUTTON(self.zoomout_button, -1, self.zoom_out)
@@ -36,7 +35,7 @@ class MapFrame(wx.Frame):
 
 		self.SetSizer(self.sizer)
 		self.SetAutoLayout(1)
-		self.sizer.Fit(self)
+		#self.sizer.Fit(self)
 		self.Show(1)
 		
 		self.Bind(wx.EVT_CLOSE,self.OnClose)
@@ -98,6 +97,7 @@ class MapCanvas(BufferedCanvas):
 			self.map.width = self.parent.GetSize()[0]
 			self.map.height = self.parent.GetSize()[1]
 			self.setDist(self.map_scale)
+			#self.addPlaneSymbol()
 			themap = self.map.draw()
 			data = themap.saveToString()
 			wx_image = wx.ImageFromStream(cStringIO.StringIO(data)) #convert to wx image
@@ -114,7 +114,7 @@ class MapCanvas(BufferedCanvas):
 			if debug: print e
 			
 		if problem_time == 0:
-			print "problem_time == 0 ... no problem, let's draw"
+			#print "problem_time == 0 ... no problem, let's draw"
 			try:
 				dc.DrawBitmap(bitmap,0,0,True) #this is where it's getting an invalid dc error
 				problem_time = 0

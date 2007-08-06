@@ -1,10 +1,12 @@
 import wxversion
-wxversion.select("2.6-osx-ansi-universal10.4-py2.5")
+#wxversion.select("2.6-osx-ansi-universal10.4-py2.5")
 import wx
 from bufferedcanvas import *
 import os,time
 
 import mutex
+
+debug=True
 
 def SetGlobals(err,dl,ul):
 	global error,downlink,uplink
@@ -62,9 +64,11 @@ class MyLog(wx.PyLog):
 		if self.logfile_opened:
 			self.outfile.write(message + '\n')
 			self.outfile.flush()
-		else:
+			
+		if debug:
+			#output to stdout also
 			if self.name is "downlink":
-				print "d",message[:-1] #strip \r\n
+				print "d",message
 			if self.name is "error":
 				print "e",message
 			if self.name is "uplink":
