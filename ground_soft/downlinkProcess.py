@@ -65,6 +65,7 @@ class MyDownlinkProcessor(object):
 		try:
 			heading_deg = round(float(data_val))
 			self.parent.compass.SetHeading(heading_deg)
+			self.parent.setHeading(heading_deg) #update heading on map
 		except ValueError:
 			print "invalid heading value: using old value"
 	def ProcessDirection(self,data_val):  #GPS trackangle

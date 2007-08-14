@@ -32,11 +32,11 @@ class configuration(object):
 	def __init__(self, name):
 		self.name = name
 		print self.name
-	def set_map(map):
-		self.map = map
+	def set_map(mapF):
+		self.mapFrame = mapF
 
 theConfig = configuration("generic")
-theConfig.map = True
+theConfig.showMap = True
 
 debug = False
 
@@ -209,7 +209,7 @@ class AppFrame(wx.Frame):
 		#self.Bind(wx.EVT_MENU,self.OnJoystickCalibrate,cal)
 		gtest = SetupMenu.Append(-1,"Graphics Test")
 		self.Bind(wx.EVT_MENU,self.OnGraphicsTest,gtest)
-		if(theConfig.map):
+		if(theConfig.showMap):
 			map = SetupMenu.Append(-1,"Map")
 			self.Bind(wx.EVT_MENU,self.OnMap,map)
 		self.MenuBar.Append(SetupMenu,"Setup")
@@ -248,8 +248,8 @@ class AppFrame(wx.Frame):
 	
 		
 	def OnMap(self,event):
-		if (theConfig.map):
-			self.parent.map.Show()
+		if (theConfig.showMapTrue):
+			self.parent.mapFrame.Show()
 	
 	def OnPrefs(self,event):
 		self.parent.prefs.Show()
@@ -320,6 +320,7 @@ class AppFrame(wx.Frame):
 					
 	#TODO -- add try:excepts for each of the updates on the chance that the data is garbled...  or fix parser
 	def UpdateLatitude(self,lat_deg,lat_dir):
+		dirVal = 1 #by default, in Western Hemisphere
 		if debug: print "lat_deg =" + lat_deg
 		if debug: print "lat_dir =" + lat_dir
 		if lat_dir is ("+" or "W"):
@@ -328,36 +329,47 @@ class AppFrame(wx.Frame):
 			dirVal = -1
 		try:
 			self.currentLocation[0] = int(dirVal)*float(lat_deg)
-		except:
-			print "unable to update badly parsed long value (main)"
+		except Exception,e: #TODO, don't catch generically, figure out specific cases and fix them
+			#print "unable to update badly parsed long value (main)"
+			print e
 			pass
 		
-		if (theConfig.map):
-			self.parent.map.map.setCenter(self.currentLocation)
+		if (theConfig.showMap):
+			self.parent.mapFrame.mapCanvas.setCenter(self.currentLocation)
 		self.lat_ctrl.SetValue(str(lat_deg))
 		self.lat_dir_text.SetLabel(lat_dir)
 		
-	def UpdateLongitude(self,lon_deg,lon_dir):	
+	def UpdateLongitude(self,lon_deg,lon_dir):
+		dirVal = 1 #by default, in Northern Hemisphere
 		if debug: print "long_deg =" + lon_deg
 		if debug: print "long_dir =" + lon_dir
 		if lon_dir is ("+" or "N"):
 			dirVal = 1
 		if lon_dir is ("-" or "S"):
 			dirVal = -1
-		if debug: print "dirVal = " + str(dirVal)
+		#if debug: print "dirVal = " + str(dirVal)
+		print "lon_dir = " + str(lon_dir)
+		print "dirVal = " + str(dirVal)
 		
 		try:
 			self.currentLocation[1] = int(dirVal)*float(lon_deg)
-		except:
-			print "unable to update badly parsed long value (main)"
+		except Exception,e: #TODO, don't catch generically, figure out specific cases and fix them
+			#print "unable to update badly parsed long value (main)"
+			print e
 			pass
 			
-		if (theConfig.map):
-			self.parent.map.map.setCenter(self.currentLocation)
+		if (theConfig.showMap):
+			self.parent.mapFrame.mapCanvas.setCenter(self.currentLocation)
 		if debug: print "setting lon_ctrl to " + str(lon_deg)
 		self.lon_ctrl.SetValue(str(lon_deg))
 		if debug: print "setting lon_dir_tesxt to " + str(lon_dir)
 		self.lon_dir_text.SetLabel(lon_dir)
+		
+	def UpdateHeading(self,heading):
+		"""heading is degrees from north"""
+		self.currentHeading = heading
+		self.parent.mapFrame.mapCanvas.setCenter(self.currentLocation)
+	
 	def UpdateAltitude(self,alt):
 		self.altitude_value.SetValue(alt)
 	def UpdateAirspeed(self,v):
@@ -373,13 +385,14 @@ class MyApp(wx.App):
 		self.mainWin = AppFrame(None, 1, "Freedom Flies",(50,25),(800,600))
 		self.mainWin.parent = self #just for link in OnMap and OnPrefs
 		self.mainWin.currentLocation = [42.35830436,-71.09108681] #start location is MIT
+		self.mainWin.currentHeading = (30)
 		#self.mainWin.currentLocation = (236822,901998) #start location is MIT, in lcc
-		if (theConfig.map):
-			self.map = map.MapFrame(self.mainWin,-1,"Map",(855,25),(400,400))
-		self.prefs = prefs.PrefFrame(self.mainWin,-1,"Preferences",(855,425),(300,225))
+		if (theConfig.showMap):
+			self.mapFrame = map.MapFrame(self.mainWin,-1,"Map",(855,25),(400,400))
+		self.prefs = prefs.PrefFrame(self.mainWin,-1,"Preferences",(855,425),(300,230))
 		self.mainWin.Show()
-		if (theConfig.map):
-			self.map.Show()
+		if (theConfig.showMap):
+			self.mapFrame.Show()
 		self.prefs.Show()
 		self.SetTopWindow(self.mainWin)
 		self.Bind(wx.EVT_CLOSE,self.mainWin.OnQuit)
